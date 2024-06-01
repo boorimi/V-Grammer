@@ -1,0 +1,40 @@
+.announcement-container {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.announcement-container div {
+  border: 1px solid black;
+}
+
+.announcement-title {
+  background-color: lightgreen;
+}
+
+.announcement-conmain {
+  width: 100%;
+  height: 370px;
+}
+
+.announcement-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 10px;
+}
+.announcement-con-date {
+  font-size: 10pt;
+}
+.announcement-con-txt {
+  font-size: 13pt;
+  text-align: left;
+}
+.announcement-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+#insert-button {
+  padding: 5px 0px;
+}
+.announcement-page-no {
+  margin: 0px 10px;
+}
