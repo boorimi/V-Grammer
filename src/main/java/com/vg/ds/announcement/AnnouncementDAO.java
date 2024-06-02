@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.ds.board.review.ReviewDTO;
 import com.vg.ds.announcement.DBManager;
 
 public class AnnouncementDAO {
@@ -24,7 +23,7 @@ public class AnnouncementDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void paging(int page, HttpServletRequest request) {
 
 		int cnt = 20; // 한페이지당 보여줄 개수
@@ -47,7 +46,7 @@ public class AnnouncementDAO {
 		request.setAttribute("end", end);
 		request.setAttribute("announcements", items);
 	}
-	
+
 	public void selectAllAnnouncement(HttpServletRequest request) {
 
 		PreparedStatement pstmt = null;
@@ -105,7 +104,7 @@ public class AnnouncementDAO {
 			String date = rs.getString(5);
 
 			AnnouncementDTO a = new AnnouncementDTO(pk, twitterId, title, text, date);
-			
+
 			request.setAttribute("announcements", a);
 
 		} catch (Exception e) {
@@ -113,7 +112,79 @@ public class AnnouncementDAO {
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-		
+
+	}
+
+	public void insertAnnouncement(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+
+			String sql = "insert into haco_announcement values (null, 'KOR_JABIRAN', ?, ?, NOW())";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, request.getParameter("title"));
+			pstmt.setString(2, request.getParameter("text"));
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("입력 성공!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+	}
+
+	public void deleteAnnouncement(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+
+			String sql = "delete from haco_announcement where a_pk = ?";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, request.getParameter("no"));
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("삭제 성공!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+	}
+
+	public void updateAnnouncement(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+
+			String sql = "update haco_announcement set a_title = ?, a_text = ? where a_pk = ?";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, request.getParameter("title"));
+			pstmt.setString(2, request.getParameter("text"));
+			pstmt.setString(3, request.getParameter("no"));
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("수정 성공!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
 	}
 
 }

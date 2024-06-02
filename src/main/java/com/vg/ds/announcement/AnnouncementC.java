@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/announcement")
-public class announcementC extends HttpServlet {
+@WebServlet("/Announcement")
+public class AnnouncementC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		AnnouncementDAO.ADAO.selectAllAnnouncement(request);

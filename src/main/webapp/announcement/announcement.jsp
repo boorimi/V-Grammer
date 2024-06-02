@@ -6,7 +6,7 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Insert title here</title>
+    <title>お知らせ</title>
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -16,7 +16,7 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
   </head>
   <body>
     <div class="announcement-container">
-      <div class="announcement-title"><h1>review page</h1></div>
+      <div class="announcement-title"><h1>お知らせ</h1></div>
       <div class="announcement-conmain">
         <c:forEach var="a" items="${announcements }">
           <div class="announcement-content">
@@ -28,7 +28,7 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
         </c:forEach>
       </div>
       <div id="insert-button">
-        <button onclick="location.href='InsertAnnouncementC'">글쓰기</button>
+        <button onclick="location.href='InsertAnnouncement'">글쓰기</button>
       </div>
       <div class="announcement-bottom">
         <div><a href="AnnouncementPage?p=1">처음</a></div>
