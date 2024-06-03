@@ -3,6 +3,8 @@
 .project
 .classpath
 
+src/main/java/com/vg/ignore/
+
 *.class
 
 # Package Files 
