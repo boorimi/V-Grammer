@@ -16,17 +16,17 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
   </head>
   <body>
     <div class="announcement-container">
-      <div class="announcement-title"><h1>お知らせ</h1></div>
+      <div class="announcement-title"><h1>トレード</h1></div>
       <div class="announcement-conmain">
         <!-- 본문페이지 for문 시작 -->
-        <c:set var="totalItems" value="${fn:length(announcements)}" />
-        <c:forEach var="a" items="${announcements }" varStatus="status">
+        <c:set var="totalItems" value="${fn:length(trades)}" />
+        <c:forEach var="t" items="${trades }" varStatus="status">
           <div class="announcement-content">
             <div class="announcement-number">${totalItems - status.index}</div>
             <div class="announcement-con-title">
-              <a href="SelectAnnouncement?no=${a.pk}">${a.title }</a>
+              <a href="SelectAnnouncement?no=${t.pk}">${t.text }</a>
             </div>
-            <div class="announcement-con-txt">${a.date }</div>
+            <div class="announcement-con-txt">${t.date }</div>
           </div>
         </c:forEach>
         <!-- 본문페이지 for문 끝 -->

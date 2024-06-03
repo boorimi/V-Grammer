@@ -13,7 +13,7 @@ import com.vg.ds.announcement.AnnouncementDAO;
 public class TradeC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		TradeDAO.TDAO.selectAllAnnouncement(request);
+		TradeDAO.TDAO.selectAllTrade(request);
 //		int p = Integer.parseInt(request.getParameter("p"));
 //		TradeDAO.TDAO.paging(1, request);
 		request.getRequestDispatcher("trade/trade.jsp").forward(request, response); 
