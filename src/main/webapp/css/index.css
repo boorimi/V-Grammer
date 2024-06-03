@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 a {
-    color: inherit; /* 부모 요소의 색상 상속 */
-    text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 부모 요소의 색상 상속 */
+  text-decoration: none; /* 밑줄 제거 */
 }
 
 nav {
@@ -31,4 +31,49 @@ nav {
 .nav-userinfo {
   margin-left: 129px;
   margin-top: 15px;
+}
+.live-members {
+  margin-top: 50px;
+}
+.live-members > .members {
+  font-size: 32px;
+  margin-left: 245px;
+  color: #756363;
+}
+
+.live-contents {
+  width: 1187px;
+  height: 501px;
+
+  margin-left: 126px;
+  margin-top: 102px;
+  display: flex;
+}
+
+.live-content {
+  width: 1013px;
+  height: 501px;
+  background-color: aquamarine;
+  margin-left: 47px;
+  margin-right: 47px;
+}
+
+.live-contents > .left-slider-button {
+  margin-top: 220px;
+}
+
+.live-contents > .right-slider-button {
+  margin-top: 220px;
+}
+.today-vtuber {
+  margin-top: 127px;
+  margin-left: 97px;
+  width: 1242px;
+  height: 751px;
+  background-color: blue;
+}
+
+footer {
+  height: 346px;
+  background-color: white;
 }
