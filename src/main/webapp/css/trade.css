@@ -19,7 +19,7 @@
 .trade-content {
   margin: 20px 10px;
 }
-.trade-content > div:nth-child(1) {
+.trade-content > div {
   display: flex;
 }
 .trade-content > div:nth-child(1) div {
@@ -30,6 +30,7 @@
 }
 .trade-con-title {
   padding: 10px;
+  flex: 1;
 }
 .trade-con-date {
   font-size: 10pt;

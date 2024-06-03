@@ -29,10 +29,8 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
               <div>${t.twitterId}</div>
               <div>${t.date }</div>
             </div>
-            <div class="trade-con-title">
-              ${t.text }
-            </div>
             <div>
+              <div class="trade-con-title">${t.text }</div>
               <div>
                 <button onclick="location.href='UpdateTrade?no=${t.pk}'">
                   수정
