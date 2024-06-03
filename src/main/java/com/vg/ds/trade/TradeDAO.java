@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.vg.main.DBManager;
+import com.vg.ds.announcement.AnnouncementDTO;
+import com.vg.ignore.DBManager;
 
 public class TradeDAO {
 
@@ -23,7 +24,7 @@ public class TradeDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void paging(int page, HttpServletRequest request) {
 
 		int cnt = 10; // 한페이지당 보여줄 개수
@@ -58,7 +59,7 @@ public class TradeDAO {
 			sql += "from haco_tradegoods, haco_user ";
 			sql += "where u_twitter_id = t_u_twitter_id ";
 			sql += "order by t_date desc";
-			
+
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -87,5 +88,124 @@ public class TradeDAO {
 		}
 
 	}
-	
+
+	public void selectTrade(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = "select t_pk, t_u_twitter_id, u_id, u_nickname, t_text, t_date, u_yesno ";
+			sql += "from haco_tradegoods, haco_user ";
+			sql += "where u_twitter_id = t_u_twitter_id and t_pk = ? ";
+			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, request.getParameter("no"));
+			rs = pstmt.executeQuery();
+			rs.next();
+
+			String pk = rs.getString(1);
+			String twitterId = rs.getString(2);
+			String id = rs.getString(3);
+			String nickname = rs.getString(4);
+			String text = rs.getString(5);
+			String date = rs.getString(6);
+			String yesno = rs.getString(7);
+
+			// 본문내용 확인 할때 DB내용을 br -> 줄바꿈으로 대체하는 코드
+			String text2 = text.replace("<br>", "\r\n");
+
+			TradeDTO t = new TradeDTO(pk, twitterId, id, nickname, text2, date, yesno);
+
+			request.setAttribute("text2", text2);
+			request.setAttribute("trades", t);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+
+	}
+
+	public void insertTrade(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+			// 인서트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
+			String text = request.getParameter("text");
+			text = text.replaceAll("\r\n", "<br>");
+
+			String sql = "insert into haco_tradegoods values (null, 'KOR_JABIRAN', ?, NOW())";
+
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, text);
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("입력 성공!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+	}
+
+	public void deleteTrade(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+
+			String sql = "delete from haco_tradegoods where t_pk = ?";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, request.getParameter("no"));
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("삭제 성공!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+	}
+
+	public void updateTrade(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+			// 업데이트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
+			String text = request.getParameter("text");
+			text = text.replace("\r\n", "<br>");
+
+			String sql = "update haco_tradegoods set t_text = ? where t_pk = ?";
+
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, text);
+			pstmt.setString(2, request.getParameter("no"));
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("수정 성공!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+	}
+
 }
