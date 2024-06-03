@@ -4,18 +4,6 @@
   <artifactId>V-Grammer</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <dependencies>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.twitter4j</groupId>
-      <artifactId>twitter4j-core</artifactId>
-      <version>4.1.2</version>
-    </dependency>
-  </dependencies>
   <build>
     <plugins>
       <plugin>
@@ -31,4 +19,17 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
+  	<dependency>
+  		<groupId>karendaTest</groupId>
+  		<artifactId>karendaTest</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
+

@@ -1,4 +1,4 @@
-package com.kw.vg.main;
+package com.vg.kw.main;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

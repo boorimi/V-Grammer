@@ -44,7 +44,7 @@ nav {
 .live-contents {
   width: 1187px;
   height: 501px;
-  background-color: beige;
+
   margin-left: 126px;
   margin-top: 102px;
   display: flex;
@@ -56,4 +56,45 @@ nav {
   background-color: aquamarine;
   margin-left: 47px;
   margin-right: 47px;
+}
+
+.live-contents > .left-slider-button {
+  margin-top: 220px;
+}
+
+.live-contents > .right-slider-button {
+  margin-top: 220px;
+}
+.today-vtuber {
+  margin-top: 127px;
+  margin-left: 97px;
+  width: 1242px;
+  height: 751px;
+  background-color: blue;
+}
+.today-vtuber > p {
+  font-size: 32px;
+}
+
+footer {
+  height: 346px;
+  background-color: white;
+}
+
+.today-vtuber-photo {
+  width: 634px;
+  height: 596px;
+  background-color: white;
+  /* margin-top: 115px; */
+}
+
+.today-vtuber-archive {
+  width: 472px;
+  height: 274px;
+  background-color: white;
+  margin-left: 67px;
+}
+
+.today-vtuber-info {
+  display: flex;
 }
