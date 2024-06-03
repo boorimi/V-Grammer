@@ -72,8 +72,29 @@ nav {
   height: 751px;
   background-color: blue;
 }
+.today-vtuber > p {
+  font-size: 32px;
+}
 
 footer {
   height: 346px;
   background-color: white;
+}
+
+.today-vtuber-photo {
+  width: 634px;
+  height: 596px;
+  background-color: white;
+  /* margin-top: 115px; */
+}
+
+.today-vtuber-archive {
+  width: 472px;
+  height: 274px;
+  background-color: white;
+  margin-left: 67px;
+}
+
+.today-vtuber-info {
+  display: flex;
 }
