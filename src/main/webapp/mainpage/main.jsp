@@ -49,7 +49,14 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
 
-    <div class="today-vtuber"></div>
+    <div class="today-vtuber">
+      <p>今日のおすすめバチューバ</p>
+
+      <div class="today-vtuber-info">
+        <div class="today-vtuber-photo"></div>
+        <div class="today-vtuber-archive"></div>
+      </div>
+    </div>
 
     <footer></footer>
   </body>
