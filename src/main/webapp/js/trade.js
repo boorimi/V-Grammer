@@ -22,3 +22,21 @@ function tradeDelete(pk) {
     location.href = "DeleteTrade?no=" + pk;
   }
 }
+
+$(function () {
+  $(".trade-openComments").click(function () {
+    let post = $(this).closest(".trade-content");
+    let commentsDiv = post.find(".trade-comments");
+
+    commentsDiv.each(function () {
+      $(this).toggle();
+    });
+
+    // 버튼 텍스트 변경
+    if ($(this).text() === "댓글보기") {
+      $(this).text("댓글닫기");
+    } else {
+      $(this).text("댓글보기");
+    }
+  });
+});
