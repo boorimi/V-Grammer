@@ -25,11 +25,7 @@
     <artifactId>jstl</artifactId>
     <version>1.2</version>
 </dependency>
-  	<dependency>
-  		<groupId>karendaTest</groupId>
-  		<artifactId>karendaTest</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
+
   </dependencies>
 </project>
 
