@@ -3,7 +3,7 @@
 .project
 .classpath
 
-DBManager.java
+src/main/java/com/vg/ignore/
 
 *.class
 

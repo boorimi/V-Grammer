@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.vg.main.DBManager;
+import com.vg.ignore.DBManager;
 
 public class MemberDAO {
 	private ArrayList<MemberDTO> members;
