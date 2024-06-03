@@ -1,4 +1,4 @@
-package com.vg.ds.announcement;
+package com.vg.main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
