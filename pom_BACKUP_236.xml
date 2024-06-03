@@ -21,31 +21,18 @@
   </build>
   <dependencies>
 <<<<<<< HEAD
+  <dependency>
+    <groupId>org.twitter4j</groupId>
+    <artifactId>twitter4j-core</artifactId>
+    <version>4.1.2</version>
+</dependency>
+=======
 <dependency>
     <groupId>org.mariadb.jdbc</groupId>
     <artifactId>mariadb-java-client</artifactId>
     <version>3.3.3</version>
 </dependency>
-<dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>jstl</artifactId>
-    <version>1.2</version>
-</dependency>
 
-
-  	<dependency>
-  		<groupId>karendaTest</groupId>
-  		<artifactId>karendaTest</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  </dependencies>
+>>>>>>> 23c142c5fb46aef847a792f52cd952df839b3b70
+</dependencies>
 </project>
-=======
-    <dependency>
-      <groupId>org.twitter4j</groupId>
-      <artifactId>twitter4j-core</artifactId>
-      <version>4.1.2</version>
-    </dependency>
-</project>
-
->>>>>>> 97b8317f35a53b3a77911263168649a00b0f2f0f

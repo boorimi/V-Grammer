@@ -19,7 +19,7 @@ public class DdayDAO {
 		Connection connection = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			connection = DriverManager.getConnection(url, userName, password);
+			connection = DBManager.getConnection(url, userName, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
