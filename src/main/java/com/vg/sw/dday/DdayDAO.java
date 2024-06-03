@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vg.ignore.DBManager;
+
 public class DdayDAO {
 	private String url = "jdbc:mariadb://localhost:3306/idol_db";
 	private String userName = "ds6951";
