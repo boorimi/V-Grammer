@@ -15,7 +15,8 @@ public class AnnouncementC extends HttpServlet {
 //		int p = Integer.parseInt(request.getParameter("p"));
 		AnnouncementDAO.ADAO.paging(1, request);
 //		request.setAttribute("content", "jsp/review/review.jsp");
-		request.getRequestDispatcher("announcement/announcement.jsp").forward(request, response);
+		request.setAttribute("content", "announcement/announcement.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response); 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

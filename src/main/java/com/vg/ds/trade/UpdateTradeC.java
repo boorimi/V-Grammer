@@ -7,21 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.vg.ds.announcement.AnnouncementDAO;
-
-@WebServlet("/Trade")
-public class TradeC extends HttpServlet {
+@WebServlet("/UpdateTrade")
+public class UpdateTradeC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		TradeDAO.TDAO.selectAllTrade(request);
-//		int p = Integer.parseInt(request.getParameter("p"));
-		TradeDAO.TDAO.paging(1, request);
-		request.setAttribute("content", "trade/trade.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response); 
+		TradeDAO.TDAO.selectTrade(request);
+		request.setAttribute("content", "trade/trade_insert.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		TradeDAO.TDAO.updateTrade(request);
+		response.sendRedirect("Trade");
 	}
 
 }
