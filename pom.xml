@@ -40,12 +40,10 @@
   	</dependency>
   </dependencies>
 </project>
-=======
+
     <dependency>
       <groupId>org.twitter4j</groupId>
       <artifactId>twitter4j-core</artifactId>
       <version>4.1.2</version>
     </dependency>
 </project>
-
->>>>>>> 97b8317f35a53b3a77911263168649a00b0f2f0f
