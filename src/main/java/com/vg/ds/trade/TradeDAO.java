@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.vg.ds.announcement.DBManager;
+import com.vg.main.DBManager;
 
 public class TradeDAO {
 
