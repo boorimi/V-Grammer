@@ -17,6 +17,7 @@ public class UpdateAnnouncementC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		AnnouncementDAO.ADAO.updateAnnouncement(request);
 		response.sendRedirect("Announcement");
 	}

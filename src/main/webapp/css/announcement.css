@@ -13,13 +13,16 @@
 
 .announcement-conmain {
   width: 100%;
-  height: 370px;
+  height: auto;
 }
 
 .announcement-content {
   display: flex;
   justify-content: space-between;
   margin: 20px 10px;
+}
+.announcement-con-title {
+  flex: 1;
 }
 .announcement-con-date {
   font-size: 10pt;
@@ -28,12 +31,18 @@
   font-size: 13pt;
   text-align: left;
 }
+.announcement-number {
+  padding: 0px 5px;
+}
 .announcement-bottom {
   display: flex;
   justify-content: space-between;
 }
 #insert-button {
   padding: 5px 0px;
+}
+#announcement-title {
+  width: 95%;
 }
 .announcement-page-no {
   margin: 0px 10px;

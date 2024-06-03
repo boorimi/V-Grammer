@@ -33,24 +33,22 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           <div class="">
             <div>제목</div>
             <div>
-              <input name="title" value="${announcements.title }" />
-              <input name="no" type=hidden value="${announcements.pk }" />
+              <input name="title" id="announcement-title" value="${announcements.title }" />
+              <input name="no" type="hidden" value="${announcements.pk }" />
             </div>
           </div>
         </div>
         <div class="">
           <div>본문</div>
           <div>
-            <textarea style="resize: none" rows="5" cols="40" name="text">
-${announcements.text }</textarea
+            <textarea style="resize: none" rows="30" cols="80" name="text">
+${text2 }</textarea
             >
           </div>
         </div>
         <div>
           <div>
-            <button type="button" onclick="${onclick}">
-              ${buttonText }
-            </button>
+            <button type="button" onclick="${onclick}">${buttonText }</button>
           </div>
           <div>
             <button type="button" onclick="announcementCancleInsert()">

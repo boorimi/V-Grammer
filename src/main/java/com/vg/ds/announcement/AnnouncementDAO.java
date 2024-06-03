@@ -54,7 +54,7 @@ public class AnnouncementDAO {
 
 		try {
 
-			String sql = "select * from haco_announcement order by a_date";
+			String sql = "select * from haco_announcement order by a_date desc";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -102,9 +102,13 @@ public class AnnouncementDAO {
 			String title = rs.getString(3);
 			String text = rs.getString(4);
 			String date = rs.getString(5);
+			
+			// 본문내용 확인 할때 DB내용을 br -> 줄바꿈으로 대체하는 코드
+			String text2 = text.replace("<br>", "\r\n");
 
 			AnnouncementDTO a = new AnnouncementDTO(pk, twitterId, title, text, date);
-
+			
+			request.setAttribute("text2", text2);
 			request.setAttribute("announcements", a);
 
 		} catch (Exception e) {
@@ -120,12 +124,16 @@ public class AnnouncementDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-
+			// 인서트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
+			String text = request.getParameter("text");
+			text = text.replaceAll("\r\n", "<br>");
+			
 			String sql = "insert into haco_announcement values (null, 'KOR_JABIRAN', ?, ?, NOW())";
+			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("title"));
-			pstmt.setString(2, request.getParameter("text"));
+			pstmt.setString(2, text);
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("입력 성공!");
@@ -167,12 +175,16 @@ public class AnnouncementDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-
+			// 업데이트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
+			String text = request.getParameter("text");
+			text = text.replace("\r\n", "<br>");
+			
 			String sql = "update haco_announcement set a_title = ?, a_text = ? where a_pk = ?";
+			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("title"));
-			pstmt.setString(2, request.getParameter("text"));
+			pstmt.setString(2, text);
 			pstmt.setString(3, request.getParameter("no"));
 
 			if (pstmt.executeUpdate() == 1) {
