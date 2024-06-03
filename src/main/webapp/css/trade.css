@@ -1,0 +1,49 @@
+.trade-container {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.trade-container div {
+  border: 1px solid black;
+}
+
+.trade-title {
+  background-color: lightgreen;
+}
+
+.trade-conmain {
+  width: 100%;
+  height: auto;
+}
+
+.trade-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 10px;
+}
+.trade-con-title {
+  flex: 1;
+}
+.trade-con-date {
+  font-size: 10pt;
+}
+.trade-con-txt {
+  font-size: 13pt;
+  text-align: left;
+}
+.trade-number {
+  padding: 0px 5px;
+}
+.trade-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+#insert-button {
+  padding: 5px 0px;
+}
+#trade-title {
+  width: 95%;
+}
+.trade-page-no {
+  margin: 0px 10px;
+}
