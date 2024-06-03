@@ -17,12 +17,19 @@
 }
 
 .trade-content {
-  display: flex;
-  justify-content: space-between;
   margin: 20px 10px;
 }
-.trade-con-title {
+.trade-content > div:nth-child(1) {
+  display: flex;
+}
+.trade-content > div:nth-child(1) div {
+  padding: 10px;
+}
+.trade-content > div:nth-child(1) > div:nth-child(3) {
   flex: 1;
+}
+.trade-con-title {
+  padding: 10px;
 }
 .trade-con-date {
   font-size: 10pt;

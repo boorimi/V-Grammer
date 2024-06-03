@@ -12,6 +12,7 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
+    <script src="js/trade.js"></script>
     <link rel="stylesheet" href="css/trade.css" />
   </head>
   <body>
@@ -22,14 +23,24 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
         <c:set var="totalItems" value="${fn:length(trades)}" />
         <c:forEach var="t" items="${trades }" varStatus="status">
           <div class="trade-content">
-            <div style="display: flex">
-              <div class="trade-number">${totalItems - status.index}</div>
+            <div>
+              <div>${totalItems - status.index}</div>
               <div>${t.id}</div>
               <div>${t.twitterId}</div>
-              <div class="trade-con-txt">${t.date }</div>
+              <div>${t.date }</div>
             </div>
             <div class="trade-con-title">
-              <a href="SelectTrade?no=${t.pk}">${t.text }</a>
+              ${t.text }
+            </div>
+            <div>
+              <div>
+                <button onclick="location.href='UpdateTrade?no=${t.pk}'">
+                  수정
+                </button>
+              </div>
+              <div>
+                <button onclick="tradeDelete(${t.pk})">삭제</button>
+              </div>
             </div>
           </div>
         </c:forEach>
