@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Calender")
 public class CalenderC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
+       
+        request.getRequestDispatcher("calendar.jsp").forward(request, response);
+    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
+        doGet(request, response);
+    }
 }
