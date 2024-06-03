@@ -4,15 +4,6 @@
   <artifactId>V-Grammer</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-<dependencies>
-	  <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
-	<dependency>
-	    <groupId>org.mariadb.jdbc</groupId>
-	    <artifactId>mariadb-java-client</artifactId>
-	    <version>3.4.0</version>
-	</dependency>
-</dependencies>
-  
   <build>
     <plugins>
       <plugin>
@@ -28,12 +19,4 @@
       </plugin>
     </plugins>
   </build>
-  <dependencies>
-<dependency>
-    <groupId>org.mariadb.jdbc</groupId>
-    <artifactId>mariadb-java-client</artifactId>
-    <version>3.3.3</version>
-</dependency>
-
-</dependencies>
 </project>

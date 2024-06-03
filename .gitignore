@@ -3,6 +3,8 @@
 .project
 .classpath
 
+DBManager.java
+
 *.class
 
 # Package Files 
