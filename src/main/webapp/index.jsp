@@ -11,12 +11,13 @@ pageEncoding="UTF-8"%>
     <nav>
       <div class="main-logo"></div>
       <ul class="mene-lists">
-        <li>メンバー</li>
-        <li>アーカイブ</li>
-        <li>カレンダー</li>
-        <li>スケジュール</li>
-        <li>トレード</li>
-        <li>お知らせ</li>
+		<li><a href="">メンバー</a></li>
+		<li><a href="">アーカイブ</a></li>
+		<li><a href="">カレンダー</a></li>
+		<li><a href="">スケジュール</a></li>
+		<li><a href="">トレード</a></li>
+		<li><a href="">お知らせ</a></li>
+
       </ul>
 
       <div class="nav-userinfo">
@@ -24,5 +25,11 @@ pageEncoding="UTF-8"%>
         <div class="my-page">マイページ</div>
       </div>
     </nav>
+    
+<div class="content">
+		<jsp:include page="${content }"></jsp:include>
+				
+	</div>
+   
   </body>
 </html>

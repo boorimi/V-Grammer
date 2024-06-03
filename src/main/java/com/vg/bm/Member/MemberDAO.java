@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.vg.main.DBManager;
+import com.vg.ignore.DBManager;
 
 public class MemberDAO {
 	private ArrayList<MemberDTO> members;
@@ -42,7 +42,7 @@ public class MemberDAO {
 						rs.getString(6), rs.getString(7));
 				members.add(member);
 			}
-			System.out.println(members);
+//			System.out.println(members);
 			request.setAttribute("members", members);
 		
 			
@@ -52,5 +52,8 @@ public class MemberDAO {
 			DBManager.close(con, pstmt, null);
 		}
 	}
+	
+	
+	
 
 }
