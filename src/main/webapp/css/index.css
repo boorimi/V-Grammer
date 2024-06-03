@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+nav {
+  display: flex;
+}
+
+.main-logo {
+  margin-left: 45px;
+  width: 175px;
+  height: 84px;
+  background-color: #b8178b;
+  display: flex;
+}
+
+.mene-lists {
+  list-style: none;
+  display: flex;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.mene-lists > li {
+  font-size: 25px;
+  margin-right: 27px;
+}
+.nav-userinfo {
+  margin-left: 129px;
+  margin-top: 15px;
+}
