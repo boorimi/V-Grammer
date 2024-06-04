@@ -14,9 +14,11 @@ public class TradeC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		TradeDAO.TDAO.selectAllTrade(request);
+		TradeDAO.TDAO.selectTradeComments(request);
 //		int p = Integer.parseInt(request.getParameter("p"));
-//		TradeDAO.TDAO.paging(1, request);
-		request.getRequestDispatcher("trade/trade.jsp").forward(request, response); 
+		TradeDAO.TDAO.paging(1, request);
+		request.setAttribute("content", "trade/trade.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response); 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

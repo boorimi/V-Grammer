@@ -33,19 +33,7 @@
             <artifactId>tomcat-juli</artifactId>
             <version>9.0.56</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-dbcp</artifactId>
-            <version>9.0.56</version>
-        </dependency>
-        <!-- MariaDB JDBC Driver dependency -->
-        <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <version>2.7.2</version>
-        </dependency>
     </dependencies>
 </project>
-
 
 
