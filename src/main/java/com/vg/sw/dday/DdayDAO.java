@@ -34,9 +34,13 @@ public class DdayDAO {
                 int id = rs.getInt("m_pk");
                 String name = rs.getString("m_name");
                 String debutDateString = rs.getString("m_debut");
-
+                LocalDate debutDate = null;
                 try {
-                    LocalDate debutDate = LocalDate.parse(debutDateString);
+                	if(debutDateString != null) {
+                		debutDate = LocalDate.parse(debutDateString);
+                	}else {
+                		debutDate = LocalDate.parse("1111-01-01");
+                	}
                     long totalDays = ChronoUnit.DAYS.between(debutDate, currentDate);
                     long daysUntilDday = totalDays % 365 * -1;  // 음수로 변환
 
