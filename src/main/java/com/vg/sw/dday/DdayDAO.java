@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class DdayDAO {
 
     public List<DdayDTO> selectAllDdays() {
         List<DdayDTO> ddayList = new ArrayList<>();
-        LocalDate currentDate = LocalDate.now(); // 현재 날짜 가져오기
+        LocalDate currentDate = LocalDate.now();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet rs = preparedStatement.executeQuery();
@@ -33,10 +34,18 @@ public class DdayDAO {
                 int id = rs.getInt("m_pk");
                 String name = rs.getString("m_name");
                 String debutDateString = rs.getString("m_debut");
-                LocalDate debutDate = LocalDate.parse(debutDateString); // 문자열을 LocalDate로 변환
-                long daysUntilDday = ChronoUnit.DAYS.between(currentDate, debutDate); // 디데이까지 남은 일 수 계산
-                DdayDTO dday = new DdayDTO(id, name, debutDateString, daysUntilDday); // DdayDTO 객체에 추가
-                ddayList.add(dday);
+
+                try {
+                    LocalDate debutDate = LocalDate.parse(debutDateString);
+                    long totalDays = ChronoUnit.DAYS.between(debutDate, currentDate);
+                    long daysUntilDday = totalDays % 365;
+
+                    DdayDTO dday = new DdayDTO(id, name, debutDateString, daysUntilDday);
+                    ddayList.add(dday);
+                } catch (DateTimeParseException e) {
+                    System.err.println("Invalid date format for m_debut: " + debutDateString);
+                    // Handle invalid date format as needed (e.g., skip or set default value)
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
