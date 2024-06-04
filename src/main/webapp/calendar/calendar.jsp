@@ -70,13 +70,13 @@
 		<div class="container mt-3">
 			<div class="mt-3 mb-3 p-3 d-flex justify-content-between">
 				<span >
-					<a class="btn btn-outline-dark btn-sm" href="<%=request.getContextPath()%>/myCalendar.jsp?year=<%=year%>&month=<%=month-1%>">
+					<a class="button button-outline-dark button-sm" href="<%=request.getContextPath()%>/calendar.jsp?year=<%=year%>&month=<%=month-1%>">
 						[이전달]
 					</a>
 				</span>
 				<span class="fw-bold fs-3"><%=year%>년 <%=month+1%>월</span>
 				<span>
-					<a class="btn btn-outline-dark btn-sm" href="<%=request.getContextPath()%>/myCalendar.jsp?year=<%=year%>&month=<%=month+1%>">
+					<a class="button button-outline-dark button-sm" href="<%=request.getContextPath()%>/calendar.jsp?year=<%=year%>&month=<%=month+1%>">
 						[다음달]
 					</a>
 				</span>
