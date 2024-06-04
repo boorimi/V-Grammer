@@ -34,7 +34,10 @@
 		<button>테스트 login page</button>
 	</form>
 	액세스 토큰 : ${sessionScope.accessToken } <hr>
-	액세스 토큰 시크릿 : ${sessionScope.accessTokenSecret }
+	액세스 토큰 시크릿 : ${sessionScope.accessTokenSecret }<hr>
+	트위터 screenName : ${sessionScope.twitterScreenName }<hr>
+	트위터 name : ${sessionScope.twitterName }
+	
 	
 </body>
 </html>
