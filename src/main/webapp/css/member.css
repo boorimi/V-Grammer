@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.member_containor {
+	width: 100%;
+	height: 800px;
+	display: flex;
+	border: 1px solid black;
+	overflow-y: hidden;
+}
+
+.member_memberList_containor {
+	width: 270px;
+	height: 100%;
+	border: 1px solid black;
+	overflow-y: scroll;
+}
+
+/*스크롤 숨기기*/
+.member_memberList_containor::-webkit-scrollbar {
+	display: none;
+}
+
+.member_memberList {
+	width: 100%;
+	height: 80px;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 16pt;
+}
+
+.member_memberList_containor>.member_memberList:first-child {
+	font-weight: 900;
+	font-size: 20pt;
+}
+
+.member_memberList:hover {
+	font-weight: 900;
+	font-size: 20pt;
+}
+
+.member_content {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex; 
+    flex-wrap: wrap;
+}
+
+.member_images {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.member_images > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -54,7 +54,7 @@ public class AnnouncementDAO {
 
 		try {
 
-			String sql = "select * from haco_announcement order by a_date desc";
+			String sql = "select * from haco_announcement order by a_date asc";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
