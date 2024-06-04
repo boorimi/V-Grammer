@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.vg.ignore.DBManager;
 
-
 public class AnnouncementDAO {
 
 	private ArrayList<AnnouncementDTO> announcements = null;

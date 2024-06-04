@@ -1,37 +1,37 @@
 package com.vg.sw.dday;
 
 public class DdayDTO {
-    private int id;
+    private int m_id;
     private String m_name;
     private String m_debut;
 
-    public DdayDTO(int id, String name, String debut) {
-        this.id = id;
-        this.m_name = name;
-        this.m_debut = debut;
+    public DdayDTO(int m_id, String m_name, String m_debut) {
+        this.m_id = m_id;
+        this.m_name = m_name;
+        this.m_debut = m_debut;
     }
 
-    public int getId() {
-        return id;
+    public int getM_id() {
+        return m_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setM_id(int m_id) {
+        this.m_id = m_id;
     }
 
-    public String getName() {
+    public String getM_name() {
         return m_name;
     }
 
-    public void setName(String name) {
-        this.m_name = name;
+    public void setM_name(String m_name) {
+        this.m_name = m_name;
     }
 
-    public String getDebut() {
+    public String getM_debut() {
         return m_debut;
     }
 
-    public void setDebut(String debut) {
-        this.m_debut = debut;
+    public void setM_debut(String m_debut) {
+        this.m_debut = m_debut;
     }
 }
