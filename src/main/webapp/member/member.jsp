@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/member.css" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript">
-	function name() {
-
-	}
-</script>
+<script type="text/javascript" src="js/member"></script>
 </head>
 <body>
 	<div class="member_containor">

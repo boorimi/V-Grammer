@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,21 +13,25 @@ pageEncoding="UTF-8"%>
       <div class="main-logo"></div>
       <ul class="mene-lists">
         <li><a href="MemberC">メンバー</a></li>
-        <li><a href="">アーカイブ</a></li>
+        <li><a href="ArchiveC">アーカイブ</a></li>
         <li><a href="">カレンダー</a></li>
         <li><a href="">スケジュール</a></li>
         <li><a href="Trade">トレード</a></li>
         <li><a href="Announcement">お知らせ</a></li>
       </ul>
 
-      <div class="nav-userinfo">
-        <div class="nav-user">ザビラン様、ようこそ！</div>
-        <div class="my-page">マイページ</div>
-      </div>
-    </nav>
+		<div class="nav-userinfo">
+			<div class="nav-user">ザビラン様、ようこそ！</div>
+			<div class="my-page">マイページ</div>
+		</div>
+	</nav>
 
-    <div class="content">
-      <jsp:include page="${content }"></jsp:include>
-    </div>
-  </body>
+	<div class="content">
+		<jsp:include page="${content }"></jsp:include>
+	</div>
+
+	<form action="LoginC">
+		<button>테스트 login page</button>
+	</form>
+</body>
 </html>
