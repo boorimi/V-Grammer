@@ -6,18 +6,18 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
     <link rel="stylesheet" href="css/index.css" />
+    <script src="js/index.js"></script>
   </head>
   <body>
     <nav>
       <div class="main-logo"></div>
       <ul class="mene-lists">
-		<li><a href="">メンバー</a></li>
-		<li><a href="">アーカイブ</a></li>
-		<li><a href="">カレンダー</a></li>
-		<li><a href="">スケジュール</a></li>
-		<li><a href="">トレード</a></li>
-		<li><a href="">お知らせ</a></li>
-
+        <li><a href="">メンバー</a></li>
+        <li><a href="">アーカイブ</a></li>
+        <li><a href="">カレンダー</a></li>
+        <li><a href="">スケジュール</a></li>
+        <li><a href="">トレード</a></li>
+        <li><a href="">お知らせ</a></li>
       </ul>
 
       <div class="nav-userinfo">
@@ -25,11 +25,9 @@ pageEncoding="UTF-8"%>
         <div class="my-page">マイページ</div>
       </div>
     </nav>
-    
-<div class="content">
-		<jsp:include page="${content }"></jsp:include>
-				
-	</div>
-   
+
+    <div class="content">
+      <jsp:include page="${content }"></jsp:include>
+    </div>
   </body>
 </html>
