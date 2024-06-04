@@ -10,10 +10,11 @@
 }
 
 .member-memberList-container {
-	width: 270px;
+	width: 15%;
 	height: 100%;
 	border: 1px solid black;
 	overflow-y: scroll;
+	z-index: 10;
 }
 
 /*스크롤 숨기기*/
@@ -48,24 +49,24 @@
 	font-size: 20pt;
 }
 
-.member-img_container {
-	width: 100%;
+.member-img-container {
+	width: 85%;
 	height: 100%;
-	border: 1px solid black;
-	display: grid;
-	/*	flex-wrap: wrap;*/
+	border: 2px solid olivedrab;
+	flex-wrap: wrap;
 	overflow: hidden;
 	position: absolute;
-	left: 260px;
+	right: 0;
 	top: 0;
 }
-
 
 .member-backgroundImg {
 	width: 100%;
 	height: 800px;
-	border: 1px solid black;
 	display: none;
+	position: absolute;
+	top: 0;
+	left: -30px;
 }
 
 .member-backgroundImg.show {
