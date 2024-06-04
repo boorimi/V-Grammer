@@ -6,6 +6,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Date;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -15,40 +17,29 @@ import org.json.simple.parser.JSONParser;
 
 import com.vg.ignore.DBManager;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import javax.net.ssl.HttpsURLConnection;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import javax.net.ssl.HttpsURLConnection;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Test {
     public static void main(String[] args) {
-        try {
-            String url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=星ノ音コロン&order=date&type=video&key=AIzaSyDaJwlJQy--MSHz_DRBAcvTi2tc4Cg78CY";
+        Connection connection = null;
+        PreparedStatement statement = null;
 
+        try {
+            // YouTube API 호출
+            String url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=星ノ音コロン&order=date&type=video&key=AIzaSyDaJwlJQy--MSHz_DRBAcvTi2tc4Cg78CY";
             URL u = new URL(url);
             HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
-
             InputStream is = huc.getInputStream();
             InputStreamReader isr = new InputStreamReader(is, "utf-8");
 
             // JSON 파서 객체 생성
             JSONParser jp = new JSONParser();
             JSONObject naverData = (JSONObject) jp.parse(isr);
-
             JSONArray items = (JSONArray) naverData.get("items");
+
+            // 데이터베이스 연결
+            connection = DBManager.connect();
+            String sql = "INSERT INTO haco_archive (a_pk, a_m_pk, a_date, a_time, a_collabo, a_category, a_title, a_thumbnail) VALUES (?, ?, ?, ?, '임의의 컬럼값', '임의의 카테고리', ?, ?)";
+            
+            statement = connection.prepareStatement(sql);
 
             for (int i = 0; i < items.size(); i++) {
                 JSONObject item = (JSONObject) items.get(i);
@@ -66,39 +57,32 @@ public class Test {
                 JSONObject thumbnails = (JSONObject) snippet.get("thumbnails");
                 String defaultThumbnailUrl = ((JSONObject) thumbnails.get("default")).get("url").toString();
 
-                System.out.println("Title: " + title);
                 System.out.println("Date: " + date);
                 System.out.println("Time: " + time);
+                System.out.println("Title: " + title);
                 System.out.println("Default Thumbnail URL: " + defaultThumbnailUrl);
                 System.out.println();
                 
-                try {
-                	
-                	Connection connection = DBManager.connect();
-                    // 쿼리문 준비
-                    String sql = "INSERT INTO haco_address VALUES ('-',?,?, '-','-',?, ?, ?)";
-                    PreparedStatement statement = connection.prepareStatement(sql);
-                    
-                    // 값 설정
-                    statement.setString(1, date); 
-                    statement.setString(2, time); 
-                    statement.setString(3, defaultThumbnailUrl);
-                    
-                    // 쿼리 실행
-                    int rowsInserted = statement.executeUpdate();
-                    if (rowsInserted > 0) {
-                        System.out.println("A new row has been inserted successfully!");
-                    }
-                } catch (SQLException e) {
-                    System.out.println("Something went wrong: " + e.getMessage());
-                }
-                
-            }
+                // 데이터베이스에 값 삽입
+                String[] timeComponents = time.split(":");
+                Time sqlTime = Time.valueOf(timeComponents[0] + ":" + timeComponents[1] + ":" + timeComponents[2]);
+                statement.setInt(1,i); // 임의의 숫자
+                statement.setInt(2, 1);
+                statement.setDate(3, Date.valueOf(date));
+                statement.setTime(4, sqlTime);
+                statement.setString(5, title);
+                statement.setString(6, defaultThumbnailUrl);
 
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("A new row has been inserted successfully!");
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            // 리소스 닫기
+            DBManager.close(connection, statement, null);
         }
     }
 }
-
-
