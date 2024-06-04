@@ -6,43 +6,7 @@ public class Calendar {
     private static int sum;
     private static int weekDay;
 
-    // 생성자
-    public Calendar() {
-    }
-
-    // 게터와 세터
-    public static boolean isLeapYear() {
-        return isLeapYear;
-    }
-
-    public static void setLeapYear(boolean leapYear) {
-        isLeapYear = leapYear;
-    }
-
-    public static int[] getLastDay() {
-        return lastDay;
-    }
-
-    public static void setLastDay(int[] lastDay) {
-        Calendar.lastDay = lastDay;
-    }
-
-    public static int getSum() {
-        return sum;
-    }
-
-    public static void setSum(int sum) {
-        Calendar.sum = sum;
-    }
-
-    public static int getWeekDay() {
-        return weekDay;
-    }
-
-    public static void setWeekDay(int weekDay) {
-        Calendar.weekDay = weekDay;
-    }
-
+   
     // 년도를 넘겨받아 윤년/평년을 판단해 윤년이면 true, 평년이면 false를 리턴하는 메서드
     public static boolean isLeapYear(int year) {
         return (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);

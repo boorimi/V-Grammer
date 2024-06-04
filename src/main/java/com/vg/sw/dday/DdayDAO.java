@@ -11,7 +11,7 @@ import java.util.List;
 import com.vg.ignore.DBManager;
 
 public class DdayDAO {
-    private String sql = "SELECT m_id, m_name, m_debut FROM haco_member";
+    private String sql = "SELECT m_pk, m_name, m_debut FROM haco_member";
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -30,7 +30,7 @@ public class DdayDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("m_id");
+                int id = rs.getInt("m_pk");
                 String name = rs.getString("m_name");
                 String debutDateString = rs.getString("m_debut");
                 LocalDate debutDate = LocalDate.parse(debutDateString); // 문자열을 LocalDate로 변환

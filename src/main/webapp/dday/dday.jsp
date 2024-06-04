@@ -12,13 +12,15 @@
             <tr>
                 <th>이름</th>
                 <th>날짜</th>
+                <th>디데이까지 남은 일수</th> <!-- 디데이까지 남은 일수 추가 -->
             </tr>
         </thead>
         <tbody>
             <c:forEach var="dday" items="${ddayList}">
                 <tr>
-                    <td>${dday.name}</td>
-                    <td>${dday.date}</td>
+                    <td>${dday.m_name}</td>
+                    <td>${dday.m_debut}</td>
+                    <td>${dday.daysUntilDday}</td> <!-- 디데이까지 남은 일수 표시 -->
                 </tr>
             </c:forEach>
         </tbody>
