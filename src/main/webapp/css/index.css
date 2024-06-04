@@ -51,6 +51,27 @@ nav {
 }
 
 .live-content {
+  width: 100%;
+  max-width: 800px; /* 원하는 최대 너비 */
+  margin: 0 auto;
+}
+.live-stream {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 비율 유지 */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000;
+}
+.live-stream iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.live-content {
   width: 1013px;
   height: 501px;
   background-color: aquamarine;

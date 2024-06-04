@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
     <link rel="stylesheet" href="css/index.css" />
+    <script src="js/index.js"></script>
   </head>
   <body>
     <nav>
