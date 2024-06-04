@@ -38,7 +38,7 @@ public class DdayDAO {
                 try {
                     LocalDate debutDate = LocalDate.parse(debutDateString);
                     long totalDays = ChronoUnit.DAYS.between(debutDate, currentDate);
-                    long daysUntilDday = totalDays % 365;
+                    long daysUntilDday = totalDays % 365 * -1;  // 음수로 변환
 
                     DdayDTO dday = new DdayDTO(id, name, debutDateString, daysUntilDday);
                     ddayList.add(dday);
