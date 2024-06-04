@@ -23,10 +23,18 @@
 			</c:forEach>
 			<!-- </form> -->
 		</div>
-		<div class="member_content">
-			<c:forEach items="${images }" var="i">
-				<div class="member_images">
+		<div class="member_img_containor">
+			<c:forEach items="${images }" var="i" begin="0" end="0">
+				<div class="member_backgroundImg">
 					<img src="${i.i_background }">
+					<div class="member_detail_containor">
+						<div class="member_detail">설명~</div>
+					</div>
+					<div class="member_img_box">
+						<div class="member_img">
+							<img src="${i.i_pic }">
+						</div>
+					</div>
 				</div>
 			</c:forEach>
 		</div>

@@ -47,7 +47,7 @@ public class MemberDAO {
 						rs.getString(6), rs.getString(7));
 				members.add(member);
 			}
-//			System.out.println(members);
+			System.out.println(members);
 //			System.out.println(members.size());
 			request.setAttribute("members", members);
 			
@@ -87,6 +87,7 @@ public class MemberDAO {
 				img.setI_background("haco_img/background/"+rs.getString("i_background")+".png");
 				images.add(img);
 			}
+			System.out.println("----images syso----");
 			System.out.println(images);
 			
 			request.setAttribute("images", images);
