@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,14 +20,18 @@ pageEncoding="UTF-8"%>
         <li><a href="Announcement">お知らせ</a></li>
       </ul>
 
-      <div class="nav-userinfo">
-        <div class="nav-user">ザビラン様、ようこそ！</div>
-        <div class="my-page">マイページ</div>
-      </div>
-    </nav>
+		<div class="nav-userinfo">
+			<div class="nav-user">ザビラン様、ようこそ！</div>
+			<div class="my-page">マイページ</div>
+		</div>
+	</nav>
 
-    <div class="content">
-      <jsp:include page="${content }"></jsp:include>
-    </div>
-  </body>
+	<div class="content">
+		<jsp:include page="${content }"></jsp:include>
+	</div>
+
+	<form action="LoginC">
+		<button>테스트 login page</button>
+	</form>
+</body>
 </html>
