@@ -26,7 +26,16 @@
 				<div class="member-backgroundImg" id="${i.i_m_pk }">
 					<img src="${i.i_background }">
 					<div class="member-detail-container">
-						<div class="member-detail">설명~</div>
+						<div class="member-detail">
+							<div class="member-name">名前：</div>
+							<div class="member-birth">お誕生日：</div>
+							<div class="member-debut">デビュー日：</div>
+							<div class="member-link-icon">
+								<div id="member-twitter"></div>
+								<div id="member-youtube"></div>
+								<div id="member-tictok"></div>
+							</div>
+						</div>
 					</div>
 					<div class="member-img-box">
 						<div class="member-img">
