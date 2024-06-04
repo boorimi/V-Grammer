@@ -13,12 +13,14 @@ public class LoginC extends HttpServlet {
 			throws ServletException, IOException {
 		
 		request.setAttribute("content", "login/loginpage.jsp");
-		request.getRequestDispatcher("index");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 				
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		
 	}
 
 }
