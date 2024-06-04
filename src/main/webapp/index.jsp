@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
     <nav>
       <div class="main-logo"></div>
       <ul class="mene-lists">
-        <li><a href="">メンバー</a></li>
+        <li><a href="MemberC">メンバー</a></li>
         <li><a href="">アーカイブ</a></li>
         <li><a href="">カレンダー</a></li>
         <li><a href="">スケジュール</a></li>
