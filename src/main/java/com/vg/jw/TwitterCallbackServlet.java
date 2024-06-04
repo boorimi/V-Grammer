@@ -12,9 +12,7 @@ import oauth.signpost.OAuthProvider;
 
 @WebServlet("/TwitterCallbackServlet")
 public class TwitterCallbackServlet extends HttpServlet {
-	
-	
-	
+		
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("callback 실행");

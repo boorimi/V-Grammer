@@ -48,10 +48,16 @@ public class TwitterLoginServlet extends HttpServlet {
 			System.out.println(CALLBACK_URL);
 
 			// provider 객체를 사용하여 Twitter로부터 요청 토큰을 받아옴.
-			// 이 과정에서 consumer 객체와 콜백 URL을 전달.
+			// consumer객체+콜백url로 트위터api에 리퀘스트토큰 요청 
+			// -> 트위터가 리퀘스트토큰을 주면 
+			//.retrieveRequestToken()이 트위터 인증 페이지(로그인/권한부여)로 리다이렉트할 URL생성하고 반환해줌 
 			String authUrl = provider.retrieveRequestToken(consumer, CALLBACK_URL);
+			
+			//리퀘스트 토큰 관련 정보를 세션에 저장, callback할때 불러서 사용
 			request.getSession().setAttribute("oauthConsumer", consumer);
 			request.getSession().setAttribute("oauthProvider", provider);
+			
+			// 유저를 Twitter의 인증 페이지로.
 			response.sendRedirect(authUrl);
 
 		} catch (Exception e) {
