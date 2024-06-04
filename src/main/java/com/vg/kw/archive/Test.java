@@ -24,8 +24,9 @@ public class Test {
 
         try {
             // YouTube API 호출
-            String url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=星ノ音コロン&order=date&type=video&key=AIzaSyDaJwlJQy--MSHz_DRBAcvTi2tc4Cg78CY";
+            String url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&status=&nextPageToken=&playlistId=UUXuXvC53isoiOUJKpUMSfLQ&key=AIzaSyBzwtozuKqzf_5_3G8r17ZFntNFxBSwOu8";
             URL u = new URL(url);
+            
             HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
             InputStream is = huc.getInputStream();
             InputStreamReader isr = new InputStreamReader(is, "utf-8");
@@ -37,7 +38,7 @@ public class Test {
 
             // 데이터베이스 연결
             connection = DBManager.connect();
-            String sql = "INSERT INTO haco_archive (a_pk, a_m_pk, a_date, a_time, a_collabo,a_collabomember, a_category, a_title, a_thumbnail) VALUES (null, ?, ?, ?, '임의의 컬럼값', '임의의 컬럼값', '임의의 카테고리', ?, ?)";
+            String sql = "INSERT INTO haco_archive (a_pk, a_m_pk, a_date, a_time, a_collabo,a_collabomember, a_category, a_title, a_thumbnail) VALUES (null, ?, ?, ?, '未分類', '未分類', '未分類', ?, ?)";
             
             statement = connection.prepareStatement(sql);
 
@@ -67,7 +68,7 @@ public class Test {
                 String[] timeComponents = time.split(":");
                 Time sqlTime = Time.valueOf(timeComponents[0] + ":" + timeComponents[1] + ":" + timeComponents[2]);
                
-                statement.setInt(1, 1);
+                statement.setInt(1, 5);
                 statement.setDate(2, Date.valueOf(date));
                 statement.setTime(3, sqlTime);
                 statement.setString(4, title);
