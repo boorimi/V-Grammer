@@ -87,7 +87,8 @@ public class MemberDAO {
 				img.setI_background("haco_img/background/"+rs.getString("i_background")+".png");
 				images.add(img);
 			}
-			System.out.println(images);
+//			System.out.println("----images syso----");
+//			System.out.println(images);
 			
 			request.setAttribute("images", images);
 			
