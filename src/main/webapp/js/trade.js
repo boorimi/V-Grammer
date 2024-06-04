@@ -23,6 +23,12 @@ function tradeDelete(pk) {
   }
 }
 
+function tradeCommentsInsert() {
+  let ok = confirm("작성하시겠습니까?");
+  if (ok) {
+    document.getElementById("insertTradeCommentsForm").submit();
+  }
+}
 $(function () {
   $(".trade-openComments").click(function () {
     let post = $(this).closest(".trade-content");

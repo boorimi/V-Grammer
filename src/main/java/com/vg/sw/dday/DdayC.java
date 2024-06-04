@@ -19,6 +19,7 @@ public class DdayC extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<DdayDTO> ddayList = ddayDAO.selectAllDdays();
         request.setAttribute("ddayList", ddayList); 
-        request.getRequestDispatcher("dday/dday.jsp").forward(request, response);
+        request.setAttribute("content", "dday/dday.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response); 
     }
 }
