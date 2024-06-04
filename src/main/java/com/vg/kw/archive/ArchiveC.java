@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ArchiveC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		request.setAttribute("content", "archive/archive.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

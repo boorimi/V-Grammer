@@ -17,7 +17,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.vg.ignore.DBManager;
 
-public class Test {
+public class ArchiveDAO {
     public static void main(String[] args) {
         Connection connection = null;
         PreparedStatement statement = null;
