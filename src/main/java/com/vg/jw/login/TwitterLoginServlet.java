@@ -1,4 +1,4 @@
-package com.vg.jw;
+package com.vg.jw.login;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.vg.jw;
+package com.vg.jw.login;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 
 @WebServlet("/TwitterCallbackServlet")
 public class TwitterCallbackServlet extends HttpServlet {
@@ -44,10 +48,38 @@ public class TwitterCallbackServlet extends HttpServlet {
 				// 세션에 액세스토큰 저장
 				request.getSession().setAttribute("accessToken", accessToken);
 				request.getSession().setAttribute("accessTokenSecret", accessTokenSecret);
-
-				// 종료 후 메인페이지로
-				response.sendRedirect("HC");
-
+				
+				ConfigurationBuilder cb = new ConfigurationBuilder();
+				cb.setDebugEnabled(true)
+				.setOAuthConsumerKey("Gyf9IQ3j5DmsQMMXFXqTv7ijm")
+				.setOAuthConsumerSecret("qYaK7mo8kL70L5yXNl5Oe8ViueSEMEqPS4MfjDzDUDDU4mt1QJ")
+				.setOAuthAccessToken(accessToken)
+				.setOAuthAccessTokenSecret(accessTokenSecret);
+				
+				TwitterFactory tf = new TwitterFactory(cb.build());
+				Twitter twitter = tf.getInstance();
+				
+				try {
+					
+					//사용자 정보 가져옴
+					twitter4j.User user = twitter.verifyCredentials();
+					String screenName = user.getScreenName();
+					String name = user.getName();
+					
+					//정보를 세션에 저장
+					request.getSession().setAttribute("twitterScreenName", screenName);
+					request.getSession().setAttribute("twitterName", name);
+					
+					// 종료 후 메인페이지로
+					response.sendRedirect("HC");
+					
+					
+					
+				} catch (TwitterException te) {
+					te.printStackTrace();
+					throw new ServletException(te);
+				}
+				
 			}
 		} catch (Exception e) {
 			throw new ServletException(e);
