@@ -33,5 +33,8 @@
 	<form action="LoginC">
 		<button>테스트 login page</button>
 	</form>
+	액세스 토큰 : ${sessionScope.accessToken } <hr>
+	액세스 토큰 시크릿 : ${sessionScope.accessTokenSecret }
+	
 </body>
 </html>

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="login" method="post">
+	<form action="TwitterLoginServlet">	
 		<input type="image" src="login/button_img/twitter-login.png">
 	</form>
 </body>
