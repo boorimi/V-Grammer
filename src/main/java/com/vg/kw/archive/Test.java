@@ -37,7 +37,7 @@ public class Test {
 
             // 데이터베이스 연결
             connection = DBManager.connect();
-            String sql = "INSERT INTO haco_archive (a_pk, a_m_pk, a_date, a_time, a_collabo, a_category, a_title, a_thumbnail) VALUES (?, ?, ?, ?, '임의의 컬럼값', '임의의 카테고리', ?, ?)";
+            String sql = "INSERT INTO haco_archive (a_pk, a_m_pk, a_date, a_time, a_collabo,a_collabomember, a_category, a_title, a_thumbnail) VALUES (null, ?, ?, ?, '임의의 컬럼값', '임의의 컬럼값', '임의의 카테고리', ?, ?)";
             
             statement = connection.prepareStatement(sql);
 
@@ -66,12 +66,12 @@ public class Test {
                 // 데이터베이스에 값 삽입
                 String[] timeComponents = time.split(":");
                 Time sqlTime = Time.valueOf(timeComponents[0] + ":" + timeComponents[1] + ":" + timeComponents[2]);
-                statement.setInt(1,i); // 임의의 숫자
-                statement.setInt(2, 1);
-                statement.setDate(3, Date.valueOf(date));
-                statement.setTime(4, sqlTime);
-                statement.setString(5, title);
-                statement.setString(6, defaultThumbnailUrl);
+               
+                statement.setInt(1, 1);
+                statement.setDate(2, Date.valueOf(date));
+                statement.setTime(3, sqlTime);
+                statement.setString(4, title);
+                statement.setString(5, defaultThumbnailUrl);
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
