@@ -29,7 +29,16 @@ pageEncoding="UTF-8"%>
         </svg>
       </div>
 
-      <div class="live-content"></div>
+      <div class="live-content">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/Rh35Zq-vTW8"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
 
       <div class="right-slider-button">
         <svg
