@@ -10,13 +10,16 @@
     <c:forEach items="${archives}" var="archive">
         <div class="archive-contents">
             
-           	<p>コラボ : ${archive.a_collabo }
-           	<p>カテゴリー : ${archive.a_category }
-            <p>日付: ${archive.a_date}</p>
-           	<p>時間: ${archive.a_time}</p>
-           	<p >コラボメンバー : ${archive.a_collabomember }</p>
-           	<p style="margin-top: 12px">Title: ${archive.a_title}</p>
-           <p style="margin-top: 0px"> <img src="${archive.a_thumbnail}" alt="${archive.a_title} Thumbnail"></p>
+           <p style="margin-top: 0px"> <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" ></p>
+            <div class="archive-membername"> ${archive.m_name }</div>
+           	<div class="archive-collabo"> コラボ : ${archive.a_collabo } </div>
+           	<div class="archive-category">カテゴリー : ${archive.a_category }</div>
+            <div class="archive-date">	${archive.a_date} </div>
+           	<div class="archive-time">	${archive.a_time} </div>
+           	<div class="archive-collabomember">	コラボメンバー : ${archive.a_collabomember } </div>
+           	<div class="archive-title">	Title: ${archive.a_title}</div>
+           	<div class="archive-thumbnail"> <img src="${archive.a_thumbnail}" alt="${archive.a_title} Thumbnail"> </div>
+          
         </div>
     </c:forEach>
 </body>

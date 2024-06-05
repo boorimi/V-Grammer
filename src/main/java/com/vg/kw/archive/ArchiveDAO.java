@@ -93,7 +93,8 @@ public class ArchiveDAO {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql  = "SELECT * FROM haco_archive";
+        String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi\n"
+        		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk";
         try {
             con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
@@ -111,7 +112,8 @@ public class ArchiveDAO {
                 archive.setA_category(rs.getString(7));
                 archive.setA_title(rs.getString(8));
                 archive.setA_thumbnail(rs.getString(9));
-                
+                archive.setM_name(rs.getString(10));
+                archive.setI_icon(rs.getString(11));
                 archives.add(archive);
                 
             }

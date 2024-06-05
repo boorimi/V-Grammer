@@ -13,13 +13,19 @@ private String a_collabomember;
 private String a_category;
 private String a_title;
 private String a_thumbnail;
+private String m_name;
+private String i_icon;
+
+
 
 public ArchiveDTO() {
 	// TODO Auto-generated constructor stub
 }
 
+
+
 public ArchiveDTO(int a_pk, int a_m_pk, Date a_date, Time a_time, String a_collabo, String a_collabomember,
-		String a_category, String a_title, String a_thumbnail) {
+		String a_category, String a_title, String a_thumbnail, String m_name, String i_icon) {
 	super();
 	this.a_pk = a_pk;
 	this.a_m_pk = a_m_pk;
@@ -30,7 +36,35 @@ public ArchiveDTO(int a_pk, int a_m_pk, Date a_date, Time a_time, String a_colla
 	this.a_category = a_category;
 	this.a_title = a_title;
 	this.a_thumbnail = a_thumbnail;
+	this.m_name = m_name;
+	this.i_icon = i_icon;
 }
+
+
+
+public String getM_name() {
+	return m_name;
+}
+
+
+
+public void setM_name(String m_name) {
+	this.m_name = m_name;
+}
+
+
+
+public String getI_icon() {
+	return i_icon;
+}
+
+
+
+public void setI_icon(String i_icon) {
+	this.i_icon = i_icon;
+}
+
+
 
 public int getA_pk() {
 	return a_pk;
