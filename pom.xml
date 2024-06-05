@@ -90,13 +90,6 @@
         </dependency>
         <!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리-->
         <dependency>
-            <groupId>org.twitter4j</groupId>
-            <!-- 여기에 그룹 아이디 입력-->
-            <artifactId>twitter4j-core</artifactId>
-            <!-- 여기에 아티팩트 아이디 입력-->
-            <version>4.0.7</version>
-        </dependency>
-        <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
@@ -106,7 +99,15 @@
             <artifactId>tomcat-juli</artifactId>
             <version>9.0.56</version>
         </dependency>
-    </dependencies>
+        <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리-->
+		<dependency>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-core</artifactId>
+			<version>4.0.7</version>
+		</dependency>
+	</dependencies>
+
 </project>
 
 
