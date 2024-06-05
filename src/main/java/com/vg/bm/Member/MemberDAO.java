@@ -25,103 +25,118 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	// 멤버 기본 정보 호출 메서드
 	public void getAllMember(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "select * from haco_member";
+		ResultSet rs2 = null;
+		String sql = "select hm.m_pk, hm.m_name,hm.m_gen,hm.m_birth,hm.m_debut,hm.m_mother_name,hm.m_mother_twitter,\r\n"
+				+ "hi.i_icon,hi.i_img,hi.i_3side,hi.i_background\r\n" + "from haco_member hm, haco_image hi\r\n"
+				+ "where hm.m_pk = hi.i_m_pk;";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			members = new ArrayList<MemberDTO>();
-			
+			AddressDTO addressDTO = null;
+			ArrayList<AddressDTO> addrs = null;
 			while (rs.next()) {
-				MemberDTO member = new MemberDTO(rs.getString(1),
-						rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getString(7));
+				MemberDTO member = new MemberDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getString(10), rs.getString(11));
+				sql = "select * from haco_address where a_m_pk=" + rs.getString(1);
+				pstmt = con.prepareStatement(sql);
+				rs2 = pstmt.executeQuery();
+				addrs = new ArrayList<AddressDTO>();
+				while (rs2.next()) {
+					addressDTO = new AddressDTO(rs2.getString(1), rs2.getString(3), rs2.getString(4));
+					addrs.add(addressDTO);
+
+				}
+//				System.out.println(addrs);
+				member.setAddress(addrs);
+				
 				members.add(member);
 			}
+			System.out.println("~~~~~~~~~~~~~~~~~");
+			System.out.println(members);
+			System.out.println("~~~~~~~~~~~~~~~~~");
+
 //			System.out.println(members);
 //			System.out.println(members.size());
 			request.setAttribute("members", members);
 //			request.setAttribute("member_pk", rs.getString(1));
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBManager.close(con, pstmt, null);
 		}
 	}
-	
-	//멤버 이미지 호출 메서드
+
+	// 멤버 이미지 호출 메서드
 	public void getMemberImg(HttpServletRequest request) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		String sql = "select * from haco_image";
-		
+
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-				
+
 			images = new ArrayList<ImageDTO>();
 			while (rs.next()) {
 				ImageDTO img = new ImageDTO();
 				img.setI_m_pk(rs.getString("i_m_pk"));
-				img.setI_icon("haco_img/icon/"+rs.getString("i_icon"));
-				img.setI_img("haco_img/img/"+rs.getString("i_img"));
-				img.setI_3side("haco_img/3sides/"+rs.getString("i_3side"));
-				img.setI_background("haco_img/background/"+rs.getString("i_background"));
+				img.setI_icon("haco_img/icon/" + rs.getString("i_icon"));
+				img.setI_img("haco_img/img/" + rs.getString("i_img"));
+				img.setI_3side("haco_img/3sides/" + rs.getString("i_3side"));
+				img.setI_background("haco_img/background/" + rs.getString("i_background"));
 				images.add(img);
 			}
 //			System.out.println("----images syso----");
 //			System.out.println(images);
-			
+
 			request.setAttribute("images", images);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-		
-		
+
 	}
 
 	// 멤버 해시태그 호출 메서드
 	public void getMemberHashTag(HttpServletRequest request) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 //		members = new ArrayList<MemberDTO>();
 		MemberDTO pk = members.get(1);
 		System.out.println(pk);
-		
+
 		String sql = "select * from haco_address a_m_pk=?";
-		
+
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-				
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-		
-		
+
 	}
 
 	// 멤버 주소 호출 메서드
@@ -144,7 +159,5 @@ public class MemberDAO {
 //			DBManager.close(con, pstmt, rs);
 //		}
 //	}
-	
-	
 
 }
