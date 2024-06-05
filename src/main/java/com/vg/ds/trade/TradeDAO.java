@@ -261,4 +261,33 @@ public class TradeDAO {
 		
 	}
 
+	public void insertTradeComments(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+			// 인서트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
+			String text = request.getParameter("text");
+			text = text.replaceAll("\r\n", "<br>");
+
+			String sql = "insert into haco_tradegoods_comments values ";
+				  sql += "(null, ?, 'KOR_JABIRAN','KOR_JABIRAN',?,now())";
+
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, request.getParameter("no"));
+			pstmt.setString(2, text);
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("입력 성공!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+	}
+	
 }

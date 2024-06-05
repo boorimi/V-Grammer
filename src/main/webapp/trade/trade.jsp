@@ -57,14 +57,15 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             </c:forEach>
             <!-- 댓글 for문 끝 -->
             <div class="trade-comments" style="display: none">
-              <form action="InsertTradeComments?no=${t.pk }]">
+              <form id="insertTradeCommentsForm" action="InsertTradeComments">
+                <input name="no" type="hidden" value="${t.pk }"> 
                 <textarea
                   style="resize: none"
                   rows="5"
                   cols="70"
                   name="text"
                 ></textarea>
-                <button>작성</button>
+                <button type="button" onclick="tradeCommentsInsert()">작성</button>
               </form>
             </div>
           </div>
