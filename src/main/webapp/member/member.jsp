@@ -17,29 +17,42 @@
 	<div class="member-container">
 		<div class="member-memberList-container">
 			<div class="member-list">Members</div>
-			<c:forEach var="m" items="${members }" begin="0">
+			<c:forEach var="m" items="${members }" begin="0" end="20">
 				<div class="member-memberList" id="${m.m_pk }">${m.m_name }</div>
 			</c:forEach>
 		</div>
 		<div class="member-img-container">
-			<c:forEach items="${images }" var="i" begin="0">
-				<div class="member-backgroundImg" id="${i.i_m_pk }">
-					<img src="${i.i_background }">
+			<c:forEach items="${members }" var="m">
+				<div class="member-backgroundImg" id="${m.m_pk }">
+					<img src="haco_img/background/${m.i_background }">
 					<div class="member-detail-container">
 						<div class="member-detail">
-							<div class="member-name">名前：</div>
-							<div class="member-birth">お誕生日：</div>
-							<div class="member-debut">デビュー日：</div>
+							<div class="member-name">名前： ${m.m_name }</div>
+							<div class="member-birth">お誕生日： ${m.m_birth }</div>
+							<div class="member-debut">デビュー日： ${m.m_debut }</div>
 							<div class="member-link-icon">
-								<div id="member-twitter"></div>
-								<div id="member-youtube"></div>
+								<div id="member-twitter"><a href="${m.address[0].a_address }">visit</a></div>
+								<div id="member-youtube">${m.address[1].a_address }</div>
 								<div id="member-tictok"></div>
 							</div>
+							<details>
+								<summary>더보기..</summary>
+								<div>自己紹介</div>
+
+								<div>-ママは-</div>
+								<div>お名前：${m.m_mother_name } </div>
+								<div>ツイッター：<a href="${m.m_mother_twitter } "> ${m.m_mother_twitter } </a></div>
+								<div>-ハッシュタグ-
+								<c:forEach items="${m.hashTag }" var="h">
+								<div>${h.h_category } : ${h.h_tag }</div>
+								</c:forEach>
+								</div>
+							</details>
 						</div>
 					</div>
 					<div class="member-img-box">
 						<div class="member-img">
-							<img src="${i.i_pic }">
+							<img src="haco_img/img/${m.i_img }">
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,7 @@
 package com.vg.bm.Member;
 
+import java.util.ArrayList;
+
 public class MemberDTO {
 	private String m_pk;
 	private String m_name;
@@ -8,9 +10,48 @@ public class MemberDTO {
 	private String m_debut;
 	private String m_mother_name;
 	private String m_mother_twitter;
-	
+	private String i_icon;
+	private String i_img;
+	private String i_3side;
+	private String i_background;
+	private ArrayList<AddressDTO> address;
+	private ArrayList<HashTagDTO> hashTag;
+
+	public MemberDTO(String m_pk, String m_name, String m_gen, String m_birth, String m_debut, String m_mother_name,
+			String m_mother_twitter, String i_icon, String i_img, String i_3side, String i_background
+			) {
+		super();
+		this.m_pk = m_pk;
+		this.m_name = m_name;
+		this.m_gen = m_gen;
+		this.m_birth = m_birth;
+		this.m_debut = m_debut;
+		this.m_mother_name = m_mother_name;
+		this.m_mother_twitter = m_mother_twitter;
+		this.i_icon = i_icon;
+		this.i_img = i_img;
+		this.i_3side = i_3side;
+		this.i_background = i_background;
+	}
+
 	public MemberDTO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public ArrayList<AddressDTO> getAddress() {
+		return address;
+	}
+
+	public void setAddress(ArrayList<AddressDTO> address) {
+		this.address = address;
+	}
+
+	public ArrayList<HashTagDTO> getHashTag() {
+		return hashTag;
+	}
+
+	public void setHashTag(ArrayList<HashTagDTO> hashTag) {
+		this.hashTag = hashTag;
 	}
 
 	public String getM_pk() {
@@ -69,24 +110,44 @@ public class MemberDTO {
 		this.m_mother_twitter = m_mother_twitter;
 	}
 
-	public MemberDTO(String m_pk, String m_name, String m_gen, String m_birth, String m_debut, String m_mother_name,
-			String m_mother_twitter) {
-		super();
-		this.m_pk = m_pk;
-		this.m_name = m_name;
-		this.m_gen = m_gen;
-		this.m_birth = m_birth;
-		this.m_debut = m_debut;
-		this.m_mother_name = m_mother_name;
-		this.m_mother_twitter = m_mother_twitter;
+	public String getI_icon() {
+		return i_icon;
+	}
+
+	public void setI_icon(String i_icon) {
+		this.i_icon = i_icon;
+	}
+
+	public String getI_img() {
+		return i_img;
+	}
+
+	public void setI_img(String i_img) {
+		this.i_img = i_img;
+	}
+
+	public String getI_3side() {
+		return i_3side;
+	}
+
+	public void setI_3side(String i_3side) {
+		this.i_3side = i_3side;
+	}
+
+	public String getI_background() {
+		return i_background;
+	}
+
+	public void setI_background(String i_background) {
+		this.i_background = i_background;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberDTO [m_pk=" + m_pk + ", m_name=" + m_name + ", m_gen=" + m_gen + ", m_birth=" + m_birth
 				+ ", m_debut=" + m_debut + ", m_mother_name=" + m_mother_name + ", m_mother_twitter=" + m_mother_twitter
-				+ "]";
+				+ ", i_icon=" + i_icon + ", i_img=" + i_img + ", i_3side=" + i_3side + ", i_background=" + i_background
+				+ ", address=" + address + ", hashTag=" + hashTag + "]";
 	}
-	
-	
+
 }
