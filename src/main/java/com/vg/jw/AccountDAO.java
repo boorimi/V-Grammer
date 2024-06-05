@@ -44,6 +44,7 @@ public class AccountDAO {
 			if (pstmt.executeUpdate() >= 1) {
 				System.out.println("유저 등록 성공");
 				
+				System.out.println("어디로 갈지 설정");
 				
 			}
 			
