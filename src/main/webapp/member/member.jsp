@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/member.css" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous">
@@ -28,7 +29,7 @@
 					<div class="member-detail-container">
 						<div class="member-detail">
 							<div class="member-name">名前： ${m.m_name }</div>
-							<div class="member-birth">お誕生日： ${m.m_birth }</div>
+							<div class="member-birth">お誕生日：${m.m_birth } </div>
 							<div class="member-debut">デビュー日： ${m.m_debut }</div>
 							<div class="member-link-icon">
 								<div id="member-twitter"><a href="${m.address[0].a_address }">visit</a></div>
