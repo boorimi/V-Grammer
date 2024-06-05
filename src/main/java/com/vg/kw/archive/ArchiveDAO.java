@@ -5,9 +5,12 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.sql.Date;
+import javax.servlet.http.HttpServletRequest;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -17,7 +20,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.vg.ignore.DBManager;
 
-public class Test {
+public class ArchiveDAO {
     public static void main(String[] args) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -41,7 +44,6 @@ public class Test {
             String sql = "INSERT INTO haco_archive (a_pk, a_m_pk, a_date, a_time, a_collabo,a_collabomember, a_category, a_title, a_thumbnail) VALUES (null, ?, ?, ?, '未分類', '未分類', '未分類', ?, ?)";
             
             statement = connection.prepareStatement(sql);
-
             for (int i = 0; i < items.size(); i++) {
                 JSONObject item = (JSONObject) items.get(i);
                 JSONObject snippet = (JSONObject) item.get("snippet");
@@ -67,7 +69,7 @@ public class Test {
                 // 데이터베이스에 값 삽입
                 String[] timeComponents = time.split(":");
                 Time sqlTime = Time.valueOf(timeComponents[0] + ":" + timeComponents[1] + ":" + timeComponents[2]);
-               
+
                 statement.setInt(1, 5);
                 statement.setDate(2, Date.valueOf(date));
                 statement.setTime(3, sqlTime);
@@ -84,6 +86,38 @@ public class Test {
         } finally {
             // 리소스 닫기
             DBManager.close(connection, statement, null);
+        }
+    }
+    
+    public static void selectAllArchive(HttpServletRequest req) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql  = "SELECT * FROM haco_archive";
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            ArrayList<ArchiveDTO> archives = new ArrayList<>();
+            while (rs.next()) {
+                ArchiveDTO archive = new ArchiveDTO();
+                
+                archive.setA_pk(rs.getInt(1));
+                archive.setA_m_pk(rs.getInt(2));
+                archive.setA_date(rs.getDate(3));
+                archive.setA_time(rs.getTime(4));
+                archive.setA_title(rs.getString(8));
+                archive.setA_thumbnail(rs.getString(9));
+                
+                archives.add(archive);
+                
+            }
+            req.setAttribute("archives", archives);
+            System.out.println("Archives fetched: " + archives.size()); // 디버깅 메시지
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(con, pstmt, rs);
         }
     }
 }
