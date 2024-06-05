@@ -106,6 +106,9 @@ public class ArchiveDAO {
                 archive.setA_m_pk(rs.getInt(2));
                 archive.setA_date(rs.getDate(3));
                 archive.setA_time(rs.getTime(4));
+                archive.setA_collabo(rs.getString(5));
+                archive.setA_collabomember(rs.getString(6));
+                archive.setA_category(rs.getString(7));
                 archive.setA_title(rs.getString(8));
                 archive.setA_thumbnail(rs.getString(9));
                 
