@@ -15,7 +15,7 @@
 			Hakonaka PW <input name="register-input-pw">
 		</div>
 		<div>
-			NickName <input name="register-input-nickname">
+			Nickname <input name="register-input-nickname">
 		</div>
 		<div>
 			your X ID : <span>${sessionScope.twitterScreenName }</span>
