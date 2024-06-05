@@ -74,8 +74,8 @@ public class TwitterCallbackServlet extends HttpServlet {
 					request.getSession().setAttribute("twitterScreenName", screenName);
 					request.getSession().setAttribute("twitterName", name);
 					
-					// 종료 후 메인페이지로
-					response.sendRedirect("HC");
+					// 종료 후 등록 페이지로
+					response.sendRedirect("RegisterC");
 					
 					
 					
