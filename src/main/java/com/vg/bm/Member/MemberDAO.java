@@ -81,10 +81,10 @@ public class MemberDAO {
 			while (rs.next()) {
 				ImageDTO img = new ImageDTO();
 				img.setI_m_pk(rs.getString("i_m_pk"));
-				img.setI_icon("haco_img/icon/"+rs.getString("i_icon")+".png");
-				img.setI_pic("haco_img/img/"+rs.getString("i_img")+".png");
-				img.setI_3side("haco_img/3sides/"+rs.getString("i_3side")+".png");
-				img.setI_background("haco_img/background/"+rs.getString("i_background")+".png");
+				img.setI_icon("haco_img/icon/"+rs.getString("i_icon"));
+				img.setI_pic("haco_img/img/"+rs.getString("i_img"));
+				img.setI_3side("haco_img/3sides/"+rs.getString("i_3side"));
+				img.setI_background("haco_img/background/"+rs.getString("i_background"));
 				images.add(img);
 			}
 //			System.out.println("----images syso----");
