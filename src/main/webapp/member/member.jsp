@@ -18,7 +18,9 @@
 		<div class="member-memberList-container">
 			<div class="member-list">Members</div>
 			<c:forEach var="m" items="${members }" begin="0">
-				<div class="member-memberList" id="${m.m_pk }">${m.m_name }</div>
+				<div class="member-memberList" id="${m.m_pk }" onclick="getPk()" >${m.m_name }
+				<%-- <input type="hidden" name="member_pk" value="${m.m_pk }"> --%>
+				</div>
 			</c:forEach>
 		</div>
 		<div class="member-img-container">
@@ -35,11 +37,17 @@
 								<div id="member-youtube"></div>
 								<div id="member-tictok"></div>
 							</div>
+							<details>
+								<summary>더보기..</summary>
+								<div>自己紹介<br></div>
+								<div>ママは<br></div>
+								<div>ハッシュタグ<br></div>
+							</details>
 						</div>
 					</div>
 					<div class="member-img-box">
 						<div class="member-img">
-							<img src="${i.i_pic }">
+							<img src="${i.i_img }">
 						</div>
 					</div>
 				</div>

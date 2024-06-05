@@ -1,3 +1,4 @@
+// 이미지 바뀌는 js
 const memberList = document.querySelectorAll('.member-memberList');
 const memberImgs = document.querySelectorAll('.member-backgroundImg');
 memberImgs[0].classList.add('show');
@@ -15,3 +16,4 @@ memberList.forEach((member) => {
 
 	});
 });
+

@@ -28,6 +28,7 @@ public class MemberDAO {
 		
 	}
 
+	// 멤버 기본 정보 호출 메서드
 	public void getAllMember(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -50,6 +51,7 @@ public class MemberDAO {
 //			System.out.println(members);
 //			System.out.println(members.size());
 			request.setAttribute("members", members);
+//			request.setAttribute("member_pk", rs.getString(1));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,32 +59,26 @@ public class MemberDAO {
 			DBManager.close(con, pstmt, null);
 		}
 	}
-
-	public void getMember(HttpServletRequest request) {
+	
+	//멤버 이미지 호출 메서드
+	public void getMemberImg(HttpServletRequest request) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql1 = "select * from haco_member where m_pk=?";
-		String sql2 = "select * from haco_hashtag where h_m_pk=?";
-		String sql3 = "select * from haco_address a_m_pk=?";
-		String sql4 = "select * from haco_image";
+		String sql = "select * from haco_image";
 		
 		try {
 			con = DBManager.connect();
-			pstmt = con.prepareStatement(sql4);
+			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
-//			String path = request.getServletContext().getRealPath("haco_img/");
-//			MultipartRequest mr = new MultipartRequest(request, path, 
-//						1024*1024*20, "utf-8", new DefaultFileRenamePolicy());
-			
+				
 			images = new ArrayList<ImageDTO>();
 			while (rs.next()) {
 				ImageDTO img = new ImageDTO();
 				img.setI_m_pk(rs.getString("i_m_pk"));
 				img.setI_icon("haco_img/icon/"+rs.getString("i_icon"));
-				img.setI_pic("haco_img/img/"+rs.getString("i_img"));
+				img.setI_img("haco_img/img/"+rs.getString("i_img"));
 				img.setI_3side("haco_img/3sides/"+rs.getString("i_3side"));
 				img.setI_background("haco_img/background/"+rs.getString("i_background"));
 				images.add(img);
@@ -100,7 +96,54 @@ public class MemberDAO {
 		
 		
 	}
-	
+
+	// 멤버 해시태그 호출 메서드
+	public void getMemberHashTag(HttpServletRequest request) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+//		members = new ArrayList<MemberDTO>();
+		MemberDTO pk = members.get(1);
+		System.out.println(pk);
+		
+		String sql = "select * from haco_address a_m_pk=?";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+	}
+
+	// 멤버 주소 호출 메서드
+//	public void getAdress(HttpServletRequest request) {
+//
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+//		String sql = "select * from haco_hashtag where h_m_pk=?";
+//		
+//		try {
+//			con = DBManager.connect();
+//			pstmt = con.prepareStatement(sql);
+//			rs = pstmt.executeQuery();
+//				
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			DBManager.close(con, pstmt, rs);
+//		}
+//	}
 	
 	
 
