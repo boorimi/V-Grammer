@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Archives</h1>
-    <c:forEach items="${archiveList}" var="archive">
+    <c:forEach items="${archives}" var="archive">
         <div>
             <h2>${archive.title}</h2>
             <p>Date: ${archive.date}</p>

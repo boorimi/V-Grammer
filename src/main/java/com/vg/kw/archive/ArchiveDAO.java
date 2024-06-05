@@ -125,8 +125,8 @@ public class ArchiveDAO {
 					archive.setA_title(rs.getString(8));
 					
 					archives.add(archive);
+					req.setAttribute("archives", archives);
 				}
-				req.setAttribute("archives", archives);
 				
     			
 			} catch (Exception e) {
