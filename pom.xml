@@ -101,7 +101,6 @@
           <artifactId>mariadb-java-client</artifactId>
           <version>3.4.0</version>
       </dependency>
-    </dependencies>
 		<!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리-->
 		<dependency>
 			<groupId>org.twitter4j</groupId>
