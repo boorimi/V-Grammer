@@ -24,7 +24,8 @@ pageEncoding="UTF-8"%>
         <div class="my-page">マイページ</div>
       </div>
     </nav>
-    <jsp:includ
+    <jsp:includ>
     <div class="live-members"></div>
+    </jsp:includ>
   </body>
 </html>

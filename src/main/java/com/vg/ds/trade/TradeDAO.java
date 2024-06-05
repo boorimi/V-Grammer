@@ -56,9 +56,9 @@ public class TradeDAO {
 
 		try {
 
-			String sql = "select t_pk, t_u_twitter_id, u_id, u_nickname, t_text, t_date, u_yesno ";
+			String sql = "select t_pk, u_id, u_twitter_id, u_nickname, t_text, t_date, u_yesno ";
 			sql += "from haco_tradegoods, haco_user ";
-			sql += "where u_twitter_id = t_u_twitter_id ";
+			sql += "where u_id = t_u_id ";
 			sql += "order by t_date desc";
 
 			con = DBManager.connect();
@@ -97,9 +97,9 @@ public class TradeDAO {
 
 		try {
 
-			String sql = "select t_pk, t_u_twitter_id, u_id, u_nickname, t_text, t_date, u_yesno ";
+			String sql = "select t_pk, u_id, u_twitter_id, u_nickname, t_text, t_date, u_yesno ";
 			sql += "from haco_tradegoods, haco_user ";
-			sql += "where u_twitter_id = t_u_twitter_id and t_pk = ? ";
+			sql += "where u_id = t_u_id and t_pk = ? ";
 			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -140,7 +140,7 @@ public class TradeDAO {
 			String text = request.getParameter("text");
 			text = text.replaceAll("\r\n", "<br>");
 
-			String sql = "insert into haco_tradegoods values (null, 'KOR_JABIRAN', ?, NOW())";
+			String sql = "insert into haco_tradegoods values (null, 'ds6951', ?, NOW())";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -216,10 +216,10 @@ public class TradeDAO {
 
 		try {
 
-			String sql = "select tc_pk, tc_m_twitter_id, u_id, u_nickname, tc_s_twitter_id, u_id, u_nickname, tc_text, tc_date, u_yesno, tc_t_pk ";
+			String sql = "select tc_pk, tc_m_id, u_twitter_id, u_nickname, tc_s_id, u_twitter_id, u_nickname, tc_text, tc_date, u_yesno, tc_t_pk ";
 			sql += "from haco_user, haco_tradegoods_comments ";
-			sql += "where tc_m_twitter_id = u_twitter_id ";
-			sql += "and tc_s_twitter_id = u_twitter_id and u_yesno = 1 ";
+			sql += "where tc_m_id = u_id ";
+			sql += "and tc_s_id = u_id and u_yesno = 1 ";
 			
 			
 			con = DBManager.connect();
@@ -271,7 +271,7 @@ public class TradeDAO {
 			text = text.replaceAll("\r\n", "<br>");
 
 			String sql = "insert into haco_tradegoods_comments values ";
-				  sql += "(null, ?, 'KOR_JABIRAN','KOR_JABIRAN',?,now())";
+				  sql += "(null, ?, 'ds6951','ds6951',?,now())";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);

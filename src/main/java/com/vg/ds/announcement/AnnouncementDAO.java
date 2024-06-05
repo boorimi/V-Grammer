@@ -128,7 +128,7 @@ public class AnnouncementDAO {
 			String text = request.getParameter("text");
 			text = text.replaceAll("\r\n", "<br>");
 			
-			String sql = "insert into haco_announcement values (null, 'KOR_JABIRAN', ?, ?, NOW())";
+			String sql = "insert into haco_announcement values (null, 'ds6951', ?, ?, NOW())";
 			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
