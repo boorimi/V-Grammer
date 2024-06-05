@@ -94,7 +94,7 @@
             <!-- 여기에 그룹 아이디 입력-->
             <artifactId>twitter4j-core</artifactId>
             <!-- 여기에 아티팩트 아이디 입력-->
-            <version>4.0.4</version>
+            <version>4.0.7</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
