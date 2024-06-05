@@ -12,7 +12,10 @@ public class MemberC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberDAO.MDAO.getAllMember(request);
-		MemberDAO.MDAO.getMember(request);
+		request.getAttribute("member_pk");
+//		MemberDAO.MDAO.getMemberImg(request);
+//		MemberDAO.MDAO.getMemberHashTag(request);
+//		MemberDAO.MDAO.getAdress(request);
 		request.setAttribute("content", "member/member.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response); 
 		
