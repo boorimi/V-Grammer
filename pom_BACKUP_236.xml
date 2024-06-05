@@ -20,19 +20,18 @@
     </plugins>
   </build>
   <dependencies>
-<<<<<<< HEAD
+
   <dependency>
     <groupId>org.twitter4j</groupId>
     <artifactId>twitter4j-core</artifactId>
     <version>4.1.2</version>
 </dependency>
-=======
+
 <dependency>
     <groupId>org.mariadb.jdbc</groupId>
     <artifactId>mariadb-java-client</artifactId>
     <version>3.3.3</version>
 </dependency>
 
->>>>>>> 23c142c5fb46aef847a792f52cd952df839b3b70
 </dependencies>
 </project>
