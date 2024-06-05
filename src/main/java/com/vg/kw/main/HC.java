@@ -12,7 +12,7 @@ public class HC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HomeDAO.getLiveUrl(request);
+		HomeDAO.HDAO.getLiveUrl(request);
 		request.setAttribute("content", "mainpage/main.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 

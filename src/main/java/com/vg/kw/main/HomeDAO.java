@@ -23,7 +23,7 @@ public class HomeDAO {
 	private ArrayList<LiveStreamDTO> liveStreams = null;
 //	private ArrayList<TradeCommentsDTO> tradeComments = null;
 	private Connection con = null;
-	public static final HomeDAO TDAO = new HomeDAO();
+	public static final HomeDAO HDAO = new HomeDAO();
 
 	private HomeDAO() {
 		try {
@@ -67,47 +67,50 @@ public class HomeDAO {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			liveStreams = new ArrayList<LiveStreamDTO>; 
+			liveStreams = new ArrayList<LiveStreamDTO>();
 			
 			while (rs.next()) {
-				rs.getString(1);
-				rs.getString(2);
 				
-				
-			}
+				LiveStreamDTO l = new LiveStreamDTO(rs.getString(1), rs.getString(2));
+				liveStreams.add(l);
 			
-
-			String channelId = "UCsDM8jwzGNt40TWcA9y1dAQ";
-
-			String urlString = "https://www.youtube.com/channel/" + channelId + "/live";
-
-			Document doc = Jsoup.connect(urlString).get();
-			String html = doc.html();
-
-			// '시청 중' 문자열을 통해 라이브 스트림 여부를 확인합니다.
-			if (html.contains("시청 중")) {
-				String videoId = null;
-
-				// HTML에서 videoId를 찾습니다.
-				String videoIdPrefix = "\"videoId\":\"";
-				int startIndex = html.indexOf(videoIdPrefix);
-				if (startIndex != -1) {
-					startIndex += videoIdPrefix.length();
-					int endIndex = html.indexOf("\"", startIndex);
-					if (endIndex != -1) {
-						videoId = html.substring(startIndex, endIndex);
-					}
-				}
-
-				if (videoId != null) {
-					String videoUrl = "https://www.youtube.com/watch?v=" + videoId;
-					System.out.printf("Live Stream Video ID: %s, URL: %s\n", videoId, videoUrl);
-				} else {
-					System.out.println("라이브중이지만 videoId를 찾을 수 없습니다.");
-				}
-			} else {
-				System.out.println("라이브중이 아닙니다.");
+				
 			}
+			for (LiveStreamDTO liveStreamDTO : liveStreams) {
+				System.out.println(liveStreamDTO);
+			}
+
+//			LiveStreamDTO channelId = liveStreams.get(1);
+//
+//			String urlString = "https://www.youtube.com/channel/" + channelId + "/live";
+//
+//			Document doc = Jsoup.connect(urlString).get();
+//			String html = doc.html();
+//
+//			// '시청 중' 문자열을 통해 라이브 스트림 여부를 확인합니다.
+//			if (html.contains("시청 중")) {
+//				String videoId = null;
+//
+//				// HTML에서 videoId를 찾습니다.
+//				String videoIdPrefix = "\"videoId\":\"";
+//				int startIndex = html.indexOf(videoIdPrefix);
+//				if (startIndex != -1) {
+//					startIndex += videoIdPrefix.length();
+//					int endIndex = html.indexOf("\"", startIndex);
+//					if (endIndex != -1) {
+//						videoId = html.substring(startIndex, endIndex);
+//					}
+//				}
+//
+//				if (videoId != null) {
+//					String videoUrl = "https://www.youtube.com/watch?v=" + videoId;
+//					System.out.printf("Live Stream Video ID: %s, URL: %s\n", videoId, videoUrl);
+//				} else {
+//					System.out.println("라이브중이지만 videoId를 찾을 수 없습니다.");
+//				}
+//			} else {
+//				System.out.println("라이브중이 아닙니다.");
+//			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

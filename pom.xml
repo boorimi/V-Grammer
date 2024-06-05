@@ -1,34 +1,3 @@
-<<<<<<< HEAD
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>V-Grammer</groupId>
-	<artifactId>V-Grammer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<release>17</release>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.3</version>
-			</plugin>
-		</plugins>
-	</build>
-	<dependencies>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<!--트위터 로그인 관련-->
-		<!-- Apache HttpClient -->
-=======
 <project
     xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -82,7 +51,6 @@
             <artifactId>httpmime</artifactId>
             <version>4.3.3</version>
         </dependency>
->>>>>>> 9e7d21bf86d4d45e21207208f2402946be1bb6b0
 
         <!-- Signpost Core - api연결용 oauth인증 라이브러리. OAuth인터페이스・클래스 제공-->
         <dependency>
@@ -131,7 +99,6 @@
 			<artifactId>twitter4j-core</artifactId>
 			<version>4.0.7</version>
 		</dependency>
-<<<<<<< HEAD
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
@@ -172,7 +139,6 @@
 			<artifactId>selenium-chrome-driver</artifactId>
 			<version>3.141.59</version>
 		</dependency>
-=======
         
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
@@ -185,9 +151,7 @@
             <version>9.0.56</version>
         </dependency>
 	</dependencies>
->>>>>>> 9e7d21bf86d4d45e21207208f2402946be1bb6b0
 
-	</dependencies>
 </project>
 
 
