@@ -11,7 +11,7 @@
         <div>
             <h2>${archive.a_title}</h2>
             <p>Date: ${archive.a_date}</p>
-           
+           	<p>Time: ${archive.a_time}</p>
             <img src="${archive.a_thumbnail}" alt="${archive.a_title} Thumbnail">
         </div>
     </c:forEach>
