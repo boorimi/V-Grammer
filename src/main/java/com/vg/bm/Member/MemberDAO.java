@@ -33,6 +33,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
+		// 멤버와 멤버이미지 테이블을 보여주는 sql문 한 번에 작성.
 		String sql = "select hm.m_pk, hm.m_name,hm.m_gen,hm.m_birth,hm.m_debut,hm.m_mother_name,hm.m_mother_twitter,\r\n"
 				+ "hi.i_icon,hi.i_img,hi.i_3side,hi.i_background\r\n" + "from haco_member hm, haco_image hi\r\n"
 				+ "where hm.m_pk = hi.i_m_pk;";
@@ -44,10 +45,14 @@ public class MemberDAO {
 			members = new ArrayList<MemberDTO>();
 			AddressDTO addressDTO = null;
 			ArrayList<AddressDTO> addrs = null;
+			HashTagDTO hashTagDTO = null;
+			ArrayList<HashTagDTO> hashTag = null;
 			while (rs.next()) {
+				// 멤버와 멤버이미지 테이블의 정보를 합쳐서 MemberDTO에 생성.
 				MemberDTO member = new MemberDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
 						rs.getString(10), rs.getString(11));
+																	// 멤버 pk
 				sql = "select * from haco_address where a_m_pk=" + rs.getString(1);
 				pstmt = con.prepareStatement(sql);
 				rs2 = pstmt.executeQuery();
@@ -59,17 +64,14 @@ public class MemberDAO {
 				}
 //				System.out.println(addrs);
 				member.setAddress(addrs);
-				
 				members.add(member);
 			}
 			System.out.println("~~~~~~~~~~~~~~~~~");
 			System.out.println(members);
 			System.out.println("~~~~~~~~~~~~~~~~~");
 
-//			System.out.println(members);
 //			System.out.println(members.size());
 			request.setAttribute("members", members);
-//			request.setAttribute("member_pk", rs.getString(1));
 
 		} catch (Exception e) {
 			e.printStackTrace();
