@@ -63,10 +63,14 @@ public class TwitterCallbackServlet extends HttpServlet {
 					
 					//사용자 정보 가져옴
 					twitter4j.User user = twitter.verifyCredentials();
+					
+					long userId = user.getId();	//유저 고유 ID값				
 					String screenName = user.getScreenName();
 					String name = user.getName();
 					
+					
 					//정보를 세션에 저장
+					request.getSession().setAttribute("twitterId", userId);
 					request.getSession().setAttribute("twitterScreenName", screenName);
 					request.getSession().setAttribute("twitterName", name);
 					

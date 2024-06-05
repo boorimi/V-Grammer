@@ -35,6 +35,7 @@
 	</form>
 	액세스 토큰 : ${sessionScope.accessToken } <hr>
 	액세스 토큰 시크릿 : ${sessionScope.accessTokenSecret }<hr>
+	유저 ID : ${sessionScope.twitterId }<hr>
 	트위터 screenName : ${sessionScope.twitterScreenName }<hr>
 	트위터 name : ${sessionScope.twitterName }
 	
