@@ -17,10 +17,8 @@
 	<div class="member-container">
 		<div class="member-memberList-container">
 			<div class="member-list">Members</div>
-			<c:forEach var="m" items="${members }" begin="0">
-				<div class="member-memberList" id="${m.m_pk }">${m.m_name }
-				<%-- <input type="hidden" name="member_pk" value="${m.m_pk }"> --%>
-				</div>
+			<c:forEach var="m" items="${members }" begin="0" end="20">
+				<div class="member-memberList" id="${m.m_pk }">${m.m_name }</div>
 			</c:forEach>
 		</div>
 		<div class="member-img-container">
@@ -39,9 +37,16 @@
 							</div>
 							<details>
 								<summary>더보기..</summary>
-								<div>自己紹介<br></div>
-								<div>ママは<br></div>
-								<div>ハッシュタグ<br></div>
+								<div>自己紹介</div>
+
+								<div>-ママは-</div>
+								<div>お名前：${m.m_mother_name } </div>
+								<div>ツイッター：<a href="${m.m_mother_twitter } "> ${m.m_mother_twitter } </a></div>
+								<div>-ハッシュタグ-
+								<c:forEach items="${m.hashTag }" var="h">
+								<div>${h.h_category } : ${h.h_tag }</div>
+								</c:forEach>
+								</div>
 							</details>
 						</div>
 					</div>
