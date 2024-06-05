@@ -34,8 +34,6 @@ public class ArchiveDAO {
             InputStream is = huc.getInputStream();
             InputStreamReader isr = new InputStreamReader(is, "utf-8");
 
-            
-            
             // JSON 파서 객체 생성
             JSONParser jp = new JSONParser();
             JSONObject naverData = (JSONObject) jp.parse(isr);
@@ -71,81 +69,55 @@ public class ArchiveDAO {
                 // 데이터베이스에 값 삽입
                 String[] timeComponents = time.split(":");
                 Time sqlTime = Time.valueOf(timeComponents[0] + ":" + timeComponents[1] + ":" + timeComponents[2]);
-               
-//                statement.setInt(1, 5);
-//                statement.setDate(2, Date.valueOf(date));
-//                statement.setTime(3, sqlTime);
-//                statement.setString(4, title);
-//                statement.setString(5, defaultThumbnailUrl);
-              
 
-               
                 statement.setInt(1, 5);
-              	statement.setDate(2, Date.valueOf(date));
-              	statement.setTime(3, sqlTime);
-              	statement.setString(4, title);
-              	statement.setString(5, defaultThumbnailUrl);
-
+                statement.setDate(2, Date.valueOf(date));
+                statement.setTime(3, sqlTime);
+                statement.setString(4, title);
+                statement.setString(5, defaultThumbnailUrl);
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
                     System.out.println("A new row has been inserted successfully!");
                 }
-                
             }
-            
-            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             // 리소스 닫기
             DBManager.close(connection, statement, null);
         }
-        
     }
     
     public static void selectAllArchive(HttpServletRequest req) {
-    		Connection con = null;
-    		PreparedStatement pstmt = null;
-    		ResultSet rs = null;
-    		String sql  = "select * from asdasdds";
-    		try {
-				con = DBManager.connect();
-				pstmt = con.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				ArchiveDTO archive = null;
-				ArrayList<ArchiveDTO> archives = new ArrayList<ArchiveDTO>();
-				while (true) {
-					archive = new ArchiveDTO();
-					
-					archive.setA_pk(rs.getInt(1));
-					archive.setA_m_pk(rs.getInt(2));
-					archive.setA_date(rs.getDate(3));
-					archive.setA_time(rs.getDate(4));
-					archive.setA_title(rs.getString(8));
-					
-					archives.add(archive);
-					req.setAttribute("archives", archives);
-				}
-				
-    			
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				DBManager.close(con, pstmt, rs);
-			}
-    		
-    		
-    		
-    		
-    		
-    		
-    		
-    		
-    		
-    		
-    	
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql  = "SELECT * FROM haco_archive";
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            ArrayList<ArchiveDTO> archives = new ArrayList<>();
+            while (rs.next()) {
+                ArchiveDTO archive = new ArchiveDTO();
+                
+                archive.setA_pk(rs.getInt(1));
+                archive.setA_m_pk(rs.getInt(2));
+                archive.setA_date(rs.getDate(3));
+                archive.setA_time(rs.getTime(4));
+                archive.setA_title(rs.getString(8));
+                archive.setA_thumbnail(rs.getString(9));
+                
+                archives.add(archive);
+                
+            }
+            req.setAttribute("archives", archives);
+            System.out.println("Archives fetched: " + archives.size()); // 디버깅 메시지
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(con, pstmt, rs);
+        }
     }
-    
-    
 }

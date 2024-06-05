@@ -1,12 +1,13 @@
 package com.vg.kw.archive;
 
 import java.sql.Date;
+import java.sql.Time;
 
 public class ArchiveDTO {
 private int a_pk;
 private int a_m_pk;
 private Date a_date;
-private Date a_time;
+private Time a_time;
 private String a_collabo;
 private String a_collabomember;
 private String a_category;
@@ -17,7 +18,7 @@ public ArchiveDTO() {
 	// TODO Auto-generated constructor stub
 }
 
-public ArchiveDTO(int a_pk, int a_m_pk, Date a_date, Date a_time, String a_collabo, String a_collabomember,
+public ArchiveDTO(int a_pk, int a_m_pk, Date a_date, Time a_time, String a_collabo, String a_collabomember,
 		String a_category, String a_title, String a_thumbnail) {
 	super();
 	this.a_pk = a_pk;
@@ -55,11 +56,11 @@ public void setA_date(Date a_date) {
 	this.a_date = a_date;
 }
 
-public Date getA_time() {
+public Time getA_time() {
 	return a_time;
 }
 
-public void setA_time(Date a_time) {
+public void setA_time(Time a_time) {
 	this.a_time = a_time;
 }
 
