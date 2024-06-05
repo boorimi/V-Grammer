@@ -5,9 +5,12 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.sql.Date;
+import javax.servlet.http.HttpServletRequest;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -31,6 +34,8 @@ public class ArchiveDAO {
             InputStream is = huc.getInputStream();
             InputStreamReader isr = new InputStreamReader(is, "utf-8");
 
+            
+            
             // JSON 파서 객체 생성
             JSONParser jp = new JSONParser();
             JSONObject naverData = (JSONObject) jp.parse(isr);
@@ -41,7 +46,6 @@ public class ArchiveDAO {
             String sql = "INSERT INTO haco_archive (a_pk, a_m_pk, a_date, a_time, a_collabo,a_collabomember, a_category, a_title, a_thumbnail) VALUES (null, ?, ?, ?, '未分類', '未分類', '未分類', ?, ?)";
             
             statement = connection.prepareStatement(sql);
-
             for (int i = 0; i < items.size(); i++) {
                 JSONObject item = (JSONObject) items.get(i);
                 JSONObject snippet = (JSONObject) item.get("snippet");
@@ -68,22 +72,80 @@ public class ArchiveDAO {
                 String[] timeComponents = time.split(":");
                 Time sqlTime = Time.valueOf(timeComponents[0] + ":" + timeComponents[1] + ":" + timeComponents[2]);
                
+//                statement.setInt(1, 5);
+//                statement.setDate(2, Date.valueOf(date));
+//                statement.setTime(3, sqlTime);
+//                statement.setString(4, title);
+//                statement.setString(5, defaultThumbnailUrl);
+              
+
+               
                 statement.setInt(1, 5);
-                statement.setDate(2, Date.valueOf(date));
-                statement.setTime(3, sqlTime);
-                statement.setString(4, title);
-                statement.setString(5, defaultThumbnailUrl);
+              	statement.setDate(2, Date.valueOf(date));
+              	statement.setTime(3, sqlTime);
+              	statement.setString(4, title);
+              	statement.setString(5, defaultThumbnailUrl);
+
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
                     System.out.println("A new row has been inserted successfully!");
                 }
+                
             }
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             // 리소스 닫기
             DBManager.close(connection, statement, null);
         }
+        
     }
+    
+    public static void selectAllArchive(HttpServletRequest req) {
+    		Connection con = null;
+    		PreparedStatement pstmt = null;
+    		ResultSet rs = null;
+    		String sql  = "select * from asdasdds";
+    		try {
+				con = DBManager.connect();
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				ArchiveDTO archive = null;
+				ArrayList<ArchiveDTO> archives = new ArrayList<ArchiveDTO>();
+				while (true) {
+					archive = new ArchiveDTO();
+					
+					archive.setA_pk(rs.getInt(1));
+					archive.setA_m_pk(rs.getInt(2));
+					archive.setA_date(rs.getDate(3));
+					archive.setA_time(rs.getDate(4));
+					archive.setA_title(rs.getString(8));
+					
+					archives.add(archive);
+				}
+				req.setAttribute("archives", archives);
+				
+    			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBManager.close(con, pstmt, rs);
+			}
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    	
+    }
+    
+    
 }

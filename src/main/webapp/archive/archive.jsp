@@ -1,15 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="your.package.name.Archive" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <title>Archives</title>
 </head>
 <body>
-
-archive~~
-
-
+    <h1>Archives</h1>
+    <c:forEach items="${archiveList}" var="archive">
+        <div>
+            <h2>${archive.title}</h2>
+            <p>Date: ${archive.date}</p>
+            <p>Time: ${archive.time}</p>
+            <img src="${archive.thumbnailUrl}" alt="${archive.title} Thumbnail">
+        </div>
+    </c:forEach>
 </body>
 </html>
