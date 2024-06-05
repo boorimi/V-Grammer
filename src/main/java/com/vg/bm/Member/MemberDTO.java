@@ -15,6 +15,7 @@ public class MemberDTO {
 	private String i_3side;
 	private String i_background;
 	private ArrayList<AddressDTO> address;
+	private ArrayList<HashTagDTO> hashTag;
 
 	public MemberDTO(String m_pk, String m_name, String m_gen, String m_birth, String m_debut, String m_mother_name,
 			String m_mother_twitter, String i_icon, String i_img, String i_3side, String i_background
@@ -43,6 +44,14 @@ public class MemberDTO {
 
 	public void setAddress(ArrayList<AddressDTO> address) {
 		this.address = address;
+	}
+
+	public ArrayList<HashTagDTO> getHashTag() {
+		return hashTag;
+	}
+
+	public void setHashTag(ArrayList<HashTagDTO> hashTag) {
+		this.hashTag = hashTag;
 	}
 
 	public String getM_pk() {
@@ -138,8 +147,7 @@ public class MemberDTO {
 		return "MemberDTO [m_pk=" + m_pk + ", m_name=" + m_name + ", m_gen=" + m_gen + ", m_birth=" + m_birth
 				+ ", m_debut=" + m_debut + ", m_mother_name=" + m_mother_name + ", m_mother_twitter=" + m_mother_twitter
 				+ ", i_icon=" + i_icon + ", i_img=" + i_img + ", i_3side=" + i_3side + ", i_background=" + i_background
-				+ ", address=" + address + "]";
+				+ ", address=" + address + ", hashTag=" + hashTag + "]";
 	}
-
 
 }
