@@ -12,12 +12,13 @@ public class HC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HomeDAO.HDAO.getLiveUrl(request);
+//		HomeDAO.HDAO.getLiveUrl(request);
+//		GetAllStream.getAllLive();
 		request.setAttribute("content", "mainpage/main.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
