@@ -59,12 +59,12 @@ public class GetAllStream {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
-			ArrayList<LiveStreamDTO> liveStreams = new ArrayList<LiveStreamDTO>();
+			ArrayList<GetAllStreamDTO> getAllStreams = new ArrayList<GetAllStreamDTO>();
 
 			while (rs.next()) {
 
-				LiveStreamDTO l = new LiveStreamDTO(rs.getString(1), rs.getString(2));
-				liveStreams.add(l);
+				GetAllStreamDTO g = new GetAllStreamDTO(rs.getString(1), rs.getString(2));
+				getAllStreams.add(g);
 
 			}
 
@@ -73,9 +73,10 @@ public class GetAllStream {
 
 			String sql2 = null;
 			String sql3 = null;
+			int i = 1;
 
-			for (LiveStreamDTO liveStreamDTO : liveStreams) {
-				String channelId = liveStreamDTO.getYchannelID();
+			for (GetAllStreamDTO g : getAllStreams) {
+				String channelId = g.getYchannelID();
 
 				String url = "https://www.youtube.com/channel/" + channelId + "/live";
 				driver.get(url);
@@ -85,14 +86,15 @@ public class GetAllStream {
 						.presenceOfElementLocated(By.cssSelector("#info.style-scope.ytd-watch-info-text")));
 				String streaming = liveBadge.getText();
 				// DB안에 이미 자료가 있는지 없는지 판단하는 코드
-				sql2 = "select count(*) from haco_currentlivestream";
+				sql2 = "select count(*) from haco_currentlivestream ";
 				sql2 += "where c_m_pk = ?";
 
 				pstmt = con.prepareStatement(sql2);
-				pstmt.setString(1, liveStreamDTO.getPk());
+				pstmt.setString(1, g.getPk());
 				rs = pstmt.executeQuery();
 				rs.next();
 
+				System.out.print(i+" ");
 				// "스트리밍 시작" 으로 검색하여 라이브 여부를 판단한다.
 				if (streaming.contains("스트리밍 시작")) {
 
@@ -113,7 +115,7 @@ public class GetAllStream {
 						pstmt.close();
 
 						pstmt = con.prepareStatement(sql3);
-						pstmt.setString(1, liveStreamDTO.getPk());
+						pstmt.setString(1, g.getPk());
 						pstmt.setString(2, afterEquals);
 						if (pstmt.executeUpdate() == 1) {
 							System.out.println("새로운 방송 시작. 입력 성공.");
@@ -132,7 +134,7 @@ public class GetAllStream {
 						pstmt.close();
 
 						pstmt = con.prepareStatement(sql3);
-						pstmt.setString(1, liveStreamDTO.getPk());
+						pstmt.setString(1, g.getPk());
 						if (pstmt.executeUpdate() == 1) {
 							System.out.println("라이브 종료. 데이터 삭제 성공");
 						}
@@ -141,6 +143,7 @@ public class GetAllStream {
 						System.out.println("라이브 없음");
 					}
 				}
+				i++;
 			}
 
 		} catch (Exception e) {

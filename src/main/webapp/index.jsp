@@ -10,13 +10,13 @@
   </head>
   <body>
     <nav>
-      <div class="main-logo"></div>
+      <div class="main-logo"><a href="HC">ハコナカ</a></div>
       <ul class="mene-lists">
         <li><a href="MemberC">メンバー</a></li>
         <li><a href="ArchiveC">アーカイブ</a></li>
         <li><a href="">カレンダー</a></li>
         <li><a href="">スケジュール</a></li>
-        <li><a href="Trade">トレード</a></li>
+        <li><a href="TradePage?p=1">トレード</a></li>
         <li><a href="Announcement">お知らせ</a></li>
       </ul>
 

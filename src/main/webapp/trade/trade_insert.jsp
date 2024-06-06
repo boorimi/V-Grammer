@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,12 +26,28 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <c:set var="buttonText" value="작성하기" />
       </c:otherwise>
     </c:choose>
+    
     <div class="trade-container">
       <div class="trade-title">
         <h1>トレード (insert or update)</h1>
       </div>
       <form id="${id }" action="${action }" method="post">
-        <div class="">
+        <div>카테고리</div>
+        <c:set var="checkboxValues" value="${trades.category}" />
+       	<c:set var="checkboxValuesStr" value="${fn:join(checkboxValues, ',')}" />
+        <div class="trade-category">
+        	<c:forEach items="${checkboxItems }" var="cbi">
+          <div>
+            <label
+              ><input
+                type="checkbox"
+                name="goodsCategory"
+                value="${cbi.value }"
+                <c:if test="${fn:contains(checkboxValuesStr, cbi.value)}" >checked="checked"</c:if> />${cbi.label }</label>
+          </div>
+          </c:forEach>
+          </div>
+          <div>
           <div>본문</div>
           <input name="no" type="hidden" value="${trades.pk }" />
           <div>
