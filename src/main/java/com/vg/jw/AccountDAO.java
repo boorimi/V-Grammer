@@ -25,10 +25,11 @@ public class AccountDAO {
 		HttpSession twitterSession = request.getSession();
 
 		long twitterId = (long) twitterSession.getAttribute("twitterId");
-
-		String twitterScreenName = (String) twitterSession.getAttribute("twitterScreenName");		
+		String twitterScreenName = (String) twitterSession.getAttribute("twitterScreenName");
+		String twitterProfileImgUrl = (String) twitterSession.getAttribute("twitterProfileImgUrl");
 		System.out.println("AccountDAO테스트 출력(twitterId):"+ twitterId);
 		System.out.println("AccountDAO테스트 출력(twitterScreenName):"+ twitterScreenName);
+		System.out.println("트위터 프사 url 테스트 출력" + twitterProfileImgUrl);
 		
 		//사진받을 준비
 		String path = request.getServletContext().getRealPath("account/profileImg");
@@ -37,16 +38,23 @@ public class AccountDAO {
 		MultipartRequest mr = new MultipartRequest(request, path, 1024 * 1024 * 10, "utf-8",
 				new DefaultFileRenamePolicy());
 		
+		//회원가입시 입력한 값 받아오기
 		String inputId = mr.getParameter("register-input-id");
 		String inputPw = mr.getParameter("register-input-pw");
 		String inputNickname = mr.getParameter("register-input-nickname");
 		
-		String inputFile = mr.getFilesystemName("register-input-file");
+		String inputImgfile = mr.getFilesystemName("register-input-imgfile");
+	
+		//이미지를 등록하지 않았을 경우 자동으로 트위터 기본이미지 설정
+		if (inputImgfile == null) {
+			inputImgfile = twitterProfileImgUrl;
+		}
+		
 		
 		System.out.println(inputId);
 		System.out.println(inputPw);
 		System.out.println(inputNickname);
-		System.out.println(inputFile);
+		System.out.println(inputImgfile);
 		
 		String sql = "INSERT INTO haco_user values(?, ?, ?, ?, 1, ?)";
 		
@@ -58,7 +66,7 @@ public class AccountDAO {
 			pstmt.setString(2, inputPw);
 			pstmt.setLong(3, twitterId);
 			pstmt.setString(4, inputNickname);
-			pstmt.setString(5, inputFile);
+			pstmt.setString(5, inputImgfile);
 			
 			if (pstmt.executeUpdate() >= 1) {
 				System.out.println("유저 등록 성공");

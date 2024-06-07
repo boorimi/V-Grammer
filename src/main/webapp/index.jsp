@@ -38,6 +38,7 @@
 	유저 ID : ${sessionScope.twitterId }<hr>
 	트위터 screenName : ${sessionScope.twitterScreenName }<hr>
 	트위터 name : ${sessionScope.twitterName }<hr>
+	트위터 프사 url : ${sessionScope.twitterProfileImgUrl}<hr>
 	로그인 result : ${loginResult }<hr>
 	로그인된 id : ${sessionScope.accountInfo.u_id }<hr>
 	로그인된 닉네임 : ${sessionScope.accountInfo.u_nickname }<hr>

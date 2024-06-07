@@ -69,15 +69,18 @@ public class TwitterCallbackServlet extends HttpServlet {
 					long userId = user.getId(); //유저 고유 ID값.
 					String screenName = user.getScreenName();
 					String name = user.getName();
-	
+					String profileImgUrl = user.getProfileImageURL();
+					
 					System.out.println("트위터 콜백 서블릿 테스트 출력(userId) : "+ userId);
 					System.out.println("트위터 콜백 서블릿 테스트 출력(screenName) : "+ screenName);
 					System.out.println("트위터 콜백 서블릿 테스트 출력(name) : "+ name);
+					System.out.println("트위터 콜백 서블릿 테스트 출력(트위터 프로필이미지) : " + profileImgUrl);
 					
 					//정보를 세션에 저장
 					request.getSession().setAttribute("twitterId", userId);
 					request.getSession().setAttribute("twitterScreenName", screenName);
 					request.getSession().setAttribute("twitterName", name);
+					request.getSession().setAttribute("twitterProfileImgUrl", profileImgUrl);
 					
 					// 종료 후 등록 페이지로
 					response.sendRedirect("RegisterC");
