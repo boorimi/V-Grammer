@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import com.vg.ignore.DBManager;
 
+import twitter4j.Twitter;
+import twitter4j.User;
+
 public class AccountDAO {
 
 	public static void registerUser(HttpServletRequest request) {
@@ -17,7 +20,7 @@ public class AccountDAO {
 		//트위터 계정정보 가져오기 
 		HttpSession twitterSession = request.getSession();
 		
-		String twitterId = (String) twitterSession.getAttribute("twitterId");
+		long twitterId = (long) twitterSession.getAttribute("twitterId");
 		String twitterScreenName = (String) twitterSession.getAttribute("twitterScreenName");		
 		System.out.println("AccountDAO테스트 출력(twitterId):"+ twitterId);
 		System.out.println("AccountDAO테스트 출력(twitterScreenName):"+ twitterScreenName);
@@ -31,14 +34,15 @@ public class AccountDAO {
 		System.out.println(inputPw);
 		System.out.println(inputNickname);
 		
-		String sql = "INSERT INTO haco_user values(?, ?, ?, ?, 1)";
+		String sql = "INSERT INTO haco_user values(?, ?, ?, ?, 1)";\
+		
 		try {
 			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, inputId);
 			pstmt.setString(2, inputPw);
-			pstmt.setString(3, twitterId);
+			pstmt.setLong(3, twitterId);
 			pstmt.setString(4, inputNickname);
 			
 			if (pstmt.executeUpdate() >= 1) {
@@ -53,8 +57,6 @@ public class AccountDAO {
 		}finally {
 			DBManager.close(con, pstmt, null);
 		}
-		
-		
 		
 		
 	}

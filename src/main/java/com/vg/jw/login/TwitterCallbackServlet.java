@@ -12,6 +12,7 @@ import oauth.signpost.OAuthProvider;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.User;
 import twitter4j.conf.ConfigurationBuilder;
 
 @WebServlet("/TwitterCallbackServlet")
@@ -31,7 +32,7 @@ public class TwitterCallbackServlet extends HttpServlet {
 
 		// 로그인 취소할 경우 denied파라미터가 url에 존재하게 됨
 		String denied = request.getParameter("denied");
-
+	
 		try {
 			//denied가 null이 아닐 경우 = 로그인 취소
 			if (denied != null) {
@@ -63,8 +64,9 @@ public class TwitterCallbackServlet extends HttpServlet {
 					
 					//사용자 정보 가져옴
 					twitter4j.User user = twitter.verifyCredentials();
-										 	
-					String userId = String.valueOf(user.getId()); //유저 고유 ID값. long->String변환
+					
+					
+					long userId = user.getId(); //유저 고유 ID값.
 					String screenName = user.getScreenName();
 					String name = user.getName();
 	
