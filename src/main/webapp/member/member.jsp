@@ -29,39 +29,48 @@
 					<img src="haco_img/background/${m.i_background }">
 					<div class="member-detail-container">
 						<div class="member-detail">
-							<div class="member-name">名前： ${m.m_name }</div>
-							<div class="member-birth">お誕生日：${m.m_birth }</div>
-							<div class="member-debut">デビュー日： ${m.m_debut }</div>
+							<div id="member-name">${m.m_name }</div>
+							<div id="member-birth"><span>お誕生日&nbsp;</span><span>${m.m_birth }</span></div>
+							<div id="member-debut"><span>デビュー日&nbsp;</span><span>${m.m_debut }</span></div>
 							<!-- 상세보기 (위치 수정 필요)-->
 							<!-- 							<details>
 								<summary>더보기..</summary> -->
 							<div class="member-detail2-box">
-								<div class="member-introduce">
-									<div>- 自己紹介 -</div>
-									<div>- ${m.m_introduce } -</div>
+								<div class="member-introduce-box">
+									<div id="member-introduce">
+										${m.m_introduce }</div>
 								</div>
-								<div class="member-mother-box">-ママは-</div>
-								<div class="member-mother-name">お名前：${m.m_mother_name }</div>
-								<div class="member-twitter">
-									ツイッター：<a href="${m.m_mother_twitter } ">
-										${m.m_mother_twitter } </a>
+								<div class="member-mother-box">
+									<div id="member-mother-name">
+									<span>彼女のママは、</span>
+									<span><a href="${m.m_mother_twitter }">${m.m_mother_name }</a></span>
+<%-- 									<a href="${m.m_mother_twitter }" id="member-mother-twitter">
+									twitter</a> --%>
+									</div>
 								</div>
-								<div class="member-hashtag-box">
-									-ハッシュタグ-
-									<c:forEach items="${m.hashTag }" var="h">
-								<%-- 		<div class="member-hashtag-category">${h.h_category }</div> --%>
-										<div class="member-hashtag"><a href="https://x.com/search?q=${h.h_tag }"> ${h.h_category }</a></div>
-									</c:forEach>
+								<div class="member-hashtag-container">
+									<div id="member-hashtag-title">-ハッシュタグ-</div>
+									<div class="member-hashtag-box">
+										<c:forEach items="${m.hashTag }" var="h">
+											<div id="member-hashtag">
+												<a href="https://x.com/search?q=${h.h_tag }">
+													${h.h_category }</a>
+											</div>
+										</c:forEach>
+									</div>
 								</div>
 							</div>
 							<!-- 							</details> -->
 							<!-- 상세보기 끝 -->
-							<div class="member-address-box">
-								<c:forEach items="${m.address }" var="a">
-									<div id="member-address">
-										<a href="${a.a_address }"> &nbsp; ${a.a_category }</a>
-									</div>
-								</c:forEach>
+							<div class="member-address-container">
+								<div id="member-address-title">-アドレス-</div>
+								<div class="member-address-box">
+									<c:forEach items="${m.address }" var="a">
+										<div id="member-address">
+											<a href="${a.a_address }">${a.a_category }</a>
+										</div>
+									</c:forEach>
+								</div>
 							</div>
 						</div>
 					</div>
