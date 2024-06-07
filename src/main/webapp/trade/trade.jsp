@@ -27,7 +27,15 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       	<button class="trade-openCategorys">カテゴリーで検索 ▼</button>
       </div>
       <form action="Trade">
-      <div class="trade-category" style="display: none;">
+      <c:choose>
+      <c:when test="${category3 != null}">
+        <c:set var="displayValue" value="flex" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="displayValue" value="none" />
+      </c:otherwise>
+    </c:choose>
+      <div class="trade-category" style="display: ${displayValue};">
       	<c:forEach items="${checkboxItems }" var="cbi">
           <div>
             <label
@@ -35,7 +43,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 type="checkbox"
                 name="goodsCategory"
                 value="${cbi.value }"
-                <c:if test="${fn:contains(checkboxValuesStr, cbi.value)}" >checked="checked"</c:if>/>${cbi.label }</label>
+                <c:if test="${fn:contains(category3, cbi.value)}" >checked="checked"</c:if>/>${cbi.label }</label>
           </div>
           </c:forEach>
           <button id="trade-search-category">検索</button>
@@ -114,7 +122,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       
       <div class="trade-bottom">
         <div>
-          <a href="TradePage?p=1">처음</a>
+          <a href="TradePage?p=1${category3 }">처음</a>
         </div>
         <c:set var="pageUnit" value="4" />
         <c:set
@@ -123,7 +131,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         />
         <div>
           <c:if test="${page != 0}">
-            <a href="TradePage?p=${page - pageUnit + 1}"
+            <a href="TradePage?p=${page - pageUnit + 1}${category3 }"
               >이전 ${pageUnit }페이지</a
             >
           </c:if>
@@ -131,11 +139,11 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         <div style="display: flex">
           <c:forEach
             var="i"
-            begin="${page + 1 }"
+            begin="1"
             end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
           >
             <div class="trade-page-no">
-              <a href="TradePage?p=${i }">[${i }]</a>
+              <a href="TradePage?p=${i }${category3 }">[${i }]</a>
             </div>
           </c:forEach>
         </div>
@@ -143,13 +151,13 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           <c:if
             test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}"
           >
-            <a href="TradePage?p=${page + pageUnit + 1 }"
+            <a href="TradePage?p=${page + pageUnit + 1 }${category3 }"
               >다음 ${pageUnit }페이지</a
             >
           </c:if>
         </div>
         <div>
-          <a href="TradePage?p=${pageCount}">끝</a>
+          <a href="TradePage?p=${pageCount}${category3 }">끝</a>
         </div>
       </div>
     </div>

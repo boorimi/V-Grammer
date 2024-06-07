@@ -75,6 +75,11 @@ public class TradeDAO {
 						sql += " or ";
 					}
 				}
+				String category3 = "";
+				for (String c : category2) {
+					category3 += "&goodsCategory=" + c ;
+				}
+				request.setAttribute("category3", category3);
 			}
 			////// 검색 진행 시 sql문 추가하는 부분 끝 ////
 			sql += "order by t_date asc";
@@ -101,6 +106,8 @@ public class TradeDAO {
 				trades.add(t);
 
 			}
+			
+			
 			request.setAttribute("trades", trades);
 
 		} catch (Exception e) {
@@ -333,7 +340,7 @@ public class TradeDAO {
 		checkboxItems.add(Map.of("value", "coaster", "label", "コスタ"));
 		checkboxItems.add(Map.of("value", "omoideCyeki", "label", "思い出チェキ風カード"));
 		checkboxItems.add(Map.of("value", "dmmMiniShikishi", "label", "DMM：色紙"));
-		checkboxItems.add(Map.of("value", "dmm57mmCanBadge", "label", "DMM：57mm缶バッジ"));
+		checkboxItems.add(Map.of("value", "dmm57CanBadge", "label", "DMM：57mm缶バッジ"));
 		checkboxItems.add(Map.of("value", "dmmMiniAkusuta", "label", "DMM：ミニアクスタ"));
 		checkboxItems.add(Map.of("value", "dmmCyeki", "label", "DMM：チェキ"));
 
