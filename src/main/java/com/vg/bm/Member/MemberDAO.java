@@ -33,9 +33,12 @@ public class MemberDAO {
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;
 		// 멤버와 멤버이미지 테이블을 보여주는 sql문 한 번에 작성.
-		String sql = "select hm.m_pk, hm.m_name,hm.m_gen,hm.m_birth,hm.m_debut,hm.m_mother_name,hm.m_mother_twitter,\r\n"
-				+ "hi.i_icon,hi.i_img,hi.i_3side,hi.i_background\r\n" + "from haco_member hm, haco_image hi\r\n"
-				+ "where hm.m_pk = hi.i_m_pk;";
+		String sql = "select hm.m_pk, hm.m_name,hm.m_gen,hm.m_birth,hm.m_debut,hm.m_mother_name,\r\n"
+				+ "hm.m_mother_twitter,hm.m_introduce,\r\n"
+				+ "hi.i_icon,hi.i_img,hi.i_3side,hi.i_background\r\n"
+				+ "from haco_member hm, haco_image hi\r\n"
+				+ "where hm.m_pk = hi.i_m_pk\r\n"
+				+ "order by hm.m_pk;";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -68,10 +71,11 @@ public class MemberDAO {
 				}
 				
 				// 멤버와 멤버이미지 테이블의 정보를 합쳐서 MemberDTO에 생성.
-				MemberDTO member = new MemberDTO(rs.getString(1), rs.getString(2), 
-						rs.getString(3), birth3, rs.getString(5), rs.getString(6), 
-						rs.getString(7), rs.getString(8), rs.getString(9),
-						rs.getString(10), rs.getString(11));
+				MemberDTO member = new MemberDTO(rs.getString(1),rs.getString(2),
+						rs.getString(3), birth3 ,rs.getString(5),rs.getString(6),
+						rs.getString(7),rs.getString(8),rs.getString(9),
+						rs.getString(10),rs.getString(11),rs.getString(12),
+						addrs, hashTag);
 																	// 멤버 pk
 				sql = "select * from haco_address where a_m_pk=" + rs.getString(1);
 				pstmt = con.prepareStatement(sql);
@@ -90,9 +94,20 @@ public class MemberDAO {
 				sql = "select * from haco_hashtag where h_m_pk=" + rs.getString(1);
 				pstmt = con.prepareStatement(sql);
 				rs3 = pstmt.executeQuery();
+				
+				
 				hashTag = new ArrayList<HashTagDTO>();
 				while (rs3.next()) {
-					hashTagDTO = new HashTagDTO(rs3.getString(1),rs3.getString(3),rs3.getString(4));
+					// <a>트위터 해시태그 페이지로 넘어가기 위해 #,＃을 %23으로 replace함
+					String replaceHashTag = rs3.getString(4);
+					if (replaceHashTag.contains("#")) {
+						replaceHashTag = replaceHashTag.replace("#", "%23");
+					} else if (replaceHashTag.contains("＃")) {
+						replaceHashTag = replaceHashTag.replace("＃", "%23");
+					}
+					System.out.println("해시태그 : "+replaceHashTag);
+					
+					hashTagDTO = new HashTagDTO(rs3.getString(1),rs3.getString(3),replaceHashTag);
 					hashTag.add(hashTagDTO);
 				}
 				
