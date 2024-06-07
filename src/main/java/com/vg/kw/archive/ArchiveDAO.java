@@ -50,6 +50,11 @@ public class ArchiveDAO {
 
                 String title = (String) snippet.get("title");
                 String publishedAt = (String) snippet.get("publishedAt");
+                JSONObject resourceId = (JSONObject) snippet.get("resourceId");
+                
+                String videoId = (String) resourceId.get("videoId");
+                System.out.println(videoId);
+//                System.out.println(resourceId);
                 
                 // Published At에서 날짜와 시간 분리
                 String[] dateTime = publishedAt.split("T");
@@ -112,8 +117,9 @@ public class ArchiveDAO {
                 archive.setA_category(rs.getString(7));
                 archive.setA_title(rs.getString(8));
                 archive.setA_thumbnail(rs.getString(9));
-                archive.setM_name(rs.getString(10));
-                archive.setI_icon(rs.getString(11));
+                archive.setA_videoid(rs.getString(10));
+                archive.setM_name(rs.getString(11));
+                archive.setI_icon(rs.getString(12));
                 archives.add(archive);
                 
             }
@@ -134,10 +140,10 @@ public class ArchiveDAO {
         String collabo = request.getParameter("collabo");
         String collabomember = request.getParameter("collabomember");
         String category = request.getParameter("category");
-        String a_m_pk = request.getParameter("a_m_pk"); // Example condition parameter
+        String a_pk = request.getParameter("a_pk"); // Unique identifier
 
         // Validate that necessary parameters are not null or empty
-        if (collabo == null || collabomember == null || category == null || a_m_pk == null) {
+        if (collabo == null || collabomember == null || category == null || a_pk == null) {
             System.out.println("One or more parameters are missing.");
             return;
         }
@@ -149,7 +155,7 @@ public class ArchiveDAO {
                      "SET ha.a_collabo = ?, " +
                      "    ha.a_collabomember = ?, " +
                      "    ha.a_category = ? " +
-                     "WHERE ha.a_m_pk = ?";  // Example condition, modify as needed
+                     "WHERE ha.a_pk = ?";  // Unique condition
 
         try {
             // Connect to the database
@@ -160,7 +166,7 @@ public class ArchiveDAO {
             pstmt.setString(1, collabo);
             pstmt.setString(2, collabomember);
             pstmt.setString(3, category);
-            pstmt.setString(4, a_m_pk);  // Set the condition parameter
+            pstmt.setString(4, a_pk); // Set the unique title
 
             // Execute the update
             int rowsUpdated = pstmt.executeUpdate();
@@ -177,5 +183,7 @@ public class ArchiveDAO {
             DBManager.close(con, pstmt, null);
         }
     }
+
+
 
 }
