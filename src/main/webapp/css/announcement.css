@@ -1,11 +1,9 @@
 .announcement-container {
-  width: 40%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
-.announcement-container div {
-  border: 1px solid black;
-}
+
 
 .announcement-title {
   background-color: lightgreen;
@@ -20,9 +18,11 @@
   display: flex;
   justify-content: space-between;
   margin: 20px 10px;
+  border-bottom: 1px solid black;
 }
 .announcement-con-title {
   flex: 1;
+  padding-left: 20px;
 }
 .announcement-con-date {
   font-size: 10pt;

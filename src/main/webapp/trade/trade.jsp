@@ -21,8 +21,26 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         <h1>トレード</h1>
       </div>
       <div id="insert-button">
-        <button onclick="location.href='InsertTrade'">글쓰기</button>
+        <button onclick="location.href='InsertTrade'">作成</button>
       </div>
+      <div style="text-align: center;">
+      	<button class="trade-openCategorys">カテゴリーで検索 ▼</button>
+      </div>
+      <form action="Trade">
+      <div class="trade-category" style="display: none;">
+      	<c:forEach items="${checkboxItems }" var="cbi">
+          <div>
+            <label
+              ><input
+                type="checkbox"
+                name="goodsCategory"
+                value="${cbi.value }"
+                <c:if test="${fn:contains(checkboxValuesStr, cbi.value)}" >checked="checked"</c:if>/>${cbi.label }</label>
+          </div>
+          </c:forEach>
+          <button id="trade-search-category">検索</button>
+      </div>
+      </form>
       <div class="trade-conmain">
         <!-- 본문페이지 for문 시작 -->
         <c:set var="totalItems" value="${fn:length(trades)}" />
@@ -32,13 +50,18 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <div>${t.nickname}</div>
               <div>${t.twitterId}</div>
               <div style="display:flex; flex-wrap: wrap;">
+              
               <!--  카테고리 for문 시작 -->
               <c:forEach var="c" items="${t.category }">
-              	<div class="trade-goods-category" style="margin:2px;padding: 2px;"> ${c }</div>
+              	<c:forEach var="item" items="${checkboxItems}">
+                  <c:if test="${item.value == c}">
+                    <div class="trade-goods-category" style="margin:2px;padding: 3px;">${item.label}</div>
+                  </c:if>
+                </c:forEach>
               </c:forEach>
               <!-- 카테고리for문 끝 -->
               </div>
-              <div>${t.date }</div>
+              <div>${t.date}</div>
             </div>
             <div>
               <div class="trade-con-title">${t.text }</div>
@@ -52,11 +75,10 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 <img class="crud-icon" src="haco_img/delete.png" alt="">
                 </a>
               </div>
-            </div>
-            <div>
-              <button class="trade-openComments">댓글보기</button>
-            </div>
+            </div> 
+            
             <!-- 댓글 for문 시작 -->
+            <c:set var="i" value="0" />
             <c:forEach var="tc" items="${tradeComments }">
               <c:if test="${tc.t_pk == t.pk }">
                 <div class="trade-comments" style="display: none">
@@ -66,19 +88,23 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   </div>
                   <div>${tc.text}</div>
                 </div>
+                <c:set var="i" value="${i + 1}" />
               </c:if>
             </c:forEach>
             <!-- 댓글 for문 끝 -->
-            <div class="trade-comments" style="display: none">
+            <div>
+              <button class="trade-openComments">コメント(${i })</button>
+            </div>
+            <div class="trade-comments" style="display: none; border: 0px">
               <form id="insertTradeCommentsForm" action="InsertTradeComments">
                 <input name="no" type="hidden" value="${t.pk }"> 
                 <textarea
                   style="resize: none"
                   rows="5"
-                  cols="70"
+                  cols="110"
                   name="text"
                 ></textarea>
-                <button type="button" onclick="tradeCommentsInsert()">작성</button>
+                <button type="button" onclick="tradeCommentsInsert()">作成</button>
               </form>
             </div>
           </div>

@@ -37,12 +37,18 @@ $(function () {
     commentsDiv.each(function () {
       $(this).toggle();
     });
-
-    // 버튼 텍스트 변경
-    if ($(this).text() === "댓글보기") {
-      $(this).text("댓글닫기");
-    } else {
-      $(this).text("댓글보기");
-    }
   });
 });
+
+$(function () {
+  $(".trade-openCategorys").click(function () {
+    let post = $(this).closest(".trade-container");
+    let commentsDiv = post.find(".trade-category");
+
+    commentsDiv.each(function () {
+      $(this).toggle();
+    });
+  });
+});
+
+

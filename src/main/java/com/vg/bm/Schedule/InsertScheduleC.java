@@ -1,4 +1,4 @@
-package com.vg.ds.trade;
+package com.vg.bm.Schedule;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,23 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.vg.ds.announcement.AnnouncementDAO;
-
-@WebServlet("/Trade")
-public class TradeC extends HttpServlet {
+@WebServlet("/InsertScheduleC")
+public class InsertScheduleC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		TradeDAO.TDAO.selectAllTrade(request);
-		TradeDAO.TDAO.selectTradeComments(request);
-//		int p = Integer.parseInt(request.getParameter("p"));
-		TradeDAO.TDAO.paging(1, request);
-		TradeDAO.TDAO.tradeCheckboxList(request);
-		request.setAttribute("content", "trade/trade.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response); 
+		ScheduleDAO.SDAO.insertSchedule(request);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 	}
 
 }
