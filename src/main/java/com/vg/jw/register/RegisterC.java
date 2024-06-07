@@ -23,9 +23,9 @@ public class RegisterC extends HttpServlet {
 			throws ServletException, IOException {		
 		System.out.println("Register컨트롤러 post진입");
 		request.setCharacterEncoding("utf-8");
-		
-		
 		AccountDAO.registerUser(request);
+		request.setAttribute("content", "mainpage/main.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }

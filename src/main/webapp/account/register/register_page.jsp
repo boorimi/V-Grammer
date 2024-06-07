@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="RegisterC" method="post">
+	<form action="RegisterC" method="post" enctype="multipart/form-data">
 		<div>
 			Hakonaka ID <input name="register-input-id">
 		</div>
@@ -19,6 +19,9 @@
 		</div>
 		<div>
 			your X ID : <span>${sessionScope.twitterScreenName }</span>
+		</div>
+		<div>
+			profile img : <input type="file" name="register-input-file" />
 		</div>
 
 	<div><button>ようこそ！Hakonakaへ！</button> </div>

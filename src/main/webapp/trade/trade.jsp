@@ -139,7 +139,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         <div style="display: flex">
           <c:forEach
             var="i"
-            begin="${page + 1 }"
+            begin="1"
             end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
           >
             <div class="trade-page-no">

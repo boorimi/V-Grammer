@@ -340,7 +340,7 @@ public class TradeDAO {
 		checkboxItems.add(Map.of("value", "coaster", "label", "コスタ"));
 		checkboxItems.add(Map.of("value", "omoideCyeki", "label", "思い出チェキ風カード"));
 		checkboxItems.add(Map.of("value", "dmmMiniShikishi", "label", "DMM：色紙"));
-		checkboxItems.add(Map.of("value", "dmm57mmCanBadge", "label", "DMM：57mm缶バッジ"));
+		checkboxItems.add(Map.of("value", "dmm57CanBadge", "label", "DMM：57mm缶バッジ"));
 		checkboxItems.add(Map.of("value", "dmmMiniAkusuta", "label", "DMM：ミニアクスタ"));
 		checkboxItems.add(Map.of("value", "dmmCyeki", "label", "DMM：チェキ"));
 
