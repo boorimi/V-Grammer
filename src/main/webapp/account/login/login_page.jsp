@@ -12,6 +12,9 @@
 			Hakonaka ID : <input name="login-input-id"> <br>
 			Hakonaka PW : <input name="login-input-pw">
 		</div>
+		<div>
+			<button>ハコナカ㋮ login</button>
+		</div>
 	</form>
 
 

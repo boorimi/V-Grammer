@@ -37,8 +37,11 @@
 	액세스 토큰 시크릿 : ${sessionScope.accessTokenSecret }<hr>
 	유저 ID : ${sessionScope.twitterId }<hr>
 	트위터 screenName : ${sessionScope.twitterScreenName }<hr>
-	트위터 name : ${sessionScope.twitterName }
-	
+	트위터 name : ${sessionScope.twitterName }<hr>
+	로그인 result : ${loginResult }<hr>
+	로그인된 id : ${sessionScope.accountInfo.u_id }<hr>
+	로그인된 닉네임 : ${sessionScope.accountInfo.u_nickname }<hr>
+	로그인된 id의 트위터: ${sessionScope.accountInfo.u_twitter_id}<hr><hr>
 	
 </body>
 </html>

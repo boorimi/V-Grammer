@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.vg.jw.AccountDAO;
+
 @WebServlet("/LoginC")
 public class LoginC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -19,6 +21,11 @@ public class LoginC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("로그인 컨트롤러 post 진입");
+		
+		AccountDAO.login(request);
+		request.setAttribute("content", "mainpage/main.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 		
 	}
