@@ -115,7 +115,7 @@
   justify-content: center;
   position: absolute;
   top: 0;
-  z-index: 10;
+  z-index: 100;
 }
 
 .member-detail {
@@ -131,67 +131,165 @@
   padding: 5%;
 }
 
-#member-name{
-	font-size: 30pt;
-    font-weight: 900;
-    padding-bottom: 4%;
+#member-name {
+  font-size: 30pt;
+  font-weight: 900;
+  padding-bottom: 4%;
 }
-#member-birth > span:nth-child(1){
-	font-size: 15pt;
-    font-weight: 600;
+#member-birth > span:nth-child(1) {
+  font-size: 15pt;
+  font-weight: 600;
 }
-#member-debut > span:nth-child(1){
-	font-size: 15pt;
-    font-weight: 600;
-}
-
-.member-introduce-box{
-    padding-top: 20px;
+#member-debut > span:nth-child(1) {
+  font-size: 15pt;
+  font-weight: 600;
 }
 
-.member-mother-box{
-	padding-bottom: 20px;
-    padding-top: 20px;
+.member-introduce-box {
+  padding-top: 20px;
 }
 
-#member-mother-name >span:nth-child(1){
-	font-size: 15pt;
-    font-weight: 600;
+.member-mother-box {
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
-#member-hashtag-title{
-	font-size: 15pt;
-    font-weight: 600;
+#member-mother-name > span:nth-child(1) {
+  font-size: 15pt;
+  font-weight: 600;
 }
-.member-hashtag-box{
-	display: flex;
-	flex-wrap: wrap
+#member-mother-name > span:nth-child(2):hover{
+  font-weight: 600;
 }
-#member-hashtag{
-	border: 1px solid black;
-    border-radius: 20px;
-    padding: 0.5%;
-    margin: 1%;
+  
+#member-hashtag-title {
+  font-size: 15pt;
+  font-weight: 600;
 }
+.member-hashtag-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+#member-hashtag {
+  padding-right: 3%;
+  font-weight: 600;
+  text-shadow: 1.3px 1.3px rgb(151, 151, 151);
+}
+#member-hashtag:hover {
+  transition: transform 0.2s ease, font-size 0.2s ease;
+  transform: scale(1.2);
+  font-weight: 600;
+}
+
+/*.member-address-box > div:hover {
+  transition: transform 0.3s ease;
+  transform: scale(2);
+}*/
 
 .member-address-box {
   display: flex;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
 
-#member-address-title{
-	font-size: 15pt;
-    font-weight: 600;
+#member-address-title {
+  font-size: 15pt;
+  font-weight: 600;
 }
-#member-address {
-  border: 1px solid black;
+
+.member-address-box > div {
   border-radius: 20px;
-  padding: 0.5%;
+  padding: 1%;
   margin: 1%;
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
-  }
+  box-shadow: 5px 5px 20px gray;
+}
 
+.member-address-box > div:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.2);
+}
 
+/* address 버튼별 색상처리*/
+#X {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: black;
+  color: white;
+}
 
+#youtube {
+  background-color: red;
+  color: white;
+}
+
+#fanbox {
+  background-color: white;
+  color: black;
+}
+
+#marshmallow {
+  background-color: pink;
+  color: black;
+}
+
+#community {
+  background-color: black;
+  color: white;
+}
+
+#tiktok {
+  background-color: rgb(183, 0, 152);
+  color: white;
+}
+
+#showroom {
+  background-color: white;
+  display: inline-block;
+}
+#showroom a {
+  background-image: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    purple
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#twitch {
+  background-color: purple;
+  color: white;
+}
+
+#twitcase {
+  background-color: white;
+  color: rgb(0, 85, 255);
+}
+
+#instagram {
+  background-image: linear-gradient(0deg, #ffda6f, #f92887, #5351d9);
+  color: white;
+}
+
+#bilibili {
+  background-color: white;
+  color: skyblue;
+}
+
+#niconico {
+  background-color: white;
+  color: black;
+}
+
+#subaccount {
+  background-color: black;
+  color: white;
+}
