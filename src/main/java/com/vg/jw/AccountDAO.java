@@ -2,6 +2,7 @@ package com.vg.jw;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import com.vg.ignore.DBManager;
 
 import twitter4j.Twitter;
 import twitter4j.User;
+
 
 public class AccountDAO {
 
@@ -34,7 +36,7 @@ public class AccountDAO {
 		System.out.println(inputPw);
 		System.out.println(inputNickname);
 		
-		String sql = "INSERT INTO haco_user values(?, ?, ?, ?, 1)";\
+		String sql = "INSERT INTO haco_user values(?, ?, ?, ?, 1)";
 		
 		try {
 			
@@ -61,4 +63,63 @@ public class AccountDAO {
 		
 	}
 
+	
+	public static void login(HttpServletRequest request) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String inputId = request.getParameter("login-input-id");
+		String inputPw = request.getParameter("login-input-pw");
+		
+		
+		String sql = "SELECT*FROM haco_user WHERE u_id = ?";
+		
+		try {
+			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, inputId);
+			rs = pstmt.executeQuery();
+						
+			String result = "";
+			if (rs.next()) {
+				String dbPw = rs.getString("u_pw");
+				
+				if (inputId.equals(dbPw)) {
+					System.out.println("로그인 성공");
+					result = "ログイン成功";
+				
+					AccountDTO account = new AccountDTO();
+					
+					
+				
+				}
+				
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+	}
+	
+
+	
+	
+	
+	
 }
