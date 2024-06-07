@@ -18,10 +18,16 @@
             </p>
             <input type="hidden" name="a_pk" value="${archive.a_pk}">
             <div class="archive-membername">${archive.m_name}</div>
+            
             <div class="archive-collabo">
                 <div>コラボ</div>
-                <input type="text" name="collabo" value="${archive.a_collabo}">
+               <%--  <input type="text" name="collabo" value="${archive.a_collabo}"> --%>
+                <select name="collabo">
+    				<option value="yes">Yes</option>
+   					 <option value="no">No</option>
+  				</select>
             </div>
+            
             <div class="archive-collabomember">
                 <div>コラボメンバー</div>
                 <input type="text" name="collabomember" value="${archive.a_collabomember}">
