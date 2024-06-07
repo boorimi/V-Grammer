@@ -75,6 +75,11 @@ public class TradeDAO {
 						sql += " or ";
 					}
 				}
+				String category3 = "";
+				for (String c : category2) {
+					category3 += "&goodsCategory=" + c ;
+				}
+				request.setAttribute("category3", category3);
 			}
 			////// 검색 진행 시 sql문 추가하는 부분 끝 ////
 			sql += "order by t_date asc";
@@ -101,6 +106,8 @@ public class TradeDAO {
 				trades.add(t);
 
 			}
+			
+			
 			request.setAttribute("trades", trades);
 
 		} catch (Exception e) {
