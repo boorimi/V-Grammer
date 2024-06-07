@@ -20,61 +20,98 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       <div class="trade-title">
         <h1>トレード</h1>
       </div>
+      <div id="insert-button">
+        <button onclick="location.href='InsertTrade'">作成</button>
+      </div>
+      <div style="text-align: center;">
+      	<button class="trade-openCategorys">カテゴリーで検索 ▼</button>
+      </div>
+      <form action="Trade">
+      <div class="trade-category" style="display: none;">
+      	<c:forEach items="${checkboxItems }" var="cbi">
+          <div>
+            <label
+              ><input
+                type="checkbox"
+                name="goodsCategory"
+                value="${cbi.value }"
+                <c:if test="${fn:contains(checkboxValuesStr, cbi.value)}" >checked="checked"</c:if>/>${cbi.label }</label>
+          </div>
+          </c:forEach>
+          <button id="trade-search-category">検索</button>
+      </div>
+      </form>
       <div class="trade-conmain">
         <!-- 본문페이지 for문 시작 -->
         <c:set var="totalItems" value="${fn:length(trades)}" />
         <c:forEach var="t" items="${trades }" varStatus="status">
           <div class="trade-content">
             <div>
-              <div>${totalItems - status.index}</div>
-              <div>${t.id}</div>
+              <div>${t.nickname}</div>
               <div>${t.twitterId}</div>
-              <div>${t.date }</div>
+              <div style="display:flex; flex-wrap: wrap;">
+              
+              <!--  카테고리 for문 시작 -->
+              <c:forEach var="c" items="${t.category }">
+              	<c:forEach var="item" items="${checkboxItems}">
+                  <c:if test="${item.value == c}">
+                    <div class="trade-goods-category" style="margin:2px;padding: 3px;">${item.label}</div>
+                  </c:if>
+                </c:forEach>
+              </c:forEach>
+              <!-- 카테고리for문 끝 -->
+              </div>
+              <div>${t.date}</div>
             </div>
             <div>
               <div class="trade-con-title">${t.text }</div>
               <div>
-                <button onclick="location.href='UpdateTrade?no=${t.pk}'">
-                  수정
-                </button>
+                <a onclick="location.href='UpdateTrade?no=${t.pk}'">
+                  <img class="crud-icon" src="haco_img/update.png" alt="">
+                </a>
               </div>
               <div>
-                <button onclick="tradeDelete(${t.pk})">삭제</button>
+                <a onclick="tradeDelete(${t.pk})">
+                <img class="crud-icon" src="haco_img/delete.png" alt="">
+                </a>
               </div>
-            </div>
-            <div>
-              <button class="trade-openComments">댓글보기</button>
-            </div>
+            </div> 
+            
             <!-- 댓글 for문 시작 -->
+            <c:set var="i" value="0" />
             <c:forEach var="tc" items="${tradeComments }">
               <c:if test="${tc.t_pk == t.pk }">
                 <div class="trade-comments" style="display: none">
+                  <div>
                   <div>${tc.sNickname}</div>
-                  <div style="flex: 1">${tc.text}</div>
                   <div>${tc.date }</div>
+                  </div>
+                  <div>${tc.text}</div>
                 </div>
+                <c:set var="i" value="${i + 1}" />
               </c:if>
             </c:forEach>
             <!-- 댓글 for문 끝 -->
-            <div class="trade-comments" style="display: none">
+            <div>
+              <button class="trade-openComments">コメント(${i })</button>
+            </div>
+            <div class="trade-comments" style="display: none; border: 0px">
               <form id="insertTradeCommentsForm" action="InsertTradeComments">
                 <input name="no" type="hidden" value="${t.pk }"> 
                 <textarea
                   style="resize: none"
                   rows="5"
-                  cols="70"
+                  cols="110"
                   name="text"
                 ></textarea>
-                <button type="button" onclick="tradeCommentsInsert()">작성</button>
+                <button type="button" onclick="tradeCommentsInsert()">作成</button>
               </form>
             </div>
           </div>
         </c:forEach>
         <!-- 본문페이지 for문 끝 -->
       </div>
-      <div id="insert-button">
-        <button onclick="location.href='InsertTrade'">글쓰기</button>
-      </div>
+      
       <div class="trade-bottom">
         <div>
           <a href="TradePage?p=1">처음</a>
@@ -94,7 +131,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         <div style="display: flex">
           <c:forEach
             var="i"
-            begin="1"
+            begin="${page + 1 }"
             end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
           >
             <div class="trade-page-no">

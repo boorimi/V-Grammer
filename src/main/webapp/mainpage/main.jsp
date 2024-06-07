@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,10 +9,23 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <main>
-      <div class="live-members">
-        <span class="members">放送中のメンバー：</span>
+      <div style="display: flex">
+        <div class="live-members">
+          <span class="members">配信中のメンバー：</span>
+        </div>
+        <!--  아이콘 배열하는 곳 -->
+        <c:forEach items="${streamIds }" var="s">
+          <div>
+            <a
+              target="_blank"
+              href="https://www.youtube.com/watch?v=${s.address }"
+            >
+              <img class="live-icon" src="haco_img/icon/${s.icon }" />
+            </a>
+          </div>
+        </c:forEach>
+        <!--  아이콘 배열 끝 -->
       </div>
-
       <div class="live-contents">
         <div class="left-slider-button">
           <svg
@@ -29,18 +43,20 @@ pageEncoding="UTF-8"%>
             />
           </svg>
         </div>
-
-        <div class="live-content">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/Rh35Zq-vTW8"
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
-
+        <!--  여기부터 진짜 방송 나오는지 테스트용 -->
+        <c:forEach items="${streamIds }" var="s">
+          <div class="live-content">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/${s.address }"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </c:forEach>
+        <!--  방송 페이지 끝 -->
         <div class="right-slider-button">
           <svg
             width="60"
@@ -60,7 +76,7 @@ pageEncoding="UTF-8"%>
       </div>
 
       <div class="today-vtuber">
-        <p>今日のおすすめバチューバ</p>
+        <p>今日のおすすめVtuber</p>
 
         <div class="today-vtuber-info">
           <div class="today-vtuber-photo"></div>

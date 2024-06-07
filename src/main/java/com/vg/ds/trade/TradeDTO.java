@@ -1,28 +1,33 @@
 package com.vg.ds.trade;
 
+import java.util.Arrays;
+
 public class TradeDTO {
 
 	private String pk;
-	private String twitterId;
 	private String id;
+	private String twitterId;
 	private String nickname;
 	private String text;
 	private String date;
 	private String yesno;
+	private String[] category;
 
 	public TradeDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TradeDTO(String pk, String twitterId, String id, String nickname, String text, String date, String yesno) {
+	public TradeDTO(String pk, String id, String twitterId, String nickname, String text, String date, String yesno,
+			String[] category) {
 		super();
 		this.pk = pk;
-		this.twitterId = twitterId;
 		this.id = id;
+		this.twitterId = twitterId;
 		this.nickname = nickname;
 		this.text = text;
 		this.date = date;
 		this.yesno = yesno;
+		this.category = category;
 	}
 
 	public String getPk() {
@@ -33,12 +38,12 @@ public class TradeDTO {
 		this.pk = pk;
 	}
 
-	public String getTwitterId() {
-		return twitterId;
+	public String[] getCategory() {
+		return category;
 	}
 
-	public void setTwitterId(String twitterId) {
-		this.twitterId = twitterId;
+	public void setCategory(String[] category) {
+		this.category = category;
 	}
 
 	public String getId() {
@@ -47,6 +52,14 @@ public class TradeDTO {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getTwitterId() {
+		return twitterId;
+	}
+
+	public void setTwitterId(String twitterId) {
+		this.twitterId = twitterId;
 	}
 
 	public String getNickname() {
@@ -83,8 +96,8 @@ public class TradeDTO {
 
 	@Override
 	public String toString() {
-		return "TradeDTO [pk=" + pk + ", twitterId=" + twitterId + ", id=" + id + ", nickname=" + nickname + ", text="
-				+ text + ", date=" + date + ", yesno=" + yesno + "]";
+		return "TradeDTO [pk=" + pk + ", id=" + id + ", twitterId=" + twitterId + ", nickname=" + nickname + ", text="
+				+ text + ", date=" + date + ", yesno=" + yesno + ", category=" + Arrays.toString(category) + "]";
 	}
 
 }

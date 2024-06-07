@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class InsertTradeC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		TradeDAO.TDAO.tradeCheckboxList(request);
 		request.setAttribute("content", "trade/trade_insert.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	

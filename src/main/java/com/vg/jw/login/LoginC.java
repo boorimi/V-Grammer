@@ -12,7 +12,7 @@ public class LoginC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setAttribute("content", "login/loginpage.jsp");
+		request.setAttribute("content", "account/login/login_page.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 				
 	}

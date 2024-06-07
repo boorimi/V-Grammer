@@ -44,6 +44,14 @@ main {
   margin-left: 245px;
   color: #756363;
 }
+.live-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 .live-contents {
   width: 1187px;
@@ -135,37 +143,36 @@ footer {
   width: 50px;
   height: 50px;
 }
-.archive-membername{
-	width: 90px;
-	margin-right: 25px;
+.archive-membername {
+  width: 90px;
+  margin-right: 25px;
 }
-.archive-collabo{
-	width: 150px;
+.archive-collabo {
+  width: 150px;
 }
-.archive-category{
-	width: 150px;
-	
+.archive-category {
+  width: 150px;
 }
-.archive-date{
-	margin-right: 35px;
+.archive-date {
+  margin-right: 35px;
 }
-.archive-time{
-	margin-right: 35px;
+.archive-time {
+  margin-right: 35px;
 }
-.archive-collabomember{
-	
-	width: 180px;
+.archive-collabomember {
+  width: 180px;
 }
 
-.archive-title{
-	width: 350px;
+.archive-title {
+  width: 350px;
 }
 
-.archive-thumbnail{
-	margin-right: 0;
+.archive-thumbnail {
+  margin-right: 0;
 }
 
 .archive-contents-update{
 	display: flex;
 	
 }
+
