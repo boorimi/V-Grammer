@@ -7,18 +7,21 @@ public class AccountDTO {
 	private long u_twitter_id;
 	private String u_nickname;
 	private int u_yesno;
+	private String u_profile_img;
 	
 	public AccountDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AccountDTO(String u_id, String u_pw, long u_twitter_id, String u_nickname, int u_yesno) {
+	public AccountDTO(String u_id, String u_pw, long u_twitter_id, String u_nickname, int u_yesno,
+			String u_profile_img) {
 		super();
 		this.u_id = u_id;
 		this.u_pw = u_pw;
 		this.u_twitter_id = u_twitter_id;
 		this.u_nickname = u_nickname;
 		this.u_yesno = u_yesno;
+		this.u_profile_img = u_profile_img;
 	}
 
 	public String getU_id() {
@@ -61,13 +64,19 @@ public class AccountDTO {
 		this.u_yesno = u_yesno;
 	}
 
+	public String getU_profile_img() {
+		return u_profile_img;
+	}
+
+	public void setU_profile_img(String u_profile_img) {
+		this.u_profile_img = u_profile_img;
+	}
+
 	@Override
 	public String toString() {
 		return "AccountDTO [u_id=" + u_id + ", u_pw=" + u_pw + ", u_twitter_id=" + u_twitter_id + ", u_nickname="
-				+ u_nickname + ", u_yesno=" + u_yesno + "]";
+				+ u_nickname + ", u_yesno=" + u_yesno + ", u_profile_img=" + u_profile_img + "]";
 	}
-	
-	
 	
 
 }
