@@ -12,7 +12,7 @@ public class InsertTradeCommentsC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		TradeDAO.TDAO.insertTradeComments(request);
-//		response.sendRedirect("Trade");
+		response.sendRedirect("Trade");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

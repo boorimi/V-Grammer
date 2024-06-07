@@ -2,7 +2,6 @@ package com.vg.bm.Member;
 
 public class AddressDTO {
 	String a_pk;
-	String a_m_pk;
 	String a_category;
 	String a_address;
 	
@@ -18,13 +17,6 @@ public class AddressDTO {
 		this.a_pk = a_pk;
 	}
 
-	public String getA_m_pk() {
-		return a_m_pk;
-	}
-
-	public void setA_m_pk(String a_m_pk) {
-		this.a_m_pk = a_m_pk;
-	}
 
 	public String getA_category() {
 		return a_category;
@@ -42,17 +34,16 @@ public class AddressDTO {
 		this.a_address = a_address;
 	}
 
-	public AddressDTO(String a_pk, String a_m_pk, String a_category, String a_address) {
+	public AddressDTO(String a_pk,String a_category, String a_address) {
 		super();
 		this.a_pk = a_pk;
-		this.a_m_pk = a_m_pk;
 		this.a_category = a_category;
 		this.a_address = a_address;
 	}
 
 	@Override
 	public String toString() {
-		return "AddressDTO [a_pk=" + a_pk + ", a_m_pk=" + a_m_pk + ", a_category=" + a_category + ", a_address="
+		return "AddressDTO [a_pk=" + a_pk + ", a_category=" + a_category + ", a_address="
 				+ a_address + "]";
 	}
 	

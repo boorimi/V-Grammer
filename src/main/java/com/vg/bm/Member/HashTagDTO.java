@@ -2,7 +2,6 @@ package com.vg.bm.Member;
 
 public class HashTagDTO {
 	String h_pk;
-	String h_m_pk;
 	String h_category;
 	String h_tag;
 	
@@ -16,14 +15,6 @@ public class HashTagDTO {
 
 	public void setH_pk(String h_pk) {
 		this.h_pk = h_pk;
-	}
-
-	public String getH_m_pk() {
-		return h_m_pk;
-	}
-
-	public void setH_m_pk(String h_m_pk) {
-		this.h_m_pk = h_m_pk;
 	}
 
 	public String getH_category() {
@@ -42,18 +33,16 @@ public class HashTagDTO {
 		this.h_tag = h_tag;
 	}
 
-	public HashTagDTO(String h_pk, String h_m_pk, String h_category, String h_tag) {
+	public HashTagDTO(String h_pk, String h_category, String h_tag) {
 		super();
 		this.h_pk = h_pk;
-		this.h_m_pk = h_m_pk;
 		this.h_category = h_category;
 		this.h_tag = h_tag;
 	}
 
 	@Override
 	public String toString() {
-		return "HashTagDTO [h_pk=" + h_pk + ", h_m_pk=" + h_m_pk + ", h_category=" + h_category + ", h_tag=" + h_tag
-				+ "]";
+		return "HashTagDTO [h_pk=" + h_pk + ", h_category=" + h_category + ", h_tag=" + h_tag + "]";
 	}
 	
 	

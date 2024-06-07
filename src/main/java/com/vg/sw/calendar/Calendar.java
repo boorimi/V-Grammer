@@ -1,35 +1,84 @@
 package com.vg.sw.calendar;
 
 public class Calendar {
-    private static boolean isLeapYear;
-    private static int[] lastDay;
-    private static int sum;
-    private static int weekDay;
-
-   
-    // 년도를 넘겨받아 윤년/평년을 판단해 윤년이면 true, 평년이면 false를 리턴하는 메서드
-    public static boolean isLeapYear(int year) {
-        return (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
+	private int id;
+	private String groupId;
+	private String title;
+	private String writer;
+	private String content;
+	private String start;
+	private String end;
+    private boolean allday;
+	private String textColor;
+	private String backgroundColor;
+	private String borderColor;
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
+	public boolean isAllday() {
+		return allday;
+	}
+	public void setAllday(boolean allday) {
+		this.allday = allday;
+	}
+	public String getTextColor() {
+		return textColor;
+	}
+	public void setTextColor(String textColor) {
+		this.textColor = textColor;
+	}
+	public String getBackgroundColor() {
+		return backgroundColor;
+	}
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
+	public String getBorderColor() {
+		return borderColor;
+	}
+	public void setBorderColor(String borderColor) {
+		this.borderColor = borderColor;
+	}
+  
     }
-
-    // 년, 월을 넘겨받아 그 달의 마지막 날짜를 리턴하는 메서드
-    public static int lastDay(int year, int month) {
-        int[] m = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        m[1] = isLeapYear(year) ? 29 : 28;
-        return m[month - 1];
-    }
-
-    // 년, 월, 일을 넘겨받아 1년 1월 1일부터 지나온 날짜의 합계를 리턴하는 메서드
-    public static int totalDay(int year, int month, int day) {
-        int sum = (year - 1) * 365 + (year - 1) / 4 - (year - 1) / 100 + (year - 1) / 400;
-        for (int i = 1; i < month; i++) {
-            sum += lastDay(year, i);
-        }
-        return sum + day;
-    }
-
-    // 년, 월, 일을 넘겨받아 요일을 숫자로 리턴하는 메서드, 일요일(0), 월요일(1)....토요일(6)
-    public static int weekDay(int year, int month, int day) {
-        return totalDay(year, month, day) % 7;
-    }
-}

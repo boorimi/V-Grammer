@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<form action="TwitterLoginServlet">	
-		<input type="image" src="login/button_img/twitter-login.png">
-	</form>
+	<h1>스케쥴 메인 페이지 입니다.</h1>
+	<button onclick="location.href='InsertScheduleC'">정보입력페이지</button>
 </body>
 </html>

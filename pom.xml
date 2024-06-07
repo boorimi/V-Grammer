@@ -9,13 +9,19 @@
     <packaging>war</packaging>
     <build>
         <plugins>
-            <plugin>
+			   <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <release>17</release>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+           
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.3</version>
@@ -30,7 +36,6 @@
         </dependency>
         <!--트위터 로그인 관련-->
         <!-- Apache HttpClient -->
-
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -63,11 +68,11 @@
 
         <!-- Servlet API -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>javax.servlet-api</artifactId>
+         <scope>provided</scope>
+         <version>3.1.0</version>
+</dependency>
 
         <!-- JSP API-->
         <dependency>
@@ -88,14 +93,53 @@
             <artifactId>mariadb-java-client</artifactId>
             <version>3.3.3</version>
         </dependency>
-        <!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리-->
-        <dependency>
-            <groupId>org.twitter4j</groupId>
-            <!-- 여기에 그룹 아이디 입력-->
-            <artifactId>twitter4j-core</artifactId>
-            <!-- 여기에 아티팩트 아이디 입력-->
-            <version>4.0.7</version>
-        </dependency>
+		<!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리-->
+		<dependency>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-core</artifactId>
+			<version>4.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-juli</artifactId>
+			<version>9.0.56</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+		<!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리-->
+		<dependency>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-core</artifactId>
+			<version>4.0.7</version>
+		</dependency>
+		<!-- jsoup : 크롤링을 위한 라이브러리 -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.17.2</version>
+		</dependency>
+		<!-- selenium : 크롤링을 위한 라이브러리2 -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-chrome-driver</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+        
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
@@ -106,7 +150,8 @@
             <artifactId>tomcat-juli</artifactId>
             <version>9.0.56</version>
         </dependency>
-    </dependencies>
+	</dependencies>
+
 </project>
 
 
