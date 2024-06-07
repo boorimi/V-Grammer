@@ -15,6 +15,7 @@ public class TradePageC extends HttpServlet {
 		TradeDAO.TDAO.selectTradeComments(request);
 		int p = Integer.parseInt(request.getParameter("p"));
 		TradeDAO.TDAO.paging(p, request);
+		TradeDAO.TDAO.tradeCheckboxList(request);
 		request.setAttribute("content", "trade/trade.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
