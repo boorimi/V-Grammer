@@ -18,7 +18,10 @@ public class ArchiveUpdateC extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		ArchiveDAO.UpdateArchive(request);
+		request.setAttribute("content", "archive/archiveupdate.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	}
 

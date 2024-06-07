@@ -125,4 +125,42 @@ public class ArchiveDAO {
             DBManager.close(con, pstmt, rs);
         }
     }
+
+	public static void UpdateArchive(HttpServletRequest request) {
+		 Connection con = null;
+	     PreparedStatement pstmt = null;
+	       
+	     String collabo = request.getParameter("collabo");
+	     String collabomember = request.getParameter("collabomember");
+	     String category = request.getParameter("category");
+	     
+	     request.getParameter(null);
+	     request.getParameter(null);
+	     String sql = "UPDATE haco_archive ha " +
+                 "JOIN haco_member hm ON ha.a_m_pk = hm.m_pk " +
+                 "JOIN haco_image hi ON hi.i_m_pk = hm.m_pk " +
+                 "SET ha.a_collabo = ?, " +
+                 "    ha.a_collabomember = ?, " +
+                 "    ha.a_category = ? " +
+                 "WHERE ha.a_m_pk = ?";  // Example condition, modify as needed
+	     
+	        try {
+				con = DBManager.connect();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, collabo);
+				pstmt.setString(2, collabomember);
+				pstmt.setString(3, category);
+				pstmt.setString(4, request.getParameter("a_m_pk"));  // Example parameter for the condition
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				DBManager.close(con, pstmt, null);
+			}
+		
+		
+		
+		
+	}
 }
