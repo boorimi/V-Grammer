@@ -7,18 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/HC")
-public class HC extends HttpServlet {
-
+@WebServlet("/GetAllStreamC")
+public class GetAllStreamC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HomeDAO.HDAO.getStreamId(request);
-//		GetAllStream.getAllLive();
-		request.setAttribute("content", "mainpage/main.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-
+		GetAllStream.getAllLive();
+		response.sendRedirect("Announcement");
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

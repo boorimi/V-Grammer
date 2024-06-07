@@ -12,9 +12,9 @@ public class TradePageC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		TradeDAO.TDAO.selectAllTrade(request);
+		TradeDAO.TDAO.selectTradeComments(request);
 		int p = Integer.parseInt(request.getParameter("p"));
 		TradeDAO.TDAO.paging(p, request);
-//		request.setAttribute("content", "jsp/review/review.jsp");
 		request.setAttribute("content", "trade/trade.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

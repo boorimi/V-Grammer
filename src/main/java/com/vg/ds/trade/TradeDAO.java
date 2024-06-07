@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,7 +30,7 @@ public class TradeDAO {
 
 	public void paging(int page, HttpServletRequest request) {
 
-		int cnt = 10; // 한페이지당 보여줄 개수
+		int cnt = 5; // 한페이지당 보여줄 개수
 		int total = trades.size(); // 총 데이터 개수
 
 		// 총 페이지 수 , 곧 마지막 페이지
@@ -56,7 +58,7 @@ public class TradeDAO {
 
 		try {
 
-			String sql = "select t_pk, u_id, u_twitter_id, u_nickname, t_text, t_date, u_yesno ";
+			String sql = "select t_pk, u_id, u_twitter_id, u_nickname, t_text, t_date, u_yesno, t_category ";
 			sql += "from haco_tradegoods, haco_user ";
 			sql += "where u_id = t_u_id ";
 			sql += "order by t_date desc";
@@ -66,6 +68,7 @@ public class TradeDAO {
 			rs = pstmt.executeQuery();
 
 			trades = new ArrayList<TradeDTO>();
+			String[] category = null;
 
 			while (rs.next()) {
 				String pk = rs.getString(1);
@@ -76,7 +79,10 @@ public class TradeDAO {
 				String date = rs.getString(6);
 				String yesno = rs.getString(7);
 
-				TradeDTO t = new TradeDTO(pk, twitterId, id, nickname, text, date, yesno);
+				// 배열로 전환
+				category = rs.getString(8).split("!");
+				System.out.println(category[0]);
+				TradeDTO t = new TradeDTO(pk, twitterId, id, nickname, text, date, yesno, category);
 				trades.add(t);
 
 			}
@@ -97,10 +103,10 @@ public class TradeDAO {
 
 		try {
 
-			String sql = "select t_pk, u_id, u_twitter_id, u_nickname, t_text, t_date, u_yesno ";
+			String sql = "select t_pk, u_id, u_twitter_id, u_nickname, t_text, t_date, u_yesno, t_category ";
 			sql += "from haco_tradegoods, haco_user ";
 			sql += "where u_id = t_u_id and t_pk = ? ";
-			
+
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("no"));
@@ -115,13 +121,17 @@ public class TradeDAO {
 			String date = rs.getString(6);
 			String yesno = rs.getString(7);
 
+			// 카테고리를 배열로 다시 전환
+			String[] category = rs.getString(8).split("!");
 			// 본문내용 확인 할때 DB내용을 br -> 줄바꿈으로 대체하는 코드
 			String text2 = text.replace("<br>", "\r\n");
 
-			TradeDTO t = new TradeDTO(pk, twitterId, id, nickname, text2, date, yesno);
+			TradeDTO t = new TradeDTO(pk, twitterId, id, nickname, text2, date, yesno, category);
 
+//			request.setAttribute("category", category);
 			request.setAttribute("text2", text2);
 			request.setAttribute("trades", t);
+			tradeCheckboxList(request);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,15 +146,23 @@ public class TradeDAO {
 		PreparedStatement pstmt = null;
 
 		try {
+
+			String[] category = request.getParameterValues("goodsCategory");
+			String category2 = "";
+			for (String s : category) {
+				category2 += s + "!";
+			}
+
 			// 인서트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
 			String text = request.getParameter("text");
 			text = text.replaceAll("\r\n", "<br>");
 
-			String sql = "insert into haco_tradegoods values (null, 'ds6951', ?, NOW())";
+			String sql = "insert into haco_tradegoods values (null, 'ds6951', ?, NOW(), ?)";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, text);
+			pstmt.setString(2, category2);
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("입력 성공!");
@@ -210,7 +228,7 @@ public class TradeDAO {
 	}
 
 	public void selectTradeComments(HttpServletRequest request) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -220,37 +238,37 @@ public class TradeDAO {
 			sql += "from haco_user, haco_tradegoods_comments ";
 			sql += "where tc_m_id = u_id ";
 			sql += "and tc_s_id = u_id and u_yesno = 1 ";
-			
-			
+
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 //			pstmt.setString(1, request.getParameter("no"));
 			rs = pstmt.executeQuery();
-			
+
 			tradeComments = new ArrayList<TradeCommentsDTO>();
-			
+
 			while (rs.next()) {
 
-			String pk = rs.getString(1);
-			String mTwitterId = rs.getString(2);
-			String mId = rs.getString(3);
-			String mNickname = rs.getString(4);
-			String sTwitterId = rs.getString(5);
-			String sId = rs.getString(6);
-			String sNickname = rs.getString(7);
-			String text = rs.getString(8);
-			String date = rs.getString(9);
-			String yesno = rs.getString(10);
-			String t_pk = rs.getString(11);
+				String pk = rs.getString(1);
+				String mTwitterId = rs.getString(2);
+				String mId = rs.getString(3);
+				String mNickname = rs.getString(4);
+				String sTwitterId = rs.getString(5);
+				String sId = rs.getString(6);
+				String sNickname = rs.getString(7);
+				String text = rs.getString(8);
+				String date = rs.getString(9);
+				String yesno = rs.getString(10);
+				String t_pk = rs.getString(11);
 
-			// 본문내용 확인 할때 DB내용을 br -> 줄바꿈으로 대체하는 코드
-			String text2 = text.replace("<br>", "\r\n");
+				// 본문내용 확인 할때 DB내용을 br -> 줄바꿈으로 대체하는 코드
+				String text2 = text.replace("<br>", "\r\n");
 
-			TradeCommentsDTO tc = new TradeCommentsDTO(pk, mTwitterId, mId, mNickname, sTwitterId, sId, sNickname, text2, date, yesno, t_pk);
-			tradeComments.add(tc);
-			
+				TradeCommentsDTO tc = new TradeCommentsDTO(pk, mTwitterId, mId, mNickname, sTwitterId, sId, sNickname,
+						text2, date, yesno, t_pk);
+				tradeComments.add(tc);
+
 			}
-			
+
 			request.setAttribute("tradeComments", tradeComments);
 
 		} catch (Exception e) {
@@ -258,7 +276,7 @@ public class TradeDAO {
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-		
+
 	}
 
 	public void insertTradeComments(HttpServletRequest request) {
@@ -271,7 +289,7 @@ public class TradeDAO {
 			text = text.replaceAll("\r\n", "<br>");
 
 			String sql = "insert into haco_tradegoods_comments values ";
-				  sql += "(null, ?, 'ds6951','ds6951',?,now())";
+			sql += "(null, ?, 'ds6951','ds6951',?,now())";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -289,5 +307,22 @@ public class TradeDAO {
 		}
 
 	}
-	
+
+	public void tradeCheckboxList(HttpServletRequest request) {
+
+		List<Map<String, String>> checkboxItems = new ArrayList<>();
+		checkboxItems.add(Map.of("value", "bromide", "label", "ブロマイド"));
+		checkboxItems.add(Map.of("value", "57mmCanBadge", "label", "57mm缶バッジ"));
+		checkboxItems.add(Map.of("value", "76mmCanBadge", "label", "76mm缶バッジ"));
+		checkboxItems.add(Map.of("value", "akuki", "label", "アクキー"));
+		checkboxItems.add(Map.of("value", "coaster", "label", "コスタ"));
+		checkboxItems.add(Map.of("value", "omoideCyeki", "label", "思い出チェキ風カード"));
+		checkboxItems.add(Map.of("value", "dmmMiniShikishi", "label", "DMMスクラッチ：色紙"));
+		checkboxItems.add(Map.of("value", "dmm57mmCanBadge", "label", "DMMスクラッチ：57mm缶バッジ"));
+		checkboxItems.add(Map.of("value", "dmmMiniAkusuta", "label", "DMMスクラッチ：ミニアクスタ"));
+		checkboxItems.add(Map.of("value", "dmmCyeki", "label", "DMMスクラッチ：チェキ"));
+
+		request.setAttribute("checkboxItems", checkboxItems);
+	}
+
 }

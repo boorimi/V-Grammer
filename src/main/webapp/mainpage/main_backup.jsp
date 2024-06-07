@@ -13,18 +13,21 @@ prefix="c" %>
         <div class="live-members">
           <span class="members">配信中のメンバー：</span>
         </div>
-        <!--  아이콘 배열하는 곳 -->
-        <c:forEach items="${streamIds }" var="s">
-          <div>
-            <a
-              target="_blank"
-              href="https://www.youtube.com/watch?v=${s.address }"
-            >
-              <img class="live-icon" src="haco_img/icon/${s.icon }" />
-            </a>
-          </div>
-        </c:forEach>
-        <!--  아이콘 배열 끝 -->
+        <div>
+        <a target="_blank" href="https://www.youtube.com/watch?v=_nHeysDnTNE">
+          <img class="live-icon" src="haco_img/icon/icon_hoshinone_koron.png" />
+        </a>
+        </div>
+        <div>
+        <a target="_blank" href="https://www.youtube.com/watch?v=_nHeysDnTNE">
+          <img class="live-icon" src="haco_img/icon/icon_hoshinone_koron.png" />
+        </a>
+        </div>
+        <div>
+        <a target="_blank" href="https://www.youtube.com/watch?v=_nHeysDnTNE">
+          <img class="live-icon" src="haco_img/icon/icon_hoshinone_koron.png" />
+        </a>
+        </div>
       </div>
       <div class="live-contents">
         <div class="left-slider-button">
@@ -43,20 +46,38 @@ prefix="c" %>
             />
           </svg>
         </div>
-        <!--  여기부터 진짜 방송 나오는지 테스트용 -->
-        <c:forEach items="${streamIds }" var="s">
-          <div class="live-content">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/${s.address }"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </c:forEach>
-        <!--  방송 페이지 끝 -->
+        <!--  테스트용 방송 페이지 -->
+        <div class="live-content">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Rh35Zq-vTW8"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="live-content">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Rh35Zq-vTW8"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="live-content">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Rh35Zq-vTW8"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+          
         <div class="right-slider-button">
           <svg
             width="60"
