@@ -84,7 +84,7 @@ public class AccountDAO {
 			if (rs.next()) {
 				String dbPw = rs.getString("u_pw");
 
-				if (inputId.equals(dbPw)) {
+				if (inputPw.equals(dbPw)) {
 					// 유저 정보 활성화 여부 검사
 					if (rs.getInt("u_yesno") == 1) {
 						System.out.println("로그인 성공");
@@ -95,13 +95,13 @@ public class AccountDAO {
 						accountInfo.setU_id(rs.getString("u_id"));
 						accountInfo.setU_pw(rs.getString("u_pw"));
 						accountInfo.setU_twitter_id(rs.getLong("u_twitter_id"));
-						accountInfo.setU_nickname("u_nickname");
+						accountInfo.setU_nickname(rs.getString("u_nickname"));
 						accountInfo.setU_yesno(rs.getInt("u_yesno"));
-
+						
 						// 로그인 세션 생성
 						HttpSession loginSession = request.getSession();
-						loginSession.setAttribute("accountInfo", loginSession);
-						loginSession.setMaxInactiveInterval(600);
+						loginSession.setAttribute("accountInfo", accountInfo);
+						loginSession.setMaxInactiveInterval(60*10);
 
 					} else {
 						System.out.println("삭제되거나 비활성화된 아이디");
