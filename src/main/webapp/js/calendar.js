@@ -1,353 +1,130 @@
-!function() {
-
-  var today = moment();
-
-  function Calendar(selector, events) {
-    this.el = document.querySelector(selector);
-    this.events = events;
-    this.current = moment().date(1);
-    this.draw();
-    var current = document.querySelector('.today');
-    if(current) {
-      var self = this;
-      window.setTimeout(function() {
-        self.openDay(current);
-      }, 500);
-    }
-  }
-
-  Calendar.prototype.draw = function() {
-    //Create Header
-    this.drawHeader();
-
-    //Draw Month
-    this.drawMonth();
-
-    this.drawLegend();
-  }
-
-  Calendar.prototype.drawHeader = function() {
-    var self = this;
-    if(!this.header) {
-      //Create the header elements
-      this.header = createElement('div', 'header');
-      this.header.className = 'header';
-
-      this.title = createElement('h1');
-
-      var right = createElement('div', 'right');
-      right.addEventListener('click', function() { self.nextMonth(); });
-
-      var left = createElement('div', 'left');
-      left.addEventListener('click', function() { self.prevMonth(); });
-
-      //Append the Elements
-      this.header.appendChild(this.title); 
-      this.header.appendChild(right);
-      this.header.appendChild(left);
-      this.el.appendChild(this.header);
-    }
-
-    this.title.innerHTML = this.current.format('MMMM YYYY');
-  }
-
-  Calendar.prototype.drawMonth = function() {
-    var self = this;
-    
-    this.events.forEach(function(ev) {
-     ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
-    });
-    
-    
-    if(this.month) {
-      this.oldMonth = this.month;
-      this.oldMonth.className = 'month out ' + (self.next ? 'next' : 'prev');
-      this.oldMonth.addEventListener('webkitAnimationEnd', function() {
-        self.oldMonth.parentNode.removeChild(self.oldMonth);
-        self.month = createElement('div', 'month');
-        self.backFill();
-        self.currentMonth();
-        self.fowardFill();
-        self.el.appendChild(self.month);
-        window.setTimeout(function() {
-          self.month.className = 'month in ' + (self.next ? 'next' : 'prev');
-        }, 16);
-      });
-    } else {
-        this.month = createElement('div', 'month');
-        this.el.appendChild(this.month);
-        this.backFill();
-        this.currentMonth();
-        this.fowardFill();
-        this.month.className = 'month new';
-    }
-  }
-
-  Calendar.prototype.backFill = function() {
-    var clone = this.current.clone();
-    var dayOfWeek = clone.day();
-
-    if(!dayOfWeek) { return; }
-
-    clone.subtract('days', dayOfWeek+1);
-
-    for(var i = dayOfWeek; i > 0 ; i--) {
-      this.drawDay(clone.add('days', 1));
-    }
-  }
-
-  Calendar.prototype.fowardFill = function() {
-    var clone = this.current.clone().add('months', 1).subtract('days', 1);
-    var dayOfWeek = clone.day();
-
-    if(dayOfWeek === 6) { return; }
-
-    for(var i = dayOfWeek; i < 6 ; i++) {
-      this.drawDay(clone.add('days', 1));
-    }
-  }
-
-  Calendar.prototype.currentMonth = function() {
-    var clone = this.current.clone();
-
-    while(clone.month() === this.current.month()) {
-      this.drawDay(clone);
-      clone.add('days', 1);
-    }
-  }
-
-  Calendar.prototype.getWeek = function(day) {
-    if(!this.week || day.day() === 0) {
-      this.week = createElement('div', 'week');
-      this.month.appendChild(this.week);
-    }
-  }
-
-  Calendar.prototype.drawDay = function(day) {
-    var self = this;
-    this.getWeek(day);
-
-    //Outer Day
-    var outer = createElement('div', this.getDayClass(day));
-    outer.addEventListener('click', function() {
-      self.openDay(this);
-    });
-
-    //Day Name
-    var name = createElement('div', 'day-name', day.format('ddd'));
-
-    //Day Number
-    var number = createElement('div', 'day-number', day.format('DD'));
+$(function() {
+	loadCalendar();
+	
+	setTimeout(setBirth, 500);
+});
 
 
-    //Events
-    var events = createElement('div', 'day-events');
-    this.drawEvents(day, events);
 
-    outer.appendChild(name);
-    outer.appendChild(number);
-    outer.appendChild(events);
-    this.week.appendChild(outer);
-  }
+function setBirth(){
+	let title = $('.fc-toolbar-title');
+	let text = $(title).text();
+	let month = text.charAt(6);
+	
+	$.ajax({
+		url : 'CalendarEventC',
+		data : {month},
+	})
+	.done(function(resData){
+		console.log(resData)
+	});
+}
 
-  Calendar.prototype.drawEvents = function(day, element) {
-    if(day.month() === this.current.month()) {
-      var todaysEvents = this.events.reduce(function(memo, ev) {
-        if(ev.date.isSame(day, 'day')) {
-          memo.push(ev);
-        }
-        return memo;
-      }, []);
 
-      todaysEvents.forEach(function(ev) {
-        var evSpan = createElement('span', ev.color);
-        element.appendChild(evSpan);
-      });
-    }
-  }
 
-  Calendar.prototype.getDayClass = function(day) {
-    classes = ['day'];
-    if(day.month() !== this.current.month()) {
-      classes.push('other');
-    } else if (today.isSame(day, 'day')) {
-      classes.push('today');
-    }
-    return classes.join(' ');
-  }
 
-  Calendar.prototype.openDay = function(el) {
-    var details, arrow;
-    var dayNumber = +el.querySelectorAll('.day-number')[0].innerText || +el.querySelectorAll('.day-number')[0].textContent;
-    var day = this.current.clone().date(dayNumber);
-
-    var currentOpened = document.querySelector('.details');
-
-    //Check to see if there is an open detais box on the current row
-    if(currentOpened && currentOpened.parentNode === el.parentNode) {
-      details = currentOpened;
-      arrow = document.querySelector('.arrow');
-    } else {
-      //Close the open events on differnt week row
-      //currentOpened && currentOpened.parentNode.removeChild(currentOpened);
-      if(currentOpened) {
-        currentOpened.addEventListener('webkitAnimationEnd', function() {
-          currentOpened.parentNode.removeChild(currentOpened);
-        });
-        currentOpened.addEventListener('oanimationend', function() {
-          currentOpened.parentNode.removeChild(currentOpened);
-        });
-        currentOpened.addEventListener('msAnimationEnd', function() {
-          currentOpened.parentNode.removeChild(currentOpened);
-        });
-        currentOpened.addEventListener('animationend', function() {
-          currentOpened.parentNode.removeChild(currentOpened);
-        });
-        currentOpened.className = 'details out';
-      }
-
-      //Create the Details Container
-      details = createElement('div', 'details in');
-
-      //Create the arrow
-      var arrow = createElement('div', 'arrow');
-
-      //Create the event wrapper
-
-      details.appendChild(arrow);
-      el.parentNode.appendChild(details);
-    }
-
-    var todaysEvents = this.events.reduce(function(memo, ev) {
-      if(ev.date.isSame(day, 'day')) {
-        memo.push(ev);
-      }
-      return memo;
-    }, []);
-
-    this.renderEvents(todaysEvents, details);
-
-    arrow.style.left = el.offsetLeft - el.parentNode.offsetLeft + 27 + 'px';
-  }
-
-  Calendar.prototype.renderEvents = function(events, ele) {
-    //Remove any events in the current details element
-    var currentWrapper = ele.querySelector('.events');
-    var wrapper = createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
-
-    events.forEach(function(ev) {
-      var div = createElement('div', 'event');
-      var square = createElement('div', 'event-category ' + ev.color);
-      var span = createElement('span', '', ev.eventName);
-
-      div.appendChild(square);
-      div.appendChild(span);
-      wrapper.appendChild(div);
-    });
-
-    if(!events.length) {
-      var div = createElement('div', 'event empty');
-      var span = createElement('span', '', 'No Events');
-
-      div.appendChild(span);
-      wrapper.appendChild(div);
-    }
-
-    if(currentWrapper) {
-      currentWrapper.className = 'events out';
-      currentWrapper.addEventListener('webkitAnimationEnd', function() {
-        currentWrapper.parentNode.removeChild(currentWrapper);
-        ele.appendChild(wrapper);
-      });
-      currentWrapper.addEventListener('oanimationend', function() {
-        currentWrapper.parentNode.removeChild(currentWrapper);
-        ele.appendChild(wrapper);
-      });
-      currentWrapper.addEventListener('msAnimationEnd', function() {
-        currentWrapper.parentNode.removeChild(currentWrapper);
-        ele.appendChild(wrapper);
-      });
-      currentWrapper.addEventListener('animationend', function() {
-        currentWrapper.parentNode.removeChild(currentWrapper);
-        ele.appendChild(wrapper);
-      });
-    } else {
-      ele.appendChild(wrapper);
-    }
-  }
-
-  Calendar.prototype.drawLegend = function() {
-    var legend = createElement('div', 'legend');
-    var calendars = this.events.map(function(e) {
-      return e.calendar + '|' + e.color;
-    }).reduce(function(memo, e) {
-      if(memo.indexOf(e) === -1) {
-        memo.push(e);
-      }
-      return memo;
-    }, []).forEach(function(e) {
-      var parts = e.split('|');
-      var entry = createElement('span', 'entry ' +  parts[1], parts[0]);
-      legend.appendChild(entry);
-    });
-    this.el.appendChild(legend);
-  }
-
-  Calendar.prototype.nextMonth = function() {
-    this.current.add('months', 1);
-    this.next = true;
-    this.draw();
-  }
-
-  Calendar.prototype.prevMonth = function() {
-    this.current.subtract('months', 1);
-    this.next = false;
-    this.draw();
-  }
-
-  window.Calendar = Calendar;
-
-  function createElement(tagName, className, innerText) {
-    var ele = document.createElement(tagName);
-    if(className) {
-      ele.className = className;
-    }
-    if(innerText) {
-      ele.innderText = ele.textContent = innerText;
-    }
-    return ele;
-  }
-}();
-
-!function() {
-  var data = [
-    { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange' },
-    { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'orange' },
-    { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' },
-    { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'orange' },
-
-    { eventName: 'Game vs Portalnd', calendar: 'Sports', color: 'blue' },
-    { eventName: 'Game vs Houston', calendar: 'Sports', color: 'blue' },
-    { eventName: 'Game vs Denver', calendar: 'Sports', color: 'blue' },
-    { eventName: 'Game vs San Degio', calendar: 'Sports', color: 'blue' },
-
-    { eventName: 'School Play', calendar: 'Kids', color: 'yellow' },
-    { eventName: 'Parent/Teacher Conference', calendar: 'Kids', color: 'yellow' },
-    { eventName: 'Pick up from Soccer Practice', calendar: 'Kids', color: 'yellow' },
-    { eventName: 'Ice Cream Night', calendar: 'Kids', color: 'yellow' },
-
-    { eventName: 'Free Tamale Night', calendar: 'Other', color: 'green' },
-    { eventName: 'Bowling Team', calendar: 'Other', color: 'green' },
-    { eventName: 'Teach Kids to Code', calendar: 'Other', color: 'green' },
-    { eventName: 'Startup Weekend', calendar: 'Other', color: 'green' }
-  ];
-
-  
-
-  function addDate(ev) {
-    
-  }
-
-  var calendar = new Calendar('#calendar', data);
-
-}();
+function loadCalendar() {
+	// calendar element 취득
+	var calendarEl = $('#calendar')[0];
+	// full-calendar 생성하기
+	var calendar = new FullCalendar.Calendar(calendarEl, {
+		height: '700px', // calendar 높이 설정
+		expandRows: true, // 화면에 맞게 높이 재설정
+		slotMinTime: '08:00', // Day 캘린더에서 시작 시간
+		slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
+		// 해더에 표시할 툴바
+		headerToolbar: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+		},
+		initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
+		//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
+		navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
+		editable: true, // 수정 가능?
+		selectable: true, // 달력 일자 드래그 설정가능
+		nowIndicator: true, // 현재 시간 마크
+		dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
+		locale: 'ko', // 한국어 설정
+		eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
+			console.log(obj);
+		},
+		eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
+			console.log(obj);
+		},
+		eventRemove: function(obj) { // 이벤트가 삭제되면 발생하는 이벤트
+			console.log(obj);
+		},
+		select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
+			var title = prompt('Event Title:');
+			if (title) {
+				calendar.addEvent({
+					title: title,
+					start: arg.start,
+					end: arg.end,
+					allDay: arg.allDay
+				})
+			}
+			calendar.unselect()
+		},
+		// 이벤트 
+		events: [
+			{
+				title: 'All Day Event',
+				start: '2021-07-01',
+			},
+			{
+				title: 'Long Event',
+				start: '2021-07-07',
+				end: '2021-07-10'
+			},
+			{
+				groupId: 999,
+				title: 'Repeating Event',
+				start: '2021-07-09T16:00:00'
+			},
+			{
+				groupId: 999,
+				title: 'Repeating Event',
+				start: '2021-07-16T16:00:00'
+			},
+			{
+				title: 'Conference',
+				start: '2021-07-11',
+				end: '2021-07-13'
+			},
+			{
+				title: 'Meeting',
+				start: '2021-07-12T10:30:00',
+				end: '2021-07-12T12:30:00'
+			},
+			{
+				title: 'Lunch',
+				start: '2021-07-12T12:00:00'
+			},
+			{
+				title: 'Meeting',
+				start: '2021-07-12T14:30:00'
+			},
+			{
+				title: 'Happy Hour',
+				start: '2021-07-12T17:30:00'
+			},
+			{
+				title: 'Dinner',
+				start: '2021-07-12T20:00:00'
+			},
+			{
+				title: 'Birthday Party',
+				start: '2021-07-13T07:00:00'
+			},
+			{
+				title: 'Click for Google',
+				url: 'http://google.com/', // 클릭시 해당 url로 이동
+				start: '2021-07-28'
+			}
+		]
+	});
+	// 캘린더 랜더링
+	calendar.render();
+} 
