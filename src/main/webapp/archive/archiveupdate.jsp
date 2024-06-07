@@ -16,7 +16,7 @@
             <p style="margin-top: 0px">
                 <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" >
             </p>
-            <input type="hidden" name="a_m_pk" value="${archive.a_m_pk}">
+            <input type="hidden" name="a_pk" value="${archive.a_pk}">
             <div class="archive-membername">${archive.m_name}</div>
             <div class="archive-collabo">
                 <div>コラボ</div>
@@ -43,3 +43,5 @@
 
 </body>
 </html>
+
+
