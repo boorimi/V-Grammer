@@ -26,6 +26,7 @@ public class MemberDAO {
 	}
 
 	// 멤버 정보 호출 메서드
+	// 해당 메서드로 4개의 테이블 정보 한 번에 가져옴.
 	public void getAllMember(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -46,11 +47,14 @@ public class MemberDAO {
 			HashTagDTO hashTagDTO = null;
 			ArrayList<HashTagDTO> hashTag = null;
 			
-			// string으로 저장된 생일날짜를 date(MM-dd) 형식으로 바꿔주는 코드
+			// string으로 저장된 생일날짜를 date(MM-dd) 형식으로 바꿔주는 코드(하단 첫번째 try catch문 까지)
 			SimpleDateFormat oldBirth = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat newBirth = new SimpleDateFormat("MM-dd");
-			
-			while (rs.next()) {
+
+			// 현재 데뷔한 멤버 21명으로, while문이 아닌 for문으로 21번째 멤버까지만 출력되도록.
+			// 추후 나머지 4명 모두 데뷔한다면 while로 변경하면 됨.
+			// while (rs.next())
+			for (int i = 0; i < 21 && rs.next(); i++) {
 				String birth = rs.getString(4);
 				Date birth2 = null;
 				String birth3 = "";
@@ -101,8 +105,6 @@ public class MemberDAO {
 //			System.out.println("~~~~~~~~~~~~~~~~~");
 
 			request.setAttribute("members", members);
-			
-			// 결과적으로 해당 메서드로 4개의 테이블 정보 한 번에 가져옴.
 
 		} catch (Exception e) {
 			e.printStackTrace();
