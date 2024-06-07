@@ -84,8 +84,13 @@ public class MemberDAO {
 				// 멤버 address 테이블 정보 추가
 				addrs = new ArrayList<AddressDTO>();
 				while (rs2.next()) {
-					addressDTO = new AddressDTO(rs2.getString(1), rs2.getString(3), rs2.getString(4));
-					addrs.add(addressDTO);
+					// 어드레스 카테고리 중 category가 'YchannelID' 이거나 'YuploadPLID' 인 경우 출력 X
+					String addr = rs2.getString(3);
+					if (!addr.equals("YchannelID") && !addr.equals("YuploadPLID")) {
+						addressDTO = new AddressDTO(rs2.getString(1), addr, rs2.getString(4));
+						addrs.add(addressDTO);
+					}
+					System.out.println(addr);
 				}
 //				System.out.println(addrs);
 				member.setAddress(addrs);
