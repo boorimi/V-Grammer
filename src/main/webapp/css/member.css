@@ -105,10 +105,24 @@
   bottom: 7%;
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
-  padding-bottom: 5%;
-  padding-top: 5%;
+  padding: 5%;
+}
+
+#member-name{
+	
+}
+#member-birth{
+	
+}
+#member-debut{
+	
+}
+#member-mother-twitter{
+	border: 1px solid black;
+    border-radius: 20px;
+    padding: 0.5%;
+    margin: 1%;
 }
 
 .member-img-box {
@@ -137,6 +151,19 @@
   display: flex;
 }
 
+#member-address {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0.5%;
+  margin: 1%;
+  }
+
 .member-hashtag-box{
-	flex-direction: column;
+	display: flex;
+}
+#member-hashtag{
+	border: 1px solid black;
+    border-radius: 20px;
+    padding: 0.5%;
+    margin: 1%;
 }

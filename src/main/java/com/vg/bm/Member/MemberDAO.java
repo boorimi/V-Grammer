@@ -98,15 +98,13 @@ public class MemberDAO {
 				
 				hashTag = new ArrayList<HashTagDTO>();
 				while (rs3.next()) {
-					// <a>트위터 해시태그 페이지로 넘어가기 위해 #,＃을 %23으로 replace함
+					// <a>트위터 해시태그 페이지로 넘어가기 위해 '#','＃'을 '%23'으로 replace
 					String replaceHashTag = rs3.getString(4);
 					if (replaceHashTag.contains("#")) {
 						replaceHashTag = replaceHashTag.replace("#", "%23");
 					} else if (replaceHashTag.contains("＃")) {
 						replaceHashTag = replaceHashTag.replace("＃", "%23");
 					}
-					System.out.println("해시태그 : "+replaceHashTag);
-					
 					hashTagDTO = new HashTagDTO(rs3.getString(1),rs3.getString(3),replaceHashTag);
 					hashTag.add(hashTagDTO);
 				}
