@@ -170,3 +170,9 @@ footer {
 .archive-thumbnail {
   margin-right: 0;
 }
+
+.archive-contents-update{
+	display: flex;
+	
+}
+
