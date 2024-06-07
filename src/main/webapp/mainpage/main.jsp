@@ -79,10 +79,33 @@ prefix="c" %>
         <p>今日のおすすめVtuber</p>
 
         <div class="today-vtuber-info">
-          <div class="today-vtuber-photo"></div>
-          <div class="today-vtuber-archive"></div>
+          <div class="today-vtuber-photo">
+           <img alt="" src="haco_img/icon/${recommendVtuber[0].icon }">
+           </div>
+          <div class="today-vtuber-archive">
+          <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/${recommendVtuber[0].videoId }"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
       </div>
+         <div>
+           <div>${recommendVtuber[0].name }</div>
+             <div>
+             <c:forEach items="${recommendVtuber }" var="rv">
+               <div>
+         		${rv.address }
+               </div>
+             </c:forEach>
+           </div>
+         </div>
+      
+      
     </main>
     <footer></footer>
   </body>
