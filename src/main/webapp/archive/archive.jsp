@@ -6,7 +6,7 @@
     <title>Archives</title>
 </head>
 <body>
-    <h1>Archives</h1>
+    <button onclick="location.href='ArchiveUpdateC'">수정하기</button> 
     <c:forEach items="${archives}" var="archive">
         <div class="archive-contents">
             
