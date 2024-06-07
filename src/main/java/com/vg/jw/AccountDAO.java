@@ -13,7 +13,10 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.vg.ignore.DBManager;
 
 import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
 import twitter4j.User;
+import twitter4j.conf.ConfigurationBuilder;
 
 public class AccountDAO {
 
@@ -119,7 +122,7 @@ public class AccountDAO {
 						accountInfo.setU_twitter_id(rs.getLong("u_twitter_id"));
 						accountInfo.setU_nickname(rs.getString("u_nickname"));
 						accountInfo.setU_yesno(rs.getInt("u_yesno"));
-						
+						accountInfo.setU_profile_img(rs.getString("u_profile_img"));
 						// 로그인 세션 생성
 						HttpSession loginSession = request.getSession();
 						loginSession.setAttribute("accountInfo", accountInfo);
@@ -150,6 +153,35 @@ public class AccountDAO {
 			DBManager.close(con, pstmt, rs);
 		}
 
+	}
+	
+	//트위터 id값을 받아서 ScreenName을 반환하는 메서드
+	public static String getTwitterScreenName(long twitterId) {
+		
+		String screenName = null;
+		//트위터 api사용 준비
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)
+		.setOAuthConsumerKey("Gyf9IQ3j5DmsQMMXFXqTv7ijm")
+		.setOAuthConsumerSecret("qYaK7mo8kL70L5yXNl5Oe8ViueSEMEqPS4MfjDzDUDDU4mt1QJ")
+		.setOAuthAccessToken("1797433642438029312-3ipvqXKhWqQMLkCSEUiiNV5lxgtFpl")
+		.setOAuthAccessTokenSecret("8WFFLFbJry4J6I5BrQHm1WgGUlVlTAOMLf1yk3eogr7EE");
+		
+		TwitterFactory tf = new TwitterFactory(cb.build());
+		Twitter twitter = tf.getInstance();
+		
+		try {
+			//ID값을 받아서 screenName을 받아오는 처리
+			long twitterID = twitterId;
+			User user = twitter.showUser(twitterID);
+			
+			screenName = user.getScreenName();
+			
+		} catch (TwitterException te) {
+			te.printStackTrace();
+		}
+		
+		return screenName;
 	}
 
 }
