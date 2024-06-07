@@ -6,11 +6,12 @@
     <title>Archives</title>
 </head>
 <body>
-    <h1>Archives</h1>
+    <button onclick="location.href='ArchiveUpdateC'">수정하기</button> 
     <c:forEach items="${archives}" var="archive">
         <div class="archive-contents">
             
            <p style="margin-top: 0px"> <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" ></p>
+                       <p>${archive.a_m_pk } </p>
             <div class="archive-membername"> ${archive.m_name }</div>
            	<div class="archive-collabo"> コラボ : ${archive.a_collabo } </div>
            	<div class="archive-collabomember">	コラボメンバー : ${archive.a_collabomember } </div>

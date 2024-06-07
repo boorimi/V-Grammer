@@ -48,7 +48,7 @@ public class TradeDAO {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("start", start);
 		request.setAttribute("end", end);
-		request.setAttribute("announcements", items);
+		request.setAttribute("trades", items);
 	}
 
 	public void selectAllTrade(HttpServletRequest request) {
@@ -61,7 +61,28 @@ public class TradeDAO {
 			String sql = "select t_pk, u_id, u_twitter_id, u_nickname, t_text, t_date, u_yesno, t_category ";
 			sql += "from haco_tradegoods, haco_user ";
 			sql += "where u_id = t_u_id ";
-			sql += "order by t_date desc";
+			////// 검색 진행 시 sql문 추가하는 부분 시작 ////
+			if (request.getParameterValues("goodsCategory") != null) {
+				String[] category2 = request.getParameterValues("goodsCategory");
+				for (int i = 0; i < category2.length; i++) {
+					if (i == 0) {
+						sql += "and (";
+					}
+					sql += "t_category like CONCAT('%','" + category2[i] + "','%')";
+					if (i == category2.length - 1) {
+						sql += ") ";
+					} else {
+						sql += " or ";
+					}
+				}
+				String category3 = "";
+				for (String c : category2) {
+					category3 += "&goodsCategory=" + c ;
+				}
+				request.setAttribute("category3", category3);
+			}
+			////// 검색 진행 시 sql문 추가하는 부분 끝 ////
+			sql += "order by t_date asc";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -81,11 +102,12 @@ public class TradeDAO {
 
 				// 배열로 전환
 				category = rs.getString(8).split("!");
-				System.out.println(category[0]);
 				TradeDTO t = new TradeDTO(pk, twitterId, id, nickname, text, date, yesno, category);
 				trades.add(t);
 
 			}
+			
+			
 			request.setAttribute("trades", trades);
 
 		} catch (Exception e) {
@@ -311,16 +333,16 @@ public class TradeDAO {
 	public void tradeCheckboxList(HttpServletRequest request) {
 
 		List<Map<String, String>> checkboxItems = new ArrayList<>();
-		checkboxItems.add(Map.of("value", "bromide", "label", "ブロマイド"));
+		checkboxItems.add(Map.of("value", "bromide", "label", "白賞ブロマイド"));
 		checkboxItems.add(Map.of("value", "57mmCanBadge", "label", "57mm缶バッジ"));
 		checkboxItems.add(Map.of("value", "76mmCanBadge", "label", "76mm缶バッジ"));
-		checkboxItems.add(Map.of("value", "akuki", "label", "アクキー"));
+		checkboxItems.add(Map.of("value", "akuki", "label", "SD絵アクキー"));
 		checkboxItems.add(Map.of("value", "coaster", "label", "コスタ"));
 		checkboxItems.add(Map.of("value", "omoideCyeki", "label", "思い出チェキ風カード"));
-		checkboxItems.add(Map.of("value", "dmmMiniShikishi", "label", "DMMスクラッチ：色紙"));
-		checkboxItems.add(Map.of("value", "dmm57mmCanBadge", "label", "DMMスクラッチ：57mm缶バッジ"));
-		checkboxItems.add(Map.of("value", "dmmMiniAkusuta", "label", "DMMスクラッチ：ミニアクスタ"));
-		checkboxItems.add(Map.of("value", "dmmCyeki", "label", "DMMスクラッチ：チェキ"));
+		checkboxItems.add(Map.of("value", "dmmMiniShikishi", "label", "DMM：色紙"));
+		checkboxItems.add(Map.of("value", "dmm57CanBadge", "label", "DMM：57mm缶バッジ"));
+		checkboxItems.add(Map.of("value", "dmmMiniAkusuta", "label", "DMM：ミニアクスタ"));
+		checkboxItems.add(Map.of("value", "dmmCyeki", "label", "DMM：チェキ"));
 
 		request.setAttribute("checkboxItems", checkboxItems);
 	}

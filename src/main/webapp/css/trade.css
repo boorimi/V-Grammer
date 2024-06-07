@@ -1,5 +1,5 @@
 .trade-container {
-  width: 40%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -9,6 +9,7 @@
 
 .trade-title {
   background-color: lightgreen;
+  text-align: center;
 }
 
 .trade-conmain {
@@ -34,7 +35,7 @@
 }
 .trade-content > div:nth-child(1) {
   display: flex;
-  background-color: aqua;
+  background-color: rgb(221, 221, 221);
 }
 .trade-content > div:nth-child(1) > div:nth-child(3) {
   flex: 1;
@@ -76,6 +77,14 @@
 }
 #insert-button {
   padding: 5px 0px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+#insert-button > button{
+	padding: 5px 30px;
+	background-color: blue;
+	color: white;
+	border-radius: 30px;
 }
 #trade-title {
   width: 95%;
@@ -86,6 +95,7 @@
 }
 
 .trade-category {
+  margin-top: 10px;
   font-size: 11pt;
   display: flex;
   flex-wrap: wrap;
@@ -98,9 +108,18 @@
 }
 
 .trade-goods-category {
-  background-color: rgb(220, 220, 220);
+  background-color: rgb(0, 0, 0);
+  color: white;
   border-radius: 10px;
   border: 1px solid black;
   font-size: 8pt;
-  padding: 0px;
+}
+
+#trade-search-category {
+	background-color: blue;
+	color: white;
+	border-radius: 30px;
+    padding: 5px 30px;
+    margin: 5px;
+    font-size: 11pt;
 }

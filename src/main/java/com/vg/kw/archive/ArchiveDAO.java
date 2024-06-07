@@ -125,4 +125,57 @@ public class ArchiveDAO {
             DBManager.close(con, pstmt, rs);
         }
     }
+
+    public static void UpdateArchive(HttpServletRequest request) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        // Get parameters from request
+        String collabo = request.getParameter("collabo");
+        String collabomember = request.getParameter("collabomember");
+        String category = request.getParameter("category");
+        String a_m_pk = request.getParameter("a_m_pk"); // Example condition parameter
+
+        // Validate that necessary parameters are not null or empty
+        if (collabo == null || collabomember == null || category == null || a_m_pk == null) {
+            System.out.println("One or more parameters are missing.");
+            return;
+        }
+
+        // Construct the SQL query
+        String sql = "UPDATE haco_archive ha " +
+                     "JOIN haco_member hm ON ha.a_m_pk = hm.m_pk " +
+                     "JOIN haco_image hi ON hi.i_m_pk = hm.m_pk " +
+                     "SET ha.a_collabo = ?, " +
+                     "    ha.a_collabomember = ?, " +
+                     "    ha.a_category = ? " +
+                     "WHERE ha.a_m_pk = ?";  // Example condition, modify as needed
+
+        try {
+            // Connect to the database
+            con = DBManager.connect();
+            // Prepare the SQL statement
+            pstmt = con.prepareStatement(sql);
+            // Set the parameters
+            pstmt.setString(1, collabo);
+            pstmt.setString(2, collabomember);
+            pstmt.setString(3, category);
+            pstmt.setString(4, a_m_pk);  // Set the condition parameter
+
+            // Execute the update
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Update successful. Rows updated: " + rowsUpdated);
+            } else {
+                System.out.println("No rows updated. Check your condition.");
+            }
+        } catch (SQLException e) {
+            // Handle SQL exception
+            e.printStackTrace();
+        } finally {
+            // Close the database resources
+            DBManager.close(con, pstmt, null);
+        }
+    }
+
 }
