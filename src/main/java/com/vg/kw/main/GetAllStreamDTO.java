@@ -1,15 +1,14 @@
 package com.vg.kw.main;
 
-public class LiveStreamDTO {
+public class GetAllStreamDTO {
 
 	private String pk;
 	private String YchannelID;
 
-	public LiveStreamDTO() {
-		// TODO Auto-generated constructor stub
+	public GetAllStreamDTO() {
 	}
 
-	public LiveStreamDTO(String pk, String ychannelID) {
+	public GetAllStreamDTO(String pk, String ychannelID) {
 		super();
 		this.pk = pk;
 		YchannelID = ychannelID;

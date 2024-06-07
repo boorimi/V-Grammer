@@ -16,7 +16,10 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
   </head>
   <body>
     <div class="announcement-container">
-      <div class="announcement-title"><h1>お知らせ</h1></div>
+      <div class="announcement-title">
+        <h1>お知らせ</h1>
+        <button onclick="location.href='GetAllStreamC'">실행</button>
+      </div>
       <div class="announcement-conmain">
         <!-- 본문페이지 for문 시작 -->
         <c:set var="totalItems" value="${fn:length(announcements)}" />
