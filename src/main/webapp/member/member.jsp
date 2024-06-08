@@ -25,10 +25,12 @@
 <body>
 	<div class="member-container">
 		<div class="member-memberList-container">
-			<div class="member-list">Members</div>
-			<c:forEach var="m" items="${members }">
-				<div class="member-memberList" id="${m.m_pk }">${m.m_name }</div>
-			</c:forEach>
+			<div class="member-list-box">
+			<div class="member-list-title">Members</div>
+				<c:forEach var="m" items="${members }">
+					<div class="member-memberList" id="${m.m_pk }">${m.m_name }</div>
+				</c:forEach>
+			</div>
 		</div>
 		<div class="member-img-container">
 			<c:forEach items="${members }" var="m">
@@ -52,8 +54,8 @@
 									</div>
 									<div class="member-mother-box">
 										<div id="member-mother-name">
-											<span>彼女のママは、</span>
-											<span><a href="${m.m_mother_twitter }">${m.m_mother_name }</a></span>
+											<span>彼女のママは、</span> <span><a
+												href="${m.m_mother_twitter }">${m.m_mother_name }</a></span>
 										</div>
 									</div>
 									<div class="member-hashtag-container">
