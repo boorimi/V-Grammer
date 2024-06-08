@@ -14,6 +14,7 @@ public class LoginC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		AccountDAO.loginCheck(request);
 		request.setAttribute("content", "account/login/login_page.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 				

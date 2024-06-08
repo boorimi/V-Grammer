@@ -52,8 +52,8 @@ public class TwitterCallbackServlet extends HttpServlet {
 				
 				ConfigurationBuilder cb = new ConfigurationBuilder();
 				cb.setDebugEnabled(true)
-				.setOAuthConsumerKey("Gyf9IQ3j5DmsQMMXFXqTv7ijm")
-				.setOAuthConsumerSecret("qYaK7mo8kL70L5yXNl5Oe8ViueSEMEqPS4MfjDzDUDDU4mt1QJ")
+				.setOAuthConsumerKey("c7X647iwEHvSF8Eu4CIRulro0")
+				.setOAuthConsumerSecret("T4Pof1honeCyrvNhuEnR0Pel1fcRreSzkqQqx6a2YFNI2NELcF")
 				.setOAuthAccessToken(accessToken)
 				.setOAuthAccessTokenSecret(accessTokenSecret);
 				
@@ -67,7 +67,13 @@ public class TwitterCallbackServlet extends HttpServlet {
 					
 					
 					long userId = user.getId(); //유저 고유 ID값.
+					
+					
+					
 					String screenName = user.getScreenName();
+					System.out.println("--------------------");
+					System.out.println(screenName);
+					System.out.println("--------------------");
 					String name = user.getName();
 					String profileImgUrl = user.getProfileImageURL();
 					
