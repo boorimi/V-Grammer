@@ -45,9 +45,30 @@
 							<div id="member-debut">
 								<span>デビュー日&nbsp;</span><span>${m.m_debut }</span>
 							</div>
-							<!-- 상세보기 (위치 수정 필요)-->
-							<details>
-								<summary> 더보기..</summary>
+							<div class="member-address-container">
+								<div id="member-address-title">-アドレス-</div>
+								<div class="member-address-box">
+									<c:forEach items="${m.address }" var="a" begin="0" end="2">
+										<div id="${a.a_category }">
+											<a href="${a.a_address }">${a.a_category }</a>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<button class="member-detail-open">더보기</button>
+						</div>
+					</div>
+
+					<!-- 상세보기 div -->
+					<div class="member-detail-container2">
+						<div class="member-detail">
+							<div id="member-name">${m.m_name }</div>
+							<div id="member-birth">
+								<span>お誕生日&nbsp;</span><span>${m.m_birth }</span>
+							</div>
+							<div id="member-debut">
+								<span>デビュー日&nbsp;</span><span>${m.m_debut }</span>
+							</div>
 								<div class="member-detail2-box">
 									<div class="member-introduce-box">
 										<div id="member-introduce">${m.m_introduce }</div>
@@ -70,8 +91,6 @@
 										</div>
 									</div>
 								</div>
-							</details>
-							<!-- 상세보기 끝 -->
 							<div class="member-address-container">
 								<div id="member-address-title">-アドレス-</div>
 								<div class="member-address-box">
@@ -82,6 +101,7 @@
 									</c:forEach>
 								</div>
 							</div>
+							<button class="member-detail-close">접기</button>
 						</div>
 					</div>
 					<div class="member-img-box">
