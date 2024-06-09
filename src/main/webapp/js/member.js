@@ -34,21 +34,6 @@ $(document).ready(function() {
         });
     });
     
-    // 스크롤하면 멤버 타이틀보다 멤버 div가 아래로 가도록 z-index 변경
-	$('.member-memberList-container').scroll(function(){
-		$('.member-list-title').css('z-index','900');
-		$(this).$('.member-memberList.show').css('z-index','500');
-	});
-	// 클릭하면 다시 z-index 변경
-	$('.member-memberList-container').click(function(){
-		$('.member-list-title').css('z-index','500');
-		$(this).$('.member-memberList.show').css('z-index','900');
-	});
-    
-
-    
-    
-    
 });
 
 

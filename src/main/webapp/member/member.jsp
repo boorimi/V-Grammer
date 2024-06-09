@@ -25,8 +25,8 @@
 <body>
 	<div class="member-container">
 		<div class="member-memberList-container">
-			<div class="member-list-box">
 			<div class="member-list-title">Members</div>
+			<div class="member-list-box">
 				<c:forEach var="m" items="${members }">
 					<div class="member-memberList" id="${m.m_pk }">${m.m_name }</div>
 				</c:forEach>
