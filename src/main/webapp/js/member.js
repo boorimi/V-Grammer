@@ -32,17 +32,20 @@ $(document).ready(function() {
             $memberImgs.eq(idx - 1).addClass('show');
             $memberList.eq(idx - 1).addClass('show');
         });
-        
-        
     });
     
-    // 스크롤하면 z-index 변경되게 하고 싶은데 아직 수정중인 코드임
-	$('.member-list-container').scroll(function(){
+    // 스크롤하면 멤버 타이틀보다 멤버 div가 아래로 가도록 z-index 변경
+	$('.member-memberList-container').scroll(function(){
 		$('.member-list-title').css('z-index','900');
-		
+		$(this).$('.member-memberList.show').css('z-index','500');
+	});
+	// 클릭하면 다시 z-index 변경
+	$('.member-memberList-container').click(function(){
+		$('.member-list-title').css('z-index','500');
+		$(this).$('.member-memberList.show').css('z-index','900');
 	});
     
-    
+
     
     
     
