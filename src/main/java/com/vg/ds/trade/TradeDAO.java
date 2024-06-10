@@ -58,9 +58,9 @@ public class TradeDAO {
 
 		try {
 
-			String sql = "select t_pk, u_id, u_twitter_id, u_nickname, t_text, t_date, u_yesno, t_category ";
+			String sql = "select t_pk, u_twitter_id, u_nickname, t_text, t_date, t_category ";
 			sql += "from haco_tradegoods, haco_user ";
-			sql += "where u_id = t_u_id ";
+			sql += "where u_twitter_id = t_u_t_id ";
 			////// 검색 진행 시 sql문 추가하는 부분 시작 ////
 			if (request.getParameterValues("goodsCategory") != null) {
 				String[] category2 = request.getParameterValues("goodsCategory");
@@ -94,15 +94,13 @@ public class TradeDAO {
 			while (rs.next()) {
 				String pk = rs.getString(1);
 				String twitterId = rs.getString(2);
-				String id = rs.getString(3);
-				String nickname = rs.getString(4);
-				String text = rs.getString(5);
-				String date = rs.getString(6);
-				String yesno = rs.getString(7);
+				String nickname = rs.getString(3);
+				String text = rs.getString(4);
+				String date = rs.getString(5);
 
 				// 배열로 전환
-				category = rs.getString(8).split("!");
-				TradeDTO t = new TradeDTO(pk, twitterId, id, nickname, text, date, yesno, category);
+				category = rs.getString(6).split("!");
+				TradeDTO t = new TradeDTO(pk, twitterId, nickname, text, date, category);
 				trades.add(t);
 
 			}

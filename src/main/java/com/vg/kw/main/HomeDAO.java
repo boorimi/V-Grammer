@@ -90,7 +90,7 @@ public class HomeDAO {
 				String archive_pk = rs.getString(2);
 				String address_pk = rs.getString(3);
 				String m_pk = rs.getString(4);
-				String category = rs.getString(5);
+				String category = rs.getString(5).replaceAll("twitter", "X");
 				String address = rs.getString(6);
 				String title = rs.getString(7);
 				String videoId = rs.getString(8);
