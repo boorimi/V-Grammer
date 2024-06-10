@@ -99,11 +99,11 @@ public class AccountDAO {
 		PreparedStatement pstmt = null;
 
 		// 트위터 계정정보 가져오기
-		HttpSession twitterSession = request.getSession();
+		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterSession.getAttribute("twitterId");
-		String twitterScreenName = (String) twitterSession.getAttribute("twitterScreenName");
-		String twitterProfileImgUrl = (String) twitterSession.getAttribute("twitterProfileImgUrl");
+		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		String twitterScreenName = (String) twitterLoginSession.getAttribute("twitterScreenName");
+		String twitterProfileImgUrl = (String) twitterLoginSession.getAttribute("twitterProfileImgUrl");
 		System.out.println("AccountDAO테스트 출력(twitterId):" + twitterId);
 		System.out.println("AccountDAO테스트 출력(twitterScreenName):" + twitterScreenName);
 		System.out.println("트위터 프사 url 테스트 출력" + twitterProfileImgUrl);
@@ -127,7 +127,7 @@ public class AccountDAO {
 		System.out.println(inputNickname);
 		System.out.println(inputImgfile);
 
-		String sql = "INSERT INTO haco_user values(?, ?, ?, 1)";
+		String sql = "INSERT INTO haco_user values(?, ?, ?)";
 
 		try {
 
@@ -151,11 +151,19 @@ public class AccountDAO {
 	}
 
 	// 유저가 회원가입이 되어있는지 판별하는 메서드
-	public static void registerCheck(HttpServletRequest request, HttpServletResponse response) {
-
+	public static boolean registerCheck(HttpServletRequest request) {
+		System.out.println("registerCheck 진입");
+		
+		//트위터 값 받아오기
 		HttpSession twitterLoginSession = request.getSession();
 		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		String twitterScreenName = (String) twitterLoginSession.getAttribute("twitterScreenName");
+		String twitterProfileImgUrl = (String) twitterLoginSession.getAttribute("twitterProfileImgUrl");
 		long dbId = 0;
+		
+		System.out.println(twitterId);
+		System.out.println(twitterScreenName);
+		System.out.println(twitterProfileImgUrl);
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -172,122 +180,117 @@ public class AccountDAO {
 
 			String loginResult = "";
 
-			//rs.next가 false = 가입된 계정이 존재하지 않음 => 회원등록 컨트롤러로 보냄
+			// rs.next가 false = 가입된 계정이 존재하지 않음 => 회원등록 컨트롤러로 보냄
 			if (!rs.next()) {
 				System.out.println("이 트위터 계정으로 가입된 아이디가 존재하지 않음");
 				loginResult = "会員登録ページへ移動します。";
-				response.sendRedirect("RegisterC");
-				return;
-				
+				twitterLoginSession.setAttribute("loginResult", loginResult);
+				return false;
+
 			} else {
 				dbId = rs.getLong("u_twitter_id");
+
+				// ID 활성화 여부 검사
+				System.out.println("로그인 성공");
+				loginResult = "ログイン成功";
+
+				twitterId = rs.getLong("u_twitter_id");
 				
-				//ID 활성화 여부 검사
-				if (rs.getInt("u_yesno") == 1) {
-					System.out.println("로그인 성공");
-					loginResult = "ログイン成功";
+				// 계정 정보들 저장
+				accountInfo = new AccountDTO();
+				accountInfo.setU_twitter_id(twitterId);
+				accountInfo.setU_nickname(rs.getString("u_nickname"));
+				accountInfo.setU_screenName(twitterScreenName);
+				accountInfo.setU_profile_img(rs.getString("u_profile_img"));
 
-					twitterId = rs.getLong("u_twitter_id");
-					// 계정 정보들 저장
-					accountInfo = new AccountDTO();
-					accountInfo.setU_twitter_id(rs.getLong("u_twitter_id"));
-					accountInfo.setU_nickname(rs.getString("u_nickname"));
-					accountInfo.setU_profile_img(rs.getString("u_profile_img"));
-					accountInfo.setU_yesno(rs.getInt("u_yesno"));
+				// 로그인 세션에 정보 추가
+				twitterLoginSession.setAttribute("accountInfo", accountInfo);
+				twitterLoginSession.setAttribute("loginResult", loginResult);
+				twitterLoginSession.setMaxInactiveInterval(60 * 10);
 
-					// 로그인 세션에 정보 추가
-					twitterLoginSession.setAttribute("accountInfo", accountInfo);
-					twitterLoginSession.setMaxInactiveInterval(60 * 10);
-
-				} else {
-					loginResult = "削除された会員です。";
-					System.out.println("삭제되거나 비활성화된 아이디");
-				}
-
+				
 			}
-
-			request.setAttribute("loginResult", loginResult);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-
+		return true;
 	}
 
 	// 회원등록 여부 검사 후 로그인판정 개시
-	public static void login(HttpServletRequest request) {
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String inputId = request.getParameter("login-input-id");
-		String inputPw = request.getParameter("login-input-pw");
-		long twitterId = 0;
-		String sql = "SELECT*FROM haco_user WHERE u_id = ?";
-
-		AccountDTO accountInfo = null;
-		try {
-
-			con = DBManager.connect();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, inputId);
-			rs = pstmt.executeQuery();
-
-			String loginResult = "";
-			if (rs.next()) {
-				String dbPw = rs.getString("u_pw");
-
-				if (inputPw.equals(dbPw)) {
-					// 유저 정보 활성화 여부 검사
-					if (rs.getInt("u_yesno") == 1) {
-						System.out.println("로그인 성공");
-						loginResult = "ログイン成功";
-
-						twitterId = rs.getLong("u_twitter_id");
-						System.out.println("트위터 아이디로 screenName받아오는거 테스트" + getTwitterScreenName());
-						// 계정 정보들 저장
-						accountInfo = new AccountDTO();
-						accountInfo.setU_id(rs.getString("u_id"));
-						accountInfo.setU_pw(rs.getString("u_pw"));
-						accountInfo.setU_twitter_id(rs.getLong("u_twitter_id"));
-						accountInfo.setU_nickname(rs.getString("u_nickname"));
-						accountInfo.setU_yesno(rs.getInt("u_yesno"));
-						accountInfo.setU_profile_img(rs.getString("u_profile_img"));
-
-						// 로그인 세션 생성
-						HttpSession loginSession = request.getSession();
-						loginSession.setAttribute("accountInfo", accountInfo);
-						loginSession.setMaxInactiveInterval(60 * 10);
-
-					} else {
-						System.out.println("삭제되거나 비활성화된 아이디");
-					}
-
-				} else {
-					System.out.println("비밀번호 오류");
-					loginResult = "PW不一致です。";
-				}
-
-			}
-			System.out.println("계정 id :" + accountInfo.getU_id());
+//	public static void login(HttpServletRequest request) {
+//
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//
+//		String inputId = request.getParameter("login-input-id");
+//		String inputPw = request.getParameter("login-input-pw");
+//		long twitterId = 0;
+//		String sql = "SELECT*FROM haco_user WHERE u_id = ?";
+//
+//		AccountDTO accountInfo = null;
+//		try {
+//
+//			con = DBManager.connect();
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, inputId);
+//			rs = pstmt.executeQuery();
+//
+//			String loginResult = "";
+//			if (rs.next()) {
+//				String dbPw = rs.getString("u_pw");
+//
+//				if (inputPw.equals(dbPw)) {
+//					// 유저 정보 활성화 여부 검사
+//					if (rs.getInt("u_yesno") == 1) {
+//						System.out.println("로그인 성공");
+//						loginResult = "ログイン成功";
+//
+//						twitterId = rs.getLong("u_twitter_id");
+//						System.out.println("트위터 아이디로 screenName받아오는거 테스트" + getTwitterScreenName());
+//						// 계정 정보들 저장
+//						accountInfo = new AccountDTO();
+//						accountInfo.setU_id(rs.getString("u_id"));
+//						accountInfo.setU_pw(rs.getString("u_pw"));
+//						accountInfo.setU_twitter_id(rs.getLong("u_twitter_id"));
+//						accountInfo.setU_nickname(rs.getString("u_nickname"));
+//						accountInfo.setU_yesno(rs.getInt("u_yesno"));
+//						accountInfo.setU_profile_img(rs.getString("u_profile_img"));
+//
+//						// 로그인 세션 생성
+//						HttpSession loginSession = request.getSession();
+//						loginSession.setAttribute("accountInfo", accountInfo);
+//						loginSession.setMaxInactiveInterval(60 * 10);
+//
+//					} else {
+//						System.out.println("삭제되거나 비활성화된 아이디");
+//					}
+//
+//				} else {
+//					System.out.println("비밀번호 오류");
+//					loginResult = "PW不一致です。";
+//				}
+//
+//			}
+//			System.out.println("계정 id :" + accountInfo.getU_id());
 //			System.out.println("계정 pw :" + accountInfo.getU_pw());
 //			System.out.println("트위터id: " + accountInfo.getU_twitter_id());
 //			System.out.println("닉네임 : " + accountInfo.getU_nickname());
 //			System.out.println("계정 활성화 여부: " + accountInfo.getU_yesno());
 //			System.out.println(accountInfo);
-
-			request.setAttribute("loginResult", loginResult);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(con, pstmt, rs);
-		}
-
-	}
+//
+//			request.setAttribute("loginResult", loginResult);
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBManager.close(con, pstmt, rs);
+//		}
+//
+//	}
 
 	// 로그인 체크 메서드(로컬)
 	public static boolean loginCheck(HttpServletRequest request) {
@@ -295,9 +298,11 @@ public class AccountDAO {
 		if (loginSession != null) {
 			AccountDTO accountInfo = (AccountDTO) loginSession.getAttribute("accountInfo");
 			if (accountInfo != null) {
+				request.setAttribute("loginContent", "account/login/login_ok.jsp");
 				return true; // 로그인 상태
 			}
 		}
+		request.setAttribute("loginContent", "account/login/login.jsp");
 		return false; // 로그인되지 않은 상태
 	}
 
@@ -310,9 +315,11 @@ public class AccountDAO {
 			String accessTokenSecret = (String) twitterLoginSession.getAttribute("accessTokenSecret");
 
 			if (accessToken != null && accessTokenSecret != null) { // 액세스토큰 존재여부를 판정
+			request.setAttribute("loginContent", "account/login/login_ok.jsp");	
 				return true;
 			}
 		}
+		request.setAttribute("loginContent", "account/login/login.jsp");
 		return false;
 	}
 

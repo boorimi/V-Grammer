@@ -30,9 +30,9 @@
 		<jsp:include page="${content }"></jsp:include>
 	</div>
 
-	<form action="LoginC">
-		<button>테스트 login page</button>
-	</form>
+	<div>
+		<jsp:include page="${loginContent }"></jsp:include>
+	</div>
 	액세스 토큰 : ${sessionScope.accessToken } <hr>
 	액세스 토큰 시크릿 : ${sessionScope.accessTokenSecret }<hr>
 	유저 ID : ${sessionScope.twitterId }<hr>
