@@ -122,9 +122,9 @@ public class TradeDAO {
 
 		try {
 
-			String sql = "select t_pk, u_id, u_twitter_id, u_nickname, t_text, t_date, u_yesno, t_category ";
+			String sql = "select t_pk, u_twitter_id, u_nickname, t_text, t_date, t_category ";
 			sql += "from haco_tradegoods, haco_user ";
-			sql += "where u_id = t_u_id and t_pk = ? ";
+			sql += "where u_twitter_id = t_u_t_id and t_pk = ? ";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -134,18 +134,16 @@ public class TradeDAO {
 
 			String pk = rs.getString(1);
 			String twitterId = rs.getString(2);
-			String id = rs.getString(3);
-			String nickname = rs.getString(4);
-			String text = rs.getString(5);
-			String date = rs.getString(6);
-			String yesno = rs.getString(7);
+			String nickname = rs.getString(3);
+			String text = rs.getString(4);
+			String date = rs.getString(5);
 
 			// 카테고리를 배열로 다시 전환
-			String[] category = rs.getString(8).split("!");
+			String[] category = rs.getString(6).split("!");
 			// 본문내용 확인 할때 DB내용을 br -> 줄바꿈으로 대체하는 코드
 			String text2 = text.replace("<br>", "\r\n");
 
-			TradeDTO t = new TradeDTO(pk, twitterId, id, nickname, text2, date, yesno, category);
+			TradeDTO t = new TradeDTO(pk, twitterId, nickname, text2, date, category);
 
 //			request.setAttribute("category", category);
 			request.setAttribute("text2", text2);
@@ -176,12 +174,13 @@ public class TradeDAO {
 			String text = request.getParameter("text");
 			text = text.replaceAll("\r\n", "<br>");
 
-			String sql = "insert into haco_tradegoods values (null, 'ds6951', ?, NOW(), ?)";
+			String sql = "insert into haco_tradegoods values (null, ?, ?, NOW(), ?)";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, text);
-			pstmt.setString(2, category2);
+			pstmt.setLong(1, (long) request.getSession().getAttribute("twitterId"));
+			pstmt.setString(2, text);
+			pstmt.setString(3, category2);
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("입력 성공!");
@@ -253,10 +252,10 @@ public class TradeDAO {
 
 		try {
 
-			String sql = "select tc_pk, tc_m_id, u_twitter_id, u_nickname, tc_s_id, u_twitter_id, u_nickname, tc_text, tc_date, u_yesno, tc_t_pk ";
-			sql += "from haco_user, haco_tradegoods_comments ";
-			sql += "where tc_m_id = u_id ";
-			sql += "and tc_s_id = u_id and u_yesno = 1 ";
+			String sql = "SELECT tc_pk, tc_m_t_id, hu1.u_nickname AS m_nickname, tc_s_t_id, hu2.u_nickname AS s_nickname, tc_text, tc_date, tc_t_pk ";
+			sql += "FROM haco_tradegoods_comments ";
+			sql += "JOIN haco_user hu1 ON tc_m_t_id = hu1.u_twitter_id ";
+			sql += "LEFT JOIN haco_user hu2 ON tc_s_t_id = hu2.u_twitter_id";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -269,21 +268,18 @@ public class TradeDAO {
 
 				String pk = rs.getString(1);
 				String mTwitterId = rs.getString(2);
-				String mId = rs.getString(3);
-				String mNickname = rs.getString(4);
-				String sTwitterId = rs.getString(5);
-				String sId = rs.getString(6);
-				String sNickname = rs.getString(7);
-				String text = rs.getString(8);
-				String date = rs.getString(9);
-				String yesno = rs.getString(10);
-				String t_pk = rs.getString(11);
+				String mNickname = rs.getString(3);
+				String sTwitterId = rs.getString(4);
+				String sNickname = rs.getString(5);
+				String text = rs.getString(6);
+				String date = rs.getString(7);
+				String t_pk = rs.getString(8);
 
 				// 본문내용 확인 할때 DB내용을 br -> 줄바꿈으로 대체하는 코드
 				String text2 = text.replace("<br>", "\r\n");
 
-				TradeCommentsDTO tc = new TradeCommentsDTO(pk, mTwitterId, mId, mNickname, sTwitterId, sId, sNickname,
-						text2, date, yesno, t_pk);
+				TradeCommentsDTO tc = new TradeCommentsDTO(pk, mTwitterId, mNickname, sTwitterId, sNickname,
+						text2, date, t_pk);
 				tradeComments.add(tc);
 
 			}
@@ -308,12 +304,14 @@ public class TradeDAO {
 			text = text.replaceAll("\r\n", "<br>");
 
 			String sql = "insert into haco_tradegoods_comments values ";
-			sql += "(null, ?, 'ds6951','ds6951',?,now())";
+			sql += "(null, ?, ?, ?, ?, now())";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("no"));
-			pstmt.setString(2, text);
+			pstmt.setString(2, request.getParameter("masterTwitterId"));
+			pstmt.setLong(3, (long) request.getSession().getAttribute("twitterId"));
+			pstmt.setString(4, text);
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("입력 성공!");
