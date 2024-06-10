@@ -19,12 +19,12 @@ public class HC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		AccountDAO.loginCheck(request);
 		HomeDAO.HDAO.getStreamId(request);
 		HomeDAO.HDAO.getRecommendVtuber(request);
 		List<DdayDTO> ddayList = DdayDAO.selectAllDdays();
         request.setAttribute("ddayList", ddayList);
 //		GetAllStream.getAllLive();
+        AccountDAO.loginCheck(request);
 		request.setAttribute("content", "mainpage/main.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
