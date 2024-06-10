@@ -23,8 +23,7 @@
 		</ul>
 
 		<div class="nav-userinfo">
-			<div class="nav-user"><jsp:include page="${loginContent }"></jsp:include></div>
-			<div class="my-page">マイページ</div>
+			<div class="nav-user"><jsp:include page="${loginContent }"></jsp:include></div>			
 		</div>
 	</nav>
 
