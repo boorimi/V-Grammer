@@ -9,19 +9,19 @@
 }
 
 .member-memberList-container {
-	width: 24%;
+	width: 20%;
 	height: 100%;
 	overflow: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 30;
+	background: linear-gradient(to right, lightpink, rgba(255, 182, 193, 0));
 }
 
 .member-list-title {
-	width: 76%;
+	width: 80%;
 	height: 8%;
-	background-color: white;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
@@ -30,20 +30,6 @@
 	font-size: 35pt;
 	font-family: "Bebas Neue", sans-serif;
 	position: relative;
-	border: 1px solid gray;
-}
-/*div 모양 변경*/
-.member-list-title::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: -30px;
-	width: 0;
-	height: 0;
-	border-top: 37px solid transparent;
-	border-bottom: 37px solid transparent;
-	border-left: 31px solid white;
-	filter: drop-shadow(2px 0px 1px gray);
 }
 
 .member-list-box {
@@ -58,29 +44,13 @@
 }
 
 .member-memberList {
-	width: 76%;
+	width: 80%;
 	height: 8%;
-	background-color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 25pt;
 	position: relative;
-	border-radius: 2px;
-	border-bottom: 1px solid gray;
-    border-left: 1px solid gray;
-}
-.member-memberList::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: -30px;
-	width: 0;
-	height: 0;
-	border-top: 33px solid transparent;
-	border-bottom: 33px solid transparent;
-	border-left: 31px solid white;
-	filter: drop-shadow(2px 0px 1px gray);
 }
 
 .member-memberList:hover {
@@ -88,7 +58,6 @@
 	transform: scaleY(1.1) scaleX(1.05);
 	font-weight: 900;
 	font-size: 30pt;
-	box-shadow: 5px 5px 20px gray;
 	z-index: 600;
 }
 
@@ -96,7 +65,6 @@
 	transform: scaleY(1.1) scaleX(1.05);
 	font-weight: 900;
 	font-size: 30pt;
-	box-shadow: 3px 3px 15px gray;
 	position: relative;
 	z-index: 500;
 }
@@ -107,7 +75,7 @@
 	flex-wrap: wrap;
 	overflow: hidden;
 	position: relative;
-	left: 18%;
+	left: 15%;
 	top: 0;
 }
 
@@ -157,16 +125,6 @@
 }
 
 .member-detail-container {
-	width: 70%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	position: absolute;
-	top: 0;
-	z-index: 100;
-}
-
-.member-detail-container2 {
 	width: 70%;
 	height: 100%;
 	display: flex;
