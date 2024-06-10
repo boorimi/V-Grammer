@@ -12,9 +12,9 @@ import java.util.List;
 import com.vg.ignore.DBManager;
 
 public class DdayDAO {
-	private String sql = "SELECT m_pk, m_name, m_debut FROM haco_member";
+	private static String sql = "SELECT m_pk, m_name, m_debut FROM haco_member";
 
-	protected Connection getConnection() {
+	protected static Connection getConnection() {
 		Connection connection = null;
 		try {
 			connection = DBManager.connect();
@@ -24,7 +24,7 @@ public class DdayDAO {
 		return connection;
 	}
 
-	public List<DdayDTO> selectAllDdays() {
+	public static List<DdayDTO> selectAllDdays() {
 		List<DdayDTO> ddayList = new ArrayList<>();
 		LocalDate currentDate = LocalDate.now();
 		try (Connection connection = getConnection();
