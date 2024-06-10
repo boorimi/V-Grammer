@@ -20,12 +20,60 @@
 <script
 	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <link rel="stylesheet" type="text/css" href="css/calendar.css">
+<style>
+	/* 추가된 CSS */
+	.button-dday {
+		background: #000;
+		color: #fff;
+		z-index: 1;
+		position: relative; /* 절대 위치 요소의 부모로 설정 */
+		padding: 10px 20px;
+		border: none;
+		cursor: pointer;
+	}
+	.button-dday:after {
+		position: absolute;
+		content: "";
+		width: 0;
+		height: 100%;
+		top: 0;
+		right: 0;
+		z-index: -1;
+		background: #e0e5ec;
+		transition: all 0.3s ease;
+	}
+	.button-dday:hover {
+		color: #000;
+	}
+	.button-dday:hover:after {
+		left: 0;
+		width: 100%;
+	}
+	.button-dday:active {
+		top: 2px;
+	}
+</style>
 </head>
 <body style="padding: 30px;">
 	<!-- calendar 태그 -->
 	<div id='calendar-container'>
 		<div id='calendar'></div>
 	</div>
+	
+	<!-- DdayC로 연결되는 버튼 -->
+	<button id="ddayButton" class="button-dday">D-Day 확인</button>
+	
 	<script src="js/calendar.js"></script>
+	
+	<!-- 추가된 스크립트 -->
+	<script>
+		$(document).ready(function() {
+			// 버튼 클릭 이벤트 핸들러
+			$('#ddayButton').click(function() {
+				// DdayC 서블릿으로 이동
+				window.location.href = 'DdayC';
+			});
+		});
+	</script>
 </body>
 </html>
