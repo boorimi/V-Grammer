@@ -6,10 +6,11 @@ $(document).ready(function() {
 	const $listContainer = $('.member-memberList-container');
 	const $detailbox = $('.member-detail');
 
+
 	$memberImgs.eq(0).addClass('show');
 	$memberList.eq(0).addClass('show');
 	let idx = 0;
-	
+
 	// 멤버별 퍼스널컬러 세팅
 	let colors = {
 		1: ['linear-gradient(to right, lightpink, rgba(255, 182, 193, 0)', 'rgba(255, 192, 203, 0.3)'],
@@ -34,28 +35,28 @@ $(document).ready(function() {
 		20: ['linear-gradient(to right, #B2E2F7, rgba(178, 226, 247, 0)', 'rgba(178, 226, 247, 0.3)'],
 		21: ['linear-gradient(to right, #BF8ADE, rgba(191, 138, 222, 0)', 'rgba(191, 138, 222, 0.2)']
 	}
-	
+
 	// 첫페이지 인덱스 pk값 1번 멤버 컬러로 노출되도록.
 	$listContainer.css('background', colors[1][0]);
 	$detailbox.css('background-color', colors[1][1]);
 
 	// 멤버리스트 클릭 시 발생되는 이벤트 함수
 	$memberList.each(function() {
-		$(this).on('click', function() {
-			$memberImgs.removeClass('show');
-			$memberList.removeClass('show');
-			idx = $(this).attr('id');
-			console.log(idx);
-			$memberImgs.eq(idx - 1).addClass('show');
-			$memberList.eq(idx - 1).addClass('show');
+			$(this).on('click', function() {
+				$memberImgs.removeClass('show');
+				$memberList.removeClass('show');
+				idx = $(this).attr('id');
+				//			console.log(idx);
+				$memberImgs.eq(idx - 1).addClass('show');
+				$memberList.eq(idx - 1).addClass('show');
 
-			// 클릭 시 마다 멤버 리스트와 디테일 박스 색상 변경
-			function setColor(idx, $listContainer, $detailbox, colors) {
-				$listContainer.css('background', colors[idx][0]);
-				$detailbox.css('background-color', colors[idx][1]);
-			}
-			setColor(idx, $listContainer, $detailbox, colors);
-		});
+				// 클릭 시 마다 멤버 리스트와 디테일 박스 색상 변경
+				function setColor(idx, $listContainer, $detailbox, colors) {
+					$listContainer.css('background', colors[idx][0]);
+					$detailbox.css('background-color', colors[idx][1]);
+				}
+				setColor(idx, $listContainer, $detailbox, colors);
+			});
 	});
 
 	// 더보기 div 감춤
@@ -69,13 +70,13 @@ $(document).ready(function() {
 		// 아니면 버튼 누르면 바로 사라지고
 		// 컨테이너 2가 transition 효과 반영되면서 올라오게??
 		$('.member-detail-container').hide();
-		$('.member-detail-container2').show();
+		$('.member-detail-container2').fadeIn(1000);
 	});
 
 	// 접기 클릭 시 더보기 div 감춤
 	$close.on('click', function() {
 		$('.member-detail-container2').hide();
-		$('.member-detail-container').show();
+		$('.member-detail-container').fadeIn(1000);
 	});
 
 	// 멤버 리스트 클릭 시 더보기 다시 접힘

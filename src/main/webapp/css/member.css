@@ -93,6 +93,7 @@
 	display: flex;
 }
 
+
 .member-backgroundImg>img {
 	width: auto;
 	height: 110%;
@@ -156,6 +157,7 @@
 	justify-content: center;
 	flex-direction: column;
 	padding: 5%;
+	font-family: "Yusei Magic", sans-serif;
 }
 
 #member-name {
@@ -204,13 +206,13 @@
 
 #member-hashtag {
 	padding-right: 3%;
-	font-weight: 600;
+/*	font-weight: 600;*/
 	text-shadow: 1.3px 1.3px rgb(151, 151, 151);
 }
 
 #member-hashtag:hover {
 	transition: transform 0.2s ease, font-size 0.2s ease;
-	transform: scale(1.2);
+	transform: scale(1.1);
 	font-weight: 600;
 }
 
@@ -323,15 +325,21 @@
 
 .member-detail-button-box {
 	display: flex;
-	height: 30px;
+	height: 60px;
 	align-items: flex-end;
 }
+.member-detail-button-box > button {
+	border-radius: 20px;
+	font-family: "Bebas Neue", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	box-shadow: 5px 5px 20px gray;
+	border: none;
+	background-color: rgba(240, 240, 240, 0.1);
+}
 
-.member-detail-open:hover {
+.member-detail-button-box > button:hover {
 	transition: transform 0.3s ease;
 	transform: scale(1.1);
 }
-.member-detail-close:hover {
-	transition: transform 0.3s ease;
-	transform: scale(1.1);
-}
+
