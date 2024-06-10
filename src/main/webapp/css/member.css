@@ -4,7 +4,6 @@
   width: 100%;
   height: 900px;
   display: flex;
-  /*overflow-y: hidden;*/
   position: relative;
 }
 
@@ -16,27 +15,28 @@
   top: 0;
   left: 0;
   z-index: 30;
-
 }
 
 .member-list-title {
-  width: 80%;
-  height: 8%;
-  display: inline-flex;
-  justify-content: center;
+  width: 100%;
+  height: 10%;
+  display: flex;
   align-items: center;
   font-size: 16pt;
   font-weight: 900;
   font-size: 35pt;
-  font-family: "Bebas Neue", sans-serif;
+  /*font-family: "Bebas Neue", sans-serif;*/
+  font-family: "Yusei Magic", sans-serif;
   position: relative;
+  padding-left: 10%;
 }
 
 .member-list-box {
   width: 100%;
-  height: 92%;
+  height: 90%;
   overflow-y: hidden;
   overflow-y: scroll;
+  font-family: "Yusei Magic", sans-serif;
 }
 /*스크롤 숨기기*/
 .member-list-box::-webkit-scrollbar {
@@ -44,25 +44,25 @@
 }
 
 .member-memberList {
-  width: 80%;
+  width: 100%;
   height: 8%;
   display: flex;
-  justify-content: center;
   align-items: center;
   font-size: 22pt;
   position: relative;
+  padding-left: 10%;
 }
 
 .member-memberList:hover {
   transition: transform 0.2s ease, font-size 0.2s ease;
-  transform: scaleY(1.1) scaleX(1.05);
+  transform: scaleY(1.1) scaleX(1.03);
   font-weight: 900;
-  font-size: 30pt;
+  font-size: 27pt;
   z-index: 600;
 }
 
 .member-memberList.show {
-  transform: scaleY(1.1) scaleX(1.05);
+  transform: scaleY(1.1) scaleX(1.03);
   font-weight: 900;
   font-size: 27pt;
   position: relative;
@@ -324,4 +324,7 @@
 #subaccount {
   background-color: black;
   color: white;
+}
+.member-detail-button-box {
+	
 }
