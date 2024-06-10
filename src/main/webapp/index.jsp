@@ -40,7 +40,6 @@
 	트위터 name : ${sessionScope.twitterName }<hr>
 	트위터 프사 url : ${sessionScope.twitterProfileImgUrl}<hr>
 	로그인 result : ${loginResult }<hr>
-	로그인된 id : ${sessionScope.accountInfo.u_id }<hr>
 	로그인된 닉네임 : ${sessionScope.accountInfo.u_nickname }<hr>
 	로그인된 id의 트위터: ${sessionScope.accountInfo.u_twitter_id}<hr><hr>
 	

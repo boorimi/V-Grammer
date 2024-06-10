@@ -323,4 +323,11 @@ public class AccountDAO {
 		return false;
 	}
 
+	public static void logout(HttpServletRequest request) {
+		HttpSession twitterLoginSession = request.getSession();
+		
+		twitterLoginSession.invalidate();		
+		
+	}
+
 }
