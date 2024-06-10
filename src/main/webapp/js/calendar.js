@@ -1,26 +1,47 @@
 $(function() {
 	loadCalendar();
-	
-	setTimeout(setBirth, 500);
+	setTimeout(callBirth, 1000);
 });
 
 
 
-function setBirth(){
+function callBirth() {
 	let title = $('.fc-toolbar-title');
 	let text = $(title).text();
-	let month = text.charAt(6);
-	
+	let month = text.charAt(5);
+
 	$.ajax({
-		url : 'CalendarEventC',
-		data : {month},
+		url: 'CalendarEventC',
+		data: { month },
 	})
-	.done(function(resData){
-		console.log(resData)
-	});
+		.done(function(resData) {
+			//		console.log(resData)
+			//		console.log('success called.')
+			setBirth(resData);
+
+
+
+		});
 }
 
-
+function setBirth(resData) {
+	const days = document.querySelectorAll(".fc-daygrid-day-number");
+	const div = document.createElement('div');
+	div.style.position = 'absolute';
+	days.forEach((day) => {
+		const date = JSON.parse(day.getAttribute("data-navlink"));
+		let top = 0;
+		let idx = 0;
+		resData.forEach((obj) => {
+			if(date.date == obj.debut){
+				console.log(idx+=16)
+				const debutDiv = day.parentNode.parentNode.appendChild(div.cloneNode(true));
+				debutDiv.innerText = obj.name;
+				debutDiv.style.top = parseInt(idx)+17 + 'px';
+			}
+		});
+	});
+};
 
 
 function loadCalendar() {
@@ -45,7 +66,7 @@ function loadCalendar() {
 		selectable: true, // 달력 일자 드래그 설정가능
 		nowIndicator: true, // 현재 시간 마크
 		dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
-		locale: 'ko', // 한국어 설정
+		locale: 'ja', // 한국어 설정
 		eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
 			console.log(obj);
 		},
