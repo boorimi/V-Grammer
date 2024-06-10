@@ -17,6 +17,7 @@ public class HC extends HttpServlet {
 		
 		AccountDAO.loginCheck(request);
 		HomeDAO.HDAO.getStreamId(request);
+		HomeDAO.HDAO.getRecommendVtuber(request);
 //		GetAllStream.getAllLive();
 		request.setAttribute("content", "mainpage/main.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

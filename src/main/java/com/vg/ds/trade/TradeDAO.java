@@ -109,7 +109,6 @@ public class TradeDAO {
 			
 			
 			request.setAttribute("trades", trades);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
