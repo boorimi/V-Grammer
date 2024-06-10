@@ -47,8 +47,8 @@ prefix="c" %>
         <c:forEach items="${streamIds }" var="s">
           <div class="live-content">
             <iframe
-              width="560"
-              height="315"
+              width="960"
+              height="540"
               src="https://www.youtube.com/embed/${s.address }"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -84,8 +84,8 @@ prefix="c" %>
            </div>
           <div class="today-vtuber-archive">
           <iframe
-              width="560"
-              height="315"
+              width="480"
+              height="270"
               src="https://www.youtube.com/embed/${recommendVtuber[0].videoId }"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

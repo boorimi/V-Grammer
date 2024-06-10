@@ -18,9 +18,10 @@ public class ArchiveUpdateC extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("utf-8");
 		ArchiveDAO.UpdateArchive(request);
-		request.setAttribute("content", "archive/archiveupdate.jsp");
+		ArchiveDAO.selectAllArchive(request);
+		request.setAttribute("content", "archive/archive.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	
 	}
