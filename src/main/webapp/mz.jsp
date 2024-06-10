@@ -86,7 +86,7 @@ form button:hover {
   background-color: #007B9E;
 }
 
-/* Close modal on background click */
+
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.6);
   animation: backdropFadeIn 0.5s;

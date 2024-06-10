@@ -24,8 +24,11 @@ pageEncoding="UTF-8"%>
         <div class="my-page">マイページ</div>
       </div>
     </nav>
+    
     <jsp:includ>
     <div class="live-members"></div>
     </jsp:includ>
+    
+    <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>

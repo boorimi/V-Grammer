@@ -21,33 +21,59 @@
             
             <div class="archive-collabo">
                 <div>コラボ</div>
-               <%--  <input type="text" name="collabo" value="${archive.a_collabo}"> --%>
                 <select name="collabo">
-    				<option value="yes">Yes</option>
-   					 <option value="no">No</option>
-  				</select>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
             </div>
             
             <div class="archive-collabomember">
                 <div>コラボメンバー</div>
-                <input type="text" name="collabomember" value="${archive.a_collabomember}">
+                <div class="modal-button-wrapper">
+                    <button class="openModalButton" type="button">${archive.a_collabomember}</button>
+                    <div class="dialog-container">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <form class="form-container" id="checkboxForm">
+                                <p>Select your options:</p>
+                                <label><input type="checkbox" name="option1" value="Option 1"> Option 1</label>
+                                <label><input type="checkbox" name="option2" value="Option 2"> Option 2</label>
+                                <label><input type="checkbox" name="option3" value="Option 3"> Option 3</label>
+                                <label><input type="checkbox" name="option4" value="Option 4"> Option 4</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <label><input type="checkbox" name="option5" value="Option 5"> Option 5</label>
+                                <!-- Add more checkboxes if needed -->
+                                <button type="button" class="submitButton">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="archive-category">
                 <div>カテゴリー</div>
                 <select name="category">
-    				<option value="雑談">雑談</option>
-   					 <option value="歌枠">歌枠</option>
-   					 <option value="企画">企画</option>
-   					 <option value="ASMR">ASMR</option>
-   					 <option value="歌みた">歌みた</option>
-   					 <option value="shorts">shorts</option>
-   					 <option value="切り抜き">切り抜き</option>
-   					 <option value="オリジナル曲">オリジナル曲</option>
-   					 <option value="他">他</option>
-   					 
-   					 
-   					 
-  				</select>
+                    <option value="雑談">雑談</option>
+                    <option value="歌枠">歌枠</option>
+                    <option value="企画">企画</option>
+                    <!-- Add more options if needed -->
+                </select>
             </div>
             <div class="archive-date">${archive.a_date}</div>
             <div class="archive-time">${archive.a_time}</div>
@@ -60,7 +86,40 @@
     </form>
 </c:forEach>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var openModalButtons = document.querySelectorAll(".openModalButton");
+    var closeButtons = document.querySelectorAll(".dialog-container .close");
+    var submitButtons = document.querySelectorAll(".submitButton");
+
+    openModalButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            var modal = this.closest(".archive-collabomember").querySelector(".dialog-container");
+            modal.classList.add("open");
+        });
+    });
+
+    closeButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            var modal = this.closest(".dialog-container");
+            modal.classList.remove("open");
+        });
+    });
+
+    submitButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            var form = this.closest(".form-container");
+            var selectedOptions = [];
+            var checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach(function(checkbox) {
+                selectedOptions.push(checkbox.value);
+            });
+            alert("Selected options: " + selectedOptions.join(", "));
+            var modal = this.closest(".dialog-container");
+            modal.classList.remove("open");
+        });
+    });
+});
+</script>
 </body>
 </html>
-
-
