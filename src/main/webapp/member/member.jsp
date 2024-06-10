@@ -60,10 +60,8 @@
 								</div>
 							</div>
 							<div class="member-detail-button-box">
-								<div class="member-detail-open">
-								<span>もっと見る</span>
-								</div>
-							</div>
+								<button class="member-detail-open">▶もっと見る</button>
+							</div>　
 						</div>
 					</div>
 
@@ -110,9 +108,7 @@
 								</div>
 							</div>
 							<div class="member-detail-button-box">
-								<div class="member-detail-close">
-								<span>戻る</span>
-								</div>
+								<button class="member-detail-close">▶ 戻る</button>
 							</div>
 						</div>
 					</div>
