@@ -62,13 +62,32 @@
                     <option value="no">No</option>
                 </select>
             </div>
-            
-            <div class="archive-collabomember">
-                <div>コラボメンバー</div>
+             <div class="archive-collabomember">
+             <div>コラボメンバー</div>
                 <button type="button" class="openModalButton">${archive.a_collabomember}</button>
+            </div>
+            <div class="archive-category">
+                <div>カテゴリー</div>
+                <select name="category">
+                    <option value="雑談">雑談</option>
+                    <option value="歌枠">歌枠</option>
+                </select>
+            </div>
+            <div class="archive-date">${archive.a_date}</div>
+            <div class="archive-time">${archive.a_time}</div>
+            <div class="archive-title">Title: ${archive.a_title}</div>
+            <div class="archive-thumbnail">
+                <img src="${archive.a_thumbnail}" alt="${archive.a_title} Thumbnail">
+            </div>
+            <button type="submit">수정</button>
+        </div>
+    </form>
+</c:forEach>
+
+              
                 <div class="dialog-container" id="myModal">
                     <div class="modal-content">
-                        <span class="close">&times;</span>
+                        <span id="close">&times;</span>
                         <div id="checkboxForm" class="form-container">
                             <p>Select your options:</p>
                             <label><input type="checkbox" name="七彩てまり" value="七彩てまり"> 七彩てまり</label><br>
@@ -97,54 +116,35 @@
                             <label><input type="checkbox" name="山寧恋" value="山寧恋"> 山寧恋</label><br>
                             <label><input type="checkbox" name="翠森アトリ" value="翠森アトリ"> 翠森アトリ</label><br>
                             
-                            <button type="button" class="submitButton">Submit</button>
+                            <button type="button" id="submitButton">apply</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="archive-category">
-                <div>カテゴリー</div>
-                <select name="category">
-                    <option value="雑談">雑談</option>
-                    <option value="歌枠">歌枠</option>
-                </select>
-            </div>
-            <div class="archive-date">${archive.a_date}</div>
-            <div class="archive-time">${archive.a_time}</div>
-            <div class="archive-title">Title: ${archive.a_title}</div>
-            <div class="archive-thumbnail">
-                <img src="${archive.a_thumbnail}" alt="${archive.a_title} Thumbnail">
-            </div>
-            <button type="submit">수정</button>
-        </div>
-    </form>
-</c:forEach>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     var openModalButtons = document.querySelectorAll(".openModalButton");
-    var closeButtons = document.querySelectorAll(".dialog-container .close");
-    var submitButtons = document.querySelectorAll(".submitButton");
-
+    var closeButton = document.querySelector("#close");
+    var submitButton = document.querySelector("#submitButton");
+    let activeBtn;
     openModalButtons.forEach(function(button) {
         button.addEventListener("click", function(event) {
             event.preventDefault();
-            var modal = this.nextElementSibling;
+            activeBtn = event.target;
+            console.log(activeBtn);
+            var modal = document.querySelector("#myModal");
             modal.style.display = "block";
         });
     });
 
-    closeButtons.forEach(function(button) {
-        button.addEventListener("click", function(event) {
+
+    	closeButton.addEventListener("click", function(event) {
             event.preventDefault();
             var modal = this.closest(".dialog-container");
             modal.style.display = "none";
         });
-    });
 
-    submitButtons.forEach(function(button) {
-        button.addEventListener("click", function(event) {
+    	submitButton.addEventListener("click", function(event) {
             event.preventDefault();
             console.log("Submit button clicked");
             var form = this.closest(".dialog-container").querySelector(".form-container");
@@ -153,16 +153,16 @@ document.addEventListener("DOMContentLoaded", function() {
             checkboxes.forEach(function(checkbox) {
                 selectedOptions.push(checkbox.value);
             });
-            alert("Selected options: " + selectedOptions.join(", "));
-            var parentForm = form.closest("form");
-            var hiddenInput = document.createElement("input");
-            hiddenInput.type = "hidden";
-            hiddenInput.name = "selectedOptions";
-            hiddenInput.value = selectedOptions.join("!");
-            parentForm.appendChild(hiddenInput);
-            parentForm.submit();
+            console.log(activeBtn);
+            console.log(selectedOptions)
+            activeBtn.innerText = selectedOptions.join(", ");
+            
+            document.querySelectorAll("#checkboxForm input[type='checkbox']:checked").forEach((chkInput)=>{
+            	chkInput.checked = false;
+            });
+            
+            closeButton.click();
         });
-    });
 });
 </script>
 
