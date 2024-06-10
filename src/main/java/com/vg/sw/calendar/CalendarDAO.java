@@ -54,7 +54,5 @@ public class CalendarDAO {
             DBManager.close(conn, pstmt, rs);
         }
 
-        out.print(events.toString());
-        out.flush();
     }
 }
