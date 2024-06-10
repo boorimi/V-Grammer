@@ -45,27 +45,26 @@ public class AccountDAO {
 
 		// 사진받을 준비
 		String path = request.getServletContext().getRealPath("account/profileImg");
-		System.out.println("프로필사진 경로: "+path);
-		
-		// 파일처리
-		MultipartRequest mr = new MultipartRequest(request, path, 1024 * 1024 * 10, "utf-8",
-				new DefaultFileRenamePolicy());
-
-		// 회원가입시 입력한 값 받아오기
-		String inputNickname = mr.getParameter("register-input-nickname");
-		String inputImgfile = mr.getFilesystemName("register-input-imgfile");
-
-		// 이미지를 등록하지 않았을 경우 자동으로 트위터 기본이미지 설정
-		if (inputImgfile == null) {
-			inputImgfile = twitterProfileImgUrl;
-		}
-
-		System.out.println("DB에 들어갈 닉네임 값: "+ inputNickname);
-		System.out.println("DB에 들어갈 이미지파일 경로: "+inputImgfile);
-
-		String sql = "INSERT INTO haco_user values(?, ?, ?)";
-
+		System.out.println("프로필사진 경로: " + path);
 		try {
+
+			// 파일처리
+			MultipartRequest mr = new MultipartRequest(request, path, 1024 * 1024 * 10, "utf-8",
+					new DefaultFileRenamePolicy());
+
+			// 회원가입시 입력한 값 받아오기
+			String inputNickname = mr.getParameter("register-input-nickname");
+			String inputImgfile = mr.getFilesystemName("register-input-imgfile");
+
+			// 이미지를 등록하지 않았을 경우 자동으로 트위터 기본이미지 설정
+			if (inputImgfile == null) {
+				inputImgfile = twitterProfileImgUrl;
+			}
+
+			System.out.println("DB에 들어갈 닉네임 값: " + inputNickname);
+			System.out.println("DB에 들어갈 이미지파일 경로: " + inputImgfile);
+
+			String sql = "INSERT INTO haco_user values(?, ?, ?)";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
