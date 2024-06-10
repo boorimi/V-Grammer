@@ -57,7 +57,7 @@ function loadCalendar() {
 		headerToolbar: {
 			left: 'prev,next today',
 			center: 'title',
-			right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+			/*right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'*/
 		},
 		initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
 		//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
