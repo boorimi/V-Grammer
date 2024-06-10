@@ -24,7 +24,7 @@ public class ScheduleDAO {
 		}
 	}
 	
-	public static void insertSchedule(HttpServletRequest request) {
+	public void insertSchedule(HttpServletRequest request) {
 		
 		PreparedStatement pstmt = null;
 
