@@ -14,6 +14,7 @@ public class RegisterC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Register컨트롤러 get진입");
+		AccountDAO.loginCheck(request);
 		request.setAttribute("content", "account/register/register_page.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
@@ -22,6 +23,7 @@ public class RegisterC extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {		
 		System.out.println("Register컨트롤러 post진입");
+		AccountDAO.loginCheck(request);
 		request.setCharacterEncoding("utf-8");
 		AccountDAO.registerUser(request);
 		request.setAttribute("content", "mainpage/main.jsp");
