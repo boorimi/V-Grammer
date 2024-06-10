@@ -26,6 +26,21 @@
 	<div id='calendar-container'>
 		<div id='calendar'></div>
 	</div>
+	
+	<!-- DdayC로 연결되는 버튼 -->
+	<button id="ddayButton" class="button-dday">D-Day 확인</button>
+	
 	<script src="js/calendar.js"></script>
+	
+	<!-- 추가된 스크립트 -->
+	<script>
+		$(document).ready(function() {
+			// 버튼 클릭 이벤트 핸들러
+			$('#ddayButton').click(function() {
+				// DdayC 서블릿으로 이동
+				window.location.href = 'DdayC';
+			});
+		});
+	</script>
 </body>
 </html>

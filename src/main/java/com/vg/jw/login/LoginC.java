@@ -13,21 +13,29 @@ import com.vg.jw.AccountDAO;
 public class LoginC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("로그인 컨트롤러 get 진입");
+		AccountDAO.loginCheck(request);
+		// 등록됐는지 체크해서
 		
-		request.setAttribute("content", "account/login/login_page.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-				
+		System.out.println("회원정보 등록됐나 확인 완료");
+		if (AccountDAO.registerCheck(request)) {
+			System.out.println("LoginC에서 유저 등록 확인함");
+			response.sendRedirect("HC"); // true반환시 메인페이지로
+		} else {
+			System.out.println("LoginC에서 유저 미등록 확인, 등록페이지로");
+			response.sendRedirect("RegisterC"); // false반환시 등록페이지로
+		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("로그인 컨트롤러 post 진입");
+		System.out.println("로그인 컨트롤러 post진입");
+		AccountDAO.loginCheck(request);
 		
-		AccountDAO.login(request);
-		request.setAttribute("content", "mainpage/main.jsp");
+		System.out.println("로컨 post에서 logincheck완료");
+		request.setAttribute("content", "account/login/login_page.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
-		
 	}
 
 }

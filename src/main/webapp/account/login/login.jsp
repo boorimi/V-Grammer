@@ -9,8 +9,8 @@
 
 <!-- index.jsp에 include할 페이지 -->
 <body>
-	<form action="LoginC">
-		<button>ハコナカ㋮ login</button>
+	<form action="LoginC" method="post">
+		<button>login 페이지로</button>
 	</form>
 </body>
 </html>

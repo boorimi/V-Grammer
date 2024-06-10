@@ -86,7 +86,7 @@ form button:hover {
   background-color: #007B9E;
 }
 
-/* Close modal on background click */
+
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.6);
   animation: backdropFadeIn 0.5s;
@@ -105,8 +105,6 @@ dialog::backdrop {
 <body>
 
 <button id="openModal">Open Modal</button>
-
-
 <dialog id="myModal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -140,7 +138,9 @@ dialog::backdrop {
       <button type="submit">Submit</button>
     </form>
   </div>
-</dialog><script type="text/javascript">
+</dialog>
+
+<script type="text/javascript">
 //Get the modal
 var modal = document.getElementById("myModal");
 

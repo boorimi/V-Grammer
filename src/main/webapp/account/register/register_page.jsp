@@ -9,10 +9,7 @@
 <body>
 	<form action="RegisterC" method="post" enctype="multipart/form-data">
 		<div>
-			Hakonaka ID <input name="register-input-id">
-		</div>
-		<div>
-			Hakonaka PW <input name="register-input-pw">
+			<img alt="" src="${sessionScope.twitterProfileImgUrl }">
 		</div>
 		<div>
 			Nickname <input name="register-input-nickname">
@@ -24,7 +21,9 @@
 			profile img : <input type="file" name="register-input-file" />
 		</div>
 
-	<div><button>ようこそ！Hakonakaへ！</button> </div>
+		<div>
+			<button>ようこそ！Hakonakaへ！</button>
+		</div>
 	</form>
 </body>
 </html>
