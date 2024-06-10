@@ -5,23 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- Google font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+	rel="stylesheet">
+
 <link rel="stylesheet" href="css/member.css" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous">
+	
 </script>
 <script type="text/javascript" src="js/member.js" defer></script>
 </head>
 <body>
 	<div class="member-container">
 		<div class="member-memberList-container">
-			<div class="member-list">Members</div>
-			<c:forEach var="m" items="${members }" begin="0">
-				<div class="member-memberList" id="${m.m_pk }">${m.m_name }
-				<%-- <input type="hidden" name="member_pk" value="${m.m_pk }"> --%>
-				</div>
-			</c:forEach>
+			<div class="member-list-title">Members</div>
+			<div class="member-list-box">
+				<c:forEach var="m" items="${members }">
+					<div class="member-memberList" id="${m.m_pk }">${m.m_name }</div>
+				</c:forEach>
+			</div>
 		</div>
 		<div class="member-img-container">
 			<c:forEach items="${members }" var="m">
@@ -29,20 +38,70 @@
 					<img src="haco_img/background/${m.i_background }">
 					<div class="member-detail-container">
 						<div class="member-detail">
-							<div class="member-name">名前： ${m.m_name }</div>
-							<div class="member-birth">お誕生日： ${m.m_birth }</div>
-							<div class="member-debut">デビュー日： ${m.m_debut }</div>
-							<div class="member-link-icon">
-								<div id="member-twitter"><a href="${m.address[0].a_address }">visit</a></div>
-								<div id="member-youtube">${m.address[1].a_address }</div>
-								<div id="member-tictok"></div>
+							<div id="member-name">${m.m_name }</div>
+							<div id="member-birth">
+								<span>お誕生日&nbsp;</span><span>${m.m_birth }</span>
 							</div>
-							<details>
-								<summary>더보기..</summary>
-								<div>自己紹介<br></div>
-								<div>ママは<br></div>
-								<div>ハッシュタグ<br></div>
-							</details>
+							<div id="member-debut">
+								<span>デビュー日&nbsp;</span><span>${m.m_debut }</span>
+							</div>
+							<div class="member-address-container">
+								<div id="member-address-title">-アドレス-</div>
+								<div class="member-address-box">
+									<c:forEach items="${m.address }" var="a" begin="0" end="2">
+										<div id="${a.a_category }">
+											<a href="${a.a_address }">${a.a_category }</a>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<button class="member-detail-open">더보기</button>
+						</div>
+					</div>
+
+					<!-- 상세보기 div -->
+					<div class="member-detail-container2">
+						<div class="member-detail">
+							<div id="member-name">${m.m_name }</div>
+							<div id="member-birth">
+								<span>お誕生日&nbsp;</span><span>${m.m_birth }</span>
+							</div>
+							<div id="member-debut">
+								<span>デビュー日&nbsp;</span><span>${m.m_debut }</span>
+							</div>
+								<div class="member-detail2-box">
+									<div class="member-introduce-box">
+										<div id="member-introduce">${m.m_introduce }</div>
+									</div>
+									<div class="member-mother-box">
+										<div id="member-mother-name">
+											<span>彼女のママは、</span> <span><a
+												href="${m.m_mother_twitter }">${m.m_mother_name }</a></span>
+										</div>
+									</div>
+									<div class="member-hashtag-container">
+										<div id="member-hashtag-title">-ハッシュタグ-</div>
+										<div class="member-hashtag-box">
+											<c:forEach items="${m.hashTag }" var="h">
+												<div id="member-hashtag">
+													<a href="https://x.com/search?q=${h.h_tag }">
+														${h.h_category }</a>
+												</div>
+											</c:forEach>
+										</div>
+									</div>
+								</div>
+							<div class="member-address-container">
+								<div id="member-address-title">-アドレス-</div>
+								<div class="member-address-box">
+									<c:forEach items="${m.address }" var="a">
+										<div id="${a.a_category }">
+											<a href="${a.a_address }">${a.a_category }</a>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<button class="member-detail-close">접기</button>
 						</div>
 					</div>
 					<div class="member-img-box">

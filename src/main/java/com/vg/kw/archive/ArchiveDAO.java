@@ -50,6 +50,11 @@ public class ArchiveDAO {
 
                 String title = (String) snippet.get("title");
                 String publishedAt = (String) snippet.get("publishedAt");
+                JSONObject resourceId = (JSONObject) snippet.get("resourceId");
+                
+                String videoId = (String) resourceId.get("videoId");
+                System.out.println(videoId);
+//                System.out.println(resourceId);
                 
                 // Published At에서 날짜와 시간 분리
                 String[] dateTime = publishedAt.split("T");
@@ -93,7 +98,8 @@ public class ArchiveDAO {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql  = "SELECT * FROM haco_archive";
+        String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi\n"
+        		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk";
         try {
             con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
@@ -111,7 +117,9 @@ public class ArchiveDAO {
                 archive.setA_category(rs.getString(7));
                 archive.setA_title(rs.getString(8));
                 archive.setA_thumbnail(rs.getString(9));
-                
+                archive.setA_videoid(rs.getString(10));
+                archive.setM_name(rs.getString(11));
+                archive.setI_icon(rs.getString(12));
                 archives.add(archive);
                 
             }
@@ -123,4 +131,59 @@ public class ArchiveDAO {
             DBManager.close(con, pstmt, rs);
         }
     }
+
+    public static void UpdateArchive(HttpServletRequest request) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        // Get parameters from request
+        String collabo = request.getParameter("collabo");
+        String collabomember = request.getParameter("collabomember");
+        String category = request.getParameter("category");
+        String a_pk = request.getParameter("a_pk"); // Unique identifier
+
+        // Validate that necessary parameters are not null or empty
+        if (collabo == null || collabomember == null || category == null || a_pk == null) {
+            System.out.println("One or more parameters are missing.");
+            return;
+        }
+
+        // Construct the SQL query
+        String sql = "UPDATE haco_archive ha " +
+                     "JOIN haco_member hm ON ha.a_m_pk = hm.m_pk " +
+                     "JOIN haco_image hi ON hi.i_m_pk = hm.m_pk " +
+                     "SET ha.a_collabo = ?, " +
+                     "    ha.a_collabomember = ?, " +
+                     "    ha.a_category = ? " +
+                     "WHERE ha.a_pk = ?";  // Unique condition
+
+        try {
+            // Connect to the database
+            con = DBManager.connect();
+            // Prepare the SQL statement
+            pstmt = con.prepareStatement(sql);
+            // Set the parameters
+            pstmt.setString(1, collabo);
+            pstmt.setString(2, collabomember);
+            pstmt.setString(3, category);
+            pstmt.setString(4, a_pk); // Set the unique title
+
+            // Execute the update
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Update successful. Rows updated: " + rowsUpdated);
+            } else {
+                System.out.println("No rows updated. Check your condition.");
+            }
+        } catch (SQLException e) {
+            // Handle SQL exception
+            e.printStackTrace();
+        } finally {
+            // Close the database resources
+            DBManager.close(con, pstmt, null);
+        }
+    }
+
+
+
 }

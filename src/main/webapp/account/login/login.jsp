@@ -6,10 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
 
-	<form action="TwitterLoginServlet">	
-		<input type="image" src="login/button_img/twitter-login.png">
+<!-- index.jsp에 include할 페이지 -->
+<body>
+	<form action="LoginC">
+		<button>ハコナカ㋮ login</button>
 	</form>
 </body>
 </html>
