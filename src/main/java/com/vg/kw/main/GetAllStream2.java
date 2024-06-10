@@ -1,8 +1,12 @@
 package com.vg.kw.main;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServletRequest;
 
 import org.openqa.selenium.By;
@@ -15,69 +19,43 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.vg.ignore.DBManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-@WebListener
-public class GetAllStream implements ServletContextListener {
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.auth.oauth2.Credential.Builder;
+import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
+import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
+import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.YouTubeScopes;
+import com.google.api.services.youtube.model.LiveBroadcastListResponse;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Collections;
+
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.services.youtube.model.LiveBroadcast;
+
+import java.security.GeneralSecurityException;
+import java.util.List;
+
+public class GetAllStream2 {
+
+	private static final String CLIENT_SECRETS = "C:\\kds\\client_secret.json";
+	private static final Collection<String> SCOPES = Collections.singletonList(YouTubeScopes.YOUTUBE_READONLY);
+	private static final String APPLICATION_NAME = "Your Application Name";
+	private static final String API_KEY = "AIzaSyBzwtozuKqzf_5_3G8r17ZFntNFxBSwOu8"; // 여기에 API 키를 넣어주세요
+	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+
 	private ScheduledExecutorService executorService;
-
-	@Override
-	public void contextInitialized(ServletContextEvent sce) {
-		executorService = Executors.newSingleThreadScheduledExecutor();
-
-		Runnable task = () -> {
-			try {
-				getLiveUrl(null); // 인자는 null로 전달하거나 필요한 객체를 전달하세요.
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		};
-
-		// 현재 시간에서 가장 가까운 05분과 35분까지의 초기 지연 시간을 계산
-		long initialDelay = calculateInitialDelay();
-
-		// 매 시간의 05분과 35분에 작업 반복 실행
-		executorService.scheduleAtFixedRate(task, initialDelay, TimeUnit.HOURS.toMillis(1), TimeUnit.MILLISECONDS);
-	}
-
-	@Override
-	public void contextDestroyed(ServletContextEvent sce) {
-		if (executorService != null && !executorService.isShutdown()) {
-			executorService.shutdown();
-		}
-	}
-
-	private long calculateInitialDelay() {
-		Calendar calendar = Calendar.getInstance();
-		int minute = calendar.get(Calendar.MINUTE);
-
-		// 현재 시간에서 가장 가까운 다음 05분 또는 35분까지의 시간을 계산
-		if (minute < 5) {
-			// 다음 05분까지의 시간 계산
-			calendar.set(Calendar.MINUTE, 5);
-		} else if (minute < 35) {
-			// 다음 35분까지의 시간 계산
-			calendar.set(Calendar.MINUTE, 35);
-		} else {
-			// 다음 시간의 05분까지의 시간 계산
-			calendar.add(Calendar.HOUR_OF_DAY, 1);
-			calendar.set(Calendar.MINUTE, 5);
-		}
-
-		// 초기 지연 시간 계산
-		long initialDelay = calendar.getTimeInMillis() - System.currentTimeMillis();
-		if (initialDelay < 0) {
-			initialDelay += TimeUnit.HOURS.toMillis(1); // 다음 시간으로 설정
-		}
-		return initialDelay;
-	}
 
 	public static void getLiveUrl(HttpServletRequest request) {
 
@@ -171,7 +149,7 @@ public class GetAllStream implements ServletContextListener {
 						if (pstmt.executeUpdate() == 1) {
 							System.out.println("새로운 라이브 감지. 데이터 삭제 성공");
 						}
-
+						
 						sql3 = "insert into haco_currentlivestream values ";
 						sql3 += "(null,?,?)";
 
@@ -184,7 +162,7 @@ public class GetAllStream implements ServletContextListener {
 						if (pstmt.executeUpdate() == 1) {
 							System.out.println("새로운 방송 시작. 입력 성공.");
 						}
-
+						
 					} else {
 						System.out.println("이미 자료가 있음(갱신X)");
 					}
@@ -217,4 +195,34 @@ public class GetAllStream implements ServletContextListener {
 			driver.quit();
 		}
 	}
+
+	public static void getLiveUrl2(Object object) throws IOException {
+
+		// Build and authorize the YouTube API client
+		final NetHttpTransport httpTransport = new NetHttpTransport();
+		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new FileReader(CLIENT_SECRETS));
+		GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY,
+				clientSecrets, SCOPES).setDataStoreFactory(new FileDataStoreFactory(new java.io.File("tokens")))
+				.setAccessType("offline").build();
+		LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8080).build();
+		Credential credential = new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
+
+		// Build the YouTube service
+		YouTube youtubeService = new YouTube.Builder(httpTransport, JSON_FACTORY, credential)
+				.setApplicationName(APPLICATION_NAME).build();
+
+		// Fetch live stream info
+		YouTube.LiveBroadcasts.List request = youtubeService.liveBroadcasts().list("snippet,contentDetails,status")
+				.setBroadcastStatus("all");
+		LiveBroadcastListResponse response = request.execute();
+		System.out.println(response);
+
+		response.getItems().forEach(broadcast -> {
+			System.out.println("Title: " + broadcast.getSnippet().getTitle());
+			System.out.println("Description: " + broadcast.getSnippet().getDescription());
+			System.out.println("Scheduled Start Time: " + broadcast.getSnippet().getScheduledStartTime());
+		});
+
+	}
+
 }
