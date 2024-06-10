@@ -49,8 +49,8 @@ prefix="c" %>
         <!--  테스트용 방송 페이지 -->
         <div class="live-content">
           <iframe
-            width="560"
-            height="315"
+            width="960"
+            height="540"
             src="https://www.youtube.com/embed/Rh35Zq-vTW8"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

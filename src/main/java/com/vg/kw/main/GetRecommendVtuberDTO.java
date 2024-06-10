@@ -2,6 +2,7 @@ package com.vg.kw.main;
 
 public class GetRecommendVtuberDTO {
 
+	private String pk;
 	private String archive_pk;
 	private String address_pk;
 	private String m_pk;
@@ -16,9 +17,21 @@ public class GetRecommendVtuberDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GetRecommendVtuberDTO(String archive_pk, String address_pk, String m_pk, String category, String address,
-			String title, String videoId, String icon, String name) {
+	
+	public String getPk() {
+		return pk;
+	}
+
+
+	public void setPk(String pk) {
+		this.pk = pk;
+	}
+
+
+	public GetRecommendVtuberDTO(String pk, String archive_pk, String address_pk, String m_pk, String category,
+			String address, String title, String videoId, String icon, String name) {
 		super();
+		this.pk = pk;
 		this.archive_pk = archive_pk;
 		this.address_pk = address_pk;
 		this.m_pk = m_pk;
@@ -29,6 +42,7 @@ public class GetRecommendVtuberDTO {
 		this.icon = icon;
 		this.name = name;
 	}
+
 
 	public String getName() {
 		return name;
@@ -102,11 +116,13 @@ public class GetRecommendVtuberDTO {
 		this.videoId = videoId;
 	}
 
+
 	@Override
 	public String toString() {
-		return "GetRecommendVtuberDTO [archive_pk=" + archive_pk + ", address_pk=" + address_pk + ", m_pk=" + m_pk
-				+ ", category=" + category + ", address=" + address + ", title=" + title + ", videoId=" + videoId
-				+ ", icon=" + icon + ", name=" + name + "]";
+		return "GetRecommendVtuberDTO [pk=" + pk + ", archive_pk=" + archive_pk + ", address_pk=" + address_pk
+				+ ", m_pk=" + m_pk + ", category=" + category + ", address=" + address + ", title=" + title
+				+ ", videoId=" + videoId + ", icon=" + icon + ", name=" + name + "]";
 	}
+
 
 }

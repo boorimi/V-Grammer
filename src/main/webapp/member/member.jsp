@@ -5,21 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/member.css" />
 <!-- Google font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 	rel="stylesheet">
-
-<link rel="stylesheet" href="css/member.css" />
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-	crossorigin="anonymous">
-	
-</script>
+	crossorigin="anonymous"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script type="text/javascript" src="js/member.js" defer></script>
 </head>
 <body>
@@ -50,7 +46,7 @@
 								<div class="member-address-box">
 									<c:forEach items="${m.address }" var="a" begin="0" end="2">
 										<div id="${a.a_category }">
-											<a href="${a.a_address }">${a.a_category }</a>
+											<a href="${a.a_address }" target="_blank">${a.a_category }</a>
 										</div>
 									</c:forEach>
 								</div>
@@ -76,7 +72,7 @@
 									<div class="member-mother-box">
 										<div id="member-mother-name">
 											<span>彼女のママは、</span> <span><a
-												href="${m.m_mother_twitter }">${m.m_mother_name }</a></span>
+												href="${m.m_mother_twitter }" target="_blank">${m.m_mother_name }</a></span>
 										</div>
 									</div>
 									<div class="member-hashtag-container">
@@ -84,7 +80,7 @@
 										<div class="member-hashtag-box">
 											<c:forEach items="${m.hashTag }" var="h">
 												<div id="member-hashtag">
-													<a href="https://x.com/search?q=${h.h_tag }">
+													<a href="https://x.com/search?q=${h.h_tag }" target="_blank">
 														${h.h_category }</a>
 												</div>
 											</c:forEach>
@@ -96,7 +92,7 @@
 								<div class="member-address-box">
 									<c:forEach items="${m.address }" var="a">
 										<div id="${a.a_category }">
-											<a href="${a.a_address }">${a.a_category }</a>
+											<a href="${a.a_address }" target="_blank">${a.a_category }</a>
 										</div>
 									</c:forEach>
 								</div>
