@@ -12,6 +12,7 @@
 			ログイン成功!<br> ${sessionScope.twitterScreenName}様、<br>
 			ようこそハコナカへ
 		</div>
+		<div class="my-page"><button>マイページ</button></div>
 		<div><button>로그아웃</button></div>
 	</form>
 </body>
