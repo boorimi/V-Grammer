@@ -7,20 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="LoginC" method="post">
-		<div>
-			Hakonaka ID : <input name="login-input-id"> <br>
-			Hakonaka PW : <input name="login-input-pw">
-		</div>
-		<div>
-			<button>ハコナカ㋮ login</button>
-		</div>
-	</form>
-
-
-
+	
 	<form action="TwitterLoginServlet">
-		<button>회원가입 with X</button>
+		<button>Start with X</button>
 	</form>
+
 </body>
 </html>

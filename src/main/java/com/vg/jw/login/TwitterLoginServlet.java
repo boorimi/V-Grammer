@@ -18,8 +18,8 @@ public class TwitterLoginServlet extends HttpServlet {
 	// 에서 키 정보 확인 가능
 	// KEY, URL은 필드에 정의
 	// CONSUMER = 기능을 사용하는 hakonaka 사이트
-	private static final String CONSUMER_KEY = "Gyf9IQ3j5DmsQMMXFXqTv7ijm";
-	private static final String COUNSUMER_SECRET = "qYaK7mo8kL70L5yXNl5Oe8ViueSEMEqPS4MfjDzDUDDU4mt1QJ";
+	private static final String CONSUMER_KEY = "c7X647iwEHvSF8Eu4CIRulro0";
+	private static final String COUNSUMER_SECRET = "T4Pof1honeCyrvNhuEnR0Pel1fcRreSzkqQqx6a2YFNI2NELcF";
 
 	// 로그인 완료 후 호출될 URL
 	private static final String CALLBACK_URL = "http://localhost/V-Grammer/TwitterCallbackServlet";
