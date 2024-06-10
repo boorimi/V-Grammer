@@ -1,6 +1,6 @@
 package com.vg.sw.calendar;
 
-public class Calendar {
+public class CalendarDTO {
 	private int id;
 	private String groupId;
 	private String title;
