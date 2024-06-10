@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GetAllStreamC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		GetAllStream.getAllLive();
+//		GetAllStream2.getAllLive();
 		response.sendRedirect("Announcement");
 	}
 

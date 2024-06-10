@@ -69,13 +69,16 @@ public class HomeDAO {
 		
 		try {
 
-			String  sql = "SELECT ar.a_pk, ad.*, ar.a_title, ar.a_videoid, im.i_icon, m.m_name ";
-					sql += "FROM haco_address ad ";
-					sql += "JOIN haco_archive ar ON ar.a_m_pk = ad.a_m_pk ";
-					sql += "JOIN haco_member m ON m.m_pk = ar.a_m_pk ";
-					sql += "JOIN haco_image im On im.i_m_pk = m.m_pk ";
-					sql += "JOIN ( SELECT a_pk FROM haco_archive ORDER BY RAND() LIMIT 1 ) ra ON ar.a_pk = ra.a_pk";
+//			String  sql = "SELECT ar.a_pk, ad.*, ar.a_title, ar.a_videoid, im.i_icon, m.m_name ";
+//					sql += "FROM haco_address ad ";
+//					sql += "JOIN haco_archive ar ON ar.a_m_pk = ad.a_m_pk ";
+//					sql += "JOIN haco_member m ON m.m_pk = ar.a_m_pk ";
+//					sql += "JOIN haco_image im On im.i_m_pk = m.m_pk ";
+//					sql += "JOIN ( SELECT a_pk FROM haco_archive ORDER BY RAND() LIMIT 1 ) ra ON ar.a_pk = ra.a_pk";
+//					sql += "where not ad.a_category = 'YchannelID' and not ad.a_category = 'YuploadPLID'";
 
+			String sql = "select * from haco_recommendvtuber";
+			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -83,17 +86,18 @@ public class HomeDAO {
 			recommendVtuber = new ArrayList<GetRecommendVtuberDTO>();
 
 			while (rs.next()) {
-				String archive_pk = rs.getString(1);
-				String address_pk = rs.getString(2);
-				String m_pk = rs.getString(3);
-				String category = rs.getString(4);
-				String address = rs.getString(5);
-				String title = rs.getString(6);
-				String videoId = rs.getString(7);
-				String icon = rs.getString(8);
-				String name = rs.getString(9);
+				String pk = rs.getString(1);
+				String archive_pk = rs.getString(2);
+				String address_pk = rs.getString(3);
+				String m_pk = rs.getString(4);
+				String category = rs.getString(5);
+				String address = rs.getString(6);
+				String title = rs.getString(7);
+				String videoId = rs.getString(8);
+				String icon = rs.getString(9);
+				String name = rs.getString(10);
 				
-				GetRecommendVtuberDTO g = new GetRecommendVtuberDTO(archive_pk, address_pk, m_pk, category, address, title, videoId, icon, name);
+				GetRecommendVtuberDTO g = new GetRecommendVtuberDTO(pk, archive_pk, address_pk, m_pk, category, address, title, videoId, icon, name);
 				recommendVtuber.add(g);
 
 			}
