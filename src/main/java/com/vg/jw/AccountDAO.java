@@ -27,6 +27,71 @@ import oauth.signpost.exception.OAuthMessageSignerException;
 
 public class AccountDAO {
 
+//	public static void registerUserLocal(HttpServletRequest request) throws IOException {
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//
+//		// 트위터 계정정보 가져오기
+//		HttpSession twitterSession = request.getSession();
+//
+//		long twitterId = (long) twitterSession.getAttribute("twitterId");
+//		String twitterScreenName = (String) twitterSession.getAttribute("twitterScreenName");
+//		String twitterProfileImgUrl = (String) twitterSession.getAttribute("twitterProfileImgUrl");
+//		System.out.println("AccountDAO테스트 출력(twitterId):" + twitterId);
+//		System.out.println("AccountDAO테스트 출력(twitterScreenName):" + twitterScreenName);
+//		System.out.println("트위터 프사 url 테스트 출력" + twitterProfileImgUrl);
+//
+//		// 사진받을 준비
+//		String path = request.getServletContext().getRealPath("account/profileImg");
+//
+//		// 파일처리
+//		MultipartRequest mr = new MultipartRequest(request, path, 1024 * 1024 * 10, "utf-8",
+//				new DefaultFileRenamePolicy());
+//
+//		// 회원가입시 입력한 값 받아오기
+//		String inputId = mr.getParameter("register-input-id");
+//		String inputPw = mr.getParameter("register-input-pw");
+//		String inputNickname = mr.getParameter("register-input-nickname");
+//
+//		String inputImgfile = mr.getFilesystemName("register-input-imgfile");
+//
+//		// 이미지를 등록하지 않았을 경우 자동으로 트위터 기본이미지 설정
+//		if (inputImgfile == null) {
+//			inputImgfile = twitterProfileImgUrl;
+//		}
+//
+//		System.out.println(inputId);
+//		System.out.println(inputPw);
+//		System.out.println(inputNickname);
+//		System.out.println(inputImgfile);
+//
+//		String sql = "INSERT INTO haco_user values(?, ?, ?, ?, 1, ?)";
+//
+//		try {
+//
+//			con = DBManager.connect();
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, inputId);
+//			pstmt.setString(2, inputPw);
+//			pstmt.setLong(3, twitterId);
+//			pstmt.setString(4, inputNickname);
+//			pstmt.setString(5, inputImgfile);
+//
+//			if (pstmt.executeUpdate() >= 1) {
+//				System.out.println("유저 등록 성공");
+//
+//				System.out.println("어디로 갈지 설정");
+//
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBManager.close(con, pstmt, null);
+//		}
+//
+//	}
+
 	public static void registerUser(HttpServletRequest request) throws IOException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -49,10 +114,7 @@ public class AccountDAO {
 				new DefaultFileRenamePolicy());
 
 		// 회원가입시 입력한 값 받아오기
-		String inputId = mr.getParameter("register-input-id");
-		String inputPw = mr.getParameter("register-input-pw");
 		String inputNickname = mr.getParameter("register-input-nickname");
-
 		String inputImgfile = mr.getFilesystemName("register-input-imgfile");
 
 		// 이미지를 등록하지 않았을 경우 자동으로 트위터 기본이미지 설정
@@ -60,22 +122,18 @@ public class AccountDAO {
 			inputImgfile = twitterProfileImgUrl;
 		}
 
-		System.out.println(inputId);
-		System.out.println(inputPw);
 		System.out.println(inputNickname);
 		System.out.println(inputImgfile);
 
-		String sql = "INSERT INTO haco_user values(?, ?, ?, ?, 1, ?)";
+		String sql = "INSERT INTO haco_user values(?, ?, ?, 1)";
 
 		try {
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, inputId);
-			pstmt.setString(2, inputPw);
-			pstmt.setLong(3, twitterId);
-			pstmt.setString(4, inputNickname);
-			pstmt.setString(5, inputImgfile);
+			pstmt.setLong(1, twitterId);
+			pstmt.setString(2, inputNickname);
+			pstmt.setString(3, inputImgfile);
 
 			if (pstmt.executeUpdate() >= 1) {
 				System.out.println("유저 등록 성공");
@@ -92,6 +150,9 @@ public class AccountDAO {
 
 	}
 
+	
+	
+	
 	public static void login(HttpServletRequest request) {
 
 		Connection con = null;
@@ -164,44 +225,9 @@ public class AccountDAO {
 
 	}
 
-	// 트위터 id값을 받아서 ScreenName을 반환하는 메서드
-	public static String getTwitterScreenName() {
 
-		String id = "1797433642438029312";
-		String userInfo = getUserInfo(id);
-		System.out.println("User Info: " + userInfo);
-		return "";
-	}
 
-	public static String getUserInfo(String userId) {
-		String url = "https://api.twitter.com/1.1/users/show.json?user_id=" + "1797433642438029312";
 
-		// OAuth 1.0a 인증 정보
-		String oauthConsumerKey = "c7X647iwEHvSF8Eu4CIRulro0";
-		String oauthConsumerSecret = "T4Pof1honeCyrvNhuEnR0Pel1fcRreSzkqQqx6a2YFNI2NELcF";
-		String oauthAccessToken = "1797433642438029312-DFwgTbZxMnFl6DZdtnCwn2sf0LVhiz";
-		String oauthAccessTokenSecret = "9YcGonRui7L2Qsfv7n84tqPJ2N1pFh66o2acSFEjrBnyi";
-		OAuthConsumer consumer = new CommonsHttpOAuthConsumer(oauthConsumerKey, oauthConsumerSecret);
-		consumer.setTokenWithSecret(oauthAccessToken, oauthAccessTokenSecret);
-
-		HttpResponse<JsonNode> response;
-		try {
-			response = Unirest.get(url).header(HttpHeaders.AUTHORIZATION, consumer.sign(url))
-					.queryString("user.fields", "created_at,description").asJson();
-			System.out.println("여기까진 와?");
-			if (response.getStatus() == 200) {
-				JSONObject user = response.getBody().getObject();
-				System.out.println("유저정보 : " + user);
-				return user.toString();
-			} else {
-				System.err.println("Failed to fetch user info. HTTP Status: " + response.getStatus());
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "여기서 터짐";
-	}
 
 	// 로그인 체크 메서드(로컬)
 	public static boolean loginCheck(HttpServletRequest request) {
@@ -228,5 +254,15 @@ public class AccountDAO {
 			}
 		}
 		return false;
+	}
+
+	
+	//유저가 회원가입이 되어있는지 판별하는 메서드
+	public static void registerCheck(HttpServletRequest request) {
+
+		
+		
+		
+		
 	}
 }
