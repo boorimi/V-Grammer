@@ -5,9 +5,13 @@
 <head>
     <title>D-Day and Contact List</title>
     <link rel="stylesheet" href="css/dday.css">
+    
 </head>
 <body>
     <div class="container">
+        <!-- 캘린더로 돌아가는 버튼 -->
+        <button id="calendarButton" class="button-dday">캘린더로 돌아가기</button>
+        
         <h1>멤버의 디데이 목록</h1>
         <table class="table table-bordered">
             <thead>
@@ -28,5 +32,16 @@
             </tbody>
         </table>
     </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 캘린더로 돌아가는 버튼 클릭 이벤트 핸들러
+            var calendarButton = document.getElementById("calendarButton");
+            calendarButton.addEventListener("click", function() {
+                // CalendarC 서블릿으로 이동
+                window.location.href = 'CalendarC';
+            });
+        });
+    </script>
 </body>
 </html>

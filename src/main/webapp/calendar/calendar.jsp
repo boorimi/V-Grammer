@@ -20,39 +20,6 @@
 <script
 	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <link rel="stylesheet" type="text/css" href="css/calendar.css">
-<style>
-	/* 추가된 CSS */
-	.button-dday {
-		background: #000;
-		color: #fff;
-		z-index: 1;
-		position: relative; /* 절대 위치 요소의 부모로 설정 */
-		padding: 10px 20px;
-		border: none;
-		cursor: pointer;
-	}
-	.button-dday:after {
-		position: absolute;
-		content: "";
-		width: 0;
-		height: 100%;
-		top: 0;
-		right: 0;
-		z-index: -1;
-		background: #e0e5ec;
-		transition: all 0.3s ease;
-	}
-	.button-dday:hover {
-		color: #000;
-	}
-	.button-dday:hover:after {
-		left: 0;
-		width: 100%;
-	}
-	.button-dday:active {
-		top: 2px;
-	}
-</style>
 </head>
 <body style="padding: 30px;">
 	<!-- calendar 태그 -->
