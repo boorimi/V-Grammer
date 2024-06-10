@@ -15,7 +15,7 @@
 		background: #000;
 		color: #fff;
 		z-index: 1;
-		position: absolute;
+		position: relative; /* 절대 위치 요소의 부모로 설정 */
 		padding: 10px 20px;
 		border: none;
 		cursor: pointer;
