@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/InsertScheduleC")
-public class InsertScheduleC extends HttpServlet {
+@WebServlet("/ScheduleInsertC")
+public class ScheduleInsertC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ScheduleDAO.SDAO.insertSchedule(request);
+		response.sendRedirect("ScheduleC");
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
