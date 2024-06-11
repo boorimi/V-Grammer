@@ -125,7 +125,7 @@
 
 		<div class="trade-bottom">
 			<div>
-				<a href="TradePage?p=1${category3 }">처음</a>
+				<a href="TradePage?p=1${category3 }">最初に</a>
 			</div>
 			<c:set var="pageUnit" value="4" />
 			<c:set var="page"
@@ -152,7 +152,7 @@
 				</c:if>
 			</div>
 			<div>
-				<a href="TradePage?p=${pageCount}${category3 }">끝</a>
+				<a href="TradePage?p=${pageCount}${category3 }">最後に</a>
 			</div>
 		</div>
 	</div>

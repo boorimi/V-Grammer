@@ -128,12 +128,13 @@ public class AnnouncementDAO {
 			String text = request.getParameter("text");
 			text = text.replaceAll("\r\n", "<br>");
 			
-			String sql = "insert into haco_announcement values (null, 'ds6951', ?, ?, NOW())";
+			String sql = "insert into haco_announcement values (null, ?, ?, ?, NOW())";
 			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, request.getParameter("title"));
-			pstmt.setString(2, text);
+			pstmt.setLong(1, (long) request.getSession().getAttribute("twitterId"));
+			pstmt.setString(2, request.getParameter("title"));
+			pstmt.setString(3, text);
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("입력 성공!");

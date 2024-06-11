@@ -15,7 +15,8 @@ public class UpdateAnnouncementC extends HttpServlet {
 			throws ServletException, IOException {
 		AnnouncementDAO.ADAO.selectAnnouncement(request);
 		AccountDAO.loginCheck(request);
-		request.getRequestDispatcher("announcement/announcement_insert.jsp").forward(request, response);
+		request.setAttribute("content", "announcement/announcement_insert.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

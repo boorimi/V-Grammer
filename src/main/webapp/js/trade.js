@@ -1,30 +1,38 @@
 function tradeInsert() {
-  let ok = confirm("작성하시겠습니까?");
+  let ok = confirm("作成しますか？");
+  const checkboxes = document.querySelectorAll(
+    'input[name="goodsCategory"]:checked'
+  );
   if (ok) {
-    document.getElementById("insertForm").submit();
+    if (checkboxes.length === 0) {
+      alert("最低１個以上のチェックボックスを選択してください。");
+      return false; // 폼 제출을 중단
+    } else {
+      document.getElementById("insertForm").submit();
+    }
   }
 }
 function tradeCancleInsert() {
-  let ok = confirm("글쓰기를 취소 하시겠습니까?");
+  let ok = confirm("作成をキャンセルしますか？");
   if (ok) {
     location.href = "trade";
   }
 }
 function tradeUpdate() {
-  let ok = confirm("수정하시겠습니까?");
+  let ok = confirm("修正しますか？");
   if (ok) {
     document.getElementById("updateForm").submit();
   }
 }
 function tradeDelete(pk) {
-  let ok = confirm("삭제하시겠습니까?");
+  let ok = confirm("削除しますか？");
   if (ok) {
     location.href = "DeleteTrade?no=" + pk;
   }
 }
 
 function tradeCommentsInsert() {
-  let ok = confirm("작성하시겠습니까?");
+  let ok = confirm("作成しますか？");
   if (ok) {
     document.getElementById("insertTradeCommentsForm").submit();
   }

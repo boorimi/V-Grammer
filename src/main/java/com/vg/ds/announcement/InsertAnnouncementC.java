@@ -14,8 +14,8 @@ public class InsertAnnouncementC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		AccountDAO.loginCheck(request);
-		request.getRequestDispatcher("announcement/announcement_insert.jsp").forward(request, response);
-	
+		request.setAttribute("content", "announcement/announcement_insert.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

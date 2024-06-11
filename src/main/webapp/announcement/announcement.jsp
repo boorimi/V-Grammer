@@ -18,7 +18,6 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
     <div class="announcement-container">
       <div class="announcement-title">
         <h1>お知らせ</h1>
-        <button onclick="location.href='GetAllStreamC'">실행</button>
       </div>
       <div class="announcement-conmain">
         <!-- 본문페이지 for문 시작 -->
@@ -34,9 +33,11 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
         </c:forEach>
         <!-- 본문페이지 for문 끝 -->
       </div>
+      <c:if test="${sessionScope.twitterId == 459978973 }">
       <div id="insert-button">
         <button onclick="location.href='InsertAnnouncement'">글쓰기</button>
       </div>
+      </c:if>
       <div class="announcement-bottom">
         <div><a href="AnnouncementPage?p=1">처음</a></div>
         <c:set var="pageUnit" value="4" />

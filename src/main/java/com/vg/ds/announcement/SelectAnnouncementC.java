@@ -17,7 +17,8 @@ public class SelectAnnouncementC extends HttpServlet {
 		AnnouncementDAO.ADAO.selectAnnouncement(request);
 		AccountDAO.loginCheck(request);
 //		request.setAttribute("content", "jsp/review/review_detail.jsp");
-		request.getRequestDispatcher("announcement/announcement_detail.jsp").forward(request, response);
+		request.setAttribute("content", "announcement/announcement_detail.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
