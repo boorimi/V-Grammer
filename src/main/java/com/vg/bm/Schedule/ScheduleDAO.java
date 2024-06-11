@@ -38,29 +38,17 @@ public class ScheduleDAO {
 
 		HttpSession twitterLoginSession = request.getSession();
 		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
-		
 		long id = accountInfo.getU_twitter_id();
-		System.out.println(accountInfo.getU_nickname());
+
 		try {
-//			// 인서트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
-//			String text = request.getParameter("text");
-//			text = text.replaceAll("\r\n", "<br>");
-			
 			request.setCharacterEncoding("utf-8");
-			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			
-			
-			System.out.println("=========");
-			System.out.println(request.getParameter("s_member"));
-			System.out.println(id);
-			System.out.println(request.getParameter("s_date"));
-			System.out.println(request.getParameter("s_time"));
-			System.out.println(request.getParameter("s_title"));
-			System.out.println("=========");
-//			pstmt.setString(1, );
-//			pstmt.setString(5, );
+			pstmt.setString(1, request.getParameter("s_member"));
+			pstmt.setLong(2, id);
+			pstmt.setString(3, request.getParameter("s_date"));
+			pstmt.setString(4, request.getParameter("s_time"));
+			pstmt.setString(5, request.getParameter("s_title"));
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("등록 성공!");
