@@ -1,0 +1,38 @@
+.archive-contents {
+  display: flex;
+}
+.archive-contents > p {
+  margin-right: 15px;
+}
+
+.archive-icon {
+  width: 50px;
+  height: 50px;
+}
+.archive-membername {
+  width: 90px;
+  margin-right: 25px;
+}
+.archive-collabo {
+  width: 150px;
+}
+.archive-category {
+  width: 150px;
+}
+.archive-date {
+  margin-right: 35px;
+}
+.archive-time {
+  margin-right: 35px;
+}
+.archive-collabomember {
+  width: 180px;
+}
+
+.archive-title {
+  width: 350px;
+}
+
+.archive-thumbnail {
+  margin-right: 0;
+}

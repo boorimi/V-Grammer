@@ -63,6 +63,8 @@ var FullCalendar = (function (exports) {
             }
         });
     }
+    
+    
     // nonce
     // -------------------------------------------------------------------------------------------------
     let queriedNonceValue;
@@ -14675,6 +14677,8 @@ var FullCalendar = (function (exports) {
             },
         },
     });
+    
+    
 
     globalPlugins.push(index$4, index$3, index$2, index$1, index);
 
