@@ -1,4 +1,4 @@
-package com.vg.bm.Schedule;
+package com.vg.jw.mypage;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,22 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.vg.bm.Member.MemberDAO;
 import com.vg.jw.AccountDAO;
 
-@WebServlet("/ScheduleC")
-public class ScheduleC extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+@WebServlet("/MyPageC")
+public class MyPageC extends HttpServlet {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		AccountDAO.loginCheck(request);
-		request.setAttribute("content", "schedule/schedule.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response); 
-		
+		request.setAttribute("content", "account/mypage/mypage.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 	}
 
 }
