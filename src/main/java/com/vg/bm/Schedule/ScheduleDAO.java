@@ -29,26 +29,19 @@ public class ScheduleDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-
-			String[] category = request.getParameterValues("goodsCategory");
-			String category2 = "";
-			for (String s : category) {
-				category2 += s + "!";
-			}
-
 			// 인서트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
 			String text = request.getParameter("text");
 			text = text.replaceAll("\r\n", "<br>");
-
-			String sql = "insert into haco_tradegoods values (null, 'ds6951', ?, NOW(), ?)";
+			
+			String sql = "insert into haco_schedule values (null, ?, ?, ?, ?, ?)";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, text);
-			pstmt.setString(2, category2);
+			
+			pstmt.setString(5, text);
 
 			if (pstmt.executeUpdate() == 1) {
-				System.out.println("입력 성공!");
+				System.out.println("등록 성공!");
 			}
 
 		} catch (Exception e) {
