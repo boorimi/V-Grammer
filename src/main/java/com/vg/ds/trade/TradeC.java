@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.vg.ds.announcement.AnnouncementDAO;
+import com.vg.jw.AccountDAO;
 
 @WebServlet("/Trade")
 public class TradeC extends HttpServlet {
@@ -16,8 +17,9 @@ public class TradeC extends HttpServlet {
 		TradeDAO.TDAO.selectAllTrade(request);
 		TradeDAO.TDAO.selectTradeComments(request);
 //		int p = Integer.parseInt(request.getParameter("p"));
-		TradeDAO.TDAO.paging(1, request);
+//		TradeDAO.TDAO.paging(1, request);
 		TradeDAO.TDAO.tradeCheckboxList(request);
+		AccountDAO.loginCheck(request);
 		request.setAttribute("content", "trade/trade.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response); 
 	}

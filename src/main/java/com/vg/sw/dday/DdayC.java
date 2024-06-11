@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.vg.jw.AccountDAO;
+
 @WebServlet("/DdayC")
 public class DdayC extends HttpServlet {
     private DdayDAO ddayDAO;
@@ -20,6 +22,7 @@ public class DdayC extends HttpServlet {
         List<DdayDTO> ddayList = ddayDAO.selectAllDdays();
         request.setAttribute("ddayList", ddayList); 
         request.setAttribute("content", "dday/dday.jsp");
+        AccountDAO.loginCheck(request);
         request.getRequestDispatcher("index.jsp").forward(request, response); 
     }
 }
