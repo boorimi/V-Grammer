@@ -18,11 +18,12 @@
                 {
                     title  : 'event1',
                     start  : '2024-06-11'
+                    
                 },
                 {
                     title  : 'event2',
                     start  : '2024-06-15',
-                    end    : '2024-01-17'
+                    end    : '2024-06-17'
                 },
                 {
                     title  : 'event3',
