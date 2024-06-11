@@ -11,7 +11,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.net.ssl.HttpsURLConnection;
 
 import org.json.simple.JSONArray;
@@ -48,12 +48,94 @@ public class ArchiveDAO {
 		request.setAttribute("archives", items);
 	}
 	
+	
+	public static void getCountArchive (HttpServletRequest request) {
+		
+		Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        String sql  = "select count(*) from haco_archive";
+        try {
+        
+        	con = DBManager.connect();
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            rs.next();
+
+            int total = rs.getInt(1);
+            int cnt = 20; // 한페이지당 보여줄 개수
+    		// 총 페이지 수 , 곧 마지막 페이지
+    		int pageCount = (int) (Math.ceil((double) total / cnt));
+    		// 시작, 끝
+    		int start = total - (cnt * (1 - 1));
+    		int end = (1 == pageCount) ? -1 : start - (cnt + 1);
+            
+    		request.setAttribute("curPageNo", 1);
+    		request.setAttribute("pageCount", pageCount); // 총 페이지 수
+    		request.setAttribute("start", start);
+    		request.setAttribute("end", end);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(con, pstmt, rs);
+        }
+		
+	}
+	
+	public static void getAnotherPage(HttpServletRequest request, HttpServletResponse response) {
+		
+		Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi "
+        		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk order by a_date desc, a_time desc "
+        		+ "LIMIT 40 OFFSET 21;";
+        try {
+        
+        	con = DBManager.connect();
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            ArrayList<String> archives = new ArrayList<>();
+            while (rs.next()) {
+                ArchiveDTO archive = new ArchiveDTO();
+                
+                archive.setA_pk(rs.getInt(1));
+                archive.setA_m_pk(rs.getInt(2));
+                archive.setA_date(rs.getDate(3));
+                archive.setA_time(rs.getTime(4));
+                archive.setA_collabo(rs.getString(5));
+                archive.setA_collabomember(rs.getString(6));
+                archive.setA_category(rs.getString(7));
+                archive.setA_title(rs.getString(8));
+                archive.setA_thumbnail(rs.getString(9));
+                archive.setA_videoid(rs.getString(10));
+                archive.setM_name(rs.getString(11));
+                archive.setI_icon(rs.getString(12));
+                archives.add(archive.toJSON());
+                
+            }
+            System.out.println(archives);
+            response.setContentType("application/json; charset=utf-8");
+			response.getWriter().print(archives);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(con, pstmt, rs);
+        }
+		
+	}
+	
     public static void selectAllArchive(HttpServletRequest req) {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi\n"
-        		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk order by a_date asc, a_time asc";
+        String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi "
+        		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk order by a_date desc, a_time desc "
+        		+ "LIMIT 20 OFFSET 1;";
         try {
             con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
@@ -137,6 +219,8 @@ public class ArchiveDAO {
             DBManager.close(con, pstmt, null);
         }
     }
+
+
 
 
 

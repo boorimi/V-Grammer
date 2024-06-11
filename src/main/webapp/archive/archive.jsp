@@ -5,6 +5,9 @@
 <html>
 <head>
     <title>Archives</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+	crossorigin="anonymous"></script>
 </head>
 <body>
     <button onclick="location.href='ArchiveUpdateC'">수정하기</button> 
@@ -31,6 +34,7 @@
 				<a href="ArchivePageC?p=1">最初に</a>
 			</div>
 			<c:set var="pageUnit" value="10" />
+			<!-- page변수 = 현재페이지 * 페이지유닛 -->
 			<c:set var="page"
 				value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}" />
 			<div>
@@ -41,9 +45,9 @@
 			</div>
 			<div style="display: flex">
 				<c:forEach var="i" begin="${page + 1 }"
-					end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}">
-					<div class="trade-page-no">
-						<a href="ArchivePageC?p=${i }">[${i }]</a>
+ 					end="${pageUnit * ( page + 1 )}">
+					<div class="archive-page-no">
+						[${i }]
 					</div>
 				</c:forEach>
 			</div>
