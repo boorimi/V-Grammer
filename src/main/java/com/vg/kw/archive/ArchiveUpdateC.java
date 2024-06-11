@@ -13,7 +13,7 @@ import com.vg.jw.AccountDAO;
 public class ArchiveUpdateC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		AccountDAO.loginCheck(request);
 		ArchiveDAO.selectAllArchive(request);
 		AccountDAO.loginCheck(request);
 		request.setAttribute("content", "archive/archiveupdate.jsp");
@@ -23,6 +23,7 @@ public class ArchiveUpdateC extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf-8");
+		AccountDAO.loginCheck(request);
 		ArchiveDAO.UpdateArchive(request);
 //		ArchiveDAO.selectAllArchive(request);
 //		AccountDAO.loginCheck(request);
