@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/schedule.css">
+<script type="text/javascript" src="js/schedule.js" defer></script>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <title>Insert title here</title>
 </head>
@@ -15,10 +16,10 @@
 	<h4>12시~18시 1블록</h4>
 	<h4>18시~24시까지 30분단위로 1블록</h4>
 	<details>
-		<summary style="background-color: pink; width: 150px;">スケジュール登録</summary>
-		<form action="InsertScheduleC">
-			<select>
-				<option value="">メンバー</option>
+		<summary onclick="ScheduleLoginCheck()" style="background-color: pink; width: 150px;">スケジュール登録</summary>
+		<form action="ScheduleInsertC">
+			<select name="s_member">
+				<option>メンバー</option>
 				<option value="七彩てまり">七彩てまり</option>
 				<option value="田中りゅこ">田中りゅこ</option>
 				<option value="夜夢瑠紅">夜夢瑠紅</option>
@@ -41,10 +42,10 @@
 				<option value="ぺるぽ">ぺるぽ</option>
 				<option value="叶望ゆゆ">叶望ゆゆ</option>
 			</select>
-			<input type="date" min="">
+			<input name="s_date" type="date">
 			<input name="s_time" type="time">
-			<input name="s_title">
-			<button>登録</button>
+			<input name="s_title" style="width: 500px;">
+			<button onclick="location.href=ScheduleC">登録</button>
 		</form>
 	</details>
 </body>
