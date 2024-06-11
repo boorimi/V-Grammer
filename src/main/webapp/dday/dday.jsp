@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<!-- 캘린더로 돌아가는 버튼 -->
-		<button id="calendarButton" class="btn-15">캘린더로 돌아가기</button>
+		<button id="calendarButton" class="button-15">캘린더로 돌아가기</button>
 
 		<h1>멤버의 디데이 목록</h1>
 		<table class="table table-bordered">
