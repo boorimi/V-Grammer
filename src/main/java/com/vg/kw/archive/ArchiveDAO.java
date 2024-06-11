@@ -141,11 +141,12 @@ public class ArchiveDAO {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         
-//        if (req.getParameter("p") == null) {
-//        	int p = 1;
-//        } else {
-        	int p = Integer.parseInt(req.getParameter("p"));
-//        }
+        int p = 0;
+        if (req.getParameter("p") == null) {
+        	 p = 1;
+        } else {
+        	 p = Integer.parseInt(req.getParameter("p"));
+        }
         
         
         String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi "
