@@ -50,20 +50,21 @@ public class ScheduleDAO {
 			String title[] = request.getParameterValues("s_title[]");
 
 			for (int i = 0; i < member.length; i++) {
-				// 포문 한 번 돌고 나면 pstmt 초기화
-				pstmt.clearParameters();
+				if (!member[i].equals("999") && !date[i].isEmpty() && !time[i].isEmpty() && !title[i].isEmpty()) {
+					// 포문 한 번 돌고 나면 pstmt 초기화
+					pstmt.clearParameters();
 
-				pstmt.setString(1, member[i]);
-				pstmt.setLong(2, id);
-				pstmt.setString(3, date[i]);
-				pstmt.setString(4, time[i]);
-				pstmt.setString(5, title[i]);
+					pstmt.setString(1, member[i]);
+					pstmt.setLong(2, id);
+					pstmt.setString(3, date[i]);
+					pstmt.setString(4, time[i]);
+					pstmt.setString(5, title[i]);
 
-				if (pstmt.executeUpdate() != 0) {
-					System.out.println("등록 성공!");
+					if (pstmt.executeUpdate() != 0) {
+						System.out.println("등록 성공!");
+					}
 				}
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

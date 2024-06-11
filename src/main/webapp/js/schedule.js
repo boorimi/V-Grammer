@@ -33,7 +33,7 @@ $(document).ready(function() {
 			let time = $(this).find($('#schedule-time')).val();
 			let title = $(this).find($('#schedule-title')).val();
 
-			if (member !== 0 && date !== "" && time !== "" && title !== "") {
+			if (member !== "999" && date !== "" && time !== "" && title !== "") {
 				formData.push({
 					s_member: member,
 					s_date: date,
