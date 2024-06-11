@@ -1,125 +1,100 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c"%>
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Insert title here</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      .slider-container {
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Live Slider</title>
+<style>
+    #slider-container {
         width: 600px;
         overflow: hidden;
         position: relative;
-      }
+    }
 
-      .slider-content {
+    #slider-content {
         display: flex;
         transition: transform 0.5s ease;
-      }
+    }
 
-      .slide {
+    .slide {
         width: 600px;
-      }
+        flex-shrink: 0;
+    }
 
-      .live-content iframe {
+    iframe {
         width: 100%;
         height: 350px;
-      }
+    }
 
-      .btn {
+    .btn {
         cursor: pointer;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <!-- 여기에 슬라이더 추가 -->
-      <div class="slider-container">
-        <div class="slider-content">
-          <!-- 동영상 슬라이드가 여기에 추가될 것입니다 -->
-        </div>
-      </div>
-      <!-- 좌우 버튼 -->
-      <div class="left-slider-button">
-        <svg
-          width="60"
-          height="60"
-          viewBox="0 0 60 60"
-          fill="black"
-          xmlns="http://www.w3.org/2000/svg"
-          class="btn"
-          onclick="prevSlide()"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M5 17.5C5 10.5964 10.5964 5 17.5 5H42.5C49.4036 5 55 10.5964 55 17.5V42.5C55 49.4036 49.4036 55 42.5 55H17.5C10.5964 55 5 49.4036 5 42.5V17.5ZM17.5 10C13.3579 10 10 13.3579 10 17.5V42.5C10 46.6421 13.3579 50 17.5 50H42.5C46.6421 50 50 46.6421 50 42.5V17.5C50 13.3579 46.6421 10 42.5 10H17.5ZM34.2678 20.7322C35.2441 21.7085 35.2441 23.2915 34.2678 24.2678L28.5355 30L34.2678 35.7322C35.2441 36.7085 35.2441 38.2915 34.2678 39.2678C33.2915 40.2441 31.7085 40.2441 30.7322 39.2678L23.2322 31.7678C22.2559 30.7915 22.2559 29.2085 23.2322 28.2322L30.7322 20.7322C31.7085 19.7559 33.2915 19.7559 34.2678 20.7322Z"
-            fill="black"
-          />
-        </svg>
-      </div>
-      <div class="right-slider-button">
-        <svg
-          width="60"
-          height="60"
-          viewBox="0 0 60 60"
-          fill="black"
-          xmlns="http://www.w3.org/2000/svg"
-          class="btn"
-          onclick="nextSlide()"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M0 15C0 6.71573 6.71573 0 15 0H45C53.2843 0 60 6.71573 60 15V45C60 53.2843 53.2843 60 45 60H15C6.71573 60 0 53.2843 0 45V15ZM15 6C10.0294 6 6 10.0294 6 15V45C6 49.9706 10.0294 54 15 54H45C49.9706 54 54 49.9706 54 45V15C54 10.0294 49.9706 6 45 6H15ZM24.8787 18.8787C26.0503 17.7071 27.9497 17.7071 29.1213 18.8787L38.1213 27.8787C39.2929 29.0503 39.2929 30.9497 38.1213 32.1213L29.1213 41.1213C27.9497 42.2929 26.0503 42.2929 24.8787 41.1213C23.7071 39.9497 23.7071 38.0503 24.8787 36.8787L31.7574 30L24.8787 23.1213C23.7071 21.9497 23.7071 20.0503 24.8787 18.8787Z"
-            fill="black"
-          />
-        </svg>
-      </div>
-    </main>
-    <footer></footer>
+        margin: 10px;
+    }
+</style>
+</head>
+<body>
 
-    <!-- JavaScript 부분 -->
-   <script>
-      const slider = document.querySelector('.slider-content');
-      const videos = [<c:forEach items="${streamIds}" var="s">
-      "${s.address}",
-      </c:forEach>
+<div id="slider-container">
+    <div id="slider-content">
+        <!-- Slides will be added dynamically -->
+    </div>
+</div>
+
+<button class="btn" onclick="prevSlide()">Previous</button>
+<button class="btn" onclick="nextSlide()">Next</button>
+
+<script>
+    const slider = document.getElementById('slider-content');
+    const videos = [
+        "ramD-7CMg-8",
+        "C75OWJWMVFw",
+        "uGK78ywXY4Y"
     ];
+    let currentVideo = 0;
 
-    let currentVideoIndex = 0;
+    function loadSlides() {
+        videos.forEach((video) => {
+            const slide = document.createElement('div');
+            slide.className = 'slide';
+
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${video}`;
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
+            iframe.allowFullscreen = true;
+
+            slide.appendChild(iframe);
+            slider.appendChild(slide);
+        });
+    }
 
     function showVideo(videoIndex) {
-      const video = videos[videoIndex];
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube.com/embed/${video}`;
-      iframe.frameborder = '0';
-      iframe.allowfullscreen = true;
-
-      slider.innerHTML = ''; // Clear previous video
-      slider.appendChild(iframe);
+        const offset = -videoIndex * 600; // Adjust the value 600 to the width of your slide
+        slider.style.transform = `translateX(${offset}px)`;
     }
 
     function prevSlide() {
-      currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-      showVideo(currentVideoIndex);
+        currentVideo = (currentVideo - 1 + videos.length) % videos.length;
+        showVideo(currentVideo);
     }
 
     function nextSlide() {
-      currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-      showVideo(currentVideoIndex);
+        currentVideo = (currentVideo + 1) % videos.length;
+        showVideo(currentVideo);
     }
 
-    // 페이지 로드시 첫 번째 동영상 보여주기
-    showVideo(currentVideoIndex);
-  </script>
+    // Load slides and show the first video initially
+    loadSlides();
+    showVideo(currentVideo);
+</script>
+
 </body>
 </html>
+
+
+
+
+
+
+
 
