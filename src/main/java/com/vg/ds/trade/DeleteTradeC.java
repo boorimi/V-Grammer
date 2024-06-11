@@ -7,14 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.vg.jw.AccountDAO;
-
 
 @WebServlet("/DeleteTrade")
 public class DeleteTradeC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AccountDAO.loginCheck(request);
 		TradeDAO.TDAO.deleteTrade(request);
 		response.sendRedirect("Trade");
 	}
