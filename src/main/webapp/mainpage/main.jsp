@@ -62,7 +62,6 @@ prefix="c"%>
             ></iframe>
           </div>
         </c:forEach>
-        <!--  방송 페이지 끝 -->
         <div class="right-slider-button">
           <svg
             width="60"
@@ -79,6 +78,7 @@ prefix="c"%>
             />
           </svg>
         </div>
+        <!--  방송 페이지 끝 -->
       </div>
       <div class="main-dday-container">
         <c:forEach var="dday" items="${ddayList}">
@@ -113,15 +113,15 @@ prefix="c"%>
                 <div class="today-vtuber-etc-name">
                   ${recommendVtuber[0].name }
                 </div>
-                  <div class="today-vtuber-address-box">
-                    <c:forEach items="${recommendVtuber }" var="rv">
-                      <div id="${rv.category}">
-                        <a target="_blank" href="${rv.address }"
-                          >${rv.category }</a
-                        >
-                      </div>
-                    </c:forEach>
-                  </div>
+                <div class="today-vtuber-address-box">
+                  <c:forEach items="${recommendVtuber }" var="rv">
+                    <div id="${rv.category}">
+                      <a target="_blank" href="${rv.address }"
+                        >${rv.category }</a
+                      >
+                    </div>
+                  </c:forEach>
+                </div>
               </div>
             </div>
           </div>

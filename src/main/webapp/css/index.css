@@ -14,7 +14,7 @@ main {
 }
 
 .main-logo {
-  margin-left: 45px;
+  margin-left: 75px;
   width: 175px;
   height: 84px;
   background-color: #b8178b;
@@ -24,13 +24,13 @@ main {
 .mene-lists {
   list-style: none;
   display: flex;
-  margin-left: 30px;
+  margin-left: 45px;
   margin-top: 30px;
 }
 
 .mene-lists > li {
   font-size: 25px;
-  margin-right: 27px;
+  margin-right: 45px;
 }
 .nav-userinfo {
   margin-left: 129px;
@@ -42,7 +42,7 @@ main {
 }
 .live-members > .members {
   font-size: 32px;
-  margin-left: 245px;
+  margin-left: 335px;
   color: #756363;
 }
 .live-icon {
@@ -314,4 +314,28 @@ footer {
   display: flex;
 }
 
-/* CSS styles for modal */
+/* login button css */
+.loginbtn {
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 18px;
+  background: #000000;
+  padding: 10px 30px 10px 30px;
+  text-decoration: none;
+  height: 40px;
+  margin-top: 16px;
+  margin-left: 50px;
+  width: 132px;
+}
+
+.loginbtn:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
