@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
@@ -104,6 +105,7 @@ public class ArchiveDAO {
             pstmt.setInt(2, 20 * (page - 1));
             rs = pstmt.executeQuery();
             ArrayList<String> archives = new ArrayList<>();
+            
             while (rs.next()) {
                 ArchiveDTO archive = new ArchiveDTO();
                 
@@ -139,7 +141,12 @@ public class ArchiveDAO {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         
-        int p = Integer.parseInt(req.getParameter("p"));
+//        if (req.getParameter("p") == null) {
+//        	int p = 1;
+//        } else {
+        	int p = Integer.parseInt(req.getParameter("p"));
+//        }
+        
         
         String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi "
         		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk order by a_date desc, a_time desc "

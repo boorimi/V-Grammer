@@ -13,8 +13,8 @@ import com.vg.jw.AccountDAO;
 public class ArchiveUpdateC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AccountDAO.loginCheck(request);
 		ArchiveDAO.selectAllArchive(request);
+		ArchiveDAO.getCountArchive(1, request);
 		AccountDAO.loginCheck(request);
 		request.setAttribute("content", "archive/archiveupdate.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

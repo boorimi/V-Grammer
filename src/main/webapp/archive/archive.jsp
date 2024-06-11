@@ -28,7 +28,7 @@
 		<div style="display: flex">
 			<c:forEach var="i" begin="${page + 1 }"
 				end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}">
-				<div class="archive-page-no">${i }</div>
+				<div class="archive-page-no" style="padding:10px; border: 1px solid gray;">${i }</div>
 			</c:forEach>
 		</div>
 		<div>
