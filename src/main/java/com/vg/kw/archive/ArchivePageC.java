@@ -16,9 +16,11 @@ public class ArchivePageC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArchiveDAO.selectAllArchive(request);
 		int p = Integer.parseInt(request.getParameter("p"));
-		ArchiveDAO.paging(p, request);
+		ArchiveDAO.getCountArchive(p, request);
+		ArchiveDAO.selectAllArchive(request);
+//		int p = Integer.parseInt(request.getParameter("p"));
+//		ArchiveDAO.paging(p, request);
 		AccountDAO.loginCheck(request);
 		request.setAttribute("content", "archive/archive.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

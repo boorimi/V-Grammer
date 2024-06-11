@@ -19,7 +19,7 @@ public class ArchiveC extends HttpServlet {
 		ArchiveDAO.selectAllArchive(request);
 //		int p = Integer.parseInt(request.getParameter("p"));
 //		ArchiveDAO.paging(1, request);
-		ArchiveDAO.getCountArchive(request);
+		ArchiveDAO.getCountArchive(1, request);
 		AccountDAO.loginCheck(request);
 		request.setAttribute("content", "archive/archive.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 		</div>
 		<ul class="mene-lists">
 			<li><a href="MemberC">メンバー</a></li>
-			<li><a href="ArchiveC">アーカイブ</a></li>
+			<li><a href="ArchivePageC?p=1">アーカイブ</a></li>
 			<li><a href="CalendarC">カレンダー</a></li>
 			<li><a href="ScheduleC">スケジュール</a></li>
 			<li><a style="cursor: pointer;" onclick="openTradePage(${sessionScope.twitterId})">トレード</a></li>

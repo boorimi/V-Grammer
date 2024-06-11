@@ -18,6 +18,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.twitter.joauth.Request;
 import com.vg.ds.trade.TradeDTO;
 import com.vg.ignore.DBManager;
 
@@ -49,7 +50,7 @@ public class ArchiveDAO {
 	}
 	
 	
-	public static void getCountArchive (HttpServletRequest request) {
+	public static void getCountArchive (int page, HttpServletRequest request) {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -68,10 +69,10 @@ public class ArchiveDAO {
     		// 총 페이지 수 , 곧 마지막 페이지
     		int pageCount = (int) (Math.ceil((double) total / cnt));
     		// 시작, 끝
-    		int start = total - (cnt * (1 - 1));
-    		int end = (1 == pageCount) ? -1 : start - (cnt + 1);
+    		int start = total - (cnt * (page - 1));
+    		int end = (page == pageCount) ? -1 : start - (cnt + 1);
             
-    		request.setAttribute("curPageNo", 1);
+    		request.setAttribute("curPageNo", page);
     		request.setAttribute("pageCount", pageCount); // 총 페이지 수
     		request.setAttribute("start", start);
     		request.setAttribute("end", end);
@@ -90,13 +91,17 @@ public class ArchiveDAO {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         
+        int page = Integer.parseInt(request.getParameter("page"));
+        
         String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi "
         		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk order by a_date desc, a_time desc "
-        		+ "LIMIT 40 OFFSET 21;";
+        		+ "LIMIT ? OFFSET ?";
         try {
         
         	con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, 20);
+            pstmt.setInt(2, 20 * (page - 1));
             rs = pstmt.executeQuery();
             ArrayList<String> archives = new ArrayList<>();
             while (rs.next()) {
@@ -133,12 +138,16 @@ public class ArchiveDAO {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+        
+        int p = Integer.parseInt(req.getParameter("p"));
+        
         String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi "
         		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk order by a_date desc, a_time desc "
-        		+ "LIMIT 20 OFFSET 1;";
+        		+ "LIMIT 20 offset ?";
         try {
             con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, (p - 1) * 20);
             rs = pstmt.executeQuery();
             archives = new ArrayList<>();
             while (rs.next()) {
