@@ -5,19 +5,19 @@ public class AccountDTO {
 
 	private long u_twitter_id;
 	private String u_nickname;
-	private String u_screenName;
 	private String u_profile_img;
-
+	private String u_screenName;
+	
 	public AccountDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AccountDTO(long u_twitter_id, String u_nickname, String u_screenName, String u_profile_img) {
+	public AccountDTO(long u_twitter_id, String u_nickname, String u_profile_img, String u_screenName) {
 		super();
 		this.u_twitter_id = u_twitter_id;
 		this.u_nickname = u_nickname;
-		this.u_screenName = u_screenName;
 		this.u_profile_img = u_profile_img;
+		this.u_screenName = u_screenName;
 	}
 
 	public long getU_twitter_id() {
@@ -36,14 +36,6 @@ public class AccountDTO {
 		this.u_nickname = u_nickname;
 	}
 
-	public String getU_screenName() {
-		return u_screenName;
-	}
-
-	public void setU_screenName(String u_screenName) {
-		this.u_screenName = u_screenName;
-	}
-
 	public String getU_profile_img() {
 		return u_profile_img;
 	}
@@ -52,10 +44,19 @@ public class AccountDTO {
 		this.u_profile_img = u_profile_img;
 	}
 
+	public String getU_screenName() {
+		return u_screenName;
+	}
+
+	public void setU_screenName(String u_screenName) {
+		this.u_screenName = u_screenName;
+	}
+
 	@Override
 	public String toString() {
-		return "AccountDTO [u_twitter_id=" + u_twitter_id + ", u_nickname=" + u_nickname + ", u_screenName="
-				+ u_screenName + ", u_profile_img=" + u_profile_img + "]";
+		return "AccountDTO [u_twitter_id=" + u_twitter_id + ", u_nickname=" + u_nickname + ", u_profile_img="
+				+ u_profile_img + ", u_screenName=" + u_screenName + "]";
 	}
+	
 
 }
