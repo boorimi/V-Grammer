@@ -58,3 +58,10 @@ function loadCalendar() {
     });
     calendar.render();
 }
+		$(document).ready(function() {
+			// 버튼 클릭 이벤트 핸들러
+			$('#ddayButton').click(function() {
+				// DdayC 서블릿으로 이동
+				window.location.href = 'DdayC';
+			});
+		});
