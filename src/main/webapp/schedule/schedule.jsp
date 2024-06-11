@@ -19,12 +19,30 @@
 		<form action="InsertScheduleC">
 			<select>
 				<option value="">メンバー</option>
-				<c:forEach items="${members}" var="m">
-				<option>${m.m_name }</option>
-				</c:forEach>
+				<option value="七彩てまり">七彩てまり</option>
+				<option value="田中りゅこ">田中りゅこ</option>
+				<option value="夜夢瑠紅">夜夢瑠紅</option>
+				<option value="赤衣アカメ">赤衣アカメ</option>
+				<option value="星ノ音コロン">星ノ音コロン</option>
+				<option value="愛咲よつのは">愛咲よつのは</option>
+				<option value="玉ノ井もなか">玉ノ井もなか</option>
+				<option value="綾坂希穂">綾坂希穂</option>
+				<option value="ソフィ・ローズ">ソフィ・ローズ</option>
+				<option value="天海くりね">天海くりね</option>
+				<option value="鳳儚">鳳儚</option>
+				<option value="小日向千虎">小日向千虎</option>
+				<option value="白砂つな">白砂つな</option>
+				<option value="橘シエナ">橘シエナ</option>
+				<option value="ミラ・ルプス">ミラ・ルプス</option>
+				<option value="銀灰まお">銀灰まお</option>
+				<option value="リン・ガーネット">リン・ガーネット</option>
+				<option value="明堂しろね">明堂しろね</option>
+				<option value="華糖シェリー">華糖シェリー</option>
+				<option value="ぺるぽ">ぺるぽ</option>
+				<option value="叶望ゆゆ">叶望ゆゆ</option>
 			</select>
-			<select></select>
-			<input name="s_time" placeholder="数字だけ入力　ex: 1230">
+			<input type="date" min="">
+			<input name="s_time" type="time">
 			<input name="s_title">
 			<button>登録</button>
 		</form>

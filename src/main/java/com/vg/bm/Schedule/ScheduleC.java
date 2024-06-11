@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.vg.bm.Member.MemberDAO;
 import com.vg.jw.AccountDAO;
 
 @WebServlet("/ScheduleC")
@@ -21,7 +22,7 @@ public class ScheduleC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 	}
 
 }
