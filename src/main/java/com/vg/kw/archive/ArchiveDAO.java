@@ -18,21 +18,47 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.vg.ds.trade.TradeDTO;
 import com.vg.ignore.DBManager;
 
 public class ArchiveDAO {
     
+	static ArrayList<ArchiveDTO> archives = null;
+	
+	public static void paging(int page, HttpServletRequest request) {
+
+		int cnt = 20; // 한페이지당 보여줄 개수
+		int total = archives.size(); // 총 데이터 개수
+
+		// 총 페이지 수 , 곧 마지막 페이지
+		int pageCount = (int) (Math.ceil((double) total / cnt));
+		// 시작, 끝
+
+		int start = total - (cnt * (page - 1));
+		int end = (page == pageCount) ? -1 : start - (cnt + 1);
+
+		ArrayList<ArchiveDTO> items = new ArrayList<ArchiveDTO>();
+		for (int i = start - 1; i > end; i--) {
+			items.add(archives.get(i));
+		}
+		request.setAttribute("curPageNo", page);
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("start", start);
+		request.setAttribute("end", end);
+		request.setAttribute("archives", items);
+	}
+	
     public static void selectAllArchive(HttpServletRequest req) {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         String sql  = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi\n"
-        		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk order by a_date desc, a_time desc";
+        		+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk order by a_date asc, a_time asc";
         try {
             con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            ArrayList<ArchiveDTO> archives = new ArrayList<>();
+            archives = new ArrayList<>();
             while (rs.next()) {
                 ArchiveDTO archive = new ArchiveDTO();
                 

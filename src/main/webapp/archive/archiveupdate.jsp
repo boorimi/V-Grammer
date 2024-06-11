@@ -58,6 +58,7 @@
             <div class="archive-collabo">
                 <div>コラボ</div>
                 <select name="collabo">
+                    <option value="未分類">未分類</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
@@ -69,6 +70,7 @@
             <div class="archive-category">
                 <div>カテゴリー</div>
                 <select name="category">
+                    <option value="未分類">未分類</option>
                     <option value="雑談">雑談</option>
                     <option value="歌枠">歌枠</option>
                     <option value="ゲーム">ゲーム</option>

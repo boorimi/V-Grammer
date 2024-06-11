@@ -122,7 +122,7 @@
 			</c:forEach>
 			<!-- 본문페이지 for문 끝 -->
 		</div>
-
+		<!--  여기부터 페이징  -->
 		<div class="trade-bottom">
 			<div>
 				<a href="TradePage?p=1${category3 }">最初に</a>
@@ -137,7 +137,7 @@
 				</c:if>
 			</div>
 			<div style="display: flex">
-				<c:forEach var="i" begin="1"
+				<c:forEach var="i" begin="${page + 1 }"
 					end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}">
 					<div class="trade-page-no">
 						<a href="TradePage?p=${i }${category3 }">[${i }]</a>
