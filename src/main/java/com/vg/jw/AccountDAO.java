@@ -124,7 +124,7 @@ public class AccountDAO {
 			if (!rs.next()) {
 				System.out.println("이 트위터 계정으로 가입된 아이디가 존재하지 않음");
 				loginResult = "会員登録ページへ移動します。";
-				twitterLoginSession.setAttribute("loginResult", loginResult);				
+				twitterLoginSession.setAttribute("loginResult", loginResult);
 				return false;
 
 			} else {
@@ -144,14 +144,24 @@ public class AccountDAO {
 					accountInfo.setU_twitter_id(twitterId);
 					accountInfo.setU_nickname(rs.getString("u_nickname"));
 					accountInfo.setU_screenName(twitterScreenName);
-					accountInfo.setU_profile_img(rs.getString("u_profile_img"));
+					
+					//트위터 링크 이미지 or 직접 업로드한 이미지 구분
+					String subString = rs.getString("u_profile_img").substring(0, 4);
 
+					if (subString.equals("http")) {
+						accountInfo.setU_profile_img(rs.getString("u_profile_img"));
+					} else {
+						accountInfo.setU_profile_img("account/profileImg/" + rs.getString("u_profile_img"));
+					}
+					
+					System.out.println("프사 경로:"+accountInfo.getU_profile_img());
+					
 					// 로그인 세션에 정보 추가
 					twitterLoginSession.setAttribute("accountInfo", accountInfo);
 					twitterLoginSession.setAttribute("loginResult", loginResult);
 					twitterLoginSession.setMaxInactiveInterval(60 * 60);
 
-				}else {
+				} else {
 					System.out.println("로그인 정보 업데이트 실패");
 				}
 			}
