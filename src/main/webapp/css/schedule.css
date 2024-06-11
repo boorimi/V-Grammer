@@ -1,1 +1,9 @@
 @charset "UTF-8";
+
+.schedule-insert-container{
+	border: 1px solid green;
+}
+.schedule-insert-inner-container{
+	border: 1px solid red;
+	display: none;
+}
