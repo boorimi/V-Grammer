@@ -6,8 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.vg.ignore.DBManager;
+import com.vg.jw.AccountDAO;
+import com.vg.jw.AccountDTO;
 
 public class ScheduleDAO {
 	
@@ -24,21 +27,28 @@ public class ScheduleDAO {
 		}
 	}
 	
-	public void insertSchedule(HttpServletRequest request) {
+	public void getAllSchedule(HttpServletRequest request) {
+		// TODO Auto-generated method stub
 		
+	}
+	
+	public void insertSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
+		String sql = "insert into haco_schedule values (null, ?, ?, ?, ?, ?)";
+
+		HttpSession twitterLoginSession = request.getSession();
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
+		long id = accountInfo.getU_twitter_id();
 
 		try {
-			// 인서트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
-			String text = request.getParameter("text");
-			text = text.replaceAll("\r\n", "<br>");
-			
-			String sql = "insert into haco_schedule values (null, ?, ?, ?, ?, ?)";
-
+			request.setCharacterEncoding("utf-8");
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setString(5, text);
+			pstmt.setString(1, request.getParameter("s_member"));
+			pstmt.setLong(2, id);
+			pstmt.setString(3, request.getParameter("s_date"));
+			pstmt.setString(4, request.getParameter("s_time"));
+			pstmt.setString(5, request.getParameter("s_title"));
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("등록 성공!");
@@ -49,7 +59,7 @@ public class ScheduleDAO {
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
-		
 	}
+
 
 }

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-a {
+.mene-lists a {
   color: inherit; /* 부모 요소의 색상 상속 */
   text-decoration: none; /* 밑줄 제거 */
 }
@@ -113,8 +113,8 @@ main {
 
 .today-vtuber {
   margin-top: 127px;
-  margin-left: 97px;
-  width: 1242px;
+  margin-left: 297px;
+  width: 1152px;
   height: 751px;
   background-color: blue;
 }
@@ -153,6 +153,7 @@ main {
 }
 
 .today-vtuber-etc {
+  margin-left: 65px;
   background-color: white;
   text-align: center;
   display: flex;
@@ -163,6 +164,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  width: 300px;
 }
 .today-vtuber-address-box > div {
   border-radius: 20px;
@@ -344,4 +346,3 @@ footer {
   background: #3cb0fd;
   text-decoration: none;
 }
-
