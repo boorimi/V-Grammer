@@ -124,8 +124,7 @@ public class AccountDAO {
 			if (!rs.next()) {
 				System.out.println("이 트위터 계정으로 가입된 아이디가 존재하지 않음");
 				loginResult = "会員登録ページへ移動します。";
-				twitterLoginSession.setAttribute("loginResult", loginResult);
-				pstmt.close();
+				twitterLoginSession.setAttribute("loginResult", loginResult);				
 				return false;
 
 			} else {
