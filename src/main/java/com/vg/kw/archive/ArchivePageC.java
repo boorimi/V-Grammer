@@ -7,29 +7,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.vg.ds.trade.TradeDAO;
 import com.vg.jw.AccountDAO;
 
-@WebServlet("/ArchiveUpdateC")
-public class ArchiveUpdateC extends HttpServlet {
+
+@WebServlet("/ArchivePageC")
+public class ArchivePageC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int p = Integer.parseInt(request.getParameter("p"));
+		ArchiveDAO.getCountArchive(p, request);
 		ArchiveDAO.selectAllArchive(request);
-		ArchiveDAO.getCountArchive(1, request);
+//		int p = Integer.parseInt(request.getParameter("p"));
+//		ArchiveDAO.paging(p, request);
 		AccountDAO.loginCheck(request);
-		request.setAttribute("content", "archive/archiveupdate.jsp");
+		request.setAttribute("content", "archive/archive.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("utf-8");
-		AccountDAO.loginCheck(request);
-		ArchiveDAO.UpdateArchive(request);
-//		ArchiveDAO.selectAllArchive(request);
-//		AccountDAO.loginCheck(request);
-//		request.setAttribute("content", "archive/archiveupdate.jsp");
-//		request.getRequestDispatcher("index.jsp").forward(request, response);
-		response.sendRedirect("ArchiveUpdateC");
 		
 	}
 

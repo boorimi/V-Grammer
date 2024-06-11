@@ -3,6 +3,8 @@ package com.vg.kw.archive;
 import java.sql.Date;
 import java.sql.Time;
 
+import com.google.gson.Gson;
+
 public class ArchiveDTO {
 	private int a_pk;
 	private int a_m_pk;
@@ -132,6 +134,21 @@ public class ArchiveDTO {
 
 	public void setA_thumbnail(String a_thumbnail) {
 		this.a_thumbnail = a_thumbnail;
+	}
+
+	public String toJSON() {
+
+		Gson g = new Gson();
+		return g.toJson(this);
+
+	}
+
+	@Override
+	public String toString() {
+		return "ArchiveDTO [a_pk=" + a_pk + ", a_m_pk=" + a_m_pk + ", a_date=" + a_date + ", a_time=" + a_time
+				+ ", a_collabo=" + a_collabo + ", a_collabomember=" + a_collabomember + ", a_category=" + a_category
+				+ ", a_title=" + a_title + ", a_thumbnail=" + a_thumbnail + ", a_videoid=" + a_videoid + ", m_name="
+				+ m_name + ", i_icon=" + i_icon + "]";
 	}
 
 }

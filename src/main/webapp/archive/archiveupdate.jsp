@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,37 @@
 </style>
 </head>
 <body>
-
+<!-- 상단 페이징 시작 -->
+	<div class="archive-bottom">
+		<div>
+			<a href="ArchivePageC?p=1">最初に</a>
+		</div>
+		<c:set var="pageUnit" value="10" />
+		<!-- page변수 = 현재페이지 * 페이지유닛 -->
+		<c:set var="page"
+			value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}" />
+		<div>
+			<c:if test="${page != 0}">
+				<a href="ArchivePageC?p=${page - pageUnit + 1}">이전 ${pageUnit }페이지</a>
+			</c:if>
+		</div>
+		<div style="display: flex">
+			<c:forEach var="i" begin="${page + 1 }"
+				end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}">
+				<div class="archive-page-no" style="padding:10px; border: 1px solid gray;">${i }</div>
+			</c:forEach>
+		</div>
+		<div>
+			<c:if
+				test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}">
+				<a href="ArchivePageC?p=${page + pageUnit + 1}">다음 ${pageUnit }페이지</a>
+			</c:if>
+		</div>
+		<div>
+			<a href="ArchivePageC?p=${pageCount}">最後に</a>
+		</div>
+	</div>
+	<!-- 상단 페이징 끝 -->
 <c:forEach items="${archives}" var="archive">
     <form action="ArchiveUpdateC" method="post">
         <div class="archive-contents-update">
@@ -58,6 +89,7 @@
             <div class="archive-collabo">
                 <div>コラボ</div>
                 <select name="collabo">
+                    <option value="未分類">未分類</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
@@ -69,6 +101,7 @@
             <div class="archive-category">
                 <div>カテゴリー</div>
                 <select name="category">
+                    <option value="未分類">未分類</option>
                     <option value="雑談">雑談</option>
                     <option value="歌枠">歌枠</option>
                     <option value="ゲーム">ゲーム</option>

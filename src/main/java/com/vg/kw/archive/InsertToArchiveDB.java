@@ -78,7 +78,9 @@ public class InsertToArchiveDB {
 
 				String sql2 = "INSERT INTO haco_archive (a_pk, a_m_pk, a_date, a_time, a_collabo,a_collabomember, a_category, a_title, a_thumbnail,a_videoid) VALUES (null, ?, ?, ?, '未分類', '未分類', '未分類', ?, ?, ?)";
 
-				statement = connection.prepareStatement(sql2);
+				String sql3 = "select count(*) from haco_archive where a_videoId = ?";
+				
+				statement = connection.prepareStatement(sql3);
 				for (int i = 0; i < items.size(); i++) {
 					JSONObject item = (JSONObject) items.get(i);
 					JSONObject snippet = (JSONObject) item.get("snippet");
@@ -108,8 +110,20 @@ public class InsertToArchiveDB {
 //                System.out.println("videoId : " + videoId);
 //                System.out.println();
 
-					// 데이터베이스에 값 삽입
+					// videoId 값 대조 후에 있으면 continue
+					statement.setString(1, videoId);
+					rs = statement.executeQuery();
+					rs.next();
 					
+					if (rs.getInt(1) == 1) {
+						continue;
+					}
+					
+					rs.close();
+					statement.close();
+					
+					statement = connection.prepareStatement(sql2);
+					// 데이터베이스에 값 삽입
 					String[] timeComponents = time.split(":");
 					Time sqlTime = Time.valueOf(timeComponents[0] + ":" + timeComponents[1] + ":" + timeComponents[2]);
 
@@ -120,9 +134,10 @@ public class InsertToArchiveDB {
 					statement.setString(5, defaultThumbnailUrl);
 					statement.setString(6, videoId);
 
-					int rowsInserted = statement.executeUpdate();
-					if (rowsInserted > 0) {
+					
+					if (statement.executeUpdate() > 0) {
 						System.out.println("A new row has been inserted successfully!");
+						System.out.println();
 					}
 				}
 			}

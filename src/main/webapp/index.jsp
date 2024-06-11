@@ -6,6 +6,9 @@ pageEncoding="UTF-8"%>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/index.css" />
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+	crossorigin="anonymous"></script>
 <script src="js/index.js"></script>
 </head>
 <body>
@@ -15,10 +18,10 @@ pageEncoding="UTF-8"%>
 		</div>
 		<ul class="mene-lists">
 			<li><a href="MemberC">メンバー</a></li>
-			<li><a href="ArchiveC">アーカイブ</a></li>
+			<li><a href="ArchivePageC?p=1">アーカイブ</a></li>
 			<li><a href="CalendarC">カレンダー</a></li>
 			<li><a href="ScheduleC">スケジュール</a></li>
-			<li><a href="TradePage?p=1">トレード</a></li>
+			<li><a style="cursor: pointer;" onclick="openTradePage(${sessionScope.twitterId})">トレード</a></li>
 			<li><a href="Announcement">お知らせ</a></li>
 		</ul>
 
