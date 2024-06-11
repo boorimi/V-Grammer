@@ -11,5 +11,9 @@
 </head>
 <body class="html-body">
     <div id='calendar'></div>
+    <div id="button-container">
+  <br>
+  <button id="button-dday" class="button-dday" onclick="window.location.href='DdayC'">Dday로</button>
+  </div>
 </body>
 </html>
