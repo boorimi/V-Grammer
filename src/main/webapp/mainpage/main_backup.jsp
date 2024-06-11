@@ -4,92 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YouTube Live Slider</title>
-<style>
-    #slider-container {
-        width: 600px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    #slider-content {
-        display: flex;
-        transition: transform 0.5s ease;
-    }
-
-    .slide {
-        width: 600px;
-        flex-shrink: 0;
-    }
-
-    iframe {
-        width: 100%;
-        height: 350px;
-    }
-
-    .btn {
-        cursor: pointer;
-        margin: 10px;
-    }
-</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 </head>
 <body>
 
-<div id="slider-container">
-    <div id="slider-content">
-        <!-- Slides will be added dynamically -->
-    </div>
+<div class="slider">
+  <!-- YouTube Live 슬라이드들이 여기에 들어갈 것입니다 -->
 </div>
 
-<button class="btn" onclick="prevSlide()">Previous</button>
-<button class="btn" onclick="nextSlide()">Next</button>
+<button class="prev">이전</button>
+<button class="next">다음</button>
 
 <script>
-    const slider = document.getElementById('slider-content');
-    const videos = [
-        "ramD-7CMg-8",
-        "C75OWJWMVFw",
-        "uGK78ywXY4Y"
+$(document).ready(function(){
+    // YouTube 라이브 비디오 ID 배열
+    var youtubeLiveVideos = [
+        "4CjM6bt3crg",
+        "4CjM6bt3crg",
+        // 필요한 만큼 계속 추가
     ];
-    let currentVideo = 0;
 
-    function loadSlides() {
-        videos.forEach((video) => {
-            const slide = document.createElement('div');
-            slide.className = 'slide';
+    // 각 YouTube 비디오를 슬라이드로 추가
+    youtubeLiveVideos.forEach(function(videoId){
+        $('.slider').append('<div><iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoId + '?autoplay=0" frameborder="0" allowfullscreen></iframe></div>');
+    });
 
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://www.youtube.com/embed/${video}`;
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
-            iframe.allowFullscreen = true;
+    // bxSlider 초기화
+    var slider = $('.slider').bxSlider({
+        mode: 'horizontal', // 슬라이드 모드 설정 (수평으로)
+        auto: false, // 자동으로 슬라이드 전환 여부
+        controls: false, // 이전/다음 버튼을 표시하지 않음
+        pager: false, // 페이지 버튼을 표시하지 않음
+        slideMargin: 0, // 슬라이드 간의 여백 (픽셀)
+        minSlides: 1, // 최소로 보여줄 슬라이드 수
+        maxSlides: 1, // 최대로 보여줄 슬라이드 수
+        moveSlides: 1, // 한 번에 슬라이드할 슬라이드 수
+        slideWidth: 560 // 슬라이드의 너비 (픽셀)
+    });
 
-            slide.appendChild(iframe);
-            slider.appendChild(slide);
-        });
-    }
+    // 이전 버튼 클릭 이벤트
+    $('.prev').click(function(){
+        slider.goToPrevSlide();
+        return false;
+    });
 
-    function showVideo(videoIndex) {
-        const offset = -videoIndex * 600; // Adjust the value 600 to the width of your slide
-        slider.style.transform = `translateX(${offset}px)`;
-    }
-
-    function prevSlide() {
-        currentVideo = (currentVideo - 1 + videos.length) % videos.length;
-        showVideo(currentVideo);
-    }
-
-    function nextSlide() {
-        currentVideo = (currentVideo + 1) % videos.length;
-        showVideo(currentVideo);
-    }
-
-    // Load slides and show the first video initially
-    loadSlides();
-    showVideo(currentVideo);
+    // 다음 버튼 클릭 이벤트
+    $('.next').click(function(){
+        slider.goToNextSlide();
+        return false;
+    });
+});
 </script>
-
 </body>
 </html>
+
+
+
 
 
 
