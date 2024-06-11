@@ -54,23 +54,28 @@ public class AccountDAO {
 
 			// 회원가입시 입력한 값 받아오기
 			String inputNickname = mr.getParameter("register-input-nickname");
-			String inputImgfile = mr.getFilesystemName("register-input-imgfile");
+			String inputImgfile = mr.getFilesystemName("register-input-file");
 
 			// 이미지를 등록하지 않았을 경우 자동으로 트위터 기본이미지 설정
 			if (inputImgfile == null) {
+				System.out.println(1);
 				inputImgfile = twitterProfileImgUrl;
+				request.setAttribute("imgfileCheck", "true");
+			} else {
+				System.out.println(2);
 			}
 
 			System.out.println("DB에 들어갈 닉네임 값: " + inputNickname);
 			System.out.println("DB에 들어갈 이미지파일 경로: " + inputImgfile);
 
-			String sql = "INSERT INTO haco_user values(?, ?, ?)";
+			String sql = "INSERT INTO haco_user values(?, ?, ?, ?)";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, twitterId);
 			pstmt.setString(2, inputNickname);
 			pstmt.setString(3, inputImgfile);
+			pstmt.setString(4, twitterScreenName);
 
 			if (pstmt.executeUpdate() >= 1) {
 				System.out.println("유저 등록 성공");
@@ -94,7 +99,6 @@ public class AccountDAO {
 		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
 		String twitterScreenName = (String) twitterLoginSession.getAttribute("twitterScreenName");
 		String twitterProfileImgUrl = (String) twitterLoginSession.getAttribute("twitterProfileImgUrl");
-		long dbId = 0;
 
 		System.out.println(twitterId);
 		System.out.println(twitterScreenName);
@@ -105,6 +109,7 @@ public class AccountDAO {
 		ResultSet rs = null;
 
 		String sql = "select*from haco_user where u_twitter_id = ?";
+		String updateSql = "UPDATE haco_user SET u_screenname = ? WHERE u_twitter_id  = ?";
 		AccountDTO accountInfo = null;
 		try {
 
@@ -120,29 +125,36 @@ public class AccountDAO {
 				System.out.println("이 트위터 계정으로 가입된 아이디가 존재하지 않음");
 				loginResult = "会員登録ページへ移動します。";
 				twitterLoginSession.setAttribute("loginResult", loginResult);
+				pstmt.close();
 				return false;
 
 			} else {
-				dbId = rs.getLong("u_twitter_id");
+				pstmt.close();
+				// DB를 트위터 최신정보로 갱신
+				pstmt = con.prepareStatement(updateSql);
+				pstmt.setString(1, twitterScreenName);
+				pstmt.setLong(2, twitterId);
 
-				// ID 활성화 여부 검사
-				System.out.println("로그인 성공");
-				loginResult = "ログイン成功";
+				if (pstmt.executeUpdate() == 1) {
+					System.out.println("회원 정보 업데이트 성공");
+					System.out.println("로그인 성공");
+					loginResult = "ログイン成功";
 
-				twitterId = rs.getLong("u_twitter_id");
+					// 계정 정보들 저장
+					accountInfo = new AccountDTO();
+					accountInfo.setU_twitter_id(twitterId);
+					accountInfo.setU_nickname(rs.getString("u_nickname"));
+					accountInfo.setU_screenName(twitterScreenName);
+					accountInfo.setU_profile_img(rs.getString("u_profile_img"));
 
-				// 계정 정보들 저장
-				accountInfo = new AccountDTO();
-				accountInfo.setU_twitter_id(twitterId);
-				accountInfo.setU_nickname(rs.getString("u_nickname"));
-				accountInfo.setU_screenName(twitterScreenName);
-				accountInfo.setU_profile_img(rs.getString("u_profile_img"));
+					// 로그인 세션에 정보 추가
+					twitterLoginSession.setAttribute("accountInfo", accountInfo);
+					twitterLoginSession.setAttribute("loginResult", loginResult);
+					twitterLoginSession.setMaxInactiveInterval(60 * 60);
 
-				// 로그인 세션에 정보 추가
-				twitterLoginSession.setAttribute("accountInfo", accountInfo);
-				twitterLoginSession.setAttribute("loginResult", loginResult);
-				twitterLoginSession.setMaxInactiveInterval(60 * 60);
-
+				}else {
+					System.out.println("로그인 정보 업데이트 실패");
+				}
 			}
 
 		} catch (Exception e) {
@@ -159,6 +171,7 @@ public class AccountDAO {
 		if (loginSession != null) {
 			AccountDTO accountInfo = (AccountDTO) loginSession.getAttribute("accountInfo");
 			if (accountInfo != null) {
+
 				request.setAttribute("loginContent", "account/login/login_ok.jsp");
 				return true; // 로그인 상태
 			}
