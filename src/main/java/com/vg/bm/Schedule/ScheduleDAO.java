@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.vg.ignore.DBManager;
-import com.vg.jw.AccountDAO;
 import com.vg.jw.AccountDTO;
 
 public class ScheduleDAO {
-	
+
 	private ArrayList<ScheduleDTO> schedules = null;
 //	private ArrayList<TradeCommentsDTO> tradeComments = null;
 	private Connection con = null;
@@ -26,12 +25,12 @@ public class ScheduleDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void getAllSchedule(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void insertSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		String sql = "insert into haco_schedule values (null, ?, ?, ?, ?, ?)";
@@ -44,14 +43,25 @@ public class ScheduleDAO {
 			request.setCharacterEncoding("utf-8");
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, request.getParameter("s_member"));
-			pstmt.setLong(2, id);
-			pstmt.setString(3, request.getParameter("s_date"));
-			pstmt.setString(4, request.getParameter("s_time"));
-			pstmt.setString(5, request.getParameter("s_title"));
 
-			if (pstmt.executeUpdate() == 1) {
-				System.out.println("등록 성공!");
+			String member[] = request.getParameterValues("s_member[]");
+			String date[] = request.getParameterValues("s_date[]");
+			String time[] = request.getParameterValues("s_time[]");
+			String title[] = request.getParameterValues("s_title[]");
+
+			for (int i = 0; i < member.length; i++) {
+				// 포문 한 번 돌고 나면 pstmt 초기화
+				pstmt.clearParameters();
+
+				pstmt.setString(1, member[i]);
+				pstmt.setLong(2, id);
+				pstmt.setString(3, date[i]);
+				pstmt.setString(4, time[i]);
+				pstmt.setString(5, title[i]);
+
+				if (pstmt.executeUpdate() != 0) {
+					System.out.println("등록 성공!");
+				}
 			}
 
 		} catch (Exception e) {
@@ -60,6 +70,5 @@ public class ScheduleDAO {
 			DBManager.close(con, pstmt, null);
 		}
 	}
-
 
 }
