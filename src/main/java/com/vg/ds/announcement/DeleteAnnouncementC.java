@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.vg.jw.AccountDAO;
+
 
 @WebServlet("/DeleteAnnouncement")
 public class DeleteAnnouncementC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		AccountDAO.loginCheck(request);
 		AnnouncementDAO.ADAO.deleteAnnouncement(request);
 		response.sendRedirect("Announcement");
 	}

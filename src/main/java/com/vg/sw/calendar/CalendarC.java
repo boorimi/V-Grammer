@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.vg.jw.AccountDAO;
+
 @WebServlet("/CalendarC")
 public class CalendarC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		CalendarEvent.loadEvent(request, response);
-	    request.setAttribute("content", "calendar/calendar.jsp");
+		AccountDAO.loginCheck(request);
+		request.setAttribute("content", "calendar/calendar.jsp");
 	    request.getRequestDispatcher("index.jsp").forward(request, response); 
 	}
 
