@@ -28,9 +28,7 @@ public class CalendarDAO {
 
         try {
             conn = DBManager.connect();
-            String sql = "SELECT m_pk, m_name, m_debut \r\n"
-            		+ "FROM haco_member \r\n"
-            		+ "WHERE EXTRACT(MONTH FROM m_debut) = "+request.getParameter("month");
+            String sql = "SELECT m_pk, m_name, m_debut FROM haco_member WHERE EXTRACT(MONTH FROM m_debut) IS NOT NULL";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
