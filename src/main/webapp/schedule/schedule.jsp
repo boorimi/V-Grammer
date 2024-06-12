@@ -28,7 +28,7 @@
 		<button class="schedule-insert-detail-button"
 			value="${sessionScope.accountInfo.u_twitter_id }">スケジュール登録</button>
 		<div class="schedule-insert-inner-container">
-				<form action="ScheduleInsertC">
+				<form action="ScheduleInsertC" id="schedule-form">
 				<div class="schedule-insert-box">
 					<select name="s_member" id="schedule-member">
 						<option value="999">メンバー</option>
@@ -58,37 +58,37 @@
 						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
-				<div id="schedule-blank-box">빈칸</div>
+				<div id="schedule-blank-box"></div>
 					<input name="s_date" type="date" id="schedule-date"> <input
 						name="s_time" type="time" id="schedule-time"> <input
 						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
-				<div id="schedule-blank-box">빈칸</div>
+				<div id="schedule-blank-box"></div>
 					<input name="s_date" type="date" id="schedule-date"> <input
 						name="s_time" type="time" id="schedule-time"> <input
 						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
-				<div id="schedule-blank-box">빈칸</div>
+				<div id="schedule-blank-box"></div>
 					<input name="s_date" type="date" id="schedule-date"> <input
 						name="s_time" type="time" id="schedule-time"> <input
 						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
-				<div id="schedule-blank-box">빈칸</div>
+				<div id="schedule-blank-box"></div>
 					<input name="s_date" type="date" id="schedule-date"> <input
 						name="s_time" type="time" id="schedule-time"> <input
 						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
-				<div id="schedule-blank-box">빈칸</div>
+				<div id="schedule-blank-box"></div>
 					<input name="s_date" type="date" id="schedule-date"> <input
 						name="s_time" type="time" id="schedule-time"> <input
 						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
-				<div id="schedule-blank-box">빈칸</div>
+				<div id="schedule-blank-box"></div>
 					<input name="s_date" type="date" id="schedule-date"> <input
 						name="s_time" type="time" id="schedule-time"> <input
 						name="s_title" style="width: 500px;" id="schedule-title">
