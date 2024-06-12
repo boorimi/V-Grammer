@@ -56,16 +56,18 @@ prefix="c"%>
         <!--  방송 페이지 끝 -->
       </div>
       <div class="main-dday-container">
+    <div class="dday-items-wrapper">
         <c:forEach var="dday" items="${ddayList}">
-          <c:if test="${dday.daysUntilDday >= -14 && dday.daysUntilDday <= 0}">
-            <div>
-              <div>이름 : ${dday.m_name}</div>
-              <div>데뷔 날짜 : ${dday.m_debut}</div>
-              <div>D-day : ${dday.daysUntilDday}</div>
-            </div>
-          </c:if>
+            <c:if test="${dday.daysUntilDday >= -14 && dday.daysUntilDday <= 0}">
+                <div class="dday-item">
+                    <span>이름 : ${dday.m_name} </span>
+                    <span>데뷔 날짜 : ${dday.m_debut} </span>
+                    <span>D-day : D${dday.daysUntilDday} </span>
+                </div>
+            </c:if>
         </c:forEach>
-      </div>
+    </div>
+</div>
 
       <div class="main-news">
         <div class="news-photo">
