@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/CalendarEventC")
 public class CalendarEventC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("month"));
+
+		
+		
 		CalendarDAO.loadEvent(request, response);
-	
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
