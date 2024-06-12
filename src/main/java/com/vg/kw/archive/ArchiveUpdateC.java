@@ -25,6 +25,8 @@ public class ArchiveUpdateC extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		AccountDAO.loginCheck(request);
 		ArchiveDAO.UpdateArchive(request);
+		ArchiveDAO.selectAllArchive(request);
+		ArchiveDAO.getCountArchive(1, request);
 //		ArchiveDAO.selectAllArchive(request);
 //		AccountDAO.loginCheck(request);
 //		request.setAttribute("content", "archive/archiveupdate.jsp");
