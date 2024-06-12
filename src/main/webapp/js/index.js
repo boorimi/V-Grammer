@@ -95,8 +95,14 @@ function test(resData) {
            	<div class="archive-category">カテゴリー : ${archive.a_category}</div>
             <div class="archive-date">	${formattedDate} </div>
            	<div class="archive-time">	${formattedTime} </div>
-           	<div class="archive-title">	Title: ${archive.a_title}</div>
-           	<div class="archive-thumbnail"> <img src="${archive.a_thumbnail}" alt="${archive.a_title} Thumbnail"> </div>
+           	<div class="archive-title">	${archive.a_title}</div>
+           	<div class="archive-thumbnail">
+					<a target="_blank" href="https://www.youtube.com/watch?v=${archive.a_videoid}">
+						<img 
+						src="${archive.a_thumbnail}" 
+						alt="${archive.a_title} Thumbnail">
+					</a>
+				</div>
         </div>`;
     $archiveList.append(html);
   }
@@ -122,7 +128,9 @@ function test2(resData) {
     let html = `<form action="ArchiveUpdateC" method="post">
         <div class="archive-contents-update">
             <p style="margin-top: 0px">
-                <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" >
+                <img class="archive-icon" src="haco_img/icon/${
+                  archive.i_icon
+                }" >
             </p>
             <input type="hidden" name="a_pk" value="${archive.a_pk}">
             <div class="archive-membername">${archive.m_name}</div>
@@ -131,34 +139,60 @@ function test2(resData) {
                 <div>コラボ</div>
                 <select name="collabo">
                     <option value="未分類">未分類</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option value="yes"
+                    ${archive.a_collabo == "yes" ? "selected" : ""}
+                    >Yes</option>
+                    <option value="no"
+                    ${archive.a_collabo == "no" ? "selected" : ""}
+                    >No</option>
                 </select>
             </div>
              <div class="archive-collabomember">
              <div>コラボメンバー</div>
-                <button type="button" onclick="openModal(this)" class="openModalButton">${archive.a_collabomember}</button>
+                <button type="button" onclick="openModal(this)" class="openModalButton">${
+                  archive.a_collabomember
+                }</button>
 				<input class="collaboMember" type="text" name="collabomember" /></div>
             <div class="archive-category">
                 <div>カテゴリー</div>
                 <select name="category">
-                    <option value="未分類">未分類</option>
-                    <option value="雑談">雑談</option>
-                    <option value="歌枠">歌枠</option>
-                    <option value="ゲーム">ゲーム</option>
-                    <option value="企画">企画</option>
-                    <option value="ASMR">ASMR</option>
-                    <option value="shorts">shorts</option>
-                    <option value="切り抜き">切り抜き</option>
-                    <option value="オリジナル曲">オリジナル曲</option>
-                    <option value="他">他</option>
-                </select>
+							<option value="未分類">未分類</option>
+							<option value="雑談"
+							${archive.a_category == "雑談" ? "selected" : ""}
+							>雑談</option>
+							<option value="歌枠"
+							${archive.a_category == "歌枠" ? "selected" : ""}
+							>歌枠</option>
+							<option value="ゲーム"
+							${archive.a_category == "ゲーム" ? "selected" : ""}
+							>ゲーム</option>
+							<option value="企画"
+							${archive.a_category == "企画" ? "selected" : ""}
+							>企画</option>
+							<option value="ASMR"
+							${archive.a_category == "ASMR" ? "selected" : ""}
+							>ASMR</option>
+							<option value="shorts"
+							${archive.a_category == "shorts" ? "selected" : ""}
+							>shorts</option>
+							<option value="切り抜き"
+							${archive.a_category == "切り抜き" ? "selected" : ""}
+							>切り抜き</option>
+							<option value="オリジナル曲"
+							${archive.a_category == "オリジナル曲" ? "selected" : ""}
+							>オリジナル曲</option>
+							<option value="他"
+							${archive.a_category == "他" ? "selected" : ""}
+							>他</option>
+						</select>
             </div>
             <div class="archive-date">${formattedDate}</div>
             <div class="archive-time">${formattedTime}</div>
-            <div class="archive-title">Title: ${archive.a_title}</div>
+            <div class="archive-title">${archive.a_title}</div>
             <div class="archive-thumbnail">
-                <img src="${archive.a_thumbnail}" alt="${archive.a_title} Thumbnail">
+                <img src="${archive.a_thumbnail}" alt="${
+      archive.a_title
+    } Thumbnail">
             </div>
             <button type="submit">수정</button>
         </div>
@@ -166,4 +200,29 @@ function test2(resData) {
     `;
     $archiveList.append(html);
   }
+}
+
+$(document).ready(function () {
+  // 페이지 로드 시 투명도를 올리는 함수 호출
+  adjustOpacity(1);
+  adjustOpacity2(1);
+
+  // 클릭 이벤트 발생 시 투명도를 낮추는 함수 호출
+  $(".archive-page-no2").click(function () {
+    $("#archive-list2").css({ opacity: 0.3 });
+    adjustOpacity2(1);
+  });
+  $(".archive-page-no").click(function () {
+    $("#archive-list").css({ opacity: 0.3 });
+    adjustOpacity(1);
+  });
+});
+
+// 투명도를 조절하는 함수
+
+function adjustOpacity(opacityValue) {
+  $("#archive-list").animate({ opacity: opacityValue }, 350);
+}
+function adjustOpacity2(opacityValue) {
+  $("#archive-list2").animate({ opacity: opacityValue }, 350);
 }

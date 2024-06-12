@@ -28,8 +28,7 @@
 		<div style="display: flex">
 			<c:forEach var="i" begin="${page + 1 }"
 				end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}">
-				<div class="archive-page-no2"
-					style="padding: 10px; border: 1px solid gray;">${i }</div>
+				<div class="archive-page-no2">${i }</div>
 			</c:forEach>
 		</div>
 		<div>
@@ -47,6 +46,7 @@
 		<c:forEach items="${archives}" var="archive">
 			<form action="ArchiveUpdateC" method="post">
 				<div class="archive-contents-update">
+			<div><button type="submit">수정</button></div>
 					<p style="margin-top: 0px">
 						<img class="archive-icon" src="haco_img/icon/${archive.i_icon}" />
 					</p>
@@ -57,29 +57,51 @@
 						<div>コラボ</div>
 						<select name="collabo">
 							<option value="未分類">未分類</option>
-							<option value="yes">Yes</option>
-							<option value="no">No</option>
+							<option value="yes" 
+							 ${archive.a_collabo == 'yes' ? 'selected' : ''}
+							>Yes</option>
+							<option value="no"
+							 ${archive.a_collabo == 'no' ? 'selected' : ''}
+							>No</option>
 						</select>
 					</div>
 					<div class="archive-collabomember">
 						<div>コラボメンバー</div>
 						<button type="button" onclick="openModal(this)"
 							class="openModalButton">${archive.a_collabomember}</button>
-						<input class="collaboMember" type="text" name="collabomember" />
+						<input class="collaboMember" type="hidden" name="collabomember" />
 					</div>
 					<div class="archive-category">
 						<div>カテゴリー</div>
 						<select name="category">
 							<option value="未分類">未分類</option>
-							<option value="雑談">雑談</option>
-							<option value="歌枠">歌枠</option>
-							<option value="ゲーム">ゲーム</option>
-							<option value="企画">企画</option>
-							<option value="ASMR">ASMR</option>
-							<option value="shorts">shorts</option>
-							<option value="切り抜き">切り抜き</option>
-							<option value="オリジナル曲">オリジナル曲</option>
-							<option value="他">他</option>
+							<option value="雑談"
+							${archive.a_category == '雑談' ? 'selected' : ''}
+							>雑談</option>
+							<option value="歌枠"
+							${archive.a_category == '歌枠' ? 'selected' : ''}
+							>歌枠</option>
+							<option value="ゲーム"
+							${archive.a_category == 'ゲーム' ? 'selected' : ''}
+							>ゲーム</option>
+							<option value="企画"
+							${archive.a_category == '企画' ? 'selected' : ''}
+							>企画</option>
+							<option value="ASMR"
+							${archive.a_category == 'ASMR' ? 'selected' : ''}
+							>ASMR</option>
+							<option value="shorts"
+							${archive.a_category == 'shorts' ? 'selected' : ''}
+							>shorts</option>
+							<option value="切り抜き"
+							${archive.a_category == '切り抜き' ? 'selected' : ''}
+							>切り抜き</option>
+							<option value="オリジナル曲"
+							${archive.a_category == 'オリジナル曲' ? 'selected' : ''}
+							>オリジナル曲</option>
+							<option value="他"
+							${archive.a_category == '他' ? 'selected' : ''}
+							>他</option>
 						</select>
 					</div>
 					<div class="archive-date">${archive.a_date}</div>
@@ -89,7 +111,7 @@
 						<img src="${archive.a_thumbnail}"
 							alt="${archive.a_title} Thumbnail" />
 					</div>
-					<button type="submit">수정</button>
+					
 				</div>
 			</form>
 		</c:forEach>
@@ -103,10 +125,20 @@
             <div>
             	<div class="archive-modal-detail-gen">
                 <div class="archive-modal-detail">
-                    <div><label><input type="checkbox" name="collabomember" value="七彩てまり"> 七彩てまり</label></div>
-                    <div><label><input type="checkbox" name="collabomember" value="田中りゅこ"> 田中りゅこ</label></div>
-                    <div><label><input type="checkbox" name="collabomember" value="夜夢瑠紅"> 夜夢瑠紅</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="七彩てまり"
+                    ${fn:contains(archive.a_collabomember, '七彩てまり') ? 'checked' : 'ㅇ'}
+                    > 七彩てまり</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="田中りゅこ"
+                    ${fn:contains(archive.a_collabomember, '田中りゅこ') ? 'checked' : 'ㅇ'}
+                    > 田中りゅこ</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="夜夢瑠紅"
+                    ${fn:contains(archive.a_collabomember, '夜夢瑠紅') ? 'checked' : 'ㅇ'}
+                    > 夜夢瑠紅</label></div>
                 </div>
+                ${fn:contains(archive.a_collabomember, '七彩てまり') ? 'checked' : 'ㅇ'}
+                    ${fn:contains(archive.a_collabomember, '田中りゅこ') ? 'checked' : 'ㅇ'}
+                    ${fn:contains(archive.a_collabomember, '夜夢瑠紅') ? 'checked' : 'ㅇ'}
+                    ${archive.a_collabomember}
                 </div>
                 <div class="archive-modal-detail-gen">
                 <div class="archive-modal-detail">
