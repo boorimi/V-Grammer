@@ -32,7 +32,7 @@ prefix="c"%>
         </c:forEach>
         <!--  아이콘 배열 끝 -->
       </div>
-      
+
       <div class="sliderandbutton">
       <div class="slider">
         <!-- YouTube Live 슬라이드들이 여기에 들어갈 것입니다 -->
@@ -68,7 +68,9 @@ prefix="c"%>
       </div>
 
       <div class="main-news">
-        <div class="news-photo"></div>
+        <div class="news-photo">
+          <img src="haco_img/img/newimg2.png" alt="">
+        </div>
       </div>
 
       <div class="today-vtuber">

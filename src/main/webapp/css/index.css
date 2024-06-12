@@ -142,12 +142,26 @@ main {
   display: flex;
 }
 
+.main-news {
+  margin-top: 30px;
+  width: 1920px;
+  height: 350px;
+}
+
 .news-photo {
+  width: 500px;
+  height: 350px;
+  /* background-color: #5351d9; */
+}
+
+.news-photo > img {
+  width: 540px;
+  height: 350px;
 }
 
 .today-vtuber {
   margin-top: 127px;
-  margin-left: 297px;
+  margin-left: 340px;
   width: 1152px;
   height: 751px;
   background-color: blue;
