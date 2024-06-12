@@ -6,7 +6,10 @@
 	display: flex;
 	position: relative;
 }
-
+.member-container a{
+	color: inherit;
+	text-decoration: none; 
+}
 .member-memberList-container {
 	width: 20%;
 	height: 100%;
