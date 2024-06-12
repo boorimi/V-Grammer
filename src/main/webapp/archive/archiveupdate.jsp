@@ -57,12 +57,10 @@
 						<div>コラボ</div>
 						<select name="collabo">
 							<option value="未分類">未分類</option>
-							<option value="yes" 
-							>Yes</option>
-							<option value="no"
-							>No</option>
+							<option value="yes">Yes</option>
+							<option value="no">No</option>
 						</select>
-						<input class="collabo-value" type="text" value="${archive.a_collabo}"/>
+						<input class="collabo-value" type="hidden" value="${archive.a_collabo}"/>
 					</div>
 					<div class="archive-collabomember">
 						<div>コラボメンバー</div>
@@ -74,34 +72,17 @@
 						<div>カテゴリー</div>
 						<select name="category">
 							<option value="未分類">未分類</option>
-							<option value="雑談"
-							${archive.a_category == '雑談' ? 'selected' : ''}
-							>雑談</option>
-							<option value="歌枠"
-							${archive.a_category == '歌枠' ? 'selected' : ''}
-							>歌枠</option>
-							<option value="ゲーム"
-							${archive.a_category == 'ゲーム' ? 'selected' : ''}
-							>ゲーム</option>
-							<option value="企画"
-							${archive.a_category == '企画' ? 'selected' : ''}
-							>企画</option>
-							<option value="ASMR"
-							${archive.a_category == 'ASMR' ? 'selected' : ''}
-							>ASMR</option>
-							<option value="shorts"
-							${archive.a_category == 'shorts' ? 'selected' : ''}
-							>shorts</option>
-							<option value="切り抜き"
-							${archive.a_category == '切り抜き' ? 'selected' : ''}
-							>切り抜き</option>
-							<option value="オリジナル曲"
-							${archive.a_category == 'オリジナル曲' ? 'selected' : ''}
-							>オリジナル曲</option>
-							<option value="他"
-							${archive.a_category == '他' ? 'selected' : ''}
-							>他</option>
+							<option value="雑談">雑談</option>
+							<option value="歌枠">歌枠</option>
+							<option value="ゲーム">ゲーム</option>
+							<option value="企画">企画</option>
+							<option value="ASMR">ASMR</option>
+							<option value="shorts">shorts</option>
+							<option value="切り抜き">切り抜き</option>
+							<option value="オリジナル曲">オリジナル曲</option>
+							<option value="他">他</option>
 						</select>
+						<input class="category-value" type="hidden" value="${archive.a_category}"/>
 					</div>
 					<div class="archive-date">${archive.a_date}</div>
 					<div class="archive-time">${archive.a_time}</div>

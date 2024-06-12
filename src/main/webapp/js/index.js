@@ -31,7 +31,10 @@ $(function () {
       dataType: "json",
     }).done(function (resData) {
       test2(resData);
-      console.log(JSON.stringify(resData));
+      //      console.log(JSON.stringify(resData));
+      console.log(resData);
+      console.log(resData[0]);
+      console.log(resData[0].a_category);
     });
   });
 });
@@ -126,79 +129,55 @@ function test2(resData) {
     const formattedTime = convertTimeTo24Hours(archive.a_time);
 
     let html = `<form action="ArchiveUpdateC" method="post">
-        <div class="archive-contents-update">
-            <p style="margin-top: 0px">
-                <img class="archive-icon" src="haco_img/icon/${
-                  archive.i_icon
-                }" >
-            </p>
-            <input type="hidden" name="a_pk" value="${archive.a_pk}">
-            <div class="archive-membername">${archive.m_name}</div>
-            
-            <div class="archive-collabo">
-                <div>コラボ</div>
-                <select name="collabo">
-                    <option value="未分類">未分類</option>
-                    <option value="yes"
-                    ${archive.a_collabo == "yes" ? "selected" : ""}
-                    >Yes</option>
-                    <option value="no"
-                    ${archive.a_collabo == "no" ? "selected" : ""}
-                    >No</option>
-                </select>
-            </div>
-             <div class="archive-collabomember">
-             <div>コラボメンバー</div>
-                <button type="button" onclick="openModal(this)" class="openModalButton">${
-                  archive.a_collabomember
-                }</button>
-				<input class="collaboMember" type="text" name="collabomember" value="${
-          archive.a_collabomember
-        }" /></div>
-            <div class="archive-category">
-                <div>カテゴリー</div>
-                <select name="category">
+				<div class="archive-contents-update">
+			<div><button type="submit">수정</button></div>
+					<p style="margin-top: 0px">
+						<img class="archive-icon" src="haco_img/icon/${archive.i_icon}" />
+					</p>
+					<input type="hidden" name="a_pk" value="${archive.a_pk}">
+					<div class="archive-membername">${archive.m_name}</div>
+
+					<div class="archive-collabo">
+						<div>コラボ</div>
+						<select name="collabo">
 							<option value="未分類">未分類</option>
-							<option value="雑談"
-							${archive.a_category == "雑談" ? "selected" : ""}
-							>雑談</option>
-							<option value="歌枠"
-							${archive.a_category == "歌枠" ? "selected" : ""}
-							>歌枠</option>
-							<option value="ゲーム"
-							${archive.a_category == "ゲーム" ? "selected" : ""}
-							>ゲーム</option>
-							<option value="企画"
-							${archive.a_category == "企画" ? "selected" : ""}
-							>企画</option>
-							<option value="ASMR"
-							${archive.a_category == "ASMR" ? "selected" : ""}
-							>ASMR</option>
-							<option value="shorts"
-							${archive.a_category == "shorts" ? "selected" : ""}
-							>shorts</option>
-							<option value="切り抜き"
-							${archive.a_category == "切り抜き" ? "selected" : ""}
-							>切り抜き</option>
-							<option value="オリジナル曲"
-							${archive.a_category == "オリジナル曲" ? "selected" : ""}
-							>オリジナル曲</option>
-							<option value="他"
-							${archive.a_category == "他" ? "selected" : ""}
-							>他</option>
+							<option value="yes">Yes</option>
+							<option value="no">No</option>
 						</select>
-            </div>
-            <div class="archive-date">${formattedDate}</div>
-            <div class="archive-time">${formattedTime}</div>
-            <div class="archive-title">${archive.a_title}</div>
-            <div class="archive-thumbnail">
-                <img src="${archive.a_thumbnail}" alt="${
-      archive.a_title
-    } Thumbnail">
-            </div>
-            <button type="submit">수정</button>
-        </div>
-    </form>
+						<input class="collabo-value" type="text" value="${archive.a_collabo}"/>
+					</div>
+					<div class="archive-collabomember">
+						<div>コラボメンバー</div>
+						<button type="button" onclick="openModal(this)"
+							class="openModalButton">${archive.a_collabomember}</button>
+						<input class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
+					</div>
+					<div class="archive-category">
+						<div>カテゴリー</div>
+						<select name="category">
+							<option value="未分類">未分類</option>
+							<option value="雑談">雑談</option>
+							<option value="歌枠">歌枠</option>
+							<option value="ゲーム">ゲーム</option>
+							<option value="企画">企画</option>
+							<option value="ASMR">ASMR</option>
+							<option value="shorts">shorts</option>
+							<option value="切り抜き">切り抜き</option>
+							<option value="オリジナル曲">オリジナル曲</option>
+							<option value="他">他</option>
+						</select>
+						<input class="category-value" type="text" value="${archive.a_category}"/>
+					</div>
+					<div class="archive-date">${formattedDate}</div>
+					<div class="archive-time">${formattedTime}</div>
+					<div class="archive-title">${archive.a_title}</div>
+					<div class="archive-thumbnail">
+						<img src="${archive.a_thumbnail}"
+							alt="${archive.a_title} Thumbnail" />
+					</div>
+					
+				</div>
+			</form>
     `;
     $archiveList.append(html);
   }
@@ -279,38 +258,84 @@ function applyModal() {
 
 // 콜라보 yes, no 를 선택한값에 맞게 적용하기
 window.addEventListener("load", function () {
-  document.querySelectorAll(".collabo-value").forEach(function (element) {
-    console.log(element.value);
-  });
   document.querySelectorAll("select[name='collabo']").forEach((select) => {
-    console.log("Select element:", select);
+    // console.log(select.nextElementSibling.value);
+    // console.log("Select element:", select);
+    Array.from(select.options).forEach((option) => {
+      // console.log("Option value:", option.value);
+      if (option.value == select.nextElementSibling.value) {
+        option.selected = true;
+      }
+    });
   });
+});
+// 콜라보 yes, no 를 선택한값에 맞게 적용하기 (비동기로)
 
-  Array.from(select.options).forEach((option) => {
-    console.log("Option value:", option.value);
-    if (option.value == collaboValue) {
-      option.selected = true;
-    }
+document
+  .querySelector(".archive-page-no2")
+  .addEventListener("click", function () {
+    window.addEventListener("load", function () {
+      document.querySelectorAll("select[name='collabo']").forEach((select) => {
+        console.log(select.nextElementSibling.value);
+        console.log("Select element:", select);
+        Array.from(select.options).forEach((option) => {
+          console.log("Option value:", option.value);
+          if (option.value == select.nextElementSibling.value) {
+            option.selected = true;
+          }
+        });
+      });
+    });
+  });
+// 카테고리를 수정한값에 맞게 표시해주기
+window.addEventListener("load", function () {
+  document.querySelectorAll("select[name='category']").forEach((select) => {
+    //    console.log(select.nextElementSibling.value);
+    //  console.log("Select element:", select);
+    Array.from(select.options).forEach((option) => {
+      //    console.log("Option value:", option.value);
+      if (option.value == select.nextElementSibling.value) {
+        option.selected = true;
+      }
+    });
   });
 });
 
-// function toggleButton(select) {
-//   const button = select.nextElementSibling.querySelector(".openModalButton");
-//   // select 요소의 값을 확인하고 해당하는 버튼을 표시하거나 숨김
-//   if (select.value === "yes") {
-//     button.style.display = "inline-block";
-//   }
-// }
+// $(function () {
+//   $("select[name='collabo']").each(function () {
+//     var selectedValue = $(this).val();
+//     console.log(selectedValue);
 
-// // 페이지 로드 시 각 select 요소의 버튼의 표시 상태를 설정
-// document.querySelectorAll("select[name='collabo']").values.forEach(function (select) {
-//   console.log(select);
-//   toggleButton(select);
-// });
-
-// // select 요소의 값이 변경될 때 해당하는 버튼의 표시 상태를 설정
-// document.querySelectorAll("select[name='collabo']").forEach(function (select) {
-//   select.addEventListener("change", function () {
-//     toggleButton(this);
+//     if (selectedValue === "yes") {
+//       // yes가 선택되었을 때 실행할 코드
+//       $(".openModalButton").css("display", "block");
+//       alert("Yes option selected");
+//     }
 //   });
 // });
+//select 요소의 값이 변경될 때 이벤트 처리
+$(function () {
+  // 페이지 로드 시 초기 상태 설정
+  toggleButton();
+
+  // select 요소의 값이 변경될 때 이벤트 처리
+  $("select[name='collabo']").change(function () {
+    toggleButton();
+  });
+
+  function toggleButton() {
+    $("select[name='collabo']").each(function () {
+      let $select = $(this);
+      let $openModalButton = $select
+        .closest(".archive-collabo")
+        .next(".archive-collabomember")
+        .find(".openModalButton");
+      if ($select.val() === "yes") {
+        $openModalButton.css("display", "block");
+      } else {
+        $openModalButton.css("display", "none");
+        $(".collaboMember").val("未分類");
+      }
+    });
+  }
+});
