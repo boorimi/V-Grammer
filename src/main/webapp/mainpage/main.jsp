@@ -48,8 +48,8 @@ prefix="c"%>
         </c:forEach>
       </div>
   
-      <button class="prev">이전</button>
-      <button class="next">다음</button>
+      <button class="prev">&lt;</button>
+      <button class="next">&gt;</button>
         <!--  방송 페이지 끝 -->
       </div>
       <div class="main-dday-container">

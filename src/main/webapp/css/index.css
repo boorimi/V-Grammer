@@ -54,6 +54,38 @@ main {
   margin-right: 10px;
 }
 
+.slider {
+  margin-left: 250px;
+}
+
+.slider-container {
+  position: relative;
+  width: 960px; /* 슬라이더 너비 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
+.slider {
+  width: 100%;
+}
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.prev {
+  left: 0;
+}
+.next {
+  right: 0;
+}
+
 .live-contents {
   width: 1187px;
   height: 501px;
@@ -85,20 +117,13 @@ main {
 }
 
 .live-content {
-  width: 1013px;
+  width: 960px;
   height: 501px;
   background-color: white;
   margin-left: 47px;
   margin-right: 47px;
 }
 
-.live-contents > .left-slider-button {
-  margin-top: 220px;
-}
-
-.live-contents > .right-slider-button {
-  margin-top: 220px;
-}
 .main-dday-container {
   border: 1px solid black;
   background-color: white;
