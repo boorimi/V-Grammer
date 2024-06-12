@@ -30,175 +30,7 @@
 		<div class="schedule-insert-inner-container">
 				<form action="ScheduleInsertC">
 				<div class="schedule-insert-box">
-					<select name="s_member[]" id="schedule-member">
-						<option value="0">メンバー</option>
-						<option value="1">七彩てまり</option>
-						<option value="2">田中りゅこ</option>
-						<option value="3">夜夢瑠紅</option>
-						<option value="4">赤衣アカメ</option>
-						<option value="5">星ノ音コロン</option>
-						<option value="6">愛咲よつのは</option>
-						<option value="7">玉ノ井もなか</option>
-						<option value="8">綾坂希穂</option>
-						<option value="9">ソフィ・ローズ</option>
-						<option value="10">天海くりね</option>
-						<option value="11">鳳儚</option>
-						<option value="12">小日向千虎</option>
-						<option value="13">白砂つな</option>
-						<option value="14">橘シエナ</option>
-						<option value="15">ミラ・ルプス</option>
-						<option value="16">銀灰まお</option>
-						<option value="17">リン・ガーネット</option>
-						<option value="18">明堂しろね</option>
-						<option value="19">華糖シェリー</option>
-						<option value="20">ぺるぽ</option>
-						<option value="21">叶望ゆゆ</option>
-					</select> <input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
-				</div>
-				<div class="schedule-insert-box">
-					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
-						<option value="1">七彩てまり</option>
-						<option value="2">田中りゅこ</option>
-						<option value="3">夜夢瑠紅</option>
-						<option value="4">赤衣アカメ</option>
-						<option value="5">星ノ音コロン</option>
-						<option value="6">愛咲よつのは</option>
-						<option value="7">玉ノ井もなか</option>
-						<option value="8">綾坂希穂</option>
-						<option value="9">ソフィ・ローズ</option>
-						<option value="10">天海くりね</option>
-						<option value="11">鳳儚</option>
-						<option value="12">小日向千虎</option>
-						<option value="13">白砂つな</option>
-						<option value="14">橘シエナ</option>
-						<option value="15">ミラ・ルプス</option>
-						<option value="16">銀灰まお</option>
-						<option value="17">リン・ガーネット</option>
-						<option value="18">明堂しろね</option>
-						<option value="19">華糖シェリー</option>
-						<option value="20">ぺるぽ</option>
-						<option value="21">叶望ゆゆ</option>
-					</select> <input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
-				</div>
-				<div class="schedule-insert-box">
-					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
-						<option value="1">七彩てまり</option>
-						<option value="2">田中りゅこ</option>
-						<option value="3">夜夢瑠紅</option>
-						<option value="4">赤衣アカメ</option>
-						<option value="5">星ノ音コロン</option>
-						<option value="6">愛咲よつのは</option>
-						<option value="7">玉ノ井もなか</option>
-						<option value="8">綾坂希穂</option>
-						<option value="9">ソフィ・ローズ</option>
-						<option value="10">天海くりね</option>
-						<option value="11">鳳儚</option>
-						<option value="12">小日向千虎</option>
-						<option value="13">白砂つな</option>
-						<option value="14">橘シエナ</option>
-						<option value="15">ミラ・ルプス</option>
-						<option value="16">銀灰まお</option>
-						<option value="17">リン・ガーネット</option>
-						<option value="18">明堂しろね</option>
-						<option value="19">華糖シェリー</option>
-						<option value="20">ぺるぽ</option>
-						<option value="21">叶望ゆゆ</option>
-					</select> <input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
-				</div>
-				<div class="schedule-insert-box">
-					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
-						<option value="1">七彩てまり</option>
-						<option value="2">田中りゅこ</option>
-						<option value="3">夜夢瑠紅</option>
-						<option value="4">赤衣アカメ</option>
-						<option value="5">星ノ音コロン</option>
-						<option value="6">愛咲よつのは</option>
-						<option value="7">玉ノ井もなか</option>
-						<option value="8">綾坂希穂</option>
-						<option value="9">ソフィ・ローズ</option>
-						<option value="10">天海くりね</option>
-						<option value="11">鳳儚</option>
-						<option value="12">小日向千虎</option>
-						<option value="13">白砂つな</option>
-						<option value="14">橘シエナ</option>
-						<option value="15">ミラ・ルプス</option>
-						<option value="16">銀灰まお</option>
-						<option value="17">リン・ガーネット</option>
-						<option value="18">明堂しろね</option>
-						<option value="19">華糖シェリー</option>
-						<option value="20">ぺるぽ</option>
-						<option value="21">叶望ゆゆ</option>
-					</select> <input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
-				</div>
-				<div class="schedule-insert-box">
-					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
-						<option value="1">七彩てまり</option>
-						<option value="2">田中りゅこ</option>
-						<option value="3">夜夢瑠紅</option>
-						<option value="4">赤衣アカメ</option>
-						<option value="5">星ノ音コロン</option>
-						<option value="6">愛咲よつのは</option>
-						<option value="7">玉ノ井もなか</option>
-						<option value="8">綾坂希穂</option>
-						<option value="9">ソフィ・ローズ</option>
-						<option value="10">天海くりね</option>
-						<option value="11">鳳儚</option>
-						<option value="12">小日向千虎</option>
-						<option value="13">白砂つな</option>
-						<option value="14">橘シエナ</option>
-						<option value="15">ミラ・ルプス</option>
-						<option value="16">銀灰まお</option>
-						<option value="17">リン・ガーネット</option>
-						<option value="18">明堂しろね</option>
-						<option value="19">華糖シェリー</option>
-						<option value="20">ぺるぽ</option>
-						<option value="21">叶望ゆゆ</option>
-					</select> <input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
-				</div>
-				<div class="schedule-insert-box">
-					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
-						<option value="1">七彩てまり</option>
-						<option value="2">田中りゅこ</option>
-						<option value="3">夜夢瑠紅</option>
-						<option value="4">赤衣アカメ</option>
-						<option value="5">星ノ音コロン</option>
-						<option value="6">愛咲よつのは</option>
-						<option value="7">玉ノ井もなか</option>
-						<option value="8">綾坂希穂</option>
-						<option value="9">ソフィ・ローズ</option>
-						<option value="10">天海くりね</option>
-						<option value="11">鳳儚</option>
-						<option value="12">小日向千虎</option>
-						<option value="13">白砂つな</option>
-						<option value="14">橘シエナ</option>
-						<option value="15">ミラ・ルプス</option>
-						<option value="16">銀灰まお</option>
-						<option value="17">リン・ガーネット</option>
-						<option value="18">明堂しろね</option>
-						<option value="19">華糖シェリー</option>
-						<option value="20">ぺるぽ</option>
-						<option value="21">叶望ゆゆ</option>
-					</select> <input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
-				</div>
-				<div class="schedule-insert-box">
-					<select name="s_member[]" id="schedule-member">
+					<select name="s_member" id="schedule-member">
 						<option value="999">メンバー</option>
 						<option value="1">七彩てまり</option>
 						<option value="2">田中りゅこ</option>
@@ -221,12 +53,47 @@
 						<option value="19">華糖シェリー</option>
 						<option value="20">ぺるぽ</option>
 						<option value="21">叶望ゆゆ</option>
-					</select> <input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
+					</select> <input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
-				<button class="schedule-insert-button"
-						onclick="insertForm()">登録</button>
+				<div class="schedule-insert-box">
+				<div id="schedule-blank-box">빈칸</div>
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
+				</div>
+				<div class="schedule-insert-box">
+				<div id="schedule-blank-box">빈칸</div>
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
+				</div>
+				<div class="schedule-insert-box">
+				<div id="schedule-blank-box">빈칸</div>
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
+				</div>
+				<div class="schedule-insert-box">
+				<div id="schedule-blank-box">빈칸</div>
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
+				</div>
+				<div class="schedule-insert-box">
+				<div id="schedule-blank-box">빈칸</div>
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
+				</div>
+				<div class="schedule-insert-box">
+				<div id="schedule-blank-box">빈칸</div>
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
+				</div>
+				<button class="schedule-insert-button">登録</button>
 				</form>
 		</div>
 	</div>
