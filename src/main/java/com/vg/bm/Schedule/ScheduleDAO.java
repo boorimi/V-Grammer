@@ -48,8 +48,8 @@ public class ScheduleDAO {
 			String date[] = request.getParameterValues("s_date[]");
 			String time[] = request.getParameterValues("s_time[]");
 			String title[] = request.getParameterValues("s_title[]");
-
-			for (int i = 0; i < member.length; i++) {
+			
+			for (int i = 0; i < date.length; i++) {
 				if (!member[i].equals("999") && !date[i].isEmpty() && !time[i].isEmpty() && !title[i].isEmpty()) {
 					// 포문 한 번 돌고 나면 pstmt 초기화
 					pstmt.clearParameters();

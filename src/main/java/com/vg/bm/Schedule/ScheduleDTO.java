@@ -1,15 +1,12 @@
 package com.vg.bm.Schedule;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class ScheduleDTO {
 
 	private String s_pk;
 	private String s_m_pk;
 	private String s_u_t_id;
-	private Date s_date;
-	private Time s_time;
+	private String s_date;
+	private String s_time;
 	private String s_title;
 
 	public ScheduleDTO() {
@@ -40,19 +37,19 @@ public class ScheduleDTO {
 		this.s_u_t_id = s_u_t_id;
 	}
 
-	public Date getS_date() {
+	public String getS_date() {
 		return s_date;
 	}
 
-	public void setS_date(Date s_date) {
+	public void setS_date(String s_date) {
 		this.s_date = s_date;
 	}
 
-	public Time getS_time() {
+	public String getS_time() {
 		return s_time;
 	}
 
-	public void setS_time(Time s_time) {
+	public void setS_time(String s_time) {
 		this.s_time = s_time;
 	}
 
@@ -64,7 +61,7 @@ public class ScheduleDTO {
 		this.s_title = s_title;
 	}
 
-	public ScheduleDTO(String s_pk, String s_m_pk, String s_u_t_id, Date s_date, Time s_time, String s_title) {
+	public ScheduleDTO(String s_pk, String s_m_pk, String s_u_t_id, String s_date, String s_time, String s_title) {
 		super();
 		this.s_pk = s_pk;
 		this.s_m_pk = s_m_pk;
@@ -79,7 +76,5 @@ public class ScheduleDTO {
 		return "ScheduleDTO [s_pk=" + s_pk + ", s_m_pk=" + s_m_pk + ", s_u_t_id=" + s_u_t_id + ", s_date=" + s_date
 				+ ", s_time=" + s_time + ", s_title=" + s_title + "]";
 	}
-	
-	
 
 }
