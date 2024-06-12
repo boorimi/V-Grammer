@@ -58,18 +58,17 @@
 						<select name="collabo">
 							<option value="未分類">未分類</option>
 							<option value="yes" 
-							 ${archive.a_collabo == 'yes' ? 'selected' : ''}
 							>Yes</option>
 							<option value="no"
-							 ${archive.a_collabo == 'no' ? 'selected' : ''}
 							>No</option>
 						</select>
+						<input class="collabo-value" type="text" value="${archive.a_collabo}"/>
 					</div>
 					<div class="archive-collabomember">
 						<div>コラボメンバー</div>
 						<button type="button" onclick="openModal(this)"
 							class="openModalButton">${archive.a_collabomember}</button>
-						<input class="collaboMember" type="hidden" name="collabomember" />
+						<input class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
 					</div>
 					<div class="archive-category">
 						<div>カテゴリー</div>
@@ -125,20 +124,10 @@
             <div>
             	<div class="archive-modal-detail-gen">
                 <div class="archive-modal-detail">
-                    <div><label><input type="checkbox" name="collabomember" value="七彩てまり"
-                    ${fn:contains(archive.a_collabomember, '七彩てまり') ? 'checked' : 'ㅇ'}
-                    > 七彩てまり</label></div>
-                    <div><label><input type="checkbox" name="collabomember" value="田中りゅこ"
-                    ${fn:contains(archive.a_collabomember, '田中りゅこ') ? 'checked' : 'ㅇ'}
-                    > 田中りゅこ</label></div>
-                    <div><label><input type="checkbox" name="collabomember" value="夜夢瑠紅"
-                    ${fn:contains(archive.a_collabomember, '夜夢瑠紅') ? 'checked' : 'ㅇ'}
-                    > 夜夢瑠紅</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="七彩てまり"> 七彩てまり</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="田中りゅこ"> 田中りゅこ</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="夜夢瑠紅"> 夜夢瑠紅</label></div>
                 </div>
-                ${fn:contains(archive.a_collabomember, '七彩てまり') ? 'checked' : 'ㅇ'}
-                    ${fn:contains(archive.a_collabomember, '田中りゅこ') ? 'checked' : 'ㅇ'}
-                    ${fn:contains(archive.a_collabomember, '夜夢瑠紅') ? 'checked' : 'ㅇ'}
-                    ${archive.a_collabomember}
                 </div>
                 <div class="archive-modal-detail-gen">
                 <div class="archive-modal-detail">
@@ -194,41 +183,7 @@
 
 </body>
 <script>
-    let activeBtn;
-    let activeInput;
-function openModal(btn) {
-    var closeButton = document.querySelector("#close");
-    var submitButton = document.querySelector("#submitButton");
-    activeBtn = btn;
-    activeInput = btn.nextElementSibling;
-    console.log(activeInput);
-    console.log(activeBtn);
-    var modal = document.querySelector("#myModal");
-    modal.style.display = "block";
-}
-function closeModal() {
-          document.querySelector("#myModal").style.display = "none";
-};
-   
-function applyModal() {
-	var closeButton = document.querySelector("#close");
-	console.log("Submit button clicked");
-    let form = document.querySelector(".dialog-container .form-container");
-    let selectedOptions = [];
-    let checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
-    checkboxes.forEach(function(checkbox) {
-        selectedOptions.push(checkbox.value);
-    });
-    console.log(activeBtn);
-    console.log(selectedOptions)
-    activeBtn.innerText = selectedOptions.join(",");
-	activeInput.value = selectedOptions.join(",");             
-    document.querySelectorAll("#checkboxForm input[type='checkbox']:checked").forEach((chkInput)=>{
-    	chkInput.checked = false;
-    });
-    
-    closeButton.click();
-}
+
     	
             
 

@@ -152,7 +152,9 @@ function test2(resData) {
                 <button type="button" onclick="openModal(this)" class="openModalButton">${
                   archive.a_collabomember
                 }</button>
-				<input class="collaboMember" type="text" name="collabomember" /></div>
+				<input class="collaboMember" type="text" name="collabomember" value="${
+          archive.a_collabomember
+        }" /></div>
             <div class="archive-category">
                 <div>カテゴリー</div>
                 <select name="category">
@@ -226,3 +228,89 @@ function adjustOpacity(opacityValue) {
 function adjustOpacity2(opacityValue) {
   $("#archive-list2").animate({ opacity: opacityValue }, 350);
 }
+
+// 모달 팝업 기능
+let activeBtn;
+let activeInput;
+function openModal(btn) {
+  var closeButton = document.querySelector("#close");
+  var submitButton = document.querySelector("#submitButton");
+  activeBtn = btn;
+  activeInput = btn.nextElementSibling;
+  console.log(activeInput);
+  console.log(activeBtn);
+  console.log("-----------");
+  document.querySelectorAll("input[name='collabomember']").forEach((asd) => {
+    asd.checked = false;
+    if (btn.innerText.indexOf(asd.value) != -1) {
+      asd.checked = true;
+    }
+  });
+  console.log("-----------");
+
+  var modal = document.querySelector("#myModal");
+  modal.style.display = "block";
+}
+function closeModal() {
+  document.querySelector("#myModal").style.display = "none";
+}
+
+function applyModal() {
+  var closeButton = document.querySelector("#close");
+  console.log("Submit button clicked");
+  let form = document.querySelector(".dialog-container .form-container");
+  let selectedOptions = [];
+  let checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+  checkboxes.forEach(function (checkbox) {
+    selectedOptions.push(checkbox.value);
+  });
+  console.log(activeBtn);
+  console.log(selectedOptions);
+  activeBtn.innerText = selectedOptions.join(",");
+  activeInput.value = selectedOptions.join(",");
+  document
+    .querySelectorAll("#checkboxForm input[type='checkbox']:checked")
+    .forEach((chkInput) => {
+      chkInput.checked = false;
+    });
+
+  closeButton.click();
+}
+
+// 콜라보 yes, no 를 선택한값에 맞게 적용하기
+window.addEventListener("load", function () {
+  document.querySelectorAll(".collabo-value").forEach(function (element) {
+    console.log(element.value);
+  });
+  document.querySelectorAll("select[name='collabo']").forEach((select) => {
+    console.log("Select element:", select);
+  });
+
+  Array.from(select.options).forEach((option) => {
+    console.log("Option value:", option.value);
+    if (option.value == collaboValue) {
+      option.selected = true;
+    }
+  });
+});
+
+// function toggleButton(select) {
+//   const button = select.nextElementSibling.querySelector(".openModalButton");
+//   // select 요소의 값을 확인하고 해당하는 버튼을 표시하거나 숨김
+//   if (select.value === "yes") {
+//     button.style.display = "inline-block";
+//   }
+// }
+
+// // 페이지 로드 시 각 select 요소의 버튼의 표시 상태를 설정
+// document.querySelectorAll("select[name='collabo']").values.forEach(function (select) {
+//   console.log(select);
+//   toggleButton(select);
+// });
+
+// // select 요소의 값이 변경될 때 해당하는 버튼의 표시 상태를 설정
+// document.querySelectorAll("select[name='collabo']").forEach(function (select) {
+//   select.addEventListener("change", function () {
+//     toggleButton(this);
+//   });
+// });

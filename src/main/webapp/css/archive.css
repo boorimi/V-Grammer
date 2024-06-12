@@ -37,7 +37,7 @@
 }
 .archive-page-no2 {
   cursor: pointer;
-  padding: 10px; 
+  padding: 10px;
   border: 1px solid gray;
 }
 .archive-contents {
@@ -91,4 +91,7 @@
 }
 #archive-list2 {
   opacity: 0.3; /* 초기 투명도 설정 */
+}
+.openModalButton {
+  display: none; /* 기본적으로 버튼을 숨김 */
 }
