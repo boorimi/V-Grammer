@@ -44,17 +44,17 @@ public class ScheduleDAO {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
-			String member[] = request.getParameterValues("s_member[]");
-			String date[] = request.getParameterValues("s_date[]");
-			String time[] = request.getParameterValues("s_time[]");
-			String title[] = request.getParameterValues("s_title[]");
+			String member[] = request.getParameterValues("s_member");
+			String date[] = request.getParameterValues("s_date");
+			String time[] = request.getParameterValues("s_time");
+			String title[] = request.getParameterValues("s_title");
 
-			for (int i = 0; i < member.length; i++) {
-				if (!member[i].equals("999") && !date[i].isEmpty() && !time[i].isEmpty() && !title[i].isEmpty()) {
+			for (int i = 0; i < date.length; i++) {
+				if (!member.equals("999") && !date[i].isEmpty() && !time[i].isEmpty() && !title[i].isEmpty()) {
 					// 포문 한 번 돌고 나면 pstmt 초기화
 					pstmt.clearParameters();
-
-					pstmt.setString(1, member[i]);
+					
+					pstmt.setString(1, member[0]);
 					pstmt.setLong(2, id);
 					pstmt.setString(3, date[i]);
 					pstmt.setString(4, time[i]);

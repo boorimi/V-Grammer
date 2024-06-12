@@ -3,7 +3,21 @@
 .schedule-insert-container{
 	border: 1px solid green;
 }
+
 .schedule-insert-inner-container{
 	border: 1px solid red;
 	display: none;
+}
+
+.schedule-insert-box{
+	display: flex;
+}
+
+#schedule-member{
+	width: 120px;
+}
+
+#schedule-blank-box{
+	width: 120px;
+	background-color: darkorange;
 }
