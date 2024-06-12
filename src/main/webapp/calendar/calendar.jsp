@@ -5,15 +5,17 @@
 <html>
 <head>
 <meta charset='utf-8' />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src='js/calendar-addevent.js'></script>
-<script src='js/calendar.js'></script>
 <link rel="stylesheet" href="css/calendar.css">
 </head>
 <body class="html-body">
     <div id='calendar'></div>
     <div id="button-container">
-  <br>
-  <button id="button-dday" class="button-dday" onclick="window.location.href='DdayC'">Dday로</button>
-  </div>
+        <br>
+        <button id="button-dday" class="button-dday" onclick="window.location.href='DdayC'">Dday로</button>
+    </div>
 </body>
 </html>
