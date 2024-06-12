@@ -1,23 +1,75 @@
 @charset "UTF-8";
 
-.schedule-insert-container{
-	border: 1px solid green;
+.schedule-container {
+  width: 1900px;
+  height: auto;
+  border: 1px solid red;
 }
 
-.schedule-insert-inner-container{
-	border: 1px solid red;
-	display: none;
+.s-week-list {
+  width: 1900px;
+  border: 1px solid blue;
+  display: flex;
+  align-items: center;
 }
 
-.schedule-insert-box{
+.s-week-list > div {
+  width: 237.5px;
+  border: 1px solid green;
+  display: flex;
+}
+
+.content-inner-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.s-time-list {
+  width: 1900px;
+  border: 1px solid turquoise;
+  display: flex;
+}
+
+.s-time-a {
+  width: 237.5px;
+  height: 100px;
+  border: 1px solid tomato;
+}
+.s-time-a-data{
 	display: flex;
+	flex-wrap: wrap
+}
+.s-time-b {
+  width: 237.5px;
+  height: 50px;
+  border: 1px solid royalblue;
 }
 
-#schedule-member{
-	width: 120px;
+#s-data {
+  width: 237.5px;
+  height: 50px;
+  background-color: cadetblue;
 }
 
-#schedule-blank-box{
-	width: 120px;
-	background-color: darkorange;
+/* insert css */
+.schedule-insert-container {
+  border: 1px solid green;
+}
+
+.schedule-insert-inner-container {
+  border: 1px solid red;
+  display: none;
+}
+
+.schedule-insert-box {
+  display: flex;
+}
+
+#schedule-member {
+  width: 120px;
+}
+
+#schedule-blank-box {
+  width: 120px;
+  background-color: darkorange;
 }
