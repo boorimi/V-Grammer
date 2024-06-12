@@ -15,7 +15,6 @@ public class MyPageC extends HttpServlet {
 			throws ServletException, IOException {
 		AccountDAO.loginCheck(request);
 		request.setAttribute("content", "account/mypage/mypage_index.jsp");
-		request.setAttribute("mypageContent", "account/mypage/mypage_userInfo.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

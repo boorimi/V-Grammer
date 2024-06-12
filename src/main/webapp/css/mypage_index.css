@@ -1,1 +1,17 @@
 @charset "UTF-8";
+
+.mypage-container {
+	
+	display: flex;
+	gap: 50px;
+	justify-content: center;
+	position: relative;
+}
+
+.mypage-menu-section{
+	
+	position: absolute;
+	left: 100px;
+	flex-direction: column;
+	
+}
