@@ -17,7 +17,7 @@ $(document).ready(function() {
 	$insertButton.on('click', function() {
 		let formData = [];
 
-		if ($('#schedule-member').val() === "") {
+		if ($('#schedule-member').val() === "999") {
 			alert('メンバーをチェックください！');
 		} if ($('#schedule-date').val() === "") {
 			alert('日付をチェックください！');

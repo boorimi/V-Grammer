@@ -31,7 +31,7 @@
 				<form action="ScheduleInsertC">
 				<div class="schedule-insert-box">
 					<select name="s_member[]" id="schedule-member">
-						<option value="0">メンバー</option>
+						<option value="999">メンバー</option>
 						<option value="1">七彩てまり</option>
 						<option value="2">田中りゅこ</option>
 						<option value="3">夜夢瑠紅</option>
@@ -59,7 +59,7 @@
 				</div>
 				<div class="schedule-insert-box">
 					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
+						<option value="999">メンバー</option>
 						<option value="1">七彩てまり</option>
 						<option value="2">田中りゅこ</option>
 						<option value="3">夜夢瑠紅</option>
@@ -87,7 +87,7 @@
 				</div>
 				<div class="schedule-insert-box">
 					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
+						<option value="999">メンバー</option>
 						<option value="1">七彩てまり</option>
 						<option value="2">田中りゅこ</option>
 						<option value="3">夜夢瑠紅</option>
@@ -115,7 +115,7 @@
 				</div>
 				<div class="schedule-insert-box">
 					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
+						<option value="999">メンバー</option>
 						<option value="1">七彩てまり</option>
 						<option value="2">田中りゅこ</option>
 						<option value="3">夜夢瑠紅</option>
@@ -143,7 +143,7 @@
 				</div>
 				<div class="schedule-insert-box">
 					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
+						<option value="999">メンバー</option>
 						<option value="1">七彩てまり</option>
 						<option value="2">田中りゅこ</option>
 						<option value="3">夜夢瑠紅</option>
@@ -171,7 +171,7 @@
 				</div>
 				<div class="schedule-insert-box">
 					<select name="s_member[]" id="schedule-member">
-						<option>メンバー</option>
+						<option value="999">メンバー</option>
 						<option value="1">七彩てまり</option>
 						<option value="2">田中りゅこ</option>
 						<option value="3">夜夢瑠紅</option>
