@@ -54,23 +54,20 @@ main {
   margin-right: 10px;
 }
 
-.slider {
-  margin-left: 250px;
-}
-
 .slider-container {
   position: relative;
-  width: 960px; /* 슬라이더 너비 */
+  width: 1280px; /* 슬라이더 너비 */
   margin: 0 auto; /* 가운데 정렬 */
 }
+
 .slider {
   width: 100%;
+  margin-left: auto;
 }
+
 .prev,
 .next {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
@@ -79,27 +76,30 @@ main {
   cursor: pointer;
   z-index: 1000;
 }
+
 .prev {
   left: 0;
+  bottom: 350px; /* 버튼을 위로 200px만큼 이동시킵니다. */
 }
+
 .next {
-  right: 0;
+  left: 1300px;
+  bottom: 350px; /* 버튼을 위로 200px만큼 이동시킵니다. */
 }
 
 .live-contents {
-  width: 1187px;
-  height: 501px;
-
-  margin-left: 126px;
-  margin-top: 102px;
   display: flex;
+  /* justify-content: center;  */
+  margin-top: 102px;
 }
 
 .live-content {
-  width: 100%;
-  max-width: 800px; /* 원하는 최대 너비 */
-  margin: 0 auto;
+  width: 1280px;
+  height: 810px; /* YouTube 비디오의 16:9 비율에 맞춘 높이 */
+  background-color: white;
+  margin: 0 47px;
 }
+
 .live-stream {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 비율 유지 */
@@ -108,6 +108,7 @@ main {
   max-width: 100%;
   background: #000;
 }
+
 .live-stream iframe {
   position: absolute;
   top: 0;
