@@ -10,7 +10,7 @@
 <!-- index.jsp에 include할 페이지 -->
 <body>
 	<form action="LoginC" method="post">
-		<button>login 페이지로</button>
+		<button style="font-size:15pt;">login 페이지로</button>
 	</form>
 </body>
 </html>

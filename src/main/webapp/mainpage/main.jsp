@@ -91,6 +91,11 @@ prefix="c"%>
           </c:if>
         </c:forEach>
       </div>
+
+      <div class="main-news">
+        <div class="news-photo"></div>
+      </div>
+
       <div class="today-vtuber">
         <p>今日のおすすめVtuber</p>
         <div class="today-vtuber-info">

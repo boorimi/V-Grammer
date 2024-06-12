@@ -1,125 +1,71 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Insert title here</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Live Slider</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"
     />
-    <style>
-      .slider-container {
-        width: 600px;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .slider-content {
-        display: flex;
-        transition: transform 0.5s ease;
-      }
-
-      .slide {
-        width: 600px;
-      }
-
-      .live-content iframe {
-        width: 100%;
-        height: 350px;
-      }
-
-      .btn {
-        cursor: pointer;
-      }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
   </head>
   <body>
-    <main>
-      <!-- 여기에 슬라이더 추가 -->
-      <div class="slider-container">
-        <div class="slider-content">
-          <!-- 동영상 슬라이드가 여기에 추가될 것입니다 -->
-        </div>
-      </div>
-      <!-- 좌우 버튼 -->
-      <div class="left-slider-button">
-        <svg
-          width="60"
-          height="60"
-          viewBox="0 0 60 60"
-          fill="black"
-          xmlns="http://www.w3.org/2000/svg"
-          class="btn"
-          onclick="prevSlide()"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M5 17.5C5 10.5964 10.5964 5 17.5 5H42.5C49.4036 5 55 10.5964 55 17.5V42.5C55 49.4036 49.4036 55 42.5 55H17.5C10.5964 55 5 49.4036 5 42.5V17.5ZM17.5 10C13.3579 10 10 13.3579 10 17.5V42.5C10 46.6421 13.3579 50 17.5 50H42.5C46.6421 50 50 46.6421 50 42.5V17.5C50 13.3579 46.6421 10 42.5 10H17.5ZM34.2678 20.7322C35.2441 21.7085 35.2441 23.2915 34.2678 24.2678L28.5355 30L34.2678 35.7322C35.2441 36.7085 35.2441 38.2915 34.2678 39.2678C33.2915 40.2441 31.7085 40.2441 30.7322 39.2678L23.2322 31.7678C22.2559 30.7915 22.2559 29.2085 23.2322 28.2322L30.7322 20.7322C31.7085 19.7559 33.2915 19.7559 34.2678 20.7322Z"
-            fill="black"
-          />
-        </svg>
-      </div>
-      <div class="right-slider-button">
-        <svg
-          width="60"
-          height="60"
-          viewBox="0 0 60 60"
-          fill="black"
-          xmlns="http://www.w3.org/2000/svg"
-          class="btn"
-          onclick="nextSlide()"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M0 15C0 6.71573 6.71573 0 15 0H45C53.2843 0 60 6.71573 60 15V45C60 53.2843 53.2843 60 45 60H15C6.71573 60 0 53.2843 0 45V15ZM15 6C10.0294 6 6 10.0294 6 15V45C6 49.9706 10.0294 54 15 54H45C49.9706 54 54 49.9706 54 45V15C54 10.0294 49.9706 6 45 6H15ZM24.8787 18.8787C26.0503 17.7071 27.9497 17.7071 29.1213 18.8787L38.1213 27.8787C39.2929 29.0503 39.2929 30.9497 38.1213 32.1213L29.1213 41.1213C27.9497 42.2929 26.0503 42.2929 24.8787 41.1213C23.7071 39.9497 23.7071 38.0503 24.8787 36.8787L31.7574 30L24.8787 23.1213C23.7071 21.9497 23.7071 20.0503 24.8787 18.8787Z"
-            fill="black"
-          />
-        </svg>
-      </div>
-    </main>
-    <footer></footer>
+    <div class="slider">
+      <!-- YouTube Live 슬라이드들이 여기에 들어갈 것입니다 -->
+    </div>
 
-    <!-- JavaScript 부분 -->
-   <script>
-      const slider = document.querySelector('.slider-content');
-      const videos = [<c:forEach items="${streamIds}" var="s">
-      "${s.address}",
-      </c:forEach>
-    ];
+    <button class="prev">이전</button>
+    <button class="next">다음</button>
 
-    let currentVideoIndex = 0;
+    <input id="videoId" value="${s.address }" />
 
-    function showVideo(videoIndex) {
-      const video = videos[videoIndex];
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube.com/embed/${video}`;
-      iframe.frameborder = '0';
-      iframe.allowfullscreen = true;
+    <script>
+      let livestream = document.querySelector("#videoId");
 
-      slider.innerHTML = ''; // Clear previous video
-      slider.appendChild(iframe);
-    }
+      $(document).ready(function () {
+        // YouTube 라이브 비디오 ID 배열
+        var youtubeLiveVideos = [
+          "vg6Cb5zseUs",
+          "Pp9-ABBRv94",
+          // 필요한 만큼 계속 추가
+        ];
 
-    function prevSlide() {
-      currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-      showVideo(currentVideoIndex);
-    }
+        // 각 YouTube 비디오를 슬라이드로 추가
+        youtubeLiveVideos.forEach(function (videoId) {
+          $(".slider").append(
+            '<div><iframe width="560" height="315" src="https://www.youtube.com/embed/' +
+              videoId +
+              '?autoplay=0" frameborder="0" allowfullscreen></iframe></div>'
+          );
+        });
 
-    function nextSlide() {
-      currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-      showVideo(currentVideoIndex);
-    }
+        // bxSlider 초기화
+        var slider = $(".slider").bxSlider({
+          mode: "horizontal", // 슬라이드 모드 설정 (수평으로)
+          auto: false, // 자동으로 슬라이드 전환 여부
+          controls: false, // 이전/다음 버튼을 표시하지 않음
+          pager: false, // 페이지 버튼을 표시하지 않음
+          slideMargin: 0, // 슬라이드 간의 여백 (픽셀)
+          minSlides: 1, // 최소로 보여줄 슬라이드 수
+          maxSlides: 1, // 최대로 보여줄 슬라이드 수
+          moveSlides: 1, // 한 번에 슬라이드할 슬라이드 수
+          slideWidth: 560, // 슬라이드의 너비 (픽셀)
+        });
 
-    // 페이지 로드시 첫 번째 동영상 보여주기
-    showVideo(currentVideoIndex);
-  </script>
-</body>
+        // 이전 버튼 클릭 이벤트
+        $(".prev").click(function () {
+          slider.goToPrevSlide();
+          return false;
+        });
+
+        // 다음 버튼 클릭 이벤트
+        $(".next").click(function () {
+          slider.goToNextSlide();
+          return false;
+        });
+      });
+    </script>
+  </body>
 </html>
-

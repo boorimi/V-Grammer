@@ -12,11 +12,8 @@ $(document).ready(function() {
 		}
 	});
 
-
 	// 입력 안하면 입력 알럿
 	$insertButton.on('click', function() {
-		let formData = [];
-
 		if ($('#schedule-member').val() === "999") {
 			alert('メンバーをチェックください！');
 		} if ($('#schedule-date').val() === "") {
@@ -27,22 +24,7 @@ $(document).ready(function() {
 			alert('タイトルをチェックください！');
 		}
 
-//		$('.schedule-insert-box').each(function() {
-//			let member = $(this).find($('#schedule-member')).val();
-//			let date = $(this).find($('#schedule-date')).val();
-//			let time = $(this).find($('#schedule-time')).val();
-//			let title = $(this).find($('#schedule-title')).val();
-
-//			if (member !== "999" && date !== "" && time !== "" && title !== "") {
-//				formData.push({
-//					s_member: member,
-//					s_date: date,
-//					s_time: time,
-//					s_title: title
-//				});
-//			}
-
-		});
-
-
 	});
+
+
+});

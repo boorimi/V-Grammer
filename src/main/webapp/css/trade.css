@@ -21,9 +21,11 @@
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.trade-comments > div:nth-child(1) {
+.trade-comments > div {
   display: flex;
   justify-content: space-between;
+}
+.trade-comments > div:nth-child(1) {
   background-color: rgb(230, 230, 230);
 }
 .trade-comments > div {

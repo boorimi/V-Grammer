@@ -11,23 +11,23 @@ import com.vg.ds.trade.TradeDAO;
 import com.vg.jw.AccountDAO;
 
 
-@WebServlet("/ArchiveC")
-public class ArchiveC extends HttpServlet {
+@WebServlet("/ArchivePageC")
+public class ArchivePageC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int p = Integer.parseInt(request.getParameter("p"));
+		ArchiveDAO.getCountArchive(p, request);
 		ArchiveDAO.selectAllArchive(request);
 //		int p = Integer.parseInt(request.getParameter("p"));
-//		ArchiveDAO.paging(1, request);
-		ArchiveDAO.getCountArchive(1, request);
+//		ArchiveDAO.paging(p, request);
 		AccountDAO.loginCheck(request);
 		request.setAttribute("content", "archive/archive.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		ArchiveDAO.getAnotherPage(request, response);
+		
 	}
 
 }

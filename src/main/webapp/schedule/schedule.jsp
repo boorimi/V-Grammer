@@ -30,7 +30,7 @@
 		<div class="schedule-insert-inner-container">
 				<form action="ScheduleInsertC">
 				<div class="schedule-insert-box">
-					<select name="s_member[]" id="schedule-member">
+					<select name="s_member" id="schedule-member">
 						<option value="999">メンバー</option>
 						<option value="1">七彩てまり</option>
 						<option value="2">田中りゅこ</option>
@@ -53,45 +53,45 @@
 						<option value="19">華糖シェリー</option>
 						<option value="20">ぺるぽ</option>
 						<option value="21">叶望ゆゆ</option>
-					</select> <input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
+					</select> <input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
 				<div id="schedule-blank-box">빈칸</div>
-					<input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
 				<div id="schedule-blank-box">빈칸</div>
-					<input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
 				<div id="schedule-blank-box">빈칸</div>
-					<input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
 				<div id="schedule-blank-box">빈칸</div>
-					<input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
 				<div id="schedule-blank-box">빈칸</div>
-					<input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<div class="schedule-insert-box">
 				<div id="schedule-blank-box">빈칸</div>
-					<input name="s_date[]" type="date" id="schedule-date"> <input
-						name="s_time[]" type="time" id="schedule-time"> <input
-						name="s_title[]" style="width: 500px;" id="schedule-title">
+					<input name="s_date" type="date" id="schedule-date"> <input
+						name="s_time" type="time" id="schedule-time"> <input
+						name="s_title" style="width: 500px;" id="schedule-title">
 				</div>
 				<button class="schedule-insert-button">登録</button>
 				</form>

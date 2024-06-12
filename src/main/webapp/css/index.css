@@ -111,6 +111,9 @@ main {
   display: flex;
 }
 
+.news-photo {
+}
+
 .today-vtuber {
   margin-top: 127px;
   margin-left: 297px;
@@ -173,7 +176,7 @@ main {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
-  box-shadow: 5px 5px 20px gray;
+  /*   box-shadow: 5px 5px 20px gray; */
   border: none;
 }
 
@@ -315,6 +318,10 @@ footer {
 
 .archive-contents-update {
   display: flex;
+}
+.archive-bottom {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* login button css */
