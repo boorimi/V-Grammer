@@ -8,41 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-/* 추가된 CSS */
-.dialog-container {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%;
-}
-
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
-</style>
+<link rel="stylesheet" href="css/archive.css">
 </head>
 <body>
 	<!-- 상단 페이징 시작 -->
@@ -82,7 +48,7 @@
 			<form action="ArchiveUpdateC" method="post">
 				<div class="archive-contents-update">
 					<p style="margin-top: 0px">
-						<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
+						<img class="archive-icon" src="haco_img/icon/${archive.i_icon}" />
 					</p>
 					<input type="hidden" name="a_pk" value="${archive.a_pk}">
 					<div class="archive-membername">${archive.m_name}</div>
@@ -121,7 +87,7 @@
 					<div class="archive-title">${archive.a_title}</div>
 					<div class="archive-thumbnail">
 						<img src="${archive.a_thumbnail}"
-							alt="${archive.a_title} Thumbnail">
+							alt="${archive.a_title} Thumbnail" />
 					</div>
 					<button type="submit">수정</button>
 				</div>
@@ -130,63 +96,69 @@
 	</div>
 
 	<div class="dialog-container" id="myModal">
-		<div class="modal-content">
-			<span id="close" onclick="closeModal()">&times;</span>
-			<div id="checkboxForm" class="form-container">
-				<p>Select your options:</p>
-				<div style="display: flex;">
-					<div style="width: 50%">
-					<label><input type="checkbox" name="collabomember"
-					value="七彩てまり"> 七彩てまり</label><br> <label><input
-					type="checkbox" name="collabomember" value="田中りゅこ"> 田中りゅこ</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="夜夢瑠紅"> 夜夢瑠紅</label><br> <label><input
-					type="checkbox" name="collabomember" value="赤衣アカメ"> 赤衣アカメ</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="星ノ音コロン"> 星ノ音コロン</label><br> <label><input
-					type="checkbox" name="collabomember" value="愛咲よつのは"> 愛咲よつのは</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="玉ノ井もなか"> 玉ノ井もなか</label><br> <label><input
-					type="checkbox" name="collabomember" value="綾坂希穂"> 綾坂希穂</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="ソフィ・ローズ"> ソフィ・ローズ</label><br> <label><input
-					type="checkbox" name="collabomember" value="天海くりね"> 天海くりね</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="鳳儚"> 鳳儚</label><br> <label><input
-					type="checkbox" name="collabomember" value="小日向千虎"> 小日向千虎</label><br>
-					</div>
-					<div style="width: 50%">
-					<label><input type="checkbox" name="collabomember"
-					value="白砂つな"> 白砂つな</label><br> <label><input
-					type="checkbox" name="collabomember" value="橘シエナ"> 橘シエナ</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="ミラ・ルプス"> ミラ・ルプス</label><br> <label><input
-					type="checkbox" name="collabomember" value="銀灰まお"> 銀灰まお</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="リン・ガーネット"> リン・ガーネット</label><br> <label><input
-					type="checkbox" name="collabomember" value="明堂しろね"> 明堂しろね</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="華糖シェリー"> 華糖シェリー</label><br> <label><input
-					type="checkbox" name="collabomember" value="ぺるぽ"> ぺるぽ</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="叶望ゆゆ"> 叶望ゆゆ</label><br> <label><input
-					type="checkbox" name="collabomember" value="雫川なのか"> 雫川なのか</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="堕天しすた"> 堕天しすた</label><br> <label><input
-					type="checkbox" name="collabomember" value="山寧恋"> 山寧恋</label><br>
-				<label><input type="checkbox" name="collabomember"
-					value="翠森アトリ"> 翠森アトリ</label><br>
-					</div>
+    <div class="modal-content">
+        <span id="close" onclick="closeModal()">&times;</span>
+        <div id="checkboxForm" class="form-container">
+            <p>Select your options:</p>
+            <div>
+            	<div class="archive-modal-detail-gen">
+                <div class="archive-modal-detail">
+                    <div><label><input type="checkbox" name="collabomember" value="七彩てまり"> 七彩てまり</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="田中りゅこ"> 田中りゅこ</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="夜夢瑠紅"> 夜夢瑠紅</label></div>
+                </div>
+                </div>
+                <div class="archive-modal-detail-gen">
+                <div class="archive-modal-detail">
+                    <div><label><input type="checkbox" name="collabomember" value="赤衣アカメ"> 赤衣アカメ</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="星ノ音コロン"> 星ノ音コロン</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="愛咲よつのは"> 愛咲よつのは</label></div>
+                </div>
+                <div class="archive-modal-detail">    
+                    <div><label><input type="checkbox" name="collabomember" value="玉ノ井もなか"> 玉ノ井もなか</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="綾坂希穂"> 綾坂希穂</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="ソフィ・ローズ"> ソフィ・ローズ</label></div>
+                </div>
+                </div>
+                <div class="archive-modal-detail-gen">
+                <div class="archive-modal-detail">    
+                    <div><label><input type="checkbox" name="collabomember" value="天海くりね"> 天海くりね</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="鳳儚"> 鳳儚</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="小日向千虎"> 小日向千虎</label></div>
 				</div>
-				
-				
-
-				<button type="button" name="collabomember" value="selectedOptions"
-					id="submitButton" onclick="applyModal()">apply</button>
-			</div>
-		</div>
-	</div>
-
+                <div class="archive-modal-detail">
+                    <div><label><input type="checkbox" name="collabomember" value="白砂つな"> 白砂つな</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="橘シエナ"> 橘シエナ</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="ミラ・ルプス"> ミラ・ルプス</label></div>
+                </div>
+                </div>
+                <div class="archive-modal-detail-gen">
+                <div class="archive-modal-detail">    
+                    <div><label><input type="checkbox" name="collabomember" value="銀灰まお"> 銀灰まお</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="リン・ガーネット"> リン・ガーネット</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="明堂しろね"> 明堂しろね</label></div>
+                </div>
+                <div class="archive-modal-detail">
+                    <div><label><input type="checkbox" name="collabomember" value="華糖シェリー"> 華糖シェリー</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="ぺるぽ"> ぺるぽ</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="叶望ゆゆ"> 叶望ゆゆ</label></div>
+                </div>
+                </div>
+                <div class="archive-modal-detail-gen">
+                <div class="archive-modal-detail">    
+                    <div><label><input type="checkbox" name="collabomember" value="雫川なのか"> 雫川なのか</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="堕天しすた"> 堕天しすた</label></div>
+                    <div><label><input type="checkbox" name="collabomember" value="山寧恋"> 山寧恋</label></div>
+                </div>
+                <div class="archive-modal-detail">    
+                    <div><label><input type="checkbox" name="collabomember" value="翠森アトリ"> 翠森アトリ</label></div>
+                </div>
+                </div>
+            </div>
+            <button type="button" name="collabomember" value="selectedOptions" id="submitButton" onclick="applyModal()">apply</button>
+        </div>
+    </div>
+</div>
 
 </body>
 <script>
