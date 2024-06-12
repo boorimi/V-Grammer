@@ -27,8 +27,7 @@
       $(document).ready(function () {
         // YouTube 라이브 비디오 ID 배열
         var youtubeLiveVideos = [
-          "vg6Cb5zseUs",
-          "Pp9-ABBRv94",
+        	livestream
           // 필요한 만큼 계속 추가
         ];
 
