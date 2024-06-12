@@ -13,7 +13,7 @@ prefix="c"%>
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="main-body">
     <main>
       <div style="display: flex" class="live-contents">
         <div class="live-members">

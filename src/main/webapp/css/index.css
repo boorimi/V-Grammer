@@ -11,7 +11,7 @@ nav {
   background-color: white;
 }
 
-main {
+.main-body {
   background-color: #ffd3d3;
 }
 
@@ -26,13 +26,13 @@ main {
 .mene-lists {
   list-style: none;
   display: flex;
-  margin-left: 45px;
+  margin-left: 55px;
   margin-top: 30px;
 }
 
 .mene-lists > li {
   font-size: 25px;
-  margin-right: 45px;
+  margin-right: 65px;
 }
 .nav-userinfo {
   margin-left: 129px;
@@ -145,13 +145,14 @@ main {
 }
 
 .main-news {
-  margin-top: 30px;
+  margin-top: 15px;
   width: 1920px;
   height: 350px;
   display: flex;
 }
 
 .news-photo {
+  margin-top: 15px;
   width: 500px;
   height: 350px;
   /* background-color: #5351d9; */
@@ -183,7 +184,7 @@ main {
   margin-left: 340px;
   width: 1280px;
   height: 751px;
-  background-color: blue;
+  background-color: white;
 }
 .today-vtuber div {
   border: 1px solid black;
