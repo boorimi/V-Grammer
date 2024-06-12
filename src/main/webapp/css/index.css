@@ -32,7 +32,7 @@ nav {
 
 .mene-lists > li {
   font-size: 25px;
-  margin-right: 65px;
+  margin-right: 80px;
 }
 .nav-userinfo {
   margin-left: 129px;
@@ -133,12 +133,17 @@ nav {
 }
 
 .main-dday-container {
+  margin-top: 50px;
   border: 1px solid black;
   background-color: white;
-  height: 50px;
+  height: 30px;
+  display: flex;
 }
 .main-dday-container div {
   border: 1px solid black;
+}
+.main-dday-container div div {
+  margin-right: 50px;
 }
 .main-dday-container > div {
   display: flex;

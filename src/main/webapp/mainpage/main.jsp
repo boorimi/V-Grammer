@@ -59,9 +59,9 @@ prefix="c"%>
         <c:forEach var="dday" items="${ddayList}">
           <c:if test="${dday.daysUntilDday >= -14 && dday.daysUntilDday <= 0}">
             <div>
-              <div>${dday.m_name}</div>
-              <div>${dday.m_debut}</div>
-              <div>${dday.daysUntilDday}</div>
+              <div>이름 : ${dday.m_name}</div>
+              <div>데뷔 날짜 : ${dday.m_debut}</div>
+              <div>D-day : ${dday.daysUntilDday}</div>
             </div>
           </c:if>
         </c:forEach>
