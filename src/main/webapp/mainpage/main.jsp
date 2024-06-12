@@ -71,6 +71,17 @@ prefix="c"%>
         <div class="news-photo">
           <img src="haco_img/img/newimg2.png" alt="">
         </div>
+        <ul class="news-board">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          
+
+        </ul>
+        
+
       </div>
 
       <div class="today-vtuber">
