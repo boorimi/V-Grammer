@@ -41,7 +41,13 @@ function setVal(){
 		data : {month, year},
 		success: function(res) {
 			console.log(res);
-
+			
+			const eventDataLines = res.split('\n');
+			eventDataLines.forEach(function(line) {
+				const eventData = line.split(' ');
+				
+				const name eventData[0];
+			}
 		},
 		error: function(err) {
 			console.error("Error fetching events: ", err);
