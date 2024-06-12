@@ -111,6 +111,9 @@ main {
   display: flex;
 }
 
+.news-photo {
+}
+
 .today-vtuber {
   margin-top: 127px;
   margin-left: 297px;
@@ -173,7 +176,7 @@ main {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
-/*   box-shadow: 5px 5px 20px gray; */
+  /*   box-shadow: 5px 5px 20px gray; */
   border: none;
 }
 
@@ -323,13 +326,12 @@ footer {
 
 /* login button css */
 .loginbtn {
-  
   -webkit-border-radius: 10;
   -moz-border-radius: 10;
-  border-radius: 10px; 
+  border-radius: 10px;
   -webkit-box-shadow: 0px 1px 3px #666666;
   -moz-box-shadow: 0px 1px 3px #666666;
-  box-shadow: 0px 1px 3px #666666; 
+  box-shadow: 0px 1px 3px #666666;
   font-family: Arial;
   color: #ffffff;
   font-size: 18px;
