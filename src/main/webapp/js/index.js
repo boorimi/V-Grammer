@@ -95,8 +95,14 @@ function test(resData) {
            	<div class="archive-category">カテゴリー : ${archive.a_category}</div>
             <div class="archive-date">	${formattedDate} </div>
            	<div class="archive-time">	${formattedTime} </div>
-           	<div class="archive-title">	Title: ${archive.a_title}</div>
-           	<div class="archive-thumbnail"> <img src="${archive.a_thumbnail}" alt="${archive.a_title} Thumbnail"> </div>
+           	<div class="archive-title">	${archive.a_title}</div>
+           	<div class="archive-thumbnail">
+					<a target="_blank" href="https://www.youtube.com/watch?v=${archive.a_videoid}">
+						<img 
+						src="${archive.a_thumbnail}" 
+						alt="${archive.a_title} Thumbnail">
+					</a>
+				</div>
         </div>`;
     $archiveList.append(html);
   }
@@ -122,7 +128,9 @@ function test2(resData) {
     let html = `<form action="ArchiveUpdateC" method="post">
         <div class="archive-contents-update">
             <p style="margin-top: 0px">
-                <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" >
+                <img class="archive-icon" src="haco_img/icon/${
+                  archive.i_icon
+                }" >
             </p>
             <input type="hidden" name="a_pk" value="${archive.a_pk}">
             <div class="archive-membername">${archive.m_name}</div>
@@ -131,34 +139,62 @@ function test2(resData) {
                 <div>コラボ</div>
                 <select name="collabo">
                     <option value="未分類">未分類</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option value="yes"
+                    ${archive.a_collabo == "yes" ? "selected" : ""}
+                    >Yes</option>
+                    <option value="no"
+                    ${archive.a_collabo == "no" ? "selected" : ""}
+                    >No</option>
                 </select>
             </div>
              <div class="archive-collabomember">
              <div>コラボメンバー</div>
-                <button type="button" onclick="openModal(this)" class="openModalButton">${archive.a_collabomember}</button>
-				<input class="collaboMember" type="text" name="collabomember" /></div>
+                <button type="button" onclick="openModal(this)" class="openModalButton">${
+                  archive.a_collabomember
+                }</button>
+				<input class="collaboMember" type="text" name="collabomember" value="${
+          archive.a_collabomember
+        }" /></div>
             <div class="archive-category">
                 <div>カテゴリー</div>
                 <select name="category">
-                    <option value="未分類">未分類</option>
-                    <option value="雑談">雑談</option>
-                    <option value="歌枠">歌枠</option>
-                    <option value="ゲーム">ゲーム</option>
-                    <option value="企画">企画</option>
-                    <option value="ASMR">ASMR</option>
-                    <option value="shorts">shorts</option>
-                    <option value="切り抜き">切り抜き</option>
-                    <option value="オリジナル曲">オリジナル曲</option>
-                    <option value="他">他</option>
-                </select>
+							<option value="未分類">未分類</option>
+							<option value="雑談"
+							${archive.a_category == "雑談" ? "selected" : ""}
+							>雑談</option>
+							<option value="歌枠"
+							${archive.a_category == "歌枠" ? "selected" : ""}
+							>歌枠</option>
+							<option value="ゲーム"
+							${archive.a_category == "ゲーム" ? "selected" : ""}
+							>ゲーム</option>
+							<option value="企画"
+							${archive.a_category == "企画" ? "selected" : ""}
+							>企画</option>
+							<option value="ASMR"
+							${archive.a_category == "ASMR" ? "selected" : ""}
+							>ASMR</option>
+							<option value="shorts"
+							${archive.a_category == "shorts" ? "selected" : ""}
+							>shorts</option>
+							<option value="切り抜き"
+							${archive.a_category == "切り抜き" ? "selected" : ""}
+							>切り抜き</option>
+							<option value="オリジナル曲"
+							${archive.a_category == "オリジナル曲" ? "selected" : ""}
+							>オリジナル曲</option>
+							<option value="他"
+							${archive.a_category == "他" ? "selected" : ""}
+							>他</option>
+						</select>
             </div>
             <div class="archive-date">${formattedDate}</div>
             <div class="archive-time">${formattedTime}</div>
-            <div class="archive-title">Title: ${archive.a_title}</div>
+            <div class="archive-title">${archive.a_title}</div>
             <div class="archive-thumbnail">
-                <img src="${archive.a_thumbnail}" alt="${archive.a_title} Thumbnail">
+                <img src="${archive.a_thumbnail}" alt="${
+      archive.a_title
+    } Thumbnail">
             </div>
             <button type="submit">수정</button>
         </div>
@@ -167,3 +203,114 @@ function test2(resData) {
     $archiveList.append(html);
   }
 }
+
+$(document).ready(function () {
+  // 페이지 로드 시 투명도를 올리는 함수 호출
+  adjustOpacity(1);
+  adjustOpacity2(1);
+
+  // 클릭 이벤트 발생 시 투명도를 낮추는 함수 호출
+  $(".archive-page-no2").click(function () {
+    $("#archive-list2").css({ opacity: 0.3 });
+    adjustOpacity2(1);
+  });
+  $(".archive-page-no").click(function () {
+    $("#archive-list").css({ opacity: 0.3 });
+    adjustOpacity(1);
+  });
+});
+
+// 투명도를 조절하는 함수
+
+function adjustOpacity(opacityValue) {
+  $("#archive-list").animate({ opacity: opacityValue }, 350);
+}
+function adjustOpacity2(opacityValue) {
+  $("#archive-list2").animate({ opacity: opacityValue }, 350);
+}
+
+// 모달 팝업 기능
+let activeBtn;
+let activeInput;
+function openModal(btn) {
+  var closeButton = document.querySelector("#close");
+  var submitButton = document.querySelector("#submitButton");
+  activeBtn = btn;
+  activeInput = btn.nextElementSibling;
+  console.log(activeInput);
+  console.log(activeBtn);
+  console.log("-----------");
+  document.querySelectorAll("input[name='collabomember']").forEach((asd) => {
+    asd.checked = false;
+    if (btn.innerText.indexOf(asd.value) != -1) {
+      asd.checked = true;
+    }
+  });
+  console.log("-----------");
+
+  var modal = document.querySelector("#myModal");
+  modal.style.display = "block";
+}
+function closeModal() {
+  document.querySelector("#myModal").style.display = "none";
+}
+
+function applyModal() {
+  var closeButton = document.querySelector("#close");
+  console.log("Submit button clicked");
+  let form = document.querySelector(".dialog-container .form-container");
+  let selectedOptions = [];
+  let checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+  checkboxes.forEach(function (checkbox) {
+    selectedOptions.push(checkbox.value);
+  });
+  console.log(activeBtn);
+  console.log(selectedOptions);
+  activeBtn.innerText = selectedOptions.join(",");
+  activeInput.value = selectedOptions.join(",");
+  document
+    .querySelectorAll("#checkboxForm input[type='checkbox']:checked")
+    .forEach((chkInput) => {
+      chkInput.checked = false;
+    });
+
+  closeButton.click();
+}
+
+// 콜라보 yes, no 를 선택한값에 맞게 적용하기
+window.addEventListener("load", function () {
+  document.querySelectorAll(".collabo-value").forEach(function (element) {
+    console.log(element.value);
+  });
+  document.querySelectorAll("select[name='collabo']").forEach((select) => {
+    console.log("Select element:", select);
+  });
+
+  Array.from(select.options).forEach((option) => {
+    console.log("Option value:", option.value);
+    if (option.value == collaboValue) {
+      option.selected = true;
+    }
+  });
+});
+
+// function toggleButton(select) {
+//   const button = select.nextElementSibling.querySelector(".openModalButton");
+//   // select 요소의 값을 확인하고 해당하는 버튼을 표시하거나 숨김
+//   if (select.value === "yes") {
+//     button.style.display = "inline-block";
+//   }
+// }
+
+// // 페이지 로드 시 각 select 요소의 버튼의 표시 상태를 설정
+// document.querySelectorAll("select[name='collabo']").values.forEach(function (select) {
+//   console.log(select);
+//   toggleButton(select);
+// });
+
+// // select 요소의 값이 변경될 때 해당하는 버튼의 표시 상태를 설정
+// document.querySelectorAll("select[name='collabo']").forEach(function (select) {
+//   select.addEventListener("change", function () {
+//     toggleButton(this);
+//   });
+// });

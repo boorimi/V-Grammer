@@ -55,7 +55,7 @@ public class InsertToArchiveDB {
 					// YouTube API 호출
 					url = "https://www.googleapis.com/youtube/v3/playlistItems";
 					url += "?part=snippet";
-					url += "&maxResults=50";
+					url += "&maxResults=20";
 					url += "&status=";
 					url += "&nextPageToken=";
 					url += "&playlistId=" + y.getAddress();
@@ -80,8 +80,8 @@ public class InsertToArchiveDB {
 
 				String sql3 = "select count(*) from haco_archive where a_videoId = ?";
 				
-				statement = connection.prepareStatement(sql3);
 				for (int i = 0; i < items.size(); i++) {
+					statement = connection.prepareStatement(sql3);
 					JSONObject item = (JSONObject) items.get(i);
 					JSONObject snippet = (JSONObject) item.get("snippet");
 
@@ -102,20 +102,22 @@ public class InsertToArchiveDB {
 					JSONObject thumbnails = (JSONObject) snippet.get("thumbnails");
 					String defaultThumbnailUrl = ((JSONObject) thumbnails.get("default")).get("url").toString();
 
-//                System.out.println("ChannelId: " + ChannelId);
-//                System.out.println("Date: " + date);
-//                System.out.println("Time: " + time);
-//                System.out.println("Title: " + title);
-//                System.out.println("Default Thumbnail URL: " + defaultThumbnailUrl);
-//                System.out.println("videoId : " + videoId);
-//                System.out.println();
+                System.out.println("ChannelId: " + ChannelId);
+                System.out.println("Date: " + date);
+                System.out.println("Time: " + time);
+                System.out.println("Title: " + title);
+                System.out.println("Default Thumbnail URL: " + defaultThumbnailUrl);
+                System.out.println("videoId : " + videoId);
+                System.out.println();
 
 					// videoId 값 대조 후에 있으면 continue
 					statement.setString(1, videoId);
 					rs = statement.executeQuery();
 					rs.next();
 					
-					if (rs.getInt(1) == 1) {
+					if (rs.getInt(1) >= 1) {
+						rs.close();
+						statement.close();
 						continue;
 					}
 					
@@ -138,7 +140,9 @@ public class InsertToArchiveDB {
 					if (statement.executeUpdate() > 0) {
 						System.out.println("A new row has been inserted successfully!");
 						System.out.println();
+						statement.close();
 					}
+					
 				}
 			}
 		} catch (Exception e) {
