@@ -54,20 +54,57 @@ main {
   margin-right: 10px;
 }
 
-.live-contents {
-  width: 1187px;
-  height: 501px;
+.slider-container {
+  position: relative;
+  width: 1280px; /* 슬라이더 너비 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
 
-  margin-left: 126px;
-  margin-top: 102px;
+.sliderandbutton {
+  margin-left: 290px;
+  margin-top: 50px;
+}
+
+.slider {
+  width: 100%;
+  margin-left: auto;
+}
+
+.prev,
+.next {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.prev {
+  left: 280px;
+  bottom: 200px;
+}
+
+.next {
+  left: 1600px;
+  bottom: 200px;
+}
+
+.live-contents {
   display: flex;
+  /* justify-content: center;  */
+  margin-top: 102px;
 }
 
 .live-content {
-  width: 100%;
-  max-width: 800px; /* 원하는 최대 너비 */
-  margin: 0 auto;
+  width: 1280px;
+  height: 810px; /* YouTube 비디오의 16:9 비율에 맞춘 높이 */
+  background-color: white;
+  margin: 0 47px;
 }
+
 .live-stream {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 비율 유지 */
@@ -76,6 +113,7 @@ main {
   max-width: 100%;
   background: #000;
 }
+
 .live-stream iframe {
   position: absolute;
   top: 0;
@@ -85,20 +123,13 @@ main {
 }
 
 .live-content {
-  width: 1013px;
+  width: 960px;
   height: 501px;
   background-color: white;
   margin-left: 47px;
   margin-right: 47px;
 }
 
-.live-contents > .left-slider-button {
-  margin-top: 220px;
-}
-
-.live-contents > .right-slider-button {
-  margin-top: 220px;
-}
 .main-dday-container {
   border: 1px solid black;
   background-color: white;
@@ -111,12 +142,26 @@ main {
   display: flex;
 }
 
+.main-news {
+  margin-top: 30px;
+  width: 1920px;
+  height: 350px;
+}
+
 .news-photo {
+  width: 500px;
+  height: 350px;
+  /* background-color: #5351d9; */
+}
+
+.news-photo > img {
+  width: 540px;
+  height: 350px;
 }
 
 .today-vtuber {
   margin-top: 127px;
-  margin-left: 297px;
+  margin-left: 340px;
   width: 1152px;
   height: 751px;
   background-color: blue;
