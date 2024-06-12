@@ -23,7 +23,7 @@
 		<div class="mypage-userInfo-items">
 			<div><h3>「X」ID</h3></div>
 			<div>
-				<input value="${sessionScope.accountInfo.u_twitter_id}"
+				<input value="@${sessionScope.accountInfo.u_screenName}"
 					readonly="readonly">
 			</div>
 		</div>
