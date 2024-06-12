@@ -32,6 +32,8 @@ prefix="c"%>
         </c:forEach>
         <!--  아이콘 배열 끝 -->
       </div>
+      
+      <div class="sliderandbutton">
       <div class="slider">
         <!-- YouTube Live 슬라이드들이 여기에 들어갈 것입니다 -->
         <c:forEach items="${streamIds }" var="s">
@@ -50,7 +52,7 @@ prefix="c"%>
       </div>
       <button class="prev">&lt;</button>
       <button class="next">&gt;</button>
-  
+    </div>
         <!--  방송 페이지 끝 -->
       </div>
       <div class="main-dday-container">

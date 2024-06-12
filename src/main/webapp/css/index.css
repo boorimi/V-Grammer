@@ -60,6 +60,11 @@ main {
   margin: 0 auto; /* 가운데 정렬 */
 }
 
+.sliderandbutton {
+  margin-left: 290px;
+  margin-top: 50px;
+}
+
 .slider {
   width: 100%;
   margin-left: auto;
@@ -78,13 +83,13 @@ main {
 }
 
 .prev {
-  left: 0;
-  bottom: 350px; /* 버튼을 위로 200px만큼 이동시킵니다. */
+  left: 280px;
+  bottom: 200px;
 }
 
 .next {
-  left: 1300px;
-  bottom: 350px; /* 버튼을 위로 200px만큼 이동시킵니다. */
+  left: 1600px;
+  bottom: 200px;
 }
 
 .live-contents {
