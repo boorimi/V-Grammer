@@ -102,13 +102,13 @@ public class InsertToArchiveDB {
 					JSONObject thumbnails = (JSONObject) snippet.get("thumbnails");
 					String defaultThumbnailUrl = ((JSONObject) thumbnails.get("default")).get("url").toString();
 
-                System.out.println("ChannelId: " + ChannelId);
-                System.out.println("Date: " + date);
-                System.out.println("Time: " + time);
-                System.out.println("Title: " + title);
-                System.out.println("Default Thumbnail URL: " + defaultThumbnailUrl);
-                System.out.println("videoId : " + videoId);
-                System.out.println();
+//                System.out.println("ChannelId: " + ChannelId);
+//                System.out.println("Date: " + date);
+//                System.out.println("Time: " + time);
+//                System.out.println("Title: " + title);
+//                System.out.println("Default Thumbnail URL: " + defaultThumbnailUrl);
+//                System.out.println("videoId : " + videoId);
+//                System.out.println();
 
 					// videoId 값 대조 후에 있으면 continue
 					statement.setString(1, videoId);
