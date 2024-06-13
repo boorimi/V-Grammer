@@ -217,9 +217,7 @@ nav {
   height: 675px;
   background-color: white;
 }
-.today-vtuber div {
-  border: 1px solid black;
-}
+
 .today-vtuber > p {
   font-size: 32px;
 }
@@ -258,10 +256,12 @@ nav {
   display: flex;
   align-content: space-between;
   width: 400px;
+  border: 1px solid black;
 }
 
-.today-vtuber-etc > div {
+.today-vtuber-etc > .today-vtuber-etc-addr {
   width: 400px;
+  border: 1px solid black;
 }
 
 .today-vtuber-address-box {
@@ -269,6 +269,7 @@ nav {
   flex-wrap: wrap;
   justify-content: space-around;
   width: 400px;
+  border: 1px solid black;
 }
 .today-vtuber-address-box > div {
   border-radius: 20px;
