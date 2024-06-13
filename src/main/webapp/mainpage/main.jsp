@@ -104,7 +104,7 @@ prefix="c"%>
               ></iframe>
             </div>
             <div class="today-vtuber-etc">
-              <div>
+              <div class="today-vtuber-etc-addr">
                 <div class="today-vtuber-etc-name">
                   ${recommendVtuber[0].name }
                 </div>
