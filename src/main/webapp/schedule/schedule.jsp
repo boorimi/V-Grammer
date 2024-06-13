@@ -19,16 +19,16 @@
 		<div class="s-week-list">
 			<input id="s-week" type="radio" name="tab_item" /> <label
 				class="tab_item">スケジュール</label> <input id="s-mon" type="radio"
-				name="tab_item" checked /> <label class="tab_item" for="s-mon">月</label>
+				name="tab_item" checked /> <label class="tab_item" for="s-mon">${thisWeek[0] } 月</label>
 			<input id="s-tue" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-tue">火</label> <input id="s-wen"
-				type="radio" name="tab_item" /> <label class="tab_item" for="s-wen">水</label>
+				class="tab_item" for="s-tue">${thisWeek[1] }火</label> <input id="s-wen"
+				type="radio" name="tab_item" /> <label class="tab_item" for="s-wen">${thisWeek[2] }水</label>
 			<input id="s-thr" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-thr">木</label> <input id="s-fri"
-				type="radio" name="tab_item" /> <label class="tab_item" for="s-fri">金</label>
+				class="tab_item" for="s-thr">${thisWeek[3] }木</label> <input id="s-fri"
+				type="radio" name="tab_item" /> <label class="tab_item" for="s-fri">${thisWeek[4] }金</label>
 			<input id="s-sat" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-sat">土</label> <input id="s-sun"
-				type="radio" name="tab_item" /> <label class="tab_item" for="s-sun">日</label>
+				class="tab_item" for="s-sat">${thisWeek[5] }土</label> <input id="s-sun"
+				type="radio" name="tab_item" /> <label class="tab_item" for="s-sun">${thisWeek[6] }日</label>
 
 			<!-- 월 -->
 			<div class="tab_content mon-content">
