@@ -30,17 +30,27 @@ public class CalendarDAO {
         ArrayList<CalenderInfoDTO> events = new ArrayList<CalenderInfoDTO>();
         try {
             conn = DBManager.connect();
-            String sql = "SELECT m_pk, m_name, m_debut FROM haco_member WHERE m_name IS NOT NULL AND m_debut IS NOT NULL AND m_debut LIKE ?";
+            String sql = "SELECT m_pk, m_name, m_debut, m_birth FROM haco_member WHERE m_name IS NOT NULL AND (m_debut IS NOT NULL OR m_birth IS NOT NULL) AND (m_debut LIKE ? OR m_birth LIKE ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, dateString + "%");
+            pstmt.setString(2, dateString + "%");
             rs = pstmt.executeQuery();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             while (rs.next()) {
                 event = new CalenderInfoDTO();
                 event.setM_pk(rs.getString("m_pk"));
                 event.setTitle(rs.getString("m_name"));
-                event.setStart(dateFormat.format(rs.getDate("m_debut")));
-                events.add(event);
+                if (rs.getDate("m_debut") != null) {
+                    event.setStart(dateFormat.format(rs.getDate("m_debut")));
+                    events.add(event);
+                }
+                if (rs.getDate("m_birth") != null) {
+                    CalenderInfoDTO birthEvent = new CalenderInfoDTO();
+                    birthEvent.setM_pk(rs.getString("m_pk"));
+                    birthEvent.setTitle(rs.getString("m_name") + " (Birth)");
+                    birthEvent.setStart(dateFormat.format(rs.getDate("m_birth")));
+                    events.add(birthEvent);
+                }
             }
             Gson gson = new Gson();
             String json = gson.toJson(events);
