@@ -3,6 +3,8 @@
 .project
 .classpath
 
+.vscode/
+
 src/main/java/com/vg/ignore/
 
 *.class
