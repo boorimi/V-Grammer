@@ -1,88 +1,133 @@
 @charset "UTF-8";
 
 .schedule-container {
-	width: 1900px;
-	height: auto;
-	background-color: antiquewhite;
+  width: 1900px;
+  height: auto;
+  background-color: antiquewhite;
 }
 
 .s-week-list {
-	width: 1900px;
-	display: flex;
-	align-items: center;
+  margin-top: 50px;
+  padding-bottom: 40px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 1900px;
+  margin: 0 auto;
 }
 
-.s-week-list>div {
-	width: 237.5px;
-	height: 100px;
-	background-color: aqua;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+/* 탭 스타일 */
+.tab_item {
+  width: calc(100% / 8);
+  height: 50px;
+  border-bottom: 3px solid #333333;
+  background-color: #f8f8f8;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #333333;
+  display: block;
+  float: left;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
 }
 
-.s-content-box {
-	display: flex;
-	flex-direction: column;
+/* 라디오 버튼 UI 삭제 */
+.s-week-list input[name="tab_item"] {
+  display: none;
+}
+
+/* 탭 컨텐츠 스타일 */
+.tab_content {
+  display: none;
+  clear: both;
+  overflow: hidden;
+}
+
+/* 선택 된 탭 콘텐츠를 표시 */
+#s-mon:checked ~ .mon-content,
+#s-tue:checked ~ .tue-content,
+#s-wen:checked ~ .wen-content,
+#s-thr:checked ~ .thr-content,
+#s-fri:checked ~ .fri-content,
+#s-sat:checked ~ .sat-content,
+#s-sun:checked ~ .sun-content {
+  display: block;
+}
+
+/* 선택된 탭 스타일 */
+.s-week-list input:checked + .tab_item {
+  background-color: #333333;
+  color: #fff;
+}
+
+/* 시간표 영역 */
+.tab_content {
 }
 
 .s-time-list {
-	width: 1900px;
-	background-color: chartreuse;
-	display: flex;
+  width: 1900px;
+  background-color: chartreuse;
+  display: flex;
 }
 
 .s-time-a {
-	width: 237.5px;
-	min-height: 100px;
-	/*display flex 설정해도 width가 변하지 않게*/
-	flex-shrink: 0;
-	background-color: tomato;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  width: 237.5px;
+  min-height: 100px;
+  /*display flex 설정해도 width가 변하지 않게*/
+  flex-shrink: 0;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .s-time-a-data {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+}
+.s-time-b-data {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .s-time-b {
-	width: 237.5px;
-	min-height: 50px;
-	flex-shrink: 0;
-	background-color: royalblue;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  width: 237.5px;
+  min-height: 50px;
+  flex-shrink: 0;
+  background-color: royalblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #s-data {
-	width: 237.5px;
-	height: 50px;
-	background-color: cadetblue;
+  width: 237.5px;
+  height: 50px;
+  background-color: cadetblue;
 }
 
 /* insert css */
 .schedule-insert-container {
-	border: 1px solid green;
+  border: 1px solid green;
 }
 
 .schedule-insert-inner-container {
-	border: 1px solid red;
-	display: none;
+  border: 1px solid red;
+  display: none;
 }
 
 .schedule-insert-box {
-	display: flex;
+  display: flex;
 }
 
 #schedule-member {
-	width: 120px;
+  width: 120px;
 }
 
 #schedule-blank-box {
-	width: 120px;
-	background-color: darkorange;
+  width: 120px;
+  background-color: darkorange;
 }

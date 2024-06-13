@@ -52,10 +52,9 @@
 				</p>
 				<p>${archive.a_m_pk }</p>
 				<div class="archive-membername">${archive.m_name }</div>
-				<div class="archive-collabo">コラボ : ${archive.a_collabo }</div>
-				<div class="archive-collabomember">コラボメンバー :
-					${archive.a_collabomember }</div>
-				<div class="archive-category">カテゴリー : ${archive.a_category }</div>
+				<div class="archive-collabo">${archive.a_collabo }</div>
+				<div class="archive-collabomember">${fn:replace(archive.a_collabomember, '!', '<br>')}</div>
+				<div class="archive-category">${archive.a_category }</div>
 				<div class="archive-date">${archive.a_date}</div>
 				<div class="archive-time">${archive.a_time}</div>
 				<div class="archive-title">${archive.a_title}</div>
