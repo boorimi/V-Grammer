@@ -214,7 +214,7 @@ nav {
   margin-top: 127px;
   margin-left: 340px;
   width: 1280px;
-  height: 751px;
+  height: 675px;
   background-color: white;
 }
 .today-vtuber div {
@@ -257,13 +257,18 @@ nav {
   text-align: center;
   display: flex;
   align-content: space-between;
-  width: 480px;
+  width: 400px;
 }
+
+.today-vtuber-etc > div {
+  width: 400px;
+}
+
 .today-vtuber-address-box {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 300px;
+  width: 400px;
 }
 .today-vtuber-address-box > div {
   border-radius: 20px;
