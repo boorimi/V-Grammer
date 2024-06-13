@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,18 +34,18 @@ public class CalendarDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, dateString + "%");
             rs = pstmt.executeQuery();
-
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             while (rs.next()) {
                 event = new CalenderInfoDTO();
                 event.setM_pk(rs.getString("m_pk"));
-                event.setM_name(rs.getString("m_name"));
-                event.setM_debut(rs.getDate("m_debut"));
+                event.setTitle(rs.getString("m_name"));
+                event.setStart(dateFormat.format(rs.getDate("m_debut")));
                 events.add(event);
             }
-
             Gson gson = new Gson();
             String json = gson.toJson(events);
             response.getWriter().print(json);
+            System.out.println(json);
 
         } catch (SQLException e) {
             e.printStackTrace();
