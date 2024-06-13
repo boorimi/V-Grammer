@@ -1,3 +1,4 @@
+// js/calendar-addevent.js
 document.addEventListener('DOMContentLoaded', function() {
 	var calendarEl = document.getElementById('calendar');
 
@@ -9,45 +10,49 @@ document.addEventListener('DOMContentLoaded', function() {
 	var currentDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
 
 	var calendar = new FullCalendar.Calendar(calendarEl, {
+		/*locale: "jp",*/
 		initialDate: currentDate,
 		editable: true,
 		selectable: true,
 		businessHours: true,
 		dayMaxEvents: true,
-		events: [] // 초기 이벤트를 비워 둡니다.
+		events: []
 	});
 
 	calendar.render();
-//	setVal();
-	
-	const btns =document.querySelectorAll('.fc-button');
-	btns.forEach((btn)=>{
-		btn.addEventListener("click", ()=>{
-			setVal();
+
+	const btns = document.querySelectorAll('.fc-button');
+	btns.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			setVal(calendar);
 		});
 	});
+
+	// 페이지 로드 시 초기 이벤트 로드
+	setVal(calendar);
+
+
 });
 
-let year;
-function setVal(){
-	const date = document.querySelector("#fc-dom-1").innerText;
-	const monthDay = date.split(" ");
-	year = monthDay[1];
-	month = monthToNumber(monthDay[0], year);
-	
+function setVal(calendar) {
+	const date = document.querySelector(".fc-toolbar-title").innerText;
+	const [monthName, year] = date.split(" ");
+	const month = monthToNumber(monthName, year);
+
 	$.ajax({
 		url: 'CalendarEventC',
 		type: 'GET',
-		data : {month, year},
+		data: { month, year },
+		locale: "en",
+		dataType: 'json', // 응답을 JSON으로 기대
 		success: function(res) {
-			console.log(res);
-			
-			const eventDataLines = res.split('\n');
-			eventDataLines.forEach(function(line) {
-				const eventData = line.split(' ');
-				
-				const name eventData[0];
-			}
+			console.log("AJAX 응답:", res); // 응답 데이터 확인
+			const events = res; // 응답을 이미 JSON 객체로 처리
+			console.log("파싱된 이벤트:", events); // 파싱된 데이터 확인
+			calendar.removeAllEvents(); // 기존 이벤트 제거
+			events.forEach(event => {
+				calendar.addEvent(event);
+			});
 		},
 		error: function(err) {
 			console.error("Error fetching events: ", err);
@@ -55,10 +60,9 @@ function setVal(){
 	});
 }
 
-
 function monthToNumber(monthString, year) {
-    const date = new Date(monthString + ' 1,' + year);
-    let month = date.getMonth() + 1;
-    let formattedMonth = month < 10 ? '0' + month : month;
-    return formattedMonth;
+	const date = new Date(monthString + ' 1,' + year);
+	let month = date.getMonth() + 1;
+	let formattedMonth = month < 10 ? '0' + month : month;
+	return formattedMonth;
 }
