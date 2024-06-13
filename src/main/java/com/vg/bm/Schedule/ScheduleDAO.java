@@ -72,6 +72,9 @@ public class ScheduleDAO {
 						rs.getString(3), date3, time3, rs.getString(6));
 				schedules.add(s);
 			}
+			
+			request.setAttribute("schedule", schedules);
+			
 			System.out.println("=====스케줄 전체 시소=====");
 			System.out.println(schedules);
 			System.out.println("=====================");
