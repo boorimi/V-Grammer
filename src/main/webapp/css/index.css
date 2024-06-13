@@ -86,12 +86,12 @@ nav {
 
 .prev {
   left: 280px;
-  bottom: 200px;
+  bottom: 80px;
 }
 
 .next {
   left: 1600px;
-  bottom: 200px;
+  bottom: 80px;
 }
 
 .live-contents {
@@ -125,9 +125,9 @@ nav {
 }
 
 .live-content {
-  width: 960px;
+  /* width: 960px;
   height: 501px;
-  background-color: white;
+  background-color: white; */
   margin-left: 47px;
   margin-right: 47px;
 }
