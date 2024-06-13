@@ -48,7 +48,7 @@ $(function () {
   adjustOpacity(1);
   adjustOpacity2(1);
 
-  //콜라보멤버 줄바꿈 처리
+  //콜라보멤버 div 처리
   replaceCollabomemberString();
   // select 태그 자동지정 처리
   collabo_yesno_selected();
@@ -121,9 +121,9 @@ function test(resData) {
            <p style="margin-top: 0px"> <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" ></p>
             <p>${archive.a_m_pk} </p>
             <div class="archive-membername"> ${archive.m_name}</div>
-           	<div class="archive-collabo"> コラボ : ${archive.a_collabo} </div>
-           	<div class="archive-collabomember">	コラボメンバー : ${archive.a_collabomember} </div>
-           	<div class="archive-category">カテゴリー : ${archive.a_category}</div>
+           	<div class="archive-collabo"> ${archive.a_collabo} </div>
+           	<div class="archive-collabomember">	${archive.a_collabomember} </div>
+           	<div class="archive-category">${archive.a_category}</div>
             <div class="archive-date">	${formattedDate} </div>
            	<div class="archive-time">	${formattedTime} </div>
            	<div class="archive-title">	${archive.a_title}</div>
@@ -238,7 +238,7 @@ function openModal(btn) {
   console.log("-----------");
   document.querySelectorAll("input[name='collabomember']").forEach((asd) => {
     asd.checked = false;
-    if (btn.innerText.indexOf(asd.value) != -1) {
+    if (activeInput.value.indexOf(asd.value) != -1) {
       asd.checked = true;
     }
   });
@@ -261,7 +261,7 @@ function applyModal() {
   console.log(selectedOptions);
   //   activeBtn.innerText = selectedOptions.join("<br>");
   activeInput.value = selectedOptions.join("!");
-  activeDiv.innerText = selectedOptions.join("\n");
+  //   activeDiv.innerText = selectedOptions.join("\n");
 
   document
     .querySelectorAll("#checkboxForm input[type='checkbox']:checked")
@@ -270,6 +270,7 @@ function applyModal() {
     });
 
   closeButton.click();
+  replaceCollabomemberString();
 }
 
 function closeModal() {
@@ -326,15 +327,24 @@ function toggleButton() {
   });
 }
 
+// 콜라보 멤버 문자열을 div로 감싸 표현하는 함수
 function replaceCollabomemberString() {
-  let collabomemberString = document.querySelectorAll(".archive-collabomember");
-
-  collabomemberString.forEach((asdf) => {
-    let a = asdf.children[3];
-
-    let collabomemberStringUpdate = a.innerText.replace("!", "\n");
-    a.innerText = collabomemberStringUpdate;
-    console.log(collabomemberStringUpdate);
+  // jQuery를 사용하여 NodeList를 가져오기
+  let collabomemberStrings = $(".collaboMember2");
+  console.log(collabomemberStrings);
+  // NodeList를 배열로 변환하여 forEach 메서드 사용
+  collabomemberStrings.each(function () {
+    // let collabomemberString = $(this).text();
+    let collabomemberString = $(this).text();
+    console.log(collabomemberString);
+    let collabomemberStringUpdate = collabomemberString.split("!");
+    let divWrappedArray = collabomemberStringUpdate.map(
+      (item) =>
+        `<div class="archive-collabomember-item archive-${item}">${item}</div>`
+    );
+    console.log(divWrappedArray);
+    // jQuery를 사용하여 해당 요소의 자식 요소에 추가하기
+    $(this).html(divWrappedArray.join(""));
   });
 }
 
