@@ -74,15 +74,11 @@ public class ScheduleDAO {
 						rs.getString(3), date3, time3, rs.getString(6), rs.getString(7));
 				schedules.add(s);
 			}
-			
-			
-			
-			
 			request.setAttribute("schedule", schedules);
 			
-			System.out.println("=====스케줄 전체 시소=====");
-			System.out.println(schedules);
-			System.out.println("=====================");
+//			System.out.println("=====스케줄 전체 시소=====");
+//			System.out.println(schedules);
+//			System.out.println("=====================");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,7 +86,11 @@ public class ScheduleDAO {
 			DBManager.close(con, pstmt, rs);
 		}
 	}
-
+	
+	public void getThisWeek(HttpServletRequest request) {
+		
+	}
+	
 	public void insertSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		String sql = "insert into haco_schedule values (null, ?, ?, ?, ?, ?)";
@@ -131,5 +131,7 @@ public class ScheduleDAO {
 			DBManager.close(con, pstmt, null);
 		}
 	}
+
+
 
 }

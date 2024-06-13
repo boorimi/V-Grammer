@@ -2,6 +2,7 @@
 .settings
 .project
 .classpath
+.vscode/settings.json
 
 src/main/java/com/vg/ignore/
 
