@@ -47,7 +47,7 @@ public class CalendarDAO {
                 if (rs.getDate("m_birth") != null) {
                     CalenderInfoDTO birthEvent = new CalenderInfoDTO();
                     birthEvent.setM_pk(rs.getString("m_pk"));
-                    birthEvent.setTitle(rs.getString("m_name") + " (Birth)");
+                    birthEvent.setTitle(rs.getString("m_name") +"の誕生日");
                     birthEvent.setStart(dateFormat.format(rs.getDate("m_birth")));
                     events.add(birthEvent);
                 }
