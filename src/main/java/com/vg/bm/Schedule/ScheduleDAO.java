@@ -4,21 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.vg.bm.Member.MemberDAO;
-import com.vg.bm.Member.MemberDTO;
 import com.vg.ignore.DBManager;
 import com.vg.jw.AccountDTO;
 
@@ -49,38 +43,23 @@ public class ScheduleDAO {
 			
 			schedules = new ArrayList<ScheduleDTO>();
 
-			// date 형식 변환
-			SimpleDateFormat oldDate = new SimpleDateFormat("yyyy-MM-dd");
-			SimpleDateFormat formatDate = new SimpleDateFormat("M月d日");
-			
-			// time 형식 변환
-			DateTimeFormatter oldTime = DateTimeFormatter.ofPattern("HH:mm:ss");
-			DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm");
+			SimpleDateFormat formatDate;
 			
 			while (rs.next()) {
-				
-				// date 다시 담기
-				String date = rs.getString(4);
-				Date date2 = null;
-				String date3 = "";
-				date2 = oldDate.parse(date);
-				date3 = formatDate.format(date2);
+				formatDate = new SimpleDateFormat("M月d日");
+				String date = formatDate.format(rs.getDate(4));
 
-				// time 다시 담기
-				String time = rs.getString(5);
-				TemporalAccessor time2 = null;
-				String time3 = "";
-				time2 = oldTime.parse(time);
-				time3 = formatTime.format(time2);
-				
+				formatDate = new SimpleDateFormat("HH:mm");
+				String time = formatDate.format(rs.getTime(5));
+
 				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
-						rs.getString(3), date3, time3, rs.getString(6), rs.getString(7));
+						rs.getString(3), date, time, rs.getString(6), rs.getString(7));
 				schedules.add(s);
 			}
 			request.setAttribute("schedule", schedules);
 			
 //			System.out.println("=====스케줄 전체 시소=====");
-//			System.out.println(schedules);
+			System.out.println(schedules);
 //			System.out.println("=====================");
 			
 		} catch (Exception e) {
