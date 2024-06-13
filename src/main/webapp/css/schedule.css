@@ -1,17 +1,13 @@
 @charset "UTF-8";
 
 .schedule-container {
-  width: 1900px;
   height: auto;
   background-color: antiquewhite;
 }
 
 .s-week-list {
-  margin-top: 50px;
-  padding-bottom: 40px;
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 1900px;
   margin: 0 auto;
 }
 
@@ -64,13 +60,12 @@
 }
 
 .s-time-list {
-  width: 1900px;
   background-color: chartreuse;
   display: flex;
 }
 
 .s-time {
-  width: 237.5px;
+  width: calc(100% / 8);
   min-height: 50px;
   /*display flex 설정해도 width가 변하지 않게*/
   flex-shrink: 0;
@@ -83,10 +78,11 @@
 .s-data {
   display: flex;
   flex-wrap: wrap;
+  width: calc(100% / 8);
 }
 
 #s-data {
-  width: 237.5px;
+  width: 100%;
   height: 50px;
   background-color: cadetblue;
   display: flex;

@@ -24,22 +24,22 @@
 				class="tab_item" for="s-mon">${thisWeek[0] } 月</label>
 			<!-- 화 -->
 			<input id="s-tue" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-tue">${thisWeek[1] }火</label>
+				class="tab_item" for="s-tue">${thisWeek[1] } 火</label>
 			<!-- 수 -->
 			<input id="s-wen" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-wen">${thisWeek[2] }水</label>
+				class="tab_item" for="s-wen">${thisWeek[2] } 水</label>
 			<!-- 목 -->
 			<input id="s-thr" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-thr">${thisWeek[3] }木</label>
+				class="tab_item" for="s-thr">${thisWeek[3] } 木</label>
 			<!-- 금 -->
 			<input id="s-fri" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-fri">${thisWeek[4] }金</label>
+				class="tab_item" for="s-fri">${thisWeek[4] } 金</label>
 			<!-- 토 -->
 			<input id="s-sat" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-sat">${thisWeek[5] }土</label>
+				class="tab_item" for="s-sat">${thisWeek[5] } 土</label>
 			<!-- 일 -->
 			<input id="s-sun" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-sun">${thisWeek[6] }日</label>
+				class="tab_item" for="s-sun">${thisWeek[6] } 日</label>
 
 			<!-- 월 -->
 			<div class="tab_content mon-content">
