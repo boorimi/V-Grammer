@@ -15,7 +15,9 @@ public class ScheduleC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		AccountDAO.loginCheck(request);
-//		ScheduleDAO.SDAO.getAllSchedule(request);
+		ScheduleDAO.SDAO.getAllSchedule(request);
+		// 이번주 날짜 가져오는 메서드
+		ScheduleDAO.SDAO.getThisWeek(request);
 		request.setAttribute("content", "schedule/schedule.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response); 
 		
