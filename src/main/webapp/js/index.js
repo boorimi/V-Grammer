@@ -19,7 +19,9 @@ $(function () {
       dataType: "json",
     }).done(function (resData) {
       test(resData);
-      //   console.log(JSON.stringify(resData));
+      let a = $(".collaboMember");
+      replaceCollabomemberString2(a);
+      //console.log(JSON.stringify(resData));
     });
   });
 
@@ -36,11 +38,15 @@ $(function () {
       dataType: "json",
     }).done(function (resData) {
       test2(resData);
+      let a = $(".collaboMember");
+      replaceCollabomemberString(a);
       collabo_yesno_selected();
-      replaceCollabomemberString();
-      category_selected();
       toggleButton();
+      category_selected();
       //      console.log(JSON.stringify(resData));
+      $("select[name='collabo']").change(function () {
+        toggleButton();
+      });
     });
   });
 
@@ -49,7 +55,9 @@ $(function () {
   adjustOpacity2(1);
 
   //콜라보멤버 div 처리
-  replaceCollabomemberString();
+  let a = $(".collaboMember");
+  replaceCollabomemberString(a);
+
   // select 태그 자동지정 처리
   collabo_yesno_selected();
   category_selected();
@@ -60,7 +68,6 @@ $(function () {
   // select 요소의 값이 변경될 때 이벤트 처리
   $("select[name='collabo']").change(function () {
     toggleButton();
-    InitializationCollaboMember();
   });
 });
 
@@ -122,7 +129,10 @@ function test(resData) {
             <p>${archive.a_m_pk} </p>
             <div class="archive-membername"> ${archive.m_name}</div>
            	<div class="archive-collabo"> ${archive.a_collabo} </div>
-           	<div class="archive-collabomember">	${archive.a_collabomember} </div>
+           	<div class="archive-collabomember">
+			<input type="text" class="collabomember" value="${archive.a_collabomember}" />
+			<div class="collaboMember2"></div>
+			</div>
            	<div class="archive-category">${archive.a_category}</div>
             <div class="archive-date">	${formattedDate} </div>
            	<div class="archive-time">	${formattedTime} </div>
@@ -180,7 +190,7 @@ function test2(resData) {
 						<div>コラボメンバー</div>
 						<button type="button" onclick="openModal(this)"
 							class="openModalButton">선택하기</button>
-						<input type="hidden" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
+						<input type="text" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
 						<div class="collaboMember2">${archive.a_collabomember}</div>
 					</div>
 					<div class="archive-category">
@@ -263,6 +273,9 @@ function applyModal() {
   activeInput.value = selectedOptions.join("!");
   //   activeDiv.innerText = selectedOptions.join("\n");
 
+  let a = $(activeBtn.nextElementSibling.nextElementSibling);
+  replaceCollabomemberString(a);
+
   document
     .querySelectorAll("#checkboxForm input[type='checkbox']:checked")
     .forEach((chkInput) => {
@@ -270,7 +283,6 @@ function applyModal() {
     });
 
   closeButton.click();
-  replaceCollabomemberString();
 }
 
 function closeModal() {
@@ -308,57 +320,76 @@ function toggleButton() {
       .closest(".archive-collabo")
       .next(".archive-collabomember")
       .find(".openModalButton");
-    console.log(select.val());
     if (select.val() === "yes") {
       openModalButton.css("display", "block");
     } else {
       openModalButton.css("display", "none");
     }
 
-    let select2 = $(this);
+    // yes 아닐때 콜라보멤버 초기화 함수
+    /* let select2 = $(this);
     let openModalButton2 = select2
       .closest(".archive-collabo")
       .next(".archive-collabomember");
     console.log(select2.val());
-    if (select.val() != "yes") {
+    if (select2.val() != "yes") {
       openModalButton2.find(".collaboMember2").text("未分類");
       openModalButton2.find("input").val("未分類");
-    }
+    } */
   });
 }
 
 // 콜라보 멤버 문자열을 div로 감싸 표현하는 함수
-function replaceCollabomemberString() {
+function replaceCollabomemberString(a) {
   // jQuery를 사용하여 NodeList를 가져오기
-  let collabomemberStrings = $(".collaboMember2");
-  console.log(collabomemberStrings);
+  let collabomemberStrings = a;
   // NodeList를 배열로 변환하여 forEach 메서드 사용
-  collabomemberStrings.each(function () {
-    // let collabomemberString = $(this).text();
-    let collabomemberString = $(this).text();
-    console.log(collabomemberString);
+  $(collabomemberStrings).each(function (idx, collabomemberString) {
+    //collabomemberString = activeInput.val();
+    console.log($(collabomemberString).val());
+    console.log(activeInput?.value);
+    // collabomemberString =  = a == $(".collaboMember") ? $(this).text() : activeInput?.value;
+    collabomemberString =
+      typeof activeBtn == "undefined"
+        ? $(collabomemberString).val()
+        : activeInput?.value;
     let collabomemberStringUpdate = collabomemberString.split("!");
     let divWrappedArray = collabomemberStringUpdate.map(
       (item) =>
         `<div class="archive-collabomember-item archive-${item}">${item}</div>`
     );
-    console.log(divWrappedArray);
     // jQuery를 사용하여 해당 요소의 자식 요소에 추가하기
-    $(this).html(divWrappedArray.join(""));
+    //console.log(this);
+    $(this)
+      .closest(".archive-collabomember")
+      .find(".collaboMember2")
+      .html(divWrappedArray.join(""));
   });
 }
 
-// 콜라보 멤버 초기화 하는 함수
-function InitializationCollaboMember() {
-  $("select[name='collabo']").each(function () {
-    let select = $(this);
-    let openModalButton = select
-      .closest(".archive-collabo")
-      .next(".archive-collabomember")
-      .find(".collaboMember2");
-    console.log(select.val());
-    if (select.val() !== "yes") {
-      openModalButton.val("미분류");
-    }
+function replaceCollabomemberString2(a) {
+  // jQuery를 사용하여 NodeList를 가져오기
+  let collabomemberStrings = a;
+  // NodeList를 배열로 변환하여 forEach 메서드 사용
+  $(collabomemberStrings).each(function (idx, collabomemberString) {
+    //collabomemberString = activeInput.val();
+    console.log($(collabomemberString).val());
+    console.log(activeInput?.value);
+    // collabomemberString =  = a == $(".collaboMember") ? $(this).text() : activeInput?.value;
+    collabomemberString =
+      typeof activeBtn == "undefined"
+        ? $(collabomemberString).val()
+        : activeInput?.value;
+    let collabomemberStringUpdate = collabomemberString.split("!");
+    let divWrappedArray = collabomemberStringUpdate.map(
+      (item) =>
+        `<div class="archive-collabomember-item archive-${item}">${item}</div>`
+    );
+    // jQuery를 사용하여 해당 요소의 자식 요소에 추가하기
+    //console.log(this);
+    $(this)
+      .closest(".archive-collabomember")
+      .find(".collaboMember2")
+      .html(divWrappedArray.join(""));
   });
 }

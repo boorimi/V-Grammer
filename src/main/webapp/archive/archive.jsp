@@ -53,7 +53,10 @@
 				<p>${archive.a_m_pk }</p>
 				<div class="archive-membername">${archive.m_name }</div>
 				<div class="archive-collabo">${archive.a_collabo }</div>
-				<div class="archive-collabomember">${fn:replace(archive.a_collabomember, '!', '<br>')}</div>
+				<div class="archive-collabomember">
+				  <input class="collabomember" value="${archive.a_collabomember}" />
+				  <div class="collaboMember2"></div>
+				</div>
 				<div class="archive-category">${archive.a_category }</div>
 				<div class="archive-date">${archive.a_date}</div>
 				<div class="archive-time">${archive.a_time}</div>
