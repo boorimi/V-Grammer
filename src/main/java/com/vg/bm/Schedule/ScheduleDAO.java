@@ -59,7 +59,7 @@ public class ScheduleDAO {
 			request.setAttribute("schedule", schedules);
 			
 //			System.out.println("=====스케줄 전체 시소=====");
-			System.out.println(schedules);
+//			System.out.println(schedules);
 //			System.out.println("=====================");
 			
 		} catch (Exception e) {
@@ -76,7 +76,7 @@ public class ScheduleDAO {
 		LocalDate endWeek = today.with(DayOfWeek.SUNDAY);
 
 		// 날짜출력 형식세팅
-		DateTimeFormatter daySet = DateTimeFormatter.ofPattern("M月d日");
+		DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("M月d日");
 		
 		// 로컬날짜 = 시작날짜(월요일)로 초기화해서 세팅
 		LocalDate date = startWeek;
@@ -85,7 +85,7 @@ public class ScheduleDAO {
 		
 		// thisWeek가 endWeek가 아니면 루프를 계속 돌리기 위한 while문
 		while (!date.isAfter(endWeek)) {
-			thisWeek.add(date.format(daySet));
+			thisWeek.add(date.format(formatDate));
 			// 오늘 날짜(월요일)에 1일을 계속 추가
 			date = date.plusDays(1);
 			// endWeek가 되면 while문 종료
