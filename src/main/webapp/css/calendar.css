@@ -16,6 +16,10 @@
 	padding-left: 1em;
 	padding-right: 1em;
 }
+/* 특정 날짜 셀에 대한 빨간색 테두리 스타일 */
+.highlighted-day .fc-daygrid-day-frame {
+	border: 2px solid red;
+}
 
 #button-container {
 	position: absolute;

@@ -8,7 +8,9 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/archive.css">
 </head>
+
 <body>
 	<button onclick="location.href='ArchiveUpdateC'">수정하기</button>
 	<!-- 상단 페이징 시작 -->
@@ -58,8 +60,11 @@
 				<div class="archive-time">${archive.a_time}</div>
 				<div class="archive-title">${archive.a_title}</div>
 				<div class="archive-thumbnail">
-					<img src="${archive.a_thumbnail}"
+					<a target="_blank" href="https://www.youtube.com/watch?v=${archive.a_videoid }">
+						<img 
+						src="${archive.a_thumbnail}" 
 						alt="${archive.a_title} Thumbnail">
+					</a>
 				</div>
 			</div>
 		</c:forEach>
