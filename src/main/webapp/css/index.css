@@ -241,8 +241,8 @@ nav {
 }
 
 .today-vtuber-archive {
-  width: 480px;
-  height: 270px;
+  width: 640px;
+  height: 360px;
   background-color: white;
   margin-left: 67px;
 }
@@ -282,7 +282,7 @@ nav {
 }
 
 .today-vtuber-etc-name {
-  font-size: 25pt;
+  font-size: 18pt;
   width: 100%;
 }
 

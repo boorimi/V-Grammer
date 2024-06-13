@@ -95,9 +95,9 @@ prefix="c"%>
           <div class="today-vtuber-archive-etc">
             <div class="today-vtuber-archive">
               <iframe
-                width="480"
-                height="270"
-                src="https://www.youtube.com/embed/${recommendVtuber[0].videoId }"
+                width="640"
+                height="360"
+                src="https://www.youtube.com/embed/${recommendVtuber[0].videoId}"
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
