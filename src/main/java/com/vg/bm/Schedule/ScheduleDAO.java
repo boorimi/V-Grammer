@@ -14,6 +14,8 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.vg.bm.Member.MemberDAO;
+import com.vg.bm.Member.MemberDTO;
 import com.vg.ignore.DBManager;
 import com.vg.jw.AccountDTO;
 
@@ -35,7 +37,7 @@ public class ScheduleDAO {
 	public void getAllSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from haco_schedule";
+		String sql = "select sc.*,m_name from haco_schedule sc, haco_member where s_m_pk = m_pk";
 		
 		try {
 			con = DBManager.connect();
@@ -69,9 +71,12 @@ public class ScheduleDAO {
 				time3 = formatTime.format(time2);
 				
 				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
-						rs.getString(3), date3, time3, rs.getString(6));
+						rs.getString(3), date3, time3, rs.getString(6), rs.getString(7));
 				schedules.add(s);
 			}
+			
+			
+			
 			
 			request.setAttribute("schedule", schedules);
 			

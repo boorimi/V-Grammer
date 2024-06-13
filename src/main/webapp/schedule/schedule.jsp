@@ -18,16 +18,26 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <div class="schedule-container">
+    
         <div class="s-week-list">
-          <div id="s-week">スケジュール</div>
-          <div id="s-mon">月</div>
-          <div id="s-tue">火</div>
-          <div id="s-wen">水</div>
-          <div id="s-thr">木</div>
-          <div id="s-fri">金</div>
-          <div id="s-sat">土</div>
-          <div id="s-sun">日</div>
-      </div>
+			<input id="s-week" type="radio" name="tab_item" checked>
+			<label class="tab_item" for="all">スケジュール</label>
+			<input id="s-mon" type="radio" name="tab_item">
+			<label class="tab_item" for="programming">月</label>
+			<input id="s-tue" type="radio" name="tab_item">
+			<label class="tab_item" for="design">火</label>
+			<input id="s-wen" type="radio" name="tab_item">
+			<label class="tab_item" for="design">水</label>
+			<input id="s-thr" type="radio" name="tab_item">
+			<label class="tab_item" for="design">木</label>
+			<input id="s-fri" type="radio" name="tab_item">
+			<label class="tab_item" for="design">金</label>
+			<input id="s-sat" type="radio" name="tab_item">
+			<label class="tab_item" for="design">土</label>
+			<input id="s-sun" type="radio" name="tawjdｄｄb_item">
+			<label class="tab_item" for="design">日</label>
+		</div>
+
       <div class="s-content-box">
         <div class="s-time-list">
           <div class="s-time-a">00:00 ~ 12:00</div>
