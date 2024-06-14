@@ -19,6 +19,7 @@ import com.vg.jw.AccountDTO;
 public class ScheduleDAO {
 
 	private ArrayList<ScheduleDTO> schedules = null;
+	private ArrayList<String> thisWeek = null;
 //	private ArrayList<TradeCommentsDTO> tradeComments = null;
 	private Connection con = null;
 	public static final ScheduleDAO SDAO = new ScheduleDAO();
@@ -31,7 +32,42 @@ public class ScheduleDAO {
 		}
 	}
 
+	public void getThisWeek(HttpServletRequest request) {
+		// 로컬 오늘 날짜
+		LocalDate today = LocalDate.now();
+		LocalDate startWeek = today.with(DayOfWeek.MONDAY);
+		LocalDate endWeek = today.with(DayOfWeek.SUNDAY);
+
+		// 날짜출력 형식세팅
+		DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("M月d日");
+		
+		// 로컬날짜 = 시작날짜(월요일)로 초기화해서 세팅
+		LocalDate date = startWeek;
+		
+		thisWeek = new ArrayList<String>();
+		
+		// thisWeek가 endWeek가 아니면 루프를 계속 돌리기 위한 while문
+		while (!date.isAfter(endWeek)) {
+			thisWeek.add(date.format(formatDate));
+			// 오늘 날짜(월요일)에 1일을 계속 추가
+			date = date.plusDays(1);
+			// endWeek가 되면 while문 종료
+		}
+		System.out.println(thisWeek);
+		
+		request.setAttribute("thisWeek", thisWeek);
+	}
+	
 	public void getAllSchedule(HttpServletRequest request) {
+		
+		request.getAttribute("thisWeek");
+		
+		
+		
+		
+
+		
+		// 스케줄 가져오기
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select sc.*,m_name from haco_schedule sc, haco_member where s_m_pk = m_pk";
@@ -69,31 +105,6 @@ public class ScheduleDAO {
 		}
 	}
 	
-	public void getThisWeek(HttpServletRequest request) {
-		// 로컬 오늘 날짜
-		LocalDate today = LocalDate.now();
-		LocalDate startWeek = today.with(DayOfWeek.MONDAY);
-		LocalDate endWeek = today.with(DayOfWeek.SUNDAY);
-
-		// 날짜출력 형식세팅
-		DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("M月d日");
-		
-		// 로컬날짜 = 시작날짜(월요일)로 초기화해서 세팅
-		LocalDate date = startWeek;
-		
-		ArrayList<String> thisWeek = new ArrayList<String>();
-		
-		// thisWeek가 endWeek가 아니면 루프를 계속 돌리기 위한 while문
-		while (!date.isAfter(endWeek)) {
-			thisWeek.add(date.format(formatDate));
-			// 오늘 날짜(월요일)에 1일을 계속 추가
-			date = date.plusDays(1);
-			// endWeek가 되면 while문 종료
-		}
-//		System.out.println(thisWeek);
-		
-		request.setAttribute("thisWeek", thisWeek);
-	}
 	
 	public void insertSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
