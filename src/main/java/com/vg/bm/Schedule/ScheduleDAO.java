@@ -20,7 +20,14 @@ import com.vg.jw.AccountDTO;
 
 public class ScheduleDAO {
 
-	private ArrayList<ScheduleDTO> schedules = null;
+//	private ArrayList<ScheduleDTO> ScheduleS = null;
+	private ArrayList<ScheduleDTO> monSchedule = null;
+	private ArrayList<ScheduleDTO> tueSchedule = null;
+	private ArrayList<ScheduleDTO> wenSchedule = null;
+	private ArrayList<ScheduleDTO> thrSchedule = null;
+	private ArrayList<ScheduleDTO> friSchedule = null;
+	private ArrayList<ScheduleDTO> satSchedule = null;
+	private ArrayList<ScheduleDTO> sunSchedule = null;
 	private ArrayList<String> thisWeek;
 	private ArrayList<String> thisWeek2;
 //	private ArrayList<TradeCommentsDTO> tradeComments = null;
@@ -64,25 +71,60 @@ public class ScheduleDAO {
 	}
 	
 	public void getAllSchedule(HttpServletRequest request) {
-		
+//		
+//		// 스케줄 가져오기
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		String sql = "select sc.*,m_name from haco_schedule sc, haco_member where s_m_pk = m_pk";
+//		
+//		try {
+//			con = DBManager.connect();
+//			pstmt = con.prepareStatement(sql);
+//			rs = pstmt.executeQuery();
+//			
+//			schedules = new ArrayList<ScheduleDTO>();
+//
+//			SimpleDateFormat formatDate;
+//			
+//			while (rs.next()) {
+//				formatDate = new SimpleDateFormat("M月d日");
+//				String date = formatDate.format(rs.getDate(4));
+//
+//				formatDate = new SimpleDateFormat("HH:mm");
+//				String time = formatDate.format(rs.getTime(5));
+//
+//				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
+//						rs.getString(3), date, time, rs.getString(6), rs.getString(7));
+//				schedules.add(s);
+//			}
+//			request.setAttribute("schedule", schedules);
+//			
+////			System.out.println("=====스케줄 전체 시소=====");
+////			System.out.println(schedules);
+////			System.out.println("=====================");
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBManager.close(con, pstmt, rs);
+//		}
+	}
+	
+	public void getMonSchedule(HttpServletRequest request) {
 		getThisWeek(request);
-//		request.getAttribute("thisWeek");
 		
-		System.out.println("스케줄 메서드 안 위크 시소"+thisWeek2.get(0));
-		
-
-		
-		// 스케줄 가져오기
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select sc.*,m_name from haco_schedule sc, haco_member where s_m_pk = m_pk";
+		String sql = "select sc.*, m_name from haco_schedule sc "
+				+ "join haco_member hm on sc.s_m_pk = hm.m_pk "
+				+ "where sc.s_date = " +"'"+ thisWeek2.get(0) +"'";
 		
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			schedules = new ArrayList<ScheduleDTO>();
+			monSchedule = new ArrayList<ScheduleDTO>();
 
 			SimpleDateFormat formatDate;
 			
@@ -95,19 +137,271 @@ public class ScheduleDAO {
 
 				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
 						rs.getString(3), date, time, rs.getString(6), rs.getString(7));
-				schedules.add(s);
+				monSchedule.add(s);
 			}
-			request.setAttribute("schedule", schedules);
+			request.setAttribute("monSchedule", monSchedule);
 			
-//			System.out.println("=====스케줄 전체 시소=====");
-//			System.out.println(schedules);
-//			System.out.println("=====================");
+			System.out.println("=====월요일 스케줄 시소=====");
+			System.out.println(monSchedule);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
+
+	}
+	
+	public void getTueSchedule(HttpServletRequest request) {
+		getThisWeek(request);
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select sc.*, m_name from haco_schedule sc "
+				+ "join haco_member hm on sc.s_m_pk = hm.m_pk "
+				+ "where sc.s_date = " +"'"+ thisWeek2.get(1) +"'";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			tueSchedule = new ArrayList<ScheduleDTO>();
+			
+			SimpleDateFormat formatDate;
+			
+			while (rs.next()) {
+				formatDate = new SimpleDateFormat("M月d日");
+				String date = formatDate.format(rs.getDate(4));
+				
+				formatDate = new SimpleDateFormat("HH:mm");
+				String time = formatDate.format(rs.getTime(5));
+				
+				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
+						rs.getString(3), date, time, rs.getString(6), rs.getString(7));
+				tueSchedule.add(s);
+			}
+			request.setAttribute("tueSchedule", tueSchedule);
+			
+			System.out.println("=====월요일 스케줄 시소=====");
+			System.out.println(tueSchedule);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+	
+	public void getWenSchedule(HttpServletRequest request) {
+		getThisWeek(request);
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select sc.*, m_name from haco_schedule sc "
+				+ "join haco_member hm on sc.s_m_pk = hm.m_pk "
+				+ "where sc.s_date = " +"'"+ thisWeek2.get(2) +"'";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			wenSchedule = new ArrayList<ScheduleDTO>();
+			
+			SimpleDateFormat formatDate;
+			
+			while (rs.next()) {
+				formatDate = new SimpleDateFormat("M月d日");
+				String date = formatDate.format(rs.getDate(4));
+				
+				formatDate = new SimpleDateFormat("HH:mm");
+				String time = formatDate.format(rs.getTime(5));
+				
+				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
+						rs.getString(3), date, time, rs.getString(6), rs.getString(7));
+				wenSchedule.add(s);
+			}
+			request.setAttribute("wenSchedule", wenSchedule);
+			
+			System.out.println("=====wen 스케줄 시소=====");
+			System.out.println(wenSchedule);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+	
+	public void getThrSchedule(HttpServletRequest request) {
+		getThisWeek(request);
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select sc.*, m_name from haco_schedule sc "
+				+ "join haco_member hm on sc.s_m_pk = hm.m_pk "
+				+ "where sc.s_date = " +"'"+ thisWeek2.get(3) +"'";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			thrSchedule = new ArrayList<ScheduleDTO>();
+			
+			SimpleDateFormat formatDate;
+			
+			while (rs.next()) {
+				formatDate = new SimpleDateFormat("M月d日");
+				String date = formatDate.format(rs.getDate(4));
+				
+				formatDate = new SimpleDateFormat("HH:mm");
+				String time = formatDate.format(rs.getTime(5));
+				
+				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
+						rs.getString(3), date, time, rs.getString(6), rs.getString(7));
+				thrSchedule.add(s);
+			}
+			request.setAttribute("thrSchedule", thrSchedule);
+			
+			System.out.println("=====thr 스케줄 시소=====");
+			System.out.println(thrSchedule);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+	
+	public void getFriSchedule(HttpServletRequest request) {
+		getThisWeek(request);
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select sc.*, m_name from haco_schedule sc "
+				+ "join haco_member hm on sc.s_m_pk = hm.m_pk "
+				+ "where sc.s_date = " +"'"+ thisWeek2.get(4) +"'";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			friSchedule = new ArrayList<ScheduleDTO>();
+			
+			SimpleDateFormat formatDate;
+			
+			while (rs.next()) {
+				formatDate = new SimpleDateFormat("M月d日");
+				String date = formatDate.format(rs.getDate(4));
+				
+				formatDate = new SimpleDateFormat("HH:mm");
+				String time = formatDate.format(rs.getTime(5));
+				
+				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
+						rs.getString(3), date, time, rs.getString(6), rs.getString(7));
+				friSchedule.add(s);
+			}
+			request.setAttribute("friSchedule", friSchedule);
+			
+			System.out.println("=====fri 스케줄 시소=====");
+			System.out.println(friSchedule);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+	
+	public void getSatSchedule(HttpServletRequest request) {
+		getThisWeek(request);
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select sc.*, m_name from haco_schedule sc "
+				+ "join haco_member hm on sc.s_m_pk = hm.m_pk "
+				+ "where sc.s_date = " +"'"+ thisWeek2.get(5) +"'";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			satSchedule = new ArrayList<ScheduleDTO>();
+			
+			SimpleDateFormat formatDate;
+			
+			while (rs.next()) {
+				formatDate = new SimpleDateFormat("M月d日");
+				String date = formatDate.format(rs.getDate(4));
+				
+				formatDate = new SimpleDateFormat("HH:mm");
+				String time = formatDate.format(rs.getTime(5));
+				
+				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
+						rs.getString(3), date, time, rs.getString(6), rs.getString(7));
+				satSchedule.add(s);
+			}
+			request.setAttribute("msatSchedule", satSchedule);
+			
+			System.out.println("=====sat 스케줄 시소=====");
+			System.out.println(satSchedule);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+	
+	public void getSunSchedule(HttpServletRequest request) {
+		getThisWeek(request);
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select sc.*, m_name from haco_schedule sc "
+				+ "join haco_member hm on sc.s_m_pk = hm.m_pk "
+				+ "where sc.s_date = " +"'"+ thisWeek2.get(6) +"'";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			sunSchedule = new ArrayList<ScheduleDTO>();
+			
+			SimpleDateFormat formatDate;
+			
+			while (rs.next()) {
+				formatDate = new SimpleDateFormat("M月d日");
+				String date = formatDate.format(rs.getDate(4));
+				
+				formatDate = new SimpleDateFormat("HH:mm");
+				String time = formatDate.format(rs.getTime(5));
+				
+				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
+						rs.getString(3), date, time, rs.getString(6), rs.getString(7));
+				sunSchedule.add(s);
+			}
+			request.setAttribute("sunSchedule", sunSchedule);
+			
+			System.out.println("=====sun 스케줄 시소=====");
+			System.out.println(sunSchedule);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
 	}
 	
 	
@@ -151,6 +445,8 @@ public class ScheduleDAO {
 			DBManager.close(con, pstmt, null);
 		}
 	}
+
+
 
 
 
