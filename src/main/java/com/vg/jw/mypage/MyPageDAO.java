@@ -134,7 +134,7 @@ public class MyPageDAO {
 				haco_member.setM_name(rs.getString("m_name"));
 				haco_member.setI_icon(rs.getString("i_icon"));
 				haco_member.setU_twitter_id(twitterId);
-				haco_member.setG_category("bromide");
+				haco_member.setG_category("57mmCanBadge");
 				haco_members.add(haco_member);
 				hacoMemberMap.put(rs.getInt(1), haco_member); // Map에 추가
 			}
@@ -188,7 +188,7 @@ public class MyPageDAO {
 
 	public static void get76mmCanBadge(HttpServletRequest request) {
 		
-		System.out.println("get57CanBadge메서드 진입");
+		System.out.println("get76CanBadge메서드 진입");
 
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
@@ -219,7 +219,7 @@ public class MyPageDAO {
 				haco_member.setM_name(rs.getString("m_name"));
 				haco_member.setI_icon(rs.getString("i_icon"));
 				haco_member.setU_twitter_id(twitterId);
-				haco_member.setG_category("bromide");
+				haco_member.setG_category("76mmCanBadge");
 				haco_members.add(haco_member);
 				hacoMemberMap.put(rs.getInt(1), haco_member); // Map에 추가
 			}

@@ -14,8 +14,24 @@
 <script src="js/mypage_goods.js"></script>
 <script type="text/javascript">
 	$(function() {
+		/* const goodsbtns = document.querySelectorAll('.goods-info-button');
+		goodsbtns.forEach((e) => {
+		  e.addEventListener('click', function () {
+			const goodscon = this.nextElementSibling;
+		    console.log(goodscon);
+		    goodscon.style.transform='scaleY(1)';
+		  });
+		}); */
+
+		
+		
+		$(".goods-info-button").next('.goods-content').css('display','none');
+		$('html').css('filter','blur(0)');
 		$(".goods-info-button").click(function() {
-			 $(this).next('.goods-content').slideToggle();
+			 $(this).next('.goods-content').slideToggle('medium',function(){
+				 if ($(this).is(':visible'))
+				        $(this).css('display','flex');
+			 });
 
 		});
 	});
@@ -41,7 +57,6 @@
 	justify-content: center;
 	flex-wrap: wrap;
 	gap: 20px 3px;
-		
 }
 
 .goods-info-box>div {
