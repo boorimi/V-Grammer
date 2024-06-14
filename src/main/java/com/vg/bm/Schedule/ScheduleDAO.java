@@ -8,9 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -49,7 +47,7 @@ public class ScheduleDAO {
 		LocalDate endWeek = today.with(DayOfWeek.SUNDAY);
 
 		// 날짜출력 형식세팅
-		DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("M月d日");
+		DateTimeFormatter formatDate;
 		
 		// 로컬날짜 = 시작날짜(월요일)로 초기화해서 세팅
 		LocalDate date = startWeek;
@@ -59,7 +57,9 @@ public class ScheduleDAO {
 		
 		// thisWeek가 endWeek가 아니면 루프를 계속 돌리기 위한 while문
 		while (!date.isAfter(endWeek)) {
+			formatDate = DateTimeFormatter.ofPattern("M月d日");
 			thisWeek.add(date.format(formatDate));
+			formatDate = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 			thisWeek2.add(date.toString());
 			// 오늘 날짜(월요일)에 1일을 계속 추가
 			date = date.plusDays(1);
@@ -110,7 +110,7 @@ public class ScheduleDAO {
 //		}
 	}
 	
-	public void getMonSchedule(HttpServletRequest request) {
+	public void getMonSchedule(HttpServletRequest request) throws NumberFormatException {
 		getThisWeek(request);
 		
 		PreparedStatement pstmt = null;
