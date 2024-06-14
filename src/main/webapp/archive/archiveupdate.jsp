@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/archive.css">
+<script src="js/archiveupdate.js" defer></script>
 </head>
 <body>
 	<!-- 상단 페이징 시작 -->
