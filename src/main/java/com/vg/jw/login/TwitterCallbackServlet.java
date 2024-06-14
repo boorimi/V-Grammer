@@ -88,6 +88,11 @@ public class TwitterCallbackServlet extends HttpServlet {
 					request.getSession().setAttribute("twitterName", name);
 					request.getSession().setAttribute("twitterProfileImgUrl", profileImgUrl);
 					
+					//
+					String jwtToKen = JwtUtil.generateToken(String.valueOf(userId));
+					
+					
+					
 					// 종료 후 로그인 컨트롤러로 보내서 기존회원인지 검증
 					response.sendRedirect("LoginC");
 					
