@@ -57,9 +57,14 @@ $(function () {
   // 페이지 로드될때 이벤트 처리
   toggleButton();
 
+// 미분류 문자를 null로 바꾸는 함수
+  replaceNull();
+
   // select 요소의 값이 변경될 때 이벤트 처리
   $("select[name='collabo']").change(function () {
     toggleButton();
+    
+  
   });
 });
 
@@ -348,6 +353,17 @@ function replaceCollabomemberString(a) {
       .closest(".archive-collabomember")
       .find(".collaboMember2")
       .html(divWrappedArray.join(""));
+  });
+}
+
+// 미분류 문자를 null로 바꾸는 함수
+function replaceNull() {
+  $(".collaboMember2").each(function () {
+    let textInDiv = $(this);
+    console.log(textInDiv.text());
+    if (textInDiv.text() == "未分類") {
+      textInDiv.text("");
+    }
   });
 }
 

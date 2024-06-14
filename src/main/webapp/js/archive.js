@@ -21,6 +21,9 @@ $(function () {
 
   //콜라보멤버 div 처리
   replaceCollabomemberString();
+
+  // '미분류'라는 글자 빈칸으로 보여주기
+  replaceNull();
 });
 
 // 시간 형식 변환 함수
@@ -80,19 +83,19 @@ function test(resData) {
 				<p style="margin-top: 0px">
 					<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
 				</p>
-				<p>${archive.a_m_pk }</p>
-				<div class="archive-membername">${archive.m_name }</div>
-				<div class="archive-collabo">${archive.a_collabo }</div>
+				<p>${archive.a_m_pk}</p>
+				<div class="archive-membername">${archive.m_name}</div>
+				<div class="archive-collabo">${archive.a_collabo}</div>
 				<div class="archive-collabomember">
 				  <input type="hidden" class="collaboMember" value="${archive.a_collabomember}" />
 				  <div class="collaboMember2"></div>
 				</div>
-				<div class="archive-category">${archive.a_category }</div>
+				<div class="archive-category">${archive.a_category}</div>
 				<div class="archive-date">${formattedDate}</div>
 				<div class="archive-time">${formattedTime}</div>
 				<div class="archive-title">${archive.a_title}</div>
 				<div class="archive-thumbnail">
-					<a target="_blank" href="https://www.youtube.com/watch?v=${archive.a_videoid }">
+					<a target="_blank" href="https://www.youtube.com/watch?v=${archive.a_videoid}">
 						<img 
 						src="${archive.a_thumbnail}" 
 						alt="${archive.a_title} Thumbnail">
@@ -128,4 +131,12 @@ function replaceCollabomemberString() {
   });
 }
 
-
+// 미분류 글자를 null로 바꿔주는 함수
+function replaceNull() {
+  $(".collaboMember2").each(function () {
+    let textInDiv = $(this).find(".archive-collabomember-item");
+    if (textInDiv.text() == "未分類") {
+      textInDiv.text("");
+    }
+  });
+}
