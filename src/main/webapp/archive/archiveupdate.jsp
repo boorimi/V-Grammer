@@ -67,7 +67,7 @@
 						<div>コラボメンバー</div>
 						<button type="button" onclick="openModal(this)"
 							class="openModalButton">선택하기</button>
-						<input type="text" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
+						<input type="hidden" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
 						<div class="collaboMember2">
 						</div>
 					</div>

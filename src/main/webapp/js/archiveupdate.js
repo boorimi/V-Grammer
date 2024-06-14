@@ -182,7 +182,7 @@ function test2(resData) {
 						<div>コラボメンバー</div>
 						<button type="button" onclick="openModal(this)"
 							class="openModalButton">선택하기</button>
-						<input type="text" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
+						<input type="hidden" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
 						<div class="collaboMember2">${archive.a_collabomember}</div>
 					</div>
 					<div class="archive-category">
@@ -265,7 +265,7 @@ function applyModal() {
   activeInput.value = selectedOptions.join("!");
   //   activeDiv.innerText = selectedOptions.join("\n");
 
-  let a = $(activeBtn.nextElementSibling.nextElementSibling);
+  let a = $(activeBtn.nextElementSibling);
   replaceCollabomemberString(a);
 
   document
@@ -319,7 +319,7 @@ function toggleButton() {
     }
 
     // yes 아닐때 콜라보멤버 초기화 함수
-    /* let select2 = $(this);
+     let select2 = $(this);
     let openModalButton2 = select2
       .closest(".archive-collabo")
       .next(".archive-collabomember");
@@ -327,25 +327,17 @@ function toggleButton() {
     if (select2.val() != "yes") {
       openModalButton2.find(".collaboMember2").text("未分類");
       openModalButton2.find("input").val("未分類");
-    } */
+    } 
   });
 }
 
 // 콜라보 멤버 문자열을 div로 감싸 표현하는 함수
 function replaceCollabomemberString(a) {
-  // jQuery를 사용하여 NodeList를 가져오기
+  // jQuery를 사용하여 NodeList를 가져오기 (hidden된 input 자체를 가져와야함)
   let collabomemberStrings = a;
   // NodeList를 배열로 변환하여 forEach 메서드 사용
-  $(collabomemberStrings).each(function (idx, collabomemberString) {
-    //collabomemberString = activeInput.val();
-    console.log($(collabomemberString).val());
-    console.log(activeInput?.value);
-    // collabomemberString =  = a == $(".collaboMember") ? $(this).text() : activeInput?.value;
-    collabomemberString =
-      typeof activeBtn == "undefined"
-        ? $(collabomemberString).val()
-        : activeInput?.value;
-    let collabomemberStringUpdate = collabomemberString.split("!");
+  $(collabomemberStrings).each(function (idx, collabomemberString) {    
+    let collabomemberStringUpdate = collabomemberString.value.split("!");
     let divWrappedArray = collabomemberStringUpdate.map(
       (item) =>
         `<div class="archive-collabomember-item archive-${item}">${item}</div>`
