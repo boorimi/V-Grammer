@@ -1,10 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-<<<<<<< HEAD
+
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-=======
-	xsi:schemaLocation="http://www.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
->>>>>>> f1e96a2d82015044626b5058edbef9e9a6467581
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>V-Grammer</groupId>
 	<artifactId>V-Grammer</artifactId>
@@ -172,9 +170,8 @@
 		</dependency>
 <<<<<<< HEAD
 		<!-- youtube OAuth2.0 사용준비 -->
-=======
-		<!-- youtube OAuth2.0 사용 준비 -->
->>>>>>> f1e96a2d82015044626b5058edbef9e9a6467581
+=======		<!-- youtube OAuth2.0 사용 준비 -->
+
 		<dependency>
 			<groupId>com.google.api-client</groupId>
 			<artifactId>google-api-client</artifactId>
@@ -195,7 +192,7 @@
 			<artifactId>google-http-client-jackson2</artifactId>
 			<version>1.36.0</version>
 		</dependency>
-<<<<<<< HEAD
+
 		<!--로그인 시 트위터 인증 생략에 필요한 의존성-->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -214,7 +211,7 @@
 			<version>2.3.1</version>
 		</dependency>
 
-=======
+
 		<!-- SLF4J와 Logback 로깅 구현 추가 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -226,6 +223,6 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
 		</dependency>
->>>>>>> f1e96a2d82015044626b5058edbef9e9a6467581
+
 	</dependencies>
 </project>
