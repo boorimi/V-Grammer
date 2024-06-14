@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/archive.css">
+<script src="js/archiveupdate.js" defer></script>
 </head>
 <body>
 	<!-- 상단 페이징 시작 -->
@@ -67,7 +68,8 @@
 						<button type="button" onclick="openModal(this)"
 							class="openModalButton">선택하기</button>
 						<input type="hidden" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
-						<div class="collaboMember2">${archive.a_collabomember}</div>
+						<div class="collaboMember2">
+						</div>
 					</div>
 					<div class="archive-category">
 						<div>カテゴリー</div>

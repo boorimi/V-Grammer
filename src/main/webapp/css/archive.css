@@ -1,97 +1,233 @@
 .dialog-container {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 300px;
-  top: 0;
-  width: 650px;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 300px;
+	top: 0;
+	width: 650px;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
 }
 
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .archive-page-no {
-  cursor: pointer;
+	cursor: pointer;
 }
+
 .archive-page-no2 {
-  cursor: pointer;
-  padding: 10px;
-  border: 1px solid gray;
+	cursor: pointer;
+	padding: 10px;
+	border: 1px solid gray;
 }
+
 .archive-contents {
-  display: flex;
+	display: flex;
 }
-.archive-contents > p {
-  margin-right: 15px;
+
+.archive-contents:hover {
+	background-color: #eeeeee;
+}
+
+.archive-contents>p {
+	margin-right: 15px;
+}
+
+.archive-contents-update {
+	display: flex;
+}
+
+.archive-contents-update:hover {
+	background-color: #eeeeee;
 }
 
 .archive-icon {
-  width: 50px;
-  height: 50px;
+	width: 50px;
+	height: 50px;
 }
+
 .archive-membername {
-  width: 90px;
-  margin-right: 25px;
+	width: 90px;
+	margin-right: 25px;
 }
+
 .archive-collabo {
-  width: 150px;
+	width: 150px;
 }
+
 .archive-category {
-  width: 150px;
+	width: 150px;
 }
+
 .archive-date {
-  margin-right: 35px;
+	margin-right: 35px;
 }
+
 .archive-time {
-  margin-right: 35px;
+	margin-right: 35px;
 }
+
 .archive-collabomember {
-  width: 180px;
+	width: 180px;
 }
 
 .archive-title {
-  width: 350px;
+	width: 350px;
 }
 
 .archive-thumbnail {
-  margin-right: 0;
+	margin-right: 0;
 }
 
 .archive-modal-detail {
-  display: flex;
+	display: flex;
 }
-.archive-modal-detail > div {
-  width: 170px;
+
+.archive-modal-detail>div {
+	width: 170px;
 }
+
 .archive-modal-detail-gen {
-  padding: 10px 0px;
-  border-bottom: 1px solid gray;
+	padding: 10px 0px;
+	border-bottom: 1px solid gray;
 }
+
 #archive-list2 {
-  opacity: 0.3; /* 초기 투명도 설정 */
+	opacity: 0.3; /* 초기 투명도 설정 */
 }
+
 .openModalButton {
-  display: none; /* 기본적으로 버튼을 숨김 */
+	display: none; /* 기본적으로 버튼을 숨김 */
 }
+
+.archive-collabomember-item {
+	display: inline-block;
+	border-radius: 5px;
+	color: #FFFFFF;
+	font-size: 9pt;
+	font-weight: bold;
+	width: auto;
+	padding: 3px;
+	margin: 2px;
+}
+/* 25명 멤버의 퍼스널컬러 배경색깔 넣어주기*/
+.archive-七彩てまり {
+	background-color: lightpink;
+}
+
+.archive-田中りゅこ {
+	background-color: #A5CDEC;
+}
+
+.archive-夜夢瑠紅 {
+	background-color: #CDB8FF;
+}
+
+.archive-赤衣アカメ {
+	background-color: #C25B7C;
+}
+
+.archive-星ノ音コロン {
+	background-color: #FFD6D4;
+}
+
+.archive-愛咲よつのは {
+	background-color: #8BEC97;
+}
+
+.archive-玉ノ井もなか {
+	background-color: #D6BAEB;
+}
+
+.archive-綾坂希穂 {
+	background-color: #FFB9BB;
+}
+
+.archive-ソフィ・ローズ {
+	background-color: #BFD2EE;
+}
+
+.archive-天海くりね {
+	background-color: #B7F1FF;
+}
+
+.archive-鳳儚 {
+	background-color: #D1B7A4;
+}
+
+.archive-小日向千虎 {
+	background-color: #FFE089;
+}
+
+.archive-白砂つな {
+	background-color: #CF80E0;
+}
+
+.archive-橘シエナ {
+	background-color: #FFA658;
+}
+
+.archive-ミラ・ルプス {
+	background-color: #BDDE87;
+}
+
+.archive-銀灰まお {
+	background-color: #C4BEC9;
+}
+
+.archive-リン・ガーネット {
+	background-color: #D4485F;
+}
+
+.archive-明堂しろね {
+	background-color: #DE617E;
+}
+
+.archive-華糖シェリー {
+	background-color: #77788F;
+}
+
+.archive-ぺるぽ {
+	background-color: #B2E2F7;
+}
+
+.archive-叶望ゆゆ {
+	background-color: #BF8ADE;
+}
+
+.archive-雫川なのか {
+	background-color: #c25b7c;
+}
+
+.archive-堕天しすた {
+	background-color: #c25b7c;
+}
+
+.archive-山寧恋 {
+	background-color: #c25b7c;
+}
+
+.archive-翠森アトリ {
+	background-color: #c25b7c;
+}
+/* 끝 */

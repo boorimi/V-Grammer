@@ -418,9 +418,7 @@ footer {
   margin-right: 0;
 }
 
-.archive-contents-update {
-  display: flex;
-}
+
 .archive-bottom {
   display: flex;
   justify-content: space-between;
