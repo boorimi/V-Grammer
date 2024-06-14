@@ -1,17 +1,13 @@
 @charset "UTF-8";
 
 .schedule-container {
-  width: 1900px;
   height: auto;
   background-color: antiquewhite;
 }
 
 .s-week-list {
-  margin-top: 50px;
-  padding-bottom: 40px;
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 1900px;
   margin: 0 auto;
 }
 
@@ -63,19 +59,14 @@
   color: #fff;
 }
 
-/* 시간표 영역 */
-.tab_content {
-}
-
 .s-time-list {
-  width: 1900px;
   background-color: chartreuse;
   display: flex;
 }
 
-.s-time-a {
-  width: 237.5px;
-  min-height: 100px;
+.s-time {
+  width: calc(100% / 8);
+  min-height: 50px;
   /*display flex 설정해도 width가 변하지 않게*/
   flex-shrink: 0;
   background-color: tomato;
@@ -84,29 +75,19 @@
   align-items: center;
 }
 
-.s-time-a-data {
+.s-data {
   display: flex;
   flex-wrap: wrap;
-}
-.s-time-b-data {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.s-time-b {
-  width: 237.5px;
-  min-height: 50px;
-  flex-shrink: 0;
-  background-color: royalblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: calc(100% / 8);
 }
 
 #s-data {
-  width: 237.5px;
+  width: 100%;
   height: 50px;
   background-color: cadetblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* insert css */

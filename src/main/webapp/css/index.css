@@ -214,12 +214,10 @@ nav {
   margin-top: 127px;
   margin-left: 340px;
   width: 1280px;
-  height: 751px;
+  height: 675px;
   background-color: white;
 }
-.today-vtuber div {
-  border: 1px solid black;
-}
+
 .today-vtuber > p {
   font-size: 32px;
 }
@@ -257,13 +255,21 @@ nav {
   text-align: center;
   display: flex;
   align-content: space-between;
-  width: 480px;
+  width: 400px;
+  border: 1px solid black;
 }
+
+.today-vtuber-etc > .today-vtuber-etc-addr {
+  width: 400px;
+  border: 1px solid black;
+}
+
 .today-vtuber-address-box {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 300px;
+  width: 400px;
+  border: 1px solid black;
 }
 .today-vtuber-address-box > div {
   border-radius: 20px;

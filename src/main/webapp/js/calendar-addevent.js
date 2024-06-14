@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		selectable: true,
 		businessHours: true,
 		dayMaxEvents: true,
-		events: []
+		events: [],
 	});
 
 	calendar.render();
@@ -47,6 +47,7 @@ function setVal(calendar) {
 		dataType: 'json', // 응답을 JSON으로 기대
 		success: function(res) {
 			console.log("AJAX 응답:", res); // 응답 데이터 확인
+			console.log(event);
 			const events = res; // 응답을 이미 JSON 객체로 처리
 			console.log("파싱된 이벤트:", events); // 파싱된 데이터 확인
 			calendar.removeAllEvents(); // 기존 이벤트 제거
@@ -59,6 +60,7 @@ function setVal(calendar) {
 		}
 	});
 }
+
 
 function monthToNumber(monthString, year) {
 	const date = new Date(monthString + ' 1,' + year);
