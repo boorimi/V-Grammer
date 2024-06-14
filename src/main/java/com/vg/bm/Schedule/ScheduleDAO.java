@@ -8,7 +8,9 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,7 +21,8 @@ import com.vg.jw.AccountDTO;
 public class ScheduleDAO {
 
 	private ArrayList<ScheduleDTO> schedules = null;
-	private ArrayList<String> thisWeek = null;
+	private ArrayList<String> thisWeek;
+	private ArrayList<String> thisWeek2;
 //	private ArrayList<TradeCommentsDTO> tradeComments = null;
 	private Connection con = null;
 	public static final ScheduleDAO SDAO = new ScheduleDAO();
@@ -44,26 +47,28 @@ public class ScheduleDAO {
 		// 로컬날짜 = 시작날짜(월요일)로 초기화해서 세팅
 		LocalDate date = startWeek;
 		
-		thisWeek = new ArrayList<String>();
+		thisWeek = new ArrayList<String>(); // M月d日
+		thisWeek2 = new ArrayList<String>(); // YYYY-MM-dd
 		
 		// thisWeek가 endWeek가 아니면 루프를 계속 돌리기 위한 while문
 		while (!date.isAfter(endWeek)) {
 			thisWeek.add(date.format(formatDate));
+			thisWeek2.add(date.toString());
 			// 오늘 날짜(월요일)에 1일을 계속 추가
 			date = date.plusDays(1);
 			// endWeek가 되면 while문 종료
 		}
-		System.out.println(thisWeek);
+//		System.out.println(thisWeek);
 		
 		request.setAttribute("thisWeek", thisWeek);
 	}
 	
 	public void getAllSchedule(HttpServletRequest request) {
 		
-		request.getAttribute("thisWeek");
+		getThisWeek(request);
+//		request.getAttribute("thisWeek");
 		
-		
-		
+		System.out.println("스케줄 메서드 안 위크 시소"+thisWeek2.get(0));
 		
 
 		
