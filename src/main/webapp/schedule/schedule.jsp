@@ -12,6 +12,7 @@
 <script type="text/javascript" src="js/schedule.js" defer></script>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <title>Insert title here</title>
 </head>
 <body>
