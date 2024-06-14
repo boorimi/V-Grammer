@@ -1,6 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<<<<<<< HEAD
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+=======
+	xsi:schemaLocation="http://www.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+>>>>>>> f1e96a2d82015044626b5058edbef9e9a6467581
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>V-Grammer</groupId>
 	<artifactId>V-Grammer</artifactId>
@@ -20,7 +24,6 @@
 					<showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.3</version>
@@ -28,12 +31,19 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<!-- gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.9</version>
+		</dependency>
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<!--트위터 로그인 관련-->
+		<!-- 트위터 로그인 관련 -->
 		<!-- Apache HttpClient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -50,21 +60,19 @@
 			<artifactId>httpmime</artifactId>
 			<version>4.3.3</version>
 		</dependency>
-
-		<!-- Signpost Core - api연결용 oauth인증 라이브러리. OAuth인터페이스・클래스 제공-->
+		<!-- Signpost Core - api 연결용 oauth 인증 라이브러리. OAuth 인터페이스・클래스 제공 -->
 		<dependency>
 			<groupId>oauth.signpost</groupId>
 			<artifactId>signpost-core</artifactId>
 			<version>1.2.1.2</version>
 		</dependency>
-
-		<!--Signpost CommonsHttp - Signpost와 Apache HttpClient를 통합하여 OAuth 인증을 쉽게 구현할 수 있도록 도와줍니다.-->
+		<!-- Signpost CommonsHttp - Signpost와 Apache HttpClient를 통합하여 OAuth 인증을
+		쉽게 구현할 수 있도록 도와줍니다. -->
 		<dependency>
 			<groupId>oauth.signpost</groupId>
 			<artifactId>signpost-commonshttp4</artifactId>
 			<version>1.2.1.2</version>
 		</dependency>
-
 		<!-- Servlet API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -72,16 +80,14 @@
 			<scope>provided</scope>
 			<version>3.1.0</version>
 		</dependency>
-
-		<!-- JSP API-->
+		<!-- JSP API -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>2.3.3</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!--commons-logging - 로깅 추상화 라이브러리. 일관된 로깅 인터페이스를 제공. -->
+		<!-- commons-logging - 로깅 추상화 라이브러리. 일관된 로깅 인터페이스를 제공 -->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -92,7 +98,7 @@
 			<artifactId>mariadb-java-client</artifactId>
 			<version>3.3.3</version>
 		</dependency>
-		<!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리-->
+		<!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리 -->
 		<dependency>
 			<groupId>org.twitter4j</groupId>
 			<artifactId>twitter4j-core</artifactId>
@@ -116,14 +122,14 @@
 			<artifactId>mariadb-java-client</artifactId>
 			<version>3.4.0</version>
 		</dependency>
-		<!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리-->
+		<!-- 트위터 api를 사용하기 위한 twitter4j 라이브러리 -->
 		<!-- jsoup : 크롤링을 위한 라이브러리 -->
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.17.2</version>
 		</dependency>
-		<!-- selenium : 크롤링을 위한 라이브러리2 -->
+		<!-- selenium : 크롤링을 위한 라이브러리 -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -134,7 +140,6 @@
 			<artifactId>selenium-chrome-driver</artifactId>
 			<version>3.141.59</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
@@ -145,13 +150,16 @@
 			<artifactId>tomcat-juli</artifactId>
 			<version>9.0.56</version>
 		</dependency>
-		<!-- cos.jar 사진업로드준비 -->
+		<!-- cos.jar 사진 업로드 준비 -->
 		<dependency>
 			<groupId>servlets.com</groupId>
 			<artifactId>cos</artifactId>
 			<version>05Nov2002</version>
 		</dependency>
+<<<<<<< HEAD
 
+=======
+>>>>>>> f1e96a2d82015044626b5058edbef9e9a6467581
 		<dependency>
 			<groupId>com.twitter</groupId>
 			<artifactId>twitter-api-java-sdk</artifactId>
@@ -162,7 +170,11 @@
 			<artifactId>unirest-java</artifactId>
 			<version>3.11.09</version>
 		</dependency>
+<<<<<<< HEAD
 		<!-- youtube OAuth2.0 사용준비 -->
+=======
+		<!-- youtube OAuth2.0 사용 준비 -->
+>>>>>>> f1e96a2d82015044626b5058edbef9e9a6467581
 		<dependency>
 			<groupId>com.google.api-client</groupId>
 			<artifactId>google-api-client</artifactId>
@@ -183,6 +195,7 @@
 			<artifactId>google-http-client-jackson2</artifactId>
 			<version>1.36.0</version>
 		</dependency>
+<<<<<<< HEAD
 		<!--로그인 시 트위터 인증 생략에 필요한 의존성-->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -201,10 +214,18 @@
 			<version>2.3.1</version>
 		</dependency>
 
+=======
+		<!-- SLF4J와 Logback 로깅 구현 추가 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.30</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+>>>>>>> f1e96a2d82015044626b5058edbef9e9a6467581
 	</dependencies>
-
-
 </project>
-
-
-

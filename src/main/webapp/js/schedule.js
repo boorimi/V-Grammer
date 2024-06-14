@@ -23,7 +23,6 @@ $(document).ready(function() {
 	$insertButton.on('click', function() {
 		if ($('#schedule-member').val() === "999") {
 			alert('メンバーをチェックください！');
-			console.log($('#schedule-member').val());
 			return false;
 		} if ($('#schedule-date').val() === "") {
 			alert('日付をチェックください！');
@@ -35,7 +34,6 @@ $(document).ready(function() {
 			alert('タイトルをチェックください！');
 			return false;
 		}
-
 	});
 
 

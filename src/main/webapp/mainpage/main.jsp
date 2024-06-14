@@ -13,7 +13,7 @@ prefix="c"%>
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="main-body">
     <main>
       <div style="display: flex" class="live-contents">
         <div class="live-members">
@@ -56,21 +56,34 @@ prefix="c"%>
         <!--  방송 페이지 끝 -->
       </div>
       <div class="main-dday-container">
+    <div class="dday-items-wrapper">
         <c:forEach var="dday" items="${ddayList}">
-          <c:if test="${dday.daysUntilDday >= -14 && dday.daysUntilDday <= 0}">
-            <div>
-              <div>${dday.m_name}</div>
-              <div>${dday.m_debut}</div>
-              <div>${dday.daysUntilDday}</div>
-            </div>
-          </c:if>
+            <c:if test="${dday.daysUntilDday >= -14 && dday.daysUntilDday <= 0}">
+                <div class="dday-item">
+                    <span>이름 : ${dday.m_name} </span>
+                    <span>데뷔 날짜 : ${dday.m_debut} </span>
+                    <span>D-day : D${dday.daysUntilDday} </span>
+                </div>
+            </c:if>
         </c:forEach>
-      </div>
+    </div>
+</div>
 
       <div class="main-news">
         <div class="news-photo">
           <img src="haco_img/img/newimg2.png" alt="">
         </div>
+        <ul class="news-board">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          
+
+        </ul>
+        
+
       </div>
 
       <div class="today-vtuber">

@@ -6,13 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
+import com.google.gson.Gson;
 import com.vg.ignore.DBManager;
 
 public class CalendarDAO {
@@ -20,39 +19,40 @@ public class CalendarDAO {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        PrintWriter out = response.getWriter();
-        JSONArray events = new JSONArray();
+		String monthString = request.getParameter("month");
+		String yearString = request.getParameter("year");
+		String dateString = yearString + "-" + monthString;
+		
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-
+        CalenderInfoDTO event = new CalenderInfoDTO();
+        ArrayList<CalenderInfoDTO> events = new ArrayList<CalenderInfoDTO>();
         try {
             conn = DBManager.connect();
-            String sql = "SELECT m_pk, m_name, m_debut \r\n"
-            		+ "FROM haco_member \r\n"
-            		+ "WHERE EXTRACT(MONTH FROM m_debut) = "+request.getParameter("month");
+            String sql = "SELECT m_pk, m_name, m_debut FROM haco_member WHERE m_name IS NOT NULL AND m_debut IS NOT NULL AND m_debut LIKE '"+dateString+"%'";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-            		System.out.println(rs.getInt(1));
-            		System.out.println(rs.getString(2));
-            		System.out.println(rs.getDate(3));
-            	
-                JSONObject event = new JSONObject();
-                event.put("id", rs.getInt("m_pk"));
-                event.put("name", rs.getString("m_name"));
-                event.put("debut", rs.getString("m_debut"));
+            	event =  new CalenderInfoDTO();
+                event.setM_pk(rs.getString("m_pk"));
+                event.setM_name(rs.getString("m_name"));
+                event.setM_debut(rs.getDate("m_debut"));
                 events.add(event);
             }
+            System.out.println(events);
+            Gson gson = new Gson();
+            String json =gson.toJson(events);
+            System.out.println("here VVVV");
+            System.out.println(json);
+            response.getWriter().print(json);
 
-            System.out.println(events.toString());
-            out.write(events.toString());
         } catch (SQLException e) {
             e.printStackTrace();
+            // 에러 발생 시 빈 JSON 배열을 응답으로 보냄
         } finally {
             DBManager.close(conn, pstmt, rs);
         }
-
     }
 }

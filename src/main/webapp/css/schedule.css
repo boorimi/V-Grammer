@@ -1,23 +1,88 @@
 @charset "UTF-8";
 
-.schedule-insert-container{
+.schedule-container {
+	width: 1900px;
+	height: auto;
+	background-color: antiquewhite;
+}
+
+.s-week-list {
+	width: 1900px;
+	display: flex;
+	align-items: center;
+}
+
+.s-week-list>div {
+	width: 237.5px;
+	height: 100px;
+	background-color: aqua;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.s-content-box {
+	display: flex;
+	flex-direction: column;
+}
+
+.s-time-list {
+	width: 1900px;
+	background-color: chartreuse;
+	display: flex;
+}
+
+.s-time-a {
+	width: 237.5px;
+	min-height: 100px;
+	/*display flex 설정해도 width가 변하지 않게*/
+	flex-shrink: 0;
+	background-color: tomato;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.s-time-a-data {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.s-time-b {
+	width: 237.5px;
+	min-height: 50px;
+	flex-shrink: 0;
+	background-color: royalblue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#s-data {
+	width: 237.5px;
+	height: 50px;
+	background-color: cadetblue;
+}
+
+/* insert css */
+.schedule-insert-container {
 	border: 1px solid green;
 }
 
-.schedule-insert-inner-container{
+.schedule-insert-inner-container {
 	border: 1px solid red;
 	display: none;
 }
 
-.schedule-insert-box{
+.schedule-insert-box {
 	display: flex;
 }
 
-#schedule-member{
+#schedule-member {
 	width: 120px;
 }
 
-#schedule-blank-box{
+#schedule-blank-box {
 	width: 120px;
 	background-color: darkorange;
 }

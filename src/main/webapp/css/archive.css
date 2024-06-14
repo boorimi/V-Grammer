@@ -1,0 +1,97 @@
+.dialog-container {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 300px;
+  top: 0;
+  width: 650px;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.archive-page-no {
+  cursor: pointer;
+}
+.archive-page-no2 {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid gray;
+}
+.archive-contents {
+  display: flex;
+}
+.archive-contents > p {
+  margin-right: 15px;
+}
+
+.archive-icon {
+  width: 50px;
+  height: 50px;
+}
+.archive-membername {
+  width: 90px;
+  margin-right: 25px;
+}
+.archive-collabo {
+  width: 150px;
+}
+.archive-category {
+  width: 150px;
+}
+.archive-date {
+  margin-right: 35px;
+}
+.archive-time {
+  margin-right: 35px;
+}
+.archive-collabomember {
+  width: 180px;
+}
+
+.archive-title {
+  width: 350px;
+}
+
+.archive-thumbnail {
+  margin-right: 0;
+}
+
+.archive-modal-detail {
+  display: flex;
+}
+.archive-modal-detail > div {
+  width: 170px;
+}
+.archive-modal-detail-gen {
+  padding: 10px 0px;
+  border-bottom: 1px solid gray;
+}
+#archive-list2 {
+  opacity: 0.3; /* 초기 투명도 설정 */
+}
+.openModalButton {
+  display: none; /* 기본적으로 버튼을 숨김 */
+}
