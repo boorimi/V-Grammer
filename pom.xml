@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>V-Grammer</groupId>
 	<artifactId>V-Grammer</artifactId>
@@ -107,7 +109,8 @@
 			<version>9.0.56</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<!--
+		https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
@@ -149,16 +152,16 @@
 			<version>05Nov2002</version>
 		</dependency>
 
-<dependency>
-  <groupId>com.twitter</groupId>
-  <artifactId>twitter-api-java-sdk</artifactId>
-  <version>1.1.4</version>
-</dependency>
- <dependency>
-        <groupId>com.konghq</groupId>
-        <artifactId>unirest-java</artifactId>
-        <version>3.11.09</version>
-    </dependency>
+		<dependency>
+			<groupId>com.twitter</groupId>
+			<artifactId>twitter-api-java-sdk</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.konghq</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>3.11.09</version>
+		</dependency>
 		<!-- youtube OAuth2.0 사용준비 -->
 		<dependency>
 			<groupId>com.google.api-client</groupId>
@@ -180,7 +183,23 @@
 			<artifactId>google-http-client-jackson2</artifactId>
 			<version>1.36.0</version>
 		</dependency>
-
+		<!--로그인 시 트위터 인증 생략에 필요한 의존성-->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<!--javax.xml.bind.DatatypeConverter 클래스 누락 문제 해결-->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.1</version>
+		</dependency>
 
 	</dependencies>
 
