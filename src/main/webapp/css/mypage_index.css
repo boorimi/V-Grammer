@@ -1,17 +1,49 @@
 @charset "UTF-8";
 
 .mypage-container {
-	
+
 	display: flex;
-	gap: 50px;
-	justify-content: center;
+	justify-content: flex-end;
 	position: relative;
 }
 
-.mypage-menu-section{
-	
+.mypage-menu-section {
+
 	position: absolute;
 	left: 100px;
 	flex-direction: column;
+	width: 30vh;
+
+}
+
+.mypage-menu-items {
+	display: flex;
+	border: 1px black solid;
+	width: 75%;
+	gap: 15px;
+	border-radius: 10px;
+	align-items: center;
+}
+
+.mypage-menu-items:hover{
+	background-color: mediumpurple;
 	
+}
+
+.mypage-menu-icon-wrap{
+	margin: 10px;
+}
+
+.mypage-jsp-section {
+
+	width: 80%;
+	display: flex;
+	justify-content: center;
+}
+
+.mypage-menu-icon {
+
+	width: 30px;
+
+
 }
