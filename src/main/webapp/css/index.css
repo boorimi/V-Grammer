@@ -150,43 +150,72 @@ nav {
   margin-left: 47px;
   margin-right: 47px;
 }
+
 .main-dday-container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  white-space: nowrap;
+  padding: 20px;
+  background: #f5f5f5; /* 배경색 설정 */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* 컨테이너를 벗어난 텍스트 숨기기 */
+  white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
 }
 
 .dday-items-wrapper {
-  display: inline-block;
-  padding-left: 100%;
-  animation: slide 15s linear infinite;
+  display: inline-block; /* 수평 슬라이드를 위해 인라인 블록으로 설정 */
+  animation: slide 15s linear infinite; /* 슬라이드 애니메이션 설정 */
 }
 
 .dday-item {
-  display: inline-block;
-  padding-right: 50px; /* 각 항목 간의 간격 */
+  display: flex; /* 아이템을 수평으로 나란히 배치 */
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Comic Sans MS", cursive, sans-serif; /* 일본 애니메이션 느낌의 글꼴 */
+  color: #333;
+  margin-right: 10px; /* 아이템 사이의 간격 */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dday-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dday-item span {
+  display: flex;
+  font-size: 1.2rem;
+  margin: 0 10px;
+  margin-bottom: 5px;
+  color: #ff69b4; /* 밝은 핑크색 텍스트 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  animation: textAnimation 1s ease-in-out infinite alternate;
 }
 
 @keyframes slide {
   from {
-    transform: translateX(0%);
+    transform: translateX(100%);
   }
   to {
     transform: translateX(-100%);
   }
 }
 
+@keyframes textAnimation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
 .main-dday-container {
-  margin-top: 50px;
-  border: 1px solid black;
   background-color: white;
   height: 30px;
   display: flex;
 }
-.main-dday-container div {
-  border: 1px solid black;
-}
+
 .main-dday-container div div {
   margin-right: 50px;
 }
