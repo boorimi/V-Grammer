@@ -23,7 +23,10 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
@@ -107,7 +110,9 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
@@ -189,7 +194,9 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
@@ -264,7 +271,9 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
@@ -339,7 +348,9 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
@@ -415,7 +426,9 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
@@ -491,7 +504,9 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
@@ -567,7 +582,9 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
@@ -643,7 +660,9 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
@@ -719,7 +738,9 @@ public class MyPageDAO {
 		// 세션에서 현재 사용자 id정보를 받아옴
 		HttpSession twitterLoginSession = request.getSession();
 
-		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+//		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
