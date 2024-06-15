@@ -418,7 +418,6 @@ footer {
   margin-right: 0;
 }
 
-
 .archive-bottom {
   display: flex;
   justify-content: space-between;
@@ -447,4 +446,9 @@ footer {
 .loginbtn:hover {
   background: #3cb0fd;
   text-decoration: none;
+}
+
+.footer-menus {
+  display: flex;
+  margin-top: 50px;
 }

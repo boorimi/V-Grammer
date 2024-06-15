@@ -123,7 +123,35 @@ prefix="c"%>
         </div>
       </div>
     </main>
-    <footer></footer>
+    <footer>
+      <div class="footer-menus">
+
+      
+      <div class="main-logo">
+        <a href="HC">ハコナカ</a>
+      </div>
+      
+        <ul class="mene-lists">
+          <li><a href="MemberC">メンバー</a></li>
+          <li><a href="ArchivePageC?p=1">アーカイブ</a></li>
+          <li><a href="CalendarC">カレンダー</a></li>
+          <li><a href="ScheduleC">スケジュール</a></li>
+          <li>
+            <a
+              style="cursor: pointer"
+              onclick="openTradePage(${sessionScope.twitterId})"
+              >トレード</a
+            >
+          </li>
+          <li><a href="Announcement">お知らせ</a></li>
+        </ul>
+
+
+      </div>
+      
+
+
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
