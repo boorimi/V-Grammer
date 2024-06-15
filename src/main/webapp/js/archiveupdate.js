@@ -63,6 +63,7 @@ $(function () {
   // select 요소의 값이 변경될 때 이벤트 처리
   $("select[name='collabo']").change(function () {
     toggleButton();
+    replaceNull();
   });
 });
 

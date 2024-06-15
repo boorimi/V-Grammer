@@ -58,8 +58,9 @@
 						<div>コラボ</div>
 						<select name="collabo">
 							<option value="未分類">未分類</option>
-							<option value="yes">Yes</option>
-							<option value="no">No</option>
+							<option value="外部コラボ">外部コラボ</option>
+							<option value="yes">ハコ内コラボ</option>
+							<option value="no">なし</option>
 						</select>
 						<input class="collabo-value" type="hidden" value="${archive.a_collabo}"/>
 					</div>
