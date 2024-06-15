@@ -37,6 +37,11 @@ prefix="c"%>
         <div class="prev">
           <button class="prev-button">&lt;</button>
         </div>
+        <c:if test="${streamIds[0].address == null}">
+          <div class="live-content-video-null">
+            配信中のメンバーがありません。
+          </div>
+        </c:if>
         <div class="slider">
           <!-- YouTube Live 슬라이드들이 여기에 들어갈 것입니다 -->
           <c:forEach items="${streamIds }" var="s">
@@ -51,6 +56,7 @@ prefix="c"%>
               ></iframe>
             </div>
           </c:forEach>
+          <!-- youtube 슬라이더 끝 -->
         </div>
         <div class="next">
           <button class="next-button">&gt;</button>
@@ -72,56 +78,60 @@ prefix="c"%>
           </c:forEach>
         </div>
       </div>
-
-      <div class="main-news">
-        <div class="news-photo">
-          <img src="haco_img/img/newimg2.png" alt="" />
-        </div>
-        <ul class="news-board">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-
-      <div class="today-vtuber">
-        <p>今日のおすすめVtuber</p>
-        <div class="today-vtuber-info">
-          <div class="today-vtuber-photo">
-            <img alt="" src="haco_img/icon/${recommendVtuber[0].icon }" />
+      <div class="main-news-container">
+        <div class="main-news">
+          <div class="news-photo">
+            <img src="haco_img/img/newimg2.png" alt="" />
           </div>
-          <div class="today-vtuber-archive-etc">
-            <div class="today-vtuber-archive">
-              <iframe
-                width="640"
-                height="360"
-                src="https://www.youtube.com/embed/${recommendVtuber[0].videoId}"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+          <ul class="news-board">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 오늘의 버튜버 시작 -->
+      <div class="today-vtuber-wrapper">
+        <div class="today-vtuber">
+          <p>今日のおすすめVtuber</p>
+          <div class="today-vtuber-info">
+            <div class="today-vtuber-photo">
+              <img alt="" src="haco_img/icon/${recommendVtuber[0].icon }" />
             </div>
-            <div class="today-vtuber-etc">
-              <div class="today-vtuber-etc-addr">
-                <div class="today-vtuber-etc-name">
-                  ${recommendVtuber[0].name }
-                </div>
-                <div class="today-vtuber-address-box">
-                  <c:forEach items="${recommendVtuber }" var="rv">
-                    <div id="${rv.category}">
-                      <a target="_blank" href="${rv.address }"
-                        >${rv.category }</a
-                      >
-                    </div>
-                  </c:forEach>
+            <div class="today-vtuber-archive-etc">
+              <div class="today-vtuber-archive">
+                <iframe
+                  width="640"
+                  height="360"
+                  src="https://www.youtube.com/embed/${recommendVtuber[0].videoId}"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="today-vtuber-etc">
+                <div class="today-vtuber-etc-addr">
+                  <div class="today-vtuber-etc-name">
+                    ${recommendVtuber[0].name }
+                  </div>
+                  <div class="today-vtuber-address-box">
+                    <c:forEach items="${recommendVtuber }" var="rv">
+                      <div id="${rv.category}">
+                        <a target="_blank" href="${rv.address }"
+                          >${rv.category }</a
+                        >
+                      </div>
+                    </c:forEach>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- 오늘의 버튜버 끝 -->
     </main>
     <footer>
       <div class="footer-menus">

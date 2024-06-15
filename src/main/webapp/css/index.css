@@ -9,12 +9,14 @@
   display: flex;
   height: 90px;
   background-color: white;
+  font-weight: bold;
 }
 .main-body {
   background-color: #ffd3d3;
 }
 
 .main-logo {
+  font-size: 20pt;
   margin-left: 75px;
   width: 175px;
   background-color: lightpink;
@@ -141,6 +143,16 @@
   background-color: white;
   margin: 0 0px;
 }
+.live-content-video-null {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1280px;
+  height: 720px; /* YouTube 비디오의 16:9 비율에 맞춘 높이 */
+  background-color: white;
+  margin: 0 0px;
+  font-size: 40pt;
+}
 
 .live-stream {
   position: relative;
@@ -213,11 +225,13 @@
 .main-dday-container > div {
   display: flex;
 }
-
+.main-news-container{
+	display: flex;
+	justify-content: center;
+}
 .main-news {
-  margin-left: 330px;
   margin-top: 54px;
-  width: 1290px;
+  width: 1280px;
   height: 350px;
   display: flex;
 }
@@ -249,9 +263,12 @@
   height: 350px;
 }
 
+.today-vtuber-wrapper {
+	display: flex;
+	justify-content: center;
+}
 .today-vtuber {
   margin-top: 127px;
-  margin-left: 340px;
   width: 1280px;
   height: 675px;
   background-color: white;
