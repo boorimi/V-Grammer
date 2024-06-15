@@ -14,31 +14,31 @@ pageEncoding="UTF-8"%>
     <script src="js/index.js" defer></script>
   </head>
   <body>
-    <nav>
+    <div class="main-menu-all">
       <div class="main-logo">
         <a href="HC">ハコナカ</a>
       </div>
-      <ul class="mene-lists">
-        <li><a href="MemberC">メンバー</a></li>
-        <li><a href="ArchivePageC?p=1">アーカイブ</a></li>
-        <li><a href="CalendarC">カレンダー</a></li>
-        <li><a href="ScheduleC">スケジュール</a></li>
-        <li>
+      <div class="menu-lists">
+        <div class="menu-lists-member"><a href="MemberC">メンバー</a></div>
+        <div class="menu-lists-archive"><a href="ArchivePageC?p=1">アーカイブ</a></div>
+        <div class="menu-lists-calendar"><a href="CalendarC">カレンダー</a></div>
+        <div class="menu-lists-schedule"><a href="ScheduleC">スケジュール</a></div>
+        <div class="menu-lists-trade">
           <a
             style="cursor: pointer"
             onclick="openTradePage(${sessionScope.twitterId})"
             >トレード</a
           >
-        </li>
-        <li><a href="Announcement">お知らせ</a></li>
-      </ul>
+        </div>
+        <div class="menu-lists-announcement"><a href="Announcement">お知らせ</a></div>
+      </div>
 
       <div class="nav-userinfo">
         <div class="nav-user">
           <jsp:include page="${loginContent }"></jsp:include>
         </div>
       </div>
-    </nav>
+    </div>
 
     <div class="content">
       <jsp:include page="${content }"></jsp:include>
