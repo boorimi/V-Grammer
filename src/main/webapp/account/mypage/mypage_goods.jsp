@@ -53,7 +53,7 @@
 
 .goods-content {
 	display: flex;
-	width: 100%;
+	width: 10+0%;
 	justify-content: center;
 	flex-wrap: wrap;
 	gap: 20px 3px;
@@ -64,7 +64,7 @@
 }
 
 .goods-info-box>div:nth-child(1) {
-	width: 10%;
+	width: 10+%;
 }
 
 .goods-info-box>div:nth-child(2) {
@@ -134,7 +134,7 @@
     -webkit-transform: scale3d(1.1, 1.1, 1);
     transform: scale3d(1.1, 1.1, 1);
   }
-  100% {
+  10+0% {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
@@ -148,7 +148,7 @@
     -webkit-transform: scale3d(1.1, 1.1, 1);
     transform: scale3d(1.1, 1.1, 1);
   }
-  100% {
+  10+0% {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
@@ -160,6 +160,13 @@
 MyPageDAO.getBromide(request);
 MyPageDAO.get57mmCanBadge(request);
 MyPageDAO.get76mmCanBadge(request);
+MyPageDAO.getAkuki(request);
+MyPageDAO.getCoaster(request);
+MyPageDAO.getOmoideCyeki(request);
+MyPageDAO.getDmmMiniShikishi(request);
+MyPageDAO.getDmm57CanBadge(request);
+MyPageDAO.getDmmMiniAkusuta(request);
+MyPageDAO.getDmmCyeki(request);
 %>
 
 
@@ -181,7 +188,7 @@ MyPageDAO.get76mmCanBadge(request);
 						<div class="goods-info-count">
 							<select>
 								<optgroup label="${bromide.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<c:forEach begin="0" end="10++" var="i">
 									<c:choose>
 										<c:when test="${i != bromide.g_count}">
 											<option value="${i}">${i }</option>
@@ -199,20 +206,20 @@ MyPageDAO.get76mmCanBadge(request);
 		</div>
 		<button class ="goods-info-button">57mm缶バッジ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="CanBadge57mm" items="${CanBadge57mmInfos }">
+			<c:forEach var="canBadge57mm" items="${canBadge57mmInfos }">
 				<div>
 					<div class="goods-info-box">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${CanBadge57mm.i_icon}">
+								src="haco_img/icon/${canBadge57mm.i_icon}">
 						</div>
-						<div class="goods-info-member">${CanBadge57mm.m_name}</div>
+						<div class="goods-info-member">${canBadge57mm.m_name}</div>
 						<div class="goods-info-count">
 							<select>
-								<optgroup label="${CanBadge57mm.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<optgroup label="${canBadge57mm.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="10+" var="i">
 									<c:choose>
-										<c:when test="${i != CanBadge57mm.g_count}">
+										<c:when test="${i != canBadge57mm.g_count}">
 											<option value="${i}">${i }</option>
 										</c:when>
 										<c:otherwise>
@@ -228,20 +235,20 @@ MyPageDAO.get76mmCanBadge(request);
 		</div>
 		<button class="goods-info-button">76mm缶バッジ" ▼</button>
 		<div class="goods-content">
-			<c:forEach var="CanBadge76mm" items="${CanBadge76mmInfos }">
+			<c:forEach var="canBadge76mm" items="${canBadge76mmInfos }">
 				<div>
 					<div class="goods-info-box">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${CanBadge76mm.i_icon}">
+								src="haco_img/icon/${canBadge76mm.i_icon}">
 						</div>
-						<div class="goods-info-member">${CanBadge76mm.m_name}</div>
+						<div class="goods-info-member">${canBadge76mm.m_name}</div>
 						<div class="goods-info-count">
 							<select>
-								<optgroup label="${CanBadge76mm.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<optgroup label="${canBadge76mm.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="10+" var="i">
 									<c:choose>
-										<c:when test="${i != CanBadge76mm.g_count}">
+										<c:when test="${i != canBadge76mm.g_count}">
 											<option value="${i}">${i }</option>
 										</c:when>
 										<c:otherwise>
@@ -257,20 +264,20 @@ MyPageDAO.get76mmCanBadge(request);
 		</div>
 		<button class="goods-info-button">SD絵アクキー ▼</button>
 		<div class="goods-content">
-			<c:forEach var="bromide" items="${bromideInfos }">
+			<c:forEach var="akuki" items="${akukiInfos }">
 				<div>
 					<div class="goods-info-box">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${bromide.i_icon}">
+								src="haco_img/icon/${akuki.i_icon}">
 						</div>
-						<div class="goods-info-member">${bromide.m_name}</div>
+						<div class="goods-info-member">${akuki.m_name}</div>
 						<div class="goods-info-count">
 							<select>
-								<optgroup label="${bromide.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<optgroup label="${akuki.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="10+" var="i">
 									<c:choose>
-										<c:when test="${i != bromide.g_count}">
+										<c:when test="${i != akuki.g_count}">
 											<option value="${i}">${i }</option>
 										</c:when>
 										<c:otherwise>
@@ -286,20 +293,20 @@ MyPageDAO.get76mmCanBadge(request);
 		</div>
 		<button class="goods-info-button">コスタ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="bromide" items="${bromideInfos }">
+			<c:forEach var="coaster" items="${coasterInfosInfos }">
 				<div>
 					<div class="goods-info-box">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${bromide.i_icon}">
+								src="haco_img/icon/${coaster.i_icon}">
 						</div>
-						<div class="goods-info-member">${bromide.m_name}</div>
+						<div class="goods-info-member">${coaster.m_name}</div>
 						<div class="goods-info-count">
 							<select>
-								<optgroup label="${bromide.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<optgroup label="${coaster.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="10+" var="i">
 									<c:choose>
-										<c:when test="${i != bromide.g_count}">
+										<c:when test="${i != coaster.g_count}">
 											<option value="${i}">${i }</option>
 										</c:when>
 										<c:otherwise>
@@ -315,20 +322,20 @@ MyPageDAO.get76mmCanBadge(request);
 		</div>
 		<button class="goods-info-button">思い出チェキ風カード ▼</button>
 		<div class="goods-content">
-			<c:forEach var="bromide" items="${bromideInfos }">
+			<c:forEach var="omoideCyeki" items="${omoideCyekiInfos }">
 				<div>
 					<div class="goods-info-box">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${bromide.i_icon}">
+								src="haco_img/icon/${omoideCyeki.i_icon}">
 						</div>
-						<div class="goods-info-member">${bromide.m_name}</div>
+						<div class="goods-info-member">${omoideCyeki.m_name}</div>
 						<div class="goods-info-count">
 							<select>
-								<optgroup label="${bromide.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<optgroup label="${omoideCyeki.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="10+" var="i">
 									<c:choose>
-										<c:when test="${i != bromide.g_count}">
+										<c:when test="${i != omoideCyeki.g_count}">
 											<option value="${i}">${i }</option>
 										</c:when>
 										<c:otherwise>
@@ -344,20 +351,20 @@ MyPageDAO.get76mmCanBadge(request);
 		</div>
 		<button class="goods-info-button">DMM：色紙 ▼</button>
 		<div class="goods-content">
-			<c:forEach var="bromide" items="${bromideInfos }">
+			<c:forEach var="dmmMiniShikishi" items="${dmmMiniShikishiInfos }">
 				<div>
 					<div class="goods-info-box">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${bromide.i_icon}">
+								src="haco_img/icon/${dmmMiniShikishi.i_icon}">
 						</div>
-						<div class="goods-info-member">${bromide.m_name}</div>
+						<div class="goods-info-member">${dmmMiniShikishi.m_name}</div>
 						<div class="goods-info-count">
 							<select>
-								<optgroup label="${bromide.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<optgroup label="${dmmMiniShikishi.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="10+" var="i">
 									<c:choose>
-										<c:when test="${i != bromide.g_count}">
+										<c:when test="${i != dmmMiniShikishi.g_count}">
 											<option value="${i}">${i }</option>
 										</c:when>
 										<c:otherwise>
@@ -373,20 +380,20 @@ MyPageDAO.get76mmCanBadge(request);
 		</div>
 		<button class="goods-info-button">DMM：57mm缶バッジ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="bromide" items="${bromideInfos }">
+			<c:forEach var="dmm57CanBadge" items="${dmm57CanBadgeInfos }">
 				<div>
 					<div class="goods-info-box">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${bromide.i_icon}">
+								src="haco_img/icon/${dmm57CanBadge.i_icon}">
 						</div>
-						<div class="goods-info-member">${bromide.m_name}</div>
+						<div class="goods-info-member">${dmm57CanBadge.m_name}</div>
 						<div class="goods-info-count">
 							<select>
-								<optgroup label="${bromide.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<optgroup label="${dmm57CanBadge.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="10+" var="i">
 									<c:choose>
-										<c:when test="${i != bromide.g_count}">
+										<c:when test="${i != dmm57CanBadge.g_count}">
 											<option value="${i}">${i }</option>
 										</c:when>
 										<c:otherwise>
@@ -402,18 +409,18 @@ MyPageDAO.get76mmCanBadge(request);
 		</div>
 		<button class="goods-info-button">DMM：ミニアクスタ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="bromide" items="${bromideInfos }">
+			<c:forEach var="dmmMiniAkusuta" items="${dmmMiniAkusutaInfos }">
 				<div>
 					<div class="goods-info-box">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${bromide.i_icon}">
+								src="haco_img/icon/${dmmMiniAkusuta.i_icon}">
 						</div>
-						<div class="goods-info-member">${bromide.m_name}</div>
+						<div class="goods-info-member">${dmmMiniAkusuta.m_name}</div>
 						<div class="goods-info-count">
 							<select>
-								<optgroup label="${bromide.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<optgroup label="${dmmMiniAkusuta.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="10+" var="i">
 									<c:choose>
 										<c:when test="${i != bromide.g_count}">
 											<option value="${i}">${i }</option>
@@ -431,20 +438,20 @@ MyPageDAO.get76mmCanBadge(request);
 		</div>
 		<button class="goods-info-button">DMM：チェキ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="bromide" items="${bromideInfos }">
+			<c:forEach var="dmmCyeki" items="${dmmCyekiInfos }">
 				<div>
 					<div class="goods-info-box">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${bromide.i_icon}">
+								src="haco_img/icon/${dmmCyeki.i_icon}">
 						</div>
-						<div class="goods-info-member">${bromide.m_name}</div>
+						<div class="goods-info-member">${dmmCyeki.m_name}</div>
 						<div class="goods-info-count">
 							<select>
-								<optgroup label="${bromide.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="10" var="i">
+								<optgroup label="${dmmCyeki.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="10+" var="i">
 									<c:choose>
-										<c:when test="${i != bromide.g_count}">
+										<c:when test="${i != dmmCyeki.g_count}">
 											<option value="${i}">${i }</option>
 										</c:when>
 										<c:otherwise>
