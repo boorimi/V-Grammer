@@ -75,17 +75,36 @@ nav {
 .prev,
 .next {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #ff69b4; /* 핑크색 배경 */
   color: white;
   border: none;
   font-size: 2rem;
   padding: 10px;
   cursor: pointer;
   z-index: 1000;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.prev::before,
+.next::before {
+  content: "◀"; /* 화살표 아이콘 */
+  display: inline-block;
+}
+
+.next::before {
+  content: "▶"; /* 오른쪽 화살표 */
+}
+
+.prev:hover,
+.next:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
 .prev {
-  left: 280px;
+  left: 260px;
   bottom: 80px;
 }
 
