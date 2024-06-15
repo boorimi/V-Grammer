@@ -81,6 +81,9 @@ function test(resData) {
     const formattedTime = convertTimeTo24Hours(archive.a_time);
 
     let html = `<div class="archive-contents">
+				<div class="archive-update-div">
+				<button onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">修正する</button>
+				</div>
 				<div class="archive-icon-div" >
 					<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
 				</div>

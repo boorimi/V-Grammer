@@ -6,6 +6,8 @@
 }
 
 .main-menu-all {
+  margin: 0px;
+  padding: 0px;
   display: flex;
   height: 90px;
   background-color: white;
@@ -225,9 +227,9 @@
 .main-dday-container > div {
   display: flex;
 }
-.main-news-container{
-	display: flex;
-	justify-content: center;
+.main-news-container {
+  display: flex;
+  justify-content: center;
 }
 .main-news {
   margin-top: 54px;
@@ -264,8 +266,8 @@
 }
 
 .today-vtuber-wrapper {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .today-vtuber {
   margin-top: 127px;
@@ -435,9 +437,98 @@
 }
 
 footer {
-  height: 346px;
-  background-color: white;
+  margin-top: 100px;
+  height: 350px;
+    background-color: rgb(210, 210, 210);
+  
 }
+
+.footer-menu-lists a {
+  color: inherit; /* 부모 요소의 색상 상속 */
+  text-decoration: none; /* 밑줄 제거 */
+}
+.footer-menu-all {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  height: 90px;
+  background-color: rgb(210, 210, 210);
+  font-weight: bold;
+}
+.footer-logo {
+  font-size: 20pt;
+  margin-left: 75px;
+  width: 175px;
+  background-color: rgb(210, 210, 210);
+  text-align: center;
+}
+
+.footer-menu-lists {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  /* margin-left: 55px; */
+  /* margin-top: 30px; */
+}
+
+.footer-menu-lists > div {
+  font-size: 18pt;
+  /* margin-right: 80px; */
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-out;
+}
+.footer-menu-lists-member:hover {
+  background-color: #c4bec9;
+}
+.footer-menu-lists-archive:hover {
+  background-color: #d4485f;
+}
+.footer-menu-lists-calendar:hover {
+  background-color: #de617e;
+}
+.footer-menu-lists-schedule:hover {
+  background-color: #77788f;
+}
+.footer-menu-lists-trade:hover {
+  background-color: #b2e2f7;
+}
+.footer-menu-lists-announcement:hover {
+  background-color: #bf8ade;
+}
+.footer-contents {
+  display: flex;
+  height: 255px;
+}
+.footer-contents > div {
+  margin:20px 50px;
+}
+.footer-contents img {
+ 	width: 50px;
+ 	height: 50px;
+}
+.footer-content-haconect{
+	font-size: 18pt;
+}
+.footer-content-haconect-icon {
+	display: flex;
+}
+
+.footer-content-haconect-icon > div {
+	margin:10px;
+}
+.footer-content-haconaka{
+	font-size: 18pt;
+}
+.footer-content-teamname{
+	font-size: 14pt;
+}
+
+
 
 .archive-contents {
   display: flex;

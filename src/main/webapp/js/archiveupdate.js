@@ -26,7 +26,6 @@ $(function () {
   });
 
   // 페이지 로드 시 투명도를 올리는 함수 호출
-  adjustOpacity(1);
   adjustOpacity2(1);
 
   //콜라보멤버 div 처리
@@ -146,8 +145,8 @@ function test2(resData) {
 						</select>
 						<input class="category-value" type="hidden" value="${archive.a_category}"/>
 					</div>
-					<div class="archive-date">${archive.a_date}</div>
-					<div class="archive-time">${archive.a_time}</div>
+					<div class="archive-date">${formattedDate}</div>
+					<div class="archive-time">${formattedTime}</div>
 					<div class="archive-title">${archive.a_title}</div>
 					<div class="archive-thumbnail">
 						<img src="${archive.a_thumbnail}"
@@ -160,9 +159,6 @@ function test2(resData) {
 }
 
 // 투명도를 조절하는 함수
-function adjustOpacity(opacityValue) {
-  $("#archive-list").animate({ opacity: opacityValue }, 350);
-}
 function adjustOpacity2(opacityValue) {
   $("#archive-list2").animate({ opacity: opacityValue }, 350);
 }

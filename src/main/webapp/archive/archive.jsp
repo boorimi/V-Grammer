@@ -13,7 +13,6 @@
 </head>
 
 <body>
-	<button onclick="location.href='ArchiveUpdateC'">수정하기</button>
 	<!-- 상단 페이징 시작 -->
 	<div class="archive-page-top">
 		<div class="archive-page-start">
@@ -50,6 +49,9 @@
 	<div id="archive-list">
 		<c:forEach items="${archives}" var="archive">
 			<div class="archive-contents">
+				<div class="archive-update-div">
+				<button onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">修正する</button>
+				</div>
 				<div class="archive-icon-div" >
 					<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
 				</div>
