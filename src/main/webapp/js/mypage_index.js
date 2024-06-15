@@ -21,12 +21,16 @@ $(document).ready(function() {
 		$.ajax({
 			url: "account/mypage/mypage_goods.jsp",
 			type: "GET",
+			beforeSend: function(){
+				$('html').css('filter','blur(5px)');
+			},
 			success: function(data) {
 				console.log("AJAX 요청 성공");
 				console.log(data);
 				$(".mypage-jsp-section").empty();
 				console.log("지우는거까지는 됨");
 				$(".mypage-jsp-section").append(data);
+				
 			},
 			error: function() {
 				alert("Error loading page");

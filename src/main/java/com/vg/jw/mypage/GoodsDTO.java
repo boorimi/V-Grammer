@@ -6,6 +6,7 @@ public class GoodsDTO {
 	// view에 뭘쓸지
 	// db tbl
 	// 필요에 따라 join  
+	private long u_twitter_id;
 	private int g_m_pk;
 	private String g_category;
 	private int g_count;
@@ -14,6 +15,18 @@ public class GoodsDTO {
 	
 	
 	
+	public long getU_twitter_id() {
+		return u_twitter_id;
+	}
+
+
+
+	public void setU_twitter_id(long u_twitter_id) {
+		this.u_twitter_id = u_twitter_id;
+	}
+
+
+
 	public String getM_name() {
 		return m_name;
 	}
@@ -42,6 +55,18 @@ public class GoodsDTO {
 		this.i_icon = i_icon;
 	}
 
+
+
+
+	public GoodsDTO(long u_twitter_id, int g_m_pk, String g_category, int g_count, String i_icon, String m_name) {
+		super();
+		this.u_twitter_id = u_twitter_id;
+		this.g_m_pk = g_m_pk;
+		this.g_category = g_category;
+		this.g_count = g_count;
+		this.i_icon = i_icon;
+		this.m_name = m_name;
+	}
 
 
 
@@ -80,12 +105,19 @@ public class GoodsDTO {
 		this.g_count = g_count;
 	}
 
+	
+	
+
+
+
 	@Override
 	public String toString() {
-		return "GoodsDTO [g_m_pk=" + g_m_pk + ", g_category=" + g_category + ", g_count=" + g_count + "]";
+		return "GoodsDTO [u_twitter_id=" + u_twitter_id + ", g_m_pk=" + g_m_pk + ", g_category=" + g_category
+				+ ", g_count=" + g_count + ", i_icon=" + i_icon + ", m_name=" + m_name + "]";
 	}
-	
-	
+
+
+
 	public String toJSON() {
 		Gson g = new Gson();
 		return g.toJson(this);
