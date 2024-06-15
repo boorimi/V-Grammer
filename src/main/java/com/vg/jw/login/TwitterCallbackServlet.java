@@ -88,8 +88,6 @@ public class TwitterCallbackServlet extends HttpServlet {
 					request.getSession().setAttribute("twitterName", name);
 					request.getSession().setAttribute("twitterProfileImgUrl", profileImgUrl);
 					
-					//
-					String jwtToKen = JwtUtil.generateToken(String.valueOf(userId));
 					
 					
 					
