@@ -12,6 +12,7 @@ $(function () {
     }).done(function (resData) {
       test(resData);
       replaceCollabomemberString();
+      replaceNull();
       //console.log(JSON.stringify(resData));
     });
   });
@@ -80,22 +81,22 @@ function test(resData) {
     const formattedTime = convertTimeTo24Hours(archive.a_time);
 
     let html = `<div class="archive-contents">
-				<p style="margin-top: 0px">
+				<div class="archive-icon-div" >
 					<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
-				</p>
-				<p>${archive.a_m_pk}</p>
-				<div class="archive-membername">${archive.m_name}</div>
-				<div class="archive-collabo">${archive.a_collabo}</div>
-				<div class="archive-collabomember">
+				</div>
+				<!--  <p>${archive.a_m_pk }</p> -->
+				<div class="archive-membername">${archive.m_name }</div>
+				<div class="archive-collabo">${archive.a_collabo }</div>
+				<div class="archive-collabo-member">
 				  <input type="hidden" class="collaboMember" value="${archive.a_collabomember}" />
 				  <div class="collaboMember2"></div>
 				</div>
-				<div class="archive-category">${archive.a_category}</div>
+				<div class="archive-category">${archive.a_category }</div>
 				<div class="archive-date">${formattedDate}</div>
 				<div class="archive-time">${formattedTime}</div>
 				<div class="archive-title">${archive.a_title}</div>
 				<div class="archive-thumbnail">
-					<a target="_blank" href="https://www.youtube.com/watch?v=${archive.a_videoid}">
+					<a target="_blank" href="https://www.youtube.com/watch?v=${archive.a_videoid }">
 						<img 
 						src="${archive.a_thumbnail}" 
 						alt="${archive.a_title} Thumbnail">
@@ -120,12 +121,12 @@ function replaceCollabomemberString() {
     let collabomemberStringUpdate = collabomemberString.value.split("!");
     let divWrappedArray = collabomemberStringUpdate.map(
       (item) =>
-        `<div class="archive-collabomember-item archive-${item}">${item}</div>`
+        `<div class="archive-collabo-member-item archive-${item}">${item}</div>`
     );
     // jQuery를 사용하여 해당 요소의 자식 요소에 추가하기
     //console.log(this);
     $(this)
-      .closest(".archive-collabomember")
+      .closest(".archive-collabo-member")
       .find(".collaboMember2")
       .html(divWrappedArray.join(""));
   });
@@ -134,7 +135,7 @@ function replaceCollabomemberString() {
 // 미분류 글자를 null로 바꿔주는 함수
 function replaceNull() {
   $(".collaboMember2").each(function () {
-    let textInDiv = $(this).find(".archive-collabomember-item");
+    let textInDiv = $(this).find(".archive-collabo-member-item");
     if (textInDiv.text() == "未分類") {
       textInDiv.text("");
     }

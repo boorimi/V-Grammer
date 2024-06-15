@@ -1,3 +1,28 @@
+.archive-page-top {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  margin: 25px 0px;
+}
+.archive-page-start{
+	width: 100px;
+}
+.archive-page-unit-prev{
+	width: 150px;
+}
+.archive-page-no-div{
+	display: flex;
+	justify-content: center;
+	flex: 1;
+}
+.archive-page-unit-next{
+	width: 150px;
+}
+.archive-page-end{
+	width: 100px;
+}
+
+
 .dialog-container {
 	display: none;
 	position: fixed;
@@ -33,70 +58,98 @@
 
 .archive-page-no {
 	cursor: pointer;
+	padding: 10px;
+	border: 1px solid gray;
 }
-
+.archive-page-no:hover {
+	background-color: #eeeeee;
+}
 .archive-page-no2 {
 	cursor: pointer;
 	padding: 10px;
 	border: 1px solid gray;
 }
-
+.archive-page-no2:hover {
+	background-color: #eeeeee;
+}
+.archive-list {
+	width: 1800px;
+	
+}
 .archive-contents {
 	display: flex;
+	align-items: center;
+	border-top: 1px solid black;
+	border-bottom: 1px solid gray;
+	padding: 3px 0px;
 }
 
 .archive-contents:hover {
 	background-color: #eeeeee;
 }
 
-.archive-contents>p {
-	margin-right: 15px;
+.archive-contents>div {
+	height: auto;
+	text-align: center;
 }
 
 .archive-contents-update {
 	display: flex;
+	align-items: center;
+	border-top: 1px solid black;
+	border-bottom: 1px solid gray;
+	padding: 3px 0px;
+}
+.archive-contents-update>div {
+	height: auto;
+	text-align: center;
 }
 
 .archive-contents-update:hover {
 	background-color: #eeeeee;
 }
 
+.archive-icon-div {
+	margin-left: 10px;
+}
+
 .archive-icon {
-	width: 50px;
-	height: 50px;
+	width: 90px;
+	height: 90px;
+	border-radius: 90px;
 }
 
 .archive-membername {
-	width: 90px;
-	margin-right: 25px;
+	width: 140px;
 }
 
 .archive-collabo {
-	width: 150px;
+	width: 140px;
+}
+
+.archive-collabo-member{
+	width: 110px;
 }
 
 .archive-category {
-	width: 150px;
+	width: 110px;
 }
 
 .archive-date {
-	margin-right: 35px;
+	width: 100px;
 }
 
 .archive-time {
-	margin-right: 35px;
-}
-
-.archive-collabomember {
-	width: 180px;
+	width: 70px;
 }
 
 .archive-title {
-	width: 350px;
+	flex:1;
+	padding: 0px 10px;
 }
 
-.archive-thumbnail {
-	margin-right: 0;
+.archive-thumbnail > a > img:hover {
+	opacity: 0.5;
 }
 
 .archive-modal-detail {
@@ -111,7 +164,9 @@
 	padding: 10px 0px;
 	border-bottom: 1px solid gray;
 }
-
+#archive-list {
+	opacity: 0.3; /* 초기 투명도 설정 */
+}
 #archive-list2 {
 	opacity: 0.3; /* 초기 투명도 설정 */
 }
@@ -120,7 +175,7 @@
 	display: none; /* 기본적으로 버튼을 숨김 */
 }
 
-.archive-collabomember-item {
+.archive-collabo-member-item {
 	display: inline-block;
 	border-radius: 5px;
 	color: #FFFFFF;

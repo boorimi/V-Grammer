@@ -13,32 +13,32 @@
 </head>
 <body>
 	<!-- 상단 페이징 시작 -->
-	<div class="archive-bottom">
-		<div>
+	<div class="archive-page-top">
+		<div class="archive-page-start">
 			<a href="ArchivePageC?p=1">最初に</a>
 		</div>
 		<c:set var="pageUnit" value="10" />
 		<!-- page변수 = 현재페이지 * 페이지유닛 -->
 		<c:set var="page"
 			value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}" />
-		<div>
+		<div class="archive-page-unit-prev">
 			<c:if test="${page != 0}">
-				<a href="ArchivePageC?p=${page - pageUnit + 1}">이전 ${pageUnit }페이지</a>
+				<a href="ArchivePageC?p=${page - pageUnit + 1}">以前 ${pageUnit }ページ</a>
 			</c:if>
 		</div>
-		<div style="display: flex">
+		<div class="archive-page-no-div">
 			<c:forEach var="i" begin="${page + 1 }"
 				end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}">
 				<div class="archive-page-no2">${i }</div>
 			</c:forEach>
 		</div>
-		<div>
+		<div class="archive-page-unit-next">
 			<c:if
 				test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}">
-				<a href="ArchivePageC?p=${page + pageUnit + 1}">다음 ${pageUnit }페이지</a>
+				<a href="ArchivePageC?p=${page + pageUnit + 1}">次 ${pageUnit }ページ</a>
 			</c:if>
 		</div>
-		<div>
+		<div class="archive-page-end">
 			<a href="ArchivePageC?p=${pageCount}">最後に</a>
 		</div>
 	</div>
@@ -59,18 +59,17 @@
 						<select name="collabo">
 							<option value="未分類">未分類</option>
 							<option value="外部コラボ">外部コラボ</option>
-							<option value="yes">ハコ内コラボ</option>
-							<option value="no">なし</option>
+							<option value="ハコ内コラボ">ハコ内コラボ</option>
+							<option value="なし">なし</option>
 						</select>
 						<input class="collabo-value" type="hidden" value="${archive.a_collabo}"/>
 					</div>
-					<div class="archive-collabomember">
-						<div>コラボメンバー</div>
+					<div class="archive-collabo-member">
+						<div style="font-size:11pt;">コラボメンバー</div>
 						<button type="button" onclick="openModal(this)"
-							class="openModalButton">선택하기</button>
+							class="openModalButton">選択</button>
 						<input type="hidden" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
-						<div class="collaboMember2">
-						</div>
+						<div class="collaboMember2"></div>
 					</div>
 					<div class="archive-category">
 						<div>カテゴリー</div>

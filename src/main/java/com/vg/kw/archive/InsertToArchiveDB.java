@@ -116,12 +116,12 @@ public class InsertToArchiveDB {
 					String date = dateTime[0];
 					String time = dateTime[1].substring(0, 8); // 초단위는 무시
 
-					System.out.println("ChannelId: " + ChannelId);
-					System.out.println("Date: " + date);
-					System.out.println("Time: " + time);
-					System.out.println("Title: " + title);
-					System.out.println("Default Thumbnail URL: " + defaultThumbnailUrl);
-					System.out.println();
+//					System.out.println("ChannelId: " + ChannelId);
+//					System.out.println("Date: " + date);
+//					System.out.println("Time: " + time);
+//					System.out.println("Title: " + title);
+//					System.out.println("Default Thumbnail URL: " + defaultThumbnailUrl);
+//					System.out.println();
 
 					// videoId 값 대조 후에 있으면 continue
 					statement.setString(1, videoId);
@@ -166,7 +166,7 @@ public class InsertToArchiveDB {
 			e.printStackTrace();
 		} finally {
 			// 리소스 닫기
-			DBManager.close(connection, statement, null);
+			DBManager.close(connection, statement, rs);
 		}
 	}
 }
