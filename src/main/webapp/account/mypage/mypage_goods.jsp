@@ -44,7 +44,7 @@
 
 </head>
 <%
-MyPageDAO.getBromide(request);
+/* MyPageDAO.getBromide(request);
 MyPageDAO.get57mmCanBadge(request);
 MyPageDAO.get76mmCanBadge(request);
 MyPageDAO.getAkuki(request);
@@ -53,7 +53,15 @@ MyPageDAO.getOmoideCyeki(request);
 MyPageDAO.getDmmMiniShikishi(request);
 MyPageDAO.getDmm57CanBadge(request);
 MyPageDAO.getDmmMiniAkusuta(request);
-MyPageDAO.getDmmCyeki(request);
+MyPageDAO.getDmmCyeki(request); */
+
+String[] category = { "bromide", "57mmCanBadge", "76mmCanBadge", "akuki", "coaster", "omoideCyeki",
+        "dmmMiniShikishi", "dmm57CanBadge", "dmmMiniAkusuta", "dmmCyeki" };
+
+for (String goodsCategory : category) {
+    MyPageDAO.getGoodsInfo(request, goodsCategory);
+}
+
 %>
 
 
@@ -64,9 +72,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">白賞ブロマイド ▼</button>
 		<div class="goods-content">
-			<c:forEach var="bromide" items="${bromideInfos }">
+			<c:forEach var="bromide" items="${Infos_bromide }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${bromide.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${bromide.i_icon}">
@@ -101,9 +109,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">57mm缶バッジ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="canBadge57mm" items="${canBadge57mmInfos }">
+			<c:forEach var="canBadge57mm" items="${Infos_57mmCanBadge }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${canBadge57mm.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${canBadge57mm.i_icon}">
@@ -130,9 +138,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">76mm缶バッジ" ▼</button>
 		<div class="goods-content">
-			<c:forEach var="canBadge76mm" items="${canBadge76mmInfos }">
+			<c:forEach var="canBadge76mm" items="${Infos_76mmCanBadge }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${canBadge76mm.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${canBadge76mm.i_icon}">
@@ -159,9 +167,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">SD絵アクキー ▼</button>
 		<div class="goods-content">
-			<c:forEach var="akuki" items="${akukiInfos }">
+			<c:forEach var="akuki" items="${Infos_akuki }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${akuki.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${akuki.i_icon}">
@@ -188,9 +196,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">コスタ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="coaster" items="${coasterInfos }">
+			<c:forEach var="coaster" items="${Infos_coaster }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${coaster.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${coaster.i_icon}">
@@ -217,9 +225,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">思い出チェキ風カード ▼</button>
 		<div class="goods-content">
-			<c:forEach var="omoideCyeki" items="${omoideCyekiInfos }">
+			<c:forEach var="omoideCyeki" items="${Infos_omoideCyeki }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${omoideCyeki.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${omoideCyeki.i_icon}">
@@ -246,9 +254,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">DMM：色紙 ▼</button>
 		<div class="goods-content">
-			<c:forEach var="dmmMiniShikishi" items="${dmmMiniShikishiInfos }">
+			<c:forEach var="dmmMiniShikishi" items="${Infos_dmmMiniShikishi }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${dmmMiniShikishi.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${dmmMiniShikishi.i_icon}">
@@ -275,9 +283,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">DMM：57mm缶バッジ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="dmm57CanBadge" items="${dmm57CanBadgeInfos }">
+			<c:forEach var="dmm57CanBadge" items="${Infos_dmm57CanBadge }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${dmm57CanBadge.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${dmm57CanBadge.i_icon}">
@@ -304,9 +312,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">DMM：ミニアクスタ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="dmmMiniAkusuta" items="${dmmMiniAkusutaInfos }">
+			<c:forEach var="dmmMiniAkusuta" items="${Infos_dmmMiniAkusuta }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${dmmMiniAkusuta.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${dmmMiniAkusuta.i_icon}">
@@ -333,9 +341,9 @@ MyPageDAO.getDmmCyeki(request);
 		</div>
 		<button class="goods-info-button">DMM：チェキ ▼</button>
 		<div class="goods-content">
-			<c:forEach var="dmmCyeki" items="${dmmCyekiInfos }">
+			<c:forEach var="dmmCyeki" items="${Infos_dmmCyeki }">
 				<div>
-					<div class="goods-info-box">
+					<div class="goods-info-box" style="background-color: ${dmmCyeki.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
 								src="haco_img/icon/${dmmCyeki.i_icon}">
