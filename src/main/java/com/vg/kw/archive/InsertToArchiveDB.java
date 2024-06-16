@@ -57,7 +57,7 @@ public class InsertToArchiveDB {
 					// YouTube API 호출
 					url = "https://www.googleapis.com/youtube/v3/playlistItems";
 					url += "?part=snippet";
-					url += "&maxResults=50";
+					url += "&maxResults=20";
 					url += "&status=";
 					url += "&nextPageToken=";
 					url += "&playlistId=" + y.getAddress();

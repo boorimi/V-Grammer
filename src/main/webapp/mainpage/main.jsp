@@ -12,6 +12,15 @@ prefix="c"%>
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+    <script src="js/main.js" defer></script>
   </head>
   <body class="main-body">
     <main>
@@ -43,7 +52,9 @@ prefix="c"%>
           </div>
         </c:if>
         <div class="slider">
+        <c:if test="${streamIds[0].address != null}">
           <!-- YouTube Live 슬라이드들이 여기에 들어갈 것입니다 -->
+          <!-- bx.wrapper 클래스에 직접적으로 수정을 할 수 없어서 border를 없애는 코드를 js파일에 집어넣었음 -->
           <c:forEach items="${streamIds }" var="s">
             <div class="live-content-video">
               <iframe
@@ -57,12 +68,14 @@ prefix="c"%>
             </div>
           </c:forEach>
           <!-- youtube 슬라이더 끝 -->
+        </c:if>
         </div>
         <div class="next">
           <button class="next-button">&gt;</button>
         </div>
       </div>
       <!--  방송 페이지 끝 -->
+      <!-- D-day 흐르는거 시작 -->
       <div class="main-dday-container">
         <div class="dday-items-wrapper">
           <c:forEach var="dday" items="${ddayList}">
@@ -78,6 +91,8 @@ prefix="c"%>
           </c:forEach>
         </div>
       </div>
+      <!-- D-day 흐르는거 끝 -->
+      <!-- 뉴스 컨테이너 시작  -->
       <div class="main-news-container">
         <div class="main-news">
           <div class="news-photo">
@@ -133,101 +148,6 @@ prefix="c"%>
       </div>
       <!-- 오늘의 버튜버 끝 -->
     </main>
-    <footer>
-      <div class="footer-container">
-        <div class="footer-menu-all">
-          <div class="footer-logo">
-            <a href="HC">ハコナカ</a>
-          </div>
-          <div class="footer-menu-lists">
-            <div class="footer-menu-lists-member">
-              <a href="MemberC">メンバー</a>
-            </div>
-            <div class="footer-menu-lists-archive">
-              <a href="ArchivePageC?p=1">アーカイブ</a>
-            </div>
-            <div class="footer-menu-lists-calendar">
-              <a href="CalendarC">カレンダー</a>
-            </div>
-            <div class="footer-menu-lists-schedule">
-              <a href="ScheduleC">スケジュール</a>
-            </div>
-            <div class="footer-menu-lists-trade">
-              <a
-                style="cursor: pointer"
-                onclick="openTradePage(${sessionScope.twitterId})"
-                >トレード</a
-              >
-            </div>
-            <div class="footer-menu-lists-announcement">
-              <a href="Announcement">お知らせ</a>
-            </div>
-          </div>
-        </div>
-        <div class="footer-contents">
-          <div class="footer-content-haconect">
-          <div>ハコネクト公式<br><br></div>
-          <div class="footer-content-haconect-icon">
-          <div><a target="_blank" href="https://www.youtube.com/channel/UCR_NmKXLzwhhW3E0tXHJglQ"><img src="haco_img/icon-youtube.png"></a></div>
-          <div><a target="_blank" href="https://x.com/haconect"><img src="haco_img/icon-twitter.png"></a></div>
-          <div><a target="_blank" href="https://haconect.com/"><img src="haco_img/icon_haconect.png"></a></div>
-          <div><a target="_blank" href="https://discord.com/invite/KAXPJS9JMk"><img src="haco_img/icon_discord.png"></a></div>
-          </div>
-          </div>
-          <div class="footer-content-haconaka">
-          ハコナカ公式アカウント<br><br>
-          <a href="https://x.com/haconectnakama">
-          	<img src="haco_img/icon-twitter.png">
-          </a><br>
-          <br>
-          お問い合わせ<br>
-          ds6951@naver.com
-          </div>
-          <div class="footer-content-teamname">
-            制作 : Team V-Grammer <br />
-            <br />
-            Kim dae-san (キム・デサン)<br />
-            choi bo-mi (チェ・ボミ) Park joon-woo (じゅぬ) <br />
-            Park geon-woo(バク・ゴヌ) Kim sang-woo (キム・サンウ)<br />
-            <br />
-            Special Thanks <br />
-            Lee Myeong-jae (mz)
-          </div>
-        </div>
-      </div>
-    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        // bxSlider 초기화
-        var slider = $(".slider").bxSlider({
-          mode: "horizontal", // 슬라이드 모드 설정 (수평으로)
-          auto: false, // 자동으로 슬라이드 전환 여부
-          controls: false, // 이전/다음 버튼을 표시하지 않음
-          pager: false, // 페이지 버튼을 표시하지 않음
-          slideMargin: 0, // 슬라이드 간의 여백 (픽셀)
-          minSlides: 1, // 최소로 보여줄 슬라이드 수
-          maxSlides: 1, // 최대로 보여줄 슬라이드 수
-          moveSlides: 1, // 한 번에 슬라이드할 슬라이드 수
-          slideWidth: 1280, // 슬라이드의 너비 (픽셀)
-          adaptiveHeight: true, // 슬라이드 높이를 내용에 맞게 자동 조정
-        });
-
-        // 이전 버튼 클릭 이벤트
-        $(".prev-button").click(function () {
-          slider.goToPrevSlide();
-          return false;
-        });
-
-        // 다음 버튼 클릭 이벤트
-        $(".next-button").click(function () {
-          slider.goToNextSlide();
-          return false;
-        });
-      });
-    </script>
   </body>
 </html>

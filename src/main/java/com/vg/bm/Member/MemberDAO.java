@@ -33,7 +33,7 @@ public class MemberDAO {
 		ResultSet rs3 = null;
 		// 멤버와 멤버이미지 테이블을 보여주는 sql문 한 번에 작성.
 		String sql = "select hm.m_pk, hm.m_name,hm.m_gen,hm.m_birth,hm.m_debut,hm.m_mother_name,\r\n"
-				+ "hm.m_mother_twitter,hm.m_introduce,\r\n" + "hi.i_icon,hi.i_img,hi.i_3side,hi.i_background\r\n"
+				+ "hm.m_mother_twitter,hm.m_introduce,\r\n" + "hi.i_icon,hi.i_img,hm.m_audio,hi.i_background\r\n"
 				+ "from haco_member hm, haco_image hi\r\n" + "where hm.m_pk = hi.i_m_pk\r\n" + "order by hm.m_pk;";
 		try {
 			con = DBManager.connect();

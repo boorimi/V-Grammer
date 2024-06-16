@@ -13,6 +13,9 @@
   background-color: white;
   font-weight: bold;
 }
+.main-menu-all:hover {
+	cursor: pointer;
+}
 .main-body {
   background-color: #ffd3d3;
 }
@@ -228,11 +231,11 @@
   display: flex;
 }
 .main-news-container {
+  margin-top: 50px;
   display: flex;
   justify-content: center;
 }
 .main-news {
-  margin-top: 54px;
   width: 1280px;
   height: 350px;
   display: flex;

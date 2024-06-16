@@ -32,7 +32,7 @@
 			<div class="member-list-box">
 				<c:forEach var="m" items="${members }">
 					<div class="member-memberList" id="${m.m_pk }">${m.m_name }</div>
-					<audio id="audio-${m.m_pk }" src="audio/greeting_hoshinone_koron.mp4" type="audio/mpeg"></audio>
+					<audio id="audio-${m.m_pk }" src="audio/${m.m_audio }" type="audio/mpeg"></audio>
 				</c:forEach>
 			</div>
 		</div>
