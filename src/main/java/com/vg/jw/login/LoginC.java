@@ -17,17 +17,18 @@ public class LoginC extends HttpServlet {
 		AccountDAO.loginCheck(request);
 		// 등록됐는지 체크해서
 		
-//		System.out.println("회원정보 등록됐나 확인 완료");
-//		if (AccountDAO.registerCheck(request)) {
-//			System.out.println("LoginC에서 유저 등록 확인함");
-//			response.sendRedirect("HC"); // true반환시 메인페이지로
-//		} else {
-//			System.out.println("LoginC에서 유저 미등록 확인, 등록페이지로");
-//			response.sendRedirect("RegisterC"); // false반환시 등록페이지로
-//		}
+		System.out.println("회원정보 등록됐나 확인 완료");
+		if (AccountDAO.registerCheck(request)) {
+			System.out.println("LoginC에서 유저 등록 확인함");
+			response.sendRedirect("HC"); // true반환시 메인페이지로
+		} else {
+			System.out.println("LoginC에서 유저 미등록 확인, 등록페이지로");
+			response.sendRedirect("RegisterC"); // false반환시 등록페이지로
+		}
 
-		templogin.login(request);
-		response.sendRedirect("HC");
+		//임시 로그인 처리
+		//templogin.login(request);
+		//response.sendRedirect("HC");
 		
 	}
 
