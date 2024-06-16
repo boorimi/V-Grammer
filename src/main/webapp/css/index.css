@@ -14,7 +14,7 @@
   font-weight: bold;
 }
 .main-menu-all:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 .main-body {
   background-color: #ffd3d3;
@@ -116,10 +116,55 @@
   margin-left: auto;
 }
 
-.prev,
+.prev-button,
+.next-button {
+  background-color: #ff69b4; /* 핑크색 배경 */
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.prev-button::before,
+.next-button::before {
+  content: "◀"; /* 화살표 아이콘 */
+  display: inline-block;
+}
+
+.next-button::before {
+  content: "▶"; /* 오른쪽 화살표 */
+}
+
+.prev-button:hover,
+.next-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.prev {
+	margin-right: 50px;
+}
+.next {
+	margin-left: 50px;
+}
+
+.prev-button {
+  /* left: 260px; */
+  /* bottom: 80px; */
+}
+
+.next-button {
+  /*argin-left: 50px;*/
+}
+/* .prev,
 .next {
   position: absolute;
-  background-color: #ff69b4; /* 핑크색 배경 */
+  background-color: #ff69b4; // 핑크색 배경 
   color: white;
   border: none;
   font-size: 2rem;
@@ -133,12 +178,12 @@
 
 .prev::before,
 .next::before {
-  content: "◀"; /* 화살표 아이콘 */
+  content: "◀"; // 화살표 아이콘 
   display: inline-block;
 }
 
 .next::before {
-  content: "▶"; /* 오른쪽 화살표 */
+  content: "▶"; // 오른쪽 화살표 
 }
 
 .prev:hover,
@@ -154,7 +199,7 @@
 
 .next {
   margin-left: 50px;
-}
+} */
 
 .live-contents {
   /*   display: flex; */
@@ -544,8 +589,7 @@
 footer {
   margin-top: 100px;
   height: 350px;
-    background-color: rgb(210, 210, 210);
-  
+  background-color: rgb(210, 210, 210);
 }
 
 .footer-menu-lists a {
@@ -610,30 +654,28 @@ footer {
   height: 255px;
 }
 .footer-contents > div {
-  margin:20px 50px;
+  margin: 20px 50px;
 }
 .footer-contents img {
- 	width: 50px;
- 	height: 50px;
+  width: 50px;
+  height: 50px;
 }
-.footer-content-haconect{
-	font-size: 18pt;
+.footer-content-haconect {
+  font-size: 18pt;
 }
 .footer-content-haconect-icon {
-	display: flex;
+  display: flex;
 }
 
 .footer-content-haconect-icon > div {
-	margin:10px;
+  margin: 10px;
 }
-.footer-content-haconaka{
-	font-size: 18pt;
+.footer-content-haconaka {
+  font-size: 18pt;
 }
-.footer-content-teamname{
-	font-size: 14pt;
+.footer-content-teamname {
+  font-size: 14pt;
 }
-
-
 
 .archive-contents {
   display: flex;
