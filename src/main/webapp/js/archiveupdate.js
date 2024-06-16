@@ -1,21 +1,4 @@
 $(function () {
-  // 비동기 페이징 (archive.jsp)
-  $(document).on("click", ".archive-page-no", function () {
-    $("#archive-list").css({ opacity: 0.3 });
-    adjustOpacity(1);
-    let page = $(this).text();
-    $.ajax({
-      url: "ArchiveC",
-      type: "post",
-      data: { page },
-      dataType: "json",
-    }).done(function (resData) {
-      test(resData);
-      let a = $(".collaboMember");
-      replaceCollabomemberString2(a);
-      //console.log(JSON.stringify(resData));
-    });
-  });
 
   // 비동기 페이징 (archiveupdate.jsp)
   // 추가 : 페이징 후에도 select태그 자동지정 및 토글버튼 구현
@@ -43,7 +26,6 @@ $(function () {
   });
 
   // 페이지 로드 시 투명도를 올리는 함수 호출
-  adjustOpacity(1);
   adjustOpacity2(1);
 
   //콜라보멤버 div 처리
@@ -63,8 +45,7 @@ $(function () {
   // select 요소의 값이 변경될 때 이벤트 처리
   $("select[name='collabo']").change(function () {
     toggleButton();
-    
-  
+    replaceNull();
   });
 });
 
@@ -102,50 +83,6 @@ function getMonthNumber(monthName) {
   return months.indexOf(monthName) + 1;
 }
 
-// archive.jsp 비동기 적용 함수
-function test(resData) {
-  let $archiveList = $("#archive-list");
-  $archiveList.html("");
-  for (let i = 0; i < resData.length; i++) {
-    let archive = resData[i];
-
-    const dateString = archive.a_date;
-    // 문자열을 공백과 쉼표로 분리하여 구성 요소 추출
-    const [monthName, day, year] = dateString.replace(",", "").split(" ");
-    // 월을 숫자로 변환
-    const month = String(getMonthNumber(monthName)).padStart(2, "0");
-    const dayPadded = String(day).padStart(2, "0");
-
-    // yyyy-MM-dd 형식으로 변환
-    const formattedDate = `${year}-${month}-${dayPadded}`;
-
-    const formattedTime = convertTimeTo24Hours(archive.a_time);
-
-    let html = `<div class="archive-contents">
-           <p style="margin-top: 0px"> <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" ></p>
-            <p>${archive.a_m_pk} </p>
-            <div class="archive-membername"> ${archive.m_name}</div>
-           	<div class="archive-collabo"> ${archive.a_collabo} </div>
-           	<div class="archive-collabomember">
-			<input type="text" class="collabomember" value="${archive.a_collabomember}" />
-			<div class="collaboMember2"></div>
-			</div>
-           	<div class="archive-category">${archive.a_category}</div>
-            <div class="archive-date">	${formattedDate} </div>
-           	<div class="archive-time">	${formattedTime} </div>
-           	<div class="archive-title">	${archive.a_title}</div>
-           	<div class="archive-thumbnail">
-					<a target="_blank" href="https://www.youtube.com/watch?v=${archive.a_videoid}">
-						<img 
-						src="${archive.a_thumbnail}" 
-						alt="${archive.a_title} Thumbnail">
-					</a>
-				</div>
-        </div>`;
-    $archiveList.append(html);
-  }
-}
-
 // archiveupdate.jsp 비동기 적용 함수
 function test2(resData) {
   let $archiveList = $("#archive-list2");
@@ -167,7 +104,7 @@ function test2(resData) {
 
     let html = `<form action="ArchiveUpdateC" method="post">
 				<div class="archive-contents-update">
-			<div><button type="submit">수정</button></div>
+			        <div><button type="submit">수정</button></div>
 					<p style="margin-top: 0px">
 						<img class="archive-icon" src="haco_img/icon/${archive.i_icon}" />
 					</p>
@@ -178,17 +115,19 @@ function test2(resData) {
 						<div>コラボ</div>
 						<select name="collabo">
 							<option value="未分類">未分類</option>
-							<option value="yes">Yes</option>
-							<option value="no">No</option>
+							<option value="外部コラボ">外部コラボ</option>
+							<option value="ハコ内コラボ">ハコ内コラボ</option>
+							<option value="なし">なし</option>
 						</select>
 						<input class="collabo-value" type="hidden" value="${archive.a_collabo}"/>
 					</div>
-					<div class="archive-collabomember">
+					<div class="archive-collabo-member">
 						<div>コラボメンバー</div>
 						<button type="button" onclick="openModal(this)"
 							class="openModalButton">선택하기</button>
 						<input type="hidden" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
-						<div class="collaboMember2">${archive.a_collabomember}</div>
+						<div class="collaboMember2">
+						</div>
 					</div>
 					<div class="archive-category">
 						<div>カテゴリー</div>
@@ -213,18 +152,13 @@ function test2(resData) {
 						<img src="${archive.a_thumbnail}"
 							alt="${archive.a_title} Thumbnail" />
 					</div>
-					
 				</div>
-			</form>
-    `;
+			</form>`;
     $archiveList.append(html);
   }
 }
 
 // 투명도를 조절하는 함수
-function adjustOpacity(opacityValue) {
-  $("#archive-list").animate({ opacity: opacityValue }, 350);
-}
 function adjustOpacity2(opacityValue) {
   $("#archive-list2").animate({ opacity: opacityValue }, 350);
 }
@@ -309,27 +243,27 @@ function category_selected() {
     });
   });
 }
-
+//ハコ内コラボ일때만 버튼 나오게
 function toggleButton() {
   $("select[name='collabo']").each(function () {
     let select = $(this);
     let openModalButton = select
       .closest(".archive-collabo")
-      .next(".archive-collabomember")
+      .next(".archive-collabo-member")
       .find(".openModalButton");
-    if (select.val() === "yes") {
+    if (select.val() === "ハコ内コラボ") {
       openModalButton.css("display", "block");
     } else {
       openModalButton.css("display", "none");
     }
 
-    // yes 아닐때 콜라보멤버 초기화 함수
+    // ハコ内コラボ 아닐때 콜라보멤버 초기화 함수
      let select2 = $(this);
     let openModalButton2 = select2
       .closest(".archive-collabo")
-      .next(".archive-collabomember");
+      .next(".archive-collabo-member");
     console.log(select2.val());
-    if (select2.val() != "yes") {
+    if (select2.val() != "ハコ内コラボ") {
       openModalButton2.find(".collaboMember2").text("未分類");
       openModalButton2.find("input").val("未分類");
     } 
@@ -345,12 +279,12 @@ function replaceCollabomemberString(a) {
     let collabomemberStringUpdate = collabomemberString.value.split("!");
     let divWrappedArray = collabomemberStringUpdate.map(
       (item) =>
-        `<div class="archive-collabomember-item archive-${item}">${item}</div>`
+        `<div class="archive-collabo-member-item archive-${item}">${item}</div>`
     );
     // jQuery를 사용하여 해당 요소의 자식 요소에 추가하기
     //console.log(this);
     $(this)
-      .closest(".archive-collabomember")
+      .closest(".archive-collabo-member")
       .find(".collaboMember2")
       .html(divWrappedArray.join(""));
   });

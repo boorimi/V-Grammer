@@ -13,34 +13,35 @@
 </head>
 
 <body>
-	<button onclick="location.href='ArchiveUpdateC'">수정하기</button>
 	<!-- 상단 페이징 시작 -->
-	<div class="archive-bottom">
-		<div>
+	<div class="archive-page-top">
+		<div class="archive-page-start">
 			<a href="ArchivePageC?p=1">最初に</a>
 		</div>
 		<c:set var="pageUnit" value="10" />
 		<!-- page변수 = 현재페이지 * 페이지유닛 -->
 		<c:set var="page"
 			value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}" />
-		<div>
+		<div class="archive-page-unit-prev">
 			<c:if test="${page != 0}">
-				<a href="ArchivePageC?p=${page - pageUnit + 1}">이전 ${pageUnit }페이지</a>
+				<a href="ArchivePageC?p=${page - pageUnit + 1}">
+				    以前 ${pageUnit }ページ
+				</a>
 			</c:if>
 		</div>
-		<div style="display: flex">
+		<div class="archive-page-no-div">
 			<c:forEach var="i" begin="${page + 1 }"
 				end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}">
-				<div class="archive-page-no" style="padding:10px; border: 1px solid gray;">${i }</div>
+				<div class="archive-page-no">${i }</div>
 			</c:forEach>
 		</div>
-		<div>
+		<div class="archive-page-unit-next">
 			<c:if
 				test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}">
-				<a href="ArchivePageC?p=${page + pageUnit + 1}">다음 ${pageUnit }페이지</a>
+				<a href="ArchivePageC?p=${page + pageUnit + 1}">次 ${pageUnit }ページ</a>
 			</c:if>
 		</div>
-		<div>
+		<div class="archive-page-end">
 			<a href="ArchivePageC?p=${pageCount}">最後に</a>
 		</div>
 	</div>
@@ -48,13 +49,16 @@
 	<div id="archive-list">
 		<c:forEach items="${archives}" var="archive">
 			<div class="archive-contents">
-				<p style="margin-top: 0px">
+				<div class="archive-update-div">
+				<button onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">修正する</button>
+				</div>
+				<div class="archive-icon-div" >
 					<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
-				</p>
-				<p>${archive.a_m_pk }</p>
+				</div>
+				<!--  <p>${archive.a_m_pk }</p> -->
 				<div class="archive-membername">${archive.m_name }</div>
 				<div class="archive-collabo">${archive.a_collabo }</div>
-				<div class="archive-collabomember">
+				<div class="archive-collabo-member">
 				  <input type="hidden" class="collaboMember" value="${archive.a_collabomember}" />
 				  <div class="collaboMember2"></div>
 				</div>
@@ -72,44 +76,5 @@
 			</div>
 		</c:forEach>
 	</div>
-	<!-- 여기부터 페이징 -->
-	<div class="archive-bottom">
-		<div>
-			<a href="ArchivePageC?p=1">最初に</a>
-		</div>
-		<c:set var="pageUnit" value="10" />
-		<!-- page변수 = 현재페이지 * 페이지유닛 -->
-		<c:set var="page"
-			value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}" />
-		<div>
-			<c:if test="${page != 0}">
-				<a href="ArchivePageC?p=${page - pageUnit + 1}">이전 ${pageUnit }페이지</a>
-			</c:if>
-		</div>
-		<div style="display: flex">
-			<c:forEach var="i" begin="${page + 1 }"
-				end="${pageUnit * ( page + 1 )}">
-				<div class="archive-page-no">${i }</div>
-			</c:forEach>
-		</div>
-		<div>
-			<c:if
-				test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}">
-				<a href="ArchivePageC?p=${page + pageUnit + 1 }">다음 ${pageUnit }페이지</a>
-			</c:if>
-		</div>
-		<div>
-			<a href="ArchivePageC?p=${pageCount}">最後に</a>
-		</div>
-	</div>
-	<!-- 여기까지 페이징 -->
-
-
-</body>
-
-
+  </body>
 </html>
-
-<%--     <c:if test="${empty archives}">
-        <p>No archives found.</p>
-    </c:if> --%>

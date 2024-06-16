@@ -1,52 +1,93 @@
 @charset "UTF-8";
 
-.mene-lists a {
+.menu-lists a {
   color: inherit; /* 부모 요소의 색상 상속 */
   text-decoration: none; /* 밑줄 제거 */
 }
 
-nav {
+.main-menu-all {
+  margin: 0px;
+  padding: 0px;
   display: flex;
   height: 90px;
   background-color: white;
+  font-weight: bold;
 }
-
+.main-menu-all:hover {
+	cursor: pointer;
+}
 .main-body {
   background-color: #ffd3d3;
 }
 
 .main-logo {
+  font-size: 20pt;
   margin-left: 75px;
   width: 175px;
-  height: 84px;
-  background-color: #b8178b;
-  display: flex;
+  background-color: lightpink;
+  text-align: center;
 }
 
-.mene-lists {
+.menu-lists {
   list-style: none;
   display: flex;
-  margin-left: 55px;
-  margin-top: 30px;
+  justify-content: space-between;
+  flex: 1;
+  /* margin-left: 55px; */
+  /* margin-top: 30px; */
 }
 
-.mene-lists > li {
-  font-size: 25px;
-  margin-right: 80px;
+.menu-lists > div {
+  font-size: 18pt;
+  /* margin-right: 80px; */
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-out;
 }
+.menu-lists-member:hover {
+  background-color: #b7f1ff;
+}
+.menu-lists-archive:hover {
+  background-color: #d1b7a4;
+}
+.menu-lists-calendar:hover {
+  background-color: #ffe089;
+}
+.menu-lists-schedule:hover {
+  background-color: #cf80e0;
+}
+.menu-lists-trade:hover {
+  background-color: #ffa658;
+}
+.menu-lists-announcement:hover {
+  background-color: #bdde87;
+}
+
 .nav-userinfo {
-  margin-left: 129px;
-  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  margin-right: 100px;
+  margin-left: 50px;
+}
+
+.content {
+  margin: 0px;
+  padding: 0px;
 }
 
 .live-members {
   margin-top: 50px;
 }
+
 .live-members > .members {
   font-size: 32px;
   margin-left: 335px;
   color: #756363;
 }
+
 .live-icon {
   width: 50px;
   height: 50px;
@@ -63,8 +104,11 @@ nav {
 }
 
 .sliderandbutton {
-  margin-left: 290px;
+  /*   margin-left: 290px; */
   margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider {
@@ -72,39 +116,47 @@ nav {
   margin-left: auto;
 }
 
-.prev,
-.next {
-  position: absolute;
+.prev-button,
+.next-button {
+  /* position: absolute; */
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
   font-size: 2rem;
   padding: 10px;
   cursor: pointer;
-  z-index: 1000;
+  /* z-index: 1000; */
 }
 
 .prev {
-  left: 280px;
-  bottom: 80px;
+  margin-right: 50px;
 }
 
 .next {
-  left: 1600px;
-  bottom: 80px;
+  margin-left: 50px;
 }
 
 .live-contents {
-  display: flex;
+  /*   display: flex; */
   /* justify-content: center;  */
-  margin-top: 102px;
+  margin-top: 30px;
 }
 
-.live-content {
+.live-content-video {
   width: 1280px;
-  height: 810px; /* YouTube 비디오의 16:9 비율에 맞춘 높이 */
+  height: 720px; /* YouTube 비디오의 16:9 비율에 맞춘 높이 */
   background-color: white;
-  margin: 0 47px;
+  margin: 0 0px;
+}
+.live-content-video-null {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1280px;
+  height: 720px; /* YouTube 비디오의 16:9 비율에 맞춘 높이 */
+  background-color: white;
+  margin: 0 0px;
+  font-size: 40pt;
 }
 
 .live-stream {
@@ -125,12 +177,13 @@ nav {
 }
 
 .live-content {
-  /* width: 960px;
+  width: 960px;
   height: 501px;
-  background-color: white; */
+  background-color: white;
   margin-left: 47px;
   margin-right: 47px;
 }
+
 .main-dday-container {
   overflow: hidden;
   position: relative;
@@ -153,11 +206,11 @@ nav {
   from {
     transform: translateX(0%);
   }
+
   to {
     transform: translateX(-100%);
   }
 }
-
 .main-dday-container {
   margin-top: 50px;
   border: 1px solid black;
@@ -165,19 +218,25 @@ nav {
   height: 30px;
   display: flex;
 }
+
 .main-dday-container div {
   border: 1px solid black;
 }
+
 .main-dday-container div div {
   margin-right: 50px;
 }
+
 .main-dday-container > div {
   display: flex;
 }
+.main-news-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
 .main-news {
-  margin-left: 330px;
-  margin-top: 54px;
-  width: 1290px;
+  width: 1280px;
   height: 350px;
   display: flex;
 }
@@ -200,7 +259,6 @@ nav {
 .news-board > li {
   top: 0;
   height: 68px;
-
   list-style: none;
   bottom: 10px;
 }
@@ -210,9 +268,12 @@ nav {
   height: 350px;
 }
 
+.today-vtuber-wrapper {
+  display: flex;
+  justify-content: center;
+}
 .today-vtuber {
   margin-top: 127px;
-  margin-left: 340px;
   width: 1280px;
   height: 675px;
   background-color: white;
@@ -221,6 +282,7 @@ nav {
 .today-vtuber > p {
   font-size: 32px;
 }
+
 .today-vtuber-archive-etc {
   display: flex;
   flex-wrap: wrap;
@@ -233,6 +295,7 @@ nav {
   background-color: white;
   /* margin-top: 115px; */
 }
+
 .today-vtuber-photo > img {
   width: auto;
   height: 100%;
@@ -271,6 +334,7 @@ nav {
   width: 400px;
   border: 1px solid black;
 }
+
 .today-vtuber-address-box > div {
   border-radius: 20px;
   padding: 1%;
@@ -374,40 +438,103 @@ nav {
   background-color: black;
   color: white;
 }
+
 footer {
-  height: 346px;
-  background-color: white;
+  margin-top: 100px;
+  height: 350px;
+    background-color: rgb(210, 210, 210);
+  
 }
+
+.footer-menu-lists a {
+  color: inherit; /* 부모 요소의 색상 상속 */
+  text-decoration: none; /* 밑줄 제거 */
+}
+.footer-menu-all {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  height: 90px;
+  background-color: rgb(210, 210, 210);
+  font-weight: bold;
+}
+.footer-logo {
+  font-size: 20pt;
+  margin-left: 75px;
+  width: 175px;
+  background-color: rgb(210, 210, 210);
+  text-align: center;
+}
+
+.footer-menu-lists {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  /* margin-left: 55px; */
+  /* margin-top: 30px; */
+}
+
+.footer-menu-lists > div {
+  font-size: 18pt;
+  /* margin-right: 80px; */
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-out;
+}
+.footer-menu-lists-member:hover {
+  background-color: #c4bec9;
+}
+.footer-menu-lists-archive:hover {
+  background-color: #d4485f;
+}
+.footer-menu-lists-calendar:hover {
+  background-color: #de617e;
+}
+.footer-menu-lists-schedule:hover {
+  background-color: #77788f;
+}
+.footer-menu-lists-trade:hover {
+  background-color: #b2e2f7;
+}
+.footer-menu-lists-announcement:hover {
+  background-color: #bf8ade;
+}
+.footer-contents {
+  display: flex;
+  height: 255px;
+}
+.footer-contents > div {
+  margin:20px 50px;
+}
+.footer-contents img {
+ 	width: 50px;
+ 	height: 50px;
+}
+.footer-content-haconect{
+	font-size: 18pt;
+}
+.footer-content-haconect-icon {
+	display: flex;
+}
+
+.footer-content-haconect-icon > div {
+	margin:10px;
+}
+.footer-content-haconaka{
+	font-size: 18pt;
+}
+.footer-content-teamname{
+	font-size: 14pt;
+}
+
+
 
 .archive-contents {
   display: flex;
-}
-.archive-contents > p {
-  margin-right: 15px;
-}
-
-.archive-icon {
-  width: 50px;
-  height: 50px;
-}
-.archive-membername {
-  width: 90px;
-  margin-right: 25px;
-}
-.archive-collabo {
-  width: 150px;
-}
-.archive-category {
-  width: 150px;
-}
-.archive-date {
-  margin-right: 35px;
-}
-.archive-time {
-  margin-right: 35px;
-}
-.archive-collabomember {
-  width: 180px;
 }
 
 .archive-title {
@@ -416,11 +543,6 @@ footer {
 
 .archive-thumbnail {
   margin-right: 0;
-}
-
-.archive-bottom {
-  display: flex;
-  justify-content: space-between;
 }
 
 /* login button css */

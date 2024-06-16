@@ -42,21 +42,21 @@ $(document).ready(function() {
 
 	// 멤버리스트 클릭 시 발생되는 이벤트 함수
 	$memberList.each(function() {
-			$(this).on('click', function() {
-				$memberImgs.removeClass('show');
-				$memberList.removeClass('show');
-				idx = $(this).attr('id');
-				//			console.log(idx);
-				$memberImgs.eq(idx - 1).addClass('show');
-				$memberList.eq(idx - 1).addClass('show');
+		$(this).on('click', function() {
+			$memberImgs.removeClass('show');
+			$memberList.removeClass('show');
+			idx = $(this).attr('id');
+			//			console.log(idx);
+			$memberImgs.eq(idx - 1).addClass('show');
+			$memberList.eq(idx - 1).addClass('show');
 
-				// 클릭 시 마다 멤버 리스트와 디테일 박스 색상 변경
-				function setColor(idx, $listContainer, $detailbox, colors) {
-					$listContainer.css('background', colors[idx][0]);
-					$detailbox.css('background-color', colors[idx][1]);
-				}
-				setColor(idx, $listContainer, $detailbox, colors);
-			});
+			// 클릭 시 마다 멤버 리스트와 디테일 박스 색상 변경
+			function setColor(idx, $listContainer, $detailbox, colors) {
+				$listContainer.css('background', colors[idx][0]);
+				$detailbox.css('background-color', colors[idx][1]);
+			}
+			setColor(idx, $listContainer, $detailbox, colors);
+		});
 	});
 
 	// 더보기 div 감춤
@@ -85,7 +85,27 @@ $(document).ready(function() {
 		$('.member-detail-container').show();
 	});
 
+	// 멤버이름 클릭시 음성재생 코드
+	const playAudioDivs = document.querySelectorAll(".member-memberList");
+	let currentAudio = null;
 
+	playAudioDivs.forEach(div => {
+		div.addEventListener("click", function() {
+			// 현재 재생 중인 오디오가 있으면 중지
+			if (currentAudio && !currentAudio.paused) {
+				currentAudio.pause();
+				currentAudio.currentTime = 0; // 오디오를 처음으로 되돌림
+			}
+
+			// 클릭한 div에 연결된 오디오 재생
+			const audioId = 'audio-' + this.id;
+			const audio = document.getElementById(audioId);
+			audio.play();
+
+			// 현재 재생 중인 오디오 업데이트
+			currentAudio = audio;
+		});
+	});
 
 });
 
