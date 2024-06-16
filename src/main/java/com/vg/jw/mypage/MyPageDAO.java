@@ -838,9 +838,6 @@ public class MyPageDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-//		ArrayList<GoodsDTO> bromideInfos = new ArrayList<GoodsDTO>();		// 25개인데 멤버  가변
-//		GoodsDTO bromideInfo = null;
-
 		ArrayList<GoodsDTO> haco_members = new ArrayList<GoodsDTO>();
 		Map<Integer, GoodsDTO> hacoMemberMap = new HashMap<>();
 		GoodsDTO haco_member = null;
@@ -889,13 +886,7 @@ public class MyPageDAO {
 			for (GoodsDTO a : haco_members) {
 				System.out.println(a);
 			}
-			// pstmt = con.prepareStatement(sql);
-//			pstmt.setLong(1, twitterId);
-//			rs = pstmt.executeQuery();     // 1 ~ 25 멤버  pk 돌릴 수 있게
-//			while (rs.next()) {
-//				bromideInfo = new GoodsDTO(rs.getInt("g_m_pk"), rs.getString("g_category"), rs.getInt("g_count"), rs.getString("i_icon"), rs.getString("m_name"));
-//				bromideInfos.add(bromideInfo);	// 25개로 만들기
-//			}
+
 			String attributeName = "Infos_"+category;
 			request.setAttribute(attributeName, haco_members);
 			//어트리뷰트명 ex) Infos_57mmCanBadge

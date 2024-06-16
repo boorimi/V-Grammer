@@ -17,7 +17,7 @@
 	<div class="mypage-container">
 
 		<div class="mypage-menu-section">
-			<div>
+			<div class="mypage-menu-title">
 				<h2>MY PAGE</h2>
 			</div>
 			<div class="mypage-menu-items" id="mypage-menu-userInfo">
@@ -39,14 +39,14 @@
 					<img class="mypage-menu-icon" alt=""
 						src="account/mypage/mypage_index_icon/article.png">
 				</div>
-				<span>作成した記事</span>
+				<span>MY記事一覧</span>
 			</div>
 			<div class="mypage-menu-items" id="mypage-menu-comment">
 				<div class="mypage-menu-icon-wrap">
 					<img class="mypage-menu-icon" alt=""
 						src="account/mypage/mypage_index_icon/comment.png">
 				</div>
-				<span>作成したコメント</span>
+				<span>MYコメント</span>
 			</div>
 		</div>
 		<div class="mypage-jsp-section">jsp인클루드 영역임</div>

@@ -67,7 +67,11 @@ for (String goodsCategory : category) {
 
 <body>
 	<div class="mypage-goods-container">
-		<div>
+		<div class="mypage-tab-title">
+		<div class="mypage-tab-icon-wrap">
+					<img class="mypage-tab-icon" alt=""
+						src="account/mypage/mypage_index_icon/goods.png">
+				</div>
 			<h2>グッズ管理</h2>
 		</div>
 		<button class="goods-info-button">白賞ブロマイド ▼</button>
