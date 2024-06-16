@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/login.css">
 </head>
 
 <!-- index.jsp에 include할 페이지 -->
 <body>
 	<form action="LoginC" method="post">
-		<button style="font-size:15pt;">login 페이지로</button>
+		<button class="login-button">Login with X</button>
 	</form>
 </body>
 </html>
