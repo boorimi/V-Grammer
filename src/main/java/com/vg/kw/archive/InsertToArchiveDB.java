@@ -8,11 +8,21 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Time;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HttpsURLConnection;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,8 +31,46 @@ import org.json.simple.parser.JSONParser;
 import com.vg.ignore.DBManager;
 import com.vg.kw.main.YoutubeIDDTO;
 
-public class InsertToArchiveDB {
-	public static void main(String[] args) {
+@WebListener
+public class InsertToArchiveDB implements ServletContextListener {
+    private ScheduledExecutorService executorService;
+
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        executorService = Executors.newSingleThreadScheduledExecutor();
+
+        Runnable task = () -> {
+            try {
+                executeTask();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        };
+
+        // Calculate initial delay for the next noon or midnight
+        long initialDelay = calculateInitialDelay(LocalTime.NOON);
+        executorService.scheduleAtFixedRate(task, initialDelay, TimeUnit.HOURS.toMillis(12), TimeUnit.MILLISECONDS);
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
+        }
+    }
+
+    private long calculateInitialDelay(LocalTime targetTime) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nextTargetTime = now.with(targetTime);
+        
+        if (now.isAfter(nextTargetTime)) {
+            nextTargetTime = nextTargetTime.plusHours(12);
+        }
+
+        return Duration.between(now, nextTargetTime).toMillis();
+    }
+
+	public static void executeTask() {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet rs = null;
@@ -57,7 +105,7 @@ public class InsertToArchiveDB {
 					// YouTube API 호출
 					url = "https://www.googleapis.com/youtube/v3/playlistItems";
 					url += "?part=snippet";
-					url += "&maxResults=20";
+					url += "&maxResults=10";
 					url += "&status=";
 					url += "&nextPageToken=";
 					url += "&playlistId=" + y.getAddress();
@@ -111,7 +159,6 @@ public class InsertToArchiveDB {
 					}
 
 					// Published At에서 날짜와 시간 분리
-					System.out.println(publishedAt);
 					String[] dateTime = publishedAt.split("T");
 					String date = dateTime[0];
 					String time = dateTime[1].substring(0, 8); // 초단위는 무시
