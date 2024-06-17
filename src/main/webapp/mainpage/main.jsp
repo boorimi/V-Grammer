@@ -83,7 +83,7 @@ prefix="c"%>
         <div class="dday-items-wrapper">
           <c:forEach var="dday" items="${ddayList}">
             <c:if
-              test="${dday.daysUntilDday >= -14 && dday.daysUntilDday <= 0}"
+              test="${dday.daysUntilDday <= 7}"
             >
               <div class="dday-item">
                 <span>이름 : ${dday.m_name} </span>
