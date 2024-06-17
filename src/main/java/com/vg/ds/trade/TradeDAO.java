@@ -83,6 +83,14 @@ public class TradeDAO {
 				}
 				request.setAttribute("category3", category3);
 			}
+			
+			if (request.getParameterValues("name") != null) {
+				String name = request.getParameter("name");
+				sql += "and u_nickname like CONCAT('%','" + name + "','%')";
+				String name2 = "&name=" + name;
+				request.setAttribute("name", name);
+				request.setAttribute("name2", name2);
+			}
 			////// 검색 진행 시 sql문 추가하는 부분 끝 ////
 			sql += "order by t_date asc";
 
@@ -301,12 +309,14 @@ public class TradeDAO {
 
 		try {
 			// 인서트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
+			System.out.println(request.getParameter("no"));
 			String text = request.getParameter("text");
 			text = text.replaceAll("\r\n", "<br>");
 
 			String sql = "insert into haco_tradegoods_comments values ";
 			sql += "(null, ?, ?, ?, ?, now())";
 
+			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("no"));
@@ -410,6 +420,29 @@ public class TradeDAO {
 			DBManager.close(con, pstmt, rs);
 		}
 
+	}
+
+	public void deleteCommentsTrade(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+
+			String sql = "delete from haco_tradegoods_comments where tc_pk = ?";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, request.getParameter("no"));
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("삭제 성공!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+		
 	}
 
 }

@@ -31,10 +31,22 @@ function tradeDelete(pk) {
   }
 }
 
-function tradeCommentsInsert() {
+function tradeCommentsInsert(pk) {
   let ok = confirm("作成しますか？");
   if (ok) {
-    document.getElementById("insertTradeCommentsForm").submit();
+    const formId = `insertTradeCommentsForm_${pk}`;
+    const formElement = document.getElementById(formId);
+    if (formElement) {
+      formElement.submit();
+    } else {
+      console.error(`Form with ID ${formId} not found.`);
+    }
+  }
+}
+function tradeCommentsDelete(pk) {
+  let ok = confirm("削除しますか？");
+  if (ok) {
+    location.href = "DeleteCommentsTrade?no=" + pk;
   }
 }
 $(function () {
@@ -46,17 +58,24 @@ $(function () {
       $(this).toggle();
     });
   });
-  
+
   $(".trade-openCategorys").click(function () {
     let post = $(this).closest(".trade-container");
     let commentsDiv = post.find(".trade-category");
 
     commentsDiv.each(function () {
+      $(".trade-search").css("display","none");
       $(this).toggle();
     });
   });
   
+  $(".trade-openSearch").click(function () {
+    let post = $(this).closest(".trade-container");
+    let commentsDiv = post.find(".trade-search");
+
+    commentsDiv.each(function () {
+      $(".trade-category").css("display","none");
+      $(this).toggle();
+    });
+  });
 });
-
-
-

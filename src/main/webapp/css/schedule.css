@@ -43,13 +43,13 @@
 }
 
 /* 선택 된 탭 콘텐츠를 표시 */
-#s-mon:checked ~ .mon-content,
-#s-tue:checked ~ .tue-content,
-#s-wen:checked ~ .wen-content,
-#s-thr:checked ~ .thr-content,
-#s-fri:checked ~ .fri-content,
-#s-sat:checked ~ .sat-content,
-#s-sun:checked ~ .sun-content {
+#s-mon:checked ~ .day1-content,
+#s-tue:checked ~ .day2-content,
+#s-wed:checked ~ .day3-content,
+#s-thu:checked ~ .day4-content,
+#s-fri:checked ~ .day5-content,
+#s-sat:checked ~ .day6-content,
+#s-sun:checked ~ .day7-content {
   display: block;
 }
 

@@ -69,8 +69,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       </div>
     </form>
     <!-- 상단 페이징 시작 -->
-    <div class="archive-page-top">
-      <div class="archive-page-start">
+    <div class="archive-paging-container">
+      <div class="archive-paging-start">
         <a href="ArchivePageC?p=1">最初に</a>
       </div>
       <c:set var="pageUnit" value="10" />
@@ -79,23 +79,23 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         var="page"
         value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}"
       />
-      <div class="archive-page-unit-prev">
+      <div class="archive-paging-unit-prev">
         <c:if test="${page != 0}">
           <a href="ArchivePageC?p=${page - pageUnit + 1}">
             以前 ${pageUnit }ページ
           </a>
         </c:if>
       </div>
-      <div class="archive-page-no-div">
+      <div class="archive-paging-no-div">
         <c:forEach
           var="i"
           begin="${page + 1 }"
           end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
         >
-          <div class="archive-page-no">${i }</div>
+          <div class="archive-paging-no">${i }</div>
         </c:forEach>
       </div>
-      <div class="archive-page-unit-next">
+      <div class="archive-paging-unit-next">
         <c:if
           test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}"
         >
@@ -104,7 +104,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           >
         </c:if>
       </div>
-      <div class="archive-page-end">
+      <div class="archive-paging-end">
         <a href="ArchivePageC?p=${pageCount}">最後に</a>
       </div>
     </div>
