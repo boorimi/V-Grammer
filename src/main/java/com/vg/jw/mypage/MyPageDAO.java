@@ -900,7 +900,7 @@ public class MyPageDAO {
 	}
 
 	public static void updateGoods(HttpServletRequest request, HttpServletResponse response, int pk, int count,
-			long u_twitter_id, String g_category) {
+			long u_twitter_id, String g_category, int previousCount) {
 
 		System.out.println("updateGoods 메서드 진입");
 
@@ -911,60 +911,66 @@ public class MyPageDAO {
 		int goods_count = count;
 		long userId = u_twitter_id;
 		String category = g_category;
+		int oldCount = previousCount;
 
 		System.out.println("메서드에 전달된 pk: " + member_pk);
 		System.out.println("메서드에 전달된 count: " + goods_count);
 		System.out.println("메서드에 전달된 userId: " + userId);
 		System.out.println("메서드에 전달된 category: " + category);
-		
+		System.out.println("메서드에 전달된 기존값: " + oldCount);
+
 		String sql = "";
 		try {
-			
+
 			con = DBManager.connect();
-			
-			if (goods_count == 0) { //전달된 굿즈 카운트가0 -> 삭제문
-				sql = "DELETE FROM haco_goods WHERE g_u_t_id = ? AND g_category = ? AND g_m_pk = ?";
+
+			//기존값이 0일 경우 insert문
+			if (oldCount == 0) {
+				sql = "insert into haco_goods values (null, ?, ?, ?, ?);";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setLong(1, userId);
-				pstmt.setString(2, category);
-				pstmt.setInt(3, member_pk);
-			
-				if (pstmt.executeUpdate() == 1) {
-					System.out.println("굿즈 데이터 삭제 성공");
-				} 
-					
-			}else {
-				sql = "UPDATE haco_goods SET g_count = ? WHERE g_u_t_id = ? AND g_category = ? AND g_m_pk = ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, goods_count);
-				pstmt.setLong(2, userId);
+				pstmt.setInt(2, member_pk);
 				pstmt.setString(3, category);
-				pstmt.setInt(4, member_pk);
-				
+				pstmt.setInt(4, goods_count);
+
 				if (pstmt.executeUpdate() == 1) {
-					System.out.println("굿즈 데이터 업데이트 성공");
+					System.out.println("굿즈데이터 추가 성공");
 				}
 				
-			
-			}
-			
-			
+				
+			} else {
 
-		
-		
-		
-		
-		
-		
-		
-		
+				if (goods_count == 0) { // 전달된 굿즈 카운트가0 -> 삭제문
+					sql = "DELETE FROM haco_goods WHERE g_u_t_id = ? AND g_category = ? AND g_m_pk = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setLong(1, userId);
+					pstmt.setString(2, category);
+					pstmt.setInt(3, member_pk);
+
+					if (pstmt.executeUpdate() == 1) {
+						System.out.println("굿즈 데이터 삭제 성공");
+					}
+
+				} else {
+					sql = "UPDATE haco_goods SET g_count = ? WHERE g_u_t_id = ? AND g_category = ? AND g_m_pk = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, goods_count);
+					pstmt.setLong(2, userId);
+					pstmt.setString(3, category);
+					pstmt.setInt(4, member_pk);
+
+					if (pstmt.executeUpdate() == 1) {
+						System.out.println("굿즈 데이터 업데이트 성공");
+					}
+
+				}
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBManager.close(con, pstmt, null);
 		}
-		
-		
 
 	}
 
