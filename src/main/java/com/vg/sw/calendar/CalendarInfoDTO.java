@@ -5,16 +5,14 @@ public class CalendarInfoDTO {
     private String title;
     private String start;
     private String end;    // end 필드 추가
-    private String rrule;  // rrule 필드 추가
 
     public CalendarInfoDTO() {}
 
-    public CalendarInfoDTO(String m_pk, String title, String start, String end, String rrule) {
+    public CalendarInfoDTO(String m_pk, String title, String start, String end) {
         this.m_pk = m_pk;
         this.title = title;
         this.start = start;
         this.end = end;
-        this.rrule = rrule;
     }
 
     // Getters and Setters
@@ -50,16 +48,8 @@ public class CalendarInfoDTO {
         this.end = end;
     }
 
-    public String getRrule() {
-        return rrule;
-    }
-
-    public void setRrule(String rrule) {
-        this.rrule = rrule;
-    }
-
     @Override
     public String toString() {
-        return "CalendarInfoDTO [m_pk=" + m_pk + ", title=" + title + ", start=" + start + ", end=" + end + ", rrule=" + rrule + "]";
+        return "CalendarInfoDTO [m_pk=" + m_pk + ", title=" + title + ", start=" + start + ", end=" + end + "]";
     }
 }

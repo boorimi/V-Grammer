@@ -7,27 +7,27 @@
 	margin:0px 10px;
 	
 }
-.archive-page-top {
+.archive-paging-container {
   display: flex;
   align-items: center;
   height: 45px;
   margin: 25px 0px;
 }
-.archive-page-start{
+.archive-paging-start{
 	width: 100px;
 }
-.archive-page-unit-prev{
+.archive-paging-unit-prev{
 	width: 150px;
 }
-.archive-page-no-div{
+.archive-paging-no-div{
 	display: flex;
 	justify-content: center;
 	flex: 1;
 }
-.archive-page-unit-next{
+.archive-paging-unit-next{
 	width: 150px;
 }
-.archive-page-end{
+.archive-paging-end{
 	width: 100px;
 }
 
@@ -65,12 +65,12 @@
 	cursor: pointer;
 }
 
-.archive-page-no {
+.archive-paging-no {
 	cursor: pointer;
 	padding: 10px;
 	border: 1px solid gray;
 }
-.archive-page-no:hover {
+.archive-paging-no:hover {
 	background-color: #eeeeee;
 }
 .archive-page-no2 {

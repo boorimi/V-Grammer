@@ -147,10 +147,10 @@
 }
 
 .prev {
-	margin-right: 50px;
+  margin-right: 50px;
 }
 .next {
-	margin-left: 50px;
+  margin-left: 50px;
 }
 
 .prev-button {
@@ -260,7 +260,7 @@
 
 .dday-items-wrapper {
   display: inline-block; /* 수평 슬라이드를 위해 인라인 블록으로 설정 */
-  animation: slide 15s linear infinite; /* 슬라이드 애니메이션 설정 */
+  animation: slide 20s linear infinite; /* 슬라이드 애니메이션 설정 */
 }
 
 .dday-item {
@@ -283,11 +283,17 @@
 .dday-item span {
   display: flex;
   font-size: 1.2rem;
-  margin: 0 10px;
-  margin-bottom: 5px;
+  margin-right: 15px;
+  margin-bottom: 35px;
   color: #ff69b4; /* 밝은 핑크색 텍스트 */
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   animation: textAnimation 1s ease-in-out infinite alternate;
+  
+
+}
+.main-dday-container span {
+  position: relative;
+  top: -20px;
 }
 
 @keyframes slide {
@@ -305,7 +311,7 @@
     transform: scale(1);
   }
   to {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 }
 
