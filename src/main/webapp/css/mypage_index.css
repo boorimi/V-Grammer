@@ -8,19 +8,31 @@
 }
 
 .mypage-menu-section {
-
+	
 	position: absolute;
 	left: 100px;
 	flex-direction: column;
 	width: 30vh;
+	gap: 10px 10px;
+	display: flex;
+	justify-content: center;
+	margin-top: 70px;
+	border: 1px solid black;
 
+}
+
+.mypage-menu-title {
+	display: flex;
+	width: 75%;
+	gap: 15px;
+	align-items: center;
 }
 
 .mypage-menu-items {
 	display: flex;
 	border: 1px black solid;
 	width: 75%;
-	gap: 15px;
+	gap: 5px;
 	border-radius: 10px;
 	align-items: center;
 }
@@ -33,17 +45,27 @@
 .mypage-menu-icon-wrap{
 	margin: 10px;
 }
+.mypage-tab-icon-wrap{
+	margin: 10px;
+}
 
 .mypage-jsp-section {
-
+	margin-top: 70px;
 	width: 80%;
 	display: flex;
-	justify-content: center;
+	
+	border: 1px solid black;
 }
 
 .mypage-menu-icon {
-
 	width: 30px;
+}
+.mypage-tab-icon {
+	width: 50px;
 
+}
 
+.mypage-tab-title{
+	display: flex;
+	align-items: center;	
 }
