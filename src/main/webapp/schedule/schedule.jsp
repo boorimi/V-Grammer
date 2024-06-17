@@ -17,9 +17,7 @@ pageEncoding="UTF-8"%>
     <title>Insert title here</title>
   </head>
   <body>
-    <textarea rows="" cols="" id="weekJSON" style="display: none">
-${weekJSON }</textarea
-    >
+    <textarea rows="" cols="" id="weekJSON" style="display: none">${weekJSON }</textarea>
     <div class="schedule-container">
       <div class="s-week-list">
         <input id="s-week" type="radio" name="tab_item" />
@@ -143,6 +141,10 @@ ${weekJSON }</textarea
                     <option value="19">華糖シェリー</option>
                     <option value="20">ぺるぽ</option>
                     <option value="21">叶望ゆゆ</option>
+                    <option value="22">雫川なのか</option>
+                    <option value="23">堕天しすた</option>
+                    <option value="24">山寧恋</option>
+                    <option value="25">翠森アトリ</option>
                   </select>
                 </div>
                 <div class="insert-box-date">

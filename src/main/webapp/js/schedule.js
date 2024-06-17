@@ -4,8 +4,6 @@ $(document).ready(function() {
 		let data = $("#weekJSON").text();
 		data = JSON.parse(data);
 		console.log(data[0])
-		let content = `<div class="s-data">
-						</div>`;
 
 		for (var i = 1; i < 8; i++) {
 			let sDataBox = $(".day" + i + "-content .s-data-box");
@@ -25,7 +23,10 @@ $(document).ready(function() {
 						let mName = $("<div></div>").text(obj.m_name);
 						let sTime = $("<div></div>").text(obj.s_time);
 						
-						sData.append(sTime).append(mName);
+//						console.log(obj.s_title)
+						let sTitle = $("<div></div>").text(obj.s_title).addClass("s-data-title");
+						
+						sData.append(sTime).append(mName).append(sTitle);
 						
 //						content2.append(sData);
 						$(s).append(sData);
