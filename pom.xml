@@ -1,6 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>V-Grammer</groupId>
 	<artifactId>V-Grammer</artifactId>
@@ -110,6 +112,7 @@
 			<artifactId>tomcat-juli</artifactId>
 			<version>9.0.56</version>
 		</dependency>
+
 		<!--
 		https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
 		<dependency>
@@ -161,7 +164,7 @@
 			<artifactId>unirest-java</artifactId>
 			<version>3.11.09</version>
 		</dependency>
-		<!-- youtube OAuth2.0 사용 준비 -->
+		<!-- youtube OAuth2.0 사용준비 -->
 		<dependency>
 			<groupId>com.google.api-client</groupId>
 			<artifactId>google-api-client</artifactId>
@@ -182,6 +185,23 @@
 			<artifactId>google-http-client-jackson2</artifactId>
 			<version>1.36.0</version>
 		</dependency>
+		<!--로그인 시 트위터 인증 생략에 필요한 의존성-->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<!--javax.xml.bind.DatatypeConverter 클래스 누락 문제 해결-->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.1</version>
+		</dependency>
 		<!-- SLF4J와 Logback 로깅 구현 추가 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -192,6 +212,11 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.12.3</version>
 		</dependency>
 	</dependencies>
 </project>

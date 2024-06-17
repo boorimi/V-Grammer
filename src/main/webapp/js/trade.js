@@ -46,9 +46,7 @@ $(function () {
       $(this).toggle();
     });
   });
-});
-
-$(function () {
+  
   $(".trade-openCategorys").click(function () {
     let post = $(this).closest(".trade-container");
     let commentsDiv = post.find(".trade-category");
@@ -57,6 +55,8 @@ $(function () {
       $(this).toggle();
     });
   });
+  
 });
+
 
 

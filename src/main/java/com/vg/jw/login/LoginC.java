@@ -26,6 +26,10 @@ public class LoginC extends HttpServlet {
 			response.sendRedirect("RegisterC"); // false반환시 등록페이지로
 		}
 
+		//임시 로그인 처리
+		//templogin.login(request);
+		//response.sendRedirect("HC");
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

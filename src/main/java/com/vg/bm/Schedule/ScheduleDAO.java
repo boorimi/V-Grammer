@@ -4,27 +4,32 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.vg.bm.Member.MemberDAO;
-import com.vg.bm.Member.MemberDTO;
 import com.vg.ignore.DBManager;
 import com.vg.jw.AccountDTO;
 
 public class ScheduleDAO {
 
-	private ArrayList<ScheduleDTO> schedules = null;
+	private ArrayList<ScheduleDTO> monSchedule = null;
+	private ArrayList<ScheduleDTO> tueSchedule = null;
+	private ArrayList<ScheduleDTO> wenSchedule = null;
+	private ArrayList<ScheduleDTO> thrSchedule = null;
+	private ArrayList<ScheduleDTO> friSchedule = null;
+	private ArrayList<ScheduleDTO> satSchedule = null;
+	private ArrayList<ScheduleDTO> sunSchedule = null;
+
+	private ArrayList<String> thisWeek;
+	private ArrayList<String> thisWeek2;
 //	private ArrayList<TradeCommentsDTO> tradeComments = null;
 	private Connection con = null;
 	public static final ScheduleDAO SDAO = new ScheduleDAO();
@@ -37,59 +42,6 @@ public class ScheduleDAO {
 		}
 	}
 
-	public void getAllSchedule(HttpServletRequest request) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select sc.*,m_name from haco_schedule sc, haco_member where s_m_pk = m_pk";
-		
-		try {
-			con = DBManager.connect();
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			schedules = new ArrayList<ScheduleDTO>();
-
-			// date 형식 변환
-			SimpleDateFormat oldDate = new SimpleDateFormat("yyyy-MM-dd");
-			SimpleDateFormat formatDate = new SimpleDateFormat("M月d日");
-			
-			// time 형식 변환
-			DateTimeFormatter oldTime = DateTimeFormatter.ofPattern("HH:mm:ss");
-			DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm");
-			
-			while (rs.next()) {
-				
-				// date 다시 담기
-				String date = rs.getString(4);
-				Date date2 = null;
-				String date3 = "";
-				date2 = oldDate.parse(date);
-				date3 = formatDate.format(date2);
-
-				// time 다시 담기
-				String time = rs.getString(5);
-				TemporalAccessor time2 = null;
-				String time3 = "";
-				time2 = oldTime.parse(time);
-				time3 = formatTime.format(time2);
-				
-				ScheduleDTO s = new ScheduleDTO(rs.getString(1), rs.getString(2),
-						rs.getString(3), date3, time3, rs.getString(6), rs.getString(7));
-				schedules.add(s);
-			}
-			request.setAttribute("schedule", schedules);
-			
-//			System.out.println("=====스케줄 전체 시소=====");
-//			System.out.println(schedules);
-//			System.out.println("=====================");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(con, pstmt, rs);
-		}
-	}
-	
 	public void getThisWeek(HttpServletRequest request) {
 		// 로컬 오늘 날짜
 		LocalDate today = LocalDate.now();
@@ -97,25 +49,101 @@ public class ScheduleDAO {
 		LocalDate endWeek = today.with(DayOfWeek.SUNDAY);
 
 		// 날짜출력 형식세팅
-		DateTimeFormatter daySet = DateTimeFormatter.ofPattern("M月d日");
-		
+		DateTimeFormatter formatDate;
+
 		// 로컬날짜 = 시작날짜(월요일)로 초기화해서 세팅
 		LocalDate date = startWeek;
-		
-		ArrayList<String> thisWeek = new ArrayList<String>();
-		
+
+		thisWeek = new ArrayList<String>(); // M月d日
+		thisWeek2 = new ArrayList<String>(); // YYYY-MM-dd
+
 		// thisWeek가 endWeek가 아니면 루프를 계속 돌리기 위한 while문
 		while (!date.isAfter(endWeek)) {
-			thisWeek.add(date.format(daySet));
+			formatDate = DateTimeFormatter.ofPattern("M月d日");
+			thisWeek.add(date.format(formatDate));
+			formatDate = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+			thisWeek2.add(date.toString());
 			// 오늘 날짜(월요일)에 1일을 계속 추가
 			date = date.plusDays(1);
 			// endWeek가 되면 while문 종료
 		}
 //		System.out.println(thisWeek);
-		
+
 		request.setAttribute("thisWeek", thisWeek);
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public void getAllSchedule(HttpServletRequest request) {
+
+		// 스케줄 가져오기
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select sc.*,m_name from haco_schedule sc, haco_member where s_m_pk = m_pk";
+
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+//			schedules = new ArrayList<ScheduleDTO>();
+//			monSchedule = new ArrayList<ScheduleDTO>();
+
+			SimpleDateFormat formatDate;
+			
+			monSchedule = new ArrayList<ScheduleDTO>();
+			tueSchedule = new ArrayList<ScheduleDTO>();
+			wenSchedule = new ArrayList<ScheduleDTO>();
+			thrSchedule = new ArrayList<ScheduleDTO>();
+			friSchedule = new ArrayList<ScheduleDTO>();
+			satSchedule = new ArrayList<ScheduleDTO>();
+			sunSchedule = new ArrayList<ScheduleDTO>();
+			
+			List<ScheduleDTO> schedules[] = new List[] {monSchedule, tueSchedule, wenSchedule,
+					thrSchedule, friSchedule, satSchedule, sunSchedule};
+			
+			while (rs.next()) {
+				formatDate = new SimpleDateFormat("HH:mm");
+				String time = formatDate.format(rs.getTime(5));
+
+				for (int i = 0; i < 7; i++) {
+					if (rs.getString(4).equals(thisWeek2.get(i))) {
+						ScheduleDTO schedule = new ScheduleDTO(rs.getString(1), rs.getString(2), rs.getString(3),
+								rs.getString(4), time, rs.getString(6), rs.getString(7));
+						schedules[i].add(schedule);
+					}
+				}
+			}
+//			System.out.println("이번주 월요일 날짜 : " + thisWeek2.get(0));
+			System.out.println("월스케줄 : " + monSchedule);
+			System.out.println("=======================");
+			System.out.println("화스케줄 : " + tueSchedule);
+			System.out.println("=======================");
+			System.out.println("수스케줄 : " + wenSchedule);
+			System.out.println("=======================");
+			System.out.println("목스케줄 : " + thrSchedule);
+			System.out.println("=======================");
+			System.out.println("금스케줄 : " + friSchedule);
+			System.out.println("=======================");
+			System.out.println("토스케줄 : " + satSchedule);
+			System.out.println("=======================");
+			System.out.println("일스케줄 : " + sunSchedule);
+//			System.out.println(schedules);
+			request.setAttribute("monSchedule", monSchedule);
+			request.setAttribute("tueSchedule", tueSchedule);
+			request.setAttribute("wenSchedule", wenSchedule);
+			request.setAttribute("thrSchedule", thrSchedule);
+			request.setAttribute("friSchedule", friSchedule);
+			request.setAttribute("satSchedule", satSchedule);
+			request.setAttribute("sunSchedule", sunSchedule);
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+	}
+
 	public void insertSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		String sql = "insert into haco_schedule values (null, ?, ?, ?, ?, ?)";
@@ -156,7 +184,5 @@ public class ScheduleDAO {
 			DBManager.close(con, pstmt, null);
 		}
 	}
-
-
 
 }

@@ -7,9 +7,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   <head>
     <meta charset="UTF-8" />
     <title>トレード</title>
-    <script src="js/trade.js"></script>
     <link rel="stylesheet" href="css/trade.css" />
     <script src="js/trade.js"></script>
+    <script src="js/tradeinsert.js"></script>
   </head>
   <body>
     <c:choose>
@@ -33,6 +33,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       </div>
       <form id="${id }" action="${action }" method="post">
         <div>カテゴリー</div>
+        <input id="goods-pk" type="hidden" value="${sessionScope.accountInfo.u_twitter_id }" />
         <c:set var="checkboxValues" value="${trades.category}" />
        	<c:set var="checkboxValuesStr" value="${fn:join(checkboxValues, ',')}" />
         <div class="trade-category">
@@ -40,10 +41,11 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           <div>
             <label
               ><input
+              	class="goodsCategory"
                 type="checkbox"
                 name="goodsCategory"
                 value="${cbi.value }"
-                <c:if test="${fn:contains(checkboxValuesStr, cbi.value)}" >checked="checked"</c:if> />${cbi.label }</label>
+                <c:if test="${fn:contains(checkboxValuesStr,cbi.value)}">checked="checked"</c:if>/>${cbi.label }</label>
           </div>
           </c:forEach>
           </div>
@@ -51,7 +53,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           <div>内容</div>
           <input name="no" type="hidden" value="${trades.pk }" />
           <div>
-            <textarea style="resize: none" rows="30" cols="120" name="text">
+            <textarea id="trade-textarea" style="resize: none" rows="30" cols="120" name="text">
 ${text2 }</textarea
             >
           </div>

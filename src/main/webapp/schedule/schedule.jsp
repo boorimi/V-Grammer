@@ -7,657 +7,115 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link rel="stylesheet" href="css/schedule.css" />
 <script type="text/javascript" src="js/schedule.js" defer></script>
 
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <title>Insert title here</title>
 </head>
 <body>
 	<div class="schedule-container">
 		<div class="s-week-list">
 			<input id="s-week" type="radio" name="tab_item" /> <label
-				class="tab_item">スケジュール</label> <input id="s-mon" type="radio"
-				name="tab_item" checked /> <label class="tab_item" for="s-mon">${thisWeek[0] } 月</label>
+				class="tab_item">スケジュール</label>
+			<!-- 월 -->
+			<input id="s-mon" type="radio" name="tab_item" checked /> <label
+				class="tab_item" for="s-mon">${thisWeek[0] } 月</label>
+			<!-- 화 -->
 			<input id="s-tue" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-tue">${thisWeek[1] }火</label> <input id="s-wen"
-				type="radio" name="tab_item" /> <label class="tab_item" for="s-wen">${thisWeek[2] }水</label>
+				class="tab_item" for="s-tue">${thisWeek[1] } 火</label>
+			<!-- 수 -->
+			<input id="s-wen" type="radio" name="tab_item" /> <label
+				class="tab_item" for="s-wen">${thisWeek[2] } 水</label>
+			<!-- 목 -->
 			<input id="s-thr" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-thr">${thisWeek[3] }木</label> <input id="s-fri"
-				type="radio" name="tab_item" /> <label class="tab_item" for="s-fri">${thisWeek[4] }金</label>
+				class="tab_item" for="s-thr">${thisWeek[3] } 木</label>
+			<!-- 금 -->
+			<input id="s-fri" type="radio" name="tab_item" /> <label
+				class="tab_item" for="s-fri">${thisWeek[4] } 金</label>
+			<!-- 토 -->
 			<input id="s-sat" type="radio" name="tab_item" /> <label
-				class="tab_item" for="s-sat">${thisWeek[5] }土</label> <input id="s-sun"
-				type="radio" name="tab_item" /> <label class="tab_item" for="s-sun">${thisWeek[6] }日</label>
+				class="tab_item" for="s-sat">${thisWeek[5] } 土</label>
+			<!-- 일 -->
+			<input id="s-sun" type="radio" name="tab_item" /> <label
+				class="tab_item" for="s-sun">${thisWeek[6] } 日</label>
 
 			<!-- 월 -->
 			<div class="tab_content mon-content">
 				<div class="s-time-list">
-					<div class="s-time-a">00:00 ~ 11:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
-						<div id="s-data">월요일</div>
+					<div class="s-time s-a">00:00 ~ 12:00</div>
+					<div class="s-data">
+						<div id="s-data"></div>
 					</div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-a">12:00 ~ 17:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">test2</div>
-					</div>
+					<div class="s-time s-b">12:00 ~ 18:00</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">18:00 ~ 18:29</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-b">18:00 ~ 18:30</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">18:30 ~ 18:59</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-d">18:30 ~ 19:00</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">19:00 ~ 19:29</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-e">19:00 ~ 19:30</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">19:30 ~ 19:59</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-f">19:30 ~ 20:00</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">20:00 ~ 20:29</div>
-					<div class="s-time-b-data">
-
-						<div id="s-data">test3</div>
-					</div>
+					<div class="s-time s-g">20:00 ~ 20:30</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">20:30 ~ 20:59</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-h">20:30 ~ 21:00</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">21:00 ~ 21:29</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-i">21:00 ~ 21:30</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">21:30 ~ 21:59</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-j">21:30 ~ 22:00</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">22:00 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-k">22:00 ~ 22:30</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-l">22:30 ~ 23:00</div>
+					<div class="s-data"></div>
 				</div>
 				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:00 ~ 23:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:30 ~ 23:59</div>
-					<div class="s-time-b-data"></div>
+					<div class="s-time s-m">22:30 ~ 24:00</div>
+					<div class="s-data"></div>
 				</div>
 			</div>
 
 			<!-- 화 -->
-			<div class="tab_content tue-content">
-				<div class="s-time-list">
-					<div class="s-time-a">00:00 ~ 11:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-a">12:00 ~ 17:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">test2</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:00 ~ 18:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:30 ~ 18:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:00 ~ 19:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:30 ~ 19:59</div>
-					<div class="s-time-b-data">
-            <div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-						<div id="s-data">화요일</div>
-          </div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:00 ~ 20:29</div>
-					<div class="s-time-b-data">
-
-						<div id="s-data">test3</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:30 ~ 20:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:00 ~ 21:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:30 ~ 21:59</div>
-					<div class="s-time-b-data">
-            <div id="s-data">이제 어떻게 값 뿌리냐</div>
-						<div id="s-data">이제 어떻게 값 뿌리냐</div>
-						<div id="s-data">이제 어떻게 값 뿌리냐</div>
-						<div id="s-data">이제 어떻게 값 뿌리냐</div>
-						<div id="s-data">이제 어떻게 값 뿌리냐</div>
-          </div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:00 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:00 ~ 23:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:30 ~ 23:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-			</div>
+			<div class="tab_content tue-content"></div>
 
 			<!-- 수 -->
-			<div class="tab_content wen-content">
-				<div class="s-time-list">
-					<div class="s-time-a">00:00 ~ 11:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">수요일</div>
-						<div id="s-data">수요일</div>
-						<div id="s-data">수요일</div>
-						<div id="s-data">기이이이이이이이이일게?</div>
-						<div id="s-data">기이이이이이이이이일게?</div>
-						<div id="s-data">기이이이이이이이이일게?</div>
-						<div id="s-data">기이이이이이이이이일게?</div>
-						<div id="s-data">수요일</div>
-						<div id="s-data">수요일</div>
-						<div id="s-data">수요일</div>
-						<div id="s-data">수요일</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-a">12:00 ~ 17:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">test2</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:00 ~ 18:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:30 ~ 18:59</div>
-					<div class="s-time-b-data">
-            <div id="s-data">수요일</div>
-						<div id="s-data">수요일</div>
-            <div id="s-data">수요일</div>
-						<div id="s-data">수요일</div>
-            <div id="s-data">타이틀은 호버하면..</div>
-						<div id="s-data">타이틀은 호버하면..</div>
-            <div id="s-data">타이틀은 호버하면..</div>
-						<div id="s-data">타이틀은 호버하면..</div>
-            <div id="s-data">타이틀은 호버하면..</div>
-						<div id="s-data">타이틀은 호버하면..</div>
-            <div id="s-data">타이틀은 호버하면..</div>
-						<div id="s-data">타이틀은 호버하면..</div>
-            <div id="s-data">타이틀은 호버하면..</div>
-						<div id="s-data">수요일</div>
-            <div id="s-data">수요일</div>
-						<div id="s-data">수요일</div>
-
-          </div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:00 ~ 19:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:30 ~ 19:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:00 ~ 20:29</div>
-					<div class="s-time-b-data">
-
-						<div id="s-data">test3</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:30 ~ 20:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:00 ~ 21:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:30 ~ 21:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:00 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:00 ~ 23:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:30 ~ 23:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-			</div>
+			<div class="tab_content wen-content"></div>
 
 			<!-- 목 -->
-			<div class="tab_content thr-content">
-				<div class="s-time-list">
-					<div class="s-time-a">00:00 ~ 11:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">목요일</div>
-						<div id="s-data">목요일</div>
-						<div id="s-data">목요일</div>
-						<div id="s-data">목요일</div>
-						<div id="s-data">목요일</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-a">12:00 ~ 17:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">test2</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:00 ~ 18:29</div>
-					<div class="s-time-b-data">
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-            <div id="s-data">제발 되라고</div>
-          </div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:30 ~ 18:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:00 ~ 19:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:30 ~ 19:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:00 ~ 20:29</div>
-					<div class="s-time-b-data">
-
-						<div id="s-data">test3</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:30 ~ 20:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:00 ~ 21:29</div>
-					<div class="s-time-b-data">
-            <div id="s-data">もうやめろう</div>
-						<div id="s-data">もうやめろう</div>
-            <div id="s-data">もうやめろう</div>
-						<div id="s-data">もうやめろう</div>
-            <div id="s-data">もうやめろう</div>
-						<div id="s-data">もうやめろう</div>
-          </div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:30 ~ 21:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:00 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:00 ~ 23:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:30 ~ 23:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-			</div>
+			<div class="tab_content thr-content"></div>
 
 			<!-- 금 -->
-			<div class="tab_content fri-content">
-				<div class="s-time-list">
-					<div class="s-time-a">00:00 ~ 12:00</div>
-					<div class="s-time-a-data">
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-						<div id="s-data">금요일</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-a">12:00 ~ 17:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">test2</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:00 ~ 18:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:30 ~ 18:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:00 ~ 19:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:30 ~ 19:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:00 ~ 20:29</div>
-					<div class="s-time-b-data">
-
-						<div id="s-data">test3</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:30 ~ 20:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:00 ~ 21:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:30 ~ 21:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:00 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:00 ~ 23:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:30 ~ 23:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-			</div>
+			<div class="tab_content fri-content"></div>
 
 			<!-- 토 -->
-			<div class="tab_content sat-content">
-				<div class="s-time-list">
-					<div class="s-time-a">00:00 ~ 12:00</div>
-					<div class="s-time-a-data">
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-a">12:00 ~ 17:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">test2</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:00 ~ 18:29</div>
-					<div class="s-time-b-data">
-            <div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-          </div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:30 ~ 18:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:00 ~ 19:29</div>
-					<div class="s-time-b-data">
-            <div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-          </div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:30 ~ 19:59</div>
-					<div class="s-time-b-data">
-            <div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-						<div id="s-data">토요일</div>
-          </div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:00 ~ 20:29</div>
-					<div class="s-time-b-data">
-
-						<div id="s-data">test3</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:30 ~ 20:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:00 ~ 21:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:30 ~ 21:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:00 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:00 ~ 23:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:30 ~ 23:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-			</div>
+			<div class="tab_content sat-content"></div>
 
 			<!-- 일 -->
-			<div class="tab_content sun-content">
-				<div class="s-time-list">
-					<div class="s-time-a">00:00 ~ 12:00</div>
-					<div class="s-time-a-data">
-						<div id="s-data">일요일</div>
-						<div id="s-data">일요일</div>
-						<div id="s-data">일요일</div>
-						<div id="s-data">일요일</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-a">12:00 ~ 17:59</div>
-					<div class="s-time-a-data">
-						<div id="s-data">test2</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:00 ~ 18:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">18:30 ~ 18:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:00 ~ 19:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">19:30 ~ 19:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:00 ~ 20:29</div>
-					<div class="s-time-b-data">
-
-						<div id="s-data">test3</div>
-					</div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">20:30 ~ 20:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:00 ~ 21:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">21:30 ~ 21:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:00 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">22:30 ~ 22:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:00 ~ 23:29</div>
-					<div class="s-time-b-data"></div>
-				</div>
-				<div class="s-time-list">
-					<div class="s-time-b">23:30 ~ 23:59</div>
-					<div class="s-time-b-data"></div>
-				</div>
-			</div>
+			<div class="tab_content sun-content"></div>
 
 			<div class="schedule-insert-container">
 				<!-- 로그인 한 사람만 인서트 가능하도록 value에 세션값 넣어서 js에서 체크 -->
@@ -747,9 +205,21 @@
 				</div>
 			</div>
 		</div>
-		<h3>시간쪼개는 단위</h3>
-		<h4>00시~12시 1블록</h4>
-		<h4>12시~18시 1블록</h4>
-		<h4>18시~24시까지 30분단위로 1블록</h4>
+	</div>
+	<h3>======</h3>
+	${monSchedule }
+	<h3>======</h3>
+	${tueSchedule }
+	<h3>======</h3>
+	${wenSchedule }
+	<h3>======</h3>
+	${thrSchedule }
+	<h3>======</h3>
+	${friSchedule }
+	<h3>======</h3>
+	${satSchedule }
+	<h3>======</h3>
+	${sunSchedule }
+	
 </body>
 </html>

@@ -1,52 +1,93 @@
 @charset "UTF-8";
 
-.mene-lists a {
+.menu-lists a {
   color: inherit; /* 부모 요소의 색상 상속 */
   text-decoration: none; /* 밑줄 제거 */
 }
 
-nav {
+.main-menu-all {
+  margin: 0px;
+  padding: 0px;
   display: flex;
   height: 90px;
   background-color: white;
+  font-weight: bold;
 }
-
+.main-menu-all:hover {
+  cursor: pointer;
+}
 .main-body {
   background-color: #ffd3d3;
 }
 
 .main-logo {
+  font-size: 20pt;
   margin-left: 75px;
   width: 175px;
-  height: 84px;
-  background-color: #b8178b;
-  display: flex;
+  background-color: lightpink;
+  text-align: center;
 }
 
-.mene-lists {
+.menu-lists {
   list-style: none;
   display: flex;
-  margin-left: 55px;
-  margin-top: 30px;
+  justify-content: space-between;
+  flex: 1;
+  /* margin-left: 55px; */
+  /* margin-top: 30px; */
 }
 
-.mene-lists > li {
-  font-size: 25px;
-  margin-right: 80px;
+.menu-lists > div {
+  font-size: 18pt;
+  /* margin-right: 80px; */
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-out;
 }
+.menu-lists-member:hover {
+  background-color: #b7f1ff;
+}
+.menu-lists-archive:hover {
+  background-color: #d1b7a4;
+}
+.menu-lists-calendar:hover {
+  background-color: #ffe089;
+}
+.menu-lists-schedule:hover {
+  background-color: #cf80e0;
+}
+.menu-lists-trade:hover {
+  background-color: #ffa658;
+}
+.menu-lists-announcement:hover {
+  background-color: #bdde87;
+}
+
 .nav-userinfo {
-  margin-left: 129px;
-  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  margin-right: 100px;
+  margin-left: 50px;
+}
+
+.content {
+  margin: 0px;
+  padding: 0px;
 }
 
 .live-members {
   margin-top: 50px;
 }
+
 .live-members > .members {
   font-size: 32px;
   margin-left: 335px;
   color: #756363;
 }
+
 .live-icon {
   width: 50px;
   height: 50px;
@@ -63,8 +104,11 @@ nav {
 }
 
 .sliderandbutton {
-  margin-left: 290px;
+  /*   margin-left: 290px; */
   margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider {
@@ -72,39 +116,112 @@ nav {
   margin-left: auto;
 }
 
-.prev,
-.next {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
+.prev-button,
+.next-button {
+  background-color: #ff69b4; /* 핑크색 배경 */
   color: white;
   border: none;
   font-size: 2rem;
   padding: 10px;
   cursor: pointer;
   z-index: 1000;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.prev-button::before,
+.next-button::before {
+  content: "◀"; /* 화살표 아이콘 */
+  display: inline-block;
+}
+
+.next-button::before {
+  content: "▶"; /* 오른쪽 화살표 */
+}
+
+.prev-button:hover,
+.next-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
 .prev {
-  left: 280px;
+	margin-right: 50px;
+}
+.next {
+	margin-left: 50px;
+}
+
+.prev-button {
+   left: 260px; 
+   bottom: 80px; 
+}
+
+.next-button {
+  margin-left: 50px;
+}
+/* .prev,
+.next {
+  position: absolute;
+  background-color: #ff69b4; // 핑크색 배경 
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.prev::before,
+.next::before {
+  content: "◀"; // 화살표 아이콘 
+  display: inline-block;
+}
+
+.next::before {
+  content: "▶"; // 오른쪽 화살표 
+}
+
+.prev:hover,
+.next:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.prev {
+  left: 260px;
   bottom: 80px;
 }
 
 .next {
-  left: 1600px;
-  bottom: 80px;
-}
+  margin-left: 50px;
+} */
 
 .live-contents {
-  display: flex;
+  /*   display: flex; */
   /* justify-content: center;  */
-  margin-top: 102px;
+  margin-top: 30px;
 }
 
-.live-content {
+.live-content-video {
   width: 1280px;
-  height: 810px; /* YouTube 비디오의 16:9 비율에 맞춘 높이 */
+  height: 720px; /* YouTube 비디오의 16:9 비율에 맞춘 높이 */
   background-color: white;
-  margin: 0 47px;
+  margin: 0 0px;
+}
+.live-content-video-null {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1280px;
+  height: 720px; /* YouTube 비디오의 16:9 비율에 맞춘 높이 */
+  background-color: white;
+  margin: 0 0px;
+  font-size: 40pt;
 }
 
 .live-stream {
@@ -123,61 +240,95 @@ nav {
   width: 100%;
   height: 100%;
 }
-
+/*
 .live-content {
-  /* width: 960px;
+  width: 960px;
   height: 501px;
-  background-color: white; */
+  background-color: white;
   margin-left: 47px;
   margin-right: 47px;
-}
+} */
+
 .main-dday-container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  white-space: nowrap;
+  padding: 20px;
+  background: #f5f5f5; /* 배경색 설정 */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* 컨테이너를 벗어난 텍스트 숨기기 */
+  white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
 }
 
 .dday-items-wrapper {
-  display: inline-block;
-  padding-left: 100%;
-  animation: slide 15s linear infinite;
+  display: inline-block; /* 수평 슬라이드를 위해 인라인 블록으로 설정 */
+  animation: slide 15s linear infinite; /* 슬라이드 애니메이션 설정 */
 }
 
 .dday-item {
-  display: inline-block;
-  padding-right: 50px; /* 각 항목 간의 간격 */
+  display: flex; /* 아이템을 수평으로 나란히 배치 */
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Comic Sans MS", cursive, sans-serif; /* 일본 애니메이션 느낌의 글꼴 */
+  color: #333;
+  margin-right: 10px; /* 아이템 사이의 간격 */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dday-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dday-item span {
+  display: flex;
+  font-size: 1.2rem;
+  margin: 0 10px;
+  margin-bottom: 5px;
+  color: #ff69b4; /* 밝은 핑크색 텍스트 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  animation: textAnimation 1s ease-in-out infinite alternate;
 }
 
 @keyframes slide {
   from {
-    transform: translateX(0%);
+    transform: translateX(100%);
   }
+
   to {
     transform: translateX(-100%);
   }
 }
 
+@keyframes textAnimation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
 .main-dday-container {
-  margin-top: 50px;
-  border: 1px solid black;
   background-color: white;
   height: 30px;
   display: flex;
 }
-.main-dday-container div {
-  border: 1px solid black;
-}
+
 .main-dday-container div div {
   margin-right: 50px;
 }
+
 .main-dday-container > div {
   display: flex;
 }
+.main-news-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
 .main-news {
-  margin-left: 330px;
-  margin-top: 54px;
-  width: 1290px;
+  width: 1280px;
   height: 350px;
   display: flex;
 }
@@ -200,7 +351,6 @@ nav {
 .news-board > li {
   top: 0;
   height: 68px;
-
   list-style: none;
   bottom: 10px;
 }
@@ -210,19 +360,49 @@ nav {
   height: 350px;
 }
 
+.today-vtuber-wrapper {
+  display: flex;
+  justify-content: center;
+}
 .today-vtuber {
   margin-top: 127px;
-  margin-left: 340px;
   width: 1280px;
-  height: 751px;
+  height: 675px;
   background-color: white;
+  border-radius: 12px;
 }
-.today-vtuber div {
-  border: 1px solid black;
+
+.today-vtuber p {
+  top: 0;
+  font-family: "Comic Neue", cursive; /* 귀여운 느낌의 글꼴 사용 */
+  font-size: 1.5rem; /* 글자 크기 */
+  color: #ff69b4; /* 밝은 핑크색 글자 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 텍스트 그림자 */
+  background: linear-gradient(to right, #ff9a9e, #fad0c4); /* 그라데이션 배경 */
+  -webkit-background-clip: text; /* 텍스트에 배경 클립 */
+  -webkit-text-fill-color: transparent; /* 텍스트 채우기 색상 투명 */
+  display: inline-block; /* 텍스트를 인라인 블록으로 설정 */
+  padding: 10px 20px; /* 내부 여백 */
+  border: 2px solid #ff69b4; /* 테두리 색상 */
+  border-radius: 12px; /* 둥근 테두리 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
+  position: relative;
+  animation: gradientMove 3s infinite; /* 그라데이션 움직임 애니메이션 */
+  margin: 0;
 }
-.today-vtuber > p {
-  font-size: 32px;
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
+
 .today-vtuber-archive-etc {
   display: flex;
   flex-wrap: wrap;
@@ -235,6 +415,7 @@ nav {
   background-color: white;
   /* margin-top: 115px; */
 }
+
 .today-vtuber-photo > img {
   width: auto;
   height: 100%;
@@ -251,24 +432,45 @@ nav {
   display: flex;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
 .today-vtuber-etc {
   margin-left: 65px;
-  background-color: white;
+  background-color: #fff;
   text-align: center;
   display: flex;
-  align-content: space-between;
-  width: 480px;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  border: 2px solid #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Noto Sans KR', sans-serif;
+  padding: 20px;
 }
+
+.today-vtuber-etc-addr {
+  width: 100%;
+  margin-top: 20px;
+}
+
 .today-vtuber-address-box {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 300px;
+  width: 100%;
 }
+
+.today-vtuber-address-box div {
+  margin: 10px;
+}
+
+
+
 .today-vtuber-address-box > div {
   border-radius: 20px;
   padding: 1%;
-  margin: 1%;
+  margin: 10px 0; /* 항목 사이의 여백 */
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -281,9 +483,40 @@ nav {
   transform: scale(1.2);
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap");
+
 .today-vtuber-etc-name {
-  font-size: 18pt;
-  width: 100%;
+  font-family: "Comic Neue", cursive; /* 귀여운 느낌의 글꼴 사용 */
+  font-size: 2rem; /* 글자 크기 */
+  color: #ff69b4; /* 밝은 핑크색 글자 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 텍스트 그림자 */
+  background: linear-gradient(to right, #ff9a9e, #fad0c4); /* 그라데이션 배경 */
+  -webkit-background-clip: text; /* 텍스트에 배경 클립 */
+  -webkit-text-fill-color: transparent; /* 텍스트 채우기 색상 투명 */
+  position: relative;
+  animation: wobble 1.5s infinite; /* 애니메이션 효과 */
+  display: inline-block; /* 텍스트를 인라인 블록으로 설정 */
+  padding: 10px 20px; /* 내부 여백 */
+  border: 2px solid #ff69b4; /* 테두리 색상 */
+  border-radius: 12px; /* 둥근 테두리 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
+  bottom: 20px;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.today-vtuber-address-box > div > a{
+ text-decoration: none;
 }
 
 #X {
@@ -291,6 +524,7 @@ nav {
   padding-right: 20px;
   background-color: black;
   color: white;
+  font-size: larger;
 }
 
 #youtube {
@@ -368,40 +602,136 @@ nav {
   background-color: black;
   color: white;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 footer {
-  height: 346px;
-  background-color: white;
+  margin-top: 100px;
+  padding: 40px 0;
+  background-color: #f0f0f0; /* 간지나는 옅은 회색 */
+  font-family: 'Roboto', sans-serif;
+  color: #333;
 }
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-menu-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.footer-logo a {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+}
+
+.footer-menu-lists {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.footer-menu-lists > div {
+  font-size: 22px;
+  text-align: center;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+  
+}
+.footer-menu-lists > div > a{
+  text-decoration: none;
+  color: #333;
+}
+
+
+
+.footer-contents {
+  display: flex;
+  gap: 40px;
+  padding-top: 20px;
+}
+
+.footer-contents > div {
+  flex: 1;
+}
+
+.footer-content-haconect,
+.footer-content-haconaka,
+.footer-content-teamname {
+  font-size: 16px;
+}
+
+.footer-content-haconect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-content-haconect-icon {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.footer-content-haconect-icon img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.footer-content-haconect-icon img:hover {
+  transform: scale(1.1);
+}
+
+.footer-content-haconaka {
+  text-align: center;
+}
+
+.footer-content-haconaka img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.footer-content-haconaka img:hover {
+  transform: scale(1.1);
+}
+
+.footer-content-teamname {
+  text-align: center;
+  line-height: 1.6;
+}
+
+.footer-menu-lists-member:hover {
+  background-color: #c4bec9;
+}
+.footer-menu-lists-archive:hover {
+  background-color: #d4485f;
+}
+.footer-menu-lists-calendar:hover {
+  background-color: #de617e;
+}
+.footer-menu-lists-schedule:hover {
+  background-color: #77788f;
+}
+.footer-menu-lists-trade:hover {
+  background-color: #b2e2f7;
+}
+.footer-menu-lists-announcement:hover {
+  background-color: #bf8ade;
+
 
 .archive-contents {
   display: flex;
-}
-.archive-contents > p {
-  margin-right: 15px;
-}
-
-.archive-icon {
-  width: 50px;
-  height: 50px;
-}
-.archive-membername {
-  width: 90px;
-  margin-right: 25px;
-}
-.archive-collabo {
-  width: 150px;
-}
-.archive-category {
-  width: 150px;
-}
-.archive-date {
-  margin-right: 35px;
-}
-.archive-time {
-  margin-right: 35px;
-}
-.archive-collabomember {
-  width: 180px;
 }
 
 .archive-title {
@@ -410,14 +740,6 @@ footer {
 
 .archive-thumbnail {
   margin-right: 0;
-}
-
-.archive-contents-update {
-  display: flex;
-}
-.archive-bottom {
-  display: flex;
-  justify-content: space-between;
 }
 
 /* login button css */
@@ -443,4 +765,9 @@ footer {
 .loginbtn:hover {
   background: #3cb0fd;
   text-decoration: none;
+}
+
+.footer-menus {
+  display: flex;
+  margin-top: 50px;
 }

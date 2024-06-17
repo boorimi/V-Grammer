@@ -52,8 +52,8 @@ public class TwitterCallbackServlet extends HttpServlet {
 				
 				ConfigurationBuilder cb = new ConfigurationBuilder();
 				cb.setDebugEnabled(true)
-				.setOAuthConsumerKey("c7X647iwEHvSF8Eu4CIRulro0")
-				.setOAuthConsumerSecret("T4Pof1honeCyrvNhuEnR0Pel1fcRreSzkqQqx6a2YFNI2NELcF")
+				.setOAuthConsumerKey("gy2OsmzCmmbslkC5QMj46aD4L")
+				.setOAuthConsumerSecret("Sgv9cF3R5BXves1VterhrKQSikGtQsU0G7Pt9nU0fqBkVC20TS")
 				.setOAuthAccessToken(accessToken)
 				.setOAuthAccessTokenSecret(accessTokenSecret);
 				
@@ -87,6 +87,9 @@ public class TwitterCallbackServlet extends HttpServlet {
 					request.getSession().setAttribute("twitterScreenName", screenName);
 					request.getSession().setAttribute("twitterName", name);
 					request.getSession().setAttribute("twitterProfileImgUrl", profileImgUrl);
+					
+					
+					
 					
 					// 종료 후 로그인 컨트롤러로 보내서 기존회원인지 검증
 					response.sendRedirect("LoginC");

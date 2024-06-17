@@ -18,7 +18,7 @@ public class HC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		  
 		HomeDAO.HDAO.getStreamId(request);
 		HomeDAO.HDAO.getRecommendVtuber(request);
 		List<DdayDTO> ddayList = DdayDAO.selectAllDdays();

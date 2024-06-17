@@ -1,5 +1,6 @@
 package com.vg.jw;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -211,6 +212,94 @@ public class AccountDAO {
 
 		twitterLoginSession.invalidate();
 
+	}
+
+	public static void updateUserInfo(HttpServletRequest request) {
+		
+			System.out.println("회원정보 업데이트 메서드 진입");
+			Connection con = null;
+			PreparedStatement pstmt = null;
+
+			// 기존 계정정보 가져오기
+			HttpSession LoginSession = request.getSession();
+			AccountDTO accountInfo = (AccountDTO) LoginSession.getAttribute("accountInfo");
+			
+			long userId = accountInfo.getU_twitter_id();
+			String oldNickName = accountInfo.getU_nickname();
+			String oldProfileImg = accountInfo.getU_profile_img();
+			
+			System.out.println("회원의 기존 정보");
+			System.out.println(userId);
+			System.out.println(oldNickName);
+			System.out.println(oldProfileImg);
+			
+			
+			// 사진받을 준비
+			String path = request.getServletContext().getRealPath("account/profileImg");
+			System.out.println("프로필사진 경로: " + path);
+			try {
+
+				// 파일처리
+				MultipartRequest mr = new MultipartRequest(request, path, 1024 * 1024 * 10, "utf-8",
+						new DefaultFileRenamePolicy());
+
+				// 변경을 위해 입력한 값 받아오기
+				String newNickName = mr.getParameter("new-nickname");
+				String newProfileImg = mr.getFilesystemName("new-profile-img");
+				System.out.println(newNickName);
+				System.out.println(newProfileImg);
+
+				// 이미지를 등록하지 않았을 경우 기존 이미지로 설정
+				if (newProfileImg == null) {
+					System.out.println("이미지 등록 안함");
+					newProfileImg = oldProfileImg;
+				} 
+
+				System.out.println("DB에 새로 들어갈 닉네임 값: " + newNickName);
+				System.out.println("DB에 새로 들어갈 이미지파일 경로: " + newProfileImg);
+
+
+				con = DBManager.connect();
+				
+				String sql ="";
+				pstmt = con.prepareStatement(sql);
+				
+				if (newNickName != null && newProfileImg != null) {
+				    sql = "UPDATE haco_user SET u_nickname = ?, u_profile_img = ? WHERE u_twitter_id = ?";
+				    pstmt = con.prepareStatement(sql);
+				    pstmt.setString(1, newNickName);
+				    pstmt.setString(2, newProfileImg);
+				    pstmt.setLong(3, userId);
+				} else if (newNickName == null && newProfileImg != null) { // 닉네임이 null, 사진만 업데이트
+				    sql = "UPDATE haco_user SET u_profile_img = ? WHERE u_twitter_id = ?";
+				    pstmt = con.prepareStatement(sql);
+				    pstmt.setString(1, newProfileImg);
+				    pstmt.setLong(2, userId);
+				} else if (newNickName != null && newProfileImg == null) { // 프로필 이미지가 null, 닉네임만 업데이트
+				    sql = "UPDATE haco_user SET u_nickname = ? WHERE u_twitter_id = ?";
+				    pstmt = con.prepareStatement(sql);
+				    pstmt.setString(1, newNickName);
+				    pstmt.setLong(2, userId);
+				}
+
+
+				if (pstmt.executeUpdate() >= 1) {
+					System.out.println("유저 등록 성공");
+
+					//예전 이미지 삭제
+					if (!newProfileImg.equals(oldProfileImg)) {
+	                    File f = new File(path+"/"+oldProfileImg); //経路名select
+	                    f.delete();
+	                }
+					
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(con, pstmt, null);
+			}
+		
 	}
 
 	// 로컬 로그인 사용시 로그인체크 메서드

@@ -12,13 +12,14 @@
 		<div>
 			<h2>情報修正</h2>
 		</div>
-		<form action="">
+		<form action="UserInfoC" method="post" enctype="multipart/form-data">
 			<div class="mypage-userInfo-items">
 				<div>
 					<img alt="" src="${sessionScope.accountInfo.u_profile_img }" />
 				</div>
 				<div>
 					<h3>プロフィール画像変更</h3>
+					<input type="file" name="new-profile-img">
 				</div>
 			</div>
 			<div class="mypage-userInfo-items">
@@ -26,7 +27,7 @@
 					<h3>ハコナカニックネーム</h3>
 				</div>
 				<div>
-					<input value="${sessionScope.accountInfo.u_nickname }">
+					<input value="${sessionScope.accountInfo.u_nickname }" name="new-nickname">
 				</div>
 			</div>
 			<div class="mypage-userInfo-items">

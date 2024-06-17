@@ -13,7 +13,7 @@ public class MemberDTO {
 	private String m_introduce;
 	private String i_icon;
 	private String i_img;
-	private String i_3side;
+	private String m_audio;
 	private String i_background;
 	private ArrayList<AddressDTO> address;
 	private ArrayList<HashTagDTO> hashTag;
@@ -102,12 +102,12 @@ public class MemberDTO {
 		this.i_img = i_img;
 	}
 
-	public String getI_3side() {
-		return i_3side;
+	public String getM_audio() {
+		return m_audio;
 	}
 
-	public void setI_3side(String i_3side) {
-		this.i_3side = i_3side;
+	public void setM_audio(String m_audio) {
+		this.m_audio = m_audio;
 	}
 
 	public String getI_background() {
@@ -135,7 +135,7 @@ public class MemberDTO {
 	}
 
 	public MemberDTO(String m_pk, String m_name, String m_gen, String m_birth, String m_debut, String m_mother_name,
-			String m_mother_twitter, String m_introduce, String i_icon, String i_img, String i_3side,
+			String m_mother_twitter, String m_introduce, String i_icon, String i_img, String m_audio,
 			String i_background, ArrayList<AddressDTO> address, ArrayList<HashTagDTO> hashTag) {
 		super();
 		this.m_pk = m_pk;
@@ -148,7 +148,7 @@ public class MemberDTO {
 		this.m_introduce = m_introduce;
 		this.i_icon = i_icon;
 		this.i_img = i_img;
-		this.i_3side = i_3side;
+		this.m_audio = m_audio;
 		this.i_background = i_background;
 		this.address = address;
 		this.hashTag = hashTag;
@@ -158,7 +158,7 @@ public class MemberDTO {
 	public String toString() {
 		return "MemberDTO [m_pk=" + m_pk + ", m_name=" + m_name + ", m_gen=" + m_gen + ", m_birth=" + m_birth
 				+ ", m_debut=" + m_debut + ", m_mother_name=" + m_mother_name + ", m_mother_twitter=" + m_mother_twitter
-				+ ", m_introduce=" + m_introduce + ", i_icon=" + i_icon + ", i_img=" + i_img + ", i_3side=" + i_3side
+				+ ", m_introduce=" + m_introduce + ", i_icon=" + i_icon + ", i_img=" + i_img + ", m_audio=" + m_audio
 				+ ", i_background=" + i_background + ", address=" + address + ", hashTag=" + hashTag + "]";
 	}
 	
