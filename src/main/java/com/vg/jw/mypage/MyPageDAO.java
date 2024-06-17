@@ -932,9 +932,22 @@ public class MyPageDAO {
 				if (pstmt.executeUpdate() == 1) {
 					System.out.println("굿즈 데이터 삭제 성공");
 				} 
+					
+			}else {
+				sql = "UPDATE haco_goods SET g_count = ? WHERE g_u_t_id = ? AND g_category = ? AND g_m_pk = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, goods_count);
+				pstmt.setLong(2, userId);
+				pstmt.setString(3, category);
+				pstmt.setInt(4, member_pk);
 				
+				if (pstmt.executeUpdate() == 1) {
+					System.out.println("굿즈 데이터 업데이트 성공");
+				}
 				
+			
 			}
+			
 			
 
 		
