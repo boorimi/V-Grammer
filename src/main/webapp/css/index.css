@@ -154,12 +154,12 @@
 }
 
 .prev-button {
-  /* left: 260px; */
-  /* bottom: 80px; */
+   left: 260px; 
+   bottom: 80px; 
 }
 
 .next-button {
-  /*argin-left: 50px;*/
+  margin-left: 50px;
 }
 /* .prev,
 .next {
