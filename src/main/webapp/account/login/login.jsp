@@ -10,7 +10,7 @@
 
 <!-- index.jsp에 include할 페이지 -->
 <body>
-	<form action="LoginC" method="post">
+	<form action="TwitterLoginServlet">
 		<button class="login-button">Login with X</button>
 	</form>
 </body>

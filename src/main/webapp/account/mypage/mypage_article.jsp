@@ -1,3 +1,4 @@
+<%@page import="com.vg.ds.trade.TradeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -13,11 +14,16 @@
 <script src="js/trade.js" defer></script>
 <link rel="stylesheet" href="css/trade.css" />
 </head>
+<%
+
+%>
+
 <body>
 	<div class="trade-container">
 		<div class="trade-title">
 			<h1>トレード</h1>
 		</div>
+
 		<div style="text-align: center;">
 			<button class="trade-openCategorys">カテゴリーで検索 ▼</button>
 		</div>
@@ -33,14 +39,15 @@
 			<div class="trade-category" style="display: ${displayValue};">
 				<c:forEach items="${checkboxItems }" var="cbi">
 					<div>
-						<label><input type="checkbox"
-							name="goodsCategory" value="${cbi.value }"
+						<label><input type="checkbox" name="goodsCategory"
+							value="${cbi.value }"
 							${fn:contains(category3, cbi.value) ? 'checked="checked"' : ''} />${cbi.label }</label>
 					</div>
 				</c:forEach>
 				<button id="trade-search-category">検索</button>
 			</div>
 		</form>
+
 		<div class="trade-conmain">
 			<!-- 본문페이지 for문 시작 -->
 			<c:set var="totalItems" value="${fn:length(trades)}" />
@@ -92,11 +99,11 @@
 								<div>
 									<div>${tc.text}</div>
 									<c:if test="${sessionScope.twitterId == tc.sTwitterId}">
-									<div>
-										<a onclick="tradeDelete(${t.pk})"> <img class="crud-icon"
-											src="haco_img/delete.png" alt="">
-										</a>
-									</div>
+										<div>
+											<a onclick="tradeDelete(${t.pk})"> <img class="crud-icon"
+												src="haco_img/delete.png" alt="">
+											</a>
+										</div>
 									</c:if>
 								</div>
 							</div>
@@ -120,38 +127,38 @@
 			<!-- 본문페이지 for문 끝 -->
 		</div>
 		<!--  여기부터 페이징  -->
-		<div class="trade-bottom">
+		<%-- <div class="trade-bottom">
 			<div>
-				<a href="TradePage?p=1${category3 }">最初に</a>
+				<a href="ArticleC?p=1${category3 }" class="paging-link">最初に</a>
 			</div>
 			<c:set var="pageUnit" value="4" />
 			<c:set var="page"
 				value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}" />
 			<div>
 				<c:if test="${page != 0}">
-					<a href="TradePage?p=${page - pageUnit + 1}${category3 }">이전
-						${pageUnit }페이지</a>
+					<a href="ArticleC?p=${page - pageUnit + 1}${category3 }"
+						class="paging-link">이전 ${pageUnit }페이지</a>
 				</c:if>
 			</div>
 			<div style="display: flex">
 				<c:forEach var="i" begin="${page + 1 }"
 					end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}">
 					<div class="trade-page-no">
-						<a href="TradePage?p=${i }${category3 }">[${i }]</a>
+						<a href="ArticleC?p=${i }${category3 }" class="paging-link">[${i }]</a>
 					</div>
 				</c:forEach>
 			</div>
 			<div>
 				<c:if
 					test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}">
-					<a href="TradePage?p=${page + pageUnit + 1 }${category3 }">다음
-						${pageUnit }페이지</a>
+					<a href="ArticleC?p=${page + pageUnit + 1 }${category3 }"
+						class="paging-link">다음 ${pageUnit }페이지</a>
 				</c:if>
 			</div>
 			<div>
-				<a href="TradePage?p=${pageCount}${category3 }">最後に</a>
+				<a href="ArticleC?p=${pageCount}${category3 }" class="paging-link">最後に</a>
 			</div>
-		</div>
+		</div> --%>
 	</div>
 	<!-- <div>
       <input id="search-input" />
