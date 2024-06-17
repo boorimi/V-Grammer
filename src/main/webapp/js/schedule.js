@@ -8,17 +8,28 @@ $(document).ready(function() {
 						</div>`;
 
 		for (var i = 1; i < 8; i++) {
-			let sData = $(".day" + i + "-content .s-data-box");
+			let sDataBox = $(".day" + i + "-content .s-data-box");
 
-			$(sData).each((idx, s) => {
-				let content2 = $(content).clone();
+			$(sDataBox).each((idx, s) => {
 				let start = parseInt($(s).attr("start"));
 				let end = parseInt($(s).attr("end"));
+				
+				// 시간순으로 div 붙이기
+				data[i - 1].sort((a, b) => a.intTime - b.intTime);
 
 				$.each(data[i - 1], (j, obj) => {
 					if (start <= obj.intTime && obj.intTime < end) {
-						$(content2).text(obj.m_name + " " + obj.s_time);
-						$(s).append(content2);
+						
+						let sData = $("<div></div>").addClass("s-data");
+						
+						let mName = $("<div></div>").text(obj.m_name);
+						let sTime = $("<div></div>").text(obj.s_time);
+						
+						sData.append(sTime).append(mName);
+						
+//						content2.append(sData);
+						$(s).append(sData);
+						
 					}
 				});
 

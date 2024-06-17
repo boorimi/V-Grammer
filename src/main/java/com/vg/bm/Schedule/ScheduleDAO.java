@@ -111,7 +111,7 @@ public class ScheduleDAO {
 				String strTime = formatDate.format(rs.getTime(5));
 				int intTime = Integer.parseInt(strTime);
 
-				System.out.println(intTime);
+//				System.out.println(intTime);
 
 				// 방송 요일 구분
 				for (int i = 0; i < 7; i++) {
@@ -123,11 +123,11 @@ public class ScheduleDAO {
 					}
 				}
 			}
-			System.out.println("이번주 월요일 날짜 : " + thisWeek2.get(0));
-			System.out.println("월스케줄 : " + monSchedule);
+//			System.out.println("이번주 월요일 날짜 : " + thisWeek2.get(0));
+//			System.out.println("월스케줄 : " + monSchedule);
 			Gson gson = new Gson();
 			String json = gson.toJson(schedules);
-			System.out.println(json);
+//			System.out.println(json);
 			
 			
 //			System.out.println("=======================");
