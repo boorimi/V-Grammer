@@ -1,13 +1,15 @@
 package com.vg.sw.dday;
 
+import java.time.LocalDate;
+
 public class DdayDTO {
 	private int m_pk;
 	private String m_name;
 	private String m_debut;
-	private String m_birth;
+	private String m_birth; // 문자열로 변경
 	private long daysUntilDday; // 새로운 필드 추가
 
-
+	// Getter and Setter methods
 	public int getM_pk() {
 		return m_pk;
 	}
@@ -62,6 +64,4 @@ public class DdayDTO {
 		return "DdayDTO [m_pk=" + m_pk + ", m_name=" + m_name + ", m_debut=" + m_debut + ", m_birth=" + m_birth
 				+ ", daysUntilDday=" + daysUntilDday + "]";
 	}
-
-
 }
