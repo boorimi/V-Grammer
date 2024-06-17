@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
@@ -24,8 +25,8 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk, 퍼스널컬러 / 이미지 테이블의 icon, 총 4개의 컬럼이 나옴
@@ -112,12 +113,12 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
 		String MemberSql = "select hm.m_pk, hm.m_name, hm.m_personalcolor, hi.i_icon from haco_member hm, haco_image hi where hm.m_pk = hi.i_m_pk";
-		
+
 		// icon, 멤버이름, 멤버pk, 유저트위터id, 굿즈수량 등 실제로 필요한 정보들 - DTO에 모아서 정리할 값들임
 		String sql = "SELECT hg.*, hi.i_icon, hm.m_name, hm.m_personalcolor from haco_goods hg, haco_member hm, haco_image hi WHERE hi.i_m_pk = hg.g_m_pk and hi.i_m_pk = hm.m_pk and g_u_t_id = ? and g_category ='57mmCanBadge'";
 
@@ -197,7 +198,7 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
@@ -275,7 +276,7 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
@@ -353,7 +354,7 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
@@ -431,7 +432,7 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
@@ -509,7 +510,7 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
@@ -587,7 +588,7 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
@@ -665,7 +666,7 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
@@ -743,7 +744,7 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk / 이미지 테이블의 icon. 총 3개의 컬럼이 나옴
@@ -813,7 +814,6 @@ public class MyPageDAO {
 
 	}
 
-	
 	public static void getGoodsInfo(HttpServletRequest request, String goodsCategory) {
 
 		System.out.println("getGoodsInfo메서드 진입");
@@ -824,8 +824,8 @@ public class MyPageDAO {
 		HttpSession twitterLoginSession = request.getSession();
 
 //		long twitterId = (long) twitterLoginSession.getAttribute("twitterId");
-		
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");		
+
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long twitterId = accountInfo.getU_twitter_id();
 
 		// 일단 멤버들 뿌려줄거 - 이 결과로 나오는건 멤버 테이블의 이름과, pk, 퍼스널컬러 / 이미지 테이블의 icon, 총 4개의 컬럼이 나옴
@@ -887,10 +887,10 @@ public class MyPageDAO {
 				System.out.println(a);
 			}
 
-			String attributeName = "Infos_"+category;
+			String attributeName = "Infos_" + category;
 			request.setAttribute(attributeName, haco_members);
-			//어트리뷰트명 ex) Infos_57mmCanBadge
-			
+			// 어트리뷰트명 ex) Infos_57mmCanBadge
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -898,5 +898,80 @@ public class MyPageDAO {
 		}
 
 	}
-	
+
+	public static void updateGoods(HttpServletRequest request, HttpServletResponse response, int pk, int count,
+			long u_twitter_id, String g_category, int previousCount) {
+
+		System.out.println("updateGoods 메서드 진입");
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		int member_pk = pk;
+		int goods_count = count;
+		long userId = u_twitter_id;
+		String category = g_category;
+		int oldCount = previousCount;
+
+		System.out.println("메서드에 전달된 pk: " + member_pk);
+		System.out.println("메서드에 전달된 count: " + goods_count);
+		System.out.println("메서드에 전달된 userId: " + userId);
+		System.out.println("메서드에 전달된 category: " + category);
+		System.out.println("메서드에 전달된 기존값: " + oldCount);
+
+		String sql = "";
+		try {
+
+			con = DBManager.connect();
+
+			//기존값이 0일 경우 insert문
+			if (oldCount == 0) {
+				sql = "insert into haco_goods values (null, ?, ?, ?, ?);";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setLong(1, userId);
+				pstmt.setInt(2, member_pk);
+				pstmt.setString(3, category);
+				pstmt.setInt(4, goods_count);
+
+				if (pstmt.executeUpdate() == 1) {
+					System.out.println("굿즈데이터 추가 성공");
+				}
+				
+				
+			} else {
+
+				if (goods_count == 0) { // 전달된 굿즈 카운트가0 -> 삭제문
+					sql = "DELETE FROM haco_goods WHERE g_u_t_id = ? AND g_category = ? AND g_m_pk = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setLong(1, userId);
+					pstmt.setString(2, category);
+					pstmt.setInt(3, member_pk);
+
+					if (pstmt.executeUpdate() == 1) {
+						System.out.println("굿즈 데이터 삭제 성공");
+					}
+
+				} else {
+					sql = "UPDATE haco_goods SET g_count = ? WHERE g_u_t_id = ? AND g_category = ? AND g_m_pk = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, goods_count);
+					pstmt.setLong(2, userId);
+					pstmt.setString(3, category);
+					pstmt.setInt(4, member_pk);
+
+					if (pstmt.executeUpdate() == 1) {
+						System.out.println("굿즈 데이터 업데이트 성공");
+					}
+
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+	}
+
 }
