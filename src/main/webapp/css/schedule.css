@@ -75,18 +75,18 @@
   align-items: center;
 }
 
-.s-data {
+.s-data-box {
   display: flex;
   flex-wrap: wrap;
-  width: calc(100% / 8);
+  width: 100%;
 }
 
-#s-data {
-  width: 100%;
+.s-data {
+  width: calc(100% / 7);
   height: 50px;
   background-color: cadetblue;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
