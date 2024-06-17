@@ -44,16 +44,6 @@
 
 </head>
 <%
-/* MyPageDAO.getBromide(request);
-MyPageDAO.get57mmCanBadge(request);
-MyPageDAO.get76mmCanBadge(request);
-MyPageDAO.getAkuki(request);
-MyPageDAO.getCoaster(request);
-MyPageDAO.getOmoideCyeki(request);
-MyPageDAO.getDmmMiniShikishi(request);
-MyPageDAO.getDmm57CanBadge(request);
-MyPageDAO.getDmmMiniAkusuta(request);
-MyPageDAO.getDmmCyeki(request); */
 
 String[] category = { "bromide", "57mmCanBadge", "76mmCanBadge", "akuki", "coaster", "omoideCyeki",
         "dmmMiniShikishi", "dmm57CanBadge", "dmmMiniAkusuta", "dmmCyeki" };
