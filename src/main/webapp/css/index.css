@@ -319,6 +319,7 @@
   background-color: white;
   height: 30px;
   display: flex;
+  margin-top: 50px;
 }
 
 .main-dday-container div div {
@@ -772,6 +773,7 @@ footer {
   background: #3cb0fd;
   text-decoration: none;
 }
+
 
 .footer-menus {
   display: flex;
