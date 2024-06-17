@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>D-Day and Contact List</title>
-<link rel="stylesheet" href="css/dday.css">
+    <title>D-Day and Contact List</title>
+    <link rel="stylesheet" href="css/dday.css">
 </head>
 <body class="html-body">
     <div class="container">
@@ -14,7 +14,8 @@
             <thead>
                 <tr>
                     <th>이름</th>
-                    <th>날짜</th>
+                    <th>데뷔 날짜</th>
+                    <th>생일 (월-일)</th> <!-- 수정된 부분 -->
                     <th>디데이까지 남은 일수</th>
                 </tr>
             </thead>
@@ -23,12 +24,13 @@
                     <tr>
                         <td>${dday.m_name}</td>
                         <td>${dday.m_debut}</td>
+                        <td>${dday.m_birth}</td> <!-- 수정된 부분 -->
                         <td>${dday.daysUntilDday}</td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
-<script src="js/dday.js"></script>
+    <script src="js/dday.js"></script>
 </body>
 </html>
