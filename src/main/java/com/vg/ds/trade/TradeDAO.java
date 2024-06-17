@@ -10,9 +10,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.vg.ds.announcement.AnnouncementDTO;
 import com.vg.ignore.DBManager;
+import com.vg.jw.AccountDTO;
 import com.vg.kw.archive.ArchiveDTO;
 
 public class TradeDAO {
@@ -422,27 +424,7 @@ public class TradeDAO {
 
 	}
 
-	public void deleteCommentsTrade(HttpServletRequest request) {
-
-		PreparedStatement pstmt = null;
-
-		try {
-
-			String sql = "delete from haco_tradegoods_comments where tc_pk = ?";
-			con = DBManager.connect();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, request.getParameter("no"));
-
-			if (pstmt.executeUpdate() == 1) {
-				System.out.println("삭제 성공!");
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(con, pstmt, null);
-		}
-		
-	}
-
 }
+
+
+
