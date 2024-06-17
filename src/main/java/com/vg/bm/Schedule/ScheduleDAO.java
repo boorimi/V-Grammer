@@ -15,6 +15,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.vg.ignore.DBManager;
 import com.vg.jw.AccountDTO;
 
@@ -22,8 +23,8 @@ public class ScheduleDAO {
 
 	private ArrayList<ScheduleDTO> monSchedule = null;
 	private ArrayList<ScheduleDTO> tueSchedule = null;
-	private ArrayList<ScheduleDTO> wenSchedule = null;
-	private ArrayList<ScheduleDTO> thrSchedule = null;
+	private ArrayList<ScheduleDTO> wedSchedule = null;
+	private ArrayList<ScheduleDTO> thuSchedule = null;
 	private ArrayList<ScheduleDTO> friSchedule = null;
 	private ArrayList<ScheduleDTO> satSchedule = null;
 	private ArrayList<ScheduleDTO> sunSchedule = null;
@@ -85,64 +86,82 @@ public class ScheduleDAO {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
-//			schedules = new ArrayList<ScheduleDTO>();
-//			monSchedule = new ArrayList<ScheduleDTO>();
-
 			SimpleDateFormat formatDate;
-			
+
+			// 요일
 			monSchedule = new ArrayList<ScheduleDTO>();
 			tueSchedule = new ArrayList<ScheduleDTO>();
-			wenSchedule = new ArrayList<ScheduleDTO>();
-			thrSchedule = new ArrayList<ScheduleDTO>();
+			wedSchedule = new ArrayList<ScheduleDTO>();
+			thuSchedule = new ArrayList<ScheduleDTO>();
 			friSchedule = new ArrayList<ScheduleDTO>();
 			satSchedule = new ArrayList<ScheduleDTO>();
 			sunSchedule = new ArrayList<ScheduleDTO>();
 			
-			List<ScheduleDTO> schedules[] = new List[] {monSchedule, tueSchedule, wenSchedule,
-					thrSchedule, friSchedule, satSchedule, sunSchedule};
-			
+			List<ScheduleDTO> schedules[] = new List[] { monSchedule, tueSchedule, wedSchedule, thuSchedule,
+					friSchedule, satSchedule, sunSchedule };
+
 			while (rs.next()) {
+
 				formatDate = new SimpleDateFormat("HH:mm");
 				String time = formatDate.format(rs.getTime(5));
 
+				// 방송 시간 구분
+				// String 시간을 int로 바꿔서 비교연산함
+				formatDate = new SimpleDateFormat("HHmm");
+				String strTime = formatDate.format(rs.getTime(5));
+				int intTime = Integer.parseInt(strTime);
+
+				System.out.println(intTime);
+
+				// 방송 요일 구분
 				for (int i = 0; i < 7; i++) {
 					if (rs.getString(4).equals(thisWeek2.get(i))) {
 						ScheduleDTO schedule = new ScheduleDTO(rs.getString(1), rs.getString(2), rs.getString(3),
-								rs.getString(4), time, rs.getString(6), rs.getString(7));
+								rs.getString(4), time, rs.getString(6), rs.getString(7), intTime);
+						
 						schedules[i].add(schedule);
 					}
 				}
 			}
-//			System.out.println("이번주 월요일 날짜 : " + thisWeek2.get(0));
+			System.out.println("이번주 월요일 날짜 : " + thisWeek2.get(0));
 			System.out.println("월스케줄 : " + monSchedule);
-			System.out.println("=======================");
-			System.out.println("화스케줄 : " + tueSchedule);
-			System.out.println("=======================");
-			System.out.println("수스케줄 : " + wenSchedule);
-			System.out.println("=======================");
-			System.out.println("목스케줄 : " + thrSchedule);
-			System.out.println("=======================");
-			System.out.println("금스케줄 : " + friSchedule);
-			System.out.println("=======================");
-			System.out.println("토스케줄 : " + satSchedule);
-			System.out.println("=======================");
-			System.out.println("일스케줄 : " + sunSchedule);
+			Gson gson = new Gson();
+			String json = gson.toJson(schedules);
+			System.out.println(json);
+			
+			
+//			System.out.println("=======================");
+//			System.out.println("화스케줄 : " + tueSchedule);
+//			System.out.println("=======================");
+//			System.out.println("수스케줄 : " + wedSchedule);
+//			System.out.println("=======================");
+//			System.out.println("목스케줄 : " + thrSchedule);
+//			System.out.println("=======================");
+//			System.out.println("금스케줄 : " + friSchedule);
+//			System.out.println("=======================");
+//			System.out.println("토스케줄 : " + satSchedule);
+//			System.out.println("=======================");
+//			System.out.println("일스케줄 : " + sunSchedule);
 //			System.out.println(schedules);
-			request.setAttribute("monSchedule", monSchedule);
-			request.setAttribute("tueSchedule", tueSchedule);
-			request.setAttribute("wenSchedule", wenSchedule);
-			request.setAttribute("thrSchedule", thrSchedule);
-			request.setAttribute("friSchedule", friSchedule);
-			request.setAttribute("satSchedule", satSchedule);
-			request.setAttribute("sunSchedule", sunSchedule);
+//			request.setAttribute("monSchedule", monjson);
+//			request.setAttribute("tueSchedule", tueSchedule);
+//			request.setAttribute("wenSchedule", wenSchedule);
+//			request.setAttribute("thrSchedule", thrSchedule);
+//			request.setAttribute("friSchedule", friSchedule);
+//			request.setAttribute("satSchedule", satSchedule);
+//			request.setAttribute("sunSchedule", sunSchedule);
+			request.setAttribute("weekSchedules", schedules);
+			request.setAttribute("weekJSON", json);
 
+		} catch (
 
-		} catch (Exception e) {
+		Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
 	}
+
 
 	public void insertSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
