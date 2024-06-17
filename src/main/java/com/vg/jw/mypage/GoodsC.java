@@ -13,13 +13,25 @@ public class GoodsC extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("GoodsC get 진입");
 		MyPageDAO.getBromide(request);
-		
-		
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		System.out.println("굿즈 컨트롤러 post 진입");
+		int g_m_pk = Integer.parseInt(request.getParameter("g_m_pk"));
+		int g_count = Integer.parseInt(request.getParameter("g_count"));
+		long u_twitter_id = Long.parseLong(request.getParameter("u_twitter_id"));
+		String g_category = request.getParameter("g_category");
+		
+		System.out.println("받아온 멤버 pk:"+g_m_pk);
+		System.out.println("받아온 굿즈 수량:" + g_count);
+		System.out.println("받아온 유저 id:" + u_twitter_id);
+		System.out.println("받아온 카테고리:" + g_category);
+		
+		
+		MyPageDAO.updateGoods(request, response, g_m_pk, g_count, u_twitter_id, g_category);
 	}
 
 }
