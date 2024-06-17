@@ -240,14 +240,14 @@
   width: 100%;
   height: 100%;
 }
-
+/*
 .live-content {
   width: 960px;
   height: 501px;
   background-color: white;
   margin-left: 47px;
   margin-right: 47px;
-}
+} */
 
 .main-dday-container {
   padding: 20px;
@@ -586,51 +586,114 @@
   color: white;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 footer {
   margin-top: 100px;
-  height: 350px;
-  background-color: rgb(210, 210, 210);
+  padding: 40px 0;
+  background-color: #f0f0f0; /* 간지나는 옅은 회색 */
+  font-family: 'Roboto', sans-serif;
+  color: #333;
 }
 
-.footer-menu-lists a {
-  color: inherit; /* 부모 요소의 색상 상속 */
-  text-decoration: none; /* 밑줄 제거 */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
+
 .footer-menu-all {
-  margin: 0px;
-  padding: 0px;
   display: flex;
-  height: 90px;
-  background-color: rgb(210, 210, 210);
-  font-weight: bold;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
 }
-.footer-logo {
-  font-size: 20pt;
-  margin-left: 75px;
-  width: 175px;
-  background-color: rgb(210, 210, 210);
-  text-align: center;
+
+.footer-logo a {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
 }
 
 .footer-menu-lists {
-  list-style: none;
   display: flex;
-  justify-content: space-between;
-  flex: 1;
-  /* margin-left: 55px; */
-  /* margin-top: 30px; */
+  gap: 20px;
+  list-style: none;
 }
 
 .footer-menu-lists > div {
-  font-size: 18pt;
-  /* margin-right: 80px; */
-  flex: 1;
+  font-size: 22px;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease-out;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+  
 }
+.footer-menu-lists > div > a{
+  text-decoration: none;
+  color: #333;
+}
+
+
+
+.footer-contents {
+  display: flex;
+  gap: 40px;
+  padding-top: 20px;
+}
+
+.footer-contents > div {
+  flex: 1;
+}
+
+.footer-content-haconect,
+.footer-content-haconaka,
+.footer-content-teamname {
+  font-size: 16px;
+}
+
+.footer-content-haconect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-content-haconect-icon {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.footer-content-haconect-icon img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.footer-content-haconect-icon img:hover {
+  transform: scale(1.1);
+}
+
+.footer-content-haconaka {
+  text-align: center;
+}
+
+.footer-content-haconaka img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.footer-content-haconaka img:hover {
+  transform: scale(1.1);
+}
+
+.footer-content-teamname {
+  text-align: center;
+  line-height: 1.6;
+}
+
 .footer-menu-lists-member:hover {
   background-color: #c4bec9;
 }
@@ -648,34 +711,7 @@ footer {
 }
 .footer-menu-lists-announcement:hover {
   background-color: #bf8ade;
-}
-.footer-contents {
-  display: flex;
-  height: 255px;
-}
-.footer-contents > div {
-  margin: 20px 50px;
-}
-.footer-contents img {
-  width: 50px;
-  height: 50px;
-}
-.footer-content-haconect {
-  font-size: 18pt;
-}
-.footer-content-haconect-icon {
-  display: flex;
-}
 
-.footer-content-haconect-icon > div {
-  margin: 10px;
-}
-.footer-content-haconaka {
-  font-size: 18pt;
-}
-.footer-content-teamname {
-  font-size: 14pt;
-}
 
 .archive-contents {
   display: flex;

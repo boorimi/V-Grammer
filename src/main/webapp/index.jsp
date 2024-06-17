@@ -91,48 +91,47 @@ pageEncoding="UTF-8"%>
         </div>
         <div class="footer-contents">
           <div class="footer-content-haconect">
-            <div>ハコネクト公式<br /><br /></div>
+            <div>ハコネクト公式</div>
             <div class="footer-content-haconect-icon">
               <div>
                 <a
                   target="_blank"
                   href="https://www.youtube.com/channel/UCR_NmKXLzwhhW3E0tXHJglQ"
-                  ><img src="haco_img/icon-youtube.png"
-                /></a>
+                >
+                  <img src="haco_img/icon-youtube.png" />
+                </a>
               </div>
               <div>
-                <a target="_blank" href="https://x.com/haconect"
-                  ><img src="haco_img/icon-twitter.png"
-                /></a>
+                <a target="_blank" href="https://x.com/haconect">
+                  <img src="haco_img/icon-twitter.png" />
+                </a>
               </div>
               <div>
-                <a target="_blank" href="https://haconect.com/"
-                  ><img src="haco_img/icon_haconect.png"
-                /></a>
+                <a target="_blank" href="https://haconect.com/">
+                  <img src="haco_img/icon_haconect.png" />
+                </a>
               </div>
               <div>
-                <a target="_blank" href="https://discord.com/invite/KAXPJS9JMk"
-                  ><img src="haco_img/icon_discord.png"
-                /></a>
+                <a target="_blank" href="https://discord.com/invite/KAXPJS9JMk">
+                  <img src="haco_img/icon_discord.png" />
+                </a>
               </div>
             </div>
           </div>
           <div class="footer-content-haconaka">
-            ハコナカ公式アカウント<br /><br />
+            ハコナカ公式アカウント<br />
             <a href="https://x.com/haconectnakama">
-              <img src="haco_img/icon-twitter.png" /> </a
-            ><br />
+              <img src="haco_img/icon-twitter.png" />
+            </a>
             <br />
             お問い合わせ<br />
             ds6951@naver.com
           </div>
           <div class="footer-content-teamname">
             制作 : Team V-Grammer <br />
-            <br />
             Kim dae-san (キム・デサン)<br />
             choi bo-mi (チェ・ボミ) Park joon-woo (じゅぬ) <br />
-            Park geon-woo(バク・ゴヌ) Kim sang-woo (キム・サンウ)<br />
-            <br />
+            Park keon-woo(バク・ゴヌ) Kim sang-woo (キム・サンウ)<br />
             Special Thanks <br />
             Lee Myeong-jae (mz)
           </div>
