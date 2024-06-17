@@ -48,8 +48,11 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function loadEventsForYears(startYear, endYear, calendar) {
         console.log(`이벤트 로드 시작: ${startYear}년부터 ${endYear}년까지`);
-
+        // 캘린더 로딩 메세지 표시
+        alert("캘린더를 로딩하고 있습니다. 확인을 누르면 로드를 시작합니다. 시간이 소요될수 있습니다.");
+        
         $.ajax({
+			
             url: 'CalendarEventC',  // 서버에서 이벤트 데이터를 가져올 URL
             type: 'GET',
             data: { year: startYear }, // 첫 요청은 현재 연도 기준
@@ -58,6 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log("AJAX 응답:", res);
                 loadedEvents = res; // 서버에서 로드한 이벤트 저장
                 addEventsForYears(res, startYear, endYear, calendar);
+                // 로딩 메시지 닫기
+                alert("캘린더 로딩 완료!");
             },
             error: function(err) {
                 console.error("Error fetching events: ", err);
@@ -100,10 +105,30 @@ document.addEventListener('DOMContentLoaded', function() {
             dataType: 'json',
             success: function(res) {
                 console.log("AJAX 응답:", res);
-                // 새로운 이벤트만 추가
-                addEventsForYears(res, startYear, endYear, calendar);
-                loadedEvents = res; // 변경된 이벤트로 업데이트
-                console.log("이벤트가 업데이트되었습니다.");
+                // 이전에 추가된 이벤트와 비교하여 변동 사항 확인
+                let eventsToRemove = loadedEvents.filter(event => !res.some(newEvent => newEvent.id === event.id));
+                let eventsToAdd = res.filter(newEvent => !loadedEvents.some(event => event.id === newEvent.id));
+
+                console.log("제거할 이벤트:", eventsToRemove);
+                console.log("추가할 이벤트:", eventsToAdd);
+
+                // 변동 사항이 있는 경우만 처리
+                if (eventsToRemove.length > 0 || eventsToAdd.length > 0) {
+                    eventsToRemove.forEach(event => {
+                        console.log("이벤트 제거:", event);
+                        calendar.getEventById(event.id).remove(); // 이벤트 제거
+                    });
+
+                    eventsToAdd.forEach(event => {
+                        let newEvent = { ...event };
+                        newEvent.start = incrementYear(event.start, year - new Date(event.start).getFullYear());
+                        console.log("새 이벤트 추가:", newEvent);
+                        calendar.addEvent(newEvent); // 이벤트 추가
+                    });
+
+                    loadedEvents = res; // 변경된 이벤트로 업데이트
+                    console.log("이벤트가 업데이트되었습니다.");
+                }
             },
             error: function(err) {
                 console.error("Error fetching events: ", err);
