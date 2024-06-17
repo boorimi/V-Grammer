@@ -23,8 +23,13 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       <div id="insert-button">
         <button onclick="location.href='InsertTrade'">作成</button>
       </div>
+      <div style="display:flex;">
       <div>
         <button class="trade-openCategorys">カテゴリーで検索 ▼</button>
+      </div>
+      <div>
+        <button class="trade-openSearch">名前で検索 ▼</button>
+      </div>
       </div>
       <form action="Trade">
         <c:choose>
@@ -48,10 +53,26 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           <button id="trade-search-category">検索</button>
         </div>
       </form>
+      <form action="Trade">
+      <c:choose>
+          <c:when test="${name2 != null}">
+            <c:set var="displaySearch" value="flex" />
+          </c:when>
+          <c:otherwise>
+            <c:set var="displaySearch" value="none" />
+          </c:otherwise>
+        </c:choose>
+        <div class="trade-search" style="display: ${displaySearch};">
+            <div>
+              <input name="name" value="${name }"/>
+            </div>
+          <button id="trade-search-name">検索</button>
+        </div>
+      </form>
       <!--  여기부터 페이징  -->
       <div class="trade-paging-container">
         <div class="trade-paging-start">
-          <a href="TradePage?p=1${category3 }">最初に</a>
+          <a href="TradePage?p=1${category3 }${name2}">最初に</a>
         </div>
         <c:set var="pageUnit" value="5" />
         <c:set
@@ -60,7 +81,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         />
         <div class="trade-paging-unit-prev">
           <c:if test="${page != 0}">
-            <a href="TradePage?p=${page - pageUnit + 1}${category3 }"
+            <a href="TradePage?p=${page - pageUnit + 1}${category3 }${name2}"
               >以前 ${pageUnit }ページ</a
             >
           </c:if>
@@ -71,20 +92,20 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           begin="${page + 1 }"
           end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
         >
-          <div class="trade-page-no" onclick="location.href='TradePage?p=${i }${category3 }'">${i }</div>
+          <div class="trade-page-no" onclick="location.href='TradePage?p=${i }${name2}${category3 }'">${i }</div>
         </c:forEach>
         </div>
         <div class="trade-paging-unit-next">
           <c:if
             test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}"
           >
-            <a href="TradePage?p=${page + pageUnit + 1 }${category3 }"
+            <a href="TradePage?p=${page + pageUnit + 1 }${category3 }${name2}"
               >次 ${pageUnit }ページ</a
             >
           </c:if>
         </div>
         <div class="trade-paging-end">
-          <a href="TradePage?p=${pageCount}${category3 }">最後に</a>
+          <a href="TradePage?p=${pageCount}${category3 }${name2}">最後に</a>
         </div>
       </div>
 		<!--  페이징 끝 -->
@@ -143,7 +164,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                     <div>${tc.text}</div>
                     <c:if test="${sessionScope.twitterId == tc.sTwitterId}">
                       <div>
-                        <a onclick="tradeDelete(${t.pk})">
+                        <a onclick="tradeCommentsDelete('${tc.pk}')">
                           <img
                             class="crud-icon"
                             src="haco_img/delete.png"
@@ -162,8 +183,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <button class="trade-openComments">コメント(${i })</button>
             </div>
             <div class="trade-comments" style="display: none; border: 0px">
-              <form id="insertTradeCommentsForm" action="InsertTradeComments">
-                <input name="no" type="hidden" value="${t.pk }" />
+              <form id="insertTradeCommentsForm_${t.pk }" action="InsertTradeComments">
+                <input name="no" type="text" value="${t.pk }" />
                 <input
                   name="masterTwitterId"
                   type="hidden"
@@ -175,7 +196,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   cols="150"
                   name="text"
                 ></textarea>
-                <button type="button" onclick="tradeCommentsInsert()">
+                <button type="button" onclick="tradeCommentsInsert('${t.pk }')">
                   作成
                 </button>
               </form>
