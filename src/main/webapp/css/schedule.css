@@ -75,13 +75,13 @@
   align-items: center;
 }
 
-.s-data {
+.s-data-box {
   display: flex;
   flex-wrap: wrap;
   width: calc(100% / 8);
 }
 
-#s-data {
+.s-data {
   width: 100%;
   height: 50px;
   background-color: cadetblue;

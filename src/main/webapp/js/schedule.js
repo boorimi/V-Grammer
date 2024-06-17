@@ -4,11 +4,11 @@ $(document).ready(function() {
 		let data = $("#weekJSON").text();
 		data = JSON.parse(data);
 		console.log(data[0])
-		let content = `<div style="border: 1px solid blue;">
+		let content = `<div class="s-data">
 						</div>`;
 
 		for (var i = 1; i < 8; i++) {
-			let sData = $(".day" + i + "-content .s-data");
+			let sData = $(".day" + i + "-content .s-data-box");
 
 			$(sData).each((idx, s) => {
 				let content2 = $(content).clone();
