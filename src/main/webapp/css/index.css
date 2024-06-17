@@ -432,34 +432,45 @@
   display: flex;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
 .today-vtuber-etc {
   margin-left: 65px;
-  background-color: white;
+  background-color: #fff;
   text-align: center;
   display: flex;
-  align-content: space-between;
-  width: 400px;
-  border: 1px solid black;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  border: 2px solid #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Noto Sans KR', sans-serif;
+  padding: 20px;
 }
 
-.today-vtuber-etc > .today-vtuber-etc-addr {
-  width: 400px;
-  border: 1px solid black;
-  bottom: 50px;
+.today-vtuber-etc-addr {
+  width: 100%;
+  margin-top: 20px;
 }
 
 .today-vtuber-address-box {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 400px;
-  border: 1px solid black;
+  width: 100%;
 }
+
+.today-vtuber-address-box div {
+  margin: 10px;
+}
+
+
 
 .today-vtuber-address-box > div {
   border-radius: 20px;
   padding: 1%;
-  margin: 1%;
+  margin: 10px 0; /* 항목 사이의 여백 */
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -489,6 +500,7 @@
   border: 2px solid #ff69b4; /* 테두리 색상 */
   border-radius: 12px; /* 둥근 테두리 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
+  bottom: 20px;
 }
 
 @keyframes gradientMove {
@@ -503,11 +515,16 @@
   }
 }
 
+.today-vtuber-address-box > div > a{
+ text-decoration: none;
+}
+
 #X {
   padding-left: 20px;
   padding-right: 20px;
   background-color: black;
   color: white;
+  font-size: larger;
 }
 
 #youtube {
