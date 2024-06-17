@@ -64,7 +64,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         </div>
         <div class="archive-search-title">
           <input type="text" name="title" placeholder="タイトルで検索"/>
-          <button>検索</button>
+          <button type="button" id="archive-search-button">検索</button>
         </div>
       </div>
     </form>
