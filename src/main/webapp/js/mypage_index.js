@@ -12,7 +12,7 @@ $(document).ready(function() {
 				$(".mypage-jsp-section").append(data);
 			},
 			error: function() {
-				alert("Error loading page");
+				alert("Error loading page 로그인 세션이 만료되었습니다");
 			}
 		});
 	});
@@ -33,7 +33,7 @@ $(document).ready(function() {
 				
 			},
 			error: function() {
-				alert("Error loading page");
+				alert("Error loading page 로그인 세션이 만료되었습니다");
 			}
 		});
 	});

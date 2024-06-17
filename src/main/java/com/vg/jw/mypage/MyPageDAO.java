@@ -916,10 +916,42 @@ public class MyPageDAO {
 		System.out.println("메서드에 전달된 count: " + goods_count);
 		System.out.println("메서드에 전달된 userId: " + userId);
 		System.out.println("메서드에 전달된 category: " + category);
-
+		
 		String sql = "";
-		if (goods_count == 0) {
+		try {
+			
+			con = DBManager.connect();
+			
+			if (goods_count == 0) { //전달된 굿즈 카운트가0 -> 삭제문
+				sql = "DELETE FROM haco_goods WHERE g_u_t_id = ? AND g_category = ? AND g_m_pk = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setLong(1, userId);
+				pstmt.setString(2, category);
+				pstmt.setInt(3, member_pk);
+			
+				if (pstmt.executeUpdate() == 1) {
+					System.out.println("굿즈 데이터 삭제 성공");
+				} 
+				
+				
+			}
+			
+
+		
+		
+		
+		
+		
+		
+		
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, null);
 		}
+		
+		
 
 	}
 
