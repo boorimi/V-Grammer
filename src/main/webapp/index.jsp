@@ -130,7 +130,7 @@ pageEncoding="UTF-8"%>
             制作 : Team V-Grammer <br />
             <br />
             Kim dae-san (キム・デサン)<br />
-            choi bo-mi (チェ・ボミ) Park joon-woo (じゅぬ) <br />
+            Choi bo-mi (チェ・ボミ) Park joon-woo (じゅぬ) <br />
             Park geon-woo(バク・ゴヌ) Kim sang-woo (キム・サンウ)<br />
             <br />
             Special Thanks <br />
