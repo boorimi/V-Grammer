@@ -44,7 +44,7 @@ prefix="c"%>
       <!-- 방송 배열 시작-->
       <div class="sliderandbutton">
         <div class="prev">
-          <button class="prev-button">&lt;</button>
+          <button class="prev-button"></button>
         </div>
         <c:if test="${streamIds[0].address == null}">
           <div class="live-content-video-null">
@@ -71,7 +71,7 @@ prefix="c"%>
         </c:if>
         </div>
         <div class="next">
-          <button class="next-button">&gt;</button>
+          <button class="next-button"></button>
         </div>
       </div>
       <!--  방송 페이지 끝 -->

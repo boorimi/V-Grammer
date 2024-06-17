@@ -1,3 +1,12 @@
+.archive-search-wrapper {
+	display: flex;
+	justify-content: center;
+	margin-top: 25px;
+}
+.archive-search-wrapper > div {
+	margin:0px 10px;
+	
+}
 .archive-page-top {
   display: flex;
   align-items: center;

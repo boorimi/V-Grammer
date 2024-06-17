@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.vg.ds.announcement.AnnouncementDTO;
 import com.vg.ignore.DBManager;
+import com.vg.kw.archive.ArchiveDTO;
 
 public class TradeDAO {
 
@@ -77,7 +79,7 @@ public class TradeDAO {
 				}
 				String category3 = "";
 				for (String c : category2) {
-					category3 += "&goodsCategory=" + c ;
+					category3 += "&goodsCategory=" + c;
 				}
 				request.setAttribute("category3", category3);
 			}
@@ -104,8 +106,7 @@ public class TradeDAO {
 				trades.add(t);
 
 			}
-			
-			
+
 			request.setAttribute("trades", trades);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -278,8 +279,8 @@ public class TradeDAO {
 				// 본문내용 확인 할때 DB내용을 br -> 줄바꿈으로 대체하는 코드
 				String text2 = text.replace("<br>", "\r\n");
 
-				TradeCommentsDTO tc = new TradeCommentsDTO(pk, mTwitterId, mNickname, sTwitterId, sNickname,
-						text2, date, t_pk);
+				TradeCommentsDTO tc = new TradeCommentsDTO(pk, mTwitterId, mNickname, sTwitterId, sNickname, text2,
+						date, t_pk);
 				tradeComments.add(tc);
 
 			}
@@ -340,6 +341,75 @@ public class TradeDAO {
 		checkboxItems.add(Map.of("value", "dmmCyeki", "label", "DMM：チェキ"));
 
 		request.setAttribute("checkboxItems", checkboxItems);
+	}
+
+	public void insertGoodsValue(HttpServletRequest request, HttpServletResponse response) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String category = request.getParameter("category");
+		String pk = request.getParameter("pk");
+		System.out.println(category);
+		System.out.println(pk);
+		
+
+		String sql = "SELECT hg.*, hm.m_name from haco_goods hg, haco_member hm ";
+		sql += "where hg.g_m_pk = hm.m_pk and g_category = ? ";
+		sql += "and g_u_t_id = ?";
+		try {
+
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, category);
+			pstmt.setString(2, pk);
+			rs = pstmt.executeQuery();
+
+			ArrayList<String> goods = new ArrayList<>();
+
+			while (rs.next()) {
+				GoodsDTO good = new GoodsDTO();
+
+				good.setPk(rs.getString(1));
+				good.setU_t_id(rs.getString(2));
+				good.setM_pk(rs.getString(3));
+				String valueToFind = rs.getString(4);
+				String label = null;
+				List<Map<String, String>> checkboxItems2 = new ArrayList<>();
+				checkboxItems2.add(Map.of("value", "bromide", "label", "白賞ブロマイド"));
+				checkboxItems2.add(Map.of("value", "57mmCanBadge", "label", "57mm缶バッジ"));
+				checkboxItems2.add(Map.of("value", "76mmCanBadge", "label", "76mm缶バッジ"));
+				checkboxItems2.add(Map.of("value", "akuki", "label", "SD絵アクキー"));
+				checkboxItems2.add(Map.of("value", "coaster", "label", "コスタ"));
+				checkboxItems2.add(Map.of("value", "omoideCyeki", "label", "思い出チェキ風カード"));
+				checkboxItems2.add(Map.of("value", "dmmMiniShikishi", "label", "DMM：色紙"));
+				checkboxItems2.add(Map.of("value", "dmm57CanBadge", "label", "DMM：57mm缶バッジ"));
+				checkboxItems2.add(Map.of("value", "dmmMiniAkusuta", "label", "DMM：ミニアクスタ"));
+				checkboxItems2.add(Map.of("value", "dmmCyeki", "label", "DMM：チェキ"));
+				for (Map<String, String> item : checkboxItems2) {
+				    if (item.get("value").equals(valueToFind)) {
+				        label = item.get("label");
+				        break;
+				    }
+				}
+				good.setCategory(label);
+				good.setCount(rs.getString(5));
+				good.setName(rs.getString(6));
+
+				goods.add(good.toJSON());
+
+			}
+			System.out.println(goods);
+			response.setContentType("application/json; charset=utf-8");
+			response.getWriter().print(goods);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+
 	}
 
 }
