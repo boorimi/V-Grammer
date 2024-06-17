@@ -43,7 +43,7 @@ public class CalendarDAO {
                     event.setTitle(rs.getString("m_name"));
                     String startDate = dateFormat.format(rs.getDate("m_debut"));
                     event.setStart(startDate);
-                    event.setRrule(generateRrule(startDate, 10)); // 10년 반복 설정
+                    event.setRrule(generateRrule(startDate, 20)); // 10년 반복 설정
                     events.add(event);
                 }
                 if (rs.getDate("m_birth") != null) {
@@ -52,7 +52,7 @@ public class CalendarDAO {
                     birthEvent.setTitle(rs.getString("m_name") + "の誕生日");
                     String birthDate = dateFormat.format(rs.getDate("m_birth"));
                     birthEvent.setStart(birthDate);
-                    birthEvent.setRrule(generateRrule(birthDate, 10)); // 10년 반복 설정
+                    birthEvent.setRrule(generateRrule(birthDate, 20)); // 10년 반복 설정
                     events.add(birthEvent);
                 }
             }
