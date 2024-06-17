@@ -82,7 +82,9 @@ prefix="c"%>
       <div class="main-dday-container">
         <div class="dday-items-wrapper">
           <c:forEach var="dday" items="${ddayList}">
+
             <c:if test="${dday.daysUntilDday <= 7}">
+
               <div class="dday-item">
                 <span>名前 : ${dday.m_name} </span>
                 <span>デビュー日 : ${dday.m_debut} </span>

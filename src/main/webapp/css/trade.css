@@ -1,127 +1,183 @@
 .trade-container {
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
 }
 /* .trade-container div {
   border: 1px solid black;
 } */
-
 .trade-title {
-  background-color: lightgreen;
-  text-align: center;
+	background-color: lightgreen;
+	display: inline-block;
+	padding: 0px 20px;
+	border-radius: 10px;
+	border: 1px solid black;
 }
 
 .trade-conmain {
-  width: 100%;
-  height: auto;
+	width: 100%;
+	height: auto;
 }
+
 .trade-comments {
-  border: 1px solid black;
-  margin-top: 5px;
-  margin-bottom: 5px;
+	border: 1px solid black;
+	
 }
-.trade-comments > div {
-  display: flex;
-  justify-content: space-between;
+
+.trade-comments>div {
+	display: flex;
+	justify-content: space-between;
 }
-.trade-comments > div:nth-child(1) {
-  background-color: rgb(230, 230, 230);
+
+.trade-comments>div:nth-child(1) {
+	background-color: rgb(230, 230, 230);
 }
-.trade-comments > div {
-  padding: 5px;
+
+.trade-comments>div {
+	padding: 5px;
 }
+
 .trade-content {
-  margin: 20px 10px;
-  border-bottom: 1px solid gray;
+	margin: 20px 10px;
+	border: 1px solid gray;
+	border-radius: 10px;
 }
-.trade-content > div:nth-child(1) {
-  display: flex;
-  background-color: rgb(221, 221, 221);
+
+.trade-content>div:nth-child(1) {
+	display: flex;
+	background-color: rgb(221, 221, 221);
 }
-.trade-content > div:nth-child(1) > div:nth-child(3) {
-  flex: 1;
+
+.trade-content>div:nth-child(1)>div:nth-child(3) {
+	flex: 1;
 }
-.trade-content > div:nth-child(1) > div:nth-child(4) {
-  width: 150px;
+
+.trade-content>div:nth-child(1)>div:nth-child(4) {
+	width: 150px;
 }
-.trade-content > div:nth-child(2) {
-  display: flex;
+
+.trade-content>div:nth-child(2) {
+	display: flex;
 }
-.trade-content > div:nth-child(1) div {
-  padding: 10px;
+
+.trade-content>div:nth-child(1) div {
+	padding: 10px;
 }
+
 .crud-icon {
-  width: 20px;
-  height: 20px;
-  margin: 10px;
+	width: 20px;
+	height: 20px;
+	margin: 10px;
 }
+
 .crud-icon:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
+
 .trade-con-title {
-  padding: 10px;
-  flex: 1;
+	padding: 10px;
+	flex: 1;
 }
+
 .trade-con-date {
-  font-size: 10pt;
+	font-size: 10pt;
 }
+
 .trade-con-txt {
-  font-size: 13pt;
-  text-align: left;
+	font-size: 13pt;
+	text-align: left;
 }
+
 .trade-number {
-  padding: 0px 5px;
+	padding: 0px 5px;
 }
-.trade-bottom {
-  display: flex;
-  justify-content: space-between;
+
+.trade-paging-container {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	text-align: center;
 }
+
+
+.trade-paging-start {
+	margin-left: 10px;
+	width: 60px;
+}
+
+.trade-paging-unit-prev {
+	width: 120px;
+}
+
+.trade-paging-no-div {
+	display: flex;
+	justify-content: center;
+	flex: 1;
+}
+
+.trade-paging-unit-next {
+	width: 120px;
+}
+
+.trade-paging-end {
+	margin-right: 10px;
+	width: 60px;
+}
+
 #insert-button {
-  padding: 5px 0px;
-  text-align: center;
-  margin-bottom: 15px;
+	padding: 5px 0px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
-#insert-button > button{
+
+#insert-button>button {
 	padding: 5px 30px;
 	background-color: blue;
 	color: white;
 	border-radius: 30px;
 }
+
 #trade-title {
-  width: 95%;
+	width: 95%;
 }
 
 .trade-page-no {
-  margin: 0px 10px;
+	cursor: pointer;
+	padding: 10px;
+	border: 1px solid gray;
+}
+
+.trade-page-no:hover {
+	background-color: #eeeeee;
 }
 
 .trade-category {
-  margin-top: 10px;
-  font-size: 11pt;
-  display: flex;
-  flex-wrap: wrap;
+	margin-top: 10px;
+	font-size: 11pt;
+	display: flex;
+	flex-wrap: wrap;
 }
-.trade-category > div {
-  border: 1px solid gray;
-  border-radius: 30px;
-  padding: 5px;
-  margin: 5px;
+
+.trade-category>div {
+	border: 1px solid gray;
+	border-radius: 30px;
+	padding: 5px;
+	margin: 5px;
 }
 
 .trade-goods-category {
-  background-color: rgb(0, 0, 0);
-  color: white;
-  border-radius: 10px;
-  border: 1px solid black;
-  font-size: 8pt;
+	background-color: rgb(0, 0, 0);
+	color: white;
+	border-radius: 10px;
+	border: 1px solid black;
+	font-size: 8pt;
 }
 
 #trade-search-category {
 	background-color: blue;
 	color: white;
 	border-radius: 30px;
-    padding: 5px 30px;
-    margin: 5px;
-    font-size: 11pt;
+	padding: 5px 30px;
+	margin: 5px;
+	font-size: 11pt;
 }
