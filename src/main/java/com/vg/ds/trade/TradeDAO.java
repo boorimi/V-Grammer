@@ -10,9 +10,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.vg.ds.announcement.AnnouncementDTO;
 import com.vg.ignore.DBManager;
+import com.vg.jw.AccountDTO;
 import com.vg.kw.archive.ArchiveDTO;
 
 public class TradeDAO {
@@ -411,5 +413,8 @@ public class TradeDAO {
 		}
 
 	}
-
+	
 }
+
+
+
