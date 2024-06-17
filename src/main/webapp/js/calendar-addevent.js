@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         alert("캘린더를 로딩하고 있습니다. 확인을 누르면 로드를 시작합니다. 시간이 소요될수 있습니다.");
         
         $.ajax({
-			
             url: 'CalendarEventC',  // 서버에서 이벤트 데이터를 가져올 URL
             type: 'GET',
             data: { year: startYear }, // 첫 요청은 현재 연도 기준
@@ -84,6 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
             events.forEach(event => {
                 let newEvent = { ...event };
                 newEvent.start = incrementYear(event.start, year - new Date(event.start).getFullYear());
+                // 'の誕生日'가 포함된 title일 경우 색깔을 빨간색으로 설정
+                if (newEvent.title.includes('の誕生日')) {
+                    newEvent.color = 'red';
+                }
                 console.log("새 이벤트 추가:", newEvent);
                 calendar.addEvent(newEvent);
             });
@@ -122,12 +125,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     eventsToAdd.forEach(event => {
                         let newEvent = { ...event };
                         newEvent.start = incrementYear(event.start, year - new Date(event.start).getFullYear());
+                        // 'の誕生日'가 포함된 title일 경우 색깔을 빨간색으로 설정
+                        if (newEvent.title.includes('の誕生日')) {
+                            newEvent.color = 'red';
+                        }
                         console.log("새 이벤트 추가:", newEvent);
                         calendar.addEvent(newEvent); // 이벤트 추가
                     });
 
                     loadedEvents = res; // 변경된 이벤트로 업데이트
                     console.log("이벤트가 업데이트되었습니다.");
+                } else {
+                    console.log("변동 사항이 없습니다.");
                 }
             },
             error: function(err) {
