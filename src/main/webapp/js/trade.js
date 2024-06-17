@@ -64,6 +64,7 @@ $(function () {
     let commentsDiv = post.find(".trade-category");
 
     commentsDiv.each(function () {
+      $(".trade-search").css("display","none");
       $(this).toggle();
     });
   });
@@ -73,6 +74,7 @@ $(function () {
     let commentsDiv = post.find(".trade-search");
 
     commentsDiv.each(function () {
+      $(".trade-category").css("display","none");
       $(this).toggle();
     });
   });

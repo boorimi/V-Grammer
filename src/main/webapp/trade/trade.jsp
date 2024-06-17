@@ -63,10 +63,10 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </c:otherwise>
         </c:choose>
         <div class="trade-search" style="display: ${displaySearch};">
-            <div>
+            <div style="display:flex;">
               <input name="name" value="${name }"/>
-            </div>
           <button id="trade-search-name">検索</button>
+            </div>
         </div>
       </form>
       <!--  여기부터 페이징  -->
