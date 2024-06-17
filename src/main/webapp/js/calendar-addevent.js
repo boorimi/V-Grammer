@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
     loadEventsForYears(year, year + 4, calendar);
 
     // FullCalendar의 버튼들에 클릭 이벤트를 추가
-    const btns = document.querySelectorAll('.fc-button');
-    btns.forEach((btn) => {
-        btn.addEventListener("click", () => {
+    const buttons = document.querySelectorAll('.fc-button');
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
             console.log("버튼이 클릭되었습니다.");
             // 버튼 클릭 시 이벤트를 업데이트하는 함수 호출
             updateEvents(year, year + 4, calendar);
