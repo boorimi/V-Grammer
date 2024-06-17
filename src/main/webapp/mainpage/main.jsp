@@ -12,7 +12,10 @@ prefix="c"%>
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css"
+    />
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -44,7 +47,7 @@ prefix="c"%>
       <!-- 방송 배열 시작-->
       <div class="sliderandbutton">
         <div class="prev">
-          <button class="prev-button"></button>
+          <button class="prev-button">&lt;</button>
         </div>
         <c:if test="${streamIds[0].address == null}">
           <div class="live-content-video-null">
@@ -52,26 +55,26 @@ prefix="c"%>
           </div>
         </c:if>
         <div class="slider">
-        <c:if test="${streamIds[0].address != null}">
-          <!-- YouTube Live 슬라이드들이 여기에 들어갈 것입니다 -->
-          <!-- bx.wrapper 클래스에 직접적으로 수정을 할 수 없어서 border를 없애는 코드를 js파일에 집어넣었음 -->
-          <c:forEach items="${streamIds }" var="s">
-            <div class="live-content-video">
-              <iframe
-                width="1280"
-                height="720"
-                src="https://www.youtube.com/embed/${s.address }"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </c:forEach>
-          <!-- youtube 슬라이더 끝 -->
-        </c:if>
+          <c:if test="${streamIds[0].address != null}">
+            <!-- YouTube Live 슬라이드들이 여기에 들어갈 것입니다 -->
+            <!-- bx.wrapper 클래스에 직접적으로 수정을 할 수 없어서 border를 없애는 코드를 js파일에 집어넣었음 -->
+            <c:forEach items="${streamIds }" var="s">
+              <div class="live-content-video">
+                <iframe
+                  width="1280"
+                  height="720"
+                  src="https://www.youtube.com/embed/${s.address }"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </c:forEach>
+            <!-- youtube 슬라이더 끝 -->
+          </c:if>
         </div>
         <div class="next">
-          <button class="next-button"></button>
+          <button class="next-button">&gt;</button>
         </div>
       </div>
       <!--  방송 페이지 끝 -->
@@ -148,6 +151,5 @@ prefix="c"%>
       </div>
       <!-- 오늘의 버튜버 끝 -->
     </main>
-
   </body>
 </html>
