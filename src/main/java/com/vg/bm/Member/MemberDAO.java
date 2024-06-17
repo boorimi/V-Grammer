@@ -48,9 +48,6 @@ public class MemberDAO {
 
 			SimpleDateFormat formatDate;
 
-			// 현재 데뷔한 멤버 21명으로, while문이 아닌 for문으로 21번째 멤버까지만 출력되도록.
-			// 추후 나머지 4명 모두 데뷔한다면 while로 변경하면 됨.
-			// while (rs.next())
 			while (rs.next()) {
 				formatDate = new SimpleDateFormat("M月d日");
 				String birth = formatDate.format(rs.getDate(4));
