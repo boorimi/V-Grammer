@@ -101,7 +101,9 @@ prefix="c"%>
           </div>
           <ul class="news-board">
             <c:forEach var="news" items="${announcements}">
-              <li>${news.title}</li>
+              <li>
+                <a href="SelectAnnouncement?no=${news.pk}"> ${news.title} </a>
+              </li>
             </c:forEach>
           </ul>
         </div>
