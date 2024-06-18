@@ -63,10 +63,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </c:otherwise>
         </c:choose>
         <div class="trade-search" style="display: ${displaySearch};">
-            <div style="display:flex;">
               <input name="name" value="${name }"/>
           <button id="trade-search-name">検索</button>
-            </div>
         </div>
       </form>
       <!--  여기부터 페이징  -->
@@ -184,7 +182,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             </div>
             <div class="trade-comments" style="display: none; border: 0px">
               <form id="insertTradeCommentsForm_${t.pk }" action="InsertTradeComments">
-                <input name="no" type="text" value="${t.pk }" />
+                <input name="no" type="hidden" value="${t.pk }" />
                 <input
                   name="masterTwitterId"
                   type="hidden"

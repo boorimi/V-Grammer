@@ -17,7 +17,7 @@ public class ArchivePageC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int p = Integer.parseInt(request.getParameter("p"));
-		ArchiveDAO.getCountArchive(p, request);
+		ArchiveDAO.getCountArchive(p, request, response);
 		ArchiveDAO.selectAllArchive(request);
 //		int p = Integer.parseInt(request.getParameter("p"));
 //		ArchiveDAO.paging(p, request);
