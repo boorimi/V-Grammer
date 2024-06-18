@@ -28,9 +28,9 @@ public class AnnouncementC extends HttpServlet {
         } else {
             System.out.println("Announcements is null");
         }
-
         AccountDAO.loginCheck(request);
-        request.setAttribute("content", "mainpage/main.jsp");
+
+        request.setAttribute("content", "announcement/announcement.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
