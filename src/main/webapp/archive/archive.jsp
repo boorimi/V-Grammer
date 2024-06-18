@@ -86,10 +86,11 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </a>
         </c:if>
       </div>
+     
       <div class="archive-paging-no-div">
         <c:forEach
           var="i"
-          begin="${page + 1 }"
+          begin="${page+1 }"
           end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
         >
           <div class="archive-paging-no">${i }</div>

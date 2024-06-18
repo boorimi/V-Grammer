@@ -17,7 +17,6 @@ public class AnnouncementC extends HttpServlet {
             throws ServletException, IOException {
         AnnouncementDAO.ADAO.selectAllAnnouncement(request);
         AnnouncementDAO.ADAO.paging(1, request);
-        AccountDAO.loginCheck(request);
 
         // 로그 출력
         ArrayList<AnnouncementDTO> announcements = (ArrayList<AnnouncementDTO>) request.getAttribute("announcements");
@@ -30,6 +29,7 @@ public class AnnouncementC extends HttpServlet {
             System.out.println("Announcements is null");
         }
 
+        AccountDAO.loginCheck(request);
         request.setAttribute("content", "mainpage/main.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }

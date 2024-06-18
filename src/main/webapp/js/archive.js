@@ -27,16 +27,39 @@ $(function () {
     console.log(title);
     $("#archive-list").css({ opacity: 0.3 });
     adjustOpacity(1);
+
     $.ajax({
       url: "ArchiveSearchC",
       type: "post",
       data: { member, category, title },
       dataType: "json",
     }).done(function (resData) {
-      searchPage(resData);
+      console.log(resData);
+      let pagingVariable = getPagingVariable(member, category, title).then(
+        function (resData) {
+          return resData;
+        }
+      );
+      searchPage(resData, pagingVariable);
+      $(document).on("click", ".archive-paging-no", function () {
+        // 검색 후 비동기 페이징 
+        $("#archive-list").css({ opacity: 0.3 });
+        adjustOpacity(1);
+        let page = $(this).text();
+        $.ajax({
+          url: "ArchiveC",
+          type: "post",
+          data: { page },
+          dataType: "json",
+        }).done(function (resData) {
+          test(resData);
+          replaceCollabomemberString();
+          replaceNull();
+          //console.log(JSON.stringify(resData));
+        });
+      });
       replaceCollabomemberString();
       replaceNull();
-      
 
       // console.log(JSON.stringify(resData));
     });
@@ -136,50 +159,64 @@ function test(resData) {
 }
 
 //비동기 검색 세부
-async function searchPage(resData) {
+async function searchPage(resData, pagingVariable) {
   let $paging = $(".archive-paging-container");
   let $archiveList = $("#archive-list");
-  let asdf = await getPagingVariable();
+  let asdf = await pagingVariable;
   console.log(asdf);
-  let data = "f!s".split("!");
-		let curPageNo = data[0]; // 현재페이지 정보
-		let pageCount = data[1]; // 총 페이지 정보
-		
-		console.log(curPageNo);
-		console.log(pageCount);
-		
-		
+  let data = asdf.split("!");
+  let curPageNo = data[0]; // 현재페이지 정보
+  let pageCount = data[1]; // 총 페이지 정보
+  console.log(curPageNo);
+  console.log(pageCount);
+  let pageUnit = 10; // 페이징 단위
+  //page변수 = 현재페이지 * 페이지유닛
+  let page = ((curPageNo - 1) / pageUnit) * pageUnit;
+  console.log(pageUnit);
+  console.log(page);
   $paging.html("");
   $archiveList.html("");
-  let initialHtml = `<div class="archive-paging-container">
-      <!-- page변수 = 현재페이지 * 페이지유닛 -->
-      <div class="archive-paging-start">
+  let initialHtml = `<div class="archive-paging-start">
         <a href="ArchivePageC?p=1">最初に</a>
       </div>
       <div class="archive-paging-unit-prev">
-        <c:if test="">
-          <a href="ArchivePageC?p=">QWEQWEQ
-            以前 ページ
+        <c:if test="${page != 0}">
+          <a href="ArchivePageC?p=${page - pageUnit + 1}">
+            以前 ${pageUnit}ページ
           </a>
         </c:if>
-      </div>
-      <div class="archive-paging-no-div">
-        <c:forEach
-          var="i"
-          begin="1"
-          end="10"
+      </div>`;
+  $paging.append(initialHtml);
+
+  let initialHtml2 = `<div class="archive-paging-no-div">`;
+  for (
+    let i = page + 1;
+    i <= (page + pageUnit <= pageCount ? page + pageUnit : pageCount);
+    // i <= page + pageUnit;
+    // i <= 9;
+    i++
+  ) {
+    initialHtml2 += `<div class="archive-paging-no">${i}</div>`;
+  }
+  initialHtml2 += `</div>`;
+  $paging.append(initialHtml2);
+  let initialHtml3 = `<div class="archive-paging-unit-next">
+        <c:if
+          test="${
+            page + (curPageNo % pageUnit) <
+              pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount
+          }"
         >
-          <div class="archive-paging-no"></div>
-        </c:forEach>
-      </div>
-      <div class="archive-paging-unit-next">
+          <a href="ArchivePageC?p=${page + pageUnit + 1}"
+            >次 ${pageUnit}ページ</a
+          >
         </c:if>
       </div>
       <div class="archive-paging-end">
-        <a href="ArchivePageC?p=">最後に</a>
-      </div>
-    </div>`;
-  $paging.append(initialHtml);
+        <a href="ArchivePageC?p=${pageCount}">最後に</a>
+      </div>`;
+
+  $paging.append(initialHtml3);
   for (let i = 0; i < resData.length; i++) {
     let archive = resData[i];
 
@@ -259,20 +296,19 @@ function replaceNull() {
     }
   });
 }
-				
-function getPagingVariable(){
-	 return new Promise(function(resolve, reject) {
-        $.ajax({
-            url: "GetPagingVariableC",
-            type: "GET",
-            success: function(resData) {
-                resolve(resData); // 성공 시 데이터를 resolve
-            },
-            error: function(xhr, status, error) {
-                reject(error); // 에러 발생 시 reject
-            }
-        });
+
+function getPagingVariable(member, category, title) {
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: "GetPagingVariableC",
+      type: "GET",
+      data: { member, category, title },
+      success: function (resData) {
+        resolve(resData); // 성공 시 데이터를 resolve
+      },
+      error: function (xhr, status, error) {
+        reject(error); // 에러 발생 시 reject
+      },
     });
+  });
 }
-
-

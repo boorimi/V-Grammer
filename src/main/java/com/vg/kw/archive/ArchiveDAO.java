@@ -49,7 +49,7 @@ public class ArchiveDAO {
 		request.setAttribute("start", start);
 		request.setAttribute("end", end);
 		request.setAttribute("archives", items);
-		
+
 	}
 
 	public static void getCountArchive(int page, HttpServletRequest request, HttpServletResponse response) {
@@ -58,11 +58,37 @@ public class ArchiveDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select count(*) from haco_archive";
+		String member = null;
+		String category = null;
+		String title = null;
+		if (request.getParameter("member") != null && !request.getParameter("member").equals("未分類")) {
+			member = request.getParameter("member");
+		}
+		if (request.getParameter("category") != null && !request.getParameter("category").equals("未分類")) {
+			category = request.getParameter("category");
+		}
+		if (request.getParameter("title") != null && !request.getParameter("title").equals("")) {
+			title = request.getParameter("title");
+		}
+		System.out.println(member);
+		System.out.println(category);
+		System.out.println(title);
+		String sql = "select count(*) from haco_archive ha, haco_member hm ";
+		sql += "where ha.a_m_pk = hm.m_pk ";
+		sql += "and (? IS NULL OR hm.m_name = ?) ";
+		sql += "and (? IS NULL OR ha.a_category = ?) ";
+		sql += "and (? IS NULL OR ha.a_title = ?) ";
+
 		try {
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member);
+			pstmt.setString(2, member);
+			pstmt.setString(3, category);
+			pstmt.setString(4, category);
+			pstmt.setString(5, title);
+			pstmt.setString(6, title);
 			rs = pstmt.executeQuery();
 			rs.next();
 
@@ -78,11 +104,11 @@ public class ArchiveDAO {
 			request.setAttribute("pageCount", pageCount); // 총 페이지 수
 			request.setAttribute("start", start);
 			request.setAttribute("end", end);
-			
-			String resData = page+"!"+pageCount;
+
+			String resData = page + "!" + pageCount;
 			response.setContentType("text/plain; charset=utf-8");
 			response.getWriter().print(resData);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -128,7 +154,7 @@ public class ArchiveDAO {
 
 		// 비동기 페이징 할때 받는 변수
 		int page = 1;
-		if (request.getParameter("page") != null ) {
+		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		String sql = "SELECT ha.*, hm.m_name, hi.i_icon ";
