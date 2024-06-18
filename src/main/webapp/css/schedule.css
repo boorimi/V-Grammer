@@ -2,12 +2,10 @@
 
 .schedule-container {
 	height: auto;
-	background-color: antiquewhite;
+	margin-top: 2%;
 }
 
 .s-week-list {
-	background-color: #ffffff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	margin: 0 auto;
 }
 
@@ -25,10 +23,9 @@
 	float: left;
 	font-weight: bold;
 	transition: all 0.2s ease;
-}
-
-.tab_item:hover {
-	opacity: 0.75;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* 라디오 버튼 UI 삭제 */
@@ -53,14 +50,93 @@
 	display: block;
 }
 
-/* 선택된 탭 스타일 */
-.s-week-list input:checked+.tab_item {
-	background-color: #333333;
-	color: #fff;
+/* 요일별 선택됐을 때 탭 스타일 */
+#s-mon:checked+.tab_item {
+	background-color: lightpink;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
 }
 
+#s-mon:hover+.tab_item {
+	background-color: lightpink;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-tue:checked+.tab_item {
+	background-color: #b7f1ff;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-tue:hover+.tab_item {
+	background-color: #b7f1ff;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-wed:checked+.tab_item {
+	background-color: #d1b7a4;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-wed:hover+.tab_item {
+	background-color: #d1b7a4;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-thu:checked+.tab_item {
+	background-color: #ffe089;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-thu:hover+.tab_item {
+	background-color: #ffe089;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-fri:checked+.tab_item {
+	background-color: #cf80e0;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-fri:hover+.tab_item {
+	background-color: #cf80e0;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-sat:checked+.tab_item {
+	background-color: #ffa658;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-sat:hover+.tab_item {
+	background-color: #ffa658;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-sun:checked+.tab_item {
+	background-color: #bdde87;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+#s-sun:hover+.tab_item {
+	background-color: #bdde87;
+	transform-origin: bottom;
+	transform: scaleY(1.2) scaleX(1.05);
+}
+
+
 .s-time-list {
-	background-color: chartreuse;
 	display: flex;
 }
 
@@ -69,7 +145,6 @@
 	min-height: 50px;
 	/*display flex 설정해도 width가 변하지 않게*/
 	flex-shrink: 0;
-	background-color: tomato;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -84,7 +159,6 @@
 .s-data {
 	width: calc(100% / 7);
 	height: 50px;
-	background-color: cadetblue;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -98,7 +172,9 @@
 	background-color: pink;
 	z-index: 900;
 	width: max-content;
-	padding: 3%;
+	padding: 5%;
+	background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
 }
 
 .s-data:hover .s-data-title {

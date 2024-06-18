@@ -1,9 +1,57 @@
 $(document).ready(function() {
 
+	// 페이지 열리면 오늘 날짜 탭이 바로 열리게 하는 코드
+	let today = new Date().getDay();
+	let todayId;
+
+	switch (today) {
+		case 0: todayId = "s-sun"; break;
+		case 1: todayId = "s-mon"; break;
+		case 2: todayId = "s-tue"; break;
+		case 3: todayId = "s-wed"; break;
+		case 4: todayId = "s-thu"; break;
+		case 5: todayId = "s-fri"; break;
+		case 6: todayId = "s-sat"; break;
+	}
+	$("#" + todayId).prop("checked", true);
+
+	let timeColor = {
+		"s-mon": 'lightpink', "s-tue": '#b7f1ff', "s-wed": '#d1b7a4', "s-thu": '#ffe089',
+		"s-fri": '#cf80e0', "s-sat": '#ffa658', "s-sun": '#bdde87'
+	};
+
+	$('input[name="tab_item"]').change(function() {
+		let dayOfWeek = $(this).attr('id');
+		let backgroundColor = timeColor[dayOfWeek];
+
+		$('.s-time').css('backgroundColor', backgroundColor);
+	});
+	
+	// 초기 페이지 로드 시 요일에 맞게 s-time div 컬러 색상 세팅
+		$('.s-time').css('backgroundColor', timeColor[todayId]);
+	
+
 	$(function() {
+		// 멤버 pk에 맞는 컬러
+		let memberColors = {
+			1: "lightpink", 2: "#A5CDEC", 3: "#CDB8FF", 4: "#C25B7C",
+			5: "#FFD6D4", 6: "#8BEC97", 7: "#D6BAEB", 8: "#FFB9BB",
+			9: "#BFD2EE", 10: "#B7F1FF", 11: "#D1B7A4", 12: "#FFE089",
+			13: "#CF80E0", 14: "#FFA658", 15: "#BDDE87", 16: "#C4BEC9",
+			17: "#D4485F", 18: "#DE617E", 19: "#77788F", 20: "#B2E2F7",
+			21: "#BF8ADE", 22: "#CDEDFF", 23: "#C5C2C3", 24: "#FAC6D3", 25: "#BEC48B"
+		};
+
+		// 디브 컬러 세팅 함수
+		function setBackgroundColor(element, value) {
+			let backgroundColor = memberColors[value];
+			element.css('background-color', backgroundColor);
+		}
+
+		// 스케줄 맞는 시간대 박스에 집어넣는 코드
 		let data = $("#weekJSON").text();
 		data = JSON.parse(data);
-		console.log(data[0])
+		console.log(data[0]);
 
 		for (var i = 1; i < 8; i++) {
 			let sDataBox = $(".day" + i + "-content .s-data-box");
@@ -11,70 +59,75 @@ $(document).ready(function() {
 			$(sDataBox).each((idx, s) => {
 				let start = parseInt($(s).attr("start"));
 				let end = parseInt($(s).attr("end"));
-				
+
 				// 시간순으로 div 붙이기
 				data[i - 1].sort((a, b) => a.intTime - b.intTime);
 
 				$.each(data[i - 1], (j, obj) => {
 					if (start <= obj.intTime && obj.intTime < end) {
-						
-						let sData = $("<div></div>").addClass("s-data");
-						
+						let sData = $("<div></div>").addClass("s-data").attr('value', obj.s_m_pk).attr('data', obj.s_pk);
+
 						let mName = $("<div></div>").text(obj.m_name);
 						let sTime = $("<div></div>").text(obj.s_time);
-						
-//						console.log(obj.s_title)
-						let sTitle = $("<div></div>").text(obj.s_title).addClass("s-data-title");
-						
+
+						//            						console.log(obj.s_pk)
+						let sTitle = $("<div></div>")
+							.text(obj.s_title)
+							.addClass("s-data-title");
+
 						sData.append(sTime).append(mName).append(sTitle);
-						
-//						content2.append(sData);
+
+						//						content2.append(sData);
+						// 디브 생성 후 컬러 세팅함수 호출
+						setBackgroundColor(sData, obj.s_m_pk);
 						$(s).append(sData);
-						
 					}
 				});
-
 			});
-		};
-	})
+		}
+
+
+	});
+
 
 	// 인서트 js
-	const $openButton = $('.schedule-insert-detail-button');
-	const $insertcontainer = $('.schedule-insert-inner-container');
-	const $insertButton = $('.schedule-insert-button');
+	const $openButton = $(".schedule-insert-detail-button");
+	const $insertcontainer = $(".schedule-insert-inner-container");
+	const $insertButton = $(".schedule-insert-button");
 
 	// 로그인 한 사람만 인서트 디브 볼 수 있도록.
-	$openButton.on('click', function() {
+	$openButton.on("click", function() {
 		if ($openButton.val() !== null && $openButton.val() !== "") {
 			$insertcontainer.slideToggle();
 		} else {
-			alert('ログインが必要です！');
+			alert("ログインが必要です！");
 		}
 	});
 
 	// 타이틀 입력 인풋 엔터 방지
-	$('#schedule-title').keydown(function(event) {
+	$("#schedule-title").keydown(function(event) {
 		if (event.keyCode === 13) {
 			event.preventDefault();
-		};
-	});
-
-	// 입력 안하면 입력 알럿
-	$insertButton.on('click', function() {
-		if ($('#schedule-member').val() === "999") {
-			alert('メンバーをチェックください！');
-			return false;
-		} if ($('#schedule-date').val() === "") {
-			alert('日付をチェックください！');
-			return false;
-		} if ($('#schedule-time').val() === "") {
-			alert('タイムをチェックください！');
-			return false;
-		} if ($('#schedule-title').val() === "") {
-			alert('タイトルをチェックください！');
-			return false;
 		}
 	});
 
-
+	// 입력 안하면 입력 알럿
+	$insertButton.on("click", function() {
+		if ($("#schedule-member").val() === "999") {
+			alert("メンバーをチェックください！");
+			return false;
+		}
+		if ($("#schedule-date").val() === "") {
+			alert("日付をチェックください！");
+			return false;
+		}
+		if ($("#schedule-time").val() === "") {
+			alert("タイムをチェックください！");
+			return false;
+		}
+		if ($("#schedule-title").val() === "") {
+			alert("タイトルをチェックください！");
+			return false;
+		}
+	});
 });
