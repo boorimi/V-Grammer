@@ -1,67 +1,85 @@
 package com.vg.sw.dday;
 
-import java.time.LocalDate;
+public class DdayDTO implements Comparable<DdayDTO> {
+    private int id;
+    private String name;
+    private String debutDate;
+    private String birthDate;
+    private long daysUntilDebutDday;
+    private long daysUntilBirthDday;
 
-public class DdayDTO {
-	private int m_pk;
-	private String m_name;
-	private String m_debut;
-	private String m_birth; // 문자열로 변경
-	private long daysUntilDday; // 새로운 필드 추가
+    // Constructor and getters/setters
 
-	// Getter and Setter methods
-	public int getM_pk() {
-		return m_pk;
-	}
+    public DdayDTO(int id, String name, String debutDate, String birthDate, long daysUntilDebutDday, long daysUntilBirthDday) {
+        this.id = id;
+        this.name = name;
+        this.debutDate = debutDate;
+        this.birthDate = birthDate;
+        this.daysUntilDebutDday = daysUntilDebutDday;
+        this.daysUntilBirthDday = daysUntilBirthDday;
+    }
 
-	public void setM_pk(int m_pk) {
-		this.m_pk = m_pk;
-	}
+    // Getters and Setters
 
-	public String getM_name() {
-		return m_name;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getM_debut() {
-		return m_debut;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setM_debut(String m_debut) {
-		this.m_debut = m_debut;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getM_birth() {
-		return m_birth;
-	}
+    public String getDebutDate() {
+        return debutDate;
+    }
 
-	public void setM_birth(String m_birth) {
-		this.m_birth = m_birth;
-	}
+    public void setDebutDate(String debutDate) {
+        this.debutDate = debutDate;
+    }
 
-	public long getDaysUntilDday() {
-		return daysUntilDday;
-	}
+    public String getBirthDate() {
+        return birthDate;
+    }
 
-	public void setDaysUntilDday(long daysUntilDday) {
-		this.daysUntilDday = daysUntilDday;
-	}
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
 
-	public DdayDTO(int m_pk, String m_name, String m_debut, String m_birth, long daysUntilDday) {
-		super();
-		this.m_pk = m_pk;
-		this.m_name = m_name;
-		this.m_debut = m_debut;
-		this.m_birth = m_birth;
-		this.daysUntilDday = daysUntilDday;
-	}
+    public long getDaysUntilDebutDday() {
+        return daysUntilDebutDday;
+    }
 
-	@Override
-	public String toString() {
-		return "DdayDTO [m_pk=" + m_pk + ", m_name=" + m_name + ", m_debut=" + m_debut + ", m_birth=" + m_birth
-				+ ", daysUntilDday=" + daysUntilDday + "]";
-	}
+    public void setDaysUntilDebutDday(long daysUntilDebutDday) {
+        this.daysUntilDebutDday = daysUntilDebutDday;
+    }
+
+    public long getDaysUntilBirthDday() {
+        return daysUntilBirthDday;
+    }
+
+    public void setDaysUntilBirthDday(long daysUntilBirthDday) {
+        this.daysUntilBirthDday = daysUntilBirthDday;
+    }
+
+    // Comparable implementation to sort by nearest D-Day
+    @Override
+    public int compareTo(DdayDTO other) {
+        long thisNearestDday = Math.min(daysUntilDebutDday, daysUntilBirthDday);
+        long otherNearestDday = Math.min(other.daysUntilDebutDday, other.daysUntilBirthDday);
+        int compareResult = Long.compare(otherNearestDday, thisNearestDday); // 내림차순 정렬을 위해 반대로 비교
+
+        if (compareResult == 0) {
+            compareResult = Long.compare(other.daysUntilBirthDday, this.daysUntilBirthDday); // 생일 기준 내림차순 정렬
+        }
+
+        return compareResult;
+    }
 }
