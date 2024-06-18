@@ -103,7 +103,7 @@ prefix="c"%>
                 </div>
                 <ul class="news-board">
                     <c:forEach var="news" items="${announcements}">
-                        <div>${news.a_title}</div>
+                        <div>${news.title}</div>
                     </c:forEach>
                 </ul>
             </div>
