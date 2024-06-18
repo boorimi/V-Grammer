@@ -360,6 +360,10 @@
   height: 68px;
   list-style: none;
   bottom: 10px;
+  color: white;
+  font-size: 18px;
+ 
+  border-bottom: 1px solid white;
 }
 
 .news-photo > img {
