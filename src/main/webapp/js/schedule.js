@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+
 	// 페이지 열리면 오늘 날짜 탭이 바로 열리게 하는 코드
 	let today = new Date().getDay();
 	let todayId;
@@ -15,20 +15,36 @@ $(document).ready(function() {
 	}
 	$("#" + todayId).prop("checked", true);
 
+	let timeColor = {
+		"s-mon": 'lightpink', "s-tue": '#b7f1ff', "s-wed": '#d1b7a4', "s-thu": '#ffe089',
+		"s-fri": '#cf80e0', "s-sat": '#ffa658', "s-sun": '#bdde87'
+	};
+
+	$('input[name="tab_item"]').change(function() {
+		let dayOfWeek = $(this).attr('id');
+		let backgroundColor = timeColor[dayOfWeek];
+
+		$('.s-time').css('backgroundColor', backgroundColor);
+	});
+	
+	// 초기 페이지 로드 시 요일에 맞게 s-time div 컬러 색상 세팅
+		$('.s-time').css('backgroundColor', timeColor[todayId]);
+	
+
 	$(function() {
 		// 멤버 pk에 맞는 컬러
-		let colors = {
-			1: ["lightpink"], 2: ["#A5CDEC"], 3: ["#CDB8FF"], 4: ["#C25B7C"],
-			5: ["#FFD6D4"], 6: ["#8BEC97"], 7: ["#D6BAEB"], 8: ["#FFB9BB"],
-			9: ["#BFD2EE"], 10: ["#B7F1FF"], 11: ["#D1B7A4"], 12: ["#FFE089"],
-			13: ["#CF80E0"], 14: ["#FFA658"], 15: ["#BDDE87"], 16: ["#C4BEC9"],
-			17: ["#D4485F"], 18: ["#DE617E"], 19: ["#77788F"], 20: ["#B2E2F7"],
-			21: ["#BF8ADE"], 22: ["#CDEDFF"], 23: ["#C5C2C3"], 24: ["#FAC6D3"], 25: ["#BEC48B"]
+		let memberColors = {
+			1: "lightpink", 2: "#A5CDEC", 3: "#CDB8FF", 4: "#C25B7C",
+			5: "#FFD6D4", 6: "#8BEC97", 7: "#D6BAEB", 8: "#FFB9BB",
+			9: "#BFD2EE", 10: "#B7F1FF", 11: "#D1B7A4", 12: "#FFE089",
+			13: "#CF80E0", 14: "#FFA658", 15: "#BDDE87", 16: "#C4BEC9",
+			17: "#D4485F", 18: "#DE617E", 19: "#77788F", 20: "#B2E2F7",
+			21: "#BF8ADE", 22: "#CDEDFF", 23: "#C5C2C3", 24: "#FAC6D3", 25: "#BEC48B"
 		};
 
 		// 디브 컬러 세팅 함수
 		function setBackgroundColor(element, value) {
-			let backgroundColor = colors[value][0];
+			let backgroundColor = memberColors[value];
 			element.css('background-color', backgroundColor);
 		}
 
