@@ -383,12 +383,14 @@
   display: inline-block;
   background: rgba(255, 255, 255, 0.2); /* 반투명한 유리 같은 배경 */
   color: white; /* 흰색 글씨 */
-  padding-left: 10px;  /* 좌측 패딩 */
-  padding-right: 10px; /* 우측 패딩 */
+  padding-left: 10px;  
+  padding-right: 10px; 
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-weight: bold;
   backdrop-filter: blur(5px); /* 유리 같은 블러 효과 */
+ 
+  
 }
 
 .date-item:hover {
