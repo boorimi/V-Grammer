@@ -1,10 +1,21 @@
 $(document).ready(function() {
-	// 스케줄 맞는 시간대 박스에 집어넣는 코드
-	$(function() {
-		let data = $("#weekJSON").text();
-		data = JSON.parse(data);
-		console.log(data[0]);
+	
+	// 페이지 열리면 오늘 날짜 탭이 바로 열리게 하는 코드
+	let today = new Date().getDay();
+	let todayId;
 
+	switch (today) {
+		case 0: todayId = "s-sun"; break;
+		case 1: todayId = "s-mon"; break;
+		case 2: todayId = "s-tue"; break;
+		case 3: todayId = "s-wed"; break;
+		case 4: todayId = "s-thu"; break;
+		case 5: todayId = "s-fri"; break;
+		case 6: todayId = "s-sat"; break;
+	}
+	$("#" + todayId).prop("checked", true);
+
+	$(function() {
 		// 멤버 pk에 맞는 컬러
 		let colors = {
 			1: ["lightpink"], 2: ["#A5CDEC"], 3: ["#CDB8FF"], 4: ["#C25B7C"],
@@ -14,12 +25,17 @@ $(document).ready(function() {
 			17: ["#D4485F"], 18: ["#DE617E"], 19: ["#77788F"], 20: ["#B2E2F7"],
 			21: ["#BF8ADE"], 22: ["#CDEDFF"], 23: ["#C5C2C3"], 24: ["#FAC6D3"], 25: ["#BEC48B"]
 		};
-		
+
 		// 디브 컬러 세팅 함수
 		function setBackgroundColor(element, value) {
 			let backgroundColor = colors[value][0];
 			element.css('background-color', backgroundColor);
 		}
+
+		// 스케줄 맞는 시간대 박스에 집어넣는 코드
+		let data = $("#weekJSON").text();
+		data = JSON.parse(data);
+		console.log(data[0]);
 
 		for (var i = 1; i < 8; i++) {
 			let sDataBox = $(".day" + i + "-content .s-data-box");
@@ -56,7 +72,6 @@ $(document).ready(function() {
 
 
 	});
-
 
 
 	// 인서트 js
