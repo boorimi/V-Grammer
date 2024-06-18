@@ -9,7 +9,9 @@
 <body class="html-body">
     <div class="container">
         <button id="calendarButton" class="button-15">캘린더로 돌아가기</button>
+        <div class="centered">
         <h1>멤버의 디데이 목록</h1>
+        </div>
         <table class="table table-bordered" id="dday">
             <thead>
                 <tr>

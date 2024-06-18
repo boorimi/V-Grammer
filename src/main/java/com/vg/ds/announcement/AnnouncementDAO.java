@@ -73,8 +73,10 @@ public class AnnouncementDAO {
 				announcements.add(a);
 
 			}
+			
 			request.setAttribute("announcements", announcements);
-
+						
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

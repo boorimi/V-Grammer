@@ -1,151 +1,153 @@
 @charset "UTF-8";
 
-/* Scoped styles for D-Day component */
+.centered {
+	display: flex;
+	justify-content: center; /* 수평 가운데 정렬 */
+	align-items: center; /* 수직 가운데 정렬 */
+	height: 100px; /* 화면 전체 높이를 기준으로 중앙 정렬 */
+}
+
 #dday {
-    border: 1px #a39485 solid;
-    font-size: .9em;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 5px;
-    overflow: hidden;
+	border: 1px #a39485 solid;
+	font-size: .9em;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+	width: 50%;
+	border-collapse: collapse;
+	border-radius: 5px;
+	overflow: auto;
+	margin: 0 auto;
 }
 
 #dday th {
-    text-align: left;
+	text-align: center;
 }
 
 #dday thead {
-    font-weight: bold;
-    color: #fff;
-    background: #73685d;
+	font-weight: bold;
+	color: #fff;
+	background: #73685d;
 }
 
 #dday td, #dday th {
-    padding: 1em .5em;
-    vertical-align: middle;
+	padding: 1em .5em;
+	vertical-align: middle;
+	text-align: center;
 }
 
 #dday td {
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
-    background: #fff;
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
+	background: #fff;
 }
 
 @media all and (max-width: 768px) {
-    #dday, #dday thead, #dday tbody, #dday th, #dday td, #dday tr {
-        display: block;
-    }
-    #dday th {
-        text-align: right;
-    }
-    #dday {
-        position: relative;
-        padding-bottom: 0;
-        border: none;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    }
-    #dday thead {
-        float: left;
-        white-space: nowrap;
-    }
-    #dday tbody {
-        overflow-x: auto;
-        overflow-y: hidden;
-        position: relative;
-        white-space: nowrap;
-    }
-    #dday tr {
-        display: inline-block;
-        vertical-align: top;
-    }
-    #dday th {
-        border-bottom: 1px solid #a39485;
-    }
-    #dday td {
-        border-bottom: 1px solid #e5e5e5;
-    }
+	#dday, #dday thead, #dday tbody, #dday th, #dday td, #dday tr {
+		display: block;
+	}
+	#dday th {
+		text-align: right;
+	}
+	#dday {
+		position: relative;
+		padding-bottom: 0;
+		border: none;
+		box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+	}
+	#dday thead {
+		float: left;
+		white-space: nowrap;
+	}
+	#dday tbody {
+		overflow-x: auto;
+		overflow-y: hidden;
+		position: relative;
+		white-space: nowrap;
+	}
+	#dday tr {
+		display: inline-block;
+		vertical-align: top;
+	}
+	#dday th {
+		border-bottom: 1px solid #a39485;
+	}
+	#dday td {
+		border-bottom: 1px solid #e5e5e5;
+	}
 }
 
 .button-15 {
-    background: #000;
-    color: #fff;
-    z-index: 1;
-    position: relative;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-bottom: -20px;
-    justify-content: center;
-    align-items: center;
+	background: #000;
+	color: #fff;
+	z-index: 1;
+	position: relative;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	margin-bottom: -20px;
+	justify-content: center;
+	align-items: center;
 }
 
 .button-15:after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    background: #e0e5ec;
-    transition: all 0.3s ease;
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 100%;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	background: #e0e5ec;
+	transition: all 0.3s ease;
 }
 
 .button-15:hover {
-    color: #000;
+	color: #000;
 }
 
 .button-15:hover:after {
-    left: 0;
-    width: 100%;
+	left: 0;
+	width: 100%;
 }
 
 .button-15:active {
-    top: 2px;
+	top: 2px;
 }
 
 .button-dday {
-    background: #000;
-    color: #fff;
-    z-index: 1;
-    position: relative; /* 절대 위치 요소의 부모로 설정 */
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
+	background: #000;
+	color: #fff;
+	z-index: 1;
+	position: relative;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
 }
 
 .button-dday:after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    background: #e0e5ec;
-    transition: all 0.3s ease;
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 100%;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	background: #e0e5ec;
+	transition: all 0.3s ease;
 }
 
 .button-dday:hover {
-    color: #000;
+	color: #000;
 }
 
 .button-dday:hover:after {
-    left: 0;
-    width: 100%;
+	left: 0;
+	width: 100%;
 }
 
 .button-dday:active {
-    top: 2px;
+	top: 2px;
 }
 
 .html-body, .html-body * {
-    overflow: auto;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-}
-
-.fc-header-toolbar {
-    padding-top: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
+	overflow: auto;
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
 }
