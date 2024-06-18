@@ -71,11 +71,17 @@ $(document).ready(function() {
 
 						//            						console.log(obj.s_pk)
 						//						let sTitle = $("<div></div>").text(obj.s_title).addClass("s-data-title");
-						let sTitle = $("<div>").addClass("s-data-title").append(
-								$("<span>").text(obj.s_title),
-								$("<button>").text("delete"),
-								$("<button>").text("update")
-							);
+						
+						let sTitle = $("<div>").addClass("s-data-title");
+
+						let innerHtml = `<div>${obj.s_title}</div>
+										<div class="s-title-button-box">
+								      	  <button class="delete-button">delete</button>
+								      	  <button class="update-button">update</button>
+								      	  </div>
+								  		  `;
+
+						sTitle.append(innerHtml);
 
 						sData.append(sTime).append(mName).append(sTitle);
 
