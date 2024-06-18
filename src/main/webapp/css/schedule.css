@@ -60,7 +60,6 @@
 }
 
 .s-time-list {
-	background-color: chartreuse;
 	display: flex;
 }
 
@@ -84,7 +83,6 @@
 .s-data {
 	width: calc(100% / 7);
 	height: 50px;
-	background-color: cadetblue;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
