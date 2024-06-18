@@ -96,20 +96,18 @@ prefix="c"%>
       </div>
       <!-- D-day 흐르는거 끝 -->
       <!-- 뉴스 컨테이너 시작  -->
-      <div class="main-news-container">
-        <div class="main-news">
-          <div class="news-photo">
-            <img src="haco_img/img/newimg2.png" alt="" />
-          </div>
-          <ul class="news-board">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
+		<div class="main-news-container">
+            <div class="main-news">
+                <div class="news-photo">
+                    <img src="haco_img/img/newimg2.png" alt="News Photo" />
+                </div>
+                <ul class="news-board">
+                    <c:forEach var="news" items="${announcements}">
+                        <div>${news.a_title}</div>
+                    </c:forEach>
+                </ul>
+            </div>
         </div>
-      </div>
       <!-- 오늘의 버튜버 시작 -->
       <div class="today-vtuber-wrapper">
         <div class="today-vtuber">
