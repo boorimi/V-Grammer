@@ -36,6 +36,7 @@ $(function () {
       searchPage(resData);
       replaceCollabomemberString();
       replaceNull();
+      
 
       // console.log(JSON.stringify(resData));
     });
@@ -135,24 +136,29 @@ function test(resData) {
 }
 
 //비동기 검색 세부
-function searchPage(resData) {
-  let $archiveList = $("#archive-list");
+async function searchPage(resData) {
   let $paging = $(".archive-paging-container");
-  $archiveList.html("");
+  let $archiveList = $("#archive-list");
+  let asdf = await getPagingVariable();
+  console.log(asdf);
+  let data = "f!s".split("!");
+		let curPageNo = data[0]; // 현재페이지 정보
+		let pageCount = data[1]; // 총 페이지 정보
+		
+		console.log(curPageNo);
+		console.log(pageCount);
+		
+		
   $paging.html("");
+  $archiveList.html("");
   let initialHtml = `<div class="archive-paging-container">
       <!-- page변수 = 현재페이지 * 페이지유닛 -->
-      <c:set var="pageUnit" value="10"></c:set>
-      <c:set
-        var="page"
-        value=""
-      ></c:set>
       <div class="archive-paging-start">
         <a href="ArchivePageC?p=1">最初に</a>
       </div>
       <div class="archive-paging-unit-prev">
         <c:if test="">
-          <a href="ArchivePageC?p=">
+          <a href="ArchivePageC?p=">QWEQWEQ
             以前 ページ
           </a>
         </c:if>
@@ -163,16 +169,10 @@ function searchPage(resData) {
           begin="1"
           end="10"
         >
-          <div class="archive-paging-no">1</div>
+          <div class="archive-paging-no"></div>
         </c:forEach>
       </div>
       <div class="archive-paging-unit-next">
-        <c:if
-          test=""
-        >
-          <a href="ArchivePageC?p="
-            >次 ページ</a
-          >
         </c:if>
       </div>
       <div class="archive-paging-end">
@@ -259,3 +259,20 @@ function replaceNull() {
     }
   });
 }
+				
+function getPagingVariable(){
+	 return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: "GetPagingVariableC",
+            type: "GET",
+            success: function(resData) {
+                resolve(resData); // 성공 시 데이터를 resolve
+            },
+            error: function(xhr, status, error) {
+                reject(error); // 에러 발생 시 reject
+            }
+        });
+    });
+}
+
+

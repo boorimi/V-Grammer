@@ -19,6 +19,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.github.scribejava.core.model.Response;
 import com.twitter.joauth.Request;
 import com.vg.ds.trade.TradeDTO;
 import com.vg.ignore.DBManager;
@@ -48,9 +49,10 @@ public class ArchiveDAO {
 		request.setAttribute("start", start);
 		request.setAttribute("end", end);
 		request.setAttribute("archives", items);
+		
 	}
 
-	public static void getCountArchive(int page, HttpServletRequest request) {
+	public static void getCountArchive(int page, HttpServletRequest request, HttpServletResponse response) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -76,7 +78,11 @@ public class ArchiveDAO {
 			request.setAttribute("pageCount", pageCount); // 총 페이지 수
 			request.setAttribute("start", start);
 			request.setAttribute("end", end);
-
+			
+			String resData = page+"!"+pageCount;
+			response.setContentType("text/plain; charset=utf-8");
+			response.getWriter().print(resData);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
