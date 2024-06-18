@@ -355,7 +355,7 @@
   top: 0;
 }
 
-.news-board > li {
+.news-board > span> li {
   top: 0;
   height: 68px;
   list-style: none;
@@ -363,14 +363,38 @@
   
   font-size: 18px;
  
-  border-bottom: 1px solid white;
+  /* border-bottom: 1px solid white; */
 }
 
-.news-board > li > a{
+.news-board > span > li > a{
   text-decoration: none;
   color: white;
   display: inline-block;
   padding-top: 25px;
+  margin-left: 100px;
+}
+.news-board > span{
+  display: flex;
+  border-bottom: 1px solid white;
+  
+}
+
+.date-item {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2); /* 반투명한 유리 같은 배경 */
+  color: white; /* 흰색 글씨 */
+  padding-left: 10px;  
+  padding-right: 10px; 
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  backdrop-filter: blur(5px); /* 유리 같은 블러 효과 */
+ 
+  
+}
+
+.date-item:hover {
+  background: rgba(255, 255, 255, 0.4); /* 호버 시 배경색 조금 더 밝게 */
 }
 
 .news-photo > img {

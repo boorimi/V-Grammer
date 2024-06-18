@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c"%>
+prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -101,9 +101,19 @@ prefix="c"%>
           </div>
           <ul class="news-board">
             <c:forEach var="news" items="${announcements}">
-              <li>
-                <a href="SelectAnnouncement?no=${news.pk}"> ${news.title} </a>
-              </li>
+              <span>
+                <li class="date-item">
+                  <fmt:parseDate
+                    value="${news.date}"
+                    pattern="yyyy-MM-dd HH:mm:ss"
+                    var="parsedDate"
+                  />
+                  <fmt:formatDate value="${parsedDate}" pattern="MM/dd" />
+                </li>
+                <li>
+                  <a href="SelectAnnouncement?no=${news.pk}">${news.title}</a>
+                </li>
+              </span>
             </c:forEach>
           </ul>
         </div>
