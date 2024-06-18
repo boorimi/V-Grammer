@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.vg.sw.dday.DdayDAO;
 import com.vg.sw.dday.DdayDTO;
+import com.vg.ds.announcement.AnnouncementDAO;
 import com.vg.jw.AccountDAO;
 
 
@@ -24,7 +25,9 @@ public class HC extends HttpServlet {
 		List<DdayDTO> ddayList = DdayDAO.selectAllDdays();
         request.setAttribute("ddayList", ddayList);
 //		GetAllStream.getAllLive();
+        AnnouncementDAO.ADAO.selectAllAnnouncement(request);
         AccountDAO.loginCheck(request);
+        
 		request.setAttribute("content", "mainpage/main.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
