@@ -10,9 +10,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.vg.ds.announcement.AnnouncementDTO;
 import com.vg.ignore.DBManager;
+import com.vg.jw.AccountDTO;
 import com.vg.kw.archive.ArchiveDTO;
 
 public class TradeDAO {
@@ -82,6 +84,14 @@ public class TradeDAO {
 					category3 += "&goodsCategory=" + c;
 				}
 				request.setAttribute("category3", category3);
+			}
+			
+			if (request.getParameterValues("name") != null) {
+				String name = request.getParameter("name");
+				sql += "and u_nickname like CONCAT('%','" + name + "','%')";
+				String name2 = "&name=" + name;
+				request.setAttribute("name", name);
+				request.setAttribute("name2", name2);
 			}
 			////// 검색 진행 시 sql문 추가하는 부분 끝 ////
 			sql += "order by t_date asc";
@@ -301,12 +311,14 @@ public class TradeDAO {
 
 		try {
 			// 인서트 할때 DB에 줄바꿈 -> br 로 대체하는 코드
+			System.out.println(request.getParameter("no"));
 			String text = request.getParameter("text");
 			text = text.replaceAll("\r\n", "<br>");
 
 			String sql = "insert into haco_tradegoods_comments values ";
 			sql += "(null, ?, ?, ?, ?, now())";
 
+			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("no"));
@@ -413,3 +425,6 @@ public class TradeDAO {
 	}
 
 }
+
+
+
