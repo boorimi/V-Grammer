@@ -14,9 +14,7 @@
             <thead>
                 <tr>
                     <th>이름</th>
-                    <th>데뷔 날짜</th>
-                    <th>디데이까지 남은 일수</th>
-                    <th>생일</th>
+                    <th>기념일</th>
                     <th>디데이까지 남은 일수</th>
                 </tr>
             </thead>
@@ -24,35 +22,8 @@
                 <c:forEach var="dday" items="${ddayList}">
                     <tr>
                         <td>${dday.name}</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${not empty dday.debutDate}">
-                                    데뷔 날짜: ${dday.debutDate}
-                                </c:when>
-                                <c:otherwise>
-                                    데뷔 날짜: 없음
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
-                        <td>${dday.debutDate != null ? dday.daysUntilDebutDday : ''}</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>${dday.name}</td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${not empty dday.birthDate}">
-                                    생일: ${dday.birthDate}
-                                </c:when>
-                                <c:otherwise>
-                                    생일: 없음
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
-                        <td>${dday.birthDate != null ? dday.daysUntilBirthDday : ''}</td>
+                        <td>${dday.event} 날짜: ${dday.eventDate}</td>
+                        <td>${dday.localEventDate}</td>
                     </tr>
                 </c:forEach>
             </tbody>

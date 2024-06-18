@@ -1,25 +1,21 @@
 package com.vg.sw.dday;
 
+import java.time.LocalDate;
+
 public class DdayDTO implements Comparable<DdayDTO> {
     private int id;
     private String name;
-    private String debutDate;
-    private String birthDate;
-    private long daysUntilDebutDday;
-    private long daysUntilBirthDday;
+    private String event; // "데뷔" 또는 "생일"
+    private String eventDate;
+    private LocalDate localEventDate;
 
-    // Constructor and getters/setters
-
-    public DdayDTO(int id, String name, String debutDate, String birthDate, long daysUntilDebutDday, long daysUntilBirthDday) {
+    public DdayDTO(int id, String name, String event, String eventDate, LocalDate localEventDate) {
         this.id = id;
         this.name = name;
-        this.debutDate = debutDate;
-        this.birthDate = birthDate;
-        this.daysUntilDebutDday = daysUntilDebutDday;
-        this.daysUntilBirthDday = daysUntilBirthDday;
+        this.event = event;
+        this.eventDate = eventDate;
+        this.localEventDate = localEventDate;
     }
-
-    // Getters and Setters
 
     public int getId() {
         return id;
@@ -37,49 +33,32 @@ public class DdayDTO implements Comparable<DdayDTO> {
         this.name = name;
     }
 
-    public String getDebutDate() {
-        return debutDate;
+    public String getEvent() {
+        return event;
     }
 
-    public void setDebutDate(String debutDate) {
-        this.debutDate = debutDate;
+    public void setEvent(String event) {
+        this.event = event;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getEventDate() {
+        return eventDate;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
     }
 
-    public long getDaysUntilDebutDday() {
-        return daysUntilDebutDday;
+    public LocalDate getLocalEventDate() {
+        return localEventDate;
     }
 
-    public void setDaysUntilDebutDday(long daysUntilDebutDday) {
-        this.daysUntilDebutDday = daysUntilDebutDday;
+    public void setLocalEventDate(LocalDate localEventDate) {
+        this.localEventDate = localEventDate;
     }
 
-    public long getDaysUntilBirthDday() {
-        return daysUntilBirthDday;
-    }
-
-    public void setDaysUntilBirthDday(long daysUntilBirthDday) {
-        this.daysUntilBirthDday = daysUntilBirthDday;
-    }
-
-    // Comparable implementation to sort by nearest D-Day
     @Override
     public int compareTo(DdayDTO other) {
-        long thisNearestDday = Math.min(daysUntilDebutDday, daysUntilBirthDday);
-        long otherNearestDday = Math.min(other.daysUntilDebutDday, other.daysUntilBirthDday);
-        int compareResult = Long.compare(otherNearestDday, thisNearestDday); // 내림차순 정렬을 위해 반대로 비교
-
-        if (compareResult == 0) {
-            compareResult = Long.compare(other.daysUntilBirthDday, this.daysUntilBirthDday); // 생일 기준 내림차순 정렬
-        }
-
-        return compareResult;
+        return this.localEventDate.compareTo(other.localEventDate); // 오름차순 정렬
     }
 }
