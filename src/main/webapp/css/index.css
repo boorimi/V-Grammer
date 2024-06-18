@@ -319,6 +319,7 @@
   background-color: white;
   height: 30px;
   display: flex;
+  margin-top: 50px;
 }
 
 .main-dday-container div div {
@@ -614,9 +615,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 footer {
-  margin-top: 100px;
+  margin-top: 150px;
   padding: 40px 0;
-  background-color: #f0f0f0; /* 간지나는 옅은 회색 */
+  background-color: #f0f0f0; 
   font-family: 'Roboto', sans-serif;
   color: #333;
 }
@@ -774,6 +775,7 @@ footer {
   background: #3cb0fd;
   text-decoration: none;
 }
+
 
 .footer-menus {
   display: flex;
