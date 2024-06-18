@@ -168,7 +168,7 @@
 .s-data-title {
 	display: none;
 	position: absolute;
-	top: -50%;
+	top: -60%;
 	background-color: pink;
 	z-index: 900;
 	width: max-content;
@@ -201,5 +201,4 @@
 
 #schedule-blank-box {
 	width: 120px;
-	background-color: darkorange;
 }
