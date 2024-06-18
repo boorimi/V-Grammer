@@ -15,48 +15,45 @@
                 <tr>
                     <th>이름</th>
                     <th>데뷔 날짜</th>
+                    <th>디데이까지 남은 일수</th>
                     <th>생일</th>
                     <th>디데이까지 남은 일수</th>
                 </tr>
             </thead>
             <tbody>
-                <c:set var="prevName" value="" />
                 <c:forEach var="dday" items="${ddayList}">
-                    <c:if test="${not empty prevName}">
-                        <c:if test="${prevName ne dday.m_name}">
-                            <tr>
-                                <td>${dday.m_name}</td>
-                                <td></td>
-                                <td>
-                                    <c:choose>
-                                        <c:when test="${not empty dday.m_birth}">
-                                            생일: ${dday.m_birth}
-                                        </c:when>
-                                        <c:otherwise>
-                                            생일: 없음
-                                        </c:otherwise>
-                                    </c:choose>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </c:if>
-                    </c:if>
                     <tr>
-                        <td>${dday.m_name}</td>
+                        <td>${dday.name}</td>
                         <td>
                             <c:choose>
-                                <c:when test="${not empty dday.m_debut}">
-                                    데뷔 날짜: ${dday.m_debut}
+                                <c:when test="${not empty dday.debutDate}">
+                                    데뷔 날짜: ${dday.debutDate}
                                 </c:when>
                                 <c:otherwise>
                                     데뷔 날짜: 없음
                                 </c:otherwise>
                             </c:choose>
                         </td>
+                        <td>${dday.debutDate != null ? dday.daysUntilDebutDday : ''}</td>
                         <td></td>
-                        <td>${dday.m_debut != null ? dday.daysUntilDday : ''}</td>
+                        <td></td>
                     </tr>
-                    <c:set var="prevName" value="${dday.m_name}" />
+                    <tr>
+                        <td>${dday.name}</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${not empty dday.birthDate}">
+                                    생일: ${dday.birthDate}
+                                </c:when>
+                                <c:otherwise>
+                                    생일: 없음
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>${dday.birthDate != null ? dday.daysUntilBirthDday : ''}</td>
+                    </tr>
                 </c:forEach>
             </tbody>
         </table>
