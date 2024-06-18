@@ -82,9 +82,7 @@ prefix="c"%>
       <div class="main-dday-container">
         <div class="dday-items-wrapper">
           <c:forEach var="dday" items="${ddayList}">
-
             <c:if test="${dday.daysUntilDday <= 7}">
-
               <div class="dday-item">
                 <span>名前 : ${dday.m_name} </span>
                 <span>デビュー日 : ${dday.m_debut} </span>
@@ -96,18 +94,20 @@ prefix="c"%>
       </div>
       <!-- D-day 흐르는거 끝 -->
       <!-- 뉴스 컨테이너 시작  -->
-		<div class="main-news-container">
-            <div class="main-news">
-                <div class="news-photo">
-                    <img src="haco_img/img/newimg2.png" alt="News Photo" />
-                </div>
-                <ul class="news-board">
-                    <c:forEach var="news" items="${announcements}">
-                        <div>${news.title}</div>
-                    </c:forEach>
-                </ul>
-            </div>
+      <div class="main-news-container">
+        <div class="main-news">
+          <div class="news-photo">
+            <img src="haco_img/img/newimg2.png" alt="News Photo" />
+          </div>
+          <ul class="news-board">
+            <c:forEach var="news" items="${announcements}">
+              <li>
+                <a href="SelectAnnouncement?no=${news.pk}"> ${news.title} </a>
+              </li>
+            </c:forEach>
+          </ul>
         </div>
+      </div>
       <!-- 오늘의 버튜버 시작 -->
       <div class="today-vtuber-wrapper">
         <div class="today-vtuber">

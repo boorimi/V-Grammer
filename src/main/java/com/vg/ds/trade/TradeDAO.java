@@ -85,7 +85,7 @@ public class TradeDAO {
 				}
 				request.setAttribute("category3", category3);
 			}
-			
+
 			if (request.getParameterValues("name") != null) {
 				String name = request.getParameter("name");
 				sql += "and u_nickname like CONCAT('%','" + name + "','%')";
@@ -318,7 +318,6 @@ public class TradeDAO {
 			String sql = "insert into haco_tradegoods_comments values ";
 			sql += "(null, ?, ?, ?, ?, now())";
 
-			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("no"));
@@ -365,7 +364,6 @@ public class TradeDAO {
 		String pk = request.getParameter("pk");
 		System.out.println(category);
 		System.out.println(pk);
-		
 
 		String sql = "SELECT hg.*, hm.m_name from haco_goods hg, haco_member hm ";
 		sql += "where hg.g_m_pk = hm.m_pk and g_category = ? ";
@@ -400,10 +398,10 @@ public class TradeDAO {
 				checkboxItems2.add(Map.of("value", "dmmMiniAkusuta", "label", "DMM：ミニアクスタ"));
 				checkboxItems2.add(Map.of("value", "dmmCyeki", "label", "DMM：チェキ"));
 				for (Map<String, String> item : checkboxItems2) {
-				    if (item.get("value").equals(valueToFind)) {
-				        label = item.get("label");
-				        break;
-				    }
+					if (item.get("value").equals(valueToFind)) {
+						label = item.get("label");
+						break;
+					}
 				}
 				good.setCategory(label);
 				good.setCount(rs.getString(5));
@@ -424,7 +422,26 @@ public class TradeDAO {
 
 	}
 
+	public void deleteCommentsTrade(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+
+		try {
+
+			String sql = "delete from haco_tradegoods_comments where tc_pk = ?";
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, request.getParameter("no"));
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("삭제 성공!");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+	}
+
 }
-
-
-
