@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.vg.ignore.DBManager;
@@ -40,23 +42,26 @@ public class DdayDAO {
                 String debutDateString = rs.getString("m_debut");
                 String birthDateString = rs.getString("m_birth");
                 LocalDate debutDate = null;
-                LocalDate birthDate = null;
-                long daysUntilDday = 0;
+                long daysUntilDebutDday = Long.MAX_VALUE; // 초기값 설정
+                long daysUntilBirthDday = Long.MAX_VALUE; // 초기값 설정
 
                 try {
+                    LocalDate today = LocalDate.now();
+                    String debutDateFormatted = null;
                     if (debutDateString != null && !debutDateString.equals("0000-00-00")) {
                         debutDate = LocalDate.parse(debutDateString);
-                        long totalDays = ChronoUnit.DAYS.between(debutDate, LocalDate.now());
-                        daysUntilDday = totalDays % 365;
+                        daysUntilDebutDday = calculateDaysUntilNextOccurrence(today, debutDate);
+                        debutDateFormatted = debutDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     }
 
                     String birthDateFormatted = null;
                     if (birthDateString != null && !birthDateString.equals("0000-00-00")) {
-                        birthDate = LocalDate.parse(birthDateString);
-                        birthDateFormatted = birthDate.format(DateTimeFormatter.ofPattern("MM-dd"));
+                        LocalDate birthDate = LocalDate.parse(birthDateString);
+                        daysUntilBirthDday = calculateDaysUntilNextOccurrence(today, birthDate);
+                        birthDateFormatted = birthDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     }
 
-                    DdayDTO dday = new DdayDTO(id, name, debutDateString, birthDateFormatted, daysUntilDday);
+                    DdayDTO dday = new DdayDTO(id, name, debutDateFormatted, birthDateFormatted, -daysUntilDebutDday, -daysUntilBirthDday);
                     ddayList.add(dday);
 
                 } catch (DateTimeParseException e) {
@@ -67,6 +72,24 @@ public class DdayDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Sort ddayList by nearest D-Day in descending order
+        Collections.sort(ddayList);
+
         return ddayList;
+    }
+
+    /**
+     * 오늘 날짜를 기준으로 특정 날짜까지 남은 일수를 계산하는 메소드.
+     *
+     * @param today 현재 날짜
+     * @param targetDate 목표 날짜
+     * @return 남은 일수
+     */
+    private static long calculateDaysUntilNextOccurrence(LocalDate today, LocalDate targetDate) {
+        if (targetDate.isBefore(today) || targetDate.isEqual(today)) {
+            targetDate = targetDate.plusYears(1);
+        }
+        return ChronoUnit.DAYS.between(today, targetDate);
     }
 }

@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadEventsForYears(startYear, endYear, calendar) {
         console.log(`이벤트 로드 시작: ${startYear}년부터 ${endYear}년까지`);
         // 캘린더 로딩 메세지 표시
-        alert("캘린더를 로딩하고 있습니다. 확인을 누르면 로드를 시작합니다. 시간이 소요될수 있습니다.");
+        alert("カレンダーを読み込み中です。 OKボタンを押したら 読み込めます。時間がかかる場合があります。");
         
         $.ajax({
             url: 'CalendarEventC',  // 서버에서 이벤트 데이터를 가져올 URL
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadedEvents = res; // 서버에서 로드한 이벤트 저장
                 addEventsForYears(res, startYear, endYear, calendar);
                 // 로딩 메시지 닫기
-                alert("캘린더 로딩 완료!");
+                alert("読み込み完了！");
             },
             error: function(err) {
                 console.error("Error fetching events: ", err);

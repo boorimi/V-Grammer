@@ -19,11 +19,11 @@ public class ArticleC extends HttpServlet {
 		System.out.println("ArticleC doGet 진입");
 		TradeDAO.TDAO.selectAllTrade(request);
 		TradeDAO.TDAO.selectTradeComments(request);
-//		int p = Integer.parseInt(request.getParameter("p"));
-//		TradeDAO.TDAO.paging(1, request);
+		//int p = Integer.parseInt(request.getParameter("p"));
+		TradeDAO.TDAO.paging(1, request);
 		TradeDAO.TDAO.tradeCheckboxList(request);	
 		System.out.println("Article로직 처리 완료");
-		request.getRequestDispatcher("account/mypage/mypage_article.jsp").include(request, response);
+		request.getRequestDispatcher("account/mypage/mypage_article.jsp").forward(request, response);
 
 	}
 

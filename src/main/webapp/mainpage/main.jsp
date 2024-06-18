@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c"%>
+prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -82,9 +82,7 @@ prefix="c"%>
       <div class="main-dday-container">
         <div class="dday-items-wrapper">
           <c:forEach var="dday" items="${ddayList}">
-
             <c:if test="${dday.daysUntilDday <= 7}">
-
               <div class="dday-item">
                 <span>名前 : ${dday.m_name} </span>
                 <span>デビュー日 : ${dday.m_debut} </span>
@@ -96,18 +94,30 @@ prefix="c"%>
       </div>
       <!-- D-day 흐르는거 끝 -->
       <!-- 뉴스 컨테이너 시작  -->
-		<div class="main-news-container">
-            <div class="main-news">
-                <div class="news-photo">
-                    <img src="haco_img/img/newimg2.png" alt="News Photo" />
-                </div>
-                <ul class="news-board">
-                    <c:forEach var="news" items="${announcements}">
-                        <div>${news.title}</div>
-                    </c:forEach>
-                </ul>
-            </div>
+      <div class="main-news-container">
+        <div class="main-news">
+          <div class="news-photo">
+            <img src="haco_img/img/newimg2.png" alt="News Photo" />
+          </div>
+          <ul class="news-board">
+            <c:forEach var="news" items="${announcements}">
+              <span>
+                <li class="date-item">
+                  <fmt:parseDate
+                    value="${news.date}"
+                    pattern="yyyy-MM-dd HH:mm:ss"
+                    var="parsedDate"
+                  />
+                  <fmt:formatDate value="${parsedDate}" pattern="MM/dd" />
+                </li>
+                <li>
+                  <a href="SelectAnnouncement?no=${news.pk}">${news.title}</a>
+                </li>
+              </span>
+            </c:forEach>
+          </ul>
         </div>
+      </div>
       <!-- 오늘의 버튜버 시작 -->
       <div class="today-vtuber-wrapper">
         <div class="today-vtuber">
