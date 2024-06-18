@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
-<script src="js/trade.js" defer></script>
+<script src="js/mypage_article.js" defer></script>
 <link rel="stylesheet" href="css/trade.css" />
 </head>
 <%
@@ -28,7 +28,7 @@ response.setCharacterEncoding("UTF-8");
 		<div style="text-align: center;">
 			<button class="trade-openCategorys">カテゴリーで検索 ▼</button>
 		</div>
-		<form action="Trade">
+		<form action="ArticleC">
 			<c:choose>
 				<c:when test="${category3 != null}">
 					<c:set var="displayValue" value="flex" />
@@ -127,39 +127,9 @@ response.setCharacterEncoding("UTF-8");
 			</c:forEach>
 			<!-- 본문페이지 for문 끝 -->
 		</div>
-		<!--  여기부터 페이징  -->
-		<%-- <div class="trade-bottom">
-			<div>
-				<a href="ArticleC?p=1${category3 }" class="paging-link">最初に</a>
-			</div>
-			<c:set var="pageUnit" value="4" />
-			<c:set var="page"
-				value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}" />
-			<div>
-				<c:if test="${page != 0}">
-					<a href="ArticleC?p=${page - pageUnit + 1}${category3 }"
-						class="paging-link">이전 ${pageUnit }페이지</a>
-				</c:if>
-			</div>
-			<div style="display: flex">
-				<c:forEach var="i" begin="${page + 1 }"
-					end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}">
-					<div class="trade-page-no">
-						<a href="ArticleC?p=${i }${category3 }" class="paging-link">[${i }]</a>
-					</div>
-				</c:forEach>
-			</div>
-			<div>
-				<c:if
-					test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}">
-					<a href="ArticleC?p=${page + pageUnit + 1 }${category3 }"
-						class="paging-link">다음 ${pageUnit }페이지</a>
-				</c:if>
-			</div>
-			<div>
-				<a href="ArticleC?p=${pageCount}${category3 }" class="paging-link">最後に</a>
-			</div>
-		</div> --%>
+		<div>
+			<button id="more-btn" value="0">More</button>
+		</div>
 	</div>
 	<!-- <div>
       <input id="search-input" />
