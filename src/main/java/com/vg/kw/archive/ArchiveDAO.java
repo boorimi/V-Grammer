@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.net.ssl.HttpsURLConnection;
 
 import org.json.simple.JSONArray;
@@ -57,7 +58,7 @@ public class ArchiveDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		String member = null;
 		String category = null;
 		String title = null;
@@ -70,9 +71,9 @@ public class ArchiveDAO {
 		if (request.getParameter("title") != null && !request.getParameter("title").equals("")) {
 			title = request.getParameter("title");
 		}
-		System.out.println(member);
-		System.out.println(category);
-		System.out.println(title);
+//		System.out.println(member);
+//		System.out.println(category);
+//		System.out.println(title);
 		String sql = "select count(*) from haco_archive ha, haco_member hm ";
 		sql += "where ha.a_m_pk = hm.m_pk ";
 		sql += "and (? IS NULL OR hm.m_name = ?) ";
@@ -119,35 +120,26 @@ public class ArchiveDAO {
 
 	public static void getAnotherPage(HttpServletRequest request, HttpServletResponse response) {
 
+		
+		System.out.println(request.getParameter("member"));
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		// 비동기 검색할때 받는 변수
-//		String member = "未分類";
-//		String category = "未分類";
-//		String title = "";
 		String member = null;
 		String category = null;
 		String title = null;
 		if (request.getParameter("member") != null && !request.getParameter("member").equals("未分類")) {
-			member = request.getParameter("member");
+			member = (String) request.getParameter("member");
 		}
 		if (request.getParameter("category") != null && !request.getParameter("category").equals("未分類")) {
-			category = request.getParameter("category");
+			category = (String) request.getParameter("category");
 		}
 		if (request.getParameter("title") != null && !request.getParameter("title").equals("")) {
-			title = request.getParameter("title");
+			title = (String) request.getParameter("title");
 		}
-//		if (member.equals("未分類")) {
-//			member = null;
-//		}
-//		if (category.equals("未分類")) {
-//			category = null;
-//		}
-//		if (title.equals("")) {
-//			title = null;
-//		}
 		System.out.println(member);
 		System.out.println(category);
 		System.out.println(title);
@@ -200,6 +192,7 @@ public class ArchiveDAO {
 
 			}
 			System.out.println(archives);
+			
 			response.setContentType("application/json; charset=utf-8");
 			response.getWriter().print(archives);
 
