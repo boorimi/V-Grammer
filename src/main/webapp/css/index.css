@@ -482,6 +482,7 @@
   font-style: normal;
   /*   box-shadow: 5px 5px 20px gray; */
   border: none;
+  box-shadow: 5px 5px 20px gray
 }
 
 .today-vtuber-address-box > div:hover {
@@ -523,6 +524,7 @@
 
 .today-vtuber-address-box > div > a{
  text-decoration: none;
+ color: inherit;
 }
 
 #X {
