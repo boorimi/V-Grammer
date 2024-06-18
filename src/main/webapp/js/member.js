@@ -54,18 +54,34 @@ $(document).ready(function() {
 			$memberImgs.eq(idx - 1).addClass('show');
 			$memberList.eq(idx - 1).addClass('show');
 			
+			
 			// 22~25 배경이미지 컬러 그라데이션 넣어주기 위한 if문
 			if($(this).attr('id')==='22'){
-				$('.member-img-box').css('background-color', '#FCEDEF')
+				$('.member-img-container').css('background-color', '#FCEDEF')
 			} else if($(this).attr('id')==='23'){
-				$('.member-img-box').css('background-color', '#C1C1C5')
+				$('.member-img-container').css('background-color', '#C1C1C5')
 			} else if($(this).attr('id')==='24'){
-				$('.member-img-box').css('background-color', '#D4D0DF')
+				$('.member-img-container').css('background-color', '#D4D0DF')
 			} else if($(this).attr('id')==='25'){
-				$('.member-img-box').css('background-color', '#F4F4E4')
+				$('.member-img-container').css('background-color', '#F4F4E4')
+			}  else if($(this).attr('id')==='17'){
+				$('.member-img-container').css('background-color', '#FDF9FA')
 			} else {
-				$('.member-img-box').css('background-color', 'rgb(0,0,0,0)')
+				$('.member-img-container').css('background-color', 'rgb(0,0,0,0)')
 			}
+//			if($(this).attr('id')==='22'){
+//				$('.member-img-box').css('background-color', '#FCEDEF')
+//			} else if($(this).attr('id')==='23'){
+//				$('.member-img-box').css('background-color', '#C1C1C5')
+//			} else if($(this).attr('id')==='24'){
+//				$('.member-img-box').css('background-color', '#D4D0DF')
+//			} else if($(this).attr('id')==='25'){
+//				$('.member-img-box').css('background-color', '#F4F4E4')
+//			}  else if($(this).attr('id')==='17'){
+//				$('.member-img-box').css('background-color', '#FBEFF1')
+//			} else {
+//				$('.member-img-box').css('background-color', 'rgb(0,0,0,0)')
+//			}
 
 			// 클릭 시 마다 멤버 리스트와 디테일 박스 색상 변경
 			function setColor(idx, $listContainer, $detailbox, colors) {
