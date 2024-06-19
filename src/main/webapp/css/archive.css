@@ -78,7 +78,7 @@
 .archive-paging-end {
   width: 100px;
 }
-
+/*모달 시작*/
 .dialog-container {
   display: none;
   position: fixed;
@@ -112,6 +112,9 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+/* 모달 끝*/
+
 /* 아카이브 버튼 부분 시작 */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
 

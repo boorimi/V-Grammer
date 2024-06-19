@@ -23,20 +23,17 @@
 .main-logo {
   margin-left: 75px;
   width: 175px;
-  	display:flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .main-logo > div {
-	display: inline-block;
+  display: inline-block;
 }
 .main-logo > div > a > img {
-	width: 175px;
-	height: auto;
-
-	
+  width: 175px;
+  height: auto;
 }
-
 
 .menu-lists {
   list-style: none;
@@ -147,7 +144,7 @@
 }
 
 .next-button::before {
-  content: "▶"; /* 오른쪽 화살표 */
+  content: ">▶"; /* 오른쪽 화살표 */
 }
 
 .prev-button:hover,
@@ -169,7 +166,7 @@
 }
 
 .next-button {
-  margin-left: 50px;
+  margin-left: 25px;
 }
 /* .prev,
 .next {
