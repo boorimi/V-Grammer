@@ -15,7 +15,11 @@ public class UserInfoC extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("UserInfoC get진입");
 		System.out.println(request.getParameter("userId"));
+		
+	    
 		AccountDAO.deleteUser(request,response);
+		
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

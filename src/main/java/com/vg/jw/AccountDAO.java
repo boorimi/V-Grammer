@@ -2,6 +2,7 @@ package com.vg.jw;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -209,9 +210,10 @@ public class AccountDAO {
 	}
 
 	public static void logout(HttpServletRequest request) {
-		HttpSession twitterLoginSession = request.getSession();
+		HttpSession LoginSession = request.getSession();
 
-		twitterLoginSession.invalidate();
+		LoginSession.invalidate();
+		System.out.println("로그아웃 메서드 실행 완료");
 
 	}
 
@@ -304,66 +306,70 @@ public class AccountDAO {
 		System.out.println("닉네임 유효성 검사 메서드 진입");
 		String inputNickName = request.getParameter("inputNickName");
 		System.out.println("인풋받은 닉네임:" + inputNickName);
-		
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		String sql = "select count(*) from haco_user hu where u_nickname = ?";
 		try {
-			
-	         con = DBManager.connect();
-	            pstmt = con.prepareStatement(sql);
-	            pstmt.setString(1, inputNickName);
-	            rs = pstmt.executeQuery();
 
-	            rs.next();                      
-	            response.getWriter().print(rs.getInt(1)); 
-	 
-			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, inputNickName);
+			rs = pstmt.executeQuery();
+
+			rs.next();
+			response.getWriter().print(rs.getInt(1));
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-		
-		
-		
-		
+
 	}
 
-	public static void deleteUser(HttpServletRequest request, HttpServletResponse response) {
-		
+	public static void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		response.setContentType("application/json; charset=UTF-8");
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
-		
+
 		Long userId = Long.parseLong(request.getParameter("userId"));
 		String sql = "DELETE FROM haco_user WHERE u_twitter_id = ?";
+		PrintWriter out = response.getWriter();
+
 		try {
-			
-	         con = DBManager.connect();
-	            pstmt = con.prepareStatement(sql);
-	            pstmt.setLong(1, userId);
-	            
-	            if (pstmt.executeUpdate() == 1) {
-					System.out.println("유저정보 삭제 성공");
-					response.getWriter().print("유저정보 삭제 완료"); 
-				}
-	            
-	 
-			
+
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, userId);
+
+			JSONObject jsonResponse = new JSONObject();
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("유저정보 삭제 성공");
+				jsonResponse.put("status", "success");
+				jsonResponse.put("message", "退会手続きが完了されました");
+				AccountDAO.logout(request);
+			} else {
+				jsonResponse.put("status", "failure");
+				jsonResponse.put("message", "退会手続き失敗");
+			}
+
+			out.print(jsonResponse.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+			System.err.println("서버 에러로 삭제 실패");
+			JSONObject jsonResponse = new JSONObject();
+			jsonResponse.put("status", "error");
+			jsonResponse.put("message", "유저정보 삭제 중 오류 발생");
+			out.print(jsonResponse.toString());
+		} finally {
 			DBManager.close(con, pstmt, null);
+			out.flush();
 		}
-		
-		
-		
-		
-		
-		
 	}
 
 	// 로컬 로그인 사용시 로그인체크 메서드
