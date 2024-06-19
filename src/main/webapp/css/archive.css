@@ -341,4 +341,44 @@
 .archive-翠森アトリ {
   background-color: #bec48b;
 }
+
+/* 아카이브 페이징 css */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
+
+.archive-paging-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.archive-paging-container > div {
+  padding: 5px 10px;
+  border-radius: 15px;
+  background-color: #ffefff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.archive-paging-container > div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.paging-link {
+  text-decoration: none;
+  color: #ff69b4;
+  font-weight: bold;
+  padding: 5px 10px;
+  display: block;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.paging-link:hover {
+  background-color: #ff69b4;
+  color: #fff;
+}
 /* 끝 */
