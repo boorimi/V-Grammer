@@ -85,8 +85,7 @@ dialog::backdrop {
 					<p id="title"></p>
 				</div>
 				<div class="modal-footer">
-					<button id="deleteButton" value="${sessionScope.accountInfo.u_twitter_id }"
-					 data-s-pk="${obj.s_pk}">Delete</button>
+					<button id="deleteButton" value="${sessionScope.accountInfo.u_twitter_id }">Delete</button>
 					<button id="updateButton" value="${sessionScope.accountInfo.u_twitter_id }">Update</button>
 				</div>
 			</div>
