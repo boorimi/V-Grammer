@@ -113,25 +113,34 @@ $(document).ready(function() {
 			});
 		}
 		// Modal inner data
+
 		$('.s-data').click(function() {
 			modal.showModal();
 			console.log(this.dataset);
+			
+			let sPk = this.dataset.sPk;
+			console.log(sPk);
+			
 			modal.querySelector("#time").innerText = this.dataset.sTime;
 			modal.querySelector("#name").innerText = this.dataset.mName;
 			modal.querySelector("#title").innerText = this.dataset.sTitle;
-
-			// Modal Delete Click
-
-		})
-
+		// Modal Delete Click
+		// 로그인 했을 때만 가능하도록 세션값 벨류에 심어둠.
+		// 일단 기능부터 만들고 수정 필요
 		$('#deleteButton').click(function() {
 			// 스케줄의 pk
-			let sPk = $('.s-data').data('s-pk');
-			if (confirm('本当に削除しますか？')) {
-				console.log(sPk);
+			console.log(sPk);
+			if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
+				if (confirm('本当に削除しますか？')) {
+					location.href = "ScheduleDeleteC?sPk=" + sPk;
+				}
+			} else {
+				alert("ログインが必要です！");
 			}
-
 		})
+		})
+
+
 
 		// Modal Update Click
 		$('#updateButton').click(function() {

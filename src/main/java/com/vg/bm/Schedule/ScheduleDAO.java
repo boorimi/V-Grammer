@@ -31,7 +31,6 @@ public class ScheduleDAO {
 
 	private ArrayList<String> thisWeek;
 	private ArrayList<String> thisWeek2;
-//	private ArrayList<TradeCommentsDTO> tradeComments = null;
 	private Connection con = null;
 	public static final ScheduleDAO SDAO = new ScheduleDAO();
 
@@ -68,7 +67,6 @@ public class ScheduleDAO {
 			date = date.plusDays(1);
 			// endWeek가 되면 while문 종료
 		}
-//		System.out.println(thisWeek);
 
 		request.setAttribute("thisWeek", thisWeek);
 	}
@@ -129,27 +127,6 @@ public class ScheduleDAO {
 			String json = gson.toJson(schedules);
 //			System.out.println(json);
 			
-			
-//			System.out.println("=======================");
-//			System.out.println("화스케줄 : " + tueSchedule);
-//			System.out.println("=======================");
-//			System.out.println("수스케줄 : " + wedSchedule);
-//			System.out.println("=======================");
-//			System.out.println("목스케줄 : " + thrSchedule);
-//			System.out.println("=======================");
-//			System.out.println("금스케줄 : " + friSchedule);
-//			System.out.println("=======================");
-//			System.out.println("토스케줄 : " + satSchedule);
-//			System.out.println("=======================");
-//			System.out.println("일스케줄 : " + sunSchedule);
-//			System.out.println(schedules);
-//			request.setAttribute("monSchedule", monjson);
-//			request.setAttribute("tueSchedule", tueSchedule);
-//			request.setAttribute("wenSchedule", wenSchedule);
-//			request.setAttribute("thrSchedule", thrSchedule);
-//			request.setAttribute("friSchedule", friSchedule);
-//			request.setAttribute("satSchedule", satSchedule);
-//			request.setAttribute("sunSchedule", sunSchedule);
 			request.setAttribute("weekSchedules", schedules);
 			request.setAttribute("weekJSON", json);
 
@@ -197,6 +174,32 @@ public class ScheduleDAO {
 					}
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public void DeleteSchedule(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		String sql = "delete from haco_schedule where s_pk = ?";
+
+		HttpSession twitterLoginSession = request.getSession();
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
+		long id = accountInfo.getU_twitter_id();
+
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, request.getParameter("sPk"));
+			System.out.println(request.getParameter("sPk"));
+			
+			if (pstmt.executeUpdate()==1) {
+				System.out.println("삭제 성공!");
+			}
+	
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
