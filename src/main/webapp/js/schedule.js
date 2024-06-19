@@ -1,5 +1,30 @@
 $(document).ready(function() {
 
+	const modal = document.getElementById('modal');
+	const closeModalButton = document.getElementById('closeModalButton');
+	const deleteButton = document.getElementById('deleteButton');
+	const updateButton = document.getElementById('updateButton');
+	console.log(modal);
+
+
+	closeModalButton.addEventListener('click', () => {
+		modal.close();
+	});
+
+	deleteButton.addEventListener('click', () => {
+		console.log('deleteButton');
+	});
+
+	updateButton.addEventListener('click', () => {
+		console.log('updateButton');
+	});
+
+	modal.addEventListener('click', (event) => {
+		if (event.target === modal) {
+			modal.close();
+		}
+	});
+
 	// 페이지 열리면 오늘 날짜 탭이 바로 열리게 하는 코드
 	let today = new Date().getDay();
 	let todayId;
@@ -64,48 +89,63 @@ $(document).ready(function() {
 
 				$.each(data[i - 1], (j, obj) => {
 					if (start <= obj.intTime && obj.intTime < end) {
-						let sData = $("<div></div>").addClass("s-data").attr('value', obj.s_m_pk).attr('data-data', obj.s_pk);
+						let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk).attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name).attr('data-s-title', obj.s_title);
 
-						let mName = $("<div></div>").text(obj.m_name);
 						let sTime = $("<div></div>").text(obj.s_time);
+						let mName = $("<div></div>").text(obj.m_name);
 
 						//            						console.log(obj.s_pk)
-						//						let sTitle = $("<div></div>").text(obj.s_title).addClass("s-data-title");
-						
+
 						let sTitle = $("<div>").addClass("s-data-title");
 
-						let innerHtml = `<div class="s-title-text-box">
-										<div>◈タイトル◈</div>
+						let titleDetail = `<div class="s-title-text-box">
 										<div>${obj.s_title}</div>
-										</div>
-										<div class="s-title-button-box">
-								      	  <button class="delete-button">delete</button>
-								      	  <button class="update-button">update</button>
-								      	  </div>
-								  		  `;
+										</div>`;
 
-						sTitle.append(innerHtml);
-
+						sTitle.append(titleDetail);
 						sData.append(sTime).append(mName).append(sTitle);
-
 						//						content2.append(sData);
 						// 디브 생성 후 컬러 세팅함수 호출
 						setBackgroundColor(sData, obj.s_m_pk);
 						$(s).append(sData);
-
-
 					}
 				});
 			});
-
-			$('.s-data').click(function() {
-				console.log($(this).data('data'));
-			})
-
-
-
-
 		}
+		// Modal inner data
+
+		$('.s-data').click(function() {
+			modal.showModal();
+			console.log(this.dataset);
+			
+			let sPk = this.dataset.sPk;
+			console.log(sPk);
+			
+			modal.querySelector("#time").innerText = this.dataset.sTime;
+			modal.querySelector("#name").innerText = this.dataset.mName;
+			modal.querySelector("#title").innerText = this.dataset.sTitle;
+		// Modal Delete Click
+		// 로그인 했을 때만 가능하도록 세션값 벨류에 심어둠.
+		// 일단 기능부터 만들고 수정 필요
+		$('#deleteButton').click(function() {
+			// 스케줄의 pk
+			console.log(sPk);
+			if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
+				if (confirm('本当に削除しますか？')) {
+					location.href = "ScheduleDeleteC?sPk=" + sPk;
+				}
+			} else {
+				alert("ログインが必要です！");
+			}
+		})
+		})
+
+
+
+		// Modal Update Click
+		$('#updateButton').click(function() {
+
+		})
 	});
 
 	// Delete JS
