@@ -1,10 +1,59 @@
 .archive-search-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  /* border-radius: 20px; */
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 25px;
+  margin-bottom: 25px;
 }
-.archive-search-wrapper > div {
-  margin: 0px 10px;
+
+.archive-search-member select,
+.archive-search-category select {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #333;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+
+.archive-search-title input[type="text"] {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  width: 180px;
+}
+
+#archive-search-button {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#archive-search-button:hover {
+  background-color: #ff8cbb;
+}
+
+.archive-search-title input[type="text"]:focus,
+.archive-search-member select:focus,
+.archive-search-category select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5);
 }
 .archive-paging-container {
   display: flex;
@@ -341,4 +390,80 @@
 .archive-翠森アトリ {
   background-color: #bec48b;
 }
+
+/* 아카이브 페이징 css */
+.archive-paging-container {
+  margin-top: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  /* margin: 20px 0; */
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.archive-paging-container > div {
+  border-radius: 20px;
+}
+
+.archive-paging-container a {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(45deg, #ffbd69, #ff8e69);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.archive-paging-container a:hover {
+  background: linear-gradient(45deg, #ffb64d, #ff8e4d);
+  transform: translateY(-3px);
+}
+
+.archive-paging-container a:active {
+  background: linear-gradient(45deg, #ffb64d, #ff8e4d);
+  transform: translateY(0);
+}
+
+.archive-paging-container a:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 189, 105, 0.5);
+}
+
+.archive-paging-no-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.archive-paging-no {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.archive-paging-no:hover {
+  background-color: #ff8e4d;
+  color: #fff;
+  transform: scale(1.1);
+}
+
 /* 끝 */
