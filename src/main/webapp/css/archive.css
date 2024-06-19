@@ -182,8 +182,8 @@
 .archive-contents {
   display: flex;
   align-items: center;
-  border-top: 1px solid black;
-  border-bottom: 1px solid gray;
+  border-top: 1px solid #e6498e;
+  border-bottom: 1px solid #e6498e;
   padding: 3px 0px;
 }
 
