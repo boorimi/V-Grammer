@@ -12,50 +12,69 @@ document.addEventListener("DOMContentLoaded", function() {
         var ddayText = ddayCell.textContent.trim();
         var ddayValue = parseInt(ddayText);
 
-        if (ddayValue < 0) {
-            // 음수인 경우 그대로 두기
-            ddayValue = calculatePositiveDday(ddayValue);
-        } else {
-            // 양수이면 DB에서 불러온 날짜의 연도만 내년으로 설정하고 계산
-            var dateCell = row.cells[1]; // 기념일 셀
-            var dateText = dateCell.textContent.trim();
-            var eventDate = parseEventDate(dateText); // 기념일 날짜 파싱
+        var dateCell = row.cells[1]; // 기념일 셀
+        var dateText = dateCell.textContent.trim();
+        var eventDate = parseEventDate(dateText); // 기념일 날짜 파싱
+        console.log("기념일 날짜 파싱 결과:", eventDate);
 
-            if (eventDate) {
-                eventDate.setFullYear(today.getFullYear() + 1); // 연도를 내년으로 설정
-                var daysUntilNextEvent = calculateDaysUntilEvent(today, eventDate);
-                ddayValue = calculatePositiveDday(daysUntilNextEvent);
+        if (eventDate) {
+            eventDate.setFullYear(today.getFullYear());
+            if (eventDate < today) {
+                eventDate.setFullYear(today.getFullYear() + 1);
             }
+
+            var daysUntilNextEvent = calculateDaysUntilEvent(today, eventDate);
+            ddayValue = calculatePositiveDday(daysUntilNextEvent);
+        } else {
+            console.log("기념일 날짜 파싱 실패:", dateText);
         }
 
-        // 음수 값으로 반환하지 않도록 조정
-        ddayCell.textContent = ddayValue;
+        // D-day 값을 업데이트하고 음수값이 아닌 경우 앞에 "D-"를 붙임
+        if (ddayValue >= 0) {
+            ddayCell.textContent = "D-" + ddayValue;
+        } else {
+            ddayCell.textContent = ddayValue;
+        }
     });
 
     // 파싱된 날짜와 오늘 사이의 일수를 계산하는 함수
     function calculateDaysUntilEvent(today, eventDate) {
         var timeDifference = eventDate - today;
         var dayDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+        console.log("계산된 디데이:", dayDifference);
         return dayDifference;
     }
 
     // 기념일 날짜를 파싱하는 함수
     function parseEventDate(dateText) {
-        var datePattern = /(\d{4})-(\d{2})-(\d{2})/; // YYYY-MM-DD 형식
-        var match = dateText.match(datePattern);
-        if (match) {
-            var year = parseInt(match[1]);
-            var month = parseInt(match[2]) - 1; // 월은 0부터 시작하므로 -1
-            var day = parseInt(match[3]);
+        var datePatternFull = /(\d{4})-(\d{2})-(\d{2})/; // YYYY-MM-DD 형식
+        var datePatternShort = /(\d{2})-(\d{2})/; // MM-DD 형식
+
+        var matchFull = dateText.match(datePatternFull);
+        if (matchFull) {
+            var year = parseInt(matchFull[1]);
+            var month = parseInt(matchFull[2]) - 1; // 월은 0부터 시작하므로 -1
+            var day = parseInt(matchFull[3]);
             return new Date(year, month, day);
         }
+
+        var matchShort = dateText.match(datePatternShort);
+        if (matchShort) {
+            var month = parseInt(matchShort[1]) - 1; // 월은 0부터 시작하므로 -1
+            var day = parseInt(matchShort[2]);
+            return new Date(today.getFullYear(), month, day);
+        }
+
         return null;
     }
 
-    // 디데이 값을 조정하는 함수 (양수 값으로 변경)
+    // 디데이 값을 0에서 365 사이로 조정하는 함수
     function calculatePositiveDday(ddayValue) {
         while (ddayValue > 365) {
             ddayValue -= 365;
+        }
+        while (ddayValue < 0) {
+            ddayValue += 365;
         }
         return ddayValue;
     }

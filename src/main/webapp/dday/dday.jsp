@@ -22,8 +22,29 @@
                 <c:forEach var="dday" items="${ddayList}">
                     <tr>
                         <td>${dday.name}</td>
-                        <td>${dday.eventDate}</td>
-                        <td>${dday.daysUntilDday}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${dday.eventType eq '데뷔'}">
+                                    데뷔 날짜 : ${dday.eventDate}
+                                </c:when>
+                                <c:when test="${dday.eventType eq '생일'}">
+                                    생일 : ${dday.eventDate}
+                                </c:when>
+                                <c:otherwise>
+                                    ${dday.eventDate}
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${dday.daysUntilDday >= 0}">
+                                    D-${dday.daysUntilDday}
+                                </c:when>
+                                <c:otherwise>
+                                    ${dday.daysUntilDday}
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>

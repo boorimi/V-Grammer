@@ -5,15 +5,15 @@ import java.time.LocalDate;
 public class DdayDTO {
     private int id;
     private String name;
-    private String event; // "데뷔" 또는 "생일"
+    private String eventType; // "데뷔" 또는 "생일"
     private String eventDate;
     private LocalDate localEventDate;
     private long daysUntilDday;
 
-    public DdayDTO(int id, String name, String event, String eventDate, LocalDate localEventDate, long daysUntilDday) {
+    public DdayDTO(int id, String name, String eventType, String eventDate, LocalDate localEventDate, long daysUntilDday) {
         this.id = id;
         this.name = name;
-        this.event = event;
+        this.eventType = eventType;
         this.eventDate = eventDate;
         this.localEventDate = localEventDate;
         this.daysUntilDday = daysUntilDday;
@@ -35,12 +35,12 @@ public class DdayDTO {
         this.name = name;
     }
 
-    public String getEvent() {
-        return event;
+    public String getEventType() {
+        return eventType;
     }
 
-    public void setEvent(String event) {
-        this.event = event;
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
     }
 
     public String getEventDate() {
