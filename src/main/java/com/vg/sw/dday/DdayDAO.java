@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,46 +35,36 @@ public class DdayDAO {
             ResultSet rs = preparedStatement.executeQuery();
             System.out.println("SQL 쿼리 실행 완료."); // 쿼리 실행 확인용 출력
 
+            LocalDate today = LocalDate.now();
+
             while (rs.next()) {
                 int id = rs.getInt("m_pk");
                 String name = rs.getString("m_name");
                 String debutDateString = rs.getString("m_debut");
                 String birthDateString = rs.getString("m_birth");
-                LocalDate debutDate = null;
-                LocalDate birthDate = null;
-                LocalDate today = LocalDate.now();
 
-                try {
-                    String debutDateFormatted = null;
-                    if (debutDateString != null && !debutDateString.equals("0000-00-00")) {
-                        debutDate = LocalDate.parse(debutDateString);
-                        debutDateFormatted = debutDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                        if (debutDate.isBefore(today)) {
-                            debutDate = debutDate.plusYears(1); // 이전 날짜를 다음 해로 변경
-                        }
+                // Process debut date
+                if (debutDateString != null && !debutDateString.equals("0000-00-00")) {
+                    try {
+                        LocalDate debutDate = LocalDate.parse(debutDateString);
+                        long daysUntilDebutDday = calculateDaysUntilNextOccurrence(today, debutDate);
+                        String debutDateFormatted = debutDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                        ddayList.add(new DdayDTO(id, name, "데뷔", debutDateFormatted, debutDate, -daysUntilDebutDday));
+                    } catch (DateTimeParseException e) {
+                        System.out.println("멤버 ID " + id + "의 데뷔 날짜 파싱 실패."); // 날짜 파싱 실패 확인용 출력
                     }
+                }
 
-                    String birthDateFormatted = null;
-                    if (birthDateString != null && !birthDateString.equals("0000-00-00")) {
-                        birthDate = LocalDate.parse(birthDateString);
-                        birthDateFormatted = birthDate.format(DateTimeFormatter.ofPattern("MM-dd"));
-                        if (birthDate.isBefore(today)) {
-                            birthDate = birthDate.plusYears(1); // 이전 날짜를 다음 해로 변경
-                        }
+                // Process birth date
+                if (birthDateString != null && !birthDateString.equals("0000-00-00")) {
+                    try {
+                        LocalDate birthDate = LocalDate.parse(birthDateString);
+                        long daysUntilBirthDday = calculateDaysUntilNextOccurrence(today, birthDate);
+                        String birthDateFormatted = birthDate.format(DateTimeFormatter.ofPattern("MM-dd"));
+                        ddayList.add(new DdayDTO(id, name, "생일", birthDateFormatted, birthDate, -daysUntilBirthDday));
+                    } catch (DateTimeParseException e) {
+                        System.out.println("멤버 ID " + id + "의 생일 날짜 파싱 실패."); // 날짜 파싱 실패 확인용 출력
                     }
-
-                    if (debutDateFormatted != null) {
-                        DdayDTO debutDday = new DdayDTO(id, name, "데뷔", debutDateFormatted, debutDate);
-                        ddayList.add(debutDday);
-                    }
-
-                    if (birthDateFormatted != null) {
-                        DdayDTO birthDday = new DdayDTO(id, name, "생일", birthDateFormatted, birthDate);
-                        ddayList.add(birthDday);
-                    }
-
-                } catch (DateTimeParseException e) {
-                    System.out.println("멤버 ID " + id + "의 날짜 파싱 실패."); // 날짜 파싱 실패 확인용 출력
                 }
             }
 
@@ -81,9 +72,25 @@ public class DdayDAO {
             e.printStackTrace();
         }
 
-        // Sort ddayList by nearest event date in ascending order
-        Collections.sort(ddayList);
+        // Sort ddayList by event date in ascending order with adjustment for past dates
+        Collections.sort(ddayList, (d1, d2) -> {
+            LocalDate today = LocalDate.now();
+            LocalDate eventDate1 = d1.getLocalEventDate().isBefore(today) ? d1.getLocalEventDate().plusYears(1) : d1.getLocalEventDate();
+            LocalDate eventDate2 = d2.getLocalEventDate().isBefore(today) ? d2.getLocalEventDate().plusYears(1) : d2.getLocalEventDate();
+            return eventDate1.compareTo(eventDate2);
+        });
 
         return ddayList;
+    }
+
+    /**
+     * 오늘 날짜를 기준으로 특정 날짜까지 남은 일수를 계산하는 메소드.
+     *
+     * @param today 현재 날짜
+     * @param targetDate 목표 날짜
+     * @return 남은 일수
+     */
+    private static long calculateDaysUntilNextOccurrence(LocalDate today, LocalDate targetDate) {
+        return ChronoUnit.DAYS.between(today, targetDate);
     }
 }
