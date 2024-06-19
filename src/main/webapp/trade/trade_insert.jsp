@@ -29,7 +29,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     
     <div class="trade-container">
       <div class="trade-title">
-        <h1>トレード</h1>
+        <p>トレード</p>
       </div>
       <form id="${id }" action="${action }" method="post">
         <div>カテゴリー</div>
@@ -53,17 +53,17 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           <div>内容</div>
           <input name="no" type="hidden" value="${trades.pk }" />
           <div>
-            <textarea id="trade-textarea" style="resize: none" rows="30" cols="120" name="text">
+            <textarea id="trade-textarea" style="width:99%; height:50vh; border-radius: 5px;" name="text">
 ${text2 }</textarea
             >
           </div>
         </div>
-        <div>
-          <div>
-            <button type="button" onclick="${onclick}">${buttonText }</button>
+        <div style="display:flex; justify-content: flex-end;">
+          <div style="margin:10px 5px;">
+            <button class="cute-button-blue" type="button" onclick="${onclick}">${buttonText }</button>
           </div>
-          <div>
-            <button type="button" onclick="tradeCancleInsert()">キャンセル</button>
+          <div style="margin:10px 5px;">
+            <button class="cute-button-pink" type="button" onclick="tradeCancleInsert()">キャンセル</button>
           </div>
         </div>
       </form>

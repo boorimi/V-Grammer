@@ -17,7 +17,7 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
   <body>
     <div class="announcement-container">
       <div class="announcement-title">
-        <h1>お知らせ</h1>
+        <p>お知らせ</p>
       </div>
       <div class="announcement-conmain">
         <!-- 본문페이지 for문 시작 -->

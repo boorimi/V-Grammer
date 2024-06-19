@@ -40,9 +40,11 @@
 .main-logo > div {
   display: inline-block;
 }
-.main-logo > div > a > img {
-  width: 175px;
-  height: auto;
+
+.main-logo > div > a > img, 
+.footer-logo > a > img {
+	width: 175px;
+	height: auto;
 }
 
 .menu-lists {
@@ -736,7 +738,7 @@ footer {
 
 .footer-content-haconect-icon img {
   width: 40px;
-  height: 40px;
+  height: auto;
   transition: transform 0.3s ease;
 }
 

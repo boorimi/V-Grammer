@@ -136,7 +136,7 @@ function test(resData) {
 
     let html = `<div class="archive-contents">
 				<div class="archive-update-div">
-				<button onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">修正する</button>
+				<button class="cute-button" onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">修正する</button>
 				</div>
 				<div class="archive-icon-div" >
 					<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
@@ -188,7 +188,7 @@ async function searchPage(resData, pagingVariable) {
 
     let html = `<div class="archive-contents">
 			<div class="archive-update-div">
-				<button onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">修正する</button>
+				<button class="cute-button" onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">修正する</button>
 			</div>
 			<div class="archive-icon-div" >
 				<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
