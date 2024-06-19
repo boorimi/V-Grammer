@@ -1,11 +1,10 @@
 .archive-search-wrapper {
-	display: flex;
-	justify-content: center;
-	margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
 }
 .archive-search-wrapper > div {
-	margin:0px 10px;
-	
+  margin: 0px 10px;
 }
 .archive-paging-container {
   display: flex;
@@ -13,290 +12,333 @@
   height: 45px;
   margin: 25px 0px;
 }
-.archive-paging-start{
-	width: 100px;
+.archive-paging-start {
+  width: 100px;
 }
-.archive-paging-unit-prev{
-	width: 150px;
+.archive-paging-unit-prev {
+  width: 150px;
 }
-.archive-paging-no-div{
-	display: flex;
-	justify-content: center;
-	flex: 1;
+.archive-paging-no-div {
+  display: flex;
+  justify-content: center;
+  flex: 1;
 }
-.archive-paging-unit-next{
-	width: 150px;
+.archive-paging-unit-next {
+  width: 150px;
 }
-.archive-paging-end{
-	width: 100px;
+.archive-paging-end {
+  width: 100px;
 }
-
 
 .dialog-container {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	left: 300px;
-	top: 0;
-	width: 650px;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 300px;
+  top: 0;
+  width: 650px;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-	background-color: #fefefe;
-	margin: 15% auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
 }
 
 .close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
-.close:hover, .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
+/* 아카이브 버튼 부분 시작 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
+
+.cute-button {
+  font-family: "Noto Sans JP", sans-serif; /* 일본어 텍스트에 어울리는 글꼴 사용 */
+  font-size: 1rem; /* 글자 크기 */
+  color: #fff; /* 텍스트 색상 */
+  background: linear-gradient(
+    45deg,
+    #ff69b4,
+    #ff9a9e
+  ); /* 버튼 배경색 그라데이션 */
+  border: none; /* 기본 테두리 제거 */
+  border-radius: 20px; /* 둥근 테두리 */
+  padding: 10px 20px; /* 내부 여백 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
+  cursor: pointer; /* 커서 변경 */
+  transition: background 0.3s ease, transform 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.cute-button:hover {
+  background: linear-gradient(
+    45deg,
+    #ff85c1,
+    #ffb6c1
+  ); /* 호버 시 배경색 그라데이션 변경 */
+  transform: translateY(-3px); /* 호버 시 살짝 위로 이동 */
+}
+
+.cute-button:active {
+  background: linear-gradient(
+    45deg,
+    #ff85c1,
+    #ffb6c1
+  ); /* 클릭 시 배경색 유지 */
+  transform: translateY(0); /* 클릭 시 원래 위치로 돌아감 */
+}
+
+.cute-button:focus {
+  outline: none; /* 포커스 시 기본 아웃라인 제거 */
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5); /* 포커스 시 그림자 효과 추가 */
+}
+
+/* 아카이브 버튼 부분 끝 */
 
 .archive-paging-no {
-	cursor: pointer;
-	padding: 10px;
-	border: 1px solid gray;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid gray;
 }
 .archive-paging-no:hover {
-	background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 .archive-page-no2 {
-	cursor: pointer;
-	padding: 10px;
-	border: 1px solid gray;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid gray;
 }
 .archive-page-no2:hover {
-	background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 .archive-list {
-	width: 1800px;
-	
+  width: 1800px;
 }
 .archive-contents {
-	display: flex;
-	align-items: center;
-	border-top: 1px solid black;
-	border-bottom: 1px solid gray;
-	padding: 3px 0px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid gray;
+  padding: 3px 0px;
 }
 
 .archive-contents:hover {
-	background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 
-.archive-contents>div {
-	height: auto;
-	text-align: center;
+.archive-contents > div {
+  height: auto;
+  text-align: center;
 }
 
 .archive-contents-update {
-	display: flex;
-	align-items: center;
-	border-top: 1px solid black;
-	border-bottom: 1px solid gray;
-	padding: 3px 0px;
-	margin-top: 50px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid gray;
+  padding: 3px 0px;
+  margin-top: 50px;
 }
-.archive-contents-update>div {
-	height: auto;
-	text-align: center;
+.archive-contents-update > div {
+  height: auto;
+  text-align: center;
 }
 
 .archive-contents-update:hover {
-	background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 
 .archive-update-div {
-	width: 80px;
+  width: 80px;
 }
 
 .archive-icon-div {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 .archive-icon {
-	width: 90px;
-	height: 90px;
-	border-radius: 90px;
+  width: 90px;
+  height: 90px;
+  border-radius: 90px;
 }
 
 .archive-membername {
-	width: 140px;
+  width: 140px;
 }
 
 .archive-collabo {
-	width: 140px;
+  width: 140px;
 }
 
-.archive-collabo-member{
-	width: 110px;
+.archive-collabo-member {
+  width: 110px;
 }
 
 .archive-category {
-	width: 110px;
+  width: 110px;
 }
 
 .archive-date {
-	width: 100px;
+  width: 100px;
 }
 
 .archive-time {
-	width: 70px;
+  width: 70px;
 }
 
 .archive-title {
-	flex:1;
-	padding: 0px 10px;
+  flex: 1;
+  padding: 0px 10px;
 }
 
 .archive-thumbnail > a > img:hover {
-	opacity: 0.5;
+  opacity: 0.5;
 }
 
 .archive-modal-detail {
-	display: flex;
+  display: flex;
 }
 
-.archive-modal-detail>div {
-	width: 170px;
+.archive-modal-detail > div {
+  width: 170px;
 }
 
 .archive-modal-detail-gen {
-	padding: 10px 0px;
-	border-bottom: 1px solid gray;
+  padding: 10px 0px;
+  border-bottom: 1px solid gray;
 }
 #archive-list {
-	opacity: 0.3; /* 초기 투명도 설정 */
+  opacity: 0.3; /* 초기 투명도 설정 */
 }
 #archive-list2 {
-	opacity: 0.3; /* 초기 투명도 설정 */
+  opacity: 0.3; /* 초기 투명도 설정 */
 }
 
 .openModalButton {
-	display: none; /* 기본적으로 버튼을 숨김 */
+  display: none; /* 기본적으로 버튼을 숨김 */
 }
 
 .archive-collabo-member-item {
-	display: inline-block;
-	border-radius: 5px;
-	color: #FFFFFF;
-	font-size: 9pt;
-	font-weight: bold;
-	width: auto;
-	padding: 3px;
-	margin: 2px;
+  display: inline-block;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 9pt;
+  font-weight: bold;
+  width: auto;
+  padding: 3px;
+  margin: 2px;
 }
 /* 25명 멤버의 퍼스널컬러 배경색깔 넣어주기*/
 .archive-七彩てまり {
-	background-color: lightpink;
+  background-color: lightpink;
 }
 
 .archive-田中りゅこ {
-	background-color: #A5CDEC;
+  background-color: #a5cdec;
 }
 
 .archive-夜夢瑠紅 {
-	background-color: #CDB8FF;
+  background-color: #cdb8ff;
 }
 
 .archive-赤衣アカメ {
-	background-color: #C25B7C;
+  background-color: #c25b7c;
 }
 
 .archive-星ノ音コロン {
-	background-color: #FFD6D4;
+  background-color: #ffd6d4;
 }
 
 .archive-愛咲よつのは {
-	background-color: #8BEC97;
+  background-color: #8bec97;
 }
 
 .archive-玉ノ井もなか {
-	background-color: #D6BAEB;
+  background-color: #d6baeb;
 }
 
 .archive-綾坂希穂 {
-	background-color: #FFB9BB;
+  background-color: #ffb9bb;
 }
 
 .archive-ソフィ・ローズ {
-	background-color: #BFD2EE;
+  background-color: #bfd2ee;
 }
 
 .archive-天海くりね {
-	background-color: #B7F1FF;
+  background-color: #b7f1ff;
 }
 
 .archive-鳳儚 {
-	background-color: #D1B7A4;
+  background-color: #d1b7a4;
 }
 
 .archive-小日向千虎 {
-	background-color: #FFE089;
+  background-color: #ffe089;
 }
 
 .archive-白砂つな {
-	background-color: #CF80E0;
+  background-color: #cf80e0;
 }
 
 .archive-橘シエナ {
-	background-color: #FFA658;
+  background-color: #ffa658;
 }
 
 .archive-ミラ・ルプス {
-	background-color: #BDDE87;
+  background-color: #bdde87;
 }
 
 .archive-銀灰まお {
-	background-color: #C4BEC9;
+  background-color: #c4bec9;
 }
 
 .archive-リン・ガーネット {
-	background-color: #D4485F;
+  background-color: #d4485f;
 }
 
 .archive-明堂しろね {
-	background-color: #DE617E;
+  background-color: #de617e;
 }
 
 .archive-華糖シェリー {
-	background-color: #77788F;
+  background-color: #77788f;
 }
 
 .archive-ぺるぽ {
-	background-color: #B2E2F7;
+  background-color: #b2e2f7;
 }
 
 .archive-叶望ゆゆ {
-	background-color: #BF8ADE;
+  background-color: #bf8ade;
 }
 
 .archive-雫川なのか {
-	background-color: #CDEDFF;
+  background-color: #cdedff;
 }
 
 .archive-堕天しすた {
-	background-color: #C5C2C3;
+  background-color: #c5c2c3;
 }
 
 .archive-山寧恋 {
-	background-color: #FAC6D3;
+  background-color: #fac6d3;
 }
 
 .archive-翠森アトリ {
-	background-color: #BEC48B;
+  background-color: #bec48b;
 }
 /* 끝 */

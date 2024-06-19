@@ -73,7 +73,10 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       <c:forEach items="${archives}" var="archive">
         <div class="archive-contents">
           <div class="archive-update-div">
-            <button onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">
+            <button
+              class="cute-button"
+              onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'"
+            >
               修正する
             </button>
           </div>
