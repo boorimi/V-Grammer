@@ -26,7 +26,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     </c:choose>
     <div class="announcement-container">
       <div class="announcement-title">
-        <h1>お知らせ (insert or update)</h1>
+        <p>お知らせ</p>
       </div>
       <form id="${id }" action="${action }" method="post">
         <div class="">
@@ -41,17 +41,17 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <div class="">
           <div>본문</div>
           <div>
-            <textarea style="resize: none" rows="30" cols="80" name="text">
+            <textarea style="resize: none; width:99%; height:50vh;"  name="text">
 ${text2 }</textarea
             >
           </div>
         </div>
-        <div>
-          <div>
-            <button type="button" onclick="${onclick}">${buttonText }</button>
+        <div style="display:flex; justify-content: flex-end;">
+          <div style="margin:5px;">
+            <button class="cute-button-blue" type="button" onclick="${onclick}">${buttonText }</button>
           </div>
-          <div>
-            <button type="button" onclick="announcementCancleInsert()">
+          <div style="margin:5px;">
+            <button class="cute-button-blue" type="button" onclick="announcementCancleInsert()">
               취소
             </button>
           </div>

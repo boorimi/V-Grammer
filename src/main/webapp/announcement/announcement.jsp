@@ -13,6 +13,7 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="css/announcement.css" />
+    <link rel="stylesheet" href="css/archive.css" />
   </head>
   <body>
     <div class="announcement-container">
@@ -25,8 +26,8 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
         <c:forEach var="a" items="${announcements }" varStatus="status">
           <div class="announcement-content">
             <div class="announcement-number">${totalItems - status.index}</div>
-            <div class="announcement-con-title">
-              <a href="SelectAnnouncement?no=${a.pk}">${a.title }</a>
+            <div onclick="location.href='SelectAnnouncement?no=${a.pk}'" class="announcement-con-title">
+              ${a.title }
             </div>
             <div class="announcement-con-txt">${a.date }</div>
           </div>
@@ -35,35 +36,39 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
       </div>
       <c:if test="${sessionScope.twitterId == 459978973 }">
       <div id="insert-button">
-        <button onclick="location.href='InsertAnnouncement'">글쓰기</button>
+        <button class="cute-button-blue" onclick="location.href='InsertAnnouncement'">글쓰기</button>
       </div>
       </c:if>
-      <div class="announcement-bottom">
-        <div><a href="AnnouncementPage?p=1">처음</a></div>
+      <!-- 글쓰기 끝 -->
+      <!-- 하단 페이징 시작 -->
+      <div class="archive-paging-container">
         <c:set var="pageUnit" value="4" />
         <c:set
           var="page"
           value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}"
         />
-        <div>
+        <div class="archive-paging-start">
+          <a href="AnnouncementPage?p=1">最初に</a>
+        </div>
+        <div class="archive-paging-unit-prev">
           <c:if test="${page != 0}">
             <a href="AnnouncementPage?p=${page - pageUnit + 1}"
               >이전 ${pageUnit }페이지</a
             >
           </c:if>
         </div>
-        <div style="display: flex">
+        <div class="archive-paging-no-div">
           <c:forEach
             var="i"
-            begin="1"
+            begin="${page+1 }"
             end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
           >
-            <div class="announcement-page-no">
-              <a href="AnnouncementPage?p=${i }">[${i }]</a>
+            <div class="archive-paging-no">
+              <div onclick="location.href='AnnouncementPage?p=${i }'">${i }</div>
             </div>
           </c:forEach>
         </div>
-        <div>
+        <div class="archive-paging-unit-next">
           <c:if
             test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}"
           >
@@ -72,7 +77,9 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
             >
           </c:if>
         </div>
-        <div><a href="AnnouncementPage?p=${pageCount}">끝</a></div>
+        <div class="archive-paging-end">
+          <a href="AnnouncementPage?p=${pageCount}">끝</a>
+        </div>
       </div>
     </div>
     <!-- <div>
