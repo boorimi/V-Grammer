@@ -143,6 +143,8 @@ public class ArchiveDAO {
 		System.out.println(member);
 		System.out.println(category);
 		System.out.println(title);
+		
+		String title2 = "%" + title + "%";
 
 		// 비동기 페이징 할때 받는 변수
 		int page = 1;
@@ -154,7 +156,7 @@ public class ArchiveDAO {
 		sql += "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk ";
 		sql += "and (? IS NULL OR hm.m_name = ?) ";
 		sql += "and (? IS NULL OR ha.a_category = ?) ";
-		sql += "and (? IS NULL OR ha.a_title = ?) ";
+		sql += "and (? IS NULL OR ha.a_title like ?) ";
 		sql += "order by a_date desc, a_time desc ";
 		sql += "LIMIT ? OFFSET ?";
 
@@ -166,8 +168,8 @@ public class ArchiveDAO {
 			pstmt.setString(2, member);
 			pstmt.setString(3, category);
 			pstmt.setString(4, category);
-			pstmt.setString(5, title);
-			pstmt.setString(6, title);
+			pstmt.setString(5, title2);
+			pstmt.setString(6, title2);
 			pstmt.setInt(7, 20);
 			pstmt.setInt(8, 20 * (page - 1));
 			rs = pstmt.executeQuery();

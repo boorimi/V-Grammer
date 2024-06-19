@@ -21,12 +21,22 @@
 }
 
 .main-logo {
-  font-size: 20pt;
   margin-left: 75px;
   width: 175px;
-  background-color: lightpink;
-  text-align: center;
+  	display:flex;
+	justify-content: center;
+	align-items: center;
 }
+.main-logo > div {
+	display: inline-block;
+}
+.main-logo > div > a > img {
+	width: 175px;
+	height: auto;
+
+	
+}
+
 
 .menu-lists {
   list-style: none;
