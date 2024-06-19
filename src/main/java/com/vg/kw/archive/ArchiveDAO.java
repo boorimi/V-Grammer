@@ -156,10 +156,10 @@ public class ArchiveDAO {
 		sql += "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk ";
 		sql += "and (? IS NULL OR hm.m_name = ?) ";
 		sql += "and (? IS NULL OR ha.a_category = ?) ";
-		sql += "and (? IS NULL OR ha.a_title like ?) ";
+		sql += "and (? IS NULL OR ha.a_title like CONCAT('%',?,'%')) ";
 		sql += "order by a_date desc, a_time desc ";
 		sql += "LIMIT ? OFFSET ?";
-
+		
 		try {
 
 			con = DBManager.connect();
@@ -168,10 +168,13 @@ public class ArchiveDAO {
 			pstmt.setString(2, member);
 			pstmt.setString(3, category);
 			pstmt.setString(4, category);
-			pstmt.setString(5, title2);
-			pstmt.setString(6, title2);
+			pstmt.setString(5, title);
+			pstmt.setString(6, title);
 			pstmt.setInt(7, 20);
 			pstmt.setInt(8, 20 * (page - 1));
+			
+			System.out.println(page);
+			
 			rs = pstmt.executeQuery();
 			ArrayList<String> archives = new ArrayList<>();
 
