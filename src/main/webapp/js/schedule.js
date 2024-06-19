@@ -151,18 +151,31 @@ $(document).ready(function() {
 		})
 	});
 
-	// Delete JS
-
-	//	let iddd= $(this).val();
-	//	console.log(iddd);
-	//	console.log($(this).data('data'));
-	//	});
-
-
 	// 인서트 js
+
+	for (let i = 0; i < 5; i++) {
+		let insertInputList = `<div class="s-input-box">
+									<div class="input-date">
+										<input name="s_date" type="date" id="schedule-date"
+											data-placeholder="日付" />
+									</div>
+									<div class="input-time">
+										<input name="s_time" type="time" id="schedule-time"
+											data-placeholder="時間" />
+									</div>
+									<div class="input-title">
+										<input name="s_title" id="schedule-title"
+											placeholder="放送のタイトル" />
+									</div>
+								</div>`;
+								
+		$('.s-input-container').append(insertInputList);
+								
+	}
+
 	const $openButton = $("#schedule-insert-detail-button");
-	const $insertcontainer = $(".schedule-insert-inner-container");
-	const $insertButton = $("#schedule-insert-button");
+	const $insertcontainer = $(".s-insert-content-a-box");
+	const $insertButton = $("#s-insert-button");
 
 	// 로그인 한 사람만 인서트 디브 볼 수 있도록.
 	$openButton.on("click", function() {
@@ -182,7 +195,7 @@ $(document).ready(function() {
 
 	// 입력 안하면 입력 알럿
 	$insertButton.on("click", function() {
-		if ($("#schedule-member").val() === "999") {
+		if ($("#s-member-list").val() === "999") {
 			alert("メンバーをチェックください！");
 			return false;
 		}
