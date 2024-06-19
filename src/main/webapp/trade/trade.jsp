@@ -14,22 +14,23 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     ></script>
     <script src="js/trade.js" defer></script>
     <link rel="stylesheet" href="css/trade.css" />
+    <link rel="stylesheet" href="css/archive.css" />
   </head>
   <body>
     <div class="trade-container">
       <div class="trade-title">
-        <h1>トレード</h1>
+        <h1>グッズトレードページ</h1>
       </div>
-      <div id="insert-button">
-        <button onclick="location.href='InsertTrade'">作成</button>
-      </div>
-      <div style="display:flex;">
-      <div>
-        <button class="trade-openCategorys">カテゴリーで検索 ▼</button>
-      </div>
-      <div>
-        <button class="trade-openSearch">名前で検索 ▼</button>
-      </div>
+      <div class="trade-menu">
+        <div>
+          <button class="trade-openCategorys cute-button">カテゴリーで検索 ▼</button>
+        </div>
+        <div>
+          <button class="trade-openSearch cute-button">名前で検索 ▼</button>
+        </div>
+        <div id="insert-button">
+          <button onclick="location.href='InsertTrade'">作成</button>
+        </div>
       </div>
       <form action="Trade">
         <c:choose>
@@ -54,7 +55,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         </div>
       </form>
       <form action="Trade">
-      <c:choose>
+        <c:choose>
           <c:when test="${name2 != null}">
             <c:set var="displaySearch" value="flex" />
           </c:when>
@@ -63,7 +64,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </c:otherwise>
         </c:choose>
         <div class="trade-search" style="display: ${displaySearch};">
-              <input name="name" value="${name }"/>
+          <input name="name" value="${name }" />
           <button id="trade-search-name">検索</button>
         </div>
       </form>
@@ -85,13 +86,18 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </c:if>
         </div>
         <div class="trade-paging-no-div">
-        <c:forEach
-          var="i"
-          begin="${page + 1 }"
-          end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
-        >
-          <div class="trade-page-no" onclick="location.href='TradePage?p=${i }${name2}${category3 }'">${i }</div>
-        </c:forEach>
+          <c:forEach
+            var="i"
+            begin="${page + 1 }"
+            end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
+          >
+            <div
+              class="trade-page-no"
+              onclick="location.href='TradePage?p=${i }${name2}${category3 }'"
+            >
+              ${i }
+            </div>
+          </c:forEach>
         </div>
         <div class="trade-paging-unit-next">
           <c:if
@@ -106,7 +112,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           <a href="TradePage?p=${pageCount}${category3 }${name2}">最後に</a>
         </div>
       </div>
-		<!--  페이징 끝 -->
+      <!--  페이징 끝 -->
       <div class="trade-conmain">
         <!-- 본문페이지 for문 시작 -->
         <c:set var="totalItems" value="${fn:length(trades)}" />
@@ -153,7 +159,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             <c:set var="i" value="0" />
             <c:forEach var="tc" items="${tradeComments }">
               <c:if test="${tc.t_pk == t.pk }">
-                <div class="trade-comments" style="display: none; margin: 15px;">
+                <div class="trade-comments" style="display: none; margin: 15px">
                   <div>
                     <div>${tc.sNickname}</div>
                     <div>${tc.date }</div>
@@ -181,7 +187,10 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <button class="trade-openComments">コメント(${i })</button>
             </div>
             <div class="trade-comments" style="display: none; border: 0px">
-              <form id="insertTradeCommentsForm_${t.pk }" action="InsertTradeComments">
+              <form
+                id="insertTradeCommentsForm_${t.pk }"
+                action="InsertTradeComments"
+              >
                 <input name="no" type="hidden" value="${t.pk }" />
                 <input
                   name="masterTwitterId"

@@ -16,7 +16,9 @@ pageEncoding="UTF-8"%>
   <body>
     <div class="main-menu-all">
       <div class="main-logo">
-        <a href="HC">ハコナカ</a>
+      <div>
+        <a href="HC"><img src="haco_img/hakonaka_logo.png"></a>
+      </div>
       </div>
       <div class="menu-lists">
         <div onclick="location.href='MemberC'" class="menu-lists-member">

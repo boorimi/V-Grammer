@@ -143,6 +143,8 @@ public class ArchiveDAO {
 		System.out.println(member);
 		System.out.println(category);
 		System.out.println(title);
+		
+		String title2 = "%" + title + "%";
 
 		// 비동기 페이징 할때 받는 변수
 		int page = 1;
@@ -154,10 +156,10 @@ public class ArchiveDAO {
 		sql += "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk ";
 		sql += "and (? IS NULL OR hm.m_name = ?) ";
 		sql += "and (? IS NULL OR ha.a_category = ?) ";
-		sql += "and (? IS NULL OR ha.a_title = ?) ";
+		sql += "and (? IS NULL OR ha.a_title like CONCAT('%',?,'%')) ";
 		sql += "order by a_date desc, a_time desc ";
 		sql += "LIMIT ? OFFSET ?";
-
+		
 		try {
 
 			con = DBManager.connect();
@@ -170,6 +172,9 @@ public class ArchiveDAO {
 			pstmt.setString(6, title);
 			pstmt.setInt(7, 20);
 			pstmt.setInt(8, 20 * (page - 1));
+			
+			System.out.println(page);
+			
 			rs = pstmt.executeQuery();
 			ArrayList<String> archives = new ArrayList<>();
 

@@ -4,14 +4,6 @@ $(function () {
   localStorage.setItem("category", "未分類");
   localStorage.setItem("title", "");
 
-  let member = localStorage.getItem("member");
-  let category = localStorage.getItem("category");
-  let title = localStorage.getItem("title");
-
-  console.log(member);
-  console.log(category);
-  console.log(title);
-
   $(document).on("click", ".archive-paging-no", function () {
     let member = localStorage.getItem("member");
     let category = localStorage.getItem("category");
@@ -29,10 +21,6 @@ $(function () {
     if (title != "") {
       paramData.title = title;
     }
-
-    console.log(member);
-    console.log(category);
-    console.log(title);
 
     $("#archive-list").css({ opacity: 0.3 });
     adjustOpacity(1);
@@ -59,10 +47,6 @@ $(function () {
     let member = localStorage.getItem("member");
     let category = localStorage.getItem("category");
     let title = localStorage.getItem("title");
-
-    console.log(member);
-    console.log(category);
-    console.log(title);
 
     $("#archive-list").css({ opacity: 0.3 });
     adjustOpacity(1);
@@ -229,7 +213,7 @@ async function searchPage(resData, pagingVariable) {
 			</div>
 		</div>`;
     $archiveList.append(html);
-    
+
     //페이징 영역
     $paging.html("");
     let asdf = await pagingVariable;
@@ -244,6 +228,7 @@ async function searchPage(resData, pagingVariable) {
     let page = ((curPageNo - 1) / pageUnit) * pageUnit;
     console.log(pageUnit);
     console.log(page);
+
     let initialHtml = `<div class="archive-paging-start">
         <a href="ArchivePageC?p=1">最初に</a>
       </div>
