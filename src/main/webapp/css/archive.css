@@ -78,7 +78,7 @@
 .archive-paging-end {
   width: 100px;
 }
-
+/*모달 시작*/
 .dialog-container {
   display: none;
   position: fixed;
@@ -112,6 +112,9 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+/* 모달 끝*/
+
 /* 아카이브 버튼 부분 시작 */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
 
@@ -179,8 +182,8 @@
 .archive-contents {
   display: flex;
   align-items: center;
-  border-top: 1px solid black;
-  border-bottom: 1px solid gray;
+  border-top: 1px solid #e6498e;
+  border-bottom: 1px solid #e6498e;
   padding: 3px 0px;
 }
 
@@ -196,8 +199,8 @@
 .archive-contents-update {
   display: flex;
   align-items: center;
-  border-top: 1px solid black;
-  border-bottom: 1px solid gray;
+  border-top: 1px solid #e6498e;
+  border-bottom: 1px solid #e6498e;
   padding: 3px 0px;
   margin-top: 50px;
 }
@@ -226,6 +229,80 @@
 
 .archive-membername {
   width: 140px;
+}
+
+/* 기본 select 스타일 */
+select[name="collabo"] {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #333;
+  border-radius: 12px;
+  padding: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16"> <path d="M7.247 11.14l-4.796-5.481c-.566-.647-.106-1.659.753-1.659h9.592c.86 0 1.32 1.012.754 1.659l-4.796 5.48a1 1 0 0 1-1.508 0z"/> </svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* hover 스타일 */
+select[name="collabo"]:hover {
+  background-color: #ffe1eb;
+  border-color: #e6498e;
+}
+
+/* focus 스타일 */
+select[name="collabo"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px #ff69b4;
+  border-color: #ff69b4;
+}
+
+select[name="member"]:hover {
+  background-color: #ffe1eb;
+  border-color: #e6498e;
+}
+
+/* Focus 스타일 */
+select[name="member"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px #ff69b4;
+  border-color: #ff69b4;
+}
+
+select[name="category"] {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #333;
+
+  border-radius: 12px;
+  padding: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16"> <path d="M7.247 11.14l-4.796-5.481c-.566-.647-.106-1.659.753-1.659h9.592c.86 0 1.32 1.012.754 1.659l-4.796 5.48a1 1 0 0 1-1.508 0z"/> </svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover 스타일 */
+select[name="category"]:hover {
+  background-color: #ffe1eb;
+  border-color: #e6498e;
+}
+
+/* Focus 스타일 */
+select[name="category"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px #ff69b4;
+  border-color: #ff69b4;
 }
 
 .archive-collabo {
@@ -278,6 +355,20 @@
 
 .openModalButton {
   display: none; /* 기본적으로 버튼을 숨김 */
+  font-family: "Noto Sans JP", sans-serif; /* 일본어 텍스트에 어울리는 글꼴 사용 */
+  font-size: 1rem; /* 글자 크기 */
+  color: #fff; /* 텍스트 색상 */
+  background: linear-gradient(
+    45deg,
+    #ff69b4,
+    #ff9a9e
+  ); /* 버튼 배경색 그라데이션 */
+  border: none; /* 기본 테두리 제거 */
+  border-radius: 20px; /* 둥근 테두리 */
+  padding: 10px 20px; /* 내부 여백 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
+  cursor: pointer; /* 커서 변경 */
+  transition: background 0.3s ease, transform 0.3s ease; /* 부드러운 전환 효과 */
 }
 
 .archive-collabo-member-item {
