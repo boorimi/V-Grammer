@@ -160,9 +160,9 @@ $(document).ready(function() {
 
 
 	// 인서트 js
-	const $openButton = $(".schedule-insert-detail-button");
+	const $openButton = $("#schedule-insert-detail-button");
 	const $insertcontainer = $(".schedule-insert-inner-container");
-	const $insertButton = $(".schedule-insert-button");
+	const $insertButton = $("#schedule-insert-button");
 
 	// 로그인 한 사람만 인서트 디브 볼 수 있도록.
 	$openButton.on("click", function() {

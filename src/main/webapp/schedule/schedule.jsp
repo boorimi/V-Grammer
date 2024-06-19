@@ -156,7 +156,7 @@ dialog::backdrop {
 
 			<div class="schedule-insert-container">
 				<!-- 로그인 한 사람만 인서트 가능하도록 value에 세션값 넣어서 js에서 체크 -->
-				<button class="schedule-insert-detail-button"
+				<button id="schedule-insert-detail-button"
 					value="${sessionScope.accountInfo.u_twitter_id }">スケジュール登録</button>
 				<div class="schedule-insert-inner-container">
 					<form action="ScheduleInsertC" id="schedule-form">
@@ -240,7 +240,7 @@ dialog::backdrop {
 								name="s_time" type="time" id="schedule-time" /> <input
 								name="s_title" style="width: 500px" id="schedule-title" />
 						</div>
-						<button class="schedule-insert-button">登録</button>
+						<button id="schedule-insert-button">登録</button>
 					</form>
 				</div>
 			</div>

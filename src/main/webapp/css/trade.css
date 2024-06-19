@@ -257,7 +257,11 @@
 }
 /* 버튼 CSS 시작 */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
-
+.cute-button-box{
+	display:flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
 .cute-button-pink {
   font-family: "Noto Sans JP", sans-serif; /* 일본어 텍스트에 어울리는 글꼴 사용 */
   font-size: 1rem; /* 글자 크기 */
