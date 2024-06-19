@@ -89,8 +89,8 @@
 .nav-userinfo {
   display: flex;
   align-items: center;
-  margin-right: 100px;
-  margin-left: 50px;
+  margin-left: 1vw;
+  margin-right: 1vw;
 }
 
 .content {
