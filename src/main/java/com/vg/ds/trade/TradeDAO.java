@@ -62,7 +62,7 @@ public class TradeDAO {
 
 		try {
 
-			String sql = "select t_pk, u_twitter_id, u_nickname, t_text, t_date, t_category ";
+			String sql = "select t_pk, u_twitter_id, u_screenname, u_nickname, t_text, t_date, t_category ";
 			sql += "from haco_tradegoods, haco_user ";
 			sql += "where u_twitter_id = t_u_t_id ";
 			////// 검색 진행 시 sql문 추가하는 부분 시작 ////
@@ -106,13 +106,14 @@ public class TradeDAO {
 			while (rs.next()) {
 				String pk = rs.getString(1);
 				String twitterId = rs.getString(2);
-				String nickname = rs.getString(3);
-				String text = rs.getString(4);
-				String date = rs.getString(5);
+				String screenName = rs.getString(3);
+				String nickname = rs.getString(4);
+				String text = rs.getString(5);
+				String date = rs.getString(6);
 
 				// 배열로 전환
-				category = rs.getString(6).split("!");
-				TradeDTO t = new TradeDTO(pk, twitterId, nickname, text, date, category);
+				category = rs.getString(7).split("!");
+				TradeDTO t = new TradeDTO(pk, twitterId, screenName, nickname, text, date, category, tradeComments);
 				trades.add(t);
 
 			}
@@ -154,7 +155,7 @@ public class TradeDAO {
 			// 본문내용 확인 할때 DB내용을 br -> 줄바꿈으로 대체하는 코드
 			String text2 = text.replace("<br>", "\r\n");
 
-			TradeDTO t = new TradeDTO(pk, twitterId, nickname, text2, date, category);
+			TradeDTO t = new TradeDTO(pk, twitterId, text, nickname, text2, date, category, tradeComments);
 
 //			request.setAttribute("category", category);
 			request.setAttribute("text2", text2);

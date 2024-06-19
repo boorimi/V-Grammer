@@ -23,7 +23,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       </div>
       <div class="trade-menu">
         <div>
-          <button class="trade-openCategorys cute-button">カテゴリーで検索 ▼</button>
+          <button class="trade-openCategorys cute-button">
+            カテゴリーで検索 ▼
+          </button>
         </div>
         <div>
           <button class="trade-openSearch cute-button">名前で検索 ▼</button>
@@ -118,28 +120,31 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         <c:set var="totalItems" value="${fn:length(trades)}" />
         <c:forEach var="t" items="${trades }" varStatus="status">
           <div class="trade-content">
-            <div>
+            <div class="trade-content-title">
               <div>${t.nickname}</div>
-              <div>${t.twitterId}</div>
-              <div style="display: flex; flex-wrap: wrap">
-                <!--  카테고리 for문 시작 -->
-                <c:forEach var="c" items="${t.category }">
-                  <c:forEach var="item" items="${checkboxItems}">
-                    <c:if test="${item.value == c}">
-                      <div
-                        class="trade-goods-category"
-                        style="margin: 2px; padding: 3px"
-                      >
-                        ${item.label}
-                      </div>
-                    </c:if>
-                  </c:forEach>
-                </c:forEach>
-                <!-- 카테고리for문 끝 -->
+              <div>
+                <a target="_blnck" href="https://x.com/${t.screenName}"
+                  ><img src="haco_img/icon-twitter.png"
+                /></a>
               </div>
               <div>${t.date}</div>
             </div>
-            <div>
+            <div class="trade-content-category" style="display: flex; flex-wrap: wrap">
+              <!--  카테고리 for문 시작 -->
+              <c:forEach var="c" items="${t.category }">
+                <c:forEach var="item" items="${checkboxItems}">
+                  <c:if test="${item.value == c}">
+                    <div
+                      class="trade-goods-category"
+                    >
+                      ${item.label}
+                    </div>
+                  </c:if>
+                </c:forEach>
+              </c:forEach>
+              <!-- 카테고리for문 끝 -->
+            </div>
+            <div class="trade-content-text">
               <div class="trade-con-title">${t.text }</div>
               <c:if test="${sessionScope.twitterId == t.twitterId}">
                 <div>
