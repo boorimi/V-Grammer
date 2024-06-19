@@ -153,6 +153,6 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         <a href="ArchivePageC?p=${pageCount}">最後に</a>
       </div>
     </div>
-    <!-- 상단 페이징 끝 -->
+    <!-- 페이징 끝 -->
   </body>
 </html>

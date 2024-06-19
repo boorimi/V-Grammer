@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -299,6 +300,29 @@ public class AccountDAO {
 			} finally {
 				DBManager.close(con, pstmt, null);
 			}
+		
+	}
+
+	public static void nickNameCheck(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("닉네임 유효성 검사 메서드 진입");
+		String inputNickName = request.getParameter("inputNickName");
+		System.out.println("인풋받은 닉네임:" + inputNickName);
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+		
 		
 	}
 

@@ -3,7 +3,7 @@ package com.vg.sw.dday;
 import java.time.LocalDate;
 
 public class DdayDTO {
-    private int id;
+	private int id;
     private String name;
     private String eventType; // "데뷔" 또는 "생일"
     private String eventDate;

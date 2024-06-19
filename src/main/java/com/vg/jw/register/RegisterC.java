@@ -15,13 +15,22 @@ public class RegisterC extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("Register컨트롤러 get진입");
 		AccountDAO.loginCheck(request);
-		request.setAttribute("content", "account/register/register_page.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
+		//파라미터가 있으면 닉네임 유효성 검사
+		if (request.getParameterNames().hasMoreElements()) {
+			System.out.println("닉네임 유효성 검사 분기로 진입");
+			AccountDAO.nickNameCheck(request, response);
+			
+			
+		} else {//들고오는 파라미터 없으면 등록페이지로 이동
 
+			request.setAttribute("content", "account/register/register_page.jsp");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {		
+			throws ServletException, IOException {
 		System.out.println("Register컨트롤러 post진입");
 		AccountDAO.loginCheck(request);
 		request.setCharacterEncoding("utf-8");
