@@ -2,8 +2,8 @@ $(document).ready(function() {
 
 	const modal = document.getElementById('modal');
 	const closeModalButton = document.getElementById('closeModalButton');
-	const confirmButton = document.getElementById('confirmButton');
-	const cancelButton = document.getElementById('cancelButton');
+	const deleteButton = document.getElementById('deleteButton');
+	const updateButton = document.getElementById('updateButton');
 	console.log(modal);
 
 
@@ -11,13 +11,13 @@ $(document).ready(function() {
 		modal.close();
 	});
 
-	confirmButton.addEventListener('click', () => {
-		console.log('Confirmed');
+	deleteButton.addEventListener('click', () => {
+		console.log('deleteButton');
 		modal.close();
 	});
 
-	cancelButton.addEventListener('click', () => {
-		console.log('Cancelled');
+	updateButton.addEventListener('click', () => {
+		console.log('updateButton');
 		modal.close();
 	});
 
@@ -92,8 +92,7 @@ $(document).ready(function() {
 
 				$.each(data[i - 1], (j, obj) => {
 					if (start <= obj.intTime && obj.intTime < end) {
-						let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk)
-						.attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name);
+						let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk).attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name);
 
 						let sTime = $("<div></div>").text(obj.s_time);
 						let mName = $("<div></div>").text(obj.m_name);
@@ -109,26 +108,41 @@ $(document).ready(function() {
 
 						sTitle.append(titleDetail);
 						sData.append(sTime).append(mName).append(sTitle);
+
+
 						//						content2.append(sData);
 						// 디브 생성 후 컬러 세팅함수 호출
 						setBackgroundColor(sData, obj.s_m_pk);
 						$(s).append(sData);
+
+
 					}
 				});
 			});
+
+
+
+
+
 		}
-		// 모달 js
 			$('.s-data').click(function() {
 				modal.showModal();
 				console.log(this.dataset);
 				modal.querySelector("#title").innerText = this.dataset.mName;
 				modal.querySelector("#name").innerText = this.dataset.mPk;
 				modal.querySelector("#time").innerText = this.dataset.sTime;
-			});
+				let zzz = this.dataset.mName = 'aaaa'
+				modal.querySelector("#title").innerText = zzz;
+				
+			})
 	});
 
 	// Delete JS
 
+	//	let iddd= $(this).val();
+	//	console.log(iddd);
+	//	console.log($(this).data('data'));
+	//	});
 
 
 	// 인서트 js

@@ -68,6 +68,7 @@
 			<input id="s-sun" type="radio" name="tab_item" /> <label
 				class="tab_item" for="s-sun">${thisWeek[6] } 日</label>
 
+
 	<dialog id="modal">
         <div class="modal-header">
             <h2 id="title"></h2>
@@ -81,6 +82,10 @@
             <button id="updateButton">Update</button>
         </div>
     </dialog>
+
+
+   
+
 
 			<!-- 월 -->
 			<c:forEach var="s" items="${weekSchedules}" varStatus="st">
