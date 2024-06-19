@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var today = new Date();
     today.setHours(0, 0, 0, 0); // 오늘의 시간을 00:00:00으로 설정
 
+    var ddayData = [];
+
     rows.forEach(function(row) {
         var ddayCell = row.cells[2]; // 디데이까지 남은 일수 셀
         var ddayText = ddayCell.textContent.trim();
@@ -35,6 +37,26 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             ddayCell.textContent = ddayValue;
         }
+
+        // 데이터 객체 생성 및 배열에 추가
+        var dataObject = {
+            row: row,
+            ddayValue: ddayValue
+        };
+        ddayData.push(dataObject);
+    });
+
+    // 디데이 값을 기준으로 정렬
+    ddayData.sort(function(a, b) {
+        return a.ddayValue - b.ddayValue;
+    });
+
+    // 정렬된 데이터를 테이블에 적용
+    var tbody = document.querySelector("#dday tbody");
+    tbody.innerHTML = ""; // 테이블 초기화
+
+    ddayData.forEach(function(data) {
+        tbody.appendChild(data.row);
     });
 
     // 파싱된 날짜와 오늘 사이의 일수를 계산하는 함수

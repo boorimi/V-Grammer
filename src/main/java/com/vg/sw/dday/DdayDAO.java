@@ -73,12 +73,8 @@ public class DdayDAO {
         }
 
         // Sort ddayList by event date in ascending order with adjustment for past dates
-        Collections.sort(ddayList, (d1, d2) -> {
-            LocalDate today = LocalDate.now();
-            LocalDate eventDate1 = d1.getLocalEventDate().isBefore(today) ? d1.getLocalEventDate().plusYears(1) : d1.getLocalEventDate(); // 과거 날짜 조정 로직 적용
-            LocalDate eventDate2 = d2.getLocalEventDate().isBefore(today) ? d2.getLocalEventDate().plusYears(1) : d2.getLocalEventDate(); // 과거 날짜 조정 로직 적용
-            return eventDate1.compareTo(eventDate2);
-        });
+        Collections.sort(ddayList, (d1, d2) -> Long.compare(d1.getDaysUntilDday(), d2.getDaysUntilDday()));
+
 
         return ddayList;
     }
