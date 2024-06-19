@@ -94,7 +94,6 @@ dialog::backdrop {
 			</dialog>
 
 
-			<!-- 월 -->
 			<c:forEach var="s" items="${weekSchedules}" varStatus="st">
 				<div class="tab_content day${st.count }-content">
 					<div class="s-time-list">

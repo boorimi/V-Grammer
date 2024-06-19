@@ -152,7 +152,6 @@ $(document).ready(function() {
 	});
 
 	// 인서트 js
-
 	for (let i = 0; i < 5; i++) {
 		let insertInputList = `<div class="s-input-box">
 									<div class="input-date">
