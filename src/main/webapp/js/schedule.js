@@ -13,12 +13,10 @@ $(document).ready(function() {
 
 	deleteButton.addEventListener('click', () => {
 		console.log('deleteButton');
-		modal.close();
 	});
 
 	updateButton.addEventListener('click', () => {
 		console.log('updateButton');
-		modal.close();
 	});
 
 	modal.addEventListener('click', (event) => {
@@ -26,7 +24,6 @@ $(document).ready(function() {
 			modal.close();
 		}
 	});
-
 
 	// 페이지 열리면 오늘 날짜 탭이 바로 열리게 하는 코드
 	let today = new Date().getDay();
@@ -92,7 +89,7 @@ $(document).ready(function() {
 
 				$.each(data[i - 1], (j, obj) => {
 					if (start <= obj.intTime && obj.intTime < end) {
-						let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk).attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name);
+						let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk).attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name).attr('data-s-title', obj.s_title);
 
 						let sTime = $("<div></div>").text(obj.s_time);
 						let mName = $("<div></div>").text(obj.m_name);
@@ -102,39 +99,44 @@ $(document).ready(function() {
 						let sTitle = $("<div>").addClass("s-data-title");
 
 						let titleDetail = `<div class="s-title-text-box">
-										<div>◈タイトル◈</div>
 										<div>${obj.s_title}</div>
 										</div>`;
 
 						sTitle.append(titleDetail);
 						sData.append(sTime).append(mName).append(sTitle);
-
-
 						//						content2.append(sData);
 						// 디브 생성 후 컬러 세팅함수 호출
 						setBackgroundColor(sData, obj.s_m_pk);
 						$(s).append(sData);
-
-
 					}
 				});
 			});
-
-
-
-
-
 		}
-			$('.s-data').click(function() {
-				modal.showModal();
-				console.log(this.dataset);
-				modal.querySelector("#title").innerText = this.dataset.mName;
-				modal.querySelector("#name").innerText = this.dataset.mPk;
-				modal.querySelector("#time").innerText = this.dataset.sTime;
-				let zzz = this.dataset.mName = 'aaaa'
-				modal.querySelector("#title").innerText = zzz;
-				
-			})
+		// Modal inner data
+		$('.s-data').click(function() {
+			modal.showModal();
+			console.log(this.dataset);
+			modal.querySelector("#time").innerText = this.dataset.sTime;
+			modal.querySelector("#name").innerText = this.dataset.mName;
+			modal.querySelector("#title").innerText = this.dataset.sTitle;
+
+			// Modal Delete Click
+
+		})
+
+		$('#deleteButton').click(function() {
+			// 스케줄의 pk
+			let sPk = $('.s-data').data('s-pk');
+			if (confirm('本当に削除しますか？')) {
+				console.log(sPk);
+			}
+
+		})
+
+		// Modal Update Click
+		$('#updateButton').click(function() {
+
+		})
 	});
 
 	// Delete JS

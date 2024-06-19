@@ -13,32 +13,36 @@
 <script type="text/javascript" src="js/schedule.js" defer></script>
 
 <title>Insert title here</title>
-  <style>
-        dialog {
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            width: 300px;
-        }
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.4);
-        }
-        .modal-header, .modal-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .modal-footer {
-            margin-top: 20px;
-        }
-        .close-button {
-            background: none;
-            border: none;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
-    </style>
+<style>
+dialog {
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	padding: 20px;
+	width: 300px;
+}
+
+dialog::backdrop {
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-header, .modal-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modal-footer {
+	margin-top: 20px;
+}
+
+.close-button {
+	background: none;
+	border: none;
+	font-size: 1.2em;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<textarea rows="" cols="" id="weekJSON" style="display: none">${weekJSON }</textarea>
@@ -69,22 +73,24 @@
 				class="tab_item" for="s-sun">${thisWeek[6] } 日</label>
 
 
-	<dialog id="modal">
-        <div class="modal-header">
-            <h2 id="title"></h2>
-            <h2 id="name"></h2>
-            <h2 id="time"></h2>
-            <button class="close-button" id="closeModalButton">&times;</button>
-        </div>
-        <p>제목,pk,뭐.</p>
-        <div class="modal-footer">
-            <button id="deleteButton">Delete</button>
-            <button id="updateButton">Update</button>
-        </div>
-    </dialog>
-
-
-   
+			<dialog id="modal">
+			<div class="modal-container">
+				<div class="modal-header">
+					<h2 id="time"></h2>
+					<h2 id="name"></h2>
+					<button class="close-button" id="closeModalButton">&times;</button>
+				</div>
+				<div class="modal-title-box" style="font-weight: 600">
+					<p>- 配信のタイトル</p>
+					<p id="title"></p>
+				</div>
+				<div class="modal-footer">
+					<button id="deleteButton">Delete</button>
+					<button id="updateButton" data-toggle="modal"
+						data-target="#updateModal">Update</button>
+				</div>
+			</div>
+			</dialog>
 
 
 			<!-- 월 -->
@@ -92,10 +98,7 @@
 				<div class="tab_content day${st.count }-content">
 					<div class="s-time-list">
 						<div class="s-time a-time">00:00 ~ 12:00</div>
-						<div class="s-data-box" start="0" end="1200">
-
-							
-						</div>
+						<div class="s-data-box" start="0" end="1200"></div>
 					</div>
 					<div class="s-time-list">
 						<div class="s-time b-time">12:00 ~ 18:00</div>
@@ -155,8 +158,7 @@
 			<div class="schedule-insert-container">
 				<!-- 로그인 한 사람만 인서트 가능하도록 value에 세션값 넣어서 js에서 체크 -->
 				<button class="schedule-insert-detail-button"
-					value="${sessionScope.accountInfo.u_twitter_id }">
-					スケジュール登録</button>
+					value="${sessionScope.accountInfo.u_twitter_id }">スケジュール登録</button>
 				<div class="schedule-insert-inner-container">
 					<form action="ScheduleInsertC" id="schedule-form">
 						<div class="schedule-insert-box">

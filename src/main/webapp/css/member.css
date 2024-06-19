@@ -28,7 +28,6 @@
 	font-size: 16pt;
 	font-weight: 900;
 	font-size: 35pt;
-	/*font-family: "Bebas Neue", sans-serif;*/
 	font-family: "Yusei Magic", sans-serif;
 	position: relative;
 	padding-left: 10%;
@@ -39,7 +38,8 @@
 	height: 90%;
 	overflow-y: hidden;
 	overflow-y: scroll;
-	font-family: "Yusei Magic", sans-serif;
+	font-family: 'CustomFont', sans-serif;
+	font-weight: 900;
 }
 
 /*스크롤 숨기기*/
@@ -160,7 +160,8 @@
 	justify-content: center;
 	flex-direction: column;
 	padding: 5%;
-	font-family: "Yusei Magic", sans-serif;
+	font-family: 'CustomFont', sans-serif;
+    font-weight: 900;
 }
 
 #member-name {
