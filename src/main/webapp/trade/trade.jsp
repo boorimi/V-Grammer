@@ -19,19 +19,19 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   <body>
     <div class="trade-container">
       <div class="trade-title">
-        <h1>グッズトレードページ</h1>
-      </div>
-      <div class="trade-menu">
-        <div>
-          <button class="trade-openCategorys cute-button">
+        <p>トレード</p>
+        <div class="trade-menu" style="display:flex;">
+        <div class="trade-menu-category">
+          <button class="trade-openCategorys cute-button-gray">
             カテゴリーで検索 ▼
           </button>
         </div>
-        <div>
-          <button class="trade-openSearch cute-button">名前で検索 ▼</button>
+        <div class="trade-menu-name">
+          <button class="trade-openSearch cute-button-gray">名前で検索 ▼</button>
+        </div>
         </div>
         <div id="insert-button">
-          <button onclick="location.href='InsertTrade'">作成</button>
+          <button class="cute-button-blue" onclick="location.href='InsertTrade'">作成</button>
         </div>
       </div>
       <form action="Trade">
@@ -53,7 +53,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               >
             </div>
           </c:forEach>
-          <button id="trade-search-category">検索</button>
+          <button class="cute-button-blue" id="trade-search-category">検索</button>
         </div>
       </form>
       <form action="Trade">
@@ -66,13 +66,13 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </c:otherwise>
         </c:choose>
         <div class="trade-search" style="display: ${displaySearch};">
-          <input name="name" value="${name }" />
-          <button id="trade-search-name">検索</button>
+          <input type="text" name="name" value="${name }" />
+          <button class="cute-button-blue" id="trade-search-name">検索</button>
         </div>
       </form>
       <!--  여기부터 페이징  -->
-      <div class="trade-paging-container">
-        <div class="trade-paging-start">
+      <div class="archive-paging-container">
+        <div class="archive-paging-start">
           <a href="TradePage?p=1${category3 }${name2}">最初に</a>
         </div>
         <c:set var="pageUnit" value="5" />
@@ -80,28 +80,28 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           var="page"
           value="${fn:substringBefore(Math.floor((curPageNo - 1) div pageUnit) * pageUnit, '.')}"
         />
-        <div class="trade-paging-unit-prev">
+        <div class="archive-paging-unit-prev">
           <c:if test="${page != 0}">
             <a href="TradePage?p=${page - pageUnit + 1}${category3 }${name2}"
               >以前 ${pageUnit }ページ</a
             >
           </c:if>
         </div>
-        <div class="trade-paging-no-div">
+        <div class="archive-paging-no-div">
           <c:forEach
             var="i"
             begin="${page + 1 }"
             end="${page + pageUnit <= pageCount ? page + pageUnit : pageCount}"
           >
             <div
-              class="trade-page-no"
+              class="archive-paging-no"
               onclick="location.href='TradePage?p=${i }${name2}${category3 }'"
             >
               ${i }
             </div>
           </c:forEach>
         </div>
-        <div class="trade-paging-unit-next">
+        <div class="archive-paging-unit-next">
           <c:if
             test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}"
           >
@@ -110,7 +110,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             >
           </c:if>
         </div>
-        <div class="trade-paging-end">
+        <div class="archive-paging-end">
           <a href="TradePage?p=${pageCount}${category3 }${name2}">最後に</a>
         </div>
       </div>
@@ -129,7 +129,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               </div>
               <div>${t.date}</div>
             </div>
-            <div class="trade-content-category" style="display: flex; flex-wrap: wrap">
+            <div class="trade-content-category ">
               <!--  카테고리 for문 시작 -->
               <c:forEach var="c" items="${t.category }">
                 <c:forEach var="item" items="${checkboxItems}">
@@ -188,10 +188,10 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               </c:if>
             </c:forEach>
             <!-- 댓글 for문 끝 -->
-            <div>
-              <button class="trade-openComments">コメント(${i })</button>
+            <div style="display:flex; justify-content: center;">
+              <button class="trade-openComments cute-button-pink">コメント(${i })</button>
             </div>
-            <div class="trade-comments" style="display: none; border: 0px">
+            <div class="trade-comments" style="display: none;border: 0px;">
               <form
                 id="insertTradeCommentsForm_${t.pk }"
                 action="InsertTradeComments"
@@ -203,12 +203,10 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   value="${t.twitterId}"
                 />
                 <textarea
-                  style="resize: none"
-                  rows="5"
-                  cols="150"
+                  style="width:99%; height:70px;"
                   name="text"
                 ></textarea>
-                <button type="button" onclick="tradeCommentsInsert('${t.pk }')">
+                <button class="cute-button-blue" type="button" onclick="tradeCommentsInsert('${t.pk }')">
                   作成
                 </button>
               </form>

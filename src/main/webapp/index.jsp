@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
     <div class="main-menu-all">
       <div class="main-logo">
       <div>
-        <a href="HC"><img src="haco_img/hakonaka_logo.png"></a>
+        <a href="HC"><img src="haco_img/haconaka_logo.png" /></a>
       </div>
       </div>
       <div class="menu-lists">
@@ -64,7 +64,7 @@ pageEncoding="UTF-8"%>
       <div class="footer-container">
         <div class="footer-menu-all">
           <div class="footer-logo">
-            <a href="HC">ハコナカ</a>
+            <a href="HC"><img src="haco_img/haconaka_logo.png" /></a>
           </div>
           <div class="footer-menu-lists">
             <div class="footer-menu-lists-member">
