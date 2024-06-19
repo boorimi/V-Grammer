@@ -49,7 +49,7 @@ public class DdayDAO {
                         LocalDate debutDate = LocalDate.parse(debutDateString);
                         long daysUntilDebutDday = calculateDaysUntilNextOccurrence(today, debutDate);
                         String debutDateFormatted = debutDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                        ddayList.add(new DdayDTO(id, name, "데뷔", debutDateFormatted, debutDate, -daysUntilDebutDday));
+                        ddayList.add(new DdayDTO(id, name, "데뷔", debutDateFormatted, debutDate, daysUntilDebutDday));
                     } catch (DateTimeParseException e) {
                         System.out.println("멤버 ID " + id + "의 데뷔 날짜 파싱 실패."); // 날짜 파싱 실패 확인용 출력
                     }
@@ -61,7 +61,7 @@ public class DdayDAO {
                         LocalDate birthDate = LocalDate.parse(birthDateString);
                         long daysUntilBirthDday = calculateDaysUntilNextOccurrence(today, birthDate);
                         String birthDateFormatted = birthDate.format(DateTimeFormatter.ofPattern("MM-dd"));
-                        ddayList.add(new DdayDTO(id, name, "생일", birthDateFormatted, birthDate, -daysUntilBirthDday));
+                        ddayList.add(new DdayDTO(id, name, "생일", birthDateFormatted, birthDate, daysUntilBirthDday));
                     } catch (DateTimeParseException e) {
                         System.out.println("멤버 ID " + id + "의 생일 날짜 파싱 실패."); // 날짜 파싱 실패 확인용 출력
                     }
@@ -88,9 +88,22 @@ public class DdayDAO {
      *
      * @param today 현재 날짜
      * @param targetDate 목표 날짜
-     * @return 남은 일수
+     * @return 남은 일수 (음수)
      */
     private static long calculateDaysUntilNextOccurrence(LocalDate today, LocalDate targetDate) {
-        return ChronoUnit.DAYS.between(today, targetDate);
+        long daysBetween = ChronoUnit.DAYS.between(today, targetDate);
+
+        // If the target date is before today, add a year to it
+        if (daysBetween < 0) {
+            targetDate = targetDate.plusYears(1);
+            daysBetween = ChronoUnit.DAYS.between(today, targetDate);
+        }
+
+        // If the days between is greater than 365, adjust it
+        if (daysBetween > 365) {
+            daysBetween -= 365;
+        }
+
+        return -daysBetween; // Return negative value for D-Day calculation
     }
 }
