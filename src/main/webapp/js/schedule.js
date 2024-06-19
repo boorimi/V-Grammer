@@ -23,13 +23,12 @@ $(document).ready(function() {
 	$('input[name="tab_item"]').change(function() {
 		let dayOfWeek = $(this).attr('id');
 		let backgroundColor = timeColor[dayOfWeek];
-
 		$('.s-time').css('backgroundColor', backgroundColor);
 	});
-	
+
 	// 초기 페이지 로드 시 요일에 맞게 s-time div 컬러 색상 세팅
-		$('.s-time').css('backgroundColor', timeColor[todayId]);
-	
+	$('.s-time').css('backgroundColor', timeColor[todayId]);
+
 
 	$(function() {
 		// 멤버 pk에 맞는 컬러
@@ -65,15 +64,27 @@ $(document).ready(function() {
 
 				$.each(data[i - 1], (j, obj) => {
 					if (start <= obj.intTime && obj.intTime < end) {
-						let sData = $("<div></div>").addClass("s-data").attr('value', obj.s_m_pk).attr('data', obj.s_pk);
+						let sData = $("<div></div>").addClass("s-data").attr('value', obj.s_m_pk).attr('data-data', obj.s_pk);
 
 						let mName = $("<div></div>").text(obj.m_name);
 						let sTime = $("<div></div>").text(obj.s_time);
 
 						//            						console.log(obj.s_pk)
-						let sTitle = $("<div></div>")
-							.text(obj.s_title)
-							.addClass("s-data-title");
+						//						let sTitle = $("<div></div>").text(obj.s_title).addClass("s-data-title");
+						
+						let sTitle = $("<div>").addClass("s-data-title");
+
+						let innerHtml = `<div class="s-title-text-box">
+										<div>◈タイトル◈</div>
+										<div>${obj.s_title}</div>
+										</div>
+										<div class="s-title-button-box">
+								      	  <button class="delete-button">delete</button>
+								      	  <button class="update-button">update</button>
+								      	  </div>
+								  		  `;
+
+						sTitle.append(innerHtml);
 
 						sData.append(sTime).append(mName).append(sTitle);
 
@@ -81,13 +92,28 @@ $(document).ready(function() {
 						// 디브 생성 후 컬러 세팅함수 호출
 						setBackgroundColor(sData, obj.s_m_pk);
 						$(s).append(sData);
+
+
 					}
 				});
 			});
+
+			$('.s-data').click(function() {
+				console.log($(this).data('data'));
+			})
+
+
+
+
 		}
-
-
 	});
+
+	// Delete JS
+
+	//	let iddd= $(this).val();
+	//	console.log(iddd);
+	//	console.log($(this).data('data'));
+	//	});
 
 
 	// 인서트 js
@@ -130,4 +156,9 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+
+
+
+
+
 });

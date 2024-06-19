@@ -1,5 +1,6 @@
 package com.vg.ds.trade;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TradeDTO {
@@ -10,6 +11,7 @@ public class TradeDTO {
 	private String text;
 	private String date;
 	private String[] category;
+	private ArrayList<TradeCommentsDTO> comments;
 
 	public TradeDTO() {
 		// TODO Auto-generated constructor stub
@@ -23,6 +25,16 @@ public class TradeDTO {
 		this.text = text;
 		this.date = date;
 		this.category = category;
+	}
+
+	
+	
+	public ArrayList<TradeCommentsDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(ArrayList<TradeCommentsDTO> comments) {
+		this.comments = comments;
 	}
 
 	public String getPk() {

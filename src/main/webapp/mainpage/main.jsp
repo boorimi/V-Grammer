@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c"%>
+prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -82,11 +82,11 @@ prefix="c"%>
       <div class="main-dday-container">
         <div class="dday-items-wrapper">
           <c:forEach var="dday" items="${ddayList}">
-            <c:if test="${dday.daysUntilDday <= 7}">
+            <c:if test="${dday.daysUntilDebutDday <= 7}">
               <div class="dday-item">
-                <span>名前 : ${dday.m_name} </span>
-                <span>デビュー日 : ${dday.m_debut} </span>
-                <span>D-day : D${dday.daysUntilDday} </span>
+                <span>名前 : ${dday.name} </span>
+                <span>デビュー日 : ${dday.debutDate} </span>
+                <span>D-day : D${dday.daysUntilDebutDday} </span>
               </div>
             </c:if>
           </c:forEach>
@@ -101,9 +101,19 @@ prefix="c"%>
           </div>
           <ul class="news-board">
             <c:forEach var="news" items="${announcements}">
-              <li>
-                <a href="SelectAnnouncement?no=${news.pk}"> ${news.title} </a>
-              </li>
+              <span>
+                <li class="date-item">
+                  <fmt:parseDate
+                    value="${news.date}"
+                    pattern="yyyy-MM-dd HH:mm:ss"
+                    var="parsedDate"
+                  />
+                  <fmt:formatDate value="${parsedDate}" pattern="MM/dd" />
+                </li>
+                <li>
+                  <a href="SelectAnnouncement?no=${news.pk}">${news.title}</a>
+                </li>
+              </span>
             </c:forEach>
           </ul>
         </div>
