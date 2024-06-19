@@ -45,7 +45,7 @@ dialog::backdrop {
 </style>
 </head>
 <body>
-	<textarea rows="" cols="" id="weekJSON" style="display: none">${weekJSON }</textarea>
+	<textarea id="weekJSON" style="display: none">${weekJSON }</textarea>
 	<div class="schedule-container">
 		<div class="s-week-list">
 			<input id="s-week" type="radio" name="tab_item" /> <label
