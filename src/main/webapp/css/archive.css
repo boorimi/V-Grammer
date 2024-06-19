@@ -343,42 +343,78 @@
 }
 
 /* 아카이브 페이징 css */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
-
 .archive-paging-container {
+  margin-top: 85px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin: 20px 0;
+  /* margin: 20px 0; */
   font-family: "Noto Sans JP", sans-serif;
 }
 
 .archive-paging-container > div {
-  padding: 5px 10px;
-  border-radius: 15px;
-  background-color: #ffefff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 20px;
 }
 
-.archive-paging-container > div:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.paging-link {
-  text-decoration: none;
-  color: #ff69b4;
-  font-weight: bold;
-  padding: 5px 10px;
-  display: block;
-  border-radius: 10px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.paging-link:hover {
-  background-color: #ff69b4;
+.archive-paging-container a {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
   color: #fff;
+  background: linear-gradient(45deg, #ffbd69, #ff8e69);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
+
+.archive-paging-container a:hover {
+  background: linear-gradient(45deg, #ffb64d, #ff8e4d);
+  transform: translateY(-3px);
+}
+
+.archive-paging-container a:active {
+  background: linear-gradient(45deg, #ffb64d, #ff8e4d);
+  transform: translateY(0);
+}
+
+.archive-paging-container a:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 189, 105, 0.5);
+}
+
+.archive-paging-no-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.archive-paging-no {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.archive-paging-no:hover {
+  background-color: #ff8e4d;
+  color: #fff;
+  transform: scale(1.1);
+}
+
 /* 끝 */
