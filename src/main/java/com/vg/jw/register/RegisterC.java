@@ -31,6 +31,7 @@ public class RegisterC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//신규유저가 DB에 등록되는 부분
 		System.out.println("Register컨트롤러 post진입");
 		AccountDAO.loginCheck(request);
 		request.setCharacterEncoding("utf-8");
