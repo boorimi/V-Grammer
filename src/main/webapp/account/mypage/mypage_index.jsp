@@ -12,6 +12,7 @@
 <script src="js/mypage_index.js"></script>
 <script src="js/mypage_article.js" defer="defer"></script>
 <script src="js/mypage_goods.js" defer="defer"></script>
+<script src="js/mypage_userInfo.js" defer="defer"></script>
 </head>
 <body>
 
