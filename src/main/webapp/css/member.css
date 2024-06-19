@@ -61,16 +61,18 @@
 	transition: transform 0.2s ease, font-size 0.2s ease;
 	transform: scaleY(1.1) scaleX(1.03);
 	font-weight: 900;
-	font-size: 27pt;
+	font-size: 30pt;
 	z-index: 600;
+	text-shadow: 3px 3px 2px white;
 }
 
 .member-memberList.show {
 	transform: scaleY(1.1) scaleX(1.03);
 	font-weight: 900;
-	font-size: 27pt;
+	font-size: 30pt;
 	position: relative;
 	z-index: 500;
+	text-shadow: 3px 3px 2px white;
 }
 
 .member-img-container {
@@ -159,7 +161,9 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	padding: 5%;
+	padding-inline: 4%;
+	padding-top: 2%;
+	padding-bottom: 3%;
 	font-family: 'CustomFont', sans-serif;
     font-weight: 900;
 }
@@ -167,7 +171,7 @@
 #member-name {
 	font-size: 30pt;
 	font-weight: 900;
-	padding-bottom: 4%;
+	padding-bottom: 3%;
 }
 
 #member-birth>span:nth-child(1) {
@@ -181,12 +185,12 @@
 }
 
 .member-introduce-box {
-	padding-top: 20px;
+	padding-top: 3%;
 }
 
 .member-mother-box {
-	padding-bottom: 20px;
-	padding-top: 20px;
+	padding-bottom: 3%;
+	padding-top: 3%;
 }
 
 #member-mother-name>span:nth-child(1) {
@@ -194,8 +198,12 @@
 	font-weight: 600;
 }
 
-#member-mother-name>span:nth-child(2):hover {
+#member-mother-name a {
 	font-weight: 600;
+}
+
+#member-mother-name a:hover {
+	color: gray;
 }
 
 #member-hashtag-title {
@@ -210,16 +218,16 @@
 
 #member-hashtag {
 	padding-right: 3%;
-/*	font-weight: 600;*/
-	text-shadow: 1.3px 1.3px rgb(151, 151, 151);
 }
 
 #member-hashtag:hover {
-	transition: transform 0.2s ease, font-size 0.2s ease;
-	transform: scale(1.1);
-	font-weight: 600;
+	color: gray;
 }
 
+.member-address-container{
+	padding-top: 3%;	
+	padding-bottom: 3%;	
+}
 .member-address-box {
 	display: flex;
 	flex-wrap: wrap;
@@ -327,11 +335,6 @@
 	color: white;
 }
 
-.member-detail-button-box {
-	display: flex;
-	height: 60px;
-	align-items: flex-end;
-}
 .member-detail-button-box > button {
 	border-radius: 20px;
 	font-family: "Bebas Neue", sans-serif;

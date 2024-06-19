@@ -25,7 +25,7 @@
 	transition: all 0.2s ease;
 	border-top-left-radius: 30px;
 	border-top-right-radius: 30px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 /* 라디오 버튼 UI 삭제 */
@@ -37,6 +37,7 @@
 .tab_content {
 	display: none;
 	clear: both;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 /* 선택 된 탭 콘텐츠를 표시 */
@@ -208,7 +209,6 @@
 
 /* insert css */
 .s-insert-a-container {
-	border: 1px solid green;
 	padding: 1%;
 	display: flex;
 }
@@ -224,7 +224,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
-    left: 1%;
+	margin-right: 1%;
+	width: calc(100% / 9);
 }
 #schedule-insert-detail-button:hover {
   background: linear-gradient(

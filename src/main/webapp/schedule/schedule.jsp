@@ -45,7 +45,7 @@ dialog::backdrop {
 </style>
 </head>
 <body>
-	<textarea rows="" cols="" id="weekJSON" style="display: none">${weekJSON }</textarea>
+	<textarea id="weekJSON" style="display: none">${weekJSON }</textarea>
 	<div class="schedule-container">
 		<div class="s-week-list">
 			<input id="s-week" type="radio" name="tab_item" /> <label
@@ -94,7 +94,6 @@ dialog::backdrop {
 			</dialog>
 
 
-			<!-- 월 -->
 			<c:forEach var="s" items="${weekSchedules}" varStatus="st">
 				<div class="tab_content day${st.count }-content">
 					<div class="s-time-list">
