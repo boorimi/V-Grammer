@@ -134,7 +134,7 @@ pageEncoding="UTF-8"%>
             Park keon-woo(バク・ゴヌ) Kim sang-woo (キム・サンウ)<br />
             <br />
             Special Thanks <br />
-            Lee Myeong-jae (mz)
+            Mz
           </div>
         </div>
       </div>

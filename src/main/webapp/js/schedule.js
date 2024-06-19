@@ -74,7 +74,10 @@ $(document).ready(function() {
 						
 						let sTitle = $("<div>").addClass("s-data-title");
 
-						let innerHtml = `<div>${obj.s_title}</div>
+						let innerHtml = `<div class="s-title-text-box">
+										<div>◈タイトル◈</div>
+										<div>${obj.s_title}</div>
+										</div>
 										<div class="s-title-button-box">
 								      	  <button class="delete-button">delete</button>
 								      	  <button class="update-button">update</button>
