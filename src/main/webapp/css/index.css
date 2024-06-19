@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../fonts/Yomogi-Regular.ttf') format('truetype');
+}
+
+.menu-lists {
+    font-family: 'CustomFont', sans-serif;
+}
+
+
 .menu-lists a {
   color: inherit; /* 부모 요소의 색상 상속 */
   text-decoration: none; /* 밑줄 제거 */
