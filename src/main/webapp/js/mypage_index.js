@@ -15,6 +15,8 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	loadContent("account/mypage/mypage_userInfo.jsp");
 
 	// AJAX 요청 함수 with blur effect
 	function loadContentWithBlur(url) {

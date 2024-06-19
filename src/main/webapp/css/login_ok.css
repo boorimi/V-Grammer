@@ -2,12 +2,7 @@
 	display: flex;
 	width: 12vw;
 	justify-content: space-between;
-}
-
-.login-ok-button-wrap {
-	display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	align-items: center;
 }
 
 .login-profile-icon-box {
@@ -22,3 +17,53 @@
 	height: 100%;
 	object-fit: cover;
 }
+
+.login-ok-button-wrap {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* 아카이브 버튼 부분 시작 */
+/*@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
+
+.login-cute-button {
+  font-family: "Noto Sans JP", sans-serif;  일본어 텍스트에 어울리는 글꼴 사용 
+  font-size: 1rem;  글자 크기 
+  color: #fff;  텍스트 색상 
+  background: linear-gradient(
+    45deg,
+    #ff69b4,
+    rgb(128, 255, 0)
+  );  버튼 배경색 그라데이션 
+  border: none;  기본 테두리 제거 
+  border-radius: 20px;  둥근 테두리 
+  padding: 10px 20px;  내부 여백 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  상자 그림자 
+  cursor: pointer;  커서 변경 
+  transition: background 0.3s ease, transform 0.3s ease;  부드러운 전환 효과 
+}
+
+.login-cute-button:hover {
+  background: linear-gradient(
+    45deg,
+    #ff85c1,
+    #ffb6c1
+  );  호버 시 배경색 그라데이션 변경 
+  transform: translateY(-3px);  호버 시 살짝 위로 이동 
+}
+
+.cute-button:active {
+  background: linear-gradient(
+    45deg,
+    #ff85c1,
+    #ffb6c1
+  );  클릭 시 배경색 유지 
+  transform: translateY(0);  클릭 시 원래 위치로 돌아감 
+}
+
+.cute-button:focus {
+  outline: none;  포커스 시 기본 아웃라인 제거 
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5);  포커스 시 그림자 효과 추가 
+}
+*/

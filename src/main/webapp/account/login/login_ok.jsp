@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/login_ok.css" />
+<link rel="stylesheet" href="css/archieve.css" />
 </head>
 <body>
 	<div class="login-container">
@@ -15,8 +16,8 @@
 		</div>
 		<div>ようこそ<br>${sessionScope.accountInfo.u_nickname}様</div>
 		<div class="login-ok-button-wrap">
-			<button onclick="location.href='LogoutC'">LOGOUT</button>
-			<button onclick="location.href='MyPageC'">MyPage</button>
+			<button class="login-cute-button" onclick="location.href='LogoutC'">LOGOUT</button>
+			<button class="login-cute-button" onclick="location.href='MyPageC'">MyPage</button>
 		</div>
 	</div>
 </body>

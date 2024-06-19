@@ -332,6 +332,40 @@ public class AccountDAO {
 		
 	}
 
+	public static void deleteUser(HttpServletRequest request, HttpServletResponse response) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		
+		Long userId = Long.parseLong(request.getParameter("userId"));
+		String sql = "DELETE FROM haco_user WHERE u_twitter_id = ?";
+		try {
+			
+	         con = DBManager.connect();
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setLong(1, userId);
+	            
+	            if (pstmt.executeUpdate() == 1) {
+					System.out.println("유저정보 삭제 성공");
+					response.getWriter().print("유저정보 삭제 완료"); 
+				}
+	            
+	 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, null);
+		}
+		
+		
+		
+		
+		
+		
+	}
+
 	// 로컬 로그인 사용시 로그인체크 메서드
 //	public static void login(HttpServletRequest request) {
 //

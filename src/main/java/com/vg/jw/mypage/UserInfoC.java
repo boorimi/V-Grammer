@@ -13,6 +13,9 @@ import com.vg.jw.AccountDAO;
 public class UserInfoC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("UserInfoC get진입");
+		System.out.println(request.getParameter("userId"));
+		AccountDAO.deleteUser(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
