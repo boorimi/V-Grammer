@@ -8,14 +8,14 @@
 </head>
 <body class="html-body">
     <div class="container">
-        <button id="calendarButton" class="button-15">캘린더로 돌아가기</button>
-        <div class="centered"><h1>멤버의 디데이 목록</h1></div>
+        <button id="calendarButton" class="button-15">カレンダー戻る</button>
+        <div class="centered"><h1>各メンバーのDdayリスト</h1></div>
         <table class="table table-bordered" id="dday">
             <thead>
                 <tr>
-                    <th>이름</th>
-                    <th>기념일</th>
-                    <th>디데이까지 남은 일수</th>
+                    <th>名前</th>
+                    <th>記念日</th>
+                    <th>残っている日</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,10 +25,10 @@
                         <td>
                             <c:choose>
                                 <c:when test="${dday.eventType eq '데뷔'}">
-                                    데뷔 날짜 : ${dday.eventDate}
+                                    デビュー日 : ${dday.eventDate}
                                 </c:when>
                                 <c:when test="${dday.eventType eq '생일'}">
-                                    생일 : ${dday.eventDate}
+                                    誕生日 : ${dday.eventDate}
                                 </c:when>
                                 <c:otherwise>
                                     ${dday.eventDate}

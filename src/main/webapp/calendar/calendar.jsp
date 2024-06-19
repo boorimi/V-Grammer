@@ -16,7 +16,7 @@
     <div id='calendar'></div>
     <div id="button-container">
         <br>
-        <button id="button-dday" class="button-dday" onclick="window.location.href='DdayC'">Dday로</button>
+        <button id="button-dday" class="button-dday" onclick="window.location.href='DdayC'">Ddayへ</button>
     </div>
 </body>
 </html>
