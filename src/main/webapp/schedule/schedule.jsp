@@ -13,6 +13,32 @@
 <script type="text/javascript" src="js/schedule.js" defer></script>
 
 <title>Insert title here</title>
+  <style>
+        dialog {
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 300px;
+        }
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.4);
+        }
+        .modal-header, .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-footer {
+            margin-top: 20px;
+        }
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 	<textarea rows="" cols="" id="weekJSON" style="display: none">${weekJSON }</textarea>
@@ -42,8 +68,19 @@
 			<input id="s-sun" type="radio" name="tab_item" /> <label
 				class="tab_item" for="s-sun">${thisWeek[6] } 日</label>
 
-
-			<dialog> </dialog>
+	<dialog id="modal">
+        <div class="modal-header">
+            <h2 id="title"></h2>
+            <h2 id="name"></h2>
+            <h2 id="time"></h2>
+            <button class="close-button" id="closeModalButton">&times;</button>
+        </div>
+        <p>제목,pk,뭐.</p>
+        <div class="modal-footer">
+            <button id="deleteButton">Delete</button>
+            <button id="updateButton">Update</button>
+        </div>
+    </dialog>
 
 			<!-- 월 -->
 			<c:forEach var="s" items="${weekSchedules}" varStatus="st">
@@ -52,16 +89,7 @@
 						<div class="s-time a-time">00:00 ~ 12:00</div>
 						<div class="s-data-box" start="0" end="1200">
 
-							<!-- Modal Test -->
-							<div class="s-data" value="13" data-data="70" style="background-color: rgb(207, 128, 224);"
-							role="button" >
-							<div>모달테스트</div>
-							<div class="s-title-text-box">
-								<div>◈タイトル◈</div>
-							</div>
-							</div>
-
-
+							
 						</div>
 					</div>
 					<div class="s-time-list">
