@@ -11,23 +11,23 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <div class="announcement-container">
-      <div class="announcement-title"><h1>お知らせ detail</h1></div>
-      <div class="announcement-content">
-        <div class="announcement-con-title">${announcements.title }</div>
-        <div class="announcement-con-date">${announcements.date }</div>
+      <div class="announcement-title"><p>お知らせ</p></div>
+      <div class="announcement-detail-content">
+        <div class="announcement-con-title"><h1>${announcements.title }</h1></div>
+        <div class="announcement-con-date"><h3>${announcements.date }</h3></div>
       </div>
       <div class="announcement-con-txt">${announcements.text}</div>
-      <div style="display: flex; justify-content: space-evenly">
+      <div style="display: flex; justify-content: space-evenly; margin-top:30px;">
         <c:if test="${sessionScope.twitterId == 459978973 }">  
         <div>
-          <button
+          <button class="cute-button-blue"
             onclick="location.href='UpdateAnnouncement?no=${announcements.pk}'"
           >
             수정
           </button>
         </div>
         <div>
-          <button onclick="announcementDelete(${announcements.pk})">
+          <button  class="cute-button-blue" onclick="announcementDelete(${announcements.pk})">
             삭제
           </button>
         </div>

@@ -51,7 +51,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         </div>
         <c:if test="${streamIds[0].address == null}">
           <div class="live-content-video-null">
-            配信中のメンバーがありません。
+            配信中のメンバーがいません。
           </div>
         </c:if>
         <div class="slider">
@@ -100,7 +100,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             <img src="haco_img/img/newimg2.png" alt="News Photo" />
           </div>
           <ul class="news-board">
-            <c:forEach var="news" items="${announcements}">
+            <c:forEach begin="1" end="5" var="news" items="${announcements}">
               <span>
                 <li class="date-item">
                   <fmt:parseDate
