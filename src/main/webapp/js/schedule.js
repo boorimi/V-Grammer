@@ -66,27 +66,21 @@ $(document).ready(function() {
 					if (start <= obj.intTime && obj.intTime < end) {
 						let sData = $("<div></div>").addClass("s-data").attr('value', obj.s_m_pk).attr('data-data', obj.s_pk);
 
-						let mName = $("<div></div>").text(obj.m_name);
 						let sTime = $("<div></div>").text(obj.s_time);
+						let mName = $("<div></div>").text(obj.m_name);
 
 						//            						console.log(obj.s_pk)
-						//						let sTitle = $("<div></div>").text(obj.s_title).addClass("s-data-title");
 						
 						let sTitle = $("<div>").addClass("s-data-title");
 
-						let innerHtml = `<div class="s-title-text-box">
+						let titleDetail = `<div class="s-title-text-box">
 										<div>◈タイトル◈</div>
 										<div>${obj.s_title}</div>
-										</div>
-										<div class="s-title-button-box">
-								      	  <button class="delete-button">delete</button>
-								      	  <button class="update-button">update</button>
-								      	  </div>
-								  		  `;
+										</div>`;
 
-						sTitle.append(innerHtml);
-
+						sTitle.append(titleDetail);
 						sData.append(sTime).append(mName).append(sTitle);
+
 
 						//						content2.append(sData);
 						// 디브 생성 후 컬러 세팅함수 호출
