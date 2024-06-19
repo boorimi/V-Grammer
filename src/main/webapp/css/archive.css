@@ -460,8 +460,9 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.archive-paging-no:hover {
-  background-color: #ff8e4d;
+.archive-paging-no:hover,
+.archive-paging-no.active {
+  background-color: #ff8e69;
   color: #fff;
   transform: scale(1.1);
 }

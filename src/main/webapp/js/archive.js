@@ -323,3 +323,10 @@ function getPagingVariable(member, category, title) {
     });
   });
 }
+
+$(document).ready(function () {
+  $(".archive-paging-no").click(function () {
+    $(".archive-paging-no").removeClass("active"); // 모든 요소에서 active 클래스 제거
+    $(this).addClass("active"); // 클릭된 요소에 active 클래스 추가
+  });
+});
