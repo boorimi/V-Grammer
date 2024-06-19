@@ -1,0 +1,18 @@
+.register-section {
+   display: flex;
+    background-image: url('haco_img/background/background_akai_akame.png');
+    background-size: cover; /* 배경 이미지가 섹션 전체를 덮도록 설정 */
+    background-position: center; /* 배경 이미지를 중앙에 위치 */
+    background-repeat: no-repeat; /* 배경 이미지가 반복되지 않도록 설정 */
+}
+
+
+.register-container{
+	display: flex;
+	flex-direction: column;
+	width: 40vh;
+	height: 50vh;
+	border: 1px solid black;
+	
+	
+}
