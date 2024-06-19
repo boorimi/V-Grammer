@@ -14,5 +14,16 @@
 	height: 50vh;
 	border: 1px solid black;
 	
-	
+}
+
+.register-profile-box {
+    width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+.register-profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

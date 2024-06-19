@@ -55,7 +55,7 @@ public class AccountDAO {
 					new DefaultFileRenamePolicy());
 
 			// 회원가입시 입력한 값 받아오기
-			String inputNickName = mr.getParameter("register-input-nickname");
+			String inputNickName = mr.getParameter("register-nickname-input");
 			String inputImgfile = mr.getFilesystemName("register-input-file");
 
 			// 이미지를 등록하지 않았을 경우 자동으로 트위터 기본이미지 설정

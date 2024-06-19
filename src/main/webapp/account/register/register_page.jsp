@@ -15,11 +15,11 @@
 	<section class="register-section">
 		<div class="register-container">
 			<form action="RegisterC" method="post" enctype="multipart/form-data">
-				<div>
-					<img alt="" src="${sessionScope.twitterProfileImgUrl }">
+				<div class="register-profile-box">
+					<img class="register-profile" alt="" src="${sessionScope.twitterProfileImgUrl }">
 				</div>
 				<div>
-					ハコナカニックネーム<br> <input id="register-nickname-input" name="register-input-nickname">
+					ハコナカニックネーム<br> <input id="register-nickname-input" name="register-nickname-input">
 				</div>
 				<div id="check-result"></div>
 				<div>
@@ -27,7 +27,7 @@
 				</div>
 
 				<div>
-					<button>ようこそ！Hakonakaへ！</button>
+					<button type="submit">ようこそ！Hakonakaへ！</button>
 				</div>
 			</form>
 		</div>
