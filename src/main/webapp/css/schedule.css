@@ -207,10 +207,10 @@
 }
 
 /* insert css */
-.schedule-insert-container {
+.s-insert-a-container {
 	border: 1px solid green;
-	position: relative;
 	padding: 1%;
+	display: flex;
 }
 
 #schedule-insert-detail-button{
@@ -224,8 +224,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
-    position: absolute;
-    right: 1%;
+    left: 1%;
 }
 #schedule-insert-detail-button:hover {
   background: linear-gradient(
@@ -235,18 +234,16 @@
   ); /* 호버 시 배경색 그라데이션 변경 */
   transform: translateY(-3px); /* 호버 시 살짝 위로 이동 */
 }
-.schedule-insert-inner-container {
+.s-insert-content-a-box {
 	display: none;
 }
 
-.schedule-insert-box {
+.s-insert-content-b-box{
 	display: flex;
 }
-
-#schedule-member {
-	width: 120px;
+.s-input-box{
+	display: flex;
 }
+#s-member-list {
 
-#schedule-blank-box {
-	width: 120px;
 }
