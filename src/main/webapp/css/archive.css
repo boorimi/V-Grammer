@@ -1,11 +1,59 @@
 .archive-search-wrapper {
   display: flex;
   justify-content: end;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  /* border-radius: 20px; */
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 25px;
   margin-bottom: 25px;
 }
-.archive-search-wrapper > div {
-  margin: 0px 10px;
+
+.archive-search-member select,
+.archive-search-category select {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #333;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+
+.archive-search-title input[type="text"] {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  width: 180px;
+}
+
+#archive-search-button {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#archive-search-button:hover {
+  background-color: #ff8cbb;
+}
+
+.archive-search-title input[type="text"]:focus,
+.archive-search-member select:focus,
+.archive-search-category select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5);
 }
 .archive-paging-container {
   display: flex;
