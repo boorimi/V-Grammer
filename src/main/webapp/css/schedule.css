@@ -183,7 +183,7 @@
 	position: absolute;
 	z-index: 900;
 	width: 60%;
-	padding: 5%;
+	padding: 1%;
 	background-color: rgb(0 0 0 / 39%);
 	border-radius: 15px;
 	color: white;
@@ -209,10 +209,33 @@
 /* insert css */
 .schedule-insert-container {
 	border: 1px solid green;
+	position: relative;
+	padding: 1%;
 }
 
+#schedule-insert-detail-button{
+	font-family: "Noto Sans JP", sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    background: linear-gradient(45deg, #ff69b4, #ff9a9e);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    right: 1%;
+}
+#schedule-insert-detail-button:hover {
+  background: linear-gradient(
+    45deg,
+    #ff85c1,
+    #ffb6c1
+  ); /* 호버 시 배경색 그라데이션 변경 */
+  transform: translateY(-3px); /* 호버 시 살짝 위로 이동 */
+}
 .schedule-insert-inner-container {
-	border: 1px solid red;
 	display: none;
 }
 
