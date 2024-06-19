@@ -7,11 +7,16 @@
   border: 1px solid black;
 } */
 .trade-title {
-  background-color: lightgreen;
+  background-color: lightpink;
   display: inline-block;
+  margin: 20px 0px;
   padding: 0px 20px;
   border-radius: 20px;
   border: 1px solid black;
+}
+
+.trade-menu {
+	display:flex;
 }
 
 .trade-conmain {
@@ -39,8 +44,7 @@
 .trade-content {
   margin: 20px 10px;
   border: 1px solid gray;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-radius: 20px;
 }
 
 .trade-content > div:nth-child(1) {
@@ -67,11 +71,9 @@
 }
 .trade-openCategorys {
   margin: 0px 5px;
-  height: 30px;
 }
 .trade-openSearch {
   margin: 0px 5px;
-  height: 30px;
 }
 #trade-search-name {
   margin-left: 10px;

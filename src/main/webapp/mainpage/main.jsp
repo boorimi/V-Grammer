@@ -82,11 +82,11 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       <div class="main-dday-container">
         <div class="dday-items-wrapper">
           <c:forEach var="dday" items="${ddayList}">
-            <c:if test="${dday.daysUntilDebutDday <= 7}">
+            <c:if test="${dday.daysUntilDday <= 7}">
               <div class="dday-item">
                 <span>名前 : ${dday.name} </span>
-                <span>デビュー日 : ${dday.debutDate} </span>
-                <span>D-day : D${dday.daysUntilDebutDday} </span>
+                <span>デビュー日 : ${dday.eventDate} </span>
+                <span>D-day : D${dday.daysUntilDday} </span>
               </div>
             </c:if>
           </c:forEach>
