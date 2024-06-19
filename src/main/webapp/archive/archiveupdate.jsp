@@ -348,11 +348,13 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             </div>
           </div>
           <button
+            class="cute-button"
             type="button"
             name="collabomember"
             value="selectedOptions"
             id="submitButton"
             onclick="applyModal()"
+            style="margin-top: 5px"
           >
             apply
           </button>

@@ -1,7 +1,8 @@
 .archive-search-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   margin-top: 25px;
+  margin-bottom: 25px;
 }
 .archive-search-wrapper > div {
   margin: 0px 10px;
