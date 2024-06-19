@@ -13,6 +13,7 @@ import com.vg.jw.AccountDAO;
 public class RegisterC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//회원등록 페이지 이동과 유효성 검사에 이용되는 부분
 		System.out.println("Register컨트롤러 get진입");
 		AccountDAO.loginCheck(request);
 		
@@ -31,6 +32,7 @@ public class RegisterC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//신규유저가 DB에 등록되는 부분
 		System.out.println("Register컨트롤러 post진입");
 		AccountDAO.loginCheck(request);
 		request.setCharacterEncoding("utf-8");

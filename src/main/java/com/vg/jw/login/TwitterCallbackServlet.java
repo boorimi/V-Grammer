@@ -75,7 +75,7 @@ public class TwitterCallbackServlet extends HttpServlet {
 					System.out.println(screenName);
 					System.out.println("--------------------");
 					String name = user.getName();
-					String profileImgUrl = user.getProfileImageURL();
+					String profileImgUrl = user.get400x400ProfileImageURLHttps();
 					
 					System.out.println("트위터 콜백 서블릿 테스트 출력(userId) : "+ userId);
 					System.out.println("트위터 콜백 서블릿 테스트 출력(screenName) : "+ screenName);

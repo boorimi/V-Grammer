@@ -74,7 +74,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
           </c:if>
         </div>
         <div class="next">
-          <button class="next-button">&gt;</button>
+          <button class="next-button"></button>
         </div>
       </div>
       <!--  방송 페이지 끝 -->

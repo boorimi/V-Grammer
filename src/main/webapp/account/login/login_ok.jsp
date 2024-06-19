@@ -5,27 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<style type="text/css">
-.login-container {
-	display: flex;
-	width: 25vh;
-	justify-content: space-between;
-}
-
-.login-ok-button-wrap{
-	direction: flex;
-	justify-content: space-between;
-
-}
-</style>
+<link rel="stylesheet" href="css/login_ok.css" />
 </head>
 <body>
 	<div class="login-container">
 
-		<div class="login-profile-icon"
-			style="overflow: hidden; width: 30px; height: 30px; border-radius: 50%">
-			<img src="${accountInfo.u_profile_img }">
+		<div class="login-profile-icon-box">
+			<img class="login-profile-icon" src="${accountInfo.u_profile_img }">
 		</div>
 		<div>ようこそ<br>${sessionScope.accountInfo.u_nickname}様</div>
 		<div class="login-ok-button-wrap">
