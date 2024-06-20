@@ -9,18 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.vg.jw.AccountDAO;
 
-@WebServlet("/ScheduleDeleteC")
-public class ScheduleDeleteC extends HttpServlet {
+@WebServlet("/UpdateScheduleC")
+public class UpdateScheduleC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		AccountDAO.loginCheck(request);
-		ScheduleDAO.SDAO.DeleteSchedule(request);
-		response.sendRedirect("ScheduleC");
-
+		
+		if(AccountDAO.loginCheck(request)) {
+			ScheduleDAO.SDAO.updateSchedule(request);
+			response.sendRedirect("ScheduleC");
+		}else {
+			request.getRequestDispatcher("index.jsp").forward(request, response); 
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 	}
 
 }
