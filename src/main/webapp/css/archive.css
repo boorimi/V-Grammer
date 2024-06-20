@@ -179,6 +179,26 @@
 .archive-list {
   width: 1800px;
 }
+
+#archive-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.archive-contents {
+  display: flex;
+  align-items: center;
+  padding: 3px 0;
+}
+
+#archive-list .archive-contents:first-child {
+  border-top: 2px solid #e6498e;
+}
+
+#archive-list .archive-contents:last-child {
+  border-bottom: 2px solid #e6498e;
+}
+
 .archive-contents {
   display: flex;
   align-items: center;
