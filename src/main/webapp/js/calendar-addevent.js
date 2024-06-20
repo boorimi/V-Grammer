@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
         businessHours: true,      // 영업 시간 표시
         dayMaxEvents: true,       // 하루에 표시할 최대 이벤트 수
         events: [],               // 초기에는 빈 배열로 설정
+        eventDidMount: function(info) {
+            // 이벤트 바에 마우스 오버 시 popover 표시
+            addPopoverToEvent(info.el, info.event);
+        }
     });
 
     // 캘린더를 렌더링
@@ -40,12 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    /**
-     * 지정된 연도 범위 내에서 이벤트를 로드하는 함수
-     * @param {number} startYear - 시작 연도
-     * @param {number} endYear - 종료 연도
-     * @param {object} calendar - FullCalendar 객체
-     */
     function loadEventsForYears(startYear, endYear, calendar) {
         console.log(`이벤트 로드 시작: ${startYear}년부터 ${endYear}년까지`);
         // 캘린더 로딩 메세지 표시
@@ -69,13 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /**
-     * 지정된 연도 범위 내에서 이벤트를 추가하는 함수
-     * @param {Array} events - 이벤트 배열
-     * @param {number} startYear - 시작 연도
-     * @param {number} endYear - 종료 연도
-     * @param {object} calendar - FullCalendar 객체
-     */
     function addEventsForYears(events, startYear, endYear, calendar) {
         console.log(`이벤트 추가 시작: ${startYear}년부터 ${endYear}년까지`);
         for (let year = startYear; year <= endYear; year++) {
@@ -83,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
             events.forEach(event => {
                 let newEvent = { ...event };
                 newEvent.start = incrementYear(event.start, year - new Date(event.start).getFullYear());
-                // 'の誕生日'가 포함된 title일 경우 색깔을 빨간색으로 설정
                 if (newEvent.title.includes('の誕生日')) {
                     newEvent.color = 'red';
                 }
@@ -93,47 +83,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    /**
-     * 이벤트를 업데이트하는 함수
-     * @param {number} startYear - 시작 연도
-     * @param {number} endYear - 종료 연도
-     * @param {object} calendar - FullCalendar 객체
-     */
     function updateEvents(startYear, endYear, calendar) {
         console.log(`이벤트 업데이트 시작: ${startYear}년부터 ${endYear}년까지`);
         $.ajax({
             url: 'CalendarEventC',  // 서버에서 이벤트 데이터를 가져올 URL
             type: 'GET',
-            data: { year: startYear }, // 첫 요청은 현재 연도 기준
+            data: { year: startYear },
             dataType: 'json',
             success: function(res) {
                 console.log("AJAX 응답:", res);
-                // 이전에 추가된 이벤트와 비교하여 변동 사항 확인
                 let eventsToRemove = loadedEvents.filter(event => !res.some(newEvent => newEvent.id === event.id));
                 let eventsToAdd = res.filter(newEvent => !loadedEvents.some(event => event.id === newEvent.id));
 
                 console.log("제거할 이벤트:", eventsToRemove);
                 console.log("추가할 이벤트:", eventsToAdd);
 
-                // 변동 사항이 있는 경우만 처리
                 if (eventsToRemove.length > 0 || eventsToAdd.length > 0) {
                     eventsToRemove.forEach(event => {
                         console.log("이벤트 제거:", event);
-                        calendar.getEventById(event.id).remove(); // 이벤트 제거
+                        calendar.getEventById(event.id).remove();
                     });
 
                     eventsToAdd.forEach(event => {
                         let newEvent = { ...event };
                         newEvent.start = incrementYear(event.start, year - new Date(event.start).getFullYear());
-                        // 'の誕生日'가 포함된 title일 경우 색깔을 빨간색으로 설정
                         if (newEvent.title.includes('の誕生日')) {
                             newEvent.color = 'red';
                         }
                         console.log("새 이벤트 추가:", newEvent);
-                        calendar.addEvent(newEvent); // 이벤트 추가
+                        calendar.addEvent(newEvent);
                     });
 
-                    loadedEvents = res; // 변경된 이벤트로 업데이트
+                    loadedEvents = res;
                     console.log("이벤트가 업데이트되었습니다.");
                 } else {
                     console.log("변동 사항이 없습니다.");
@@ -145,17 +126,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /**
-     * 주어진 날짜 문자열에 지정된 연도를 더하는 함수
-     * @param {string} dateStr - 날짜 문자열 (YYYY-MM-DD 형식)
-     * @param {number} increment - 더할 연도 수
-     * @return {string} - 연도가 추가된 새로운 날짜 문자열
-     */
     function incrementYear(dateStr, increment) {
         let date = new Date(dateStr);
         date.setFullYear(date.getFullYear() + increment);
-        let newDateStr = date.toISOString().split('T')[0]; // 'YYYY-MM-DD' 형식으로 반환
+        let newDateStr = date.toISOString().split('T')[0];
         console.log(`날짜 변환: ${dateStr} -> ${newDateStr}`);
         return newDateStr;
     }
+
+function addPopoverToEvent(eventEl, event) {
+    let popover = document.createElement('div');
+    popover.className = 'popover fade bs-popover-top';
+    popover.role = 'tooltip';
+    popover.innerHTML = `
+        <div class="arrow"></div>
+        <h3 class="popover-header">${event.title}</h3>
+        <div class="popover-body">
+            <p>텍스트: ${event.extendedProps.description || '정보 없음'}</p>
+            ${event.extendedProps.image ? `<img src="${event.extendedProps.image}" alt="event image" style="width: 100%;">` : ''}
+        </div>
+    `;
+    document.body.appendChild(popover);
+
+    let timeoutId; // 호버 지연 제어를 위한 timeout 변수
+
+    eventEl.addEventListener('mouseenter', function() {
+        clearTimeout(timeoutId); // 기존 지연 제어를 초기화
+
+        // 팝업을 즉시 표시
+        positionPopover(popover, eventEl);
+        popover.classList.add('show');
+    });
+
+    eventEl.addEventListener('mouseleave', function() {
+        // 호버가 끝난 후 200ms 후에 팝업을 숨김
+        timeoutId = setTimeout(function() {
+            popover.classList.remove('show');
+        }, 200);
+    });
+
+    document.addEventListener('scroll', function() {
+        if (popover.classList.contains('show')) {
+            positionPopover(popover, eventEl);
+        }
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!popover.contains(e.target) && !eventEl.contains(e.target)) {
+            popover.classList.remove('show');
+        }
+    });
+}
+
+function positionPopover(popover, eventEl) {
+    let rect = eventEl.getBoundingClientRect();
+    popover.style.top = `${rect.top + window.scrollY - popover.offsetHeight}px`;
+    popover.style.left = `${rect.left + rect.width / 2 - popover.offsetWidth / 2}px`;
+}
+
 });
