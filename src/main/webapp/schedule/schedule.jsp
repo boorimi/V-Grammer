@@ -45,7 +45,7 @@ dialog::backdrop {
 </style>
 </head>
 <body>
-	<textarea rows="" cols="" id="weekJSON" style="display: none">${weekJSON }</textarea>
+	<textarea id="weekJSON" style="display: none">${weekJSON }</textarea>
 	<div class="schedule-container">
 		<div class="s-week-list">
 			<input id="s-week" type="radio" name="tab_item" /> <label
@@ -85,15 +85,15 @@ dialog::backdrop {
 					<p id="title"></p>
 				</div>
 				<div class="modal-footer">
-					<button id="deleteButton" value="${sessionScope.accountInfo.u_twitter_id }"
-					 data-s-pk="${obj.s_pk}">Delete</button>
-					<button id="updateButton" value="${sessionScope.accountInfo.u_twitter_id }">Update</button>
+					<button id="deleteButton"
+						value="${sessionScope.accountInfo.u_twitter_id }">Delete</button>
+					<button id="updateButton"
+						value="${sessionScope.accountInfo.u_twitter_id }">Update</button>
 				</div>
 			</div>
 			</dialog>
 
 
-			<!-- 월 -->
 			<c:forEach var="s" items="${weekSchedules}" varStatus="st">
 				<div class="tab_content day${st.count }-content">
 					<div class="s-time-list">
@@ -155,15 +155,15 @@ dialog::backdrop {
 				</div>
 			</c:forEach>
 
-			<div class="schedule-insert-container">
+			<div class="s-insert-a-container">
 				<!-- 로그인 한 사람만 인서트 가능하도록 value에 세션값 넣어서 js에서 체크 -->
-				<button class="schedule-insert-detail-button"
+				<button id="schedule-insert-detail-button"
 					value="${sessionScope.accountInfo.u_twitter_id }">スケジュール登録</button>
-				<div class="schedule-insert-inner-container">
+				<div class="s-insert-content-a-box">
 					<form action="ScheduleInsertC" id="schedule-form">
-						<div class="schedule-insert-box">
-							<div class="">
-								<select name="s_member" id="schedule-member">
+						<div class="s-insert-content-b-box">
+							<div class="s-member-select">
+								<select name="s_member" id="s-member-list">
 									<option value="999">メンバー</option>
 									<option value="1">七彩てまり</option>
 									<option value="2">田中りゅこ</option>
@@ -192,56 +192,26 @@ dialog::backdrop {
 									<option value="25">翠森アトリ</option>
 								</select>
 							</div>
-							<div class="insert-box-date">
-								<input name="s_date" type="date" id="schedule-date"
-									data-placeholder="日付" />
+							<div class="s-input-container">
+								<div class="s-input-box">
+									<div class="input-date">
+										<input name="s_date" type="date" id="schedule-date"
+											data-placeholder="日付" />
+									</div>
+									<div class="input-time">
+										<input name="s_time" type="time" id="schedule-time"
+											data-placeholder="時間" />
+									</div>
+									<div class="input-title">
+										<input name="s_title" id="schedule-title"
+											placeholder="放送のタイトル" />
+									</div>
+								</div>
 							</div>
-							<div class="insert-box-time">
-								<input name="s_time" type="time" id="schedule-time"
-									data-placeholder="時間" />
-							</div>
-							<div class="insert-box-title">
-								<input name="s_title" style="width: 500px" id="schedule-title"
-									placeholder="放送のタイトル" />
+							<div class="s-insert-button">
+								<button id="s-insert-button">登録</button>
 							</div>
 						</div>
-						<div class="schedule-insert-box">
-							<div id="schedule-blank-box"></div>
-							<input name="s_date" type="date" id="schedule-date" /> <input
-								name="s_time" type="time" id="schedule-time" /> <input
-								name="s_title" style="width: 500px" id="schedule-title" />
-						</div>
-						<div class="schedule-insert-box">
-							<div id="schedule-blank-box"></div>
-							<input name="s_date" type="date" id="schedule-date" /> <input
-								name="s_time" type="time" id="schedule-time" /> <input
-								name="s_title" style="width: 500px" id="schedule-title" />
-						</div>
-						<div class="schedule-insert-box">
-							<div id="schedule-blank-box"></div>
-							<input name="s_date" type="date" id="schedule-date" /> <input
-								name="s_time" type="time" id="schedule-time" /> <input
-								name="s_title" style="width: 500px" id="schedule-title" />
-						</div>
-						<div class="schedule-insert-box">
-							<div id="schedule-blank-box"></div>
-							<input name="s_date" type="date" id="schedule-date" /> <input
-								name="s_time" type="time" id="schedule-time" /> <input
-								name="s_title" style="width: 500px" id="schedule-title" />
-						</div>
-						<div class="schedule-insert-box">
-							<div id="schedule-blank-box"></div>
-							<input name="s_date" type="date" id="schedule-date" /> <input
-								name="s_time" type="time" id="schedule-time" /> <input
-								name="s_title" style="width: 500px" id="schedule-title" />
-						</div>
-						<div class="schedule-insert-box">
-							<div id="schedule-blank-box"></div>
-							<input name="s_date" type="date" id="schedule-date" /> <input
-								name="s_time" type="time" id="schedule-time" /> <input
-								name="s_title" style="width: 500px" id="schedule-title" />
-						</div>
-						<button class="schedule-insert-button">登録</button>
 					</form>
 				</div>
 			</div>

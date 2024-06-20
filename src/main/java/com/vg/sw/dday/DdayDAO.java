@@ -29,10 +29,15 @@ public class DdayDAO {
 
     public static List<DdayDTO> selectAllDdays() {
         List<DdayDTO> ddayList = new ArrayList<>();
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sqlNameDebutAndBirth)) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
 
-            ResultSet rs = preparedStatement.executeQuery();
+        try {
+            connection = getConnection();
+            preparedStatement = connection.prepareStatement(sqlNameDebutAndBirth);
+
+            rs = preparedStatement.executeQuery();
             System.out.println("SQL 쿼리 실행 완료."); // 쿼리 실행 확인용 출력
 
             LocalDate today = LocalDate.now();
@@ -67,17 +72,43 @@ public class DdayDAO {
                     }
                 }
             }
+            
+            System.out.println("selectAllDdays 메서드 내부: 데이터베이스 연결 및 처리 완료.");
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            // 자원 닫기
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                    System.out.println("데이터베이스 연결 닫힘 확인."); // 데이터베이스 연결 닫힘 확인용 출력
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         // Sort ddayList by event date in ascending order with adjustment for past dates
         Collections.sort(ddayList, (d1, d2) -> Long.compare(d1.getDaysUntilDday(), d2.getDaysUntilDday()));
 
-
         return ddayList;
     }
+
 
 
     /**

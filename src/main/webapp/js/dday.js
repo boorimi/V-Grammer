@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var today = new Date();
     today.setHours(0, 0, 0, 0); // 오늘의 시간을 00:00:00으로 설정
+    console.log("오늘 날짜:", today);
 
     var ddayData = [];
 
@@ -50,6 +51,8 @@ document.addEventListener("DOMContentLoaded", function() {
     ddayData.sort(function(a, b) {
         return a.ddayValue - b.ddayValue;
     });
+
+    console.log("정렬된 디데이 데이터:", ddayData);
 
     // 정렬된 데이터를 테이블에 적용
     var tbody = document.querySelector("#dday tbody");

@@ -78,6 +78,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         </div>
       </div>
       <!--  방송 페이지 끝 -->
+
       <!-- D-day 흐르는거 시작 -->
       <div class="main-dday-container">
         <div class="dday-items-wrapper">
@@ -93,6 +94,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         </div>
       </div>
       <!-- D-day 흐르는거 끝 -->
+
       <!-- 뉴스 컨테이너 시작  -->
       <div class="main-news-container">
         <div class="main-news">

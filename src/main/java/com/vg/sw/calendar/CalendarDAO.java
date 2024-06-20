@@ -62,7 +62,29 @@ public class CalendarDAO {
             e.printStackTrace();
             response.getWriter().print("[]"); // 에러 발생 시 빈 JSON 배열 응답
         } finally {
-            DBManager.close(conn, pstmt, rs);
+            // DB 자원 닫기
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                    System.out.println("데이터베이스 연결 닫힘 확인."); // 데이터베이스 연결 닫힘 확인용 출력
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

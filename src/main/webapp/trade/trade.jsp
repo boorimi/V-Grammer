@@ -188,7 +188,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               </c:if>
             </c:forEach>
             <!-- 댓글 for문 끝 -->
-            <div style="display:flex; justify-content: center;">
+            <div class="cute-button-box">
               <button class="trade-openComments cute-button-pink">コメント(${i })</button>
             </div>
             <div class="trade-comments" style="display: none;border: 0px;">
