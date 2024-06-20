@@ -5,14 +5,16 @@ public class CalendarInfoDTO {
     private String title;
     private String start;
     private String end;    // end 필드 추가
+    private String imagePath; // imagePath 필드 추가
 
     public CalendarInfoDTO() {}
 
-    public CalendarInfoDTO(String m_pk, String title, String start, String end) {
+    public CalendarInfoDTO(String m_pk, String title, String start, String end, String imagePath) {
         this.m_pk = m_pk;
         this.title = title;
         this.start = start;
         this.end = end;
+        this.imagePath = imagePath;
     }
 
     // Getters and Setters
@@ -48,8 +50,16 @@ public class CalendarInfoDTO {
         this.end = end;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     @Override
     public String toString() {
-        return "CalendarInfoDTO [m_pk=" + m_pk + ", title=" + title + ", start=" + start + ", end=" + end + "]";
+        return "CalendarInfoDTO [m_pk=" + m_pk + ", title=" + title + ", start=" + start + ", end=" + end + ", imagePath=" + imagePath + "]";
     }
 }
