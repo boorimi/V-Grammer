@@ -164,7 +164,7 @@ $(document).ready(function() {
 
 
 	// 인서트 js
-	for (let i = 0; i < 6; i++) {
+	for (let i = 0; i < 7; i++) {
 		let insertInputList =
 			`<div class="s-input-box">
 				<div class="input-date">
@@ -202,22 +202,51 @@ $(document).ready(function() {
 	});
 
 	// 입력 안하면 입력 알럿
+	// 수정중
 	$insertButton.on("click", function() {
+		console.log('나와라얍');
 		if ($("#s-member-list").val() === "" || $("#s-member-list").val() === null) {
 			alert("メンバーをチェックください！");
 			return false;
 		}
-		if ($("#schedule-date").val() === "") {
-			alert("日付をチェックください！");
-			return false;
-		}
-		if ($("#schedule-time").val() === "") {
-			alert("タイムをチェックください！");
-			return false;
-		}
-		if ($("#schedule-title").val() === "") {
-			alert("タイトルをチェックください！");
-			return false;
+		const inputBox = document.querySelectorAll(".s-input-box");
+		console.log(inputBox)
+		inputBox.forEach((element)=>{
+			let date = element.querySelector('#s-input-date');
+			let time = element.querySelector('#s-input-time');
+			let title = element.querySelector('#s-input-title');
+			console.log(date);
+			console.log(time);
+			console.log(title);
+			if (date.value === null) {
+				alert("日付をチェックください！");
+				return false;
+			}
+			if (time.value === null) {
+				alert("タイムをチェックください！");
+				return false;
+			}
+			if (title.value === null) {
+				alert("タイトルをチェックください！");
+				return false;
+			}
+
+		});
+		
+		for (i = 0; i < 7; i++) {
+			if ($("#s-insert-date").val() === "") {
+				alert("日付をチェックください！");
+				return false;
+			}
+			if ($("#s-insert-time").val() === "") {
+				alert("タイムをチェックください！");
+				return false;
+			}
+			if ($("#s-insert-title").val() === "") {
+				alert("タイトルをチェックください！");
+				return false;
+			}
+
 		}
 	});
 

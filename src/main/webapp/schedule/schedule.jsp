@@ -213,20 +213,20 @@ dialog::backdrop {
 							</div>
 							<div class="s-input-container">
 								<!-- input-container js로 반복 -->
-								<div class="s-input-box">
-									<div class="input-date">
-										<input name="s_date" type="date" id="s-insert-date"/>
-									</div>
-									<div class="input-time">
-										<input name="s_time" type="time" id="s-insert-time"/>
-									</div>
-									<div class="input-title">
-										<input name="s_title" id="s-insert-title" placeholder="配信タイトル" />
-									</div>
-								</div>
+<!-- 								<div class="s-input-box"> -->
+<!-- 									<div class="input-date"> -->
+<!-- 										<input name="s_date" type="date" id="s-insert-date"/> -->
+<!-- 									</div> -->
+<!-- 									<div class="input-time"> -->
+<!-- 										<input name="s_time" type="time" id="s-insert-time"/> -->
+<!-- 									</div> -->
+<!-- 									<div class="input-title"> -->
+<!-- 										<input name="s_title" id="s-insert-title" placeholder="配信タイトル" /> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 							</div>
 							<div class="s-insert-button">
-								<button id="s-insert-button">登録</button>
+								<button id="s-insert-button" type="button">登録</button>
 							</div>
 						</div>
 					</form>
