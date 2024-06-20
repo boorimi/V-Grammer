@@ -55,101 +55,104 @@ $(document).ready(function() {
 	$('.s-time').css('backgroundColor', timeColor[todayId]);
 
 
-	$(function() {
-		// 멤버 pk에 맞는 컬러
-		let memberColors = {
-			1: "lightpink", 2: "#A5CDEC", 3: "#CDB8FF", 4: "#C25B7C",
-			5: "#FFD6D4", 6: "#8BEC97", 7: "#D6BAEB", 8: "#FFB9BB",
-			9: "#BFD2EE", 10: "#B7F1FF", 11: "#D1B7A4", 12: "#FFE089",
-			13: "#CF80E0", 14: "#FFA658", 15: "#BDDE87", 16: "#C4BEC9",
-			17: "#D4485F", 18: "#DE617E", 19: "#77788F", 20: "#B2E2F7",
-			21: "#BF8ADE", 22: "#CDEDFF", 23: "#C5C2C3", 24: "#FAC6D3", 25: "#BEC48B"
-		};
+	// 멤버 pk에 맞는 컬러
+	let memberColors = {
+		1: "lightpink", 2: "#A5CDEC", 3: "#CDB8FF", 4: "#C25B7C",
+		5: "#FFD6D4", 6: "#8BEC97", 7: "#D6BAEB", 8: "#FFB9BB",
+		9: "#BFD2EE", 10: "#B7F1FF", 11: "#D1B7A4", 12: "#FFE089",
+		13: "#CF80E0", 14: "#FFA658", 15: "#BDDE87", 16: "#C4BEC9",
+		17: "#D4485F", 18: "#DE617E", 19: "#77788F", 20: "#B2E2F7",
+		21: "#BF8ADE", 22: "#CDEDFF", 23: "#C5C2C3", 24: "#FAC6D3", 25: "#BEC48B"
+	};
 
-		// 디브 컬러 세팅 함수
-		function setBackgroundColor(element, value) {
-			let backgroundColor = memberColors[value];
-			element.css('background-color', backgroundColor);
-		}
+	// 디브 컬러 세팅 함수
+	function setBackgroundColor(element, value) {
+		let backgroundColor = memberColors[value];
+		element.css('background-color', backgroundColor);
+	}
 
-		// 스케줄 맞는 시간대 박스에 집어넣는 코드
-		let data = $("#weekJSON").text();
-		data = JSON.parse(data);
-		console.log(data[0]);
+	// 스케줄 맞는 시간대 박스에 집어넣는 코드
+	let data = $("#weekJSON").text();
+	data = JSON.parse(data);
+	console.log(data[0]);
 
-		for (var i = 1; i < 8; i++) {
-			let sDataBox = $(".day" + i + "-content .s-data-box");
+	for (var i = 1; i < 8; i++) {
+		let sDataBox = $(".day" + i + "-content .s-data-box");
 
-			$(sDataBox).each((idx, s) => {
-				let start = parseInt($(s).attr("start"));
-				let end = parseInt($(s).attr("end"));
+		$(sDataBox).each((idx, s) => {
+			let start = parseInt($(s).attr("start"));
+			let end = parseInt($(s).attr("end"));
 
-				// 시간순으로 div 붙이기
-				data[i - 1].sort((a, b) => a.intTime - b.intTime);
+			// 시간순으로 div 붙이기
+			data[i - 1].sort((a, b) => a.intTime - b.intTime);
 
-				$.each(data[i - 1], (j, obj) => {
-					if (start <= obj.intTime && obj.intTime < end) {
-						let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk).attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name).attr('data-s-title', obj.s_title);
+			$.each(data[i - 1], (j, obj) => {
+				if (start <= obj.intTime && obj.intTime < end) {
+					let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk).attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name).attr('data-s-title', obj.s_title);
 
-						let sTime = $("<div></div>").text(obj.s_time);
-						let mName = $("<div></div>").text(obj.m_name);
+					let sTime = $("<div></div>").text(obj.s_time);
+					let mName = $("<div></div>").text(obj.m_name);
 
-						//            						console.log(obj.s_pk)
+					//            						console.log(obj.s_pk)
 
-						let sTitle = $("<div>").addClass("s-data-title");
+					let sTitle = $("<div>").addClass("s-data-title");
 
-						let titleDetail = `<div class="s-title-text-box">
+					let titleDetail = `<div class="s-title-text-box">
 										<div>${obj.s_title}</div>
 										</div>`;
 
-						sTitle.append(titleDetail);
-						sData.append(sTime).append(mName).append(sTitle);
-						//						content2.append(sData);
-						// 디브 생성 후 컬러 세팅함수 호출
-						setBackgroundColor(sData, obj.s_m_pk);
-						$(s).append(sData);
-					}
-				});
-			});
-		}
-
-		$('.s-data').click(function() {
-			modal.showModal();
-			console.log(this.dataset);
-
-			let sPk = this.dataset.sPk;
-			console.log(sPk);
-
-			modal.querySelector("#time").innerText = this.dataset.sTime;
-			modal.querySelector("#name").innerText = this.dataset.mName;
-			modal.querySelector("#title").innerText = this.dataset.sTitle;
-			// Modal Delete Click
-			// 로그인 했을 때만 가능하도록 세션값 벨류에 심어둠.
-			// 일단 기능부터 만들고 수정 필요
-			$('#deleteButton').click(function() {
-				// 스케줄의 pk
-				console.log(sPk);
-				if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
-					if (confirm('本当に削除しますか？')) {
-						location.href = "ScheduleDeleteC?sPk=" + sPk;
-					}
-				} else {
-					alert("ログインが必要です！");
+					sTitle.append(titleDetail);
+					sData.append(sTime).append(mName).append(sTitle);
+					//						content2.append(sData);
+					// 디브 생성 후 컬러 세팅함수 호출
+					setBackgroundColor(sData, obj.s_m_pk);
+					$(s).append(sData);
 				}
 			});
 		});
+	}
 
-		// Modal Update Click
-		$('#updateButton').click(function() {
-			if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
-				if (confirm('本当に削除しますか？')) {
-					location.href = "ScheduleDeleteC?sPk=" + sPk;
-				}
-			} else {
-				alert("ログインが必要です！");
-			}
-		})
+	let sPk = null;
+	$('.s-data').click(function() {
+		$('.modal-a-box').css('display', 'block');
+		$('.modal-b-box').css('display', 'none');
+
+		modal.showModal();
+		console.log(this.dataset);
+
+
+		sPk = this.dataset.sPk;
+		console.log(sPk);
+
+		modal.querySelector("#time").innerText = this.dataset.sTime;
+		modal.querySelector("#name").innerText = this.dataset.mName;
+		modal.querySelector("#title").innerText = this.dataset.sTitle;
+		// Modal Delete Click
+		// 로그인 했을 때만 가능하도록 세션값 벨류에 심어둠.
+		// 일단 기능부터 만들고 수정 필요
 	});
+	$('#deleteButton').click(function() {
+		// 스케줄의 pk
+		console.log('딜리트 클릭 콘솔 : ' + sPk);
+		if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
+			if (confirm('本当に削除しますか？')) {
+				location.href = "DeleteScheduleC?sPk=" + sPk;
+			}
+		} else {
+			alert("ログインが必要です！");
+		}
+	});
+	// Modal Update Click
+	$('#updateButton').click(function() {
+		console.log('업데이트 클릭 콘솔 : ' + sPk);
+		if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
+			$('.modal-a-box').css('display', 'none');
+			$('.modal-b-box').css('display', 'block');
+		} else {
+			alert("ログインが必要です！");
+		}
+	})
+
 
 	// 인서트 js
 	for (let i = 0; i < 5; i++) {
@@ -167,9 +170,9 @@ $(document).ready(function() {
 											placeholder="放送のタイトル" />
 									</div>
 								</div>`;
-								
+
 		$('.s-input-container').append(insertInputList);
-								
+
 	}
 
 	const $openButton = $("#schedule-insert-detail-button");

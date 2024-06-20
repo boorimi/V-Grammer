@@ -75,20 +75,41 @@ dialog::backdrop {
 
 			<dialog id="modal">
 			<div class="modal-container">
-				<div class="modal-header">
-					<h2 id="time"></h2>
-					<h2 id="name"></h2>
-					<button class="close-button" id="closeModalButton">&times;</button>
+				<div class="modal-a-box">
+					<div class="modal-header">
+						<h2 id="time"></h2>
+						<h2 id="name"></h2>
+						<button class="close-button" id="closeModalButton">&times;</button>
+					</div>
+					<div class="modal-title-box" style="font-weight: 600">
+						<p>- 配信のタイトル</p>
+						<p id="title"></p>
+					</div>
+					<div class="modal-footer">
+						<button id="deleteButton"
+							value="${sessionScope.accountInfo.u_twitter_id }">Delete</button>
+						<button id="updateButton"
+							value="${sessionScope.accountInfo.u_twitter_id }">Update</button>
+					</div>
 				</div>
-				<div class="modal-title-box" style="font-weight: 600">
-					<p>- 配信のタイトル</p>
-					<p id="title"></p>
-				</div>
-				<div class="modal-footer">
-					<button id="deleteButton"
-						value="${sessionScope.accountInfo.u_twitter_id }">Delete</button>
-					<button id="updateButton"
-						value="${sessionScope.accountInfo.u_twitter_id }">Update</button>
+				<!-- 업데이트 인풋 -->
+				<div class="modal-b-box">
+					<form action="UpdateScheduleC">
+						<div class="s-input-box">
+							<div class="input-date">
+								<input name="s_date" type="date" id="schedule-date" />
+							</div>
+							<div class="input-time">
+								<input name="s_time" type="time" id="schedule-time" />
+							</div>
+							<div class="input-title">
+								<input name="s_title" id="schedule-title" placeholder="配信タイトル" />
+							</div>
+							<div class="s-insert-button">
+								<button id="s-insert-button">登録</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			</dialog>
@@ -160,11 +181,11 @@ dialog::backdrop {
 				<button id="schedule-insert-detail-button"
 					value="${sessionScope.accountInfo.u_twitter_id }">スケジュール登録</button>
 				<div class="s-insert-content-a-box">
-					<form action="ScheduleInsertC" id="schedule-form">
+					<form action="InsertScheduleC" id="schedule-form">
 						<div class="s-insert-content-b-box">
 							<div class="s-member-select">
 								<select name="s_member" id="s-member-list">
-									<option value="999">メンバー</option>
+									<option value="999" selected disabled>メンバー</option>
 									<option value="1">七彩てまり</option>
 									<option value="2">田中りゅこ</option>
 									<option value="3">夜夢瑠紅</option>
@@ -193,6 +214,7 @@ dialog::backdrop {
 								</select>
 							</div>
 							<div class="s-input-container">
+								<!-- input-container js로 반복 -->
 								<div class="s-input-box">
 									<div class="input-date">
 										<input name="s_date" type="date" id="schedule-date"

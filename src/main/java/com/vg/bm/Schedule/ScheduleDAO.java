@@ -181,13 +181,9 @@ public class ScheduleDAO {
 		}
 	}
 
-	public void DeleteSchedule(HttpServletRequest request) {
+	public void deleteSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		String sql = "delete from haco_schedule where s_pk = ?";
-
-		HttpSession twitterLoginSession = request.getSession();
-		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
-		long id = accountInfo.getU_twitter_id();
 
 		try {
 			con = DBManager.connect();
@@ -205,6 +201,37 @@ public class ScheduleDAO {
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
+	}
+
+	public void updateSchedule(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		String sql = "update haco_schedule set s_u_t_id=?, s_date=?, "
+				+ "s_time=? s_title=? where s_pk=?";
+		
+		HttpSession twitterLoginSession = request.getSession();
+		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
+		long id = accountInfo.getU_twitter_id();
+
+
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setLong(1, id);
+			pstmt.setString(2, request.getParameter("s_date"));
+			pstmt.setString(3, request.getParameter("s_time"));
+			pstmt.setString(4, request.getParameter("s_title"));
+			pstmt.setString(5, request.getParameter("s_pk"));
+			
+			if (pstmt.executeUpdate()==1) {
+				System.out.println("수정 성공!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+		
 	}
 
 }
