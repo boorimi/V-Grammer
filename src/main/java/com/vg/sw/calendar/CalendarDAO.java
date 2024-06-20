@@ -32,8 +32,9 @@ public class CalendarDAO {
             conn = DBManager.connect();
             String sql = "SELECT m.m_pk, m.m_name, m.m_debut, m.m_birth, m.m_mother_name, i.i_icon " +
                     "FROM haco_member m " +
-                    "LEFT JOIN haco_image i ON m.image_id = i.i_m_pk " +
+                    "LEFT JOIN haco_image i ON m.m_pk = i.i_m_pk " +
                     "WHERE m.m_name IS NOT NULL AND (m.m_debut IS NOT NULL OR m.m_birth IS NOT NULL)";
+
 
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -44,7 +45,7 @@ public class CalendarDAO {
                     event = new CalendarInfoDTO();
                     event.setM_pk(rs.getString("m_pk"));
                     event.setTitle(rs.getString("m_name"));
-                    event.setImagePath(rs.getString("image_path")); // 이미지 경로 설정
+                    event.setImagePath(rs.getString("i_icon")); // 이미지 경로 설정
                     String startDate = dateFormat.format(rs.getDate("m_debut"));
                     event.setStart(startDate);
                     events.add(event);
@@ -53,7 +54,7 @@ public class CalendarDAO {
                     CalendarInfoDTO birthEvent = new CalendarInfoDTO();
                     birthEvent.setM_pk(rs.getString("m_pk"));
                     birthEvent.setTitle(rs.getString("m_name") + "の誕生日");
-                    birthEvent.setImagePath(rs.getString("image_path")); // 이미지 경로 설정
+                    birthEvent.setImagePath(rs.getString("i_icon")); // 이미지 경로 설정
                     String birthDate = dateFormat.format(rs.getDate("m_birth"));
                     birthEvent.setStart(birthDate);
                     events.add(birthEvent);
