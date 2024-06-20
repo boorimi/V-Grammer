@@ -16,9 +16,9 @@ pageEncoding="UTF-8"%>
   <body>
     <div class="main-menu-all">
       <div class="main-logo">
-      <div>
-        <a href="HC"><img src="haco_img/haconaka_logo.png" /></a>
-      </div>
+        <div>
+          <a href="HC"><img src="haco_img/haconaka_logo.png" /></a>
+        </div>
       </div>
       <div class="menu-lists">
         <div onclick="location.href='MemberC'" class="menu-lists-member">
@@ -133,7 +133,7 @@ pageEncoding="UTF-8"%>
             制作 : Team V-Grammer <br />
             Kim dae-san (キム・デサン)<br />
             Choi bo-mi (チェ・ボミ) Park joon-woo (じゅぬ) <br />
-            Park keon-woo(バク・ゴヌ) Kim sang-woo (キム・サンウ)<br />
+            Park keon-woo(パク・ゴヌ) Kim sang-woo (キム・サンウ)<br />
             <br />
             Special Thanks <br />
             Mz
