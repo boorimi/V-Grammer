@@ -94,7 +94,7 @@ dialog::backdrop {
 				</div>
 				<!-- 업데이트 인풋 -->
 				<div class="modal-b-box">
-					<form action="UpdateScheduleC">
+<!-- 					<form action="UpdateScheduleC"> -->
 						<div class="s-input-box">
 							<div class="input-date">
 								<input name="s_date" type="date" id="schedule-date" />
@@ -109,7 +109,7 @@ dialog::backdrop {
 								<button id="s-insert-button">登録</button>
 							</div>
 						</div>
-					</form>
+<!-- 					</form> -->
 				</div>
 			</div>
 			</dialog>

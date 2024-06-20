@@ -188,8 +188,8 @@ public class ScheduleDAO {
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, request.getParameter("sPk"));
 			System.out.println(request.getParameter("sPk"));
+			pstmt.setString(1, request.getParameter("sPk"));
 			
 			if (pstmt.executeUpdate()==1) {
 				System.out.println("삭제 성공!");
@@ -206,14 +206,19 @@ public class ScheduleDAO {
 	public void updateSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
 		String sql = "update haco_schedule set s_u_t_id=?, s_date=?, "
-				+ "s_time=? s_title=? where s_pk=?";
+				+ "s_time=?, s_title=? where s_pk=?";
 		
 		HttpSession twitterLoginSession = request.getSession();
 		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long id = accountInfo.getU_twitter_id();
-
+		System.out.println(id);
+		System.out.println(request.getParameter("s_date"));
+		System.out.println(request.getParameter("s_time"));
+		System.out.println(request.getParameter("s_title"));
+		System.out.println(request.getParameter("sPk"));
 
 		try {
+			request.setCharacterEncoding("utf-8");
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
@@ -221,7 +226,7 @@ public class ScheduleDAO {
 			pstmt.setString(2, request.getParameter("s_date"));
 			pstmt.setString(3, request.getParameter("s_time"));
 			pstmt.setString(4, request.getParameter("s_title"));
-			pstmt.setString(5, request.getParameter("s_pk"));
+			pstmt.setInt(5, Integer.parseInt(request.getParameter("sPk")));
 			
 			if (pstmt.executeUpdate()==1) {
 				System.out.println("수정 성공!");

@@ -151,7 +151,16 @@ $(document).ready(function() {
 		} else {
 			alert("ログインが必要です！");
 		}
-	})
+	});
+	$('#s-insert-button').click(function() {
+		console.log('등록 버튼 클릭 콘솔 : ' + sPk);
+		let date = $('#schedule-date').val();
+		let time = $('#schedule-time').val();
+		let title = $('#schedule-title').val();
+		
+		location.href = "UpdateScheduleC?sPk=" + sPk + "&s_date=" + date + "&s_time=" + time
+			+ "&s_title=" + title;
+	});
 
 
 	// 인서트 js
