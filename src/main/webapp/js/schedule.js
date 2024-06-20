@@ -152,36 +152,33 @@ $(document).ready(function() {
 			alert("ログインが必要です！");
 		}
 	});
-	$('#s-insert-button').click(function() {
+	$('#s-update-button').click(function() {
 		console.log('등록 버튼 클릭 콘솔 : ' + sPk);
-		let date = $('#schedule-date').val();
-		let time = $('#schedule-time').val();
-		let title = $('#schedule-title').val();
-		
+		let date = $('#s-update-date').val();
+		let time = $('#s-update-time').val();
+		let title = $('#s-update-title').val();
+
 		location.href = "UpdateScheduleC?sPk=" + sPk + "&s_date=" + date + "&s_time=" + time
 			+ "&s_title=" + title;
 	});
 
 
 	// 인서트 js
-	for (let i = 0; i < 5; i++) {
-		let insertInputList = `<div class="s-input-box">
-									<div class="input-date">
-										<input name="s_date" type="date" id="schedule-date"
-											data-placeholder="日付" />
-									</div>
-									<div class="input-time">
-										<input name="s_time" type="time" id="schedule-time"
-											data-placeholder="時間" />
-									</div>
-									<div class="input-title">
-										<input name="s_title" id="schedule-title"
-											placeholder="放送のタイトル" />
-									</div>
-								</div>`;
+	for (let i = 0; i < 6; i++) {
+		let insertInputList =
+			`<div class="s-input-box">
+				<div class="input-date">
+					<input name="s_date" type="date" id="schedule-date"/>
+				</div>
+				<div class="input-time">
+					<input name="s_time" type="time" id="schedule-time"/>
+				</div>
+				<div class="input-title">
+					<input name="s_title" id="schedule-title" placeholder="配信タイトル" />
+				</div>
+			</div>`;
 
 		$('.s-input-container').append(insertInputList);
-
 	}
 
 	const $openButton = $("#schedule-insert-detail-button");
@@ -206,7 +203,7 @@ $(document).ready(function() {
 
 	// 입력 안하면 입력 알럿
 	$insertButton.on("click", function() {
-		if ($("#s-member-list").val() === "999") {
+		if ($("#s-member-list").val() === "" || $("#s-member-list").val() === null) {
 			alert("メンバーをチェックください！");
 			return false;
 		}

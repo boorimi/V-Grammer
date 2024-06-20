@@ -226,7 +226,7 @@ public class ScheduleDAO {
 			pstmt.setString(2, request.getParameter("s_date"));
 			pstmt.setString(3, request.getParameter("s_time"));
 			pstmt.setString(4, request.getParameter("s_title"));
-			pstmt.setInt(5, Integer.parseInt(request.getParameter("sPk")));
+			pstmt.setString(5, request.getParameter("sPk"));
 			
 			if (pstmt.executeUpdate()==1) {
 				System.out.println("수정 성공!");

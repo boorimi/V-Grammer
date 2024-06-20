@@ -94,22 +94,20 @@ dialog::backdrop {
 				</div>
 				<!-- 업데이트 인풋 -->
 				<div class="modal-b-box">
-<!-- 					<form action="UpdateScheduleC"> -->
 						<div class="s-input-box">
 							<div class="input-date">
-								<input name="s_date" type="date" id="schedule-date" />
+								<input name="s_date" type="date" id="s-update-date" />
 							</div>
 							<div class="input-time">
-								<input name="s_time" type="time" id="schedule-time" />
+								<input name="s_time" type="time" id="s-update-time" />
 							</div>
 							<div class="input-title">
-								<input name="s_title" id="schedule-title" placeholder="配信タイトル" />
+								<input name="s_title" id="s-update-title" placeholder="配信タイトル" />
 							</div>
-							<div class="s-insert-button">
-								<button id="s-insert-button">登録</button>
+							<div class="input-update-button">
+								<button id="s-update-button">登録</button>
 							</div>
 						</div>
-<!-- 					</form> -->
 				</div>
 			</div>
 			</dialog>
@@ -217,16 +215,13 @@ dialog::backdrop {
 								<!-- input-container js로 반복 -->
 								<div class="s-input-box">
 									<div class="input-date">
-										<input name="s_date" type="date" id="schedule-date"
-											data-placeholder="日付" />
+										<input name="s_date" type="date" id="s-insert-date"/>
 									</div>
 									<div class="input-time">
-										<input name="s_time" type="time" id="schedule-time"
-											data-placeholder="時間" />
+										<input name="s_time" type="time" id="s-insert-time"/>
 									</div>
 									<div class="input-title">
-										<input name="s_title" id="schedule-title"
-											placeholder="放送のタイトル" />
+										<input name="s_title" id="s-insert-title" placeholder="配信タイトル" />
 									</div>
 								</div>
 							</div>
