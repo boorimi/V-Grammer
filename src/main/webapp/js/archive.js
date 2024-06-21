@@ -76,6 +76,7 @@ $(function () {
         localStorage.setItem("currentPage", localStorage.getItem("pageCount"));
       } else if ($(this).attr("id") === "archive-search-button") {
         localStorage.setItem("currentPage", "1");
+        localStorage.setItem("PageCount", "3");
       }
       let page = localStorage.getItem("currentPage");
       let member = localStorage.getItem("member");
