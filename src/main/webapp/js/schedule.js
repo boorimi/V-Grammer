@@ -88,10 +88,20 @@ $(document).ready(function() {
 
 			$.each(data[i - 1], (j, obj) => {
 				if (start <= obj.intTime && obj.intTime < end) {
-					let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk).attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name).attr('data-s-title', obj.s_title);
+					let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk)
+						.attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name)
+						.attr('data-s-title', obj.s_title).attr('data-i-icon', obj.i_icon);
 
 					let sTime = $("<div></div>").text(obj.s_time);
 					let mName = $("<div></div>").text(obj.m_name);
+					let timeNameDiv = $("<div>").addClass("time-name");
+					timeNameDiv.append(sTime, mName);
+
+					let imgSrc = "haco_img/icon/" + obj.i_icon;
+					let imgEl = $("<img>").attr("src", imgSrc);
+					let sIcon = $("<div>").addClass("s-icon").append(imgEl);
+
+					let sInnerBox = $("<div>").addClass("s-inner-box").append(sIcon).append(timeNameDiv);
 
 					//            						console.log(obj.s_pk)
 
@@ -102,7 +112,7 @@ $(document).ready(function() {
 										</div>`;
 
 					sTitle.append(titleDetail);
-					sData.append(sTime).append(mName).append(sTitle);
+					sData.append(sInnerBox).append(sTitle);
 					//						content2.append(sData);
 					// 디브 생성 후 컬러 세팅함수 호출
 					setBackgroundColor(sData, obj.s_m_pk);
@@ -168,13 +178,13 @@ $(document).ready(function() {
 		let insertInputList =
 			`<div class="s-input-box">
 				<div class="s-input-date">
-					<input name="s_date" type="date" id="s-input-date"/>
+					<input name="s_date" type="date" class="s-input-date1"/>
 				</div>
 				<div class="s-input-time">
-					<input name="s_time" type="time" id="s-input-time"/>
+					<input name="s_time" type="time" class="s-input-time1"/>
 				</div>
 				<div class="s-input-title">
-					<input name="s_title" id="s-input-title" placeholder="配信タイトル" />
+					<input name="s_title" class="s-input-title1" placeholder="配信タイトル" />
 				</div>
 			</div>`;
 
@@ -189,12 +199,12 @@ $(document).ready(function() {
 	// 로그인 한 사람만 인서트 디브 볼 수 있도록.
 	$openButton.on("click", function() {
 		if ($openButton.val() !== null && $openButton.val() !== "") {
-			$insertcontainer.slideToggle(function(){
-				if($insertcontainer.is(":visible"))	{
+			$insertcontainer.slideToggle(function() {
+				if ($insertcontainer.is(":visible")) {
 					$openButton.text('閉じる');
-				}else{
+				} else {
 					$openButton.text('登録');
-				}			
+				}
 			});
 		} else {
 			alert("ログインが必要です！");
@@ -210,36 +220,43 @@ $(document).ready(function() {
 
 	// 입력 안하면 입력 알럿
 	// 수정중
+
+	let activerow;
+	$(".s-input-date1").focus(function (){
+		console.log($(this));
+		activerow = $(this).closest('.s-input-box');
+	});
+
+
 	$insertButton.on("click", function() {
+		console.log($(activerow).html());
 		console.log('나와라얍');
-		if ($("#s-member-list").val() === "" || $("#s-member-list").val() === null) {
+		const list = $("#s-member-list").val();
+		const date1 = $(activerow).find($(".s-input-date1")).val();
+		const time1 = $(activerow).find($(".s-input-time1")).val();
+		const title1 = $(activerow).find($(".s-input-title1")).val();
+		console.log(list)
+		console.log(date1)
+		console.log(time1)
+		console.log(title1)
+		if (!list) {
 			alert("メンバーをチェックください！");
 			return false;
 		}
-		const inputBox = document.querySelectorAll(".s-input-box");
-		console.log(inputBox)
-		inputBox.forEach((element)=>{
-			let date = element.querySelector('#s-input-date');
-			let time = element.querySelector('#s-input-time');
-			let title = element.querySelector('#s-input-title');
-			console.log(date);
-			console.log(time);
-			console.log(title);
-			if (date.value === null) {
-				alert("日付をチェックください！");
-				return false;
-			}
-			if (time.value === null) {
-				alert("タイムをチェックください！");
-				return false;
-			}
-			if (title.value === null) {
-				alert("タイトルをチェックください！");
-				return false;
-			}
+		if (!date1) {
+			alert("日付をチェックください！");
+			return false;
+		}
+		if (!time1) {
+			alert("タイムをチェックください！");
+			return false;
+		}
+		if (!title1) {
+			alert("タイトルをチェックください！");
+			return false;
+		}
 
-		});
-		
+
 		for (i = 0; i < 7; i++) {
 			if ($("#s-insert-date").val() === "") {
 				alert("日付をチェックください！");

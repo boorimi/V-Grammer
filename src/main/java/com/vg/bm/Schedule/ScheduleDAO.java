@@ -77,7 +77,10 @@ public class ScheduleDAO {
 		// 스케줄 가져오기
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select sc.*,m_name from haco_schedule sc, haco_member where s_m_pk = m_pk";
+		String sql = "select sc.*, m.m_name, hi.i_icon "
+				+ "from haco_schedule sc "
+				+ "join haco_member m ON sc.s_m_pk = m.m_pk "
+				+ "join haco_image hi ON sc.s_m_pk = hi.i_m_pk";
 
 		try {
 			con = DBManager.connect();
@@ -115,7 +118,7 @@ public class ScheduleDAO {
 				for (int i = 0; i < 7; i++) {
 					if (rs.getString(4).equals(thisWeek2.get(i))) {
 						ScheduleDTO schedule = new ScheduleDTO(rs.getString(1), rs.getString(2), rs.getString(3),
-								rs.getString(4), time, rs.getString(6), rs.getString(7), intTime);
+								rs.getString(4), time, rs.getString(6), rs.getString(7), intTime, rs.getString(8));
 						
 						schedules[i].add(schedule);
 					}

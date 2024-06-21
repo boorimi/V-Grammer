@@ -10,19 +10,14 @@ public class ScheduleDTO {
 	private String s_title;
 	private String m_name;
 	private int intTime;
-	
-	
-	
-	public int getIntTime() {
-		return intTime;
-	}
+	private String i_icon;
 
-	public void setIntTime(int intTime) {
-		this.intTime = intTime;
+	public ScheduleDTO() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public ScheduleDTO(String s_pk, String s_m_pk, String s_u_t_id, String s_date, String s_time, String s_title,
-			String m_name, int intTime) {
+			String m_name, int intTime, String i_icon) {
 		super();
 		this.s_pk = s_pk;
 		this.s_m_pk = s_m_pk;
@@ -32,10 +27,7 @@ public class ScheduleDTO {
 		this.s_title = s_title;
 		this.m_name = m_name;
 		this.intTime = intTime;
-	}
-
-	public ScheduleDTO() {
-		// TODO Auto-generated constructor stub
+		this.i_icon = i_icon;
 	}
 
 	public String getS_pk() {
@@ -94,10 +86,27 @@ public class ScheduleDTO {
 		this.m_name = m_name;
 	}
 
+	public int getIntTime() {
+		return intTime;
+	}
+
+	public void setIntTime(int intTime) {
+		this.intTime = intTime;
+	}
+
+	public String getI_icon() {
+		return i_icon;
+	}
+
+	public void setI_icon(String i_icon) {
+		this.i_icon = i_icon;
+	}
+
 	@Override
 	public String toString() {
 		return "ScheduleDTO [s_pk=" + s_pk + ", s_m_pk=" + s_m_pk + ", s_u_t_id=" + s_u_t_id + ", s_date=" + s_date
-				+ ", s_time=" + s_time + ", s_title=" + s_title + ", m_name=" + m_name + ", intTime=" + intTime + "]";
+				+ ", s_time=" + s_time + ", s_title=" + s_title + ", m_name=" + m_name + ", intTime=" + intTime
+				+ ", i_icon=" + i_icon + "]";
 	}
 	
 	
