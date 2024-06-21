@@ -184,11 +184,18 @@ $(document).ready(function() {
 	const $openButton = $("#schedule-insert-detail-button");
 	const $insertcontainer = $(".s-insert-content-a-box");
 	const $insertButton = $("#s-insert-button");
+	$openButton.text('登録');
 
 	// 로그인 한 사람만 인서트 디브 볼 수 있도록.
 	$openButton.on("click", function() {
 		if ($openButton.val() !== null && $openButton.val() !== "") {
-			$insertcontainer.slideToggle();
+			$insertcontainer.slideToggle(function(){
+				if($insertcontainer.is(":visible"))	{
+					$openButton.text('閉める');
+				}else{
+					$openButton.text('登録');
+				}			
+			});
 		} else {
 			alert("ログインが必要です！");
 		}

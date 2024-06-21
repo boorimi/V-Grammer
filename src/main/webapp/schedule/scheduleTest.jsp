@@ -9,8 +9,8 @@
 	crossorigin="anonymous"></script>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link rel="stylesheet" href="css/schedule.css" />
-<script type="text/javascript" src="js/schedule.js" defer></script>
+<link rel="stylesheet" href="css/scheduleTest.css" />
+<script type="text/javascript" src="js/scheduleTest.js" defer></script>
 
 <title>Insert title here</title>
 </head>
@@ -45,11 +45,11 @@
 
 			<dialog id="modal">
 			<div class="modal-container">
-					<div class="modal-header">
-						<h2 id="time"></h2>
-						<h2 id="name"></h2>
-						<button class="close-button" id="closeModalButton">&times;</button>
-					</div>
+				<div class="modal-header">
+					<h2 id="time"></h2>
+					<h2 id="name"></h2>
+					<button class="close-button" id="closeModalButton">&times;</button>
+				</div>
 				<div class="modal-a-box">
 					<div class="modal-title-box" style="font-weight: 600">
 						<p>- 配信のタイトル</p>
@@ -64,20 +64,20 @@
 				</div>
 				<!-- 업데이트 인풋 -->
 				<div class="modal-b-box">
-						<div class="s-input-box">
-							<div class="input-date">
-								<input name="s_date" type="date" id="s-update-date" />
-							</div>
-							<div class="input-time">
-								<input name="s_time" type="time" id="s-update-time" />
-							</div>
-							<div class="input-title">
-								<input name="s_title" id="s-update-title" placeholder="配信タイトル" />
-							</div>
-							<div class="input-update-button">
-								<button id="s-update-button">修正</button>
-							</div>
+					<div class="s-input-box">
+						<div class="input-date">
+							<input name="s_date" type="date" id="s-update-date" />
 						</div>
+						<div class="input-time">
+							<input name="s_time" type="time" id="s-update-time" />
+						</div>
+						<div class="input-title">
+							<input name="s_title" id="s-update-title" placeholder="配信タイトル" />
+						</div>
+						<div class="input-update-button">
+							<button id="s-update-button">修正</button>
+						</div>
+					</div>
 				</div>
 			</div>
 			</dialog>
@@ -146,8 +146,13 @@
 
 			<div class="s-insert-a-container">
 				<!-- 로그인 한 사람만 인서트 가능하도록 value에 세션값 넣어서 js에서 체크 -->
-				<button id="schedule-insert-detail-button"
-					value="${sessionScope.accountInfo.u_twitter_id }">スケジュール登録</button>
+				<div class="s-insert-detail-title">
+					<div class="schedule-insert-detail-button">
+						<button id="schedule-insert-detail-button"
+							value="${sessionScope.accountInfo.u_twitter_id }"></button>
+					</div>
+					<div id="s-insert-detail-title">メンバーのスケジュールを直接登録してみてください！</div>
+				</div>
 				<div class="s-insert-content-a-box">
 					<form action="InsertScheduleC" id="schedule-form">
 						<div class="s-insert-content-b-box">
@@ -182,6 +187,17 @@
 								</select>
 							</div>
 							<div class="s-input-container">
+								<!-- 								<div class="s-input-box"> -->
+								<!-- 									<div class="s-input-date"> -->
+								<!-- 										<input name="s_date" type="date" id="s-input-date" /> -->
+								<!-- 									</div> -->
+								<!-- 									<div class="s-input-time"> -->
+								<!-- 										<input name="s_time" type="time" id="s-input-time" /> -->
+								<!-- 									</div> -->
+								<!-- 									<div class="s-input-title"> -->
+								<!-- 										<input name="s_title" id="s-input-title" placeholder="配信タイトル" /> -->
+								<!-- 									</div> -->
+								<!-- 								</div> -->
 							</div>
 							<div class="s-insert-button">
 								<button id="s-insert-button" type="button">登録</button>

@@ -20,7 +20,7 @@ public class ScheduleC extends HttpServlet {
 		ScheduleDAO.SDAO.getThisWeek(request);
 		// 이번주 스케줄 가져오는 메서드
 		ScheduleDAO.SDAO.getAllSchedule(request);
-		request.setAttribute("content", "schedule/schedule.jsp");
+		request.setAttribute("content", "schedule/scheduleTest.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response); 
 		
 	}
