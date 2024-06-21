@@ -11,88 +11,73 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
-<script src="js/mypage_article.js" defer></script>
+<script src="js/mypage_article.js" defer="defer"></script>
 <link rel="stylesheet" href="css/trade.css" />
 </head>
 <%
 response.setContentType("text/html; charset=UTF-8");
 response.setCharacterEncoding("UTF-8");
 %>
-
 <body>
-	<div class="trade-container">
-		<div class="trade-title">
-			<h1>トレード</h1>
-		</div>
 
-		<div style="text-align: center;">
-			<button class="trade-openCategorys">カテゴリーで検索 ▼</button>
-		</div>
-		<form action="ArticleC">
-			<c:choose>
-				<c:when test="${category3 != null}">
-					<c:set var="displayValue" value="flex" />
-				</c:when>
-				<c:otherwise>
-					<c:set var="displayValue" value="none" />
-				</c:otherwise>
-			</c:choose>
-			<div class="trade-category" style="display: ${displayValue};">
-				<c:forEach items="${checkboxItems }" var="cbi">
-					<div>
-						<label><input type="checkbox" name="goodsCategory"
-							value="${cbi.value }"
-							${fn:contains(category3, cbi.value) ? 'checked="checked"' : ''} />${cbi.label }</label>
-					</div>
-				</c:forEach>
-				<button id="trade-search-category">検索</button>
-			</div>
-		</form>
-
+	<div style="width: 100%">
 		<div class="trade-conmain">
 			<!-- 본문페이지 for문 시작 -->
 			<c:set var="totalItems" value="${fn:length(trades)}" />
 			<c:forEach var="t" items="${trades }" varStatus="status">
 				<div class="trade-content">
-					<div>
+					<div class="trade-content-title">
 						<div>${t.nickname}</div>
-						<div>${t.twitterId}</div>
-						<div style="display: flex; flex-wrap: wrap;">
-
-							<!--  카테고리 for문 시작 -->
-							<c:forEach var="c" items="${t.category }">
-								<c:forEach var="item" items="${checkboxItems}">
-									<c:if test="${item.value == c}">
-										<div class="trade-goods-category"
-											style="margin: 2px; padding: 3px;">${item.label}</div>
-									</c:if>
-								</c:forEach>
-							</c:forEach>
-							<!-- 카테고리for문 끝 -->
+						<div>
+							<a target="_blnck" href="https://x.com/${t.screenName}"><img
+								src="haco_img/icon-twitter.png" /></a> ${t.pk}
 						</div>
 						<div>${t.date}</div>
 					</div>
-					<div>
+					<!--  카테고리 for문 시작 -->
+					<div class="trade-content-category ">
+						<c:forEach var="c" items="${t.category }">
+							<c:forEach var="item" items="${checkboxItems}">
+								<c:if test="${item.value == c}">
+									<div class="trade-goods-category">${item.label}</div>
+								</c:if>
+							</c:forEach>
+						</c:forEach>
+						<!-- 카테고리for문 끝 -->
+					</div>
+					<div class="trade-content-text">
 						<div class="trade-con-title">${t.text }</div>
 						<c:if test="${sessionScope.twitterId == t.twitterId}">
 							<div>
 								<a onclick="location.href='UpdateTrade?no=${t.pk}'"> <img
-									class="crud-icon" src="haco_img/update.png" alt="">
+									class="crud-icon" src="haco_img/update.png" alt="" />
 								</a>
 							</div>
 							<div>
 								<a onclick="tradeDelete(${t.pk})"> <img class="crud-icon"
-									src="haco_img/delete.png" alt="">
+									src="haco_img/delete.png" alt="" />
 								</a>
 							</div>
 						</c:if>
 					</div>
-
+						
+						<c:set var="cnt" value="0" />
+					<c:forEach var="c_cnt" items="${tradeComments }">
+					${c_cnt.t_pk}
+						<c:if test="${c_cnt.t_pk == t.pk }">
+							<c:set var="cnt" value="${cnt + 1 }" />
+						</c:if>
+					</c:forEach>
+							<c:set var="cnt2" value="${cnt}" />
+					<div class="cute-button-box">
+						<button class="trade-openComments cute-button-pink">コメント(${cnt2})</button>
+					</div>
 					<!-- 댓글 for문 시작 -->
 					<c:set var="i" value="0" />
 					<c:forEach var="tc" items="${tradeComments }">
+
 						<c:if test="${tc.t_pk == t.pk }">
-							<div class="trade-comments" style="display: none">
+							<div class="trade-comments comment-wrap" style="display: none">
 								<div>
 									<div>${tc.sNickname}</div>
 									<div>${tc.date }</div>
@@ -112,25 +97,36 @@ response.setCharacterEncoding("UTF-8");
 						</c:if>
 					</c:forEach>
 					<!-- 댓글 for문 끝 -->
-					<div>
-						<button class="trade-openComments">コメント(${i })</button>
-					</div>
-					<div class="trade-comments" style="display: none; border: 0px">
-						<form id="insertTradeCommentsForm" action="InsertTradeComments">
-							<input name="no" type="hidden" value="${t.pk }"> <input
-								name="masterTwitterId" type="hidden" value="${t.twitterId}">
-							<textarea style="resize: none" rows="5" cols="110" name="text"></textarea>
-							<button type="button" onclick="tradeCommentsInsert()">作成</button>
+
+					<div class="trade-comments" style="display: none; border: 0px;">
+						<form id="insertTradeCommentsForm_${t.pk }"
+							action="InsertTradeComments">
+							<input name="no" type="hidden" value="${t.pk }" /> <input
+								name="masterTwitterId" type="hidden" value="${t.twitterId}" />
+							<textarea style="width: 99%; height: 70px;" name="text"></textarea>
+							<button class="cute-button-blue" type="button"
+								onclick="tradeCommentsInsert('${t.pk }')">作成</button>
 						</form>
 					</div>
 				</div>
+
 			</c:forEach>
+
 			<!-- 본문페이지 for문 끝 -->
 		</div>
 		<div>
-			<button id="more-btn" value="0">More</button>
+			<button id="more-btn" value="5">More</button>
 		</div>
 	</div>
+
+
+	<!-- more -->
+
+
+
+
+
+
 	<!-- <div>
       <input id="search-input" />
       <button id="search-btn">버튼</button>

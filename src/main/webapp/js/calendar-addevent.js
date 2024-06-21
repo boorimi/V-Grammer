@@ -134,54 +134,74 @@ document.addEventListener('DOMContentLoaded', function() {
         return newDateStr;
     }
 
-function addPopoverToEvent(eventEl, event) {
-    let popover = document.createElement('div');
-    popover.className = 'popover fade bs-popover-top';
-    popover.role = 'tooltip';
-    popover.innerHTML = `
-        <div class="arrow"></div>
-        <h3 class="popover-header">${event.title}</h3>
-        <div class="popover-body">
-            <p>텍스트: ${event.extendedProps.title || '정보 없음'}</p>
-            ${event.extendedProps.imagePath ? `<img src="${event.extendedProps.imagePath}" alt="event image" style="width: 100%;">` : ''}
-        </div>
-    `;
-    document.body.appendChild(popover);
+    function addPopoverToEvent(eventEl, event) {
+        let popover = null; // popover 요소를 저장할 변수
+        let popoverTimer = null; // popover 삭제를 위한 타이머 변수
 
-    let timeoutId; // 호버 지연 제어를 위한 timeout 변수
+        function createPopover() {
+            if (!popover) {
+                popover = document.createElement('div');
+                popover.className = 'popover fade bs-popover-top';
+                popover.role = 'tooltip';
+                popover.innerHTML = `
+                    <div class="arrow"></div>
+                    <h3 class="popover-header">${event.title}</h3>
+                    <div class="popover-body">
+                        <p>텍스트: ${event.extendedProps.title || '정보 없음'}</p>
+                        ${event.extendedProps.imagePath ? `<img src="${event.extendedProps.imagePath}" alt="event image">` : ''}
+                    </div>
+                `;
+                document.body.appendChild(popover);
+            }
+        }
 
-    eventEl.addEventListener('mouseenter', function() {
-        clearTimeout(timeoutId); // 기존 지연 제어를 초기화
+        function destroyPopover() {
+            if (popover) {
+                popover.remove();
+                popover = null;
+            }
+        }
 
-        // 팝업을 즉시 표시
-        positionPopover(popover, eventEl);
-        popover.classList.add('show');
-    });
-
-    eventEl.addEventListener('mouseleave', function() {
-        // 호버가 끝난 후 200ms 후에 팝업을 숨김
-        timeoutId = setTimeout(function() {
-            popover.classList.remove('show');
-        }, 200);
-    });
-
-    document.addEventListener('scroll', function() {
-        if (popover.classList.contains('show')) {
+        function showPopover() {
+            createPopover();
             positionPopover(popover, eventEl);
+            popover.classList.add('show');
+            // popover가 보이면 타이머 초기화
+            clearTimeout(popoverTimer);
         }
-    });
 
-    document.addEventListener('click', function(e) {
-        if (!popover.contains(e.target) && !eventEl.contains(e.target)) {
-            popover.classList.remove('show');
+        function hidePopover() {
+            // 0.4초 뒤에 popover 삭제하는 타이머 설정
+            popoverTimer = setTimeout(function() {
+                destroyPopover();
+            }, 400);
         }
-    });
-}
 
-function positionPopover(popover, eventEl) {
-    let rect = eventEl.getBoundingClientRect();
-    popover.style.top = `${rect.top + window.scrollY - popover.offsetHeight}px`;
-    popover.style.left = `${rect.left + rect.width / 2 - popover.offsetWidth / 2}px`;
-}
+        eventEl.addEventListener('mouseenter', function() {
+            showPopover();
+        });
+
+        eventEl.addEventListener('mouseleave', function() {
+            hidePopover();
+        });
+
+        document.addEventListener('scroll', function() {
+            if (popover) {
+                positionPopover(popover, eventEl);
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (popover && !popover.contains(e.target) && e.target !== eventEl && !eventEl.contains(e.target)) {
+                destroyPopover();
+            }
+        });
+
+        function positionPopover(popover, eventEl) {
+            let rect = eventEl.getBoundingClientRect();
+            popover.style.top = `${rect.top + window.scrollY - popover.offsetHeight}px`;
+            popover.style.left = `${rect.left + rect.width / 2 - popover.offsetWidth / 2}px`;
+        }
+    }
 
 });

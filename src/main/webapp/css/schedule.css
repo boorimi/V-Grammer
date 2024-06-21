@@ -34,6 +34,8 @@ dialog::backdrop {
 .schedule-container {
 	height: auto;
 	margin-top: 2%;
+	font-family: 'CustomFont', sans-serif;
+	font-weight: 900;
 }
 
 .s-week-list {
@@ -43,14 +45,16 @@ dialog::backdrop {
 /* 탭 스타일 */
 .tab_item {
 	width: calc(100% / 8);
-	height: 50px;
+	height: 60px;
 	border-bottom: 3px solid #333333;
 	background-color: #f8f8f8;
 	line-height: 50px;
-	font-size: 16px;
+	font-size: 25px;
 	text-align: center;
 	color: #333333;
-	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	float: left;
 	font-weight: bold;
 	transition: all 0.2s ease;
@@ -183,6 +187,7 @@ dialog::backdrop {
 	border-bottom-style: dotted;
 	border-right-style: inset;
 	border-color: white;
+	font-size: 17pt;
 }
 
 .n-time {
@@ -199,16 +204,39 @@ dialog::backdrop {
 	width: calc(100% / 7);
 	height: 50px;
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
 	position: relative;
 	box-shadow: 0 0 0 2px white inset;
 	border-radius: 13px;
+	font-size: 11pt;
 }
 
 .s-data:hover {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	opacity: 0.8;
+}
+
+.s-inner-box {
+	display: flex;
+	align-items: center;
+	position: relative;
+	left: 10px
+}
+
+.s-icon {
+	overflow: hidden;
+	width: 35px;
+	height: 35px;
+	border-radius: 30px;
+}
+
+.s-icon img {
+	width: 100%;
+	height: 100%;
+}
+
+.time-name {
+	padding-left: 10px;
 }
 
 .s-data-title {
@@ -260,7 +288,7 @@ dialog::backdrop {
 }
 
 #schedule-insert-detail-button {
-	font-family: "Noto Sans JP", sans-serif;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
 	font-size: 1.4rem;
 	color: #fff;
 	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
@@ -286,28 +314,29 @@ dialog::backdrop {
 }
 
 .s-slide-box {
-  width: 70%;
-  white-space: nowrap;
-  overflow: hidden;
+	width: 70%;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .s-slide-text {
-  font-size: 25px;
-  font-weight: 900;
-  display: inline-block;
-  white-space: nowrap;
-  animation: roll 12s linear infinite;
-  padding-left: 200px;
+	font-size: 25px;
+	font-weight: 900;
+	display: inline-block;
+	white-space: nowrap;
+	animation: roll 12s linear infinite;
+	padding-left: 200px;
 }
 
 /* 텍스트 슬라이드 */
 @keyframes roll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-100%);
+	}
 }
 
 .s-insert-content-a-box {
@@ -323,6 +352,29 @@ dialog::backdrop {
 #s-member-list {
 	width: 100%;
 	height: 34px;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16"> <path d="M7.247 11.14l-4.796-5.481c-.566-.647-.106-1.659.753-1.659h9.592c.86 0 1.32 1.012.754 1.659l-4.796 5.48a1 1 0 0 1-1.508 0z"/> </svg>');
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 16px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+#s-member-list:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+#s-member-list:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
 }
 
 .s-insert-content-b-box {
@@ -341,19 +393,80 @@ dialog::backdrop {
 	width: 20%
 }
 
-#s-input-date,
-#s-input-time {
+.s-input-date1 {
 	width: 95%;
 	height: 30px;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.s-input-date1:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+.s-input-date1:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
+}
+
+.s-input-time1 {
+	width: 95%;
+	height: 30px;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.s-input-time1:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+.s-input-time1:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
 }
 
 .s-input-title {
 	width: 60%
 }
 
-#s-input-title {
+.s-input-title1 {
 	width: 97%;
 	height: 30px;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.s-input-title1:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+.s-input-title1:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
 }
 
 .s-input-box {
@@ -370,7 +483,7 @@ dialog::backdrop {
 }
 
 #s-insert-button {
-	font-family: "Noto Sans JP", sans-serif;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
 	font-size: 1.5rem;
 	color: #fff;
 	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
