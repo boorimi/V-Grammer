@@ -164,17 +164,17 @@ $(document).ready(function() {
 
 
 	// 인서트 js
-	for (let i = 0; i < 6; i++) {
+	for (let i = 0; i < 7; i++) {
 		let insertInputList =
 			`<div class="s-input-box">
-				<div class="input-date">
-					<input name="s_date" type="date" id="schedule-date"/>
+				<div class="s-input-date">
+					<input name="s_date" type="date" id="s-input-date"/>
 				</div>
-				<div class="input-time">
-					<input name="s_time" type="time" id="schedule-time"/>
+				<div class="s-input-time">
+					<input name="s_time" type="time" id="s-input-time"/>
 				</div>
-				<div class="input-title">
-					<input name="s_title" id="schedule-title" placeholder="配信タイトル" />
+				<div class="s-input-title">
+					<input name="s_title" id="s-input-title" placeholder="配信タイトル" />
 				</div>
 			</div>`;
 
@@ -184,11 +184,18 @@ $(document).ready(function() {
 	const $openButton = $("#schedule-insert-detail-button");
 	const $insertcontainer = $(".s-insert-content-a-box");
 	const $insertButton = $("#s-insert-button");
+	$openButton.text('登録');
 
 	// 로그인 한 사람만 인서트 디브 볼 수 있도록.
 	$openButton.on("click", function() {
 		if ($openButton.val() !== null && $openButton.val() !== "") {
-			$insertcontainer.slideToggle();
+			$insertcontainer.slideToggle(function(){
+				if($insertcontainer.is(":visible"))	{
+					$openButton.text('閉める');
+				}else{
+					$openButton.text('登録');
+				}			
+			});
 		} else {
 			alert("ログインが必要です！");
 		}
@@ -202,22 +209,51 @@ $(document).ready(function() {
 	});
 
 	// 입력 안하면 입력 알럿
+	// 수정중
 	$insertButton.on("click", function() {
+		console.log('나와라얍');
 		if ($("#s-member-list").val() === "" || $("#s-member-list").val() === null) {
 			alert("メンバーをチェックください！");
 			return false;
 		}
-		if ($("#schedule-date").val() === "") {
-			alert("日付をチェックください！");
-			return false;
-		}
-		if ($("#schedule-time").val() === "") {
-			alert("タイムをチェックください！");
-			return false;
-		}
-		if ($("#schedule-title").val() === "") {
-			alert("タイトルをチェックください！");
-			return false;
+		const inputBox = document.querySelectorAll(".s-input-box");
+		console.log(inputBox)
+		inputBox.forEach((element)=>{
+			let date = element.querySelector('#s-input-date');
+			let time = element.querySelector('#s-input-time');
+			let title = element.querySelector('#s-input-title');
+			console.log(date);
+			console.log(time);
+			console.log(title);
+			if (date.value === null) {
+				alert("日付をチェックください！");
+				return false;
+			}
+			if (time.value === null) {
+				alert("タイムをチェックください！");
+				return false;
+			}
+			if (title.value === null) {
+				alert("タイトルをチェックください！");
+				return false;
+			}
+
+		});
+		
+		for (i = 0; i < 7; i++) {
+			if ($("#s-insert-date").val() === "") {
+				alert("日付をチェックください！");
+				return false;
+			}
+			if ($("#s-insert-time").val() === "") {
+				alert("タイムをチェックください！");
+				return false;
+			}
+			if ($("#s-insert-title").val() === "") {
+				alert("タイトルをチェックください！");
+				return false;
+			}
+
 		}
 	});
 
