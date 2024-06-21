@@ -191,7 +191,7 @@ $(document).ready(function() {
 		if ($openButton.val() !== null && $openButton.val() !== "") {
 			$insertcontainer.slideToggle(function(){
 				if($insertcontainer.is(":visible"))	{
-					$openButton.text('閉める');
+					$openButton.text('閉じる');
 				}else{
 					$openButton.text('登録');
 				}			
