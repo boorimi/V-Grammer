@@ -13,22 +13,22 @@ import com.vg.jw.AccountDAO;
 public class ArchiveUpdateC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArchiveDAO.selectOneArchive(request);
-		AccountDAO.loginCheck(request);
-		request.setAttribute("content", "archive/archiveupdate.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		ArchiveDAO.selectOneArchive(request,response);
+//		AccountDAO.loginCheck(request);
+//		request.setAttribute("content", "archive/archiveupdate.jsp");
+//		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf-8");
-		AccountDAO.loginCheck(request);
+//		AccountDAO.loginCheck(request);
 		ArchiveDAO.UpdateArchive(request);
 //		ArchiveDAO.selectAllArchive(request);
 //		AccountDAO.loginCheck(request);
 //		request.setAttribute("content", "archive/archiveupdate.jsp");
 //		request.getRequestDispatcher("index.jsp").forward(request, response);
-		response.sendRedirect("ArchiveC");
+//		response.sendRedirect("ArchiveC");
 		
 	}
 

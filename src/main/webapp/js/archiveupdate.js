@@ -2,26 +2,23 @@ $(function () {
 
   // 비동기 페이징 (archiveupdate.jsp)
   // 추가 : 페이징 후에도 select태그 자동지정 및 토글버튼 구현
-  $(document).on("click", ".archive-page-no2", function () {
-    $("#archive-list2").css({ opacity: 0.3 });
-    adjustOpacity2(1);
-    let page = $(this).text();
-    $.ajax({
-      url: "ArchiveC",
-      type: "post",
-      data: { page },
+  $(document).on("click", ".archive-update-button-1", function () {
+     let a_pk = $("input[name='a_pk']").val();
+     console.log(a_pk);
+     $.ajax({
+      url: "ArchiveUpdateC",
+      type: "get",
+      data: { a_pk },
       dataType: "json",
-    }).done(function (resData) {
-      test2(resData);
-      let a = $(".collaboMember");
-      replaceCollabomemberString(a);
-      collabo_yesno_selected();
-      toggleButton();
-      category_selected();
-      //      console.log(JSON.stringify(resData));
-      $("select[name='collabo']").change(function () {
-        toggleButton();
-      });
+      success: function(resData) {
+        // 요청이 성공했을 때 실행할 코드
+        test2(resData);
+    },
+    error: function(xhr, status, error) {
+        // 요청이 실패했을 때 실행할 코드
+        console.log("Request failed: " + status + ", " + error);
+    }
+      
     });
   });
 
@@ -85,8 +82,8 @@ function getMonthNumber(monthName) {
 
 // archiveupdate.jsp 비동기 적용 함수
 function test2(resData) {
-  let $archiveList = $("#archive-list2");
-  $archiveList.html("");
+  let $body = $("body");
+  $body.html("");
   for (let i = 0; i < resData.length; i++) {
     let archive = resData[i];
 
@@ -154,7 +151,7 @@ function test2(resData) {
 					</div>
 				</div>
 			</form>`;
-    $archiveList.append(html);
+    $body.append(html);
   }
 }
 
@@ -299,6 +296,26 @@ function replaceNull() {
       textInDiv.text("");
     }
   });
+}
+
+function updateArchive() {
+	$(document).on("click", "#updateButton", function () {
+    $.ajax({
+      url: "ArchiveUpdateC",
+      type: "post",
+      data: { a_pk, collabo, collabomember, category },
+      dataType: "json",
+    }).done(function (resData) {
+      history.back();
+      
+      
+    });
+  });
+	
+}
+
+function updatePage() {
+	
 }
 
 

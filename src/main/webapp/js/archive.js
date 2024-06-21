@@ -76,7 +76,7 @@ $(function () {
         localStorage.setItem("currentPage", localStorage.getItem("pageCount"));
       } else if ($(this).attr("id") === "archive-search-button") {
         localStorage.setItem("currentPage", "1");
-        localStorage.setItem("PageCount", "3");
+        localStorage.setItem("pageCount", "????");
       }
       let page = localStorage.getItem("currentPage");
       let member = localStorage.getItem("member");
@@ -278,12 +278,14 @@ async function searchPage(resData, pagingVariable) {
   $paging.append(initialHtml2);
   ///////////////////////////////////////////
   let initialHtml3 = `<div class="archive-paging-no-div">`;
+  console.log(currentPage);
+  console.log(pageCount);
+  
   for (
     let i = currentPage - (currentPage % 10) + 1;
     i <= (currentPage + 9 < pageCount ? currentPage - (currentPage % 10) + 10 : pageCount);
     i++
   ) {
-    console.log(i);
     initialHtml3 += `<div class="archive-paging-no">${i}</div>`;
   }
   initialHtml3 += `</div>`;
