@@ -1,14 +1,13 @@
 @charset "UTF-8";
 
 @font-face {
-    font-family: 'CustomFont';
-    src: url('../fonts/Yomogi-Regular.ttf') format('truetype');
+  font-family: "CustomFont";
+  src: url("../fonts/Yomogi-Regular.ttf") format("truetype");
 }
 
 .menu-lists {
-    font-family: 'CustomFont', sans-serif;
+  font-family: "CustomFont", sans-serif;
 }
-
 
 .menu-lists a {
   color: inherit; /* 부모 요소의 색상 상속 */
@@ -41,10 +40,10 @@
   display: inline-block;
 }
 
-.main-logo > div > a > img, 
+.main-logo > div > a > img,
 .footer-logo > a > img {
-	width: 175px;
-	height: auto;
+  width: 175px;
+  height: auto;
 }
 
 .menu-lists {
@@ -427,6 +426,7 @@
   height: 675px;
   background-color: white;
   border-radius: 12px;
+  margin-bottom: 150px;
 }
 
 .today-vtuber p {
@@ -663,7 +663,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 footer {
-  margin-top: 150px;
   padding: 40px 0;
   background-color: #f0f0f0;
   font-family: "Roboto", sans-serif;

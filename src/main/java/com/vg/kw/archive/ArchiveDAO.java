@@ -58,7 +58,7 @@ public class ArchiveDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		String member = null;
 		String category = null;
 		String title = null;
@@ -120,9 +120,6 @@ public class ArchiveDAO {
 
 	public static void getAnotherPage(HttpServletRequest request, HttpServletResponse response) {
 
-		
-		System.out.println(request.getParameter("member"));
-		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -143,8 +140,6 @@ public class ArchiveDAO {
 		System.out.println(member);
 		System.out.println(category);
 		System.out.println(title);
-		
-		String title2 = "%" + title + "%";
 
 		// 비동기 페이징 할때 받는 변수
 		int page = 1;
@@ -159,7 +154,7 @@ public class ArchiveDAO {
 		sql += "and (? IS NULL OR ha.a_title like CONCAT('%',?,'%')) ";
 		sql += "order by a_date desc, a_time desc ";
 		sql += "LIMIT ? OFFSET ?";
-		
+
 		try {
 
 			con = DBManager.connect();
@@ -172,9 +167,9 @@ public class ArchiveDAO {
 			pstmt.setString(6, title);
 			pstmt.setInt(7, 20);
 			pstmt.setInt(8, 20 * (page - 1));
-			
+
 			System.out.println(page);
-			
+
 			rs = pstmt.executeQuery();
 			ArrayList<String> archives = new ArrayList<>();
 
@@ -197,7 +192,7 @@ public class ArchiveDAO {
 
 			}
 			System.out.println(archives);
-			
+
 			response.setContentType("application/json; charset=utf-8");
 			response.getWriter().print(archives);
 

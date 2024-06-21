@@ -78,21 +78,23 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
         </div>
       </div>
       <!--  방송 페이지 끝 -->
+
       <!-- D-day 흐르는거 시작 -->
       <div class="main-dday-container">
         <div class="dday-items-wrapper">
           <c:forEach var="dday" items="${ddayList}">
-            <c:if test="${dday.daysUntilDday <= 7}">
+            <c:if test="${dday.daysUntilDday >= 0}">
               <div class="dday-item">
                 <span>名前 : ${dday.name} </span>
                 <span>デビュー日 : ${dday.eventDate} </span>
-                <span>D-day : D${dday.daysUntilDday} </span>
+                <span>D-day : ${dday.daysUntilDday} </span>
               </div>
             </c:if>
           </c:forEach>
         </div>
       </div>
       <!-- D-day 흐르는거 끝 -->
+
       <!-- 뉴스 컨테이너 시작  -->
       <div class="main-news-container">
         <div class="main-news">

@@ -115,7 +115,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <!--  페이징 시작 -->
     <div class="archive-paging-container">
       <div class="archive-paging-start">
-        <a href="ArchivePageC?p=1">最初に</a>
+        <a>最初に</a>
       </div>
       <c:set var="pageUnit" value="10" />
       <!-- page변수 = 현재페이지 * 페이지유닛 -->
@@ -125,7 +125,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       />
       <div class="archive-paging-unit-prev">
         <c:if test="${page != 0}">
-          <a href="ArchivePageC?p=${page - pageUnit + 1}">
+          <a>
             以前 ${pageUnit }ページ
           </a>
         </c:if>
@@ -144,13 +144,13 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         <c:if
           test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}"
         >
-          <a href="ArchivePageC?p=${page + pageUnit + 1}"
+          <a
             >次 ${pageUnit }ページ</a
           >
         </c:if>
       </div>
       <div class="archive-paging-end">
-        <a href="ArchivePageC?p=${pageCount}">最後に</a>
+        <a>最後に</a>
       </div>
     </div>
     <!-- 페이징 끝 -->
