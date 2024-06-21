@@ -26,7 +26,6 @@ public class CalendarDAO {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        CalendarInfoDTO event = new CalendarInfoDTO();
         ArrayList<CalendarInfoDTO> events = new ArrayList<CalendarInfoDTO>();
         try {
             conn = DBManager.connect();
@@ -35,17 +34,18 @@ public class CalendarDAO {
                     "LEFT JOIN haco_image i ON m.m_pk = i.i_m_pk " +
                     "WHERE m.m_name IS NOT NULL AND (m.m_debut IS NOT NULL OR m.m_birth IS NOT NULL)";
 
-
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             while (rs.next()) {
+                String iconPath = "haco_img/icon/" + rs.getString("i_icon"); // 이미지 경로 설정
+
                 if (rs.getDate("m_debut") != null) {
-                    event = new CalendarInfoDTO();
+                    CalendarInfoDTO event = new CalendarInfoDTO();
                     event.setM_pk(rs.getString("m_pk"));
                     event.setTitle(rs.getString("m_name"));
-                    event.setImagePath(rs.getString("i_icon")); // 이미지 경로 설정
+                    event.setImagePath(iconPath); // 이미지 경로 설정
                     String startDate = dateFormat.format(rs.getDate("m_debut"));
                     event.setStart(startDate);
                     events.add(event);
@@ -54,7 +54,7 @@ public class CalendarDAO {
                     CalendarInfoDTO birthEvent = new CalendarInfoDTO();
                     birthEvent.setM_pk(rs.getString("m_pk"));
                     birthEvent.setTitle(rs.getString("m_name") + "の誕生日");
-                    birthEvent.setImagePath(rs.getString("i_icon")); // 이미지 경로 설정
+                    birthEvent.setImagePath(iconPath); // 이미지 경로 설정
                     String birthDate = dateFormat.format(rs.getDate("m_birth"));
                     birthEvent.setStart(birthDate);
                     events.add(birthEvent);
