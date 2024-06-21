@@ -222,15 +222,14 @@ $(document).ready(function() {
 	// 수정중
 
 	let activerow;
-	$(".s-input-date1").focus(function (){
+	$(".s-input-date1").focus(function() {
 		console.log($(this));
 		activerow = $(this).closest('.s-input-box');
 	});
 
-
 	$insertButton.on("click", function() {
-		console.log($(activerow).html());
-		console.log('나와라얍');
+		//		console.log($(activerow).html());
+		//		console.log('나와라얍');
 		const list = $("#s-member-list").val();
 		const date1 = $(activerow).find($(".s-input-date1")).val();
 		const time1 = $(activerow).find($(".s-input-time1")).val();
@@ -239,9 +238,13 @@ $(document).ready(function() {
 		console.log(date1)
 		console.log(time1)
 		console.log(title1)
+
 		if (!list) {
 			alert("メンバーをチェックください！");
 			return false;
+		}
+		if (!date1 && !time1 && !title1) {
+			$("#schedule-form").submit();
 		}
 		if (!date1) {
 			alert("日付をチェックください！");
@@ -255,26 +258,9 @@ $(document).ready(function() {
 			alert("タイトルをチェックください！");
 			return false;
 		}
-
-
-		for (i = 0; i < 7; i++) {
-			if ($("#s-insert-date").val() === "") {
-				alert("日付をチェックください！");
-				return false;
-			}
-			if ($("#s-insert-time").val() === "") {
-				alert("タイムをチェックください！");
-				return false;
-			}
-			if ($("#s-insert-title").val() === "") {
-				alert("タイトルをチェックください！");
-				return false;
-			}
-
-		}
+		$("#schedule-form").submit();
 	});
-
-
+	
 
 
 
