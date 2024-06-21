@@ -1,9 +1,14 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: "CustomFont";
+  src: url("../fonts/Yomogi-Regular.ttf") format("truetype");
+}
+
 
 /* Scoped styles for your component */
 .html-body, .html-body * {
-	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	 font-family: 'CustomFont', Arial, sans-serif;
 }
 
 /* Allow scrolling on the body */
