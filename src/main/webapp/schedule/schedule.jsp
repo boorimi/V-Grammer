@@ -203,7 +203,7 @@
 								<!-- 								</div> -->
 							</div>
 							<div class="s-insert-button">
-								<button id="s-insert-button" type="button">登録</button>
+								<button id="s-insert-button">登録</button>
 							</div>
 						</div>
 					</form>
