@@ -94,8 +94,30 @@ $(document).ready(function() {
 	//배경화면 슬라이드
 	const images = [
 		'haco_img/background/background_akai_akame.png',
+		'haco_img/background/background_amami_kurine.png',
+		'haco_img/background/background_ayasaka_kiho.png',
+		'haco_img/background/background_daten_shisuta.png',
+		'haco_img/background/background_ginkai_mao.png',
+		'haco_img/background/background_hoshinone_koron.png',
 		'haco_img/background/background_kanami_yuyu.png',
-		'haco_img/background/background_kato_cherie.png'
+		'haco_img/background/background_kato_cherie.png',
+		'haco_img/background/background_kohinata_chiko.png',
+		'haco_img/background/background_meido_shirone.png',
+		'haco_img/background/background_mira_lupus.png',
+		'haco_img/background/background_nanairo_temari.png',
+		'haco_img/background/background_ootori_hakana.png',
+		'haco_img/background/background_perupo.png',
+		'haco_img/background/background_rin_garnet.png',
+		'haco_img/background/background_shirasuna_tsuna.png',
+		'haco_img/background/background_shizukawa_nanoka.png',
+		'haco_img/background/background_sophie_rose.png',
+		'haco_img/background/background_suimori_atori.png',
+		'haco_img/background/background_tachibana_shiena.png',
+		'haco_img/background/background_tamanoi_monaka.png',
+		'haco_img/background/background_tanaka_ryuko.png',
+		'haco_img/background/background_usaki_yotsunoha.png',
+		'haco_img/background/background_yamane_koi.png',
+		'haco_img/background/background_yorumu_ruku.png'
 	];
 	let currentIndex = 0;
 

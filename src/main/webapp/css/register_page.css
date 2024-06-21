@@ -1,9 +1,6 @@
-@font-face {
-	font-family: 'Uzura';
-	src: url('fonts/uzura.ttf') format('truetype');
-}
-
 .register-section {
+	font-family: 'CustomFont', sans-serif;
+	font-weight: 900;
 	position: relative;
 	height: 100vh;
 	display: flex;
@@ -16,12 +13,10 @@
 
 
 .register-container {
-	font-family: 'Uzura', sans-serif;
 	display: flex;
 	justify-content: center;
 	width: 400px;
 	height: 821px;
-	border: 1px solid black;
 	position: absolute;
 	top: 0;
 	z-index: 3;
@@ -62,18 +57,17 @@
 }
 
 #register-submit-button{
+	font-family: 'CustomFont', sans-serif;
+	font-weight: bold;
 	border: 3px solid black;
     font-size: 16pt;
     border-radius: 12px;
 }
 
+
 .waku-wrap {
 	display: flex;
 	align-items: center;
-}
-
-
-.waku-wrap {
 	background-image: url('account/register/shortsUI.png');
 	background-size: cover;
 	background-position: center;
@@ -81,9 +75,9 @@
 	width: 400px;
 	height: 821px;
 	position: absolute;
-	right: 100px;
 	z-index: 3;
-	top: 28%;
+	top: 150px;
+	right: 150px;
 }
 
 
@@ -95,6 +89,8 @@
 
 /*인풋*/
 .form-input {
+	font-family: 'CustomFont', sans-serif;
+	font-weight: 900;
 	width: 250px;
 	height: auto;
 	background: rgb(0, 255, 255);
@@ -106,7 +102,8 @@
 }
 
 .form-element-input {
-	font-family: 'Uzura', sans-serif;
+	font-family: 'CustomFont', sans-serif;
+	font-weight: 900;
 	outline: none;
 	height: 2.5rem;
 	display: block;
@@ -124,13 +121,14 @@
 }
 
 .form-element-input::placeholder {
-	font-family: 'Uzura', sans-serif;
+	font-family: 'CustomFont', sans-serif;
 	color: rgb(0, 0, 0);
 	transform: scale(0.9);
 	transform-origin: left top;
 }
 
 .form-element-bar {
+	font-family: 'CustomFont', sans-serif;
 	height: 1px;
 	background: #999;
 	position: relative;
@@ -138,6 +136,7 @@
 }
 
 .form-element-bar:after {
+	font-family: 'CustomFont', sans-serif;
 	content: "";
 	position: absolute;
 	bottom: 0;
@@ -152,7 +151,7 @@
 }
 
 .form-element-label {
-	font-family: 'Uzura', sans-serif;
+	font-family: 'CustomFont', sans-serif;
 	position: absolute;
 	top: .85rem;
 	line-height: 1.5rem;
@@ -170,7 +169,7 @@
 }
 
 .form-element-hint {
-	font-family: 'Uzura', sans-serif;
+	font-family: 'CustomFont', sans-serif;
 	color: #aaa;
 }
 
@@ -194,7 +193,7 @@
 
 .form-element-input.hasValue~.form-element-label,
 .form-element-input:focus~.form-element-label {
-	transform: translateY(-100%) translateY(-0.5em) translateY(-2px);
+	transform: translateY(-100%) translateY(-0.5em) translateY(-10px);
 	cursor: pointer;
 	pointer-events: auto;
 }
