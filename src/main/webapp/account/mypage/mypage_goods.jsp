@@ -433,6 +433,46 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
+		<button class="goods-info-button">테스트 ▼</button>
+		<div class="goods-content">
+			<c:forEach var="dmmCyeki" items="${Infos_dmmCyeki }">
+				<div>
+					<div class="goods-info-box"
+						style="background-color: ${dmmCyeki.m_personalcolor}">
+						<div class="goods-info-icon">
+							<img alt="" style="width: 50px;"
+								src="haco_img/icon/${dmmCyeki.i_icon}">
+						</div>
+						<div class="goods-info-member">${dmmCyeki.m_name}</div>
+						<div class="goods-info-count">
+							<select class="goods-info-select" data-gmpk="${dmmCyeki.g_m_pk}"
+								data-userid="${dmmCyeki.u_twitter_id }"
+								data-category="${dmmCyeki.g_category}">
+								<optgroup label="${dmmCyeki.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="9" var="i">
+									<c:choose>
+										<c:when test="${i != dmmCyeki.g_count}">
+											<option value="${i}">${i}</option>
+										</c:when>
+										<c:otherwise>
+											<option selected value="${i}">${i}</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:choose>
+									<c:when test="${10 != dmmCyeki.g_count}">
+										<option value="10">10+</option>
+									</c:when>
+									<c:otherwise>
+										<option selected value="10">10+</option>
+									</c:otherwise>
+								</c:choose>
+							</select>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 </body>
 </html>

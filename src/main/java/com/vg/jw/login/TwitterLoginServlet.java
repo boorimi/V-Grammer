@@ -40,8 +40,8 @@ public class TwitterLoginServlet extends HttpServlet {
 		//리퀘스트토큰 엔드포인트url, 액세스토큰 엔드포인트 url, 사용자 승인 엔드포인트 url
 		provider = new CommonsHttpOAuthProvider("https://api.twitter.com/oauth/request_token",
 				"https://api.twitter.com/oauth/access_token", "https://api.twitter.com/oauth/authorize");
-		System.out.println(consumer);
-		System.out.println(provider);
+//		System.out.println(consumer);
+//		System.out.println(provider);
 	}
 
 	@Override
@@ -49,8 +49,8 @@ public class TwitterLoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			System.out.println("get 진입 성공");
-			System.out.println(consumer);
-			System.out.println(CALLBACK_URL);
+//			System.out.println(consumer);
+//			System.out.println(CALLBACK_URL);
 
 			// provider 객체를 사용하여 Twitter로부터 요청 토큰을 받아옴.
 			// consumer객체+콜백url로 트위터api에 리퀘스트토큰 요청 
