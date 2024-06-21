@@ -368,7 +368,7 @@ public class AccountDAO {
 			out.print(jsonResponse.toString());
 		} finally {
 			DBManager.close(con, pstmt, null);
-			out.flush();
+		
 		}
 	}
 

@@ -26,4 +26,21 @@ $(document).ready(function() {
 			});
 		}
 	});
+
+	
+	//인풋창 
+	$('.form-element-input').change(function() {
+		if ($(this).val()) {
+			$(this).addClass('hasValue');
+		} else {
+			$(this).removeClass('hasValue');
+		}
+	});
+
+
+
+
+
+
+
 });

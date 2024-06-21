@@ -266,5 +266,13 @@ public class MyPageDAO {
 		
 		
 	}
+	
+	public static void getBackgroundImg(HttpServletRequest request) {
+		
+		
+		
+		
+	}
+	
 
 }
