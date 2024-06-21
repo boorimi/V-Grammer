@@ -24,7 +24,7 @@
 
 #button-container {
 	position: absolute;
-	bottom: -100;
+	bottom: -230px;
 	left: 50%;
 	transform: translateX(-50%);
 	text-align: center;
