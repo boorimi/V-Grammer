@@ -13,40 +13,52 @@
 }
 
 #dday {
-	border: 1px #a39485 solid;
-	font-family: 'CustomFont', Arial, sans-serif;
-	font-size: .9em;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
-	width: 50%;
-	border-collapse: collapse;
-	border-radius: 5px;
-	overflow: auto;
-	margin-bottom: 60px;
-	margin-left: auto;
-	margin-right: auto;
-	
+    font-family: 'CustomFont', Arial, sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    width: 50%;
+    border-collapse: collapse;
+    overflow: auto;
+    margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px; /* 배경을 둥글게 처리 */
 }
 
 #dday th {
-	text-align: center;
+    text-align: center;
+    }
+    
+#dday th:first-child {
+    border-top-left-radius: 10px; /* 왼쪽 위 모서리만 둥글게 처리 */
 }
+
+#dday th:last-child {
+    border-top-right-radius: 10px; /* 오른쪽 위 모서리만 둥글게 처리 */
+}
+
+    
 
 #dday thead {
-	font-weight: bold;
-	color: #fff;
-	background: rgb(255, 211, 211);
+    font-weight: bold;
+    color: #fff;
+    background: rgb(255, 211, 211);
+    border-radius: 10px; /* 배경을 둥글게 처리 */
 }
 
+
+
 #dday td, #dday th {
-	padding: 1em .5em;
-	vertical-align: middle;
-	text-align: center;
+    padding: 1em .5em;
+    vertical-align: middle;
+    text-align: center;
 }
 
 #dday td {
-	border-bottom: 1px solid rgba(0, 0, 0, .1);
-	background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    background: #fff;
+    border-radius: 10px; /* tbody의 모서리를 둥글게 처리 */
 }
+
 
 @media all and (max-width: 768px) {
 	#dday, #dday thead, #dday tbody, #dday th, #dday td, #dday tr {
