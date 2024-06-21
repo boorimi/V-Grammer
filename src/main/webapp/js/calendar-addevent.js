@@ -142,8 +142,8 @@ function addPopoverToEvent(eventEl, event) {
         <div class="arrow"></div>
         <h3 class="popover-header">${event.title}</h3>
         <div class="popover-body">
-            <p>텍스트: ${event.extendedProps.description || '정보 없음'}</p>
-            ${event.extendedProps.image ? `<img src="${event.extendedProps.image}" alt="event image" style="width: 100%;">` : ''}
+            <p>텍스트: ${event.extendedProps.title || '정보 없음'}</p>
+            ${event.extendedProps.imagePath ? `<img src="${event.extendedProps.imagePath}" alt="event image" style="width: 100%;">` : ''}
         </div>
     `;
     document.body.appendChild(popover);
