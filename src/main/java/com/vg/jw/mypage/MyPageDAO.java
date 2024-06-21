@@ -195,15 +195,15 @@ public class MyPageDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		String sql = "SELECT ht.t_pk, ht.t_u_t_id, hs.u_nickname, ht.t_text, ht.t_date, ht.t_category FROM haco_tradegoods ht, haco_user hs "
-				+ "where ht.t_u_t_id = ? "
+		String sql = "SELECT ht.t_pk, ht.t_u_t_id, hs.u_screenname, hs.u_nickname, ht.t_text, ht.t_date, ht.t_category FROM haco_tradegoods ht, haco_user hs "
+				+ "where ht.t_u_t_id = hs.u_twitter_id and ht.t_u_t_id = ? "
 				+ "ORDER BY ht.t_date DESC "
 				+ "LIMIT 5 OFFSET ?";
 		
 		
-		String sql2 = "SELECT tc_pk, tc_m_t_id, hu1.u_nickname AS m_nickname, tc_s_t_id, hu2.u_nickname AS s_nickname, tc_text, tc_date, tc_t_pk \r\n"
-				+ "FROM haco_tradegoods_comments \r\n"
-				+ "JOIN haco_user hu1 ON tc_m_t_id = hu1.u_twitter_id \r\n"
+		String sql2 = "SELECT tc_pk, tc_m_t_id, hu1.u_nickname AS m_nickname, tc_s_t_id, hu2.u_nickname AS s_nickname, tc_text, tc_date, tc_t_pk\r\n"
+				+ "FROM haco_tradegoods_comments\r\n"
+				+ "JOIN haco_user hu1 ON tc_m_t_id = hu1.u_twitter_id\r\n"
 				+ "LEFT JOIN haco_user hu2 ON tc_s_t_id = hu2.u_twitter_id\r\n"
 				+ "where tc_t_pk = ?";
 		try {
@@ -220,13 +220,14 @@ public class MyPageDAO {
 			while (rs.next()) {
 				String t_pk = rs.getString(1);
 				String t_id = rs.getString(2);
-				String t_nickname = rs.getString(3);
-				String t_text = rs.getString(4);
-				String t_date = rs.getString(5);
+				String t_screeName = rs.getString(3);
+				String t_nickname = rs.getString(4);
+				String t_text = rs.getString(5);
+				String t_date = rs.getString(6);
 
 				// 배열로 전환
 				category = rs.getString(6).split("!");
-				TradeDTO t = new TradeDTO(t_pk, t_id, t_nickname, t_text, t_date, category);
+				TradeDTO t = new TradeDTO(t_pk, t_id, t_screeName,t_nickname, t_text, t_date, category, null);
 				System.out.println("=================");
 				System.out.println(t);
 				System.out.println("=================");
@@ -235,19 +236,21 @@ public class MyPageDAO {
 				pstmt.setString(1, t_pk);
 				rs2 = pstmt.executeQuery();
 				while (rs2.next()) {
-					String c_pk = rs.getString(1);
-					String c_mTwitterId = rs.getString(2);
-					String c_mNickname = rs.getString(3);
-					String c_sTwitterId = rs.getString(4);
-					String c_sNickname = rs.getString(5);
-					String c_text = rs.getString(6);
-					String c_date = rs.getString(7);
-					String c_t_pk = rs.getString(8);
-					
+					String c_pk = rs2.getString(1);
+					String c_mTwitterId = rs2.getString(2);
+					String c_mNickname = rs2.getString(3);
+					String c_sTwitterId = rs2.getString(4);
+					String c_sNickname = rs2.getString(5);
+					String c_text = rs2.getString(6);
+					String c_date = rs2.getString(7);
+					String c_t_pk = rs2.getString(8);
 					String text2 = c_text.replace("<br>", "\r\n");
 					tc = new TradeCommentsDTO(c_pk, c_mTwitterId, c_mNickname, c_sTwitterId, c_sNickname, text2,
 							c_date, c_t_pk);
 					tradeComments.add(tc);
+					System.out.println("~~~~~~~~~~~~~~~~~");
+					System.out.println(tc);
+					System.out.println("~~~~~~~~~~~~~~~~~");
 				}
 				rs2.close();
 				t.setComments(tradeComments);

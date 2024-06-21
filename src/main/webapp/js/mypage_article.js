@@ -52,14 +52,14 @@ function tradeCommentsDelete(pk) {
 
 
 $(function() {
-	
-	$(".trade-openComments").click(function() {
+
+	$(document).on("click", ".trade-openComments", function() {
 		let post = $(this).closest(".trade-content");
 		let commentsDiv = post.find(".trade-comments");
-
-		commentsDiv.each(function() {
-			$(this).toggle();
-		});
+		console.log($(this).val());
+		$(commentsDiv).each(function(idx, cd) {
+			$(cd).toggle();
+		})
 	});
 
 	$(".trade-openCategorys").click(function() {
@@ -78,7 +78,7 @@ $(function() {
 
 		commentsDiv.each(function() {
 			$(".trade-category").css("display", "none");
-			$(this).toggle();
+			$(".trade-comments").toggle();
 		});
 	});
 
@@ -122,19 +122,19 @@ $(function() {
 					console.log("t:" + t);
 					
 					 let categoriesHtml = '';
-   					 (t.category).forEach((cate) => {
-        				categoriesHtml += `<span style="margin-right: 5px;">${cate}</span>`;
-  					 });
+							 (t.category).forEach((cate) => {
+						categoriesHtml += `<span style="margin-right: 5px;">${cate}</span>`;
+						 });
 					let content =
 						`<div class="trade-content">
-	        			<div>
-	        			<div>${t.nickname}</div>
-	        			<div>${t.twitterId}</div>
-	        			<div style="display: flex; flex-wrap: wrap;">
-	        					${categoriesHtml}
-	        			</div>
-	        			<div>${t.date}</div>
-	        			</div></div>`;
+						<div>
+						<div>${t.nickname}</div>
+						<div>${t.twitterId}</div>
+						<div style="display: flex; flex-wrap: wrap;">
+								${categoriesHtml}
+						</div>
+						<div>${t.date}</div>
+						</div></div>`;
 					tradeContent.innerHTML += content;
 					console.log("카테고리스:"+categoriesHtml);
 				});
@@ -143,49 +143,100 @@ $(function() {
 	});*/
 
 
-$(document).ready(function() {
-    const moreBtn = $("#more-btn");
-    console.log(moreBtn);
-    let limit = parseInt(moreBtn.val());
-    console.log(limit);
-    const tradeContent = $('.trade-conmain');
+	const moreBtn = $("#more-btn");
+	console.log(moreBtn);
+	let limit = parseInt(moreBtn.val());
+	console.log(limit);
+	const tradeContent = $('.trade-conmain');
 
-    moreBtn.on("click", function() {
-        alert('clicked!');
-        let url = "ArticleAPI?limit=" + limit;
-        $.ajax({
-            url: url,
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                console.log(data); // 받은 데이터를 처리합니다.
-                limit += 5;
-                console.log('호출 후 limit' + limit);
+	moreBtn.on("click", function() {
+		alert('clicked!');
+		let url = "ArticleAPI?limit=" + limit;
+		$.ajax({
+			url: url,
+			method: 'GET',
+			dataType: 'json',
+			success: function(data) {
+				console.log(data); // 받은 데이터를 처리합니다.
+				limit += 5;
+				console.log('호출 후 limit' + limit);
 
-                data.forEach(function(t) {
-                    console.log(t);
-                    
-                    let categoriesHtml = '';
-                    $.each(t.category, function(index, cate) {
-                        categoriesHtml += `<span style="margin-right: 5px;">${cate}</span>`;
-                    });
-                    let content =
-                        `<div class="trade-content">
-                            <div>
-                                <div>${t.nickname}</div>
-                                <div>${t.twitterId}</div>
-                                <div style="display: flex; flex-wrap: wrap;">
-                                    ${categoriesHtml}
-                                </div>
-                                <div>${t.date}</div>
-                            </div>
-                        </div>`;
-                    tradeContent.append(content);
-                });
-            }
-        });
-    });
+				data.forEach(function(t) {
+					console.log(t);
+
+					let categoriesHtml = '';
+					$.each(t.category, function(index, cate) {
+						categoriesHtml += `<div class="trade-goods-category">${cate}</div>`;
+					});
+
+					let commentHTML = "";
+					$.each(t.comments, (idx, cm) => {
+						commentHTML += `<div class="trade-comments comment-wrap" style="display: none">
+							<div>
+								<div>${cm.sNickname}</div>
+								<div>${cm.date}</div>
+							</div>
+							<div>${cm.text}
+							</div>
+							<div>
+										<a onclick="tradeDelete(${t.pk})"> <img class="crud-icon"
+											src="haco_img/delete.png" alt="">
+										</a>
+									</div>
+						</div>`;
+					});
+					console.log(commentHTML);
+
+
+
+					let content =
+						`<div class="trade-content">
+				<div class="trade-content-title">
+					<div>${t.nickname}</div>
+					<div>
+						<a target="_blnck" href="https://x.com/${t.screenName}"><img
+							src="haco_img/icon-twitter.png" /></a>
+					</div>
+					<div>${t.date}</div>
+				</div>
+				<!--  카테고리 for문 시작 -->
+				<div class="trade-content-category ">
+							${categoriesHtml}
+					<!-- 카테고리for문 끝 -->
+				</div>
+				<div class="trade-content-text">
+					<div class="trade-con-title">${t.text}</div>
+						<div>
+							<a onclick="location.href='UpdateTrade?no=${t.pk}'"> <img
+								class="crud-icon" src="haco_img/update.png" alt="" />
+							</a>
+						</div>
+						<div>
+							<a onclick="tradeDelete(${t.pk})"> <img class="crud-icon"
+								src="haco_img/delete.png" alt="" />
+							</a>
+						</div>
+				</div>
+<div class="cute-button-box">
+					<button class="trade-openComments cute-button-pink">コメント(${t.comments.length})</button>
+				</div>
+				${commentHTML}
+				<div class="trade-comments" style="display: none; border: 0px;">
+					<form id="insertTradeCommentsForm_${t.pk}"
+						action="InsertTradeComments">
+						<input name="no" type="hidden" value="${t.pk}" /> <input
+							name="masterTwitterId" type="hidden" value="${t.twitterId}" />
+						<textarea style="width: 99%; height: 70px;" name="text"></textarea>
+						<button class="cute-button-blue" type="button"
+							onclick="tradeCommentsInsert('${t.pk}')">作成</button>
+					</form>
+				</div>
+			</div>`;
+					tradeContent.append(content);
+				});
+			}
+		});
+	});
 });
 
 
-});
