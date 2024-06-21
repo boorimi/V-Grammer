@@ -74,3 +74,9 @@
 	height: -100px; /* Adjust the height as needed */
 	overflow: auto;
 }
+
+.popover-body img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* 이미지 비율 유지하며 크기에 맞춤 */
+}

@@ -143,26 +143,44 @@ function addPopoverToEvent(eventEl, event) {
         <h3 class="popover-header">${event.title}</h3>
         <div class="popover-body">
             <p>텍스트: ${event.extendedProps.title || '정보 없음'}</p>
-            ${event.extendedProps.imagePath ? `<img src="${event.extendedProps.imagePath}" alt="event image" style="width: 100%;">` : ''}
+            ${event.extendedProps.imagePath ? `<img src="${event.extendedProps.imagePath}" alt="event image">` : ''}
         </div>
     `;
     document.body.appendChild(popover);
 
     let timeoutId; // 호버 지연 제어를 위한 timeout 변수
+    let isHoveringEvent = false; // 이벤트 바 위에 있는지 여부를 추적
 
-    eventEl.addEventListener('mouseenter', function() {
-        clearTimeout(timeoutId); // 기존 지연 제어를 초기화
-
-        // 팝업을 즉시 표시
+    function showPopover() {
+        clearTimeout(timeoutId);
         positionPopover(popover, eventEl);
         popover.classList.add('show');
+    }
+
+    function hidePopover() {
+        timeoutId = setTimeout(function() {
+            if (!isHoveringEvent) {
+                popover.classList.remove('show');
+            }
+        }, 100); // 사라지는 지연 시간 짧게 설정
+    }
+
+    eventEl.addEventListener('mouseenter', function() {
+        isHoveringEvent = true;
+        showPopover();
     });
 
     eventEl.addEventListener('mouseleave', function() {
-        // 호버가 끝난 후 200ms 후에 팝업을 숨김
-        timeoutId = setTimeout(function() {
-            popover.classList.remove('show');
-        }, 200);
+        isHoveringEvent = false;
+        hidePopover();
+    });
+
+    popover.addEventListener('mouseenter', function() {
+        clearTimeout(timeoutId); // 팝오버에 마우스가 올라가면 사라지는 지연 시간 초기화
+    });
+
+    popover.addEventListener('mouseleave', function() {
+        hidePopover();
     });
 
     document.addEventListener('scroll', function() {
@@ -183,5 +201,6 @@ function positionPopover(popover, eventEl) {
     popover.style.top = `${rect.top + window.scrollY - popover.offsetHeight}px`;
     popover.style.left = `${rect.left + rect.width / 2 - popover.offsetWidth / 2}px`;
 }
+
 
 });
