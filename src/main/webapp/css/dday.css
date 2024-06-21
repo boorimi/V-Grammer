@@ -158,5 +158,5 @@
 
 .html-body, .html-body * {
 	overflow: auto;
-	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-family: 'CustomFont', Arial, sans-serif;
 }
