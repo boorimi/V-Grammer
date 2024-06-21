@@ -1,7 +1,7 @@
 .login-container {
 	display: flex;
-	width: 12vw;
-	justify-content: space-between;
+	width: 240px;
+    justify-content: space-evenly;
 	align-items: center;
 }
 

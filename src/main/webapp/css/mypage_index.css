@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 .mypage-container {
-
+	font-family: 'CustomFont', sans-serif;
+	font-weight: 900;
 	display: flex;
 	justify-content: flex-end;
 	position: relative;
