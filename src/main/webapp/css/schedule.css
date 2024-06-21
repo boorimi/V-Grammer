@@ -34,6 +34,8 @@ dialog::backdrop {
 .schedule-container {
 	height: auto;
 	margin-top: 2%;
+	font-family: 'CustomFont', sans-serif;
+	font-weight: 900;
 }
 
 .s-week-list {
@@ -43,14 +45,16 @@ dialog::backdrop {
 /* 탭 스타일 */
 .tab_item {
 	width: calc(100% / 8);
-	height: 50px;
+	height: 60px;
 	border-bottom: 3px solid #333333;
 	background-color: #f8f8f8;
 	line-height: 50px;
-	font-size: 16px;
+	font-size: 25px;
 	text-align: center;
 	color: #333333;
-	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	float: left;
 	font-weight: bold;
 	transition: all 0.2s ease;
@@ -183,6 +187,7 @@ dialog::backdrop {
 	border-bottom-style: dotted;
 	border-right-style: inset;
 	border-color: white;
+	font-size: 17pt;
 }
 
 .n-time {
@@ -204,6 +209,7 @@ dialog::backdrop {
 	position: relative;
 	box-shadow: 0 0 0 2px white inset;
 	border-radius: 13px;
+	font-size: 13pt;
 }
 
 .s-data:hover {
@@ -260,7 +266,7 @@ dialog::backdrop {
 }
 
 #schedule-insert-detail-button {
-	font-family: "Noto Sans JP", sans-serif;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
 	font-size: 1.4rem;
 	color: #fff;
 	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
@@ -286,28 +292,29 @@ dialog::backdrop {
 }
 
 .s-slide-box {
-  width: 70%;
-  white-space: nowrap;
-  overflow: hidden;
+	width: 70%;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .s-slide-text {
-  font-size: 25px;
-  font-weight: 900;
-  display: inline-block;
-  white-space: nowrap;
-  animation: roll 12s linear infinite;
-  padding-left: 200px;
+	font-size: 25px;
+	font-weight: 900;
+	display: inline-block;
+	white-space: nowrap;
+	animation: roll 12s linear infinite;
+	padding-left: 200px;
 }
 
 /* 텍스트 슬라이드 */
 @keyframes roll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-100%);
+	}
 }
 
 .s-insert-content-a-box {
@@ -323,6 +330,29 @@ dialog::backdrop {
 #s-member-list {
 	width: 100%;
 	height: 34px;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16"> <path d="M7.247 11.14l-4.796-5.481c-.566-.647-.106-1.659.753-1.659h9.592c.86 0 1.32 1.012.754 1.659l-4.796 5.48a1 1 0 0 1-1.508 0z"/> </svg>');
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 16px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+#s-member-list:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+#s-member-list:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
 }
 
 .s-insert-content-b-box {
@@ -341,10 +371,52 @@ dialog::backdrop {
 	width: 20%
 }
 
-#s-input-date,
+#s-input-date {
+	width: 95%;
+	height: 30px;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+#s-input-date:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+#s-input-date:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
+}
+
 #s-input-time {
 	width: 95%;
 	height: 30px;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+#s-input-time:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+#s-input-time:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
 }
 
 .s-input-title {
@@ -354,6 +426,25 @@ dialog::backdrop {
 #s-input-title {
 	width: 97%;
 	height: 30px;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+#s-input-title:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+#s-input-title:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
 }
 
 .s-input-box {
@@ -370,7 +461,7 @@ dialog::backdrop {
 }
 
 #s-insert-button {
-	font-family: "Noto Sans JP", sans-serif;
+	/*	font-family: "Noto Sans JP", sans-serif;*/
 	font-size: 1.5rem;
 	color: #fff;
 	background: linear-gradient(45deg, #ff69b4, #ff9a9e);

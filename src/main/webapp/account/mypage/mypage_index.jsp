@@ -10,7 +10,7 @@
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 <script src="js/mypage_index.js"></script>
-<script src="js/mypage_article.js" defer="defer"></script>
+
 <script src="js/mypage_goods.js" defer="defer"></script>
 <script src="js/mypage_userInfo.js" defer="defer"></script>
 </head>
