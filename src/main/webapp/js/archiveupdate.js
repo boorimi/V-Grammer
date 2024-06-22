@@ -2,26 +2,23 @@ $(function () {
 
   // 비동기 페이징 (archiveupdate.jsp)
   // 추가 : 페이징 후에도 select태그 자동지정 및 토글버튼 구현
-  $(document).on("click", ".archive-page-no2", function () {
-    $("#archive-list2").css({ opacity: 0.3 });
-    adjustOpacity2(1);
-    let page = $(this).text();
-    $.ajax({
-      url: "ArchiveC",
-      type: "post",
-      data: { page },
+  $(document).on("click", ".archive-update-button-1", function () {
+     let a_pk = $("input[name='a_pk']").val();
+     console.log(a_pk);
+     $.ajax({
+      url: "ArchiveUpdateC",
+      type: "get",
+      data: { a_pk },
       dataType: "json",
-    }).done(function (resData) {
-      test2(resData);
-      let a = $(".collaboMember");
-      replaceCollabomemberString(a);
-      collabo_yesno_selected();
-      toggleButton();
-      category_selected();
-      //      console.log(JSON.stringify(resData));
-      $("select[name='collabo']").change(function () {
-        toggleButton();
-      });
+      success: function(resData) {
+        // 요청이 성공했을 때 실행할 코드
+        test2(resData);
+    },
+    error: function(xhr, status, error) {
+        // 요청이 실패했을 때 실행할 코드
+        console.log("Request failed: " + status + ", " + error);
+    }
+      
     });
   });
 
@@ -81,81 +78,6 @@ function getMonthNumber(monthName) {
     "12월",
   ];
   return months.indexOf(monthName) + 1;
-}
-
-// archiveupdate.jsp 비동기 적용 함수
-function test2(resData) {
-  let $archiveList = $("#archive-list2");
-  $archiveList.html("");
-  for (let i = 0; i < resData.length; i++) {
-    let archive = resData[i];
-
-    const dateString = archive.a_date;
-    // 문자열을 공백과 쉼표로 분리하여 구성 요소 추출
-    const [monthName, day, year] = dateString.replace(",", "").split(" ");
-    // 월을 숫자로 변환
-    const month = String(getMonthNumber(monthName)).padStart(2, "0");
-    const dayPadded = String(day).padStart(2, "0");
-
-    // yyyy-MM-dd 형식으로 변환
-    const formattedDate = `${year}-${month}-${dayPadded}`;
-
-    const formattedTime = convertTimeTo24Hours(archive.a_time);
-
-    let html = `<form action="ArchiveUpdateC" method="post">
-				<div class="archive-contents-update">
-			        <div><button type="submit">수정</button></div>
-					<p style="margin-top: 0px">
-						<img class="archive-icon" src="haco_img/icon/${archive.i_icon}" />
-					</p>
-					<input type="hidden" name="a_pk" value="${archive.a_pk}">
-					<div class="archive-membername">${archive.m_name}</div>
-
-					<div class="archive-collabo">
-						<div>コラボ</div>
-						<select name="collabo">
-							<option value="未分類">未分類</option>
-							<option value="外部コラボ">外部コラボ</option>
-							<option value="ハコ内コラボ">ハコ内コラボ</option>
-							<option value="なし">なし</option>
-						</select>
-						<input class="collabo-value" type="hidden" value="${archive.a_collabo}"/>
-					</div>
-					<div class="archive-collabo-member">
-						<div>コラボメンバー</div>
-						<button type="button" onclick="openModal(this)"
-							class="openModalButton">선택하기</button>
-						<input type="hidden" class="collaboMember" name="collabomember" value="${archive.a_collabomember}" />
-						<div class="collaboMember2">
-						</div>
-					</div>
-					<div class="archive-category">
-						<div>カテゴリー</div>
-						<select name="category">
-							<option value="未分類">未分類</option>
-							<option value="雑談">雑談</option>
-							<option value="歌枠">歌枠</option>
-							<option value="ゲーム">ゲーム</option>
-							<option value="企画">企画</option>
-							<option value="ASMR">ASMR</option>
-							<option value="shorts">shorts</option>
-							<option value="切り抜き">切り抜き</option>
-							<option value="オリジナル曲">オリジナル曲</option>
-							<option value="他">他</option>
-						</select>
-						<input class="category-value" type="hidden" value="${archive.a_category}"/>
-					</div>
-					<div class="archive-date">${formattedDate}</div>
-					<div class="archive-time">${formattedTime}</div>
-					<div class="archive-title">${archive.a_title}</div>
-					<div class="archive-thumbnail">
-						<img src="${archive.a_thumbnail}"
-							alt="${archive.a_title} Thumbnail" />
-					</div>
-				</div>
-			</form>`;
-    $archiveList.append(html);
-  }
 }
 
 // 투명도를 조절하는 함수
@@ -244,31 +166,7 @@ function category_selected() {
   });
 }
 //ハコ内コラボ일때만 버튼 나오게
-function toggleButton() {
-  $("select[name='collabo']").each(function () {
-    let select = $(this);
-    let openModalButton = select
-      .closest(".archive-collabo")
-      .next(".archive-collabo-member")
-      .find(".openModalButton");
-    if (select.val() === "ハコ内コラボ") {
-      openModalButton.css("display", "block");
-    } else {
-      openModalButton.css("display", "none");
-    }
 
-    // ハコ内コラボ 아닐때 콜라보멤버 초기화 함수
-     let select2 = $(this);
-    let openModalButton2 = select2
-      .closest(".archive-collabo")
-      .next(".archive-collabo-member");
-    console.log(select2.val());
-    if (select2.val() != "ハコ内コラボ") {
-      openModalButton2.find(".collaboMember2").text("未分類");
-      openModalButton2.find("input").val("未分類");
-    } 
-  });
-}
 
 // 콜라보 멤버 문자열을 div로 감싸 표현하는 함수
 function replaceCollabomemberString(a) {
@@ -300,5 +198,7 @@ function replaceNull() {
     }
   });
 }
+
+
 
 

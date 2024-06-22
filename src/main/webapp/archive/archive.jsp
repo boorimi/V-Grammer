@@ -15,6 +15,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   </head>
 
   <body>
+  	<div class="all-wrapper">
     <!-- 검색창 시작 -->
     <form>
       <div class="archive-search-wrapper">
@@ -73,10 +74,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       <c:forEach items="${archives}" var="archive">
         <div class="archive-contents">
           <div class="archive-update-div">
-            <button
-              class="cute-button"
-              onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'"
-            >
+            <button class="archive-update-button-1 cute-button"
+            value="${archive.a_pk}">
               修正する
             </button>
           </div>
@@ -154,5 +153,6 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       </div>
     </div>
     <!-- 페이징 끝 -->
+    </div>
   </body>
 </html>

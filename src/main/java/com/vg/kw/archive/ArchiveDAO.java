@@ -1,5 +1,6 @@
 package com.vg.kw.archive;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -252,13 +253,13 @@ public class ArchiveDAO {
 		}
 	}
 
-	public static void selectOneArchive(HttpServletRequest req) {
+	public static void selectOneArchive(HttpServletRequest req, HttpServletResponse response) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String pk = req.getParameter("pk");
-
+		String pk = req.getParameter("a_pk");
+		
 		String sql = "SELECT ha.*, hm.m_name, hi.i_icon from haco_archive ha, haco_member hm, haco_image hi "
 				+ "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk and ha.a_pk = ? "
 				+ "order by a_date desc, a_time desc ";
@@ -285,6 +286,10 @@ public class ArchiveDAO {
 
 			req.setAttribute("archive", archive);
 			System.out.println("Archives fetched: " + archives.size()); // 디버깅 메시지
+			System.out.println(archive.toJSON());
+			response.setContentType("application/json; charset=utf-8");
+			response.getWriter().print(archive.toJSON());
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -292,7 +297,7 @@ public class ArchiveDAO {
 		}
 	}
 
-	public static void UpdateArchive(HttpServletRequest request) {
+	public static void UpdateArchive(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -301,7 +306,12 @@ public class ArchiveDAO {
 		String collabomember = request.getParameter("collabomember");
 		String category = request.getParameter("category");
 		String a_pk = request.getParameter("a_pk"); // Unique identifier
-
+		
+		System.out.println(collabo);
+		System.out.println(collabomember);
+		System.out.println(category);
+		System.out.println(a_pk);
+		
 		// Validate that necessary parameters are not null or empty
 		if (collabo == null || collabomember == null || category == null || a_pk == null) {
 			System.out.println("One or more parameters are missing.");
@@ -328,6 +338,8 @@ public class ArchiveDAO {
 			int rowsUpdated = pstmt.executeUpdate();
 			if (rowsUpdated > 0) {
 				System.out.println("Update successful. Rows updated: " + rowsUpdated);
+				response.setContentType("text/plain; charset=utf-8");
+				response.getWriter().print("수정성공");
 			} else {
 				System.out.println("No rows updated. Check your condition.");
 			}

@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
           メンバー
         </div>
         <div
-          onclick="location.href='ArchivePageC?p=1'"
+          onclick="location.href='ArchiveC?'"
           class="menu-lists-archive"
         >
           アーカイブ

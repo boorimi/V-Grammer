@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fn"
-uri="http://java.sun.com/jsp/jstl/functions"%>
+uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,10 +11,10 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   </head>
   <body>
     <div id="archive-list2">
-      <form action="ArchiveUpdateC" method="post">
+      <form method="post">
         <div class="archive-contents-update">
           <div>
-            <button type="submit" class="cute-button">修正</button>
+            <button id="updateButton" class="cute-button">修正</button>
           </div>
           <p>
             <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" />
