@@ -14,7 +14,6 @@ public class GoodsC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("GoodsC get 진입");
-		MyPageDAO.getBromide(request);
 
 	}
 

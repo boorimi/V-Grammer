@@ -129,7 +129,7 @@ public class MyPageDAO {
 
 			con = DBManager.connect();
 
-			//기존값이 0일 경우 insert문
+			// 기존값이 0일 경우 insert문
 			if (oldCount == 0) {
 				sql = "insert into haco_goods values (null, ?, ?, ?, ?);";
 				pstmt = con.prepareStatement(sql);
@@ -141,8 +141,7 @@ public class MyPageDAO {
 				if (pstmt.executeUpdate() == 1) {
 					System.out.println("굿즈데이터 추가 성공");
 				}
-				
-				
+
 			} else {
 
 				if (goods_count == 0) { // 전달된 굿즈 카운트가0 -> 삭제문
@@ -179,13 +178,11 @@ public class MyPageDAO {
 
 	}
 
-	
-	
 	public static void getMoreArticle(HttpServletRequest request, HttpServletResponse response) {
 		// 5개씩 더 가져오기
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json; utf-8");
-		
+
 		int limit = Integer.parseInt(request.getParameter("limit"));
 		System.out.println(limit);
 		AccountDTO accountInfo = (AccountDTO) request.getSession().getAttribute("accountInfo");
@@ -196,16 +193,12 @@ public class MyPageDAO {
 		ResultSet rs = null;
 		ResultSet rs2 = null;
 		String sql = "SELECT ht.t_pk, ht.t_u_t_id, hs.u_screenname, hs.u_nickname, ht.t_text, ht.t_date, ht.t_category FROM haco_tradegoods ht, haco_user hs "
-				+ "where ht.t_u_t_id = hs.u_twitter_id and ht.t_u_t_id = ? "
-				+ "ORDER BY ht.t_date DESC "
+				+ "where ht.t_u_t_id = hs.u_twitter_id and ht.t_u_t_id = ? " + "ORDER BY ht.t_date DESC "
 				+ "LIMIT 5 OFFSET ?";
-		
-		
+
 		String sql2 = "SELECT tc_pk, tc_m_t_id, hu1.u_nickname AS m_nickname, tc_s_t_id, hu2.u_nickname AS s_nickname, tc_text, tc_date, tc_t_pk\r\n"
-				+ "FROM haco_tradegoods_comments\r\n"
-				+ "JOIN haco_user hu1 ON tc_m_t_id = hu1.u_twitter_id\r\n"
-				+ "LEFT JOIN haco_user hu2 ON tc_s_t_id = hu2.u_twitter_id\r\n"
-				+ "where tc_t_pk = ?";
+				+ "FROM haco_tradegoods_comments\r\n" + "JOIN haco_user hu1 ON tc_m_t_id = hu1.u_twitter_id\r\n"
+				+ "LEFT JOIN haco_user hu2 ON tc_s_t_id = hu2.u_twitter_id\r\n" + "where tc_t_pk = ?";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -227,11 +220,11 @@ public class MyPageDAO {
 
 				// 배열로 전환
 				category = rs.getString(6).split("!");
-				TradeDTO t = new TradeDTO(t_pk, t_id, t_screeName,t_nickname, t_text, t_date, category, null);
+				TradeDTO t = new TradeDTO(t_pk, t_id, t_screeName, t_nickname, t_text, t_date, category, null);
 				System.out.println("=================");
 				System.out.println(t);
 				System.out.println("=================");
-				
+
 				pstmt = con.prepareStatement(sql2);
 				pstmt.setString(1, t_pk);
 				rs2 = pstmt.executeQuery();
@@ -245,8 +238,8 @@ public class MyPageDAO {
 					String c_date = rs2.getString(7);
 					String c_t_pk = rs2.getString(8);
 					String text2 = c_text.replace("<br>", "\r\n");
-					tc = new TradeCommentsDTO(c_pk, c_mTwitterId, c_mNickname, c_sTwitterId, c_sNickname, text2,
-							c_date, c_t_pk);
+					tc = new TradeCommentsDTO(c_pk, c_mTwitterId, c_mNickname, c_sTwitterId, c_sNickname, text2, c_date,
+							c_t_pk);
 					tradeComments.add(tc);
 					System.out.println("~~~~~~~~~~~~~~~~~");
 					System.out.println(tc);
@@ -262,20 +255,47 @@ public class MyPageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			
+
 			DBManager.close(con, pstmt, rs2);
-			
+
 		}
-		
-		
+
 	}
-	
-	public static void getBackgroundImg(HttpServletRequest request) {
+
+	public static void changeNickname(HttpServletRequest request) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		//ajax에서 받아오는 input닉네임 파라미터
+		String newNickname = request.getParameter("inputNickname");
+		String sql = "UPDATE haco_user SET u_nickname = ? WHERE u_twitter_id = ?";
+		AccountDTO accountInfo = (AccountDTO) request.getSession().getAttribute("accountInfo");
+		long twitterId = accountInfo.getU_twitter_id();
+		System.out.println(twitterId);
 		
 		
-		
-		
+		try {
+
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, newNickname);
+			pstmt.setLong(2, twitterId);
+			
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println(newNickname+" 으로 닉네임 업데이트 성공");
+				
+				//로그인 세션의 닉네임정보 업데이트 
+				accountInfo.setU_nickname(newNickname);
+				System.out.println("로그인세션 내 닉네임 정보"+ accountInfo.getU_nickname());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
 	}
-	
 
 }

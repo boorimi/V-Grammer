@@ -24,7 +24,9 @@ public class UserInfoC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AccountDAO.updateUserInfo(request);
+		request.setCharacterEncoding("utf-8");
+		System.out.println("UserInfoC post 진입");
+		MyPageDAO.changeNickname(request);
 		
 		
 	}
