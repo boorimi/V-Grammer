@@ -199,25 +199,6 @@ function replaceNull() {
   });
 }
 
-function updateArchive() {
-	$(document).on("click", "#updateButton", function () {
-		let collabo = $("select[name='collabo']");
-    $.ajax({
-      url: "ArchiveUpdateC",
-      type: "post",
-      data: { a_pk, collabo, collabomember, category },
-      dataType: "json",
-    }).done(function (resData) {
-      history.back();
-      
-      
-    });
-  });
-	
-}
 
-function updatePage() {
-	
-}
 
 

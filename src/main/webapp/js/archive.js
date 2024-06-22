@@ -7,17 +7,16 @@ $(function () {
   $.ajax({
     url: "ArchiveSearchC",
     type: "post",
-    data: { page : 1},
+    data: { page: 1 },
     dataType: "json",
   }).done(function (resData) {
     console.log(resData);
     getPagingVariableStart().then(function (resData) {
-	console.log(resData)
-    let data = resData.split("!");
-    localStorage.setItem("currentPage", data[0]); // 현재페이지 정보
-    localStorage.setItem("pageCount", data[1]);
-      }
-    );
+      console.log(resData);
+      let data = resData.split("!");
+      localStorage.setItem("currentPage", data[0]); // 현재페이지 정보
+      localStorage.setItem("pageCount", data[1]);
+    });
   });
 
   $(document).on("click", ".archive-paging-no", function () {
@@ -63,9 +62,13 @@ $(function () {
       localStorage.setItem("member", $("select[name='member']").val());
       localStorage.setItem("category", $("select[name='category']").val());
       localStorage.setItem("title", $("input[name='title']").val());
-	  let tempPagePrev = (Math.floor(( localStorage.getItem("currentPage") - 1 ) / 10) - 1) * 10 + 1;
-	  let tempPageNext = (Math.floor(( localStorage.getItem("currentPage") - 1 ) / 10) + 1) * 10 + 1;
-      
+      let tempPagePrev =
+        (Math.floor((localStorage.getItem("currentPage") - 1) / 10) - 1) * 10 +
+        1;
+      let tempPageNext =
+        (Math.floor((localStorage.getItem("currentPage") - 1) / 10) + 1) * 10 +
+        1;
+
       if ($(this).hasClass("archive-paging-start")) {
         localStorage.setItem("currentPage", "1");
       } else if ($(this).hasClass("archive-paging-unit-prev")) {
@@ -107,33 +110,34 @@ $(function () {
     }
   );
 
-	
-  // 업데이트 페이지로 비동기 처리	
+  // 업데이트 페이지로 비동기 처리
   $(document).on("click", ".archive-update-button-1", function () {
-	//$("#archive-list2").css({ opacity: 0.3 });
-     let a_pk = $(this).val();
-     console.log(a_pk);
-     $.ajax({
+    //$("#archive-list2").css({ opacity: 0.3 });
+    let a_pk = $(this).val();
+    console.log(a_pk);
+    $.ajax({
       url: "ArchiveUpdateC",
       type: "get",
       data: { a_pk },
       dataType: "json",
-      success: function(resData) {
+      success: function (resData) {
         // 요청이 성공했을 때 실행할 코드
         test2(resData);
-  		  adjustOpacity2(1);
-  		  updateArchive();
-  		  $("select[name='collabo']").change(function () {
-  		  toggleButton();
-	});
-    },
-    error: function(xhr, status, error) {
+        adjustOpacity2(1);
+
+        $("select[name='collabo']").change(function () {
+          toggleButton();
+        });
+      },
+      error: function (xhr, status, error) {
         // 요청이 실패했을 때 실행할 코드
         console.log("Request failed: " + status + ", " + error);
-    }
-      
+      },
     });
   });
+
+  // 업데이트 아카이브 함수
+  updateArchive();
 
   // 페이지 로드 시 투명도를 올리는 함수 호출
   adjustOpacity(1);
@@ -200,7 +204,7 @@ function test(resData) {
 
     let html = `<div class="archive-contents">
 				<div class="archive-update-div">
-				<button class="cute-button" onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">修正する</button>
+				<button class="archive-update-button-1 cute-button" value="${archive.a_pk}">修正する</button>
 				</div>
 				<div class="archive-icon-div" >
 					<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
@@ -252,7 +256,7 @@ async function searchPage(resData, pagingVariable) {
 
     let html = `<div class="archive-contents">
 			<div class="archive-update-div">
-				<button class="cute-button" onclick="location.href='ArchiveUpdateC?pk=${archive.a_pk}'">修正する</button>
+				<button class="archive-update-button-1 cute-button" value="${archive.a_pk}">修正する</button>
 			</div>
 			<div class="archive-icon-div" >
 				<img class="archive-icon" src="haco_img/icon/${archive.i_icon}">
@@ -308,10 +312,13 @@ async function searchPage(resData, pagingVariable) {
   let initialHtml3 = `<div class="archive-paging-no-div">`;
   console.log(currentPage);
   console.log(pageCount);
-  
+
   for (
     let i = currentPage - (currentPage % 10) + 1;
-    i <= (currentPage + 9 < pageCount ? currentPage - (currentPage % 10) + 10 : pageCount);
+    i <=
+    (currentPage + 9 < pageCount
+      ? currentPage - (currentPage % 10) + 10
+      : pageCount);
     i++
   ) {
     initialHtml3 += `<div class="archive-paging-no">${i}</div>`;
@@ -339,25 +346,24 @@ async function searchPage(resData, pagingVariable) {
 function test2(resData) {
   let $body = $(".all-wrapper");
   $body.html("");
-    let archive = resData;
+  let archive = resData;
 
-    const dateString = archive.a_date;
-    // 문자열을 공백과 쉼표로 분리하여 구성 요소 추출
-    const [monthName, day, year] = dateString.replace(",", "").split(" ");
-    // 월을 숫자로 변환
-    const month = String(getMonthNumber(monthName)).padStart(2, "0");
-    const dayPadded = String(day).padStart(2, "0");
+  const dateString = archive.a_date;
+  // 문자열을 공백과 쉼표로 분리하여 구성 요소 추출
+  const [monthName, day, year] = dateString.replace(",", "").split(" ");
+  // 월을 숫자로 변환
+  const month = String(getMonthNumber(monthName)).padStart(2, "0");
+  const dayPadded = String(day).padStart(2, "0");
 
-    // yyyy-MM-dd 형식으로 변환
-    const formattedDate = `${year}-${month}-${dayPadded}`;
+  // yyyy-MM-dd 형식으로 변환
+  const formattedDate = `${year}-${month}-${dayPadded}`;
 
-    const formattedTime = convertTimeTo24Hours(archive.a_time);
+  const formattedTime = convertTimeTo24Hours(archive.a_time);
 
-    let html = `<div id="archive-list2">
-      <form method="post">
+  let html = `<div id="archive-list2">
         <div class="archive-contents-update">
           <div>
-            <button id="updateButton" class="cute-button">修正</button>
+            <button id="archiveUpdateButton" class="cute-button">修正</button>
           </div>
           <p>
             <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" />
@@ -426,7 +432,6 @@ function test2(resData) {
             />
           </div>
         </div>
-      </form>
     </div>
 
     <div class="dialog-container" id="myModal">
@@ -703,9 +708,8 @@ function test2(resData) {
         </div>
       </div>
     </div>`;
-    $body.append(html);
-  }
-
+  $body.append(html);
+}
 
 // 투명도를 조절하는 함수
 function adjustOpacity(opacityValue) {
@@ -765,7 +769,7 @@ function getPagingVariableStart() {
     $.ajax({
       url: "GetPagingVariableC",
       type: "GET",
-      data: { },
+      data: {},
       success: function (resData) {
         resolve(resData); // 성공 시 데이터를 resolve
       },
@@ -854,25 +858,38 @@ function toggleButton() {
     }
 
     // ハコ内コラボ 아닐때 콜라보멤버 초기화 함수
-     let select2 = $(this);
+    let select2 = $(this);
     let openModalButton2 = select2
       .closest(".archive-collabo")
       .next(".archive-collabo-member");
     if (select2.val() != "ハコ内コラボ") {
       openModalButton2.find(".collaboMember2").text("未分類");
       openModalButton2.find("input").val("未分類");
-    } 
+    }
   });
 }
 function updateArchive() {
-	$(document).on("click", "#updateButton", function () {
+  $(document).on("click", "#archiveUpdateButton", function () {
+    let a_pk = $("input[name='a_pk']").val();
+    let collabo = $("select[name='collabo']").val();
+    let collabomember = $("input[name='collabomember']").val();
+    let category = $("select[name='category']").val();
+
     $.ajax({
       url: "ArchiveUpdateC",
       type: "post",
       data: { a_pk, collabo, collabomember, category },
-      dataType: "json",
-    }).done(function (resData) {
-      history.back();
-     });
-  });	
+      dataType: "text",
+    })
+      .done(function (resData) {
+        alert("성공");
+        console.log("응답 데이터:", resData);
+        history.back();
+        window.location.reload();
+      })
+      .fail(function (jqXHR, textStatus, errorThrown) {
+        alert("실패");
+        console.error("AJAX 요청 실패:", textStatus, errorThrown);
+      });
+  });
 }

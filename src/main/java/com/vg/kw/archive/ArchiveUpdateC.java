@@ -23,7 +23,7 @@ public class ArchiveUpdateC extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 //		AccountDAO.loginCheck(request);
-		ArchiveDAO.UpdateArchive(request);
+		ArchiveDAO.UpdateArchive(request,response);
 //		ArchiveDAO.selectAllArchive(request);
 //		AccountDAO.loginCheck(request);
 //		request.setAttribute("content", "archive/archiveupdate.jsp");

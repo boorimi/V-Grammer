@@ -1,5 +1,6 @@
 package com.vg.kw.archive;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -296,7 +297,7 @@ public class ArchiveDAO {
 		}
 	}
 
-	public static void UpdateArchive(HttpServletRequest request) {
+	public static void UpdateArchive(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -337,6 +338,8 @@ public class ArchiveDAO {
 			int rowsUpdated = pstmt.executeUpdate();
 			if (rowsUpdated > 0) {
 				System.out.println("Update successful. Rows updated: " + rowsUpdated);
+				response.setContentType("text/plain; charset=utf-8");
+				response.getWriter().print("수정성공");
 			} else {
 				System.out.println("No rows updated. Check your condition.");
 			}
