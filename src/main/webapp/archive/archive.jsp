@@ -12,10 +12,10 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     ></script>
     <link rel="stylesheet" href="css/archive.css" />
     <script src="js/archive.js" defer></script>
-    <script src="js/archiveupdate.js" defer></script>
   </head>
 
   <body>
+  	<div class="all-wrapper">
     <!-- 검색창 시작 -->
     <form>
       <div class="archive-search-wrapper">
@@ -74,7 +74,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       <c:forEach items="${archives}" var="archive">
         <div class="archive-contents">
           <div class="archive-update-div">
-            <button class="archive-update-button-1 cute-button">
+            <button class="archive-update-button-1 cute-button"
+            value="${archive.a_pk}">
               修正する
             </button>
           </div>
@@ -82,7 +83,6 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             <img class="archive-icon" src="haco_img/icon/${archive.i_icon}" />
           </div>
           <!--  <p>${archive.a_m_pk }</p> -->
-          <input type="hidden" name="a_pk" value="${archive.a_pk}" />
           <div class="archive-membername">${archive.m_name }</div>
           <div class="archive-collabo">${archive.a_collabo }</div>
           <div class="archive-collabo-member">
@@ -153,5 +153,6 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       </div>
     </div>
     <!-- 페이징 끝 -->
+    </div>
   </body>
 </html>
