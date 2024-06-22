@@ -15,7 +15,7 @@
 <body>
 	<div class="waku-wrap"
 		style="background-image: url('account/register/short-pink.png');">
-		<form action="RegisterC" method="post" enctype="multipart/form-data">
+		<form action="RegisterC" method="post" enctype="multipart/form-data" id="register-form">
 			<div class="register-container">
 				<div class="register-items">
 					<div class="register-profile-box">
@@ -35,10 +35,10 @@
 					</div>
 					<div id="check-result"></div>
 					<div>
-						連動X ID<br> <span style="font-family: 'Uzura', sans-serif; font-size: 20px">@${sessionScope.twitterScreenName }</span>
+						連動X ID<br> <span>@${sessionScope.twitterScreenName }</span>
 					</div>
 					<div id="register-button-div">
-						<button id="register-submit-button" type="submit">ハコナカ登録!</button>
+						<button id="register-submit-button" type="button">ハコナカ登録!</button>
 					</div>
 				</div>
 			</div>

@@ -24,8 +24,9 @@
 			</div>
 			<div>
 				<h3>プロフィール画像変更</h3>
-				<input type="file" name="new-profile-img">
+				<input type="file" id="userInfo-img-input" name="new-profile-img">
 			</div>
+			<button id="change-img-button">사진변경 버튼</button>
 		</div>
 		<div class="mypage-userInfo-items">
 			<div>
@@ -39,22 +40,22 @@
 		<div class="mypage-userInfo-button">
 			<button>Save Changes</button>
 		</div>
-
-		<div class="mypage-userInfo-items">
-			<div>
-				<h3>ハコナカニックネーム</h3>
+		<form id="nickname-form">
+			<div class="mypage-userInfo-items">
+				<div>
+					<h3>ハコナカニックネーム</h3>
+				</div>
+				<div class="form-input">
+					<input id="userInfo-nickname-input" name="userInfo-nickname-input"
+						class="form-element-input" type="input"
+						placeholder="${sessionScope.accountInfo.u_nickname }" required />
+					<div class="form-element-bar"></div>
+					<label class="form-element-label" for="name">新しいニックネームを入力して!</label>
+					<small class="form-element-hint" id="check-result">ニックネームは2~30文字!</small>
+				</div>
 			</div>
-			<div class="form-input">
-				<input id="userInfo-nickname-input" name="userInfo-nickname-input"
-					class="form-element-input" type="input"
-					placeholder="${sessionScope.accountInfo.u_nickname }" required />
-				<div class="form-element-bar"></div>
-				<label class="form-element-label" for="name">新しいニックネームを入力して!</label>
-				<small class="form-element-hint" id="check-result">ニックネームは2~30文字!</small>
-			</div>
-		</div>
-		<button id="change-nickname-button">닉네임 변경</button>
-
+			<button id="change-nickname-button">닉네임 변경</button>
+		</form>
 		<div class="mypage-userInfo-button">
 			<button id="retire-button"
 				value="${sessionScope.accountInfo.u_twitter_id }">会員退会</button>

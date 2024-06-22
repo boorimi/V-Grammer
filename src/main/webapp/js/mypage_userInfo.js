@@ -27,7 +27,7 @@ $(document).ready(function() {
 		}
 	});
 
-	let registerOK = false;
+	let changeOK = false;
 	let nickNameLengthOK = false;
 
 	// 닉네임 입력 필드에서 포커스가 벗어날 때 유효성 검사 실행
@@ -35,7 +35,7 @@ $(document).ready(function() {
 		if (validateNicknameLength()) { //닉네임 글자수 검사가 true일 때 중복검사를 실행
 			validateNicknameDuplicate();
 		} else {
-			registerOK = false; //검사 실패 시 form 제출 조건을 만족하지 않음
+			changeOK = false; //검사 실패 시 form 제출 조건을 만족하지 않음
 		}
 	});
 
@@ -75,27 +75,29 @@ $(document).ready(function() {
 				checkResult.text('このニックネームは使用可能です');
 				checkResult.css('color', 'blue');
 				/*$("#userInfo-nickname-input").css('border', '1px solid blue');*/
-				registerOK = true;
+				changeOK = true;
 			} else {
 				checkResult.text('このニックネームは使用中です');
 				checkResult.css('color', 'red');
 				/*$("#userInfo-nickname-input").css('border', '1px solid red');*/
-				registerOK = false;
+				changeOK = false;
 			}
 		});
 	}
 
 	// 폼 제출 시 유효성 검사 결과에 따라 제출 여부 결정
-	$('form').on('submit', function(event) {
-		event.preventDefault(); // 기본 폼 제출 동작을 막음
-		console.log("폼 제출 시도");
+
+	$('#change-nickname-button').on('click', function(event) {
+		event.preventDefault(); // 기본 버튼 동작을 막음
+		event.stopPropagation(); //이벤트 전파 방지
+
 		if (validateNicknameLength()) {
 			validateNicknameDuplicate().done(function() {
-				if (registerOK) {
-					if (confirm('この情報で登録しますか？')) {
-						$('form')[1].submit(); // 폼 제출
-						console.log("폼 제출됨");
-					}
+				if (changeOK) {
+
+					document.getElementById('nickname-form').submit(); // 폼 제출
+					console.log("폼 제출됨");
+
 				} else {
 					alert('入力を確かめて下さい。');
 					console.log("닉네임 중복 통과 못함");
@@ -108,13 +110,16 @@ $(document).ready(function() {
 	});
 
 
+
+
+
 	//닉네임 변경
 	$('#change-nickname-button').click(function(event) {
 		event.preventDefault(); // 기본 폼 제출 동작 방지
 		console.log("닉네임 변경 js 실행");
 		const inputNickname = $('#userInfo-nickname-input').val();
 
-		if (confirm("「" + inputNickname + "」でよろしいですか？")) {
+		if (confirm("「" + inputNickname + "」でいいの？")) {
 
 			$.ajax({
 				url: 'UserInfoC', // 서버의 URL
@@ -123,8 +128,8 @@ $(document).ready(function() {
 					inputNickname: inputNickname
 				},
 				success: function(response) {
-					console.log(inputNickname + "으로 닉네임 변경 완료");
-					alert(inputNickname + "으로 닉네임 변경 완료");
+					console.log(inputNickname + " 으로 닉네임 변경 완료");
+					alert("ニックネーム変更完了だよ");
 					window.location.reload(); // 페이지 새로고침
 
 
@@ -139,9 +144,31 @@ $(document).ready(function() {
 	});
 
 
+	//이미지 변경
+	$('#change-img-button').click(function(event) {
+		event.preventDefalut();
+		console.log("프로필이미지 변경 js 실행");
+		const inputImg = $('#userInfo-img-input').val();
+
+		$.ajax({
+			url: 'UserInfo_ProfileImgC',
+			type: 'POST',
+			data: { inputImg: inputImg },
+			success: function(response) {
+				console.log("사진변경");
+				alert("사진변경 완료");
+				window.location.reload();
+			},
+			error: function(xhr, status, error) {
+				// 에러 시 처리
+				console.error('AJAX 요청 실패:', status, error);
+				alert('서버와의 통신 중 오류가 발생했습니다.');
+			}
 
 
+		})
 
+	})
 
 	//인풋창 
 	$('.form-element-input').change(function() {
