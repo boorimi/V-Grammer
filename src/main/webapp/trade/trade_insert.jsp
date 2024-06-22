@@ -44,8 +44,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               	class="goodsCategory"
                 type="checkbox"
                 name="goodsCategory"
-                value="${cbi.value }"
-                <c:if test="${fn:contains(checkboxValuesStr,cbi.value)}">checked="checked"</c:if>/>${cbi.label }</label>
+                value="${cbi.key }"
+                <c:if test="${fn:contains(checkboxValuesStr,cbi.key)}">checked="checked"</c:if>/>${cbi.value }</label>
           </div>
           </c:forEach>
           </div>

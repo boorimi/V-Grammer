@@ -45,10 +45,10 @@
 				<c:forEach items="${checkboxItems }" var="cbi">
 					<div>
 						<label><input type="checkbox"
-							name="goodsCategory" value="${cbi.value
+							name="goodsCategory" value="${cbi.key
                 }"
-							${fn:contains(category3, cbi.value) ? 'checked="checked"' :
-                ''} />${cbi.label }</label>
+							${fn:contains(category3, cbi.key) ? 'checked="checked"' :
+                ''} />${cbi.value }</label>
 					</div>
 				</c:forEach>
 				<button class="cute-button-blue" id="trade-search-category">検索</button>
@@ -119,9 +119,9 @@
 						<!--  카테고리 for문 시작 -->
 						<c:forEach var="c" items="${t.category }">
 							<c:forEach var="item" items="${checkboxItems}">
-								<c:if test="${item.value == c}">
+								<c:if test="${item.key == c}">
 									<div class="trade-goods-category">
-										${item.label}</div>
+										${item.value}</div>
 								</c:if>
 							</c:forEach>
 						</c:forEach>
