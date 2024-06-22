@@ -119,27 +119,34 @@ $(document).ready(function() {
 		console.log("닉네임 변경 js 실행");
 		const inputNickname = $('#userInfo-nickname-input').val();
 
-		if (confirm("「" + inputNickname + "」でいいの？")) {
+		if (changeOK == true) {
+			if (confirm("「" + inputNickname + "」でいいの？")) {
+				$.ajax({
+					url: 'UserInfoC', // 서버의 URL
+					type: 'POST',
+					data: {
+						inputNickname: inputNickname
+					},
+					success: function(response) {
+						console.log(inputNickname + " 으로 닉네임 변경 완료");
+						alert("ニックネーム変更完了だよ");
+						window.location.reload(); // 페이지 새로고침
 
-			$.ajax({
-				url: 'UserInfoC', // 서버의 URL
-				type: 'POST',
-				data: {
-					inputNickname: inputNickname
-				},
-				success: function(response) {
-					console.log(inputNickname + " 으로 닉네임 변경 완료");
-					alert("ニックネーム変更完了だよ");
-					window.location.reload(); // 페이지 새로고침
 
-
-				},
-				error: function(xhr, status, error) {
-					// 에러 시 처리
-					console.error('AJAX 요청 실패:', status, error);
-					alert('서버와의 통신 중 오류가 발생했습니다.');
-				}
-			});
+					},
+					error: function(xhr, status, error) {
+						// 에러 시 처리
+						console.error('AJAX 요청 실패:', status, error);
+						alert('서버와의 통신 중 오류가 발생했습니다.');
+					}
+				});
+			}else{
+				console.log("입력 재확인 취소 시");
+				 $('#userInfo-nickname-input').val('').focus();
+			}
+		}else{
+			console.log("입력값이 옳지 않을 때");
+			$('#userInfo-nickname-input').val('').focus();
 		}
 	});
 
