@@ -336,6 +336,16 @@ public class AccountDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
+		HttpSession LoginSession = request.getSession();
+		AccountDTO accountInfo = (AccountDTO) LoginSession.getAttribute("accountInfo");
+		// 프로필 이미지 삭제를 위한 처리
+		String path = request.getServletContext().getRealPath("account/profileImg");
+		System.out.println("삭제 수속 중 프로필사진 경로 확인:"+path);
+		String profileImg = accountInfo.getU_profile_img();
+		if (profileImg != null && profileImg.contains("account/profileImg/")) {
+			profileImg = profileImg.replace("account/profileImg/", "");
+		}
+
 		Long userId = Long.parseLong(request.getParameter("userId"));
 		String sql = "DELETE FROM haco_user WHERE u_twitter_id = ?";
 		PrintWriter out = response.getWriter();
@@ -352,7 +362,12 @@ public class AccountDAO {
 				System.out.println("유저정보 삭제 성공");
 				jsonResponse.put("status", "success");
 				jsonResponse.put("message", "退会手続きが完了されました");
-				//로그아웃 처리
+				
+				//프로필 파일 삭제 처리
+				File f = new File(path + "/" + profileImg);
+				f.delete();
+
+				// 로그아웃 처리
 				AccountDAO.logout(request);
 			} else {
 				jsonResponse.put("status", "failure");
@@ -369,7 +384,7 @@ public class AccountDAO {
 			out.print(jsonResponse.toString());
 		} finally {
 			DBManager.close(con, pstmt, null);
-		
+
 		}
 	}
 
