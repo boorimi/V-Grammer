@@ -151,47 +151,63 @@ $(document).ready(function() {
 	});
 
 
+	//프로필 아이콘 변경 부분
+	let changeImg = false;
+	const validExtensions = ['jpg', 'jpeg', 'png'];  // 유효한 확장자 목록
+	
 	//이미지 변경 미리보기
 	$('#userInfo-img-input').change(function(evt) {
 		console.log("이미지 변경 시 변경 이벤트 발생");
 		let file = evt.target.files[0];
 		if (file) {
-			let reader = new FileReader();
-			reader.onload = function(e) {
-				$('#profile-icon').attr('src', e.target.result).show();
+			let fileName = file.name;
+			let fileExtension = fileName.split('.').pop().toLowerCase();
+
+			if (validExtensions.includes(fileExtension)) {
+				let reader = new FileReader();
+				reader.onload = function(e) {
+					$('#profile-icon').attr('src', e.target.result).show();
+				}
+				reader.readAsDataURL(file);
+				changeImg = true;
+			} else {
+				alert('アイコンイメージは「.jpg, .jpeg, .png」ファイルでお願い！.');
+				$('#userInfo-img-input').val(''); // 입력 필드 초기화
+				changeImg = false;
 			}
-			reader.readAsDataURL(file);
 		}
 	});
 
 	//실제 이미지 변경 확인
 	$('#change-img-button').click(function(event) {
-		event.preventDefault();
-		event.stopPropagation();
+		event.preventDefault();  // 폼의 기본 제출 동작을 막음
+		event.stopPropagation(); // 이벤트 전파를 막음
 
-		if (confirm("このアイコンでいいの？")) {
-			let inputImg = new FormData($('#profileForm')[0]);
-			console.log("업로드된 사진 데이터", inputImg);
+		if (changeImg == true) {
+			if (confirm("このアイコンでいいの？")) {
+				// FormData 객체 생성
+				let inputImg = new FormData($('#profileForm')[0]);
+				console.log("업로드된 사진 데이터", inputImg);
 
-			for (let pair of inputImg.entries()) {
-				console.log(pair[0] + ', ' + pair[1]);
+				// AJAX 요청으로 서버에 데이터 전송
+				$.ajax({
+					url: 'UserInfo_ProfileImgC',
+					type: 'POST',
+					data: inputImg,
+					processData: false,
+					contentType: false,
+					success: function(response) {
+						alert('アイコン変更完了だよ');
+						window.location.reload();
+					},
+					error: function() {
+						alert('업로드에 실패했습니다.');
+					}
+				});
 			}
+		} else {
+			alert("イメージファイルを選んでね");
 
-
-			$.ajax({
-				url: 'UserInfo_ProfileImgC',
-				type: 'POST',
-				data: inputImg,
-				processData: false,
-				contentType: false,
-				success: function(response) {
-					alert('アイコン変更完了だよ');
-					window.location.reload();
-				},
-				error: function() {
-					alert('업로드에 실패했습니다.');
-				}
-			});
 		}
 	});
 
