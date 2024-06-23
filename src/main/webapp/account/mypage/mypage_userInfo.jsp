@@ -14,7 +14,11 @@
 </head>
 <body>
 	<div class="mypage-userInfo-container">
-		<div>
+		<div class="mypage-tab-title">
+			<div class="mypage-tab-icon-wrap">
+				<img class="mypage-tab-icon" alt=""
+					src="account/mypage/mypage_index_icon/userinfo.png">
+			</div>
 			<h2>情報修正</h2>
 		</div>
 		<form action="UserInfo_ProfileImgC" method="post"

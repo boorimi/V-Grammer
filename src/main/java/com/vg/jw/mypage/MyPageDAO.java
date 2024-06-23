@@ -320,9 +320,7 @@ public class MyPageDAO {
 		if (oldProfileImg != null && oldProfileImg.contains("account/profileImg/")) {
 			oldProfileImg = oldProfileImg.replace("account/profileImg/", "");
 		}
-
 		System.out.println("경로 제거 후 기존이미지:" + oldProfileImg);
-
 		// 사진받을 준비
 		String path = request.getServletContext().getRealPath("account/profileImg");
 		System.out.println("프로필사진 경로: " + path);

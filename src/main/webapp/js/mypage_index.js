@@ -1,10 +1,18 @@
 $(document).ready(function() {
+	let loginCheck = $('.mypage-container').data('loginsession');
 	// 공통 AJAX 요청 함수
 	function loadContent(url) {
+		console.log("로그인 세션값"+loginCheck);
 		$.ajax({
 			url: url,
 			type: "GET",
 			success: function(data) {
+				if (!loginCheck) {
+					alert("로그인 세션이 만료되었습니다");
+					window.location.href = "HC";
+					return;
+				}
+
 				console.log("공통 AJAX 요청 성공");
 				$(".mypage-jsp-section").empty();
 				console.log("공통 지우는거 성공");
@@ -15,11 +23,12 @@ $(document).ready(function() {
 			}
 		});
 	}
-	
+
 	loadContent("account/mypage/mypage_userInfo.jsp");
 
 	// AJAX 요청 함수 with blur effect
 	function loadContentWithBlur(url) {
+		console.log("로그인 세션값"+loginCheck);
 		$.ajax({
 			url: url,
 			type: "GET",
@@ -27,6 +36,12 @@ $(document).ready(function() {
 				$('html').css('filter', 'blur(5px)');
 			},
 			success: function(data) {
+				if (!loginCheck) {
+					alert("로그인 세션이 만료되었습니다");
+					window.location.href = "HC";
+					return;
+				}
+
 				console.log("블러 AJAX 요청 성공");
 				$(".mypage-jsp-section").empty();
 				console.log("블러 지우는거 성공");
@@ -60,10 +75,16 @@ $(document).ready(function() {
 
 
 	$('#mypage-menu-article').click(function() {
+		console.log("로그인 세션값"+loginCheck);
 		$.ajax({
 			url: 'ArticleC', // 서블릿 URL
 			method: 'GET', // 또는 'POST'
 			success: function(response) {
+				if (!loginCheck) {
+					alert("로그인 세션이 만료되었습니다");
+					window.location.href = "HC";
+					return;
+				}
 				console.log("작성글 인클루드 ajax 호출 성공");
 				$('.mypage-jsp-section').html(response);
 			},
@@ -72,7 +93,7 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
+
 	$(document).on('click', '.paging-link', function(event) {
 		var url = $(this).attr('href');
 
@@ -80,6 +101,11 @@ $(document).ready(function() {
 			url: url,
 			method: 'GET',
 			success: function(response) {
+				if (!loginCheck) {
+					alert("로그인 세션이 만료되었습니다");
+					window.location.href = "HC";
+					return;
+				}
 				console.log("페이징 ajax호출 성공");
 				console.log(response);
 				$('.mypage-jsp-section').html(response);
