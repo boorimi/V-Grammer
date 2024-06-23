@@ -328,7 +328,7 @@ public class MyPageDAO {
 
 			// 변경을 위해 입력한 값 받아오기
 			String newProfileImg = mr.getFilesystemName("inputImg");
-			System.out.println(newProfileImg);
+			System.out.println("유저정보 변경에서 새로 입력한 이미지"+newProfileImg);
 
 			// 이미지를 등록하지 않았을 경우 기존 이미지로 설정
 			if (newProfileImg == null) {
@@ -338,7 +338,7 @@ public class MyPageDAO {
 
 			System.out.println("DB에 새로 들어갈 이미지파일 경로: " + newProfileImg);
 
-			String sql = "\"UPDATE haco_user SET u_profile_img = ? WHERE u_twitter_id = ?";
+			String sql = "UPDATE haco_user SET u_profile_img = ? WHERE u_twitter_id = ?";
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, newProfileImg);

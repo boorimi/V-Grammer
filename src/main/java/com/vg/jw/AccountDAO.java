@@ -352,6 +352,7 @@ public class AccountDAO {
 				System.out.println("유저정보 삭제 성공");
 				jsonResponse.put("status", "success");
 				jsonResponse.put("message", "退会手続きが完了されました");
+				//로그아웃 처리
 				AccountDAO.logout(request);
 			} else {
 				jsonResponse.put("status", "failure");

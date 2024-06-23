@@ -140,42 +140,60 @@ $(document).ready(function() {
 						alert('서버와의 통신 중 오류가 발생했습니다.');
 					}
 				});
-			}else{
+			} else {
 				console.log("입력 재확인 취소 시");
-				 $('#userInfo-nickname-input').val('').focus();
+				$('#userInfo-nickname-input').val('').focus();
 			}
-		}else{
+		} else {
 			console.log("입력값이 옳지 않을 때");
 			$('#userInfo-nickname-input').val('').focus();
 		}
 	});
 
 
-	//이미지 변경
-	$('#change-img-button').click(function(event) {
-		event.preventDefalut();
-		console.log("프로필이미지 변경 js 실행");
-		const inputImg = $('#userInfo-img-input').val();
+	//이미지 변경 미리보기
+	$('#userInfo-img-input').change(function(evt) {
+		console.log("이미지 변경 시 변경 이벤트 발생");
+		let file = evt.target.files[0];
+		if (file) {
+			let reader = new FileReader();
+			reader.onload = function(e) {
+				$('#profile-icon').attr('src', e.target.result).show();
+			}
+			reader.readAsDataURL(file);
+		}
+	});
 
-		$.ajax({
-			url: 'UserInfo_ProfileImgC',
-			type: 'POST',
-			data: { inputImg: inputImg },
-			success: function(response) {
-				console.log("사진변경");
-				alert("사진변경 완료");
-				window.location.reload();
-			},
-			error: function(xhr, status, error) {
-				// 에러 시 처리
-				console.error('AJAX 요청 실패:', status, error);
-				alert('서버와의 통신 중 오류가 발생했습니다.');
+	//실제 이미지 변경 확인
+	$('#change-img-button').click(function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		if (confirm("このアイコンでいいの？")) {
+			let inputImg = new FormData($('#profileForm')[0]);
+			console.log("업로드된 사진 데이터", inputImg);
+
+			for (let pair of inputImg.entries()) {
+				console.log(pair[0] + ', ' + pair[1]);
 			}
 
 
-		})
-
-	})
+			$.ajax({
+				url: 'UserInfo_ProfileImgC',
+				type: 'POST',
+				data: inputImg,
+				processData: false,
+				contentType: false,
+				success: function(response) {
+					alert('アイコン変更完了だよ');
+					window.location.reload();
+				},
+				error: function() {
+					alert('업로드에 실패했습니다.');
+				}
+			});
+		}
+	});
 
 	//인풋창 
 	$('.form-element-input').change(function() {
