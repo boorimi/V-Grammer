@@ -28,8 +28,8 @@
 }
 
 #button-container {
-	position: absolute;
-	bottom: -230px;
+	position: relative;
+	padding-bottom: 50px;
 	left: 50%;
 	transform: translateX(-50%);
 	text-align: center;
@@ -75,7 +75,6 @@
 .html-body #calendar {
 	max-width: 1200px;
 	margin: 20px auto;
-	padding-bottom: 100px;
 	height: -100px; /* Adjust the height as needed */
 	overflow: auto;
 }
