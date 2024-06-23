@@ -59,26 +59,27 @@ $(document).ready(function() {
 	}
 
 	// 폼 제출 시 유효성 검사 결과에 따라 제출 여부 결정
-	$('form').on('submit', function(event) {
-		event.preventDefault(); // 기본 폼 제출 동작을 막음
-		console.log("폼 제출 시도");
-		if (validateNicknameLength()) {
-			validateNicknameDuplicate().done(function() {
-				if (registerOK) {
-					if (confirm('この情報で登録しますか？')) {
-						$('form')[1].submit(); // 폼 제출
-						console.log("폼 제출됨");
-					}
-				} else {
-					alert('入力を確かめて下さい。');
-					console.log("닉네임 중복 통과 못함");
-				}
-			});
-		} else {
-			alert('入力を確かめて下さい。');
-			console.log("닉네임 길이 오류");
-		}
-	});
+	 $('#register-submit-button').on('click', function(event) {
+        event.preventDefault(); // 기본 버튼 동작을 막음
+		event.stopPropagation();
+		
+        if (validateNicknameLength()) {
+            validateNicknameDuplicate().done(function() {
+                if (registerOK) {
+                    if (confirm('この情報で登録しますか？')) {
+                        document.getElementById('register-form').submit(); // 폼 제출
+                        console.log("폼 제출됨");
+                    }
+                } else {
+                    alert('入力を確かめて下さい。');
+                    console.log("닉네임 중복 통과 못함");
+                }
+            });
+        } else {
+            alert('入力を確かめて下さい。');
+            console.log("닉네임 길이 오류");
+        }
+    });
 
 
 	//인풋창 
