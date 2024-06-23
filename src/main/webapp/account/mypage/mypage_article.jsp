@@ -19,8 +19,14 @@ response.setContentType("text/html; charset=UTF-8");
 response.setCharacterEncoding("UTF-8");
 %>
 <body>
-
-	<div style="width: 100%">
+	<div style="width: 80%">
+	<div class="mypage-tab-title">
+		<div class="mypage-tab-icon-wrap">
+			<img class="mypage-tab-icon" alt=""
+				src="account/mypage/mypage_index_icon/article.png">
+		</div>
+		<h2>MY記事一覧</h2>
+	</div>
 		<div class="trade-conmain">
 			<!-- 본문페이지 for문 시작 -->
 			<c:set var="totalItems" value="${fn:length(trades)}" />
@@ -60,15 +66,15 @@ response.setCharacterEncoding("UTF-8");
 							</div>
 						</c:if>
 					</div>
-						
-						<c:set var="cnt" value="0" />
+
+					<c:set var="cnt" value="0" />
 					<c:forEach var="c_cnt" items="${tradeComments }">
 					${c_cnt.t_pk}
 						<c:if test="${c_cnt.t_pk == t.pk }">
 							<c:set var="cnt" value="${cnt + 1 }" />
 						</c:if>
 					</c:forEach>
-							<c:set var="cnt2" value="${cnt}" />
+					<c:set var="cnt2" value="${cnt}" />
 					<div class="cute-button-box">
 						<button class="trade-openComments cute-button-pink">コメント(${cnt2})</button>
 					</div>

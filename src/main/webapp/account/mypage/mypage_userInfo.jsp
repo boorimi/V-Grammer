@@ -14,20 +14,27 @@
 </head>
 <body>
 	<div class="mypage-userInfo-container">
-		<div>
+		<div class="mypage-tab-title">
+			<div class="mypage-tab-icon-wrap">
+				<img class="mypage-tab-icon" alt=""
+					src="account/mypage/mypage_index_icon/userinfo.png">
+			</div>
 			<h2>情報修正</h2>
 		</div>
-		<div class="mypage-userInfo-items">
-			<div class="mypage-profile-icon-box">
-				<img class="mypage-profile-icon" alt=""
-					src="${sessionScope.accountInfo.u_profile_img }" />
+		<form action="UserInfo_ProfileImgC" method="post"
+			enctype="multipart/form-data" id="profileForm">
+			<div class="mypage-userInfo-items">
+				<div class="mypage-profile-icon-box">
+					<img class="mypage-profile-icon" alt="" id="profile-icon"
+						src="${sessionScope.accountInfo.u_profile_img }" />
+				</div>
+				<div>
+					<h3>プロフィール画像変更</h3>
+					<input type="file" id="userInfo-img-input" name="new-profile-img">
+				</div>
+				<button id="change-img-button">アイコン変更</button>
 			</div>
-			<div>
-				<h3>プロフィール画像変更</h3>
-				<input type="file" id="userInfo-img-input" name="new-profile-img">
-			</div>
-			<button id="change-img-button">사진변경 버튼</button>
-		</div>
+		</form>
 		<div class="mypage-userInfo-items">
 			<div>
 				<h3>連動された「X」ID</h3>
@@ -36,9 +43,6 @@
 				<input value="@${sessionScope.accountInfo.u_screenName}"
 					readonly="readonly">
 			</div>
-		</div>
-		<div class="mypage-userInfo-button">
-			<button>Save Changes</button>
 		</div>
 		<form id="nickname-form">
 			<div class="mypage-userInfo-items">
@@ -54,7 +58,7 @@
 					<small class="form-element-hint" id="check-result">ニックネームは2~30文字!</small>
 				</div>
 			</div>
-			<button id="change-nickname-button">닉네임 변경</button>
+			<button id="change-nickname-button">ニックネーム変更</button>
 		</form>
 		<div class="mypage-userInfo-button">
 			<button id="retire-button"
