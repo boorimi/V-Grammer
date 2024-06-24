@@ -6,11 +6,20 @@ dialog {
 	border-radius: 5px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	padding: 20px;
-	width: 300px;
+	min-width: 300px;
 }
 
 dialog::backdrop {
 	background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-title-box p:nth-child(1) {
+	margin-bottom: 2px;
+}
+
+.modal-title-box p:nth-child(2) {
+	font-size: 15pt;
+	margin-top: 0;
 }
 
 .modal-header,
@@ -31,6 +40,83 @@ dialog::backdrop {
 	cursor: pointer;
 }
 
+.modal-footer button {
+	color: #fff;
+	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.3s ease;
+	width: 30%;
+}
+
+.modal-footer button:hover {
+	background: linear-gradient(45deg,
+			#ff85c1,
+			#ffb6c1);
+	/* 호버 시 배경색 그라데이션 변경 */
+	transform: scale(1.05);
+	/* 호버 시 살짝 위로 이동 */
+}
+
+.modal-b-box s-input-box {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+.modal-b-box input {
+	width: 90%;
+	height: 30px;
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.modal-b-box input:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+.modal-b-box input:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
+}
+
+.input-update-button {
+	display: flex;
+	align-items: center;
+}
+
+#s-update-button {
+	color: #fff;
+	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.3s ease;
+	width: 100%;
+	font-weight: 900;
+}
+
+#s-update-button:hover {
+	background: linear-gradient(45deg,
+			#ff85c1,
+			#ffb6c1);
+	/* 호버 시 배경색 그라데이션 변경 */
+	transform: scale(1.05);
+	/* 호버 시 살짝 위로 이동 */
+}
+
 .schedule-container {
 	height: auto;
 	margin-top: 2%;
@@ -49,7 +135,7 @@ dialog::backdrop {
 	border-bottom: 3px solid #333333;
 	background-color: #f8f8f8;
 	line-height: 50px;
-	font-size: 25px;
+	font-size: 1.6vw;
 	text-align: center;
 	color: #333333;
 	display: flex;
@@ -187,7 +273,7 @@ dialog::backdrop {
 	border-bottom-style: dotted;
 	border-right-style: inset;
 	border-color: white;
-	font-size: 17pt;
+	font-size: 1.2vw;
 }
 
 .n-time {
@@ -208,7 +294,8 @@ dialog::backdrop {
 	position: relative;
 	box-shadow: 0 0 0 2px white inset;
 	border-radius: 13px;
-	font-size: 11pt;
+	font-size: 1vw;
+/*	margin-bottom: 10px;*/
 }
 
 .s-data:hover {
@@ -220,19 +307,20 @@ dialog::backdrop {
 	display: flex;
 	align-items: center;
 	position: relative;
-	left: 10px
+	left: 10px;
 }
 
 .s-icon {
 	overflow: hidden;
 	width: 35px;
 	height: 35px;
-	border-radius: 30px;
+	border-radius: 50%;
 }
 
 .s-icon img {
 	width: 100%;
 	height: 100%;
+	object-fit: cover;
 }
 
 .time-name {
@@ -257,16 +345,38 @@ dialog::backdrop {
 	align-items: center
 }
 
-.s-title-button-box {
-	display: flex;
-	justify-content: space-around;
-	padding-top: 5%;
-}
-
 .s-data:hover .s-data-title {
 	display: block;
 }
 
+/* 반응형 */
+@media screen and (max-width: 768px) {
+	.tab_item:nth-child(2){
+		font-size: 1.9vw;
+	}
+	.tab_item {
+        width: calc(100% / 8);
+		font-size: 2.2vw;
+	}
+	.s-time {
+        width: calc(100% / 8);
+		font-size: 2.2vw;
+		
+	}
+    .s-data {
+        width: calc(100% / 3);
+        font-size: 2.5vw;
+    }
+
+    .s-inner-box {
+        left: 5px; 
+    }
+
+    .s-data-title {
+        width: 80%;
+        bottom: 110%;
+    }
+}
 /* insert css */
 .s-insert-a-container {
 	padding-top: 1%;
@@ -328,6 +438,10 @@ dialog::backdrop {
 	padding-left: 200px;
 }
 
+.s-slide-text span {
+	display: inline-block;
+}
+
 /* 텍스트 슬라이드 */
 @keyframes roll {
 	0% {
@@ -352,7 +466,6 @@ dialog::backdrop {
 #s-member-list {
 	width: 100%;
 	height: 34px;
-	/*	font-family: "Noto Sans JP", sans-serif;*/
 	color: #333;
 	border-radius: 12px;
 	appearance: none;
@@ -385,7 +498,6 @@ dialog::backdrop {
 .s-input-container {
 	width: 75%;
 	height: auto;
-	/*	background-color: yellow;*/
 }
 
 .s-input-date,
@@ -396,7 +508,6 @@ dialog::backdrop {
 .s-input-date1 {
 	width: 95%;
 	height: 30px;
-	/*	font-family: "Noto Sans JP", sans-serif;*/
 	color: #333;
 	border-radius: 12px;
 	appearance: none;
@@ -406,21 +517,21 @@ dialog::backdrop {
 	transition: all 0.3s ease;
 }
 
-.s-input-date1:hover {
+.s-input-box input:hover {
 	background-color: #ffe1eb;
 	border-color: #e6498e;
 }
 
-.s-input-date1:focus {
+.s-input-box input:focus {
 	outline: none;
 	box-shadow: 0 0 5px #ff69b4;
 	border-color: #ff69b4;
 }
+
 
 .s-input-time1 {
 	width: 95%;
 	height: 30px;
-	/*	font-family: "Noto Sans JP", sans-serif;*/
 	color: #333;
 	border-radius: 12px;
 	appearance: none;
@@ -428,17 +539,6 @@ dialog::backdrop {
 	-moz-appearance: none;
 	cursor: pointer;
 	transition: all 0.3s ease;
-}
-
-.s-input-time1:hover {
-	background-color: #ffe1eb;
-	border-color: #e6498e;
-}
-
-.s-input-time1:focus {
-	outline: none;
-	box-shadow: 0 0 5px #ff69b4;
-	border-color: #ff69b4;
 }
 
 .s-input-title {
@@ -448,7 +548,6 @@ dialog::backdrop {
 .s-input-title1 {
 	width: 97%;
 	height: 30px;
-	/*	font-family: "Noto Sans JP", sans-serif;*/
 	color: #333;
 	border-radius: 12px;
 	appearance: none;
@@ -456,17 +555,6 @@ dialog::backdrop {
 	-moz-appearance: none;
 	cursor: pointer;
 	transition: all 0.3s ease;
-}
-
-.s-input-title1:hover {
-	background-color: #ffe1eb;
-	border-color: #e6498e;
-}
-
-.s-input-title1:focus {
-	outline: none;
-	box-shadow: 0 0 5px #ff69b4;
-	border-color: #ff69b4;
 }
 
 .s-input-box {
@@ -477,13 +565,11 @@ dialog::backdrop {
 
 .s-insert-button {
 	width: 10%;
-	/*	background-color: green;*/
 	display: flex;
 	align-items: center;
 }
 
 #s-insert-button {
-	/*	font-family: "Noto Sans JP", sans-serif;*/
 	font-size: 1.5rem;
 	color: #fff;
 	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
