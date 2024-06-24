@@ -1,5 +1,7 @@
 package com.vg.bm.Schedule;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +15,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
 import com.vg.ignore.DBManager;
@@ -72,15 +77,13 @@ public class ScheduleDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void getAllSchedule(HttpServletRequest request) {
+	public void getAllSchedule(HttpServletRequest request, HttpServletResponse response) {
 
 		// 스케줄 가져오기
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select sc.*, m.m_name, hi.i_icon "
-				+ "from haco_schedule sc "
-				+ "join haco_member m ON sc.s_m_pk = m.m_pk "
-				+ "join haco_image hi ON sc.s_m_pk = hi.i_m_pk";
+		String sql = "select sc.*, m.m_name, hi.i_icon " + "from haco_schedule sc "
+				+ "join haco_member m ON sc.s_m_pk = m.m_pk " + "join haco_image hi ON sc.s_m_pk = hi.i_m_pk";
 
 		try {
 			con = DBManager.connect();
@@ -97,7 +100,7 @@ public class ScheduleDAO {
 			friSchedule = new ArrayList<ScheduleDTO>();
 			satSchedule = new ArrayList<ScheduleDTO>();
 			sunSchedule = new ArrayList<ScheduleDTO>();
-			
+
 			List<ScheduleDTO> schedules[] = new List[] { monSchedule, tueSchedule, wedSchedule, thuSchedule,
 					friSchedule, satSchedule, sunSchedule };
 
@@ -119,17 +122,25 @@ public class ScheduleDAO {
 					if (rs.getString(4).equals(thisWeek2.get(i))) {
 						ScheduleDTO schedule = new ScheduleDTO(rs.getString(1), rs.getString(2), rs.getString(3),
 								rs.getString(4), time, rs.getString(6), rs.getString(7), intTime, rs.getString(8));
-						
+
 						schedules[i].add(schedule);
 					}
 				}
 			}
 //			System.out.println("이번주 월요일 날짜 : " + thisWeek2.get(0));
 //			System.out.println("월스케줄 : " + monSchedule);
+			
+//			response.setContentType("application/json; charset=utf-8");
+//			PrintWriter printJson = response.getWriter();
+//			JSONObject jsonResponse = new JSONObject();
+//			printJson.print(jsonResponse.toString());
+
 			Gson gson = new Gson();
 			String json = gson.toJson(schedules);
-//			System.out.println(json);
 			
+//			System.out.println(json);
+
+
 			request.setAttribute("weekSchedules", schedules);
 			request.setAttribute("weekJSON", json);
 
@@ -141,7 +152,6 @@ public class ScheduleDAO {
 			DBManager.close(con, pstmt, rs);
 		}
 	}
-
 
 	public void insertSchedule(HttpServletRequest request) {
 		PreparedStatement pstmt = null;
@@ -193,12 +203,11 @@ public class ScheduleDAO {
 			pstmt = con.prepareStatement(sql);
 			System.out.println(request.getParameter("sPk"));
 			pstmt.setString(1, request.getParameter("sPk"));
-			
-			if (pstmt.executeUpdate()==1) {
+
+			if (pstmt.executeUpdate() == 1) {
 				System.out.println("삭제 성공!");
 			}
-	
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -206,11 +215,10 @@ public class ScheduleDAO {
 		}
 	}
 
-	public void updateSchedule(HttpServletRequest request) {
+	public void updateSchedule(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PreparedStatement pstmt = null;
-		String sql = "update haco_schedule set s_u_t_id=?, s_date=?, "
-				+ "s_time=?, s_title=? where s_pk=?";
-		
+		String sql = "update haco_schedule set s_u_t_id=?, s_date=?, " + "s_time=?, s_title=? where s_pk=?";
+
 		HttpSession twitterLoginSession = request.getSession();
 		AccountDTO accountInfo = (AccountDTO) twitterLoginSession.getAttribute("accountInfo");
 		long id = accountInfo.getU_twitter_id();
@@ -220,26 +228,39 @@ public class ScheduleDAO {
 		System.out.println(request.getParameter("s_title"));
 		System.out.println(request.getParameter("sPk"));
 
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter printJson = response.getWriter();
+		JSONObject jsonResponse = new JSONObject();
+
 		try {
 			request.setCharacterEncoding("utf-8");
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			
+
 			pstmt.setLong(1, id);
 			pstmt.setString(2, request.getParameter("s_date"));
 			pstmt.setString(3, request.getParameter("s_time"));
 			pstmt.setString(4, request.getParameter("s_title"));
 			pstmt.setString(5, request.getParameter("sPk"));
-			
-			if (pstmt.executeUpdate()==1) {
+
+			if (pstmt.executeUpdate() == 1) {
 				System.out.println("수정 성공!");
-			}
+		        jsonResponse.put("success", true);
+		        jsonResponse.put("message", "일정 업데이트 성공");
+		    } else {
+		        jsonResponse.put("success", false);
+		        jsonResponse.put("message", "일정 업데이트 실패");
+		    }
+			printJson.print(jsonResponse.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
+			jsonResponse.put("success", false);
+		    jsonResponse.put("message", "서버 오류: " + e.getMessage());
+		    printJson.print(jsonResponse.toString());
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
-		
+
 	}
 
 }

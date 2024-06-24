@@ -14,8 +14,7 @@ public class UpdateScheduleC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(AccountDAO.loginCheck(request)) {
-			ScheduleDAO.SDAO.updateSchedule(request);
-			response.sendRedirect("ScheduleC");
+			ScheduleDAO.SDAO.updateSchedule(request, response);
 		}else {
 			request.getRequestDispatcher("index.jsp").forward(request, response); 
 		}
