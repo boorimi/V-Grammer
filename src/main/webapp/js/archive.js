@@ -4,6 +4,7 @@ $(function () {
   localStorage.setItem("category", "未分類");
   localStorage.setItem("title", "");
 
+  //
   $.ajax({
     url: "ArchiveSearchC",
     type: "post",
@@ -62,6 +63,11 @@ $(function () {
       localStorage.setItem("member", $("select[name='member']").val());
       localStorage.setItem("category", $("select[name='category']").val());
       localStorage.setItem("title", $("input[name='title']").val());
+
+      let member = localStorage.getItem("member");
+      let category = localStorage.getItem("category");
+      let title = localStorage.getItem("title");
+
       let tempPagePrev =
         (Math.floor((localStorage.getItem("currentPage") - 1) / 10) - 1) * 10 +
         1;
@@ -79,12 +85,25 @@ $(function () {
         localStorage.setItem("currentPage", localStorage.getItem("pageCount"));
       } else if ($(this).attr("id") === "archive-search-button") {
         localStorage.setItem("currentPage", "1");
-        localStorage.setItem("pageCount", "????");
+        $.ajax({
+          url: "ArchiveSearchC",
+          type: "post",
+          data: { page: 1 },
+          dataType: "json",
+        }).done(function (resData) {
+          console.log(resData);
+          getPagingVariable(member, category, title).then(function (resData) {
+            console.log(resData);
+            let data = resData.split("!");
+            localStorage.setItem("currentPage", data[0]); // 현재페이지 정보
+            localStorage.setItem("pageCount", data[1]);
+          });
+        });
       }
       let page = localStorage.getItem("currentPage");
-      let member = localStorage.getItem("member");
-      let category = localStorage.getItem("category");
-      let title = localStorage.getItem("title");
+      member = localStorage.getItem("member");
+      category = localStorage.getItem("category");
+      title = localStorage.getItem("title");
 
       $("#archive-list").css({ opacity: 0.3 });
       adjustOpacity(1);
@@ -285,17 +304,17 @@ async function searchPage(resData, pagingVariable) {
   //페이징 영역
   $paging.html("");
   let asdf = await pagingVariable;
-  console.log(asdf);
+  //console.log(asdf);
   let data = asdf.split("!");
   let currentPage = localStorage.getItem("currentPage"); // 현재페이지 정보
   let pageCount = localStorage.getItem("pageCount"); // 총 페이지 정보
-  console.log(currentPage);
-  console.log(pageCount);
+  //console.log(currentPage);
+  //console.log(pageCount);
   let pageUnit = 10; // 페이징 단위
   //page변수 = 현재페이지 * 페이지유닛
   let page = ((currentPage - 1) / pageUnit) * pageUnit;
-  console.log(pageUnit);
-  console.log(page);
+  //console.log(pageUnit);
+  //console.log(page);
   ////////////////////////////////////////
   let initialHtml = `<div class="archive-paging-start">
         <a>最初に</a>
@@ -310,8 +329,8 @@ async function searchPage(resData, pagingVariable) {
   $paging.append(initialHtml2);
   ///////////////////////////////////////////
   let initialHtml3 = `<div class="archive-paging-no-div">`;
-  console.log(currentPage);
-  console.log(pageCount);
+  //console.log(currentPage);
+  //console.log(pageCount);
 
   for (
     let i = currentPage - (currentPage % 10) + 1;

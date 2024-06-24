@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
         <div class="announcement-con-date"><h3>${announcements.date }</h3></div>
       </div>
       <div class="announcement-con-txt">${announcements.text}</div>
-      <div style="display: flex; justify-content: space-evenly; margin-top:30px;">
+      <div style="display: flex; justify-content: space-evenly; margin:30px 0px;">
         <c:if test="${sessionScope.twitterId == 459978973 }">  
         <div>
           <button class="cute-button-blue"
