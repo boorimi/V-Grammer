@@ -294,7 +294,8 @@ dialog::backdrop {
 	position: relative;
 	box-shadow: 0 0 0 2px white inset;
 	border-radius: 13px;
-	font-size: 0.8vw;
+	font-size: 1vw;
+/*	margin-bottom: 10px;*/
 }
 
 .s-data:hover {
@@ -306,7 +307,7 @@ dialog::backdrop {
 	display: flex;
 	align-items: center;
 	position: relative;
-	left: 10px
+	left: 10px;
 }
 
 .s-icon {
@@ -344,16 +345,38 @@ dialog::backdrop {
 	align-items: center
 }
 
-.s-title-button-box {
-	display: flex;
-	justify-content: space-around;
-	padding-top: 5%;
-}
-
 .s-data:hover .s-data-title {
 	display: block;
 }
 
+/* 반응형 */
+@media screen and (max-width: 768px) {
+	.tab_item:nth-child(2){
+		font-size: 1.9vw;
+	}
+	.tab_item {
+        width: calc(100% / 8);
+		font-size: 2.2vw;
+	}
+	.s-time {
+        width: calc(100% / 8);
+		font-size: 2.2vw;
+		
+	}
+    .s-data {
+        width: calc(100% / 3);
+        font-size: 2.5vw;
+    }
+
+    .s-inner-box {
+        left: 5px; 
+    }
+
+    .s-data-title {
+        width: 80%;
+        bottom: 110%;
+    }
+}
 /* insert css */
 .s-insert-a-container {
 	padding-top: 1%;
