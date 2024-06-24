@@ -5,13 +5,16 @@
 	height: 900px;
 	display: flex;
 	position: relative;
+	margin-bottom: 10px;
 }
-.member-container a{
+
+.member-container a {
 	color: inherit;
-	text-decoration: none; 
+	text-decoration: none;
 }
+
 .member-memberList-container {
-	width: 20%;
+	width: 25%;
 	height: 100%;
 	overflow: hidden;
 	position: absolute;
@@ -53,26 +56,28 @@
 	height: 8%;
 	display: flex;
 	align-items: center;
-	font-size: 22pt;
+	font-size: 20pt;
 	position: relative;
 	padding-left: 10%;
 }
 
 .member-memberList:hover {
+	width: 100%;
 	transition: transform 0.2s ease, font-size 0.2s ease;
-	transform: scaleY(1.1) scaleX(1.03);
+	transform: scale(1);
 	font-weight: 900;
-	font-size: 30pt;
+	font-size: 25pt;
 	z-index: 600;
 	text-shadow: 3px 3px 2px white;
 }
 
 .member-memberList.show {
-	transform: scaleY(1.1) scaleX(1.03);
-	font-weight: 900;
-	font-size: 30pt;
+	width: 100%;
 	position: relative;
-	z-index: 500;
+	transform: scale(1);
+	font-weight: 900;
+	font-size: 25pt;
+	z-index: 600;
 	text-shadow: 3px 3px 2px white;
 }
 
@@ -140,7 +145,7 @@
 	position: absolute;
 	top: 0;
 	left: 20%;
-	z-index: 100; 
+	z-index: 100;
 }
 
 .member-detail-container2 {
@@ -151,7 +156,7 @@
 	position: absolute;
 	top: 0;
 	left: 20%;
-	z-index: 100; 
+	z-index: 100;
 }
 
 .member-detail {
@@ -167,7 +172,7 @@
 	padding-top: 2%;
 	padding-bottom: 3%;
 	font-family: 'CustomFont', sans-serif;
-    font-weight: 900;
+	font-weight: 900;
 }
 
 #member-name {
@@ -226,10 +231,11 @@
 	color: gray;
 }
 
-.member-address-container{
-	padding-top: 3%;	
-	padding-bottom: 3%;	
+.member-address-container {
+	padding-top: 3%;
+	padding-bottom: 3%;
 }
+
 .member-address-box {
 	display: flex;
 	flex-wrap: wrap;
@@ -337,7 +343,7 @@
 	color: white;
 }
 
-.member-detail-button-box > button {
+.member-detail-button-box>button {
 	border-radius: 20px;
 	font-family: "Bebas Neue", sans-serif;
 	font-weight: 400;
@@ -347,8 +353,7 @@
 	background-color: rgba(240, 240, 240, 0.1);
 }
 
-.member-detail-button-box > button:hover {
+.member-detail-button-box>button:hover {
 	transition: transform 0.3s ease;
 	transform: scale(1.1);
 }
-

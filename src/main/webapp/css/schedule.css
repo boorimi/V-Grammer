@@ -328,7 +328,7 @@ dialog::backdrop {
 	padding-left: 10px;
 	display: flex;
 	flex-wrap: wrap;
-	width: 70%;
+	width: 71%;
 }
 
 .time-name div:nth-child(1) {
