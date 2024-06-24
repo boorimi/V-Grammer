@@ -153,7 +153,7 @@
 					</div>
 					<div class="s-slide-box">
 						<!-- 부드러운 연결을 위해 js에서 같은 div 두개 더 생성 -->
-						<div class="s-slide-text">メンバーのスケジュールを直接登録してみてください！</div>
+						<div class="s-slide-text"><span>メンバーのスケジュールを直接登録してみてください！</span></div>
 					</div>
 				</div>
 				<div class="s-insert-content-a-box">

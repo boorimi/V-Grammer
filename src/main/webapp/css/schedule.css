@@ -6,7 +6,7 @@ dialog {
 	border-radius: 5px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	padding: 20px;
-	width: 300px;
+	min-width: 300px;
 }
 
 dialog::backdrop {
@@ -29,6 +29,81 @@ dialog::backdrop {
 	border: none;
 	font-size: 1.2em;
 	cursor: pointer;
+}
+.modal-footer button{
+	color: #fff;
+	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.3s ease;
+	width: 30%;
+}
+
+.modal-footer button:hover {
+	background: linear-gradient(45deg,
+			#ff85c1,
+			#ffb6c1);
+	/* 호버 시 배경색 그라데이션 변경 */
+	transform: scale(1.05);
+	/* 호버 시 살짝 위로 이동 */
+}
+.modal-b-box s-input-box {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+.modal-b-box input {
+	width: 90%;
+	height: 30px;
+	color: #333;
+	border-radius: 12px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.modal-b-box input:hover {
+	background-color: #ffe1eb;
+	border-color: #e6498e;
+}
+
+.modal-b-box input:focus {
+	outline: none;
+	box-shadow: 0 0 5px #ff69b4;
+	border-color: #ff69b4;
+}
+
+.input-update-button {
+	display: flex;
+	align-items: center;
+}
+
+#s-update-button {
+	color: #fff;
+	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.3s ease;
+	width: 100%;
+	font-weight: 900;
+}
+
+#s-update-button:hover {
+	background: linear-gradient(45deg,
+			#ff85c1,
+			#ffb6c1);
+	/* 호버 시 배경색 그라데이션 변경 */
+	transform: scale(1.05);
+	/* 호버 시 살짝 위로 이동 */
 }
 
 .schedule-container {
@@ -328,6 +403,10 @@ dialog::backdrop {
 	padding-left: 200px;
 }
 
+.s-slide-text span {
+	display: inline-block;
+}
+
 /* 텍스트 슬라이드 */
 @keyframes roll {
 	0% {
@@ -403,16 +482,16 @@ dialog::backdrop {
 	transition: all 0.3s ease;
 }
 
-.s-input-date1:hover {
+.s-input-box input:hover {
 	background-color: #ffe1eb;
 	border-color: #e6498e;
 }
-
-.s-input-date1:focus {
+.s-input-box input:focus {
 	outline: none;
 	box-shadow: 0 0 5px #ff69b4;
 	border-color: #ff69b4;
 }
+
 
 .s-input-time1 {
 	width: 95%;
@@ -424,17 +503,6 @@ dialog::backdrop {
 	-moz-appearance: none;
 	cursor: pointer;
 	transition: all 0.3s ease;
-}
-
-.s-input-time1:hover {
-	background-color: #ffe1eb;
-	border-color: #e6498e;
-}
-
-.s-input-time1:focus {
-	outline: none;
-	box-shadow: 0 0 5px #ff69b4;
-	border-color: #ff69b4;
 }
 
 .s-input-title {
@@ -451,17 +519,6 @@ dialog::backdrop {
 	-moz-appearance: none;
 	cursor: pointer;
 	transition: all 0.3s ease;
-}
-
-.s-input-title1:hover {
-	background-color: #ffe1eb;
-	border-color: #e6498e;
-}
-
-.s-input-title1:focus {
-	outline: none;
-	box-shadow: 0 0 5px #ff69b4;
-	border-color: #ff69b4;
 }
 
 .s-input-box {

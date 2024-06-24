@@ -53,10 +53,10 @@ $(document).ready(function() {
 
 	// 초기 페이지 로드 시 요일에 맞게 s-time div 컬러 색상 세팅
 	$('.s-time').css('backgroundColor', timeColor[todayId]);
-	
-	let slideText = `<div class="s-slide-text">メンバーのスケジュールを直接登録してみてください！</div>
-					<div class="s-slide-text">メンバーのスケジュールを直接登録してみてください！</div>`
-	
+
+	let slideText = `<div class="s-slide-text"><span>メンバーのスケジュールを直接登録してみてください！</span></div>
+					<div class="s-slide-text"><span>メンバーのスケジュールを直接登録してみてください！</span></div>`
+
 	$(".s-slide-box").append(slideText);
 
 	// 멤버 pk에 맞는 컬러
@@ -175,9 +175,7 @@ $(document).ready(function() {
 		location.href = "UpdateScheduleC?sPk=" + sPk + "&s_date=" + date + "&s_time=" + time
 			+ "&s_title=" + title;
 	});
-	
-	
-	
+
 
 	// 인서트 js
 	for (let i = 0; i < 7; i++) {
@@ -193,8 +191,10 @@ $(document).ready(function() {
 					<input name="s_title" class="s-input-title1" placeholder="配信タイトル" />
 				</div>
 			</div>`;
+		
 
 		$('.s-input-container').append(insertInputList);
+
 	}
 
 	const $openButton = $("#schedule-insert-detail-button");
@@ -266,7 +266,7 @@ $(document).ready(function() {
 		}
 		$("#schedule-form").submit();
 	});
-	
+
 
 
 
