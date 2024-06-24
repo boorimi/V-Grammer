@@ -152,8 +152,8 @@
 							value="${sessionScope.accountInfo.u_twitter_id }"></button>
 					</div>
 					<div class="s-slide-box">
-						<div class="s-slide-text">メンバーのスケジュールを直接登録してみてください！</div>
-						<div class="s-slide-text">メンバーのスケジュールを直接登録してみてください！</div>
+						<!-- 부드러운 연결을 위해 js에서 같은 div 두개 더 생성 -->
+						<div class="s-slide-text"><span>メンバーのスケジュールを直接登録してみてください！</span></div>
 					</div>
 				</div>
 				<div class="s-insert-content-a-box">
@@ -190,17 +190,17 @@
 								</select>
 							</div>
 							<div class="s-input-container">
-								<!-- 								<div class="s-input-box"> -->
-								<!-- 									<div class="s-input-date"> -->
-								<!-- 										<input name="s_date" type="date" id="s-input-date" /> -->
-								<!-- 									</div> -->
-								<!-- 									<div class="s-input-time"> -->
-								<!-- 										<input name="s_time" type="time" id="s-input-time" /> -->
-								<!-- 									</div> -->
-								<!-- 									<div class="s-input-title"> -->
-								<!-- 										<input name="s_title" id="s-input-title" placeholder="配信タイトル" /> -->
-								<!-- 									</div> -->
-								<!-- 								</div> -->
+								<!-- 	<div class="s-input-box"> -->
+								<!-- 		<div class="s-input-date"> -->
+								<!-- 			<input name="s_date" type="date" id="s-input-date" /> -->
+								<!-- 		</div> -->
+								<!-- 		<div class="s-input-time"> -->
+								<!-- 			<input name="s_time" type="time" id="s-input-time" /> -->
+								<!-- 		</div> -->
+								<!-- 		<div class="s-input-title"> -->
+								<!-- 			<input name="s_title" id="s-input-title" placeholder="配信タイトル" /> -->
+								<!-- 		</div> -->
+								<!-- 	</div> -->
 							</div>
 							<div class="s-insert-button">
 								<button type="button" id="s-insert-button">登録</button>
