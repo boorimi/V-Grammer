@@ -1,3 +1,10 @@
+.mypage-userInfo-container{
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 400px;
+}
+
 .mypage-profile-icon-box {
 	width: 150px;
 	height: 150px;
@@ -19,7 +26,6 @@
 	width: 250px;
 	height: auto;
 	background: rgb(255, 255, 255);
-	margin: auto;
 	position: relative;
 	margin-bottom: 30px;
 	border-radius: 7px;

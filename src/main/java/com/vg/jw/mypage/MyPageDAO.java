@@ -302,7 +302,7 @@ public class MyPageDAO {
 
 	public static void changeProfile(HttpServletRequest request) {
 
-		System.out.println("회원정보 업데이트 메서드 진입");
+		System.out.println("changeProfile 메서드 진입");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -315,8 +315,12 @@ public class MyPageDAO {
 
 		System.out.println("회원의 기존 정보");
 		System.out.println(userId);
-		System.out.println(oldProfileImg);
+		System.out.println("경로 제거 전 기존이미지:" + oldProfileImg);
 
+		if (oldProfileImg != null && oldProfileImg.contains("account/profileImg/")) {
+			oldProfileImg = oldProfileImg.replace("account/profileImg/", "");
+		}
+		System.out.println("경로 제거 후 기존이미지:" + oldProfileImg);
 		// 사진받을 준비
 		String path = request.getServletContext().getRealPath("account/profileImg");
 		System.out.println("프로필사진 경로: " + path);
@@ -327,8 +331,8 @@ public class MyPageDAO {
 					new DefaultFileRenamePolicy());
 
 			// 변경을 위해 입력한 값 받아오기
-			String newProfileImg = mr.getFilesystemName("inputImg");
-			System.out.println(newProfileImg);
+			String newProfileImg = mr.getFilesystemName("new-profile-img");
+			System.out.println("유저정보 변경에서 새로 입력한 이미지" + newProfileImg);
 
 			// 이미지를 등록하지 않았을 경우 기존 이미지로 설정
 			if (newProfileImg == null) {
@@ -338,7 +342,7 @@ public class MyPageDAO {
 
 			System.out.println("DB에 새로 들어갈 이미지파일 경로: " + newProfileImg);
 
-			String sql = "\"UPDATE haco_user SET u_profile_img = ? WHERE u_twitter_id = ?";
+			String sql = "UPDATE haco_user SET u_profile_img = ? WHERE u_twitter_id = ?";
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, newProfileImg);
@@ -347,10 +351,17 @@ public class MyPageDAO {
 			if (pstmt.executeUpdate() >= 1) {
 				System.out.println("사진 업데이트 완료");
 				System.out.println("새로운 사진 파일명: " + newProfileImg);
-				
-				//로그인 세션 정보 업데이트
-				accountInfo.setU_profile_img(newProfileImg);
-				
+
+				// 로그인 세션 정보 업데이트
+				String subString = newProfileImg.substring(0, 4);
+				;
+
+				if (subString.equals("http")) {
+					accountInfo.setU_profile_img(newProfileImg);
+				} else {
+					accountInfo.setU_profile_img("account/profileImg/" + newProfileImg);
+				}
+
 				// 예전 이미지 삭제
 				if (!newProfileImg.equals(oldProfileImg)) {
 					File f = new File(path + "/" + oldProfileImg); // 経路名select

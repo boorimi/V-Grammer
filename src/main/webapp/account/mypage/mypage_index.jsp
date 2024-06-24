@@ -19,7 +19,7 @@
 <body>
 
 
-	<div class="mypage-container">
+	<div class="mypage-container" data-loginsession="${sessionScope.accountInfo.u_twitter_id }">
 
 		<div class="mypage-menu-section">
 			<div class="mypage-menu-title">
@@ -46,13 +46,7 @@
 				</div>
 				<span>MY記事一覧</span>
 			</div>
-			<div class="mypage-menu-items" id="mypage-menu-comment">
-				<div class="mypage-menu-icon-wrap">
-					<img class="mypage-menu-icon" alt=""
-						src="account/mypage/mypage_index_icon/comment.png">
-				</div>
-				<span>MYコメント</span>
-			</div>
+			
 		</div>
 		<div class="mypage-jsp-section">jsp인클루드 영역임</div>
 
