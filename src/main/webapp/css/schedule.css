@@ -129,9 +129,9 @@ dialog::backdrop {
 }
 
 /* 탭 스타일 */
-.tab_item {
+.tab-item {
 	width: calc(100% / 8);
-	height: 60px;
+	height: 70px;
 	border-bottom: 3px solid #333333;
 	background-color: #f8f8f8;
 	line-height: 50px;
@@ -150,7 +150,7 @@ dialog::backdrop {
 }
 
 /* 라디오 버튼 UI 삭제 */
-.s-week-list input[name="tab_item"] {
+.s-week-list input[name="tab-item"] {
 	display: none;
 }
 
@@ -173,85 +173,85 @@ dialog::backdrop {
 }
 
 /* 요일별 선택됐을 때 탭 스타일 */
-#s-mon:checked+.tab_item {
+#s-mon:checked+.tab-item {
 	background-color: lightpink;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-mon:hover+.tab_item {
+#s-mon:hover+.tab-item {
 	background-color: lightpink;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-tue:checked+.tab_item {
+#s-tue:checked+.tab-item {
 	background-color: #b7f1ff;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-tue:hover+.tab_item {
+#s-tue:hover+.tab-item {
 	background-color: #b7f1ff;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-wed:checked+.tab_item {
+#s-wed:checked+.tab-item {
 	background-color: #d1b7a4;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-wed:hover+.tab_item {
+#s-wed:hover+.tab-item {
 	background-color: #d1b7a4;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-thu:checked+.tab_item {
+#s-thu:checked+.tab-item {
 	background-color: #ffe089;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-thu:hover+.tab_item {
+#s-thu:hover+.tab-item {
 	background-color: #ffe089;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-fri:checked+.tab_item {
+#s-fri:checked+.tab-item {
 	background-color: #cf80e0;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-fri:hover+.tab_item {
+#s-fri:hover+.tab-item {
 	background-color: #cf80e0;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-sat:checked+.tab_item {
+#s-sat:checked+.tab-item {
 	background-color: #ffa658;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-sat:hover+.tab_item {
+#s-sat:hover+.tab-item {
 	background-color: #ffa658;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-sun:checked+.tab_item {
+#s-sun:checked+.tab-item {
 	background-color: #bdde87;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
 }
 
-#s-sun:hover+.tab_item {
+#s-sun:hover+.tab-item {
 	background-color: #bdde87;
 	transform-origin: bottom;
 	transform: scaleY(1.2);
@@ -264,7 +264,7 @@ dialog::backdrop {
 
 .s-time {
 	width: calc(100% / 8);
-	min-height: 50px;
+	min-height: 70px;
 	/*display flex 설정해도 width가 변하지 않게*/
 	flex-shrink: 0;
 	display: flex;
@@ -294,8 +294,9 @@ dialog::backdrop {
 	position: relative;
 	box-shadow: 0 0 0 2px white inset;
 	border-radius: 13px;
-	font-size: 1vw;
-/*	margin-bottom: 10px;*/
+	font-size: 1.2vw;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .s-data:hover {
@@ -325,6 +326,12 @@ dialog::backdrop {
 
 .time-name {
 	padding-left: 10px;
+	display: flex;
+	flex-wrap: nowrap
+}
+
+.time-name div:nth-child(1) {
+	padding-right: 10px;
 }
 
 .s-data-title {
@@ -349,34 +356,65 @@ dialog::backdrop {
 	display: block;
 }
 
-/* 반응형 */
-@media screen and (max-width: 768px) {
-	.tab_item:nth-child(2){
+/* Responsive */
+@media screen and (max-width: 1400px){
+	.time-name{
+		flex-direction: column;
+	}
+}
+@media screen and (max-width: 900px) {
+	.tab-item:nth-child(2) {
 		font-size: 1.9vw;
 	}
-	.tab_item {
-        width: calc(100% / 8);
+
+	.tab-item {
+		width: calc(100% / 8);
 		font-size: 2.2vw;
 	}
+
 	.s-time {
-        width: calc(100% / 8);
+		width: calc(100% / 8);
 		font-size: 2.2vw;
-		
+
 	}
-    .s-data {
-        width: calc(100% / 3);
-        font-size: 2.5vw;
-    }
 
-    .s-inner-box {
-        left: 5px; 
-    }
+	.s-data {
+		width: calc(100% / 3);
+		font-size: 2.5vw;
+	}
 
-    .s-data-title {
-        width: 80%;
-        bottom: 110%;
-    }
+	.s-inner-box {
+		left: 5px;
+	}
+
+	.s-data-title {
+		width: 80%;
+		bottom: 110%;
+	}
+
+	.modal-b-box .s-input-box {
+		width: 300px;
+		flex-wrap: wrap;
+	}
+
+	.modal-b-box .input-title {
+		min-width: 230px;
+		padding-top: 5px;
+	}
+
+	.modal-b-box .input-update-button {
+		padding-top: 5px;
+		position: relative;
+	}
+
+	#s-update-button {
+		position: absolute;
+		width: 70px;
+		bottom: 0;
+		height: 75px;
+	}
 }
+
 /* insert css */
 .s-insert-a-container {
 	padding-top: 1%;

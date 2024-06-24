@@ -45,7 +45,7 @@ $(document).ready(function() {
 		"s-fri": '#cf80e0', "s-sat": '#ffa658', "s-sun": '#bdde87'
 	};
 
-	$('input[name="tab_item"]').change(function() {
+	$('input[name="tab-item"]').change(function() {
 		let dayOfWeek = $(this).attr('id');
 		let backgroundColor = timeColor[dayOfWeek];
 		$('.s-time').css('backgroundColor', backgroundColor);
