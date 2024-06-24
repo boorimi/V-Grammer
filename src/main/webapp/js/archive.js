@@ -1,4 +1,7 @@
 $(function () {
+  // 페이지 로드 시 투명도를 올리는 함수 호출
+  adjustOpacity(1);
+
   // 비동기 페이징 (archive.jsp)
   localStorage.setItem("member", "未分類");
   localStorage.setItem("category", "未分類");
@@ -21,6 +24,9 @@ $(function () {
   });
 
   $(document).on("click", ".archive-paging-no", function () {
+    $(".archive-paging-no").removeClass("active"); // 모든 요소에서 active 클래스 제거
+    $(this).addClass("active"); // 클릭된 요소에 active 클래스 추가
+
     let page = localStorage.setItem("currentPage", $(this).text());
     let member = localStorage.getItem("member");
     let category = localStorage.getItem("category");
@@ -142,7 +148,7 @@ $(function () {
       success: function (resData) {
         // 요청이 성공했을 때 실행할 코드
         test2(resData);
-        adjustOpacity2(1);
+        adjustOpacity(1);
 
         $("select[name='collabo']").change(function () {
           toggleButton();
@@ -155,11 +161,67 @@ $(function () {
     });
   });
 
-  // 업데이트 아카이브 함수
-  updateArchive();
+  // 수정버튼 누르면 수정시키고 바로 전 페이지로 원복시키기
+  $(document).on("click", "#archiveUpdateButton", function () {
+    let a_pk = $("input[name='a_pk']").val();
+    let collabo = $("select[name='collabo']").val();
+    let collabomember = $("input[name='collabomember']").val();
+    let category = $("select[name='category']").val();
 
-  // 페이지 로드 시 투명도를 올리는 함수 호출
-  adjustOpacity(1);
+    let member = localStorage.getItem("member");
+    let category2 = localStorage.getItem("category");
+    let title = localStorage.getItem("title");
+
+    $.ajax({
+      url: "ArchiveUpdateC",
+      type: "post",
+      data: { a_pk, collabo, collabomember, category },
+      dataType: "text",
+    })
+      .done(function (responseData) {
+        alert("업데이트 성공");
+        console.log("서버에서 받은 데이터:", responseData);
+
+        // ArchiveC 서블릿으로 POST 요청 보내기
+        $.ajax({
+          url: "ArchiveC",
+          type: "post",
+          data: { member, category: category2, title },
+          dataType: "json", // ArchiveC에서 JSON 형식의 응답을 기대한다면 설정
+        })
+          .done(function (responseFromArchiveC) {
+            console.log("ArchiveC 서버에서 받은 데이터:", responseFromArchiveC);
+
+            getPagingVariable(member, category2, title)
+              .then(function (pagingVariable) {
+                console.log("pagingVariable:", pagingVariable);
+
+                // 여기서부터는 pagingVariable을 사용하여 작업을 수행
+                searchPage(responseFromArchiveC, pagingVariable);
+                replaceCollabomemberString();
+                replaceNull();
+              })
+              .catch(function (error) {
+                console.error("getPagingVariable 오류:", error);
+              });
+          })
+          .fail(function (xhr, textStatus, errorThrown) {
+            console.error(
+              "ArchiveC 서버 AJAX 요청 실패:",
+              textStatus,
+              errorThrown
+            );
+          });
+      })
+      .fail(function (xhr, textStatus, errorThrown) {
+        alert("업데이트 실패");
+        console.error(
+          "ArchiveUpdateC 서버 AJAX 요청 실패:",
+          textStatus,
+          errorThrown
+        );
+      });
+  });
 
   //콜라보멤버 div 처리
   replaceCollabomemberString();
@@ -379,7 +441,7 @@ function test2(resData) {
 
   const formattedTime = convertTimeTo24Hours(archive.a_time);
 
-  let html = `<div id="archive-list2">
+  let html = `<div id="archive-list">
         <div class="archive-contents-update">
           <div>
             <button id="archiveUpdateButton" class="cute-button">修正</button>
@@ -799,12 +861,7 @@ function getPagingVariableStart() {
   });
 }
 
-$(document).ready(function () {
-  $(".archive-paging-no").click(function () {
-    $(".archive-paging-no").removeClass("active"); // 모든 요소에서 active 클래스 제거
-    $(this).addClass("active"); // 클릭된 요소에 active 클래스 추가
-  });
-});
+$(document).ready(function () {});
 
 // 모달 팝업 기능
 let activeBtn;
@@ -885,30 +942,5 @@ function toggleButton() {
       openModalButton2.find(".collaboMember2").text("未分類");
       openModalButton2.find("input").val("未分類");
     }
-  });
-}
-function updateArchive() {
-  $(document).on("click", "#archiveUpdateButton", function () {
-    let a_pk = $("input[name='a_pk']").val();
-    let collabo = $("select[name='collabo']").val();
-    let collabomember = $("input[name='collabomember']").val();
-    let category = $("select[name='category']").val();
-
-    $.ajax({
-      url: "ArchiveUpdateC",
-      type: "post",
-      data: { a_pk, collabo, collabomember, category },
-      dataType: "text",
-    })
-      .done(function (resData) {
-        alert("성공");
-        console.log("응답 데이터:", resData);
-        history.back();
-        window.location.reload();
-      })
-      .fail(function (jqXHR, textStatus, errorThrown) {
-        alert("실패");
-        console.error("AJAX 요청 실패:", textStatus, errorThrown);
-      });
   });
 }

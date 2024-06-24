@@ -22,8 +22,8 @@ public class TwitterLoginServlet extends HttpServlet {
 	private static final String COUNSUMER_SECRET = "Sgv9cF3R5BXves1VterhrKQSikGtQsU0G7Pt9nU0fqBkVC20TS";
 
 	// 로그인 완료 후 호출될 URL
-	private static final String CALLBACK_URL = "http://localhost/V-Grammer/TwitterCallbackServlet";
-//	private static final String CALLBACK_URL = "http://haconaka.com/TwitterCallbackServlet";
+//	private static final String CALLBACK_URL = "http://localhost/V-Grammer/TwitterCallbackServlet";
+	private static final String CALLBACK_URL = "http://haconaka.com/TwitterCallbackServlet";
 
 	// OAuth인증을 수행하기 위한 consumer(hakonaka)정보/provider(트위터)정보
 	private OAuthConsumer consumer; // consumer key, consumer secret가 들어감

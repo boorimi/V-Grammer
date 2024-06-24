@@ -165,9 +165,6 @@
   padding: 10px;
   border: 1px solid gray;
 }
-.archive-paging-no:hover {
-  background-color: #eeeeee;
-}
 .archive-page-no2 {
   cursor: pointer;
   padding: 10px;

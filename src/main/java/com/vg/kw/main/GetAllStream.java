@@ -25,14 +25,61 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @WebListener
-public class GetAllStream {
+public class GetAllStream implements ServletContextListener {
+	private ScheduledExecutorService executorService;
+
+	// 실제 서비스 돌릴때는 이걸로 바꿔서 돌려야함.
 	
-	public static void main(String[] args) {
-		
-		getLiveUrl(null);
-		
+	@Override
+	public void contextInitialized(ServletContextEvent sce) {
+		executorService = Executors.newSingleThreadScheduledExecutor();
+
+		Runnable task = () -> {
+			try {
+				getLiveUrl(null); // 인자는 null로 전달하거나 필요한 객체를 전달하세요.
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		};
+
+		// 현재 시간에서 가장 가까운 05분과 35분까지의 초기 지연 시간을 계산
+		long initialDelay = calculateInitialDelay();
+
+		// 매 시간의 05분과 35분에 작업 반복 실행
+		executorService.scheduleAtFixedRate(task, initialDelay, TimeUnit.HOURS.toMillis(1), TimeUnit.MILLISECONDS);
 	}
-	
+
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+		if (executorService != null && !executorService.isShutdown()) {
+			executorService.shutdown();
+		}
+	}
+
+	private long calculateInitialDelay() {
+		Calendar calendar = Calendar.getInstance();
+		int minute = calendar.get(Calendar.MINUTE);
+
+		// 현재 시간에서 가장 가까운 다음 05분 또는 35분까지의 시간을 계산
+		if (minute < 5) {
+			// 다음 05분까지의 시간 계산
+			calendar.set(Calendar.MINUTE, 5);
+		} else if (minute < 35) {
+			// 다음 35분까지의 시간 계산
+			calendar.set(Calendar.MINUTE, 35);
+		} else {
+			// 다음 시간의 05분까지의 시간 계산
+			calendar.add(Calendar.HOUR_OF_DAY, 1);
+			calendar.set(Calendar.MINUTE, 5);
+		}
+
+		// 초기 지연 시간 계산
+		long initialDelay = calendar.getTimeInMillis() - System.currentTimeMillis();
+		if (initialDelay < 0) {
+			initialDelay += TimeUnit.HOURS.toMillis(1); // 다음 시간으로 설정
+		}
+		return initialDelay;
+	}
 
 	public static void getLiveUrl(HttpServletRequest request) {
 
