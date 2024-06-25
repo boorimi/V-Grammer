@@ -53,18 +53,17 @@ $(document).ready(function() {
 			//			console.log(idx);
 			$memberImgs.eq(idx - 1).addClass('show');
 			$memberList.eq(idx - 1).addClass('show');
-			
-			
+
 			// 22~25 배경이미지 컬러 그라데이션 넣어주기 위한 if문
-			if($(this).attr('id')==='22'){
+			if ($(this).attr('id') === '22') {
 				$('.member-img-container').css('background-color', '#FCEDEF')
-			} else if($(this).attr('id')==='23'){
+			} else if ($(this).attr('id') === '23') {
 				$('.member-img-container').css('background-color', '#C1C1C5')
-			} else if($(this).attr('id')==='24'){
+			} else if ($(this).attr('id') === '24') {
 				$('.member-img-container').css('background-color', '#D4D0DF')
-			} else if($(this).attr('id')==='25'){
+			} else if ($(this).attr('id') === '25') {
 				$('.member-img-container').css('background-color', '#F4F4E4')
-			}  else if($(this).attr('id')==='17'){
+			} else if ($(this).attr('id') === '17') {
 				$('.member-img-container').css('background-color', '#FDF9FA')
 			} else {
 				$('.member-img-container').css('background-color', 'rgb(0,0,0,0)')
@@ -76,6 +75,8 @@ $(document).ready(function() {
 				$detailbox.css('background-color', colors[idx][1]);
 			}
 			setColor(idx, $listContainer, $detailbox, colors);
+
+
 		});
 	});
 
@@ -84,11 +85,6 @@ $(document).ready(function() {
 
 	// 더보기 클릭 시 더보기 div 노출
 	$open.on('click', function() {
-
-		// 버튼을 누르면 컨테이너가 늘어나는 transition 걸고,
-		// transition 효과 끝나면 사라지게?
-		// 아니면 버튼 누르면 바로 사라지고
-		// 컨테이너 2가 transition 효과 반영되면서 올라오게??
 		$('.member-detail-container').hide();
 		$('.member-detail-container2').fadeIn(1000);
 	});
