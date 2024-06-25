@@ -29,7 +29,6 @@ public class ArchiveUpdateC extends HttpServlet {
 //		request.setAttribute("content", "archive/archiveupdate.jsp");
 //		request.getRequestDispatcher("index.jsp").forward(request, response);
 //		response.sendRedirect("ArchiveC");
-//		ArchiveDAO.getAnotherPage(request, response);
 
 	}
 
