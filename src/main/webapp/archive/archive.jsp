@@ -17,7 +17,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   <body>
   	<div class="all-wrapper">
     <!-- 검색창 시작 -->
-    <form>
+    <form onsubmit="return false;">
       <div class="archive-search-wrapper">
         <div class="archive-search-member">
           <select name="member">

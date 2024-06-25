@@ -1,9 +1,13 @@
 $(function () {
+  // 페이지 로드 시 투명도를 올리는 함수 호출
+  adjustOpacity(1);
+
   // 비동기 페이징 (archive.jsp)
   localStorage.setItem("member", "未分類");
   localStorage.setItem("category", "未分類");
   localStorage.setItem("title", "");
 
+  // 초기 페이지 번호 로드
   $.ajax({
     url: "ArchiveSearchC",
     type: "post",
@@ -19,7 +23,56 @@ $(function () {
     });
   });
 
+  let initialPageState = {
+    isAjax: true, // 초기에는 비동기 요청이 아님
+    url: "ArchiveC", // 초기 URL 설정, 비동기 요청에서는 필요하지 않을 수 있음
+    method: "post",
+    data: {
+      member: localStorage.getItem("member") || "未分類",
+      category: localStorage.getItem("category") || "未分類",
+      title: localStorage.getItem("title") || "",
+      page: localStorage.getItem("currentPage") || 1,
+    },
+  };
+
+  // 페이지 로드 후 초기 상태를 브라우저 히스토리에 추가
+  sessionStorage.setItem("currentPageState", JSON.stringify(initialPageState));
+
+  // popstate 이벤트 리스너
+  window.addEventListener("popstate", function (event) {
+    if (event.state && event.state.isAjax) {
+      loadPageState(event.state);
+    }
+  });
+
+  // 페이지 상태를 로드하는 함수
+  function loadUpdatePage(state) {
+    $.ajax({
+      url: state.url,
+      type: state.method,
+      data: state.data,
+      dataType: "json",
+      success: function (resData) {
+        // 요청이 성공했을 때 실행할 코드
+        test2(resData); // 페이지 데이터를 업데이트하는 함수
+        adjustOpacity(1); // 페이지 요소를 조정하는 함수
+
+        $("select[name='collabo']").change(function () {
+          toggleButton(); // select 요소 변경 시 호출되는 함수
+        });
+      },
+      error: function (xhr, status, error) {
+        // 요청이 실패했을 때 실행할 코드
+        console.log("Request failed: " + status + ", " + error);
+      },
+    });
+  }
+
+  // 비동기 페이징 처리
   $(document).on("click", ".archive-paging-no", function () {
+    $(".archive-paging-no").removeClass("active"); // 모든 요소에서 active 클래스 제거
+    $(this).addClass("active"); // 클릭된 요소에 active 클래스 추가
+
     let page = localStorage.setItem("currentPage", $(this).text());
     let member = localStorage.getItem("member");
     let category = localStorage.getItem("category");
@@ -62,6 +115,11 @@ $(function () {
       localStorage.setItem("member", $("select[name='member']").val());
       localStorage.setItem("category", $("select[name='category']").val());
       localStorage.setItem("title", $("input[name='title']").val());
+
+      let member = localStorage.getItem("member");
+      let category = localStorage.getItem("category");
+      let title = localStorage.getItem("title");
+
       let tempPagePrev =
         (Math.floor((localStorage.getItem("currentPage") - 1) / 10) - 1) * 10 +
         1;
@@ -79,29 +137,52 @@ $(function () {
         localStorage.setItem("currentPage", localStorage.getItem("pageCount"));
       } else if ($(this).attr("id") === "archive-search-button") {
         localStorage.setItem("currentPage", "1");
-        localStorage.setItem("pageCount", "????");
+        $.ajax({
+          url: "ArchiveSearchC",
+          type: "post",
+          data: { page: 1 },
+          dataType: "json",
+        }).done(function (resData) {
+          console.log(resData);
+          getPagingVariable(member, category, title).then(function (resData) {
+            console.log(resData);
+            let data = resData.split("!");
+            localStorage.setItem("currentPage", data[0]); // 현재페이지 정보
+            localStorage.setItem("pageCount", data[1]);
+          });
+        });
       }
-      let page = localStorage.getItem("currentPage");
-      let member = localStorage.getItem("member");
-      let category = localStorage.getItem("category");
-      let title = localStorage.getItem("title");
+
+      let state = {
+        isAjax: true, // 초기에는 비동기 요청이 아님
+        url: "ArchiveC", // 초기 URL 설정, 비동기 요청에서는 필요하지 않을 수 있음
+        method: "post",
+        data: {
+          member: localStorage.getItem("member") || "未分類",
+          category: localStorage.getItem("category") || "未分類",
+          title: localStorage.getItem("title") || "",
+          page: localStorage.getItem("currentPage") || 1,
+        },
+      };
+
+      sessionStorage.setItem("currentPageState", JSON.stringify(state));
 
       $("#archive-list").css({ opacity: 0.3 });
       adjustOpacity(1);
 
       $.ajax({
-        url: "ArchiveSearchC",
-        type: "post",
-        data: { page, member, category, title },
+        url: state.url,
+        type: state.method,
+        data: state.data,
         dataType: "json",
       }).done(function (resData) {
-        console.log(resData);
         let pagingVariable = getPagingVariable(member, category, title).then(
           function (resData) {
             return resData;
           }
         );
         searchPage(resData, pagingVariable);
+        adjustOpacity(1);
         replaceCollabomemberString();
         replaceNull();
 
@@ -112,35 +193,49 @@ $(function () {
 
   // 업데이트 페이지로 비동기 처리
   $(document).on("click", ".archive-update-button-1", function () {
-    //$("#archive-list2").css({ opacity: 0.3 });
     let a_pk = $(this).val();
-    console.log(a_pk);
-    $.ajax({
+    let currentPageUrl = window.location.href;
+    let state = {
+      isAjax: true,
       url: "ArchiveUpdateC",
-      type: "get",
-      data: { a_pk },
-      dataType: "json",
-      success: function (resData) {
-        // 요청이 성공했을 때 실행할 코드
-        test2(resData);
-        adjustOpacity2(1);
+      method: "get",
+      data: { a_pk: a_pk },
+    };
 
-        $("select[name='collabo']").change(function () {
-          toggleButton();
-        });
-      },
-      error: function (xhr, status, error) {
-        // 요청이 실패했을 때 실행할 코드
-        console.log("Request failed: " + status + ", " + error);
-      },
-    });
+    // 현재 상태를 history에 추가
+    loadUpdatePage(state);
   });
 
-  // 업데이트 아카이브 함수
-  updateArchive();
+  // 수정버튼 누르면 수정시키고 바로 전 페이지로 원복시키기
+  $(document).on("click", "#archiveUpdateButton", function () {
+    let a_pk = $("input[name='a_pk']").val();
+    let collabo = $("select[name='collabo']").val();
+    let collabomember = $("input[name='collabomember']").val();
+    let category = $("select[name='category']").val();
 
-  // 페이지 로드 시 투명도를 올리는 함수 호출
-  adjustOpacity(1);
+    $.ajax({
+      url: "ArchiveUpdateC",
+      type: "post",
+      data: { a_pk, collabo, collabomember, category },
+      dataType: "text",
+    })
+      .done(function (responseData) {
+        alert("업데이트 성공");
+        console.log("서버에서 받은 데이터:", responseData);
+
+        let state = JSON.parse(sessionStorage.getItem("currentPageState"));
+        // 현재 페이지 상태를 세션 스토리지에 저장
+        loadPageState(state);
+      })
+      .fail(function (xhr, textStatus, errorThrown) {
+        alert("업데이트 실패");
+        console.error(
+          "ArchiveUpdateC 서버 AJAX 요청 실패:",
+          textStatus,
+          errorThrown
+        );
+      });
+  });
 
   //콜라보멤버 div 처리
   replaceCollabomemberString();
@@ -148,6 +243,37 @@ $(function () {
   // '미분류'라는 글자 빈칸으로 보여주기
   replaceNull();
 });
+
+function loadPageState(state) {
+  let member = localStorage.getItem("member");
+  let category = localStorage.getItem("category");
+  let title = localStorage.getItem("title");
+
+  // 예시: 데이터를 서버에서 가져와서 페이지 업데이트
+  $.ajax({
+    url: state.url,
+    type: state.method,
+    data: state.data,
+    dataType: "json",
+    success: function (resData) {
+      // 데이터 로드 성공 시 실행할 코드
+      let pagingVariable = getPagingVariable(member, category, title).then(
+        function (resData) {
+          return resData;
+        }
+      );
+      searchPage(resData, pagingVariable); // 페이지 데이터를 업데이트하는 함수
+      adjustOpacity(1); // 페이지 요소를 조정하는 함수
+      $("select[name='collabo']").change(function () {
+        toggleButton(); // select 요소 변경 시 호출되는 함수
+      });
+    },
+    error: function (xhr, status, error) {
+      // 데이터 로드 실패 시 실행할 코드
+      console.log("Request failed: " + status + ", " + error);
+    },
+  });
+}
 
 // 시간 형식 변환 함수
 function convertTimeTo24Hours(timeString) {
@@ -234,11 +360,67 @@ function test(resData) {
 
 //비동기 검색 세부
 async function searchPage(resData, pagingVariable) {
-  let $archiveList = $("#archive-list");
-  let $paging = $(".archive-paging-container");
+  let $archiveList = $(".all-wrapper");
   $archiveList.html("");
 
+  // 검색창 영역
+  let searchHtml = `<form onsubmit="return false;">
+      <div class="archive-search-wrapper">
+        <div class="archive-search-member">
+          <select name="member">
+            <option value="未分類">未分類</option>
+            <option value="七彩てまり">七彩てまり</option>
+            <option value="田中りゅこ">田中りゅこ</option>
+            <option value="夜夢瑠紅">夜夢瑠紅</option>
+            <option value="赤衣アカメ">赤衣アカメ</option>
+            <option value="星ノ音コロン">星ノ音コロン</option>
+            <option value="愛咲よつのは">愛咲よつのは</option>
+            <option value="玉ノ井もなか">玉ノ井もなか</option>
+            <option value="綾坂希穂">綾坂希穂</option>
+            <option value="ソフィ・ローズ">ソフィ・ローズ</option>
+            <option value="天海くりね">天海くりね</option>
+            <option value="鳳儚">鳳儚</option>
+            <option value="小日向千虎">小日向千虎</option>
+            <option value="白砂つな">白砂つな</option>
+            <option value="橘シエナ">橘シエナ</option>
+            <option value="ミラ・ルプス">ミラ・ルプス</option>
+            <option value="銀灰まお">銀灰まお</option>
+            <option value="リン・ガーネット">リン・ガーネット</option>
+            <option value="明堂しろね">明堂しろね</option>
+            <option value="華糖シェリー">華糖シェリー</option>
+            <option value="ぺるぽ">ぺるぽ</option>
+            <option value="叶望ゆゆ">叶望ゆゆ</option>
+            <option value="雫川なのか">雫川なのか</option>
+            <option value="堕天しすた">堕天しすた</option>
+            <option value="山寧恋">山寧恋</option>
+            <option value="翠森アトリ">翠森アトリ</option>
+          </select>
+        </div>
+        <div class="archive-search-category">
+          <select name="category">
+            <option value="未分類">未分類</option>
+            <option value="雑談">雑談</option>
+            <option value="歌枠">歌枠</option>
+            <option value="ゲーム">ゲーム</option>
+            <option value="企画">企画</option>
+            <option value="ASMR">ASMR</option>
+            <option value="shorts">shorts</option>
+            <option value="切り抜き">切り抜き</option>
+            <option value="オリジナル曲">オリジナル曲</option>
+            <option value="他">他</option>
+          </select>
+        </div>
+        <div class="archive-search-title">
+          <input type="text" name="title" placeholder="タイトルで検索" />
+          <button type="button" id="archive-search-button">検索</button>
+        </div>
+      </div>
+    </form>`;
+  $archiveList.append(searchHtml);
+
   // 본문영역
+  let html = `<div id="archive-list">`;
+
   for (let i = 0; i < resData.length; i++) {
     let archive = resData[i];
 
@@ -254,7 +436,7 @@ async function searchPage(resData, pagingVariable) {
 
     const formattedTime = convertTimeTo24Hours(archive.a_time);
 
-    let html = `<div class="archive-contents">
+    html += `<div class="archive-contents">
 			<div class="archive-update-div">
 				<button class="archive-update-button-1 cute-button" value="${archive.a_pk}">修正する</button>
 			</div>
@@ -280,38 +462,38 @@ async function searchPage(resData, pagingVariable) {
 				</a>
 			</div>
 		</div>`;
-    $archiveList.append(html);
   }
+  html += `</div>`;
+  $archiveList.append(html);
   //페이징 영역
-  $paging.html("");
   let asdf = await pagingVariable;
-  console.log(asdf);
+  //console.log(asdf);
   let data = asdf.split("!");
   let currentPage = localStorage.getItem("currentPage"); // 현재페이지 정보
   let pageCount = localStorage.getItem("pageCount"); // 총 페이지 정보
-  console.log(currentPage);
-  console.log(pageCount);
+  //console.log(currentPage);
+  //console.log(pageCount);
   let pageUnit = 10; // 페이징 단위
   //page변수 = 현재페이지 * 페이지유닛
   let page = ((currentPage - 1) / pageUnit) * pageUnit;
-  console.log(pageUnit);
-  console.log(page);
+  //console.log(pageUnit);
+  //console.log(page);
   ////////////////////////////////////////
-  let initialHtml = `<div class="archive-paging-start">
+  let pagingHtml = `<div class="archive-paging-container">
+  			<div class="archive-paging-start">
         <a>最初に</a>
       </div>`;
-  $paging.append(initialHtml);
+
   ////////////////////////////////////////
-  let initialHtml2 = `<div class="archive-paging-unit-prev">`;
+  pagingHtml += `<div class="archive-paging-unit-prev">`;
   if (page != 0) {
-    initialHtml2 += `<a>以前 ${pageUnit}ページ</a>`;
+    pagingHtml += `<a>以前 ${pageUnit}ページ</a>`;
   }
-  initialHtml2 += `</div>`;
-  $paging.append(initialHtml2);
+  pagingHtml += `</div>`;
   ///////////////////////////////////////////
-  let initialHtml3 = `<div class="archive-paging-no-div">`;
-  console.log(currentPage);
-  console.log(pageCount);
+  pagingHtml += `<div class="archive-paging-no-div">`;
+  //console.log(currentPage);
+  //console.log(pageCount);
 
   for (
     let i = currentPage - (currentPage % 10) + 1;
@@ -321,25 +503,24 @@ async function searchPage(resData, pagingVariable) {
       : pageCount);
     i++
   ) {
-    initialHtml3 += `<div class="archive-paging-no">${i}</div>`;
+    pagingHtml += `<div class="archive-paging-no">${i}</div>`;
   }
-  initialHtml3 += `</div>`;
-  $paging.append(initialHtml3);
+  pagingHtml += `</div>`;
   ///////////////////////////////////////
-  let initialHtml4 = `<div class="archive-paging-unit-next">`;
+  pagingHtml += `<div class="archive-paging-unit-next">`;
   if (
     page + (currentPage % pageUnit) < pageCount - (pageCount % pageUnit) &&
     page + pageUnit != pageCount
   ) {
-    initialHtml4 += `<a>次 ${pageUnit}ページ</a>`;
+    pagingHtml += `<a>次 ${pageUnit}ページ</a>`;
   }
-  initialHtml4 += `</div>`;
-  $paging.append(initialHtml4);
+  pagingHtml += `</div>`;
   //////////////////////////////////////////
-  let initialHtml5 = `<div class="archive-paging-end">
+  pagingHtml += `<div class="archive-paging-end">
         <a>最後に</a>
+      </div>
       </div>`;
-  $paging.append(initialHtml5);
+  $archiveList.append(pagingHtml);
 }
 ////////////////////////////////////////////
 
@@ -360,7 +541,7 @@ function test2(resData) {
 
   const formattedTime = convertTimeTo24Hours(archive.a_time);
 
-  let html = `<div id="archive-list2">
+  let html = `<div id="archive-list">
         <div class="archive-contents-update">
           <div>
             <button id="archiveUpdateButton" class="cute-button">修正</button>
@@ -780,12 +961,7 @@ function getPagingVariableStart() {
   });
 }
 
-$(document).ready(function () {
-  $(".archive-paging-no").click(function () {
-    $(".archive-paging-no").removeClass("active"); // 모든 요소에서 active 클래스 제거
-    $(this).addClass("active"); // 클릭된 요소에 active 클래스 추가
-  });
-});
+$(document).ready(function () {});
 
 // 모달 팝업 기능
 let activeBtn;
@@ -866,30 +1042,5 @@ function toggleButton() {
       openModalButton2.find(".collaboMember2").text("未分類");
       openModalButton2.find("input").val("未分類");
     }
-  });
-}
-function updateArchive() {
-  $(document).on("click", "#archiveUpdateButton", function () {
-    let a_pk = $("input[name='a_pk']").val();
-    let collabo = $("select[name='collabo']").val();
-    let collabomember = $("input[name='collabomember']").val();
-    let category = $("select[name='category']").val();
-
-    $.ajax({
-      url: "ArchiveUpdateC",
-      type: "post",
-      data: { a_pk, collabo, collabomember, category },
-      dataType: "text",
-    })
-      .done(function (resData) {
-        alert("성공");
-        console.log("응답 데이터:", resData);
-        history.back();
-        window.location.reload();
-      })
-      .fail(function (jqXHR, textStatus, errorThrown) {
-        alert("실패");
-        console.error("AJAX 요청 실패:", textStatus, errorThrown);
-      });
   });
 }

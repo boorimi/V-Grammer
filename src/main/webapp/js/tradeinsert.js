@@ -3,7 +3,7 @@ $(document).ready(function () {
     if ($(this).is(":checked")) { // 체크박스가 체크되었을 때만 실행
       let category = $(this).val(); // 현재 체크된 값
       let pk = $("#goods-pk").val();
-      console.log(category);
+      //console.log(category);
       $.ajax({
         url: "InsertGoodsValueC",
         method: "POST",
