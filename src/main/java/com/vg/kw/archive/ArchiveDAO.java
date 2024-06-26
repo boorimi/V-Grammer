@@ -79,7 +79,7 @@ public class ArchiveDAO {
 		sql += "where ha.a_m_pk = hm.m_pk ";
 		sql += "and (? IS NULL OR hm.m_name = ?) ";
 		sql += "and (? IS NULL OR ha.a_category = ?) ";
-		sql += "and (? IS NULL OR ha.a_title = ?) ";
+		sql += "and (? IS NULL OR ha.a_title like CONCAT('%',?,'%')) ";
 
 		try {
 
@@ -106,7 +106,8 @@ public class ArchiveDAO {
 			request.setAttribute("pageCount", pageCount); // 총 페이지 수
 			request.setAttribute("start", start);
 			request.setAttribute("end", end);
-
+			
+			System.out.println("페이지카운트:" + pageCount);
 			String resData = page + "!" + pageCount;
 			response.setContentType("text/plain; charset=utf-8");
 			response.getWriter().print(resData);
@@ -138,15 +139,16 @@ public class ArchiveDAO {
 		if (request.getParameter("title") != null && !request.getParameter("title").equals("")) {
 			title = (String) request.getParameter("title");
 		}
-		System.out.println(member);
-		System.out.println(category);
-		System.out.println(title);
+		System.out.println("멤버"+member);
+		System.out.println("카테고리"+category);
+		System.out.println("타이틀"+title);
 
 		// 비동기 페이징 할때 받는 변수
 		int page = 1;
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
+		System.out.println("페이지"+page);
 		String sql = "SELECT ha.*, hm.m_name, hi.i_icon ";
 		sql += "from haco_archive ha, haco_member hm, haco_image hi ";
 		sql += "where ha.a_m_pk = hm.m_pk and hi.i_m_pk = hm.m_pk ";
@@ -169,7 +171,6 @@ public class ArchiveDAO {
 			pstmt.setInt(7, 20);
 			pstmt.setInt(8, 20 * (page - 1));
 
-			System.out.println(page);
 
 			rs = pstmt.executeQuery();
 			ArrayList<String> archives = new ArrayList<>();
@@ -192,7 +193,7 @@ public class ArchiveDAO {
 				archives.add(archive.toJSON());
 
 			}
-			System.out.println(archives);
+			System.out.println("tostring" + archives);
 
 			response.setContentType("application/json; charset=utf-8");
 			response.getWriter().print(archives);
