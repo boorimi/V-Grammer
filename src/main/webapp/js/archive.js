@@ -2,6 +2,9 @@ $(function () {
   // 페이지 로드 시 투명도를 올리는 함수 호출
   adjustOpacity(1);
 
+  // 페이지가 로드되면 맨 처음 페이징에 active로 포커스 주기
+  $(".archive-paging-no:first").addClass("active");
+
   // 비동기 페이징 (archive.jsp)
   localStorage.setItem("member", "未分類");
   localStorage.setItem("category", "未分類");
@@ -103,7 +106,6 @@ $(function () {
       test(resData);
       replaceCollabomemberString();
       replaceNull();
-      //console.log(JSON.stringify(resData));
     });
   });
 
@@ -111,7 +113,7 @@ $(function () {
   $(document).on(
     "click",
     ".archive-paging-start, .archive-paging-unit-prev, .archive-paging-unit-next, .archive-paging-end, #archive-search-button",
-    function () {
+    async function () {
       localStorage.setItem("member", $("select[name='member']").val());
       localStorage.setItem("category", $("select[name='category']").val());
       localStorage.setItem("title", $("input[name='title']").val());
@@ -127,74 +129,81 @@ $(function () {
         (Math.floor((localStorage.getItem("currentPage") - 1) / 10) + 1) * 10 +
         1;
 
+      let promise;
+
       if ($(this).hasClass("archive-paging-start")) {
         localStorage.setItem("currentPage", "1");
+        promise = Promise.resolve();
       } else if ($(this).hasClass("archive-paging-unit-prev")) {
         localStorage.setItem("currentPage", tempPagePrev);
+        promise = Promise.resolve();
       } else if ($(this).hasClass("archive-paging-unit-next")) {
         localStorage.setItem("currentPage", tempPageNext);
+        promise = Promise.resolve();
       } else if ($(this).hasClass("archive-paging-end")) {
         localStorage.setItem("currentPage", localStorage.getItem("pageCount"));
+        promise = Promise.resolve();
       } else if ($(this).attr("id") === "archive-search-button") {
         localStorage.setItem("currentPage", "1");
-        $.ajax({
-          url: "ArchiveSearchC",
-          type: "post",
-          data: { page: 1 },
-          dataType: "json",
-        }).done(function (resData) {
+        try {
+          let resData = await getPagingVariable(member, category, title);
           console.log(resData);
-          getPagingVariable(member, category, title).then(function (resData) {
-            console.log(resData);
-            let data = resData.split("!");
-            localStorage.setItem("currentPage", data[0]); // 현재페이지 정보
-            localStorage.setItem("pageCount", data[1]);
-          });
-        });
+          let data = resData.split("!");
+          localStorage.setItem("currentPage", data[0]); // 현재페이지 정보
+          localStorage.setItem("pageCount", data[1]);
+        } catch (error) {
+          console.error("Error fetching paging data: ", error);
+          return;
+        }
       }
 
       let state = {
-        isAjax: true, // 초기에는 비동기 요청이 아님
-        url: "ArchiveC", // 초기 URL 설정, 비동기 요청에서는 필요하지 않을 수 있음
+        isAjax: true,
+        url: "ArchiveC",
         method: "post",
         data: {
-          member: localStorage.getItem("member") || "未分類",
-          category: localStorage.getItem("category") || "未分類",
-          title: localStorage.getItem("title") || "",
+          member: member || "未分類",
+          category: category || "未分類",
+          title: title || "",
           page: localStorage.getItem("currentPage") || 1,
         },
       };
 
       sessionStorage.setItem("currentPageState", JSON.stringify(state));
 
-      $("#archive-list").css({ opacity: 0.3 });
-      adjustOpacity(1);
+      try {
+        let resData = await $.ajax({
+          url: state.url,
+          type: state.method,
+          data: state.data,
+          dataType: "json",
+        });
 
-      $.ajax({
-        url: state.url,
-        type: state.method,
-        data: state.data,
-        dataType: "json",
-      }).done(function (resData) {
-        let pagingVariable = getPagingVariable(member, category, title).then(
-          function (resData) {
-            return resData;
-          }
-        );
-        searchPage(resData, pagingVariable);
+        await searchPage(resData);
+        $("select[name='member']").val(member);
+        $("select[name='category']").val(category);
+        $("input[name='title']").val(title);
+
+        // 페이지가 로드되면 맨 처음 페이징에 active로 포커스 주기
+        if ($(this).hasClass("archive-paging-end")) {
+          $(".archive-paging-no:last").addClass("active");
+        } else {
+          $(".archive-paging-no:first").addClass("active");
+        }
+
         adjustOpacity(1);
         replaceCollabomemberString();
         replaceNull();
-
-        // console.log(JSON.stringify(resData));
-      });
+      } catch (error) {
+        console.error("Request failed: ", error.statusText);
+        console.error("Error: ", error);
+      }
     }
   );
 
   // 업데이트 페이지로 비동기 처리
   $(document).on("click", ".archive-update-button-1", function () {
     let a_pk = $(this).val();
-    let currentPageUrl = window.location.href;
     let state = {
       isAjax: true,
       url: "ArchiveUpdateC",
@@ -359,7 +368,8 @@ function test(resData) {
 }
 
 //비동기 검색 세부
-async function searchPage(resData, pagingVariable) {
+//async function searchPage(resData, pagingVariable) {
+async function searchPage(resData) {
   let $archiveList = $(".all-wrapper");
   $archiveList.html("");
 
@@ -466,47 +476,43 @@ async function searchPage(resData, pagingVariable) {
   html += `</div>`;
   $archiveList.append(html);
   //페이징 영역
-  let asdf = await pagingVariable;
+  //let asdf = await pagingVariable;
   //console.log(asdf);
-  let data = asdf.split("!");
+  //let data = asdf.split("!");
   let currentPage = localStorage.getItem("currentPage"); // 현재페이지 정보
   let pageCount = localStorage.getItem("pageCount"); // 총 페이지 정보
   //console.log(currentPage);
   //console.log(pageCount);
   let pageUnit = 10; // 페이징 단위
   //page변수 = 현재페이지 * 페이지유닛
-  let page = ((currentPage - 1) / pageUnit) * pageUnit;
+  let page = Math.floor((currentPage - 1) / pageUnit) * pageUnit;
   //console.log(pageUnit);
-  //console.log(page);
-  ////////////////////////////////////////
+  console.log("page" + page);
+  /////////////////1///////////////////////
   let pagingHtml = `<div class="archive-paging-container">
   			<div class="archive-paging-start">
         <a>最初に</a>
       </div>`;
 
-  ////////////////////////////////////////
+  /////////////////2///////////////////////
   pagingHtml += `<div class="archive-paging-unit-prev">`;
   if (page != 0) {
     pagingHtml += `<a>以前 ${pageUnit}ページ</a>`;
   }
   pagingHtml += `</div>`;
-  ///////////////////////////////////////////
+  /////////////////3//////////////////////////
   pagingHtml += `<div class="archive-paging-no-div">`;
-  //console.log(currentPage);
-  //console.log(pageCount);
 
-  for (
-    let i = currentPage - (currentPage % 10) + 1;
-    i <=
-    (currentPage + 9 < pageCount
-      ? currentPage - (currentPage % 10) + 10
-      : pageCount);
-    i++
-  ) {
+  let startPage = page + 1;
+  let endPage = Math.min(page + pageUnit, pageCount);
+
+  console.log(startPage);
+  console.log(endPage);
+  for (let i = startPage; i <= endPage; i++) {
     pagingHtml += `<div class="archive-paging-no">${i}</div>`;
   }
   pagingHtml += `</div>`;
-  ///////////////////////////////////////
+  //////////////////4/////////////////////
   pagingHtml += `<div class="archive-paging-unit-next">`;
   if (
     page + (currentPage % pageUnit) < pageCount - (pageCount % pageUnit) &&
@@ -515,14 +521,14 @@ async function searchPage(resData, pagingVariable) {
     pagingHtml += `<a>次 ${pageUnit}ページ</a>`;
   }
   pagingHtml += `</div>`;
-  //////////////////////////////////////////
+  //////////////////5////////////////////////
   pagingHtml += `<div class="archive-paging-end">
         <a>最後に</a>
       </div>
       </div>`;
   $archiveList.append(pagingHtml);
+  ////////////////////////////////////////////
 }
-////////////////////////////////////////////
 
 function test2(resData) {
   let $body = $(".all-wrapper");
