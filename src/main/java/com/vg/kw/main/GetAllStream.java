@@ -88,7 +88,7 @@ public class GetAllStream implements ServletContextListener {
 		ResultSet rs = null;
 
 		System.setProperty("webdriver.chrome.driver", "C:\\kds\\chromedriverwin64\\chromedriver.exe"); // 크롬 드라이버 경로 설정
-//		System.setProperty("webdriver.chrome.driver", "/tomcat/chromedriver.exe"); // 크롬 드라이버 경로 설정
+//		System.setProperty("webdriver.chrome.driver", "/home/hosting_users/ds6951/tomcat/chromedriver.exe"); // 크롬 드라이버 경로 설정
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless"); // 브라우저가 눈에 보이지 않게 설정
 		WebDriver driver = new ChromeDriver(options);

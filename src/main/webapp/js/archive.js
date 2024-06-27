@@ -31,10 +31,10 @@ $(function () {
     url: "ArchiveC", // 초기 URL 설정, 비동기 요청에서는 필요하지 않을 수 있음
     method: "post",
     data: {
-      member: localStorage.getItem("member") || "未分類",
-      category: localStorage.getItem("category") || "未分類",
-      title: localStorage.getItem("title") || "",
-      page: localStorage.getItem("currentPage") || 1,
+      member: "未分類",
+      category: "未分類",
+      title: "",
+      page: 1,
     },
   };
 
@@ -59,7 +59,7 @@ $(function () {
         // 요청이 성공했을 때 실행할 코드
         test2(resData); // 페이지 데이터를 업데이트하는 함수
         adjustOpacity(1); // 페이지 요소를 조정하는 함수
-
+  		$(window).scrollTop(0);
         $("select[name='collabo']").change(function () {
           toggleButton(); // select 요소 변경 시 호출되는 함수
         });
@@ -104,6 +104,21 @@ $(function () {
       dataType: "json",
     }).done(function (resData) {
       test(resData);
+      // 페이징 이동이 되었을때도 세션스토리지에 페이지 값을 저장하도록 하기
+      let state = {
+        isAjax: true,
+        url: "ArchiveC",
+        method: "post",
+        data: {
+          member: member || "未分類",
+          category: category || "未分類",
+          title: title || "",
+          page: localStorage.getItem("currentPage") || 1,
+        },
+      };
+
+      sessionStorage.setItem("currentPageState", JSON.stringify(state));
+      ////////////끝///////////
       replaceCollabomemberString();
       replaceNull();
     });
@@ -229,7 +244,7 @@ $(function () {
       dataType: "text",
     })
       .done(function (responseData) {
-        alert("업데이트 성공");
+        alert("修正完了！");
         console.log("서버에서 받은 데이터:", responseData);
 
         let state = JSON.parse(sessionStorage.getItem("currentPageState"));
@@ -272,6 +287,9 @@ function loadPageState(state) {
         }
       );
       searchPage(resData, pagingVariable); // 페이지 데이터를 업데이트하는 함수
+      $("select[name='member']").val(member);
+      $("select[name='category']").val(category);
+      $("input[name='title']").val(title);
       adjustOpacity(1); // 페이지 요소를 조정하는 함수
       $("select[name='collabo']").change(function () {
         toggleButton(); // select 요소 변경 시 호출되는 함수
@@ -509,7 +527,11 @@ async function searchPage(resData) {
   console.log(startPage);
   console.log(endPage);
   for (let i = startPage; i <= endPage; i++) {
-    pagingHtml += `<div class="archive-paging-no">${i}</div>`;
+    if (currentPage == i) {
+      pagingHtml += `<div class="archive-paging-no active">${i}</div>`;
+    } else {
+      pagingHtml += `<div class="archive-paging-no">${i}</div>`;
+    }
   }
   pagingHtml += `</div>`;
   //////////////////4/////////////////////
@@ -600,6 +622,7 @@ function test2(resData) {
               <option value="ASMR">ASMR</option>
               <option value="shorts">shorts</option>
               <option value="切り抜き">切り抜き</option>
+              <option value="歌ってみた">歌ってみた</option>
               <option value="オリジナル曲">オリジナル曲</option>
               <option value="他">他</option>
             </select>
