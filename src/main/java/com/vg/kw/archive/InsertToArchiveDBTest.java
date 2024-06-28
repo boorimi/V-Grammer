@@ -45,7 +45,7 @@ public class InsertToArchiveDBTest {
 
 			connection = DBManager.connect();
 			statement = connection.prepareStatement(sql);
-			statement.setInt(1, 6);
+			statement.setInt(1, 16);
 			rs = statement.executeQuery();
 
 			ArrayList<YoutubeIDDTO> youtubeIds = new ArrayList<YoutubeIDDTO>();

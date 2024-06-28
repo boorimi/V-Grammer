@@ -1,4 +1,10 @@
 $(function () {
+  // 페이지 로드시 세션스토리지 삭제
+  sessionStorage.removeItem("hasPushedInitialState");
+
+  // 페이지 로드시 세션 스택 생성
+  let sessionStack = [];
+
   // 페이지 로드 시 투명도를 올리는 함수 호출
   adjustOpacity(1);
 
@@ -27,7 +33,7 @@ $(function () {
   });
 
   let initialPageState = {
-    isAjax: true, // 초기에는 비동기 요청이 아님
+    isAjax: true,
     url: "ArchiveC", // 초기 URL 설정, 비동기 요청에서는 필요하지 않을 수 있음
     method: "post",
     data: {
@@ -38,13 +44,16 @@ $(function () {
     },
   };
 
-  // 페이지 로드 후 초기 상태를 브라우저 히스토리에 추가
+  // 페이지 로드 후 초기 상태를 세션스토리지 and history에 추가
   sessionStorage.setItem("currentPageState", JSON.stringify(initialPageState));
 
   // popstate 이벤트 리스너
-  window.addEventListener("popstate", function (event) {
-    if (event.state && event.state.isAjax) {
-      loadPageState(event.state);
+  window.addEventListener("popstate", function () {
+    if (sessionStack.length > 0) {
+      loadPageState(sessionStack.pop());
+      console.log(sessionStack);
+    } else {
+      history.back(); // 브라우저의 기본 뒤로 가기 동작 수행
     }
   });
 
@@ -59,7 +68,7 @@ $(function () {
         // 요청이 성공했을 때 실행할 코드
         test2(resData); // 페이지 데이터를 업데이트하는 함수
         adjustOpacity(1); // 페이지 요소를 조정하는 함수
-  		$(window).scrollTop(0);
+        $(window).scrollTop(0);
         $("select[name='collabo']").change(function () {
           toggleButton(); // select 요소 변경 시 호출되는 함수
         });
@@ -73,6 +82,21 @@ $(function () {
 
   // 비동기 페이징 처리
   $(document).on("click", ".archive-paging-no", function () {
+    if (!sessionStorage.getItem("hasPushedInitialState")) {
+      sessionStack.push(initialPageState);
+      console.log(sessionStack);
+      history.pushState(initialPageState, "", "ArchiveC");
+      sessionStorage.setItem("hasPushedInitialState", "true");
+    } else {
+      sessionStack.push(JSON.parse(sessionStorage.getItem("currentPageState")));
+      console.log(sessionStack);
+      history.pushState(
+        JSON.parse(sessionStorage.getItem("currentPageState")),
+        "",
+        "ArchiveC"
+      );
+    }
+
     $(".archive-paging-no").removeClass("active"); // 모든 요소에서 active 클래스 제거
     $(this).addClass("active"); // 클릭된 요소에 active 클래스 추가
 
@@ -129,6 +153,23 @@ $(function () {
     "click",
     ".archive-paging-start, .archive-paging-unit-prev, .archive-paging-unit-next, .archive-paging-end, #archive-search-button",
     async function () {
+      if (!sessionStorage.getItem("hasPushedInitialState")) {
+        sessionStack.push(initialPageState);
+        console.log(sessionStack);
+        history.pushState(initialPageState, "", "ArchiveC");
+        sessionStorage.setItem("hasPushedInitialState", "true");
+      } else {
+        sessionStack.push(
+          JSON.parse(sessionStorage.getItem("currentPageState"))
+        );
+        console.log(sessionStack);
+        history.pushState(
+          JSON.parse(sessionStorage.getItem("currentPageState")),
+          "",
+          "ArchiveC"
+        );
+      }
+
       localStorage.setItem("member", $("select[name='member']").val());
       localStorage.setItem("category", $("select[name='category']").val());
       localStorage.setItem("title", $("input[name='title']").val());
@@ -218,6 +259,22 @@ $(function () {
 
   // 업데이트 페이지로 비동기 처리
   $(document).on("click", ".archive-update-button-1", function () {
+	if (!sessionStorage.getItem("hasPushedInitialState")) {
+        sessionStack.push(initialPageState);
+        console.log(sessionStack);
+        history.pushState(initialPageState, "", "ArchiveC");
+        sessionStorage.setItem("hasPushedInitialState", "true");
+      } else {
+        sessionStack.push(
+          JSON.parse(sessionStorage.getItem("currentPageState"))
+        );
+        console.log(sessionStack);
+        history.pushState(
+          JSON.parse(sessionStorage.getItem("currentPageState")),
+          "",
+          "ArchiveC"
+        );
+      }
     let a_pk = $(this).val();
     let state = {
       isAjax: true,
@@ -246,10 +303,11 @@ $(function () {
       .done(function (responseData) {
         alert("修正完了！");
         console.log("서버에서 받은 데이터:", responseData);
-
-        let state = JSON.parse(sessionStorage.getItem("currentPageState"));
+		
+		history.back();
+        //let state = JSON.parse(sessionStorage.getItem("currentPageState"));
         // 현재 페이지 상태를 세션 스토리지에 저장
-        loadPageState(state);
+        //loadPageState(state);
       })
       .fail(function (xhr, textStatus, errorThrown) {
         alert("업데이트 실패");
