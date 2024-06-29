@@ -110,10 +110,8 @@ $(document).ready(function() {
 					//            						console.log(obj.s_pk)
 
 					let sTitle = $("<div>").addClass("s-data-title");
-
-					let titleDetail = `<div class="s-title-text-box">
-										<div>${obj.s_title}</div>
-										</div>`;
+					let titleDetail = `<div>${obj.s_title}</div>
+										<div class="s-title-tail"></div>`;
 
 					sTitle.append(titleDetail);
 					sData.append(sInnerBox).append(sTitle);
@@ -125,6 +123,43 @@ $(document).ready(function() {
 			});
 		});
 	}
+
+	// title 말풍선 위치 설정
+	function titlePosition() {
+		$('.s-data-title').each(function() {
+			const width = $(this).width();
+
+			if (width < 50) {
+				$(this).css('left', '10%');
+			} else if (width < 100 && width >= 50) {
+				$(this).css('left', '0');
+			} else if (width < 150 && width >= 100) {
+				$(this).css('left', '-10%');
+			} else if (width < 190 && width >= 150) {
+				$(this).css('left', '-15%');
+			}
+		});
+	}
+	titlePosition();
+	$('.tab-item').click(function() {
+		setTimeout(titlePosition, 0);
+	})
+
+	// 호버된 s-data div 이 외에 모든 s-data div에 opacity
+	$(".s-data").mouseover(function() {
+		let element = this;
+		$(".s-data").each(function() {
+			if (this !== element) {
+				$(this).css('opacity', '0.7');
+			}
+		});
+	});
+
+	// opacity 원래대로 되돌리기
+	$(".s-data").mouseout(function() {
+		$(".s-data").css('opacity', '1');
+	});
+
 
 	let sPk = null;
 	$('.s-data').click(function() {
@@ -141,44 +176,35 @@ $(document).ready(function() {
 		modal.querySelector("#time").innerText = this.dataset.sTime;
 		modal.querySelector("#name").innerText = this.dataset.mName;
 		modal.querySelector("#title").innerText = this.dataset.sTitle;
-		// Modal Delete Click
-		// 로그인 했을 때만 가능하도록 세션값 벨류에 심어둠.
-		// 일단 기능부터 만들고 수정 필요
 	});
-
-
-//	function updateData() {
-//		$.ajax({
-//			url: 'ScheduleC',
-//			type: 'GET',
-//			data: {
-//				i_icon: 'i_icon',
-//				intTime: 'intTime',
-//				m_name: 'm_name',
-//				s_date: 's_date',
-//				s_m_pk: 's_m_pk',
-//				s_pk: 's_pk',
-//				s_time: 's_time',
-//				s_title: 's_title',
-//				s_u_t_id: 's_u_t_id'
-//			},
-//			dataType: 'json',
-//			success: function() {
-//				console.log('ScheduleC 로드 성공');
-//			},
-//			error: function() {
-//				console.error('ScheduleC 로드 실패');
-//			}
-//		});
-//	}
-
 
 	$('#deleteButton').click(function() {
 		// 스케줄의 pk
 		console.log('딜리트 클릭 콘솔 : ' + sPk);
 		if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
 			if (confirm('本当に削除しますか？')) {
-				location.href = "DeleteScheduleC?sPk=" + sPk;
+				//				location.href = "DeleteScheduleC?sPk=" + sPk;
+				$.ajax({
+					url: "DeleteScheduleC",
+					type: "GET",
+					data: {sPk},
+					success: function(response) {
+						if (response) {
+							alert("削除成功！")
+							console.log("삭제 성공");
+							modal.close();
+							location.reload();
+						} else {
+							alert("削除失敗！")
+							modal.close();
+							location.reload();
+						}
+					},
+					error: function() {
+						alert("서버 오류로 삭제 실패!");
+					}
+
+				});
 			}
 		} else {
 			alert("ログインが必要です！");
@@ -200,9 +226,6 @@ $(document).ready(function() {
 		let time = $('#s-update-time').val();
 		let title = $('#s-update-title').val();
 
-		//		location.href = "UpdateScheduleC?sPk=" + sPk + "&s_date=" + date + "&s_time=" + time
-		//			+ "&s_title=" + title;
-
 		$.ajax({
 			url: "UpdateScheduleC",
 			type: "GET",
@@ -215,17 +238,16 @@ $(document).ready(function() {
 			success: function(response) {
 				if (response.success) {
 					alert("修正成功！")
-					console.log("성공메시지: " + response.message);
 					modal.close();
 					location.reload();
-//					updateData();
 				} else {
 					alert("修正失敗！")
-					console.log("실패메시지: " + response.message);
+					modal.close();
+					location.reload();
 				}
 			},
 			error: function() {
-				alert("서버 오류로 등록 실패!");
+				alert("통신 실패!");
 			}
 
 		});
