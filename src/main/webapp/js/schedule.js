@@ -110,9 +110,7 @@ $(document).ready(function() {
 					//            						console.log(obj.s_pk)
 
 					let sTitle = $("<div>").addClass("s-data-title");
-					let titleDetail = `<div class="s-title-text-box">
-										<div>${obj.s_title}</div>
-										</div>
+					let titleDetail = `<div>${obj.s_title}</div>
 										<div class="s-title-tail"></div>`;
 
 					sTitle.append(titleDetail);
@@ -125,6 +123,43 @@ $(document).ready(function() {
 			});
 		});
 	}
+
+	// title 말풍선 위치 설정
+	function titlePosition() {
+		$('.s-data-title').each(function() {
+			const width = $(this).width();
+
+			if (width < 50) {
+				$(this).css('left', '10%');
+			} else if (width < 100 && width >= 50) {
+				$(this).css('left', '0');
+			} else if (width < 150 && width >= 100) {
+				$(this).css('left', '-10%');
+			} else if (width < 190 && width >= 150) {
+				$(this).css('left', '-15%');
+			}
+		});
+	}
+	titlePosition();
+	$('.tab-item').click(function() {
+		setTimeout(titlePosition, 0);
+	})
+
+	// 호버된 s-data div 이 외에 모든 s-data div에 opacity
+	$(".s-data").mouseover(function() {
+		let element = this;
+		$(".s-data").each(function() {
+			if (this !== element) {
+				$(this).css('opacity', '0.7');
+			}
+		});
+	});
+
+	// opacity 원래대로 되돌리기
+	$(".s-data").mouseout(function() {
+		$(".s-data").css('opacity', '1');
+	});
+
 
 	let sPk = null;
 	$('.s-data').click(function() {
@@ -143,13 +178,33 @@ $(document).ready(function() {
 		modal.querySelector("#title").innerText = this.dataset.sTitle;
 	});
 
-	// post로 수정
 	$('#deleteButton').click(function() {
 		// 스케줄의 pk
 		console.log('딜리트 클릭 콘솔 : ' + sPk);
 		if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
 			if (confirm('本当に削除しますか？')) {
-				location.href = "DeleteScheduleC?sPk=" + sPk;
+				//				location.href = "DeleteScheduleC?sPk=" + sPk;
+				$.ajax({
+					url: "DeleteScheduleC",
+					type: "GET",
+					data: {sPk},
+					success: function(response) {
+						if (response) {
+							alert("削除成功！")
+							console.log("삭제 성공");
+							modal.close();
+							location.reload();
+						} else {
+							alert("削除失敗！")
+							modal.close();
+							location.reload();
+						}
+					},
+					error: function() {
+						alert("서버 오류로 삭제 실패!");
+					}
+
+				});
 			}
 		} else {
 			alert("ログインが必要です！");
@@ -183,16 +238,16 @@ $(document).ready(function() {
 			success: function(response) {
 				if (response.success) {
 					alert("修正成功！")
-					console.log("성공메시지: " + response.message);
 					modal.close();
 					location.reload();
 				} else {
 					alert("修正失敗！")
-					console.log("실패메시지: " + response.message);
+					modal.close();
+					location.reload();
 				}
 			},
 			error: function() {
-				alert("서버 오류로 등록 실패!");
+				alert("통신 실패!");
 			}
 
 		});
