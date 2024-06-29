@@ -110,10 +110,10 @@ $(document).ready(function() {
 					//            						console.log(obj.s_pk)
 
 					let sTitle = $("<div>").addClass("s-data-title");
-
 					let titleDetail = `<div class="s-title-text-box">
 										<div>${obj.s_title}</div>
-										</div>`;
+										</div>
+										<div class="s-title-tail"></div>`;
 
 					sTitle.append(titleDetail);
 					sData.append(sInnerBox).append(sTitle);
@@ -141,38 +141,9 @@ $(document).ready(function() {
 		modal.querySelector("#time").innerText = this.dataset.sTime;
 		modal.querySelector("#name").innerText = this.dataset.mName;
 		modal.querySelector("#title").innerText = this.dataset.sTitle;
-		// Modal Delete Click
-		// 로그인 했을 때만 가능하도록 세션값 벨류에 심어둠.
-		// 일단 기능부터 만들고 수정 필요
 	});
 
-
-//	function updateData() {
-//		$.ajax({
-//			url: 'ScheduleC',
-//			type: 'GET',
-//			data: {
-//				i_icon: 'i_icon',
-//				intTime: 'intTime',
-//				m_name: 'm_name',
-//				s_date: 's_date',
-//				s_m_pk: 's_m_pk',
-//				s_pk: 's_pk',
-//				s_time: 's_time',
-//				s_title: 's_title',
-//				s_u_t_id: 's_u_t_id'
-//			},
-//			dataType: 'json',
-//			success: function() {
-//				console.log('ScheduleC 로드 성공');
-//			},
-//			error: function() {
-//				console.error('ScheduleC 로드 실패');
-//			}
-//		});
-//	}
-
-
+	// post로 수정
 	$('#deleteButton').click(function() {
 		// 스케줄의 pk
 		console.log('딜리트 클릭 콘솔 : ' + sPk);
@@ -200,9 +171,6 @@ $(document).ready(function() {
 		let time = $('#s-update-time').val();
 		let title = $('#s-update-title').val();
 
-		//		location.href = "UpdateScheduleC?sPk=" + sPk + "&s_date=" + date + "&s_time=" + time
-		//			+ "&s_title=" + title;
-
 		$.ajax({
 			url: "UpdateScheduleC",
 			type: "GET",
@@ -218,7 +186,6 @@ $(document).ready(function() {
 					console.log("성공메시지: " + response.message);
 					modal.close();
 					location.reload();
-//					updateData();
 				} else {
 					alert("修正失敗！")
 					console.log("실패메시지: " + response.message);
