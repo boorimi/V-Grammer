@@ -1,9 +1,37 @@
-.mypage-userInfo-container{
+.full-wrap {
+	display: flex;
+	flex-direction: column;
 	position: relative;
 	left: 50%;
-	transform: translateX(-50%);
-	width: 400px;
+	transform: translateX(-40%);
+	margin: 100px;
 }
+
+.mypage-userinfo-container {
+	width: 60%;
+	height: 90%;
+	display: flex;
+	margin-bottom: 100px;
+	border: 2px solid black;
+	border-radius: 15px;
+	font-size: 1.5rem;
+}
+
+.mypage-userinfo-left {
+	width: 30%;
+	margin: 5%;
+	margin-left: 10%;
+}
+
+.mypage-userinfo-right {
+	width: 70%;
+	margin: 5%;
+}
+
+#userinfo-logo {
+	width: 165px;
+}
+
 
 .mypage-profile-icon-box {
 	width: 150px;
@@ -18,12 +46,20 @@
 	object-fit: cover;
 }
 
+.xid-wrap {}
+
+#xid-title {
+	margin: 0;
+	padding: 0;
+
+}
+
 
 /*인풋*/
 .form-input {
 	font-family: 'CustomFont', sans-serif;
 	font-weight: 900;
-	width: 250px;
+	width: 90%;
 	height: auto;
 	background: rgb(255, 255, 255);
 	position: relative;
@@ -49,6 +85,7 @@
 	opacity: 0.001;
 	transition: opacity 0.28s ease;
 	will-change: opacity;
+	overflow: hidden;
 }
 
 .form-element-input::placeholder {
@@ -83,6 +120,7 @@
 
 .form-element-label {
 	font-family: 'CustomFont', sans-serif;
+	font-weight: bolder;
 	position: absolute;
 	top: .85rem;
 	line-height: 1.5rem;
@@ -91,17 +129,19 @@
 	z-index: 1;
 	font-size: 1rem;
 	margin: 0;
-	color: rgb(0, 0, 0);
+	color: rgb(0, 0, 255);
 	transform: translateY(-50%);
 	transform-origin: left center;
 	transition: transform .28s ease, color .28s linear, opacity .28s linear;
 	will-change: transform, color, opacity;
 	cursor: text;
+	
 }
 
 .form-element-hint {
 	font-family: 'CustomFont', sans-serif;
-	color: #aaa;
+	color: rgb(64, 128, 128);
+	font-size: 1.2rem;
 }
 
 
@@ -152,3 +192,75 @@
 	color: #d9534f cursor: pointer;
 	pointer-events: auto;
 }
+
+
+/*사진변경 버튼*/
+
+#change-img-button-wrap {
+	width: 20%;
+	margin-top: 30px;
+}
+
+#change-img-button {
+	font-family: 'CustomFont', sans-serif;
+	font-size: 1.0rem;
+	color: #fff;
+	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.3s ease;
+	margin-right: 1%;
+	width: 62%;
+	font-weight: 900;
+	height: 50px;
+}
+
+#change-img-button:hover {
+	background: linear-gradient(45deg,
+			#ff85c1,
+			#ffb6c1);
+	/* 호버 시 배경색 그라데이션 변경 */
+	transform: scale(1.05);
+	/* 호버 시 살짝 위로 이동 */
+}
+
+/*닉변 버튼*/
+#change-nickname-button-wrap {
+	width: 90%;
+	margin-top: 0px;
+	text-align: end;
+}
+
+#change-nickname-button {
+	font-family: 'CustomFont', sans-serif;
+	font-size: 1.0rem;
+	color: #fff;
+	background: linear-gradient(45deg, #ff69b4, #ff9a9e);
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.3s ease;
+	margin-right: 1%;
+	width: 62%;
+	font-weight: 900;
+	height: 50px;
+}
+
+#change-nickname-button:hover {
+	background: linear-gradient(45deg,
+			#ff85c1,
+			#ffb6c1);
+	/* 호버 시 배경색 그라데이션 변경 */
+	transform: scale(1.05);
+	/* 호버 시 살짝 위로 이동 */
+}
+
+
+
+/*파일 인풋*/
+

@@ -53,7 +53,7 @@ $(document).ready(function() {
 			if (inputNickName.length === 0) {
 				$('#check-result').text('ニックネームを入力して下さい');
 			} else {
-				$('#check-result').text('ニックネームは2~30文字でお願いします');
+				$('#check-result').text('ニックネームは2~30文字でお願い!');
 			}
 		}
 		return nickNameLengthOK;
@@ -154,7 +154,7 @@ $(document).ready(function() {
 	//프로필 아이콘 변경 부분
 	let changeImg = false;
 	const validExtensions = ['jpg', 'jpeg', 'png'];  // 유효한 확장자 목록
-	
+
 	//이미지 변경 미리보기
 	$('#userInfo-img-input').change(function(evt) {
 		console.log("이미지 변경 시 변경 이벤트 발생");
@@ -221,7 +221,11 @@ $(document).ready(function() {
 	});
 
 
-
+	//파일 인풋
+	$("#file").on('change', function() {
+		var fileName = $("#file").val();
+		$(".upload-name").val(fileName);
+	});
 
 
 
