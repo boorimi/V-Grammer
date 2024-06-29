@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('#retire-button').click(function(event) {
 		event.preventDefault();
-		let retireOK = confirm("本当に退会しますか?(会員情報は復旧不可能です)");
+		let retireOK = confirm("本当に退会しますか?\n(元に戻す事は出来ません)");
 
 		if (retireOK == true) {
 			let userId = this.value;
@@ -53,7 +53,7 @@ $(document).ready(function() {
 			if (inputNickName.length === 0) {
 				$('#check-result').text('ニックネームを入力して下さい');
 			} else {
-				$('#check-result').text('ニックネームは2~30文字でお願いします');
+				$('#check-result').text('ニックネームは2~30文字でお願い!');
 			}
 		}
 		return nickNameLengthOK;
@@ -154,7 +154,7 @@ $(document).ready(function() {
 	//프로필 아이콘 변경 부분
 	let changeImg = false;
 	const validExtensions = ['jpg', 'jpeg', 'png'];  // 유효한 확장자 목록
-	
+
 	//이미지 변경 미리보기
 	$('#userInfo-img-input').change(function(evt) {
 		console.log("이미지 변경 시 변경 이벤트 발생");
@@ -221,9 +221,49 @@ $(document).ready(function() {
 	});
 
 
-
-
-
-
-
 });
+
+function flip() {
+	$('#flip-container').toggleClass('flipped');
+
+	var flipButton = $('#flip-button');
+	if (flipButton.text() === '⇆BACK SIDE') {
+		flipButton.text('⇆FRONT SIDE');
+	} else {
+		flipButton.text('⇆BACK SIDE');
+	}
+
+	// 이미지 변경
+		const images = [
+		'haco_img/background/background_akai_akame.png',
+		'haco_img/background/background_amami_kurine.png',
+		'haco_img/background/background_ayasaka_kiho.png',
+		'haco_img/background/background_daten_shisuta.png',
+		'haco_img/background/background_ginkai_mao.png',
+		'haco_img/background/background_hoshinone_koron.png',
+		'haco_img/background/background_kanami_yuyu.png',
+		'haco_img/background/background_kato_cherie.png',
+		'haco_img/background/background_kohinata_chiko.png',
+		'haco_img/background/background_meido_shirone.png',
+		'haco_img/background/background_mira_lupus.png',
+		'haco_img/background/background_nanairo_temari.png',
+		'haco_img/background/background_ootori_hakana.png',
+		'haco_img/background/background_perupo.png',
+		'haco_img/background/background_rin_garnet.png',
+		'haco_img/background/background_shirasuna_tsuna.png',
+		'haco_img/background/background_shizukawa_nanoka.png',
+		'haco_img/background/background_sophie_rose.png',
+		'haco_img/background/background_suimori_atori.png',
+		'haco_img/background/background_tachibana_shiena.png',
+		'haco_img/background/background_tamanoi_monaka.png',
+		'haco_img/background/background_tanaka_ryuko.png',
+		'haco_img/background/background_usaki_yotsunoha.png',
+		'haco_img/background/background_yamane_koi.png',
+		'haco_img/background/background_yorumu_ruku.png'
+	];
+	const randomIndex = Math.floor(Math.random() * images.length);
+	$('.front').css('background-image', `url('${images[randomIndex]}')`);
+	$('.back').css('background-image', `url('${images[randomIndex]}')`);
+	console.log(images[randomIndex]);
+
+}

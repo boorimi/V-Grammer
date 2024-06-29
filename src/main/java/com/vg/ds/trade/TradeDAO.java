@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -339,21 +341,22 @@ public class TradeDAO {
 	}
 
 	public void tradeCheckboxList(HttpServletRequest request) {
+        // HashMap 생성 및 데이터 추가
+        LinkedHashMap<String, String> checkboxItems = new LinkedHashMap<>();
+        checkboxItems.put("bromide", "白賞ブロマイド");
+        checkboxItems.put("57mmCanBadge", "57mm缶バッジ");
+        checkboxItems.put("76mmCanBadge", "76mm缶バッジ");
+        checkboxItems.put("akuki", "SD絵アクキー");
+        checkboxItems.put("coaster", "コスタ");
+        checkboxItems.put("omoideCyeki", "思い出チェキ風カード");
+        checkboxItems.put("dmmMiniShikishi", "DMM：色紙");
+        checkboxItems.put("dmm57CanBadge", "DMM：57mm缶バッジ");
+        checkboxItems.put("dmmMiniAkusuta", "DMM：ミニアクスタ");
+        checkboxItems.put("dmmCyeki", "DMM：チェキ");
 
-		List<Map<String, String>> checkboxItems = new ArrayList<>();
-		checkboxItems.add(Map.of("value", "bromide", "label", "白賞ブロマイド"));
-		checkboxItems.add(Map.of("value", "57mmCanBadge", "label", "57mm缶バッジ"));
-		checkboxItems.add(Map.of("value", "76mmCanBadge", "label", "76mm缶バッジ"));
-		checkboxItems.add(Map.of("value", "akuki", "label", "SD絵アクキー"));
-		checkboxItems.add(Map.of("value", "coaster", "label", "コスタ"));
-		checkboxItems.add(Map.of("value", "omoideCyeki", "label", "思い出チェキ風カード"));
-		checkboxItems.add(Map.of("value", "dmmMiniShikishi", "label", "DMM：色紙"));
-		checkboxItems.add(Map.of("value", "dmm57CanBadge", "label", "DMM：57mm缶バッジ"));
-		checkboxItems.add(Map.of("value", "dmmMiniAkusuta", "label", "DMM：ミニアクスタ"));
-		checkboxItems.add(Map.of("value", "dmmCyeki", "label", "DMM：チェキ"));
-
-		request.setAttribute("checkboxItems", checkboxItems);
-	}
+        // 요청 객체에 데이터 설정
+        request.setAttribute("checkboxItems", checkboxItems);
+    }
 
 	public void insertGoodsValue(HttpServletRequest request, HttpServletResponse response) {
 
