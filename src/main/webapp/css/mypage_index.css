@@ -18,7 +18,6 @@
 	display: flex;
 	justify-content: center;
 	margin-top: 70px;
-	border: 1px solid black;
 
 }
 
@@ -52,10 +51,10 @@
 
 .mypage-jsp-section {
 	margin-top: 70px;
+	margin-bottom: 10%;
 	width: 80%;
 	display: flex;
-	
-	border: 1px solid black;
+	flex-direction: column;
 }
 
 .mypage-menu-icon {
