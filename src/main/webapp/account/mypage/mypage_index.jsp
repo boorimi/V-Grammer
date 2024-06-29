@@ -30,7 +30,7 @@
 					<img class="mypage-menu-icon" alt=""
 						src="account/mypage/mypage_index_icon/userinfo.png">
 				</div>
-				<span>情報修正</span>
+				<span>会員情報</span>
 			</div>
 			<div class="mypage-menu-items" id="mypage-menu-goods">
 				<div class="mypage-menu-icon-wrap">
