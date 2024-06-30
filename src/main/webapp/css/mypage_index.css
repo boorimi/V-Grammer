@@ -26,20 +26,26 @@
 	width: 75%;
 	gap: 15px;
 	align-items: center;
+	font-size: 2rem;
 }
 
 .mypage-menu-items {
 	display: flex;
 	border: 1px black solid;
-	width: 75%;
+	width: 82%;
 	gap: 5px;
 	border-radius: 10px;
 	align-items: center;
+	font-size: 2rem;
 }
 
 .mypage-menu-items:hover{
 	background-color: mediumpurple;
 	
+}
+
+.mypage-menu-items.active {
+    background-color: mediumpurple;
 }
 
 .mypage-menu-icon-wrap{

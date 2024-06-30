@@ -16,11 +16,11 @@ $(function() {
 				$(this).css('display', 'flex');
 		});
 
-		var buttonText = $(this).text();
+		var buttonText = $(this).find(".button-text").text();
 		if (buttonText.includes('▼')) {
-			$(this).text(buttonText.replace('▼', '▲'));
+			$(this).find(".button-text").text(buttonText.replace('▼', '▲'));
 		} else {
-			$(this).text(buttonText.replace('▲', '▼'));
+			$(this).find(".button-text").text(buttonText.replace('▲', '▼'));
 		}
 
 	});
