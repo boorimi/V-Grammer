@@ -20,7 +20,10 @@
 					src="account/mypage/mypage_index_icon/userinfo.png">
 			</div>
 			<h2>会員情報</h2>
-			<button id="flip-button" class="upper-flip-button" onclick="flip()">⇆BACK SIDE</button>
+			<button id="flip-button" class="upper-flip-button" onclick="flip()">
+				<img id="flip-button-icon" src="account/mypage/right-left-arrow.png">
+				<span id="flip-button-text">BACK SIDE</span>
+			</button>
 		</div>
 		<div class="flip-container" id="flip-container">
 			<div class="flipper">

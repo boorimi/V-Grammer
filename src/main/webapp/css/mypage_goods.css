@@ -6,7 +6,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0px 20px;
-	left: 50%;
+	left: 48%;
 	transform: translateX(-50%);
 }
 
@@ -57,7 +57,6 @@
 	justify-content: center;
 	width: 50%;
 
-
 }
 
 .goods-info-count {
@@ -70,27 +69,35 @@
 
 .goods-info-select {
 	font-family: 'CustomFont', sans-serif;
-    font-weight: bolder;
-    height: 70%;
-    font-size: 1.0rem;
-    border-radius: 8%;
-    border: 1px solid;
-    text-align: center;
+	font-weight: bolder;
+	height: 70%;
+	font-size: 1.0rem;
+	border-radius: 8%;
+	border: 1px solid;
+	text-align: center;
 }
 
+.info-button-icon {
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+}
 
 .goods-info-button {
 	margin-top: 20px;
 	font-family: 'CustomFont', sans-serif;
 	font-weight: 900;
 	padding: 1.5em 3em;
-	border-radius: 50px;
-	background: #7986cb;
+	border-radius: 15px;
+	/*background: #7986cb;*/
 	font-size: 2rem;
 	padding: 0;
-	color: #fff;
+	color: rgb(255, 255, 255);
 	-webkit-transition: background-color 0.3s, color 0.3s;
 	transition: background-color 0.3s, color 0.3s;
+	display: flex;
+	justify-content: center;
+	height: 60px;
 }
 
 .goods-info-button.button--inverted {
@@ -115,11 +122,12 @@
 .goods-info-button:hover {
 	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
 	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
-	color: #ECEFF1;
+	color: #1e181a;
 	background-color: #3f51b5;
 	-webkit-animation: anim-moema-1 0.3s forwards;
 	animation: anim-moema-1 0.3s forwards;
 }
+
 
 .goods-info-button.button--inverted:hover {
 	color: #ECEFF1;
@@ -193,4 +201,135 @@
 		-webkit-transform: scale3d(1, 1, 1);
 		transform: scale3d(1, 1, 1);
 	}
+}
+
+/*버튼 개별 설정*/
+#info-button1 {
+	background: rgb(255, 182, 193);
+}
+
+#info-button2 {
+	background: #A5CDEC;
+}
+
+#info-button3 {
+	background: rgb(128, 128, 0);
+}
+
+#info-button4 {
+	background: #C25B7C;
+}
+
+#info-button5 {
+	background: #FFD6D4;
+}
+
+#info-button6 {
+	background: #D1B7A4;
+}
+
+#info-button7 {
+	background: #C4BEC9;
+}
+
+#info-button8 {
+	background: #DE617E;
+}
+
+#info-button9 {
+	background: #B2E2F7;
+}
+
+#info-button10 {
+	background: #BF8ADE;
+}
+
+#info-button1:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+
+#info-button2:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+
+#info-button3:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+
+#info-button4:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+
+#info-button5:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+
+#info-button6:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+
+#info-button7:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+
+#info-button8:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+
+#info-button9:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
+}
+
+#info-button10:hover {
+	-webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+	color: #1e181a;
+	background-color: rgb(255, 255, 128);
+	-webkit-animation: anim-moema-1 0.3s forwards;
+	animation: anim-moema-1 0.3s forwards;
 }

@@ -19,34 +19,46 @@
 <body>
 
 
-	<div class="mypage-container" data-loginsession="${sessionScope.accountInfo.u_twitter_id }">
+	<div class="mypage-container"
+		data-loginsession="${sessionScope.accountInfo.u_twitter_id }">
 
 		<div class="mypage-menu-section">
 			<div class="mypage-menu-title">
 				<h2>MY PAGE</h2>
 			</div>
-			<div class="mypage-menu-items" id="mypage-menu-userInfo">
-				<div class="mypage-menu-icon-wrap">
-					<img class="mypage-menu-icon" alt=""
-						src="account/mypage/mypage_index_icon/userinfo.png">
+			<div class="menu-full-wrap">
+				<div class="mypage-menu-items" id="mypage-menu-userInfo">
+					<div class="mypage-menu-icon-wrap">
+						<img class="mypage-menu-icon" alt=""
+							src="account/mypage/mypage_index_icon/userinfo.png">
+					</div>
+					<span>会員情報</span>
 				</div>
-				<span>会員情報</span>
+				<img class="menu-cursor" alt=""
+					src="account/mypage/mypage_index_icon/cursor.png">
 			</div>
-			<div class="mypage-menu-items" id="mypage-menu-goods">
-				<div class="mypage-menu-icon-wrap">
-					<img class="mypage-menu-icon" alt=""
-						src="account/mypage/mypage_index_icon/goods.png">
+			<div class="menu-full-wrap">
+				<div class="mypage-menu-items" id="mypage-menu-goods">
+					<div class="mypage-menu-icon-wrap">
+						<img class="mypage-menu-icon" alt=""
+							src="account/mypage/mypage_index_icon/goods.png">
+					</div>
+					<span>グッズ管理</span>
 				</div>
-				<span>グッズ管理</span>
+				<img class="menu-cursor" alt=""
+					src="account/mypage/mypage_index_icon/cursor.png">
 			</div>
-			<div class="mypage-menu-items" id="mypage-menu-article">
-				<div class="mypage-menu-icon-wrap">
-					<img class="mypage-menu-icon" alt=""
-						src="account/mypage/mypage_index_icon/article.png">
+			<div class="menu-full-wrap">
+				<div class="mypage-menu-items" id="mypage-menu-article">
+					<div class="mypage-menu-icon-wrap">
+						<img class="mypage-menu-icon" alt=""
+							src="account/mypage/mypage_index_icon/article.png">
+					</div>
+					<span>MY記事一覧</span>
 				</div>
-				<span>MY記事一覧</span>
+				<img class="menu-cursor" alt=""
+					src="account/mypage/mypage_index_icon/cursor.png">
 			</div>
-			
 		</div>
 		<div class="mypage-jsp-section">jsp인클루드 영역임</div>
 

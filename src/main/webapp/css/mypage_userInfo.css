@@ -4,6 +4,7 @@
 	position: relative;
 	perspective: 1000px;
 	height: 600px;
+	width: 100%;
 }
 
 
@@ -34,6 +35,24 @@
 	height: 150px;
 	border-radius: 70%;
 	overflow: hidden;
+}
+
+.upper-flip-button {
+	margin-left: 20px;
+	font-size: x-large;
+	font-family: 'CustomFont', sans-serif;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.upper-flip-button:hover{
+	background-color: yellow;
+}
+
+#flip-button-icon {
+	width: 30px;
+	height: 30px;
 }
 
 .mypage-profile-icon {
@@ -332,6 +351,7 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
+	transform: translateX(-10%);
 }
 
 .flipper {
@@ -390,10 +410,7 @@
 	align-items: center;
 	position: relative;
 	left: calc((100% - 60%) / 2);
+	transform: translateX(-20%);
+	width: 53%;
 }
 
-.upper-flip-button{
-	margin-left: 20px;
-	font-size: x-large;
-	font-family: 'CustomFont', sans-serif;
-}

@@ -33,21 +33,25 @@ for (String goodsCategory : category) {
 			</div>
 			<h2>グッズ管理</h2>
 		</div>
-		<button class="goods-info-button">白賞ブロマイド ▼</button>
+		<button class="goods-info-button" id="info-button1" style="">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/bromide.png"> <span
+				class="button-text">白賞ブロマイド ▼</span>
+		</button>
 		<div class="goods-content">
 			<c:forEach var="bromide" items="${Infos_bromide }">
 				<div>
 					<div class="goods-info-box"
 						style="background-color: ${bromide.m_personalcolor}">
 						<div class="goods-info-icon">
-							<img alt=""
-								src="haco_img/icon/${bromide.i_icon}">
+							<img alt="" src="haco_img/icon/${bromide.i_icon}">
 						</div>
 						<div class="goods-info-member">${bromide.m_name}</div>
 						<div class="goods-info-count">
 							<select class="goods-info-select" data-gmpk="${bromide.g_m_pk}"
 								data-userid="${bromide.u_twitter_id }"
-								data-category="${bromide.g_category}" style="background-color: ${bromide.m_personalcolor}">
+								data-category="${bromide.g_category}"
+								style="background-color: ${bromide.m_personalcolor}">
 								<optgroup label="${bromide.g_count}ea"></optgroup>
 								<c:forEach begin="0" end="9" var="i">
 									<c:choose>
@@ -73,7 +77,11 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
-		<button class="goods-info-button">57mm缶バッジ ▼</button>
+		<button class="goods-info-button" id="info-button2">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/57mm.png"> <span
+				class="button-text">57mm缶バッジ ▼</span>
+		</button>
 		<div class="goods-content">
 			<c:forEach var="canBadge57mm" items="${Infos_57mmCanBadge }">
 				<div>
@@ -85,7 +93,8 @@ for (String goodsCategory : category) {
 						</div>
 						<div class="goods-info-member">${canBadge57mm.m_name}</div>
 						<div class="goods-info-count">
-							<select class="goods-info-select" data-gmpk="${canBadge57mm.g_m_pk}"
+							<select class="goods-info-select"
+								data-gmpk="${canBadge57mm.g_m_pk}"
 								data-userid="${canBadge57mm.u_twitter_id }"
 								data-category="${canBadge57mm.g_category}">
 								<optgroup label="${canBadge57mm.g_count}ea"></optgroup>
@@ -113,7 +122,11 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
-		<button class="goods-info-button">76mm缶バッジ" ▼</button>
+		<button class="goods-info-button" id="info-button3">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/76mm.png"> <span
+				class="button-text">76mm缶バッジ ▼</span>
+		</button>
 		<div class="goods-content">
 			<c:forEach var="canBadge76mm" items="${Infos_76mmCanBadge }">
 				<div>
@@ -125,7 +138,8 @@ for (String goodsCategory : category) {
 						</div>
 						<div class="goods-info-member">${canBadge76mm.m_name}</div>
 						<div class="goods-info-count">
-							<select class="goods-info-select" data-gmpk="${canBadge76mm.g_m_pk}"
+							<select class="goods-info-select"
+								data-gmpk="${canBadge76mm.g_m_pk}"
 								data-userid="${canBadge76mm.u_twitter_id }"
 								data-category="${canBadge76mm.g_category}">
 								<optgroup label="${canBadge76mm.g_count}ea"></optgroup>
@@ -153,7 +167,11 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
-		<button class="goods-info-button">SD絵アクキー ▼</button>
+		<button class="goods-info-button" id="info-button4">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/key-chain.png"> <span
+				class="button-text">SD絵アクキー ▼</span>
+		</button>
 		<div class="goods-content">
 			<c:forEach var="akuki" items="${Infos_akuki }">
 				<div>
@@ -193,7 +211,11 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
-		<button class="goods-info-button">コスタ ▼</button>
+		<button class="goods-info-button" id="info-button5">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/coaster.png"> <span
+				class="button-text">コスタ ▼</span>
+		</button>
 		<div class="goods-content">
 			<c:forEach var="coaster" items="${Infos_coaster }">
 				<div>
@@ -233,7 +255,11 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
-		<button class="goods-info-button">思い出チェキ風カード ▼</button>
+		<button class="goods-info-button" id="info-button6">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/chekicard.png"> <span
+				class="button-text">思い出チェキ風カード ▼</span>
+		</button>
 		<div class="goods-content">
 			<c:forEach var="omoideCyeki" items="${Infos_omoideCyeki }">
 				<div>
@@ -245,7 +271,8 @@ for (String goodsCategory : category) {
 						</div>
 						<div class="goods-info-member">${omoideCyeki.m_name}</div>
 						<div class="goods-info-count">
-							<select class="goods-info-select" data-gmpk="${omoideCyeki.g_m_pk}"
+							<select class="goods-info-select"
+								data-gmpk="${omoideCyeki.g_m_pk}"
 								data-userid="${omoideCyeki.u_twitter_id }"
 								data-category="${omoideCyeki.g_category}">
 								<optgroup label="${omoideCyeki.g_count}ea"></optgroup>
@@ -273,7 +300,11 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
-		<button class="goods-info-button">DMM：色紙 ▼</button>
+		<button class="goods-info-button" id="info-button7">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/colorpaper.png"> <span
+				class="button-text">DMM：色紙 ▼</span>
+		</button>
 		<div class="goods-content">
 			<c:forEach var="dmmMiniShikishi" items="${Infos_dmmMiniShikishi }">
 				<div>
@@ -285,7 +316,8 @@ for (String goodsCategory : category) {
 						</div>
 						<div class="goods-info-member">${dmmMiniShikishi.m_name}</div>
 						<div class="goods-info-count">
-							<select class="goods-info-select" data-gmpk="${dmmMiniShikishi.g_m_pk}"
+							<select class="goods-info-select"
+								data-gmpk="${dmmMiniShikishi.g_m_pk}"
 								data-userid="${dmmMiniShikishi.u_twitter_id }"
 								data-category="${dmmMiniShikishi.g_category}">
 								<optgroup label="${dmmMiniShikishi.g_count}ea"></optgroup>
@@ -313,47 +345,11 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
-		<button class="goods-info-button">DMM：57mm缶バッジ ▼</button>
-		<div class="goods-content">
-			<c:forEach var="dmm57CanBadge" items="${Infos_dmm57CanBadge }">
-				<div>
-					<div class="goods-info-box"
-						style="background-color: ${dmm57CanBadge.m_personalcolor}">
-						<div class="goods-info-icon">
-							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${dmm57CanBadge.i_icon}">
-						</div>
-						<div class="goods-info-member">${dmm57CanBadge.m_name}</div>
-						<div class="goods-info-count">
-							<select class="goods-info-select" data-gmpk="${dmm57CanBadge.g_m_pk}"
-								data-userid="${dmm57CanBadge.u_twitter_id }"
-								data-category="${dmm57CanBadge.g_category}">
-								<optgroup label="${dmm57CanBadge.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="9" var="i">
-									<c:choose>
-										<c:when test="${i != dmm57CanBadge.g_count}">
-											<option value="${i}">${i}</option>
-										</c:when>
-										<c:otherwise>
-											<option selected value="${i}">${i}</option>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-								<c:choose>
-									<c:when test="${10 != dmm57CanBadge.g_count}">
-										<option value="10">10+</option>
-									</c:when>
-									<c:otherwise>
-										<option selected value="10">10+</option>
-									</c:otherwise>
-								</c:choose>
-							</select>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-		<button class="goods-info-button">DMM：ミニアクスタ ▼</button>
+		<button class="goods-info-button" id="info-button8">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/akusuta.png"> <span
+				class="button-text">DMM：ミニアクスタ ▼</span>
+		</button>
 		<div class="goods-content">
 			<c:forEach var="dmmMiniAkusuta" items="${Infos_dmmMiniAkusuta }">
 				<div>
@@ -365,7 +361,8 @@ for (String goodsCategory : category) {
 						</div>
 						<div class="goods-info-member">${dmmMiniAkusuta.m_name}</div>
 						<div class="goods-info-count">
-							<select class="goods-info-select" data-gmpk="${dmmMiniAkusuta.g_m_pk}"
+							<select class="goods-info-select"
+								data-gmpk="${dmmMiniAkusuta.g_m_pk}"
 								data-userid="${dmmMiniAkusuta.u_twitter_id }"
 								data-category="${dmmMiniAkusuta.g_category}">
 								<optgroup label="${dmmMiniAkusuta.g_count}ea"></optgroup>
@@ -393,25 +390,30 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
-		<button class="goods-info-button">DMM：チェキ ▼</button>
+		<button class="goods-info-button" id="info-button9">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/57mm.png"> <span
+				class="button-text">DMM：57mm缶バッジ ▼</span>
+		</button>
 		<div class="goods-content">
-			<c:forEach var="dmmCyeki" items="${Infos_dmmCyeki }">
+			<c:forEach var="dmm57CanBadge" items="${Infos_dmm57CanBadge }">
 				<div>
 					<div class="goods-info-box"
-						style="background-color: ${dmmCyeki.m_personalcolor}">
+						style="background-color: ${dmm57CanBadge.m_personalcolor}">
 						<div class="goods-info-icon">
 							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${dmmCyeki.i_icon}">
+								src="haco_img/icon/${dmm57CanBadge.i_icon}">
 						</div>
-						<div class="goods-info-member">${dmmCyeki.m_name}</div>
+						<div class="goods-info-member">${dmm57CanBadge.m_name}</div>
 						<div class="goods-info-count">
-							<select class="goods-info-select" data-gmpk="${dmmCyeki.g_m_pk}"
-								data-userid="${dmmCyeki.u_twitter_id }"
-								data-category="${dmmCyeki.g_category}">
-								<optgroup label="${dmmCyeki.g_count}ea"></optgroup>
+							<select class="goods-info-select"
+								data-gmpk="${dmm57CanBadge.g_m_pk}"
+								data-userid="${dmm57CanBadge.u_twitter_id }"
+								data-category="${dmm57CanBadge.g_category}">
+								<optgroup label="${dmm57CanBadge.g_count}ea"></optgroup>
 								<c:forEach begin="0" end="9" var="i">
 									<c:choose>
-										<c:when test="${i != dmmCyeki.g_count}">
+										<c:when test="${i != dmm57CanBadge.g_count}">
 											<option value="${i}">${i}</option>
 										</c:when>
 										<c:otherwise>
@@ -420,7 +422,7 @@ for (String goodsCategory : category) {
 									</c:choose>
 								</c:forEach>
 								<c:choose>
-									<c:when test="${10 != dmmCyeki.g_count}">
+									<c:when test="${10 != dmm57CanBadge.g_count}">
 										<option value="10">10+</option>
 									</c:when>
 									<c:otherwise>
@@ -433,7 +435,12 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
-		<button class="goods-info-button">테스트 ▼</button>
+
+		<button class="goods-info-button" id="info-button10">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/cheki.png"> <span
+				class="button-text">DMM：チェキ ▼</span>
+		</button>
 		<div class="goods-content">
 			<c:forEach var="dmmCyeki" items="${Infos_dmmCyeki }">
 				<div>

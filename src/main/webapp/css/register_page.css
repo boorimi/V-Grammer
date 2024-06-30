@@ -50,18 +50,60 @@
 }
 
 
-#register-button-div {
-	position: absolute;
-	bottom: 77px;
-	left: 45%;
-}
-
-#register-submit-button{
+.x-id-wrap {
 	font-family: 'CustomFont', sans-serif;
 	font-weight: bold;
-	border: 3px solid black;
-    font-size: 16pt;
-    border-radius: 12px;
+}
+
+#x-title {
+	font-size: 2rem;
+	margin-top: -10px;
+	margin-bottom: 5px;
+}
+
+#x-id {
+	display: flex;
+	font-size: 1.5rem;
+	gap: 10px;
+}
+
+#x-cursor {
+	width: 40px;
+	height: 40px;
+}
+
+#register-button-div {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	bottom: 70px;
+	left: 43%;
+}
+
+#register-submit-button {
+	font-family: 'CustomFont', sans-serif;
+	font-size: 1.2rem;
+	color: #fff;
+	background: linear-gradient(45deg, rgb(128, 0, 255), rgb(0, 255, 255));
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.3s ease;
+	margin-right: 1%;
+	width: 100%;
+	font-weight: 900;
+	height: 50px;
+}
+
+#register-submit-button:hover {
+	background: linear-gradient(45deg,
+			rgb(0, 255, 255),
+			#ffb6c1);
+	/* 호버 시 배경색 그라데이션 변경 */
+	transform: scale(1.05);
+	/* 호버 시 살짝 위로 이동 */
 }
 
 
@@ -81,10 +123,6 @@
 }
 
 
-#register-nickname-text {
-	color: white;
-
-}
 
 
 /*인풋*/
