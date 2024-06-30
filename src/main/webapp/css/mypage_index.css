@@ -11,9 +11,9 @@
 .mypage-menu-section {
 	
 	position: absolute;
-	left: 100px;
+	left: 75px;
 	flex-direction: column;
-	width: 30vh;
+	width: 15vw;
 	gap: 10px 10px;
 	display: flex;
 	justify-content: center;
@@ -31,21 +31,39 @@
 
 .mypage-menu-items {
 	display: flex;
-	border: 1px black solid;
+	border: 2px black solid;
 	width: 82%;
 	gap: 5px;
 	border-radius: 10px;
 	align-items: center;
 	font-size: 2rem;
+	  transition: background-color 0.1s ease;
 }
 
 .mypage-menu-items:hover{
 	background-color: mediumpurple;
-	
 }
 
 .mypage-menu-items.active {
-    background-color: mediumpurple;
+    animation: rainbow 17s infinite;
+}
+
+/*메뉴 탭 무지개빛 변화 키프레임*/
+@keyframes rainbow {
+    0% { background-color: red; }
+    14% { background-color: orange; }
+    28% { background-color: yellow; }
+    42% { background-color: rgb(0, 255, 255); }
+    57% { background-color: rgb(255, 182, 193); }
+    71% { background-color: rgb(0, 255, 128); }
+    85% { background-color: violet; }
+    100% { background-color: red; }
+}
+
+
+.menu-full-wrap{
+	display: flex;
+	align-items: center;
 }
 
 .mypage-menu-icon-wrap{
@@ -53,6 +71,29 @@
 }
 .mypage-tab-icon-wrap{
 	margin: 10px;
+}
+
+/*메뉴 커서 이미지*/
+.menu-cursor{
+	display: none;
+	width: 50px;
+    height: 45px;
+    margin-left: 15px;
+}
+
+/*호버+액티브 시 보이도록 설정*/
+.mypage-menu-items:hover + .menu-cursor,
+.mypage-menu-items.active + .menu-cursor {
+	display: block;
+}
+
+.mypage-menu-items.active + .menu-cursor {
+	animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateX(5px); }
+    50% { transform: translateX(-5px); }
 }
 
 .mypage-jsp-section {
