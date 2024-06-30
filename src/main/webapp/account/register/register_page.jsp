@@ -15,7 +15,8 @@
 <body>
 	<div class="waku-wrap"
 		style="background-image: url('account/register/short-pink.png');">
-		<form action="RegisterC" method="post" enctype="multipart/form-data" id="register-form">
+		<form action="RegisterC" method="post" enctype="multipart/form-data"
+			id="register-form">
 			<div class="register-container">
 				<div class="register-items">
 					<div class="register-profile-box">
@@ -29,15 +30,17 @@
 								name="register-nickname-input" class="form-element-input"
 								type="input" placeholder="2~30文字で入力して!!" required />
 							<div class="form-element-bar"></div>
-							<label class="form-element-label" for="name">あなたのニックネームを教えて!</label> <small
-								class="form-element-hint" id="check-result"></small>
+							<label class="form-element-label" for="name">あなたのニックネームを教えて!</label>
+							<small class="form-element-hint" id="check-result">2~30文字でお願い!</small>
 						</div>
 					</div>
 					<div id="check-result"></div>
-					<div>
-						連動X ID<br> <span>@${sessionScope.twitterScreenName }</span>
+					<div class="x-id-wrap">
+						<p id="x-title">連動する「X」ID</p>
+						<div id="x-id"><img id="x-cursor" alt="" src="account/register/right-arrow.png"> @${sessionScope.twitterScreenName }</div>
 					</div>
 					<div id="register-button-div">
+						<!-- <img id="button-arrow" alt="" src="account/register/downarrow.png"> -->
 						<button id="register-submit-button" type="button">ハコナカ登録!</button>
 					</div>
 				</div>

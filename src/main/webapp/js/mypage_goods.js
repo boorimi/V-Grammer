@@ -51,6 +51,14 @@ $(function() {
 			success: function(response) {
 				// 성공 시 동작
 				console.log('굿즈 수량 업데이트 성공:', response);
+				//db통신 타임 랙에 의한 오류 방지를 위해 alert 띄움
+				if (response == 1) {
+					alert("グッズデータ追加成功!\n少しお待ちください。");
+				} else if (response == 2) {
+					alert("グッズデータ削除成功!\n少しお待ちください。");
+				} else if (response == 3) {
+					alert("グッズデータアップデート成功!\n少しお待ちください。");
+				}
 			},
 			error: function(error) {
 				// 에러 시 동작

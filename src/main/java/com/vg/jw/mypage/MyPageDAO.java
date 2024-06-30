@@ -143,6 +143,8 @@ public class MyPageDAO {
 
 				if (pstmt.executeUpdate() == 1) {
 					System.out.println("굿즈데이터 추가 성공");
+					//ajax에서 alert를 띄우기 위한 숫자 반환
+					response.getWriter().write(String.valueOf(1));
 				}
 
 			} else {
@@ -156,6 +158,7 @@ public class MyPageDAO {
 
 					if (pstmt.executeUpdate() == 1) {
 						System.out.println("굿즈 데이터 삭제 성공");
+						response.getWriter().write(String.valueOf(2));
 					}
 
 				} else {
@@ -168,6 +171,7 @@ public class MyPageDAO {
 
 					if (pstmt.executeUpdate() == 1) {
 						System.out.println("굿즈 데이터 업데이트 성공");
+						response.getWriter().write(String.valueOf(3));
 					}
 
 				}

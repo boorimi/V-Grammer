@@ -226,15 +226,15 @@ $(document).ready(function() {
 function flip() {
 	$('#flip-container').toggleClass('flipped');
 
-	var flipButton = $('#flip-button');
-	if (flipButton.text() === '⇆BACK SIDE') {
-		flipButton.text('⇆FRONT SIDE');
+	let flipButtonText = $('#flip-button-text');
+	if (flipButtonText.text() === 'BACK SIDE') {
+		flipButtonText.text('FRONT SIDE');
 	} else {
-		flipButton.text('⇆BACK SIDE');
+		flipButtonText.text('BACK SIDE');
 	}
 
 	// 이미지 변경
-		const images = [
+	const images = [
 		'haco_img/background/background_akai_akame.png',
 		'haco_img/background/background_amami_kurine.png',
 		'haco_img/background/background_ayasaka_kiho.png',

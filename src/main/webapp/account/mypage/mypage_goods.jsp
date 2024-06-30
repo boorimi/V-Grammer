@@ -347,51 +347,6 @@ for (String goodsCategory : category) {
 		</div>
 		<button class="goods-info-button" id="info-button8">
 			<img class="info-button-icon"
-				src="account/mypage/mypage_goods_icon/57mm.png"> <span
-				class="button-text">DMM：57mm缶バッジ ▼</span>
-		</button>
-		<div class="goods-content">
-			<c:forEach var="dmm57CanBadge" items="${Infos_dmm57CanBadge }">
-				<div>
-					<div class="goods-info-box"
-						style="background-color: ${dmm57CanBadge.m_personalcolor}">
-						<div class="goods-info-icon">
-							<img alt="" style="width: 50px;"
-								src="haco_img/icon/${dmm57CanBadge.i_icon}">
-						</div>
-						<div class="goods-info-member">${dmm57CanBadge.m_name}</div>
-						<div class="goods-info-count">
-							<select class="goods-info-select"
-								data-gmpk="${dmm57CanBadge.g_m_pk}"
-								data-userid="${dmm57CanBadge.u_twitter_id }"
-								data-category="${dmm57CanBadge.g_category}">
-								<optgroup label="${dmm57CanBadge.g_count}ea"></optgroup>
-								<c:forEach begin="0" end="9" var="i">
-									<c:choose>
-										<c:when test="${i != dmm57CanBadge.g_count}">
-											<option value="${i}">${i}</option>
-										</c:when>
-										<c:otherwise>
-											<option selected value="${i}">${i}</option>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-								<c:choose>
-									<c:when test="${10 != dmm57CanBadge.g_count}">
-										<option value="10">10+</option>
-									</c:when>
-									<c:otherwise>
-										<option selected value="10">10+</option>
-									</c:otherwise>
-								</c:choose>
-							</select>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-		<button class="goods-info-button" id="info-button9">
-			<img class="info-button-icon"
 				src="account/mypage/mypage_goods_icon/akusuta.png"> <span
 				class="button-text">DMM：ミニアクスタ ▼</span>
 		</button>
@@ -435,6 +390,52 @@ for (String goodsCategory : category) {
 				</div>
 			</c:forEach>
 		</div>
+		<button class="goods-info-button" id="info-button9">
+			<img class="info-button-icon"
+				src="account/mypage/mypage_goods_icon/57mm.png"> <span
+				class="button-text">DMM：57mm缶バッジ ▼</span>
+		</button>
+		<div class="goods-content">
+			<c:forEach var="dmm57CanBadge" items="${Infos_dmm57CanBadge }">
+				<div>
+					<div class="goods-info-box"
+						style="background-color: ${dmm57CanBadge.m_personalcolor}">
+						<div class="goods-info-icon">
+							<img alt="" style="width: 50px;"
+								src="haco_img/icon/${dmm57CanBadge.i_icon}">
+						</div>
+						<div class="goods-info-member">${dmm57CanBadge.m_name}</div>
+						<div class="goods-info-count">
+							<select class="goods-info-select"
+								data-gmpk="${dmm57CanBadge.g_m_pk}"
+								data-userid="${dmm57CanBadge.u_twitter_id }"
+								data-category="${dmm57CanBadge.g_category}">
+								<optgroup label="${dmm57CanBadge.g_count}ea"></optgroup>
+								<c:forEach begin="0" end="9" var="i">
+									<c:choose>
+										<c:when test="${i != dmm57CanBadge.g_count}">
+											<option value="${i}">${i}</option>
+										</c:when>
+										<c:otherwise>
+											<option selected value="${i}">${i}</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:choose>
+									<c:when test="${10 != dmm57CanBadge.g_count}">
+										<option value="10">10+</option>
+									</c:when>
+									<c:otherwise>
+										<option selected value="10">10+</option>
+									</c:otherwise>
+								</c:choose>
+							</select>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+
 		<button class="goods-info-button" id="info-button10">
 			<img class="info-button-icon"
 				src="account/mypage/mypage_goods_icon/cheki.png"> <span

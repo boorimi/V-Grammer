@@ -36,9 +36,11 @@ $(document).ready(function() {
 			}
 		});
 	}
-
+	
+	//페이지 진입 시 첫 화면으로 회원정보 페이지 로드
 	loadContent("account/mypage/mypage_userInfo.jsp");
-
+	$('#mypage-menu-userInfo').addClass('active');
+	
 	// AJAX 요청 함수 with blur effect
 	function loadContentWithBlur(url) {
 		console.log("로그인 세션값" + loginCheck);
