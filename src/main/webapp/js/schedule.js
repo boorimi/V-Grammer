@@ -272,7 +272,8 @@ $(document).ready(function() {
 	for (let i = 0; i < 7; i++) {
 		$('.s-input-container').append(insertInputList);
 	}
-
+	
+	// 버튼 누르면 인서트 한줄 추가
 	$('#s-plus-button').click(function() {
 		$('.s-input-container').append(insertInputList);
 	});
