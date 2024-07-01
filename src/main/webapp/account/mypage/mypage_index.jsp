@@ -60,7 +60,7 @@
 					src="account/mypage/mypage_index_icon/cursor.png">
 			</div>
 		</div>
-		<div class="mypage-jsp-section">jsp인클루드 영역임</div>
+		<div class="mypage-jsp-section"></div>
 
 	</div>
 

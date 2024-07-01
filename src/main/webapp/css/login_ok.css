@@ -1,4 +1,5 @@
 .login-container {
+	font-family: 'CustomFont', sans-serif;
 	display: flex;
 	width: 240px;
     justify-content: space-evenly;

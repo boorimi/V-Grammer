@@ -83,95 +83,44 @@ $(function() {
 	});
 
 
-	//  $(document).on('click', '.paging-link', function(event) {
-	//		var url = $(this).attr('href');
-	//
-	//		$.ajax({
-	//			url: url,
-	//			method: 'GET',
-	//			success: function(response) {
-	//				console.log("페이징 ajax호출 성공");
-	//				console.log(response);
-	//				$('.mypage-jsp-section').html(response);
-	//			},
-	//			error: function(xhr, status, error) {
-	//				console.error('AJAX 요청 실패:', status, error);
-	//			}
-	//		});
-	//	});
-
-
-	/*const moreBtn = document.querySelector("#more-btn");
-	console.log(moreBtn);
-	let limit = parseInt(moreBtn.value);
-	console.log(limit);
-	const tradeContent = document.querySelector('.trade-conmain');
-
-
-	moreBtn.addEventListener("click", () => {
-		alert('clicked!')
-		let url = "ArticleAPI?limit=" + limit;
-		fetch(url)
-			.then(response => response.json())
-			.then(data => {
-				console.log(data); // 받은 데이터를 처리합니다.
-				limit += 5;
-				console.log('호출 후 limit' + limit);
-
-				data.forEach((t) => {
-					console.log("t:" + t);
-					
-					 let categoriesHtml = '';
-							 (t.category).forEach((cate) => {
-						categoriesHtml += `<span style="margin-right: 5px;">${cate}</span>`;
-						 });
-					let content =
-						`<div class="trade-content">
-						<div>
-						<div>${t.nickname}</div>
-						<div>${t.twitterId}</div>
-						<div style="display: flex; flex-wrap: wrap;">
-								${categoriesHtml}
-						</div>
-						<div>${t.date}</div>
-						</div></div>`;
-					tradeContent.innerHTML += content;
-					console.log("카테고리스:"+categoriesHtml);
-				});
-
-			});
-	});*/
-
-
 	const moreBtn = $("#more-btn");
 	console.log(moreBtn);
 	let limit = parseInt(moreBtn.val());
 	console.log(limit);
 	const tradeContent = $('.trade-conmain');
+	let articleCount = $('.trade-conmain').data('article-count');
+
+	console.log("아티클 카운트:" + articleCount);
 
 	moreBtn.on("click", function() {
-		alert('clicked!');
 		let url = "ArticleAPI?limit=" + limit;
-		$.ajax({
-			url: url,
-			method: 'GET',
-			dataType: 'json',
-			success: function(data) {
-				console.log(data); // 받은 데이터를 처리합니다.
-				limit += 5;
-				console.log('호출 후 limit' + limit);
+		if (articleCount > 5) {
+			$.ajax({
+				url: url,
+				method: 'GET',
+				dataType: 'json',
+				success: function(data) {
+					if (data.message === "더이상 로드할 작성글이 없습니다") {
+						alert("最後の記事です。");
+						return;
+					}
 
-				data.forEach(function(t) {
-					console.log(t);
+					console.log(data); // 받은 데이터를 처리합니다.
+					limit += 5;
+					console.log('호출 후 limit' + limit);
 
-					let categoriesHtml = '';
-					$.each(t.category, function(index, cate) {
-						categoriesHtml += `<div class="trade-goods-category">${cate}</div>`;
-					});
+					data.forEach(function(t) {
 
-					let commentHTML = "";
-					$.each(t.comments, (idx, cm) => {
-						commentHTML += `<div class="trade-comments comment-wrap" style="display: none">
+						let categoriesHtml = '';
+						$.each(t.category, function(index, cate) {
+							categoriesHtml += `<div class="trade-goods-category">${cate}</div>`;
+
+							console.log("카테고리?:" + categoriesHtml);
+						});
+
+						let commentHTML = "";
+						$.each(t.comments, (idx, cm) => {
+							commentHTML += `<div class="trade-comments comment-wrap" style="display: none">
 							<div>
 								<div>${cm.sNickname}</div>
 								<div>${cm.date}</div>
@@ -184,13 +133,13 @@ $(function() {
 										</a>
 									</div>
 						</div>`;
-					});
-					console.log(commentHTML);
+						});
+						/*console.log(commentHTML);*/
 
 
 
-					let content =
-						`<div class="trade-content">
+						let content =
+							`<div class="trade-content">
 				<div class="trade-content-title">
 					<div>${t.nickname}</div>
 					<div>
@@ -202,8 +151,8 @@ $(function() {
 				<!--  카테고리 for문 시작 -->
 				<div class="trade-content-category ">
 							${categoriesHtml}
-					<!-- 카테고리for문 끝 -->
 				</div>
+					<!-- 카테고리for문 끝 -->
 				<div class="trade-content-text">
 					<div class="trade-con-title">${t.text}</div>
 						<div>
@@ -232,11 +181,15 @@ $(function() {
 					</form>
 				</div>
 			</div>`;
-					tradeContent.append(content);
-				});
-			}
-		});
+						tradeContent.append(content);
+					});
+				}
+			});
+		} else {
+			alert("最後だよ");
+		}
 	});
+
 });
 
 
