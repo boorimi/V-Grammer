@@ -30,6 +30,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     headerLink.style.color = 'black'; // 평일 글자색 검정색으로 변경
                 }
             }
+
+            // 날짜 숫자 색상 변경
+            var headerNumber = info.el.querySelector('.fc-daygrid-day-number');
+            if (headerNumber) {
+                if (day === 0) { // 일요일
+                    headerNumber.style.color = 'red'; // 일요일 날짜 숫자 빨간색으로 변경
+                } else { // 월요일부터 금요일
+                    headerNumber.style.color = 'black'; // 평일 날짜 숫자 검정색으로 변경
+                }
+            }
         },
         eventDidMount: function(info) {
             addPopoverToEvent(info.el, info.event);
