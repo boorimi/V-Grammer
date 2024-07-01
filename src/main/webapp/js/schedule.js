@@ -141,8 +141,13 @@ $(document).ready(function() {
 		});
 	}
 	titlePosition();
-	$('.tab-item').click(function() {
+	let flagKey = true;
+	$('.tab-item').click(function(e) {
 		setTimeout(titlePosition, 0);
+		if (flagKey) {
+			scheduleKeyEvent(e.target);
+			flagKey = false;
+		}
 	})
 
 	// 호버된 s-data div 이 외에 모든 s-data div에 opacity
@@ -160,7 +165,6 @@ $(document).ready(function() {
 		$(".s-data").css('opacity', '1');
 	});
 
-
 	let sPk = null;
 	$('.s-data').click(function() {
 		$('.modal-a-box').css('display', 'block');
@@ -168,7 +172,6 @@ $(document).ready(function() {
 
 		modal.showModal();
 		console.log(this.dataset);
-
 
 		sPk = this.dataset.sPk;
 		console.log(sPk);
@@ -187,7 +190,7 @@ $(document).ready(function() {
 				$.ajax({
 					url: "DeleteScheduleC",
 					type: "GET",
-					data: {sPk},
+					data: { sPk },
 					success: function(response) {
 						if (response) {
 							alert("削除成功！")
@@ -254,9 +257,8 @@ $(document).ready(function() {
 	});
 
 	// 인서트 js
-	for (let i = 0; i < 7; i++) {
-		let insertInputList =
-			`<div class="s-input-box">
+	let insertInputList =
+		`<div class="s-input-box">
 				<div class="s-input-date">
 					<input name="s_date" type="date" class="s-input-date1"/>
 				</div>
@@ -267,11 +269,14 @@ $(document).ready(function() {
 					<input name="s_title" class="s-input-title1" placeholder="配信タイトル" />
 				</div>
 			</div>`;
-
-
+	for (let i = 0; i < 7; i++) {
 		$('.s-input-container').append(insertInputList);
-
 	}
+
+	$('#s-plus-button').click(function() {
+		$('.s-input-container').append(insertInputList);
+	});
+
 
 	const $openButton = $("#schedule-insert-detail-button");
 	const $insertcontainer = $(".s-insert-content-a-box");
@@ -301,8 +306,6 @@ $(document).ready(function() {
 	});
 
 	// 입력 안하면 입력 알럿
-	// 수정중
-
 	let activerow;
 	$(".s-input-date1").focus(function() {
 		console.log($(this));
@@ -342,8 +345,21 @@ $(document).ready(function() {
 		}
 		$("#schedule-form").submit();
 	});
-
-
-
-
 });
+
+// 방향키 좌,우 다음 스케줄 클릭시키기 by mz     37, 39       
+function scheduleKeyEvent(target) {
+	console.log(target);
+	console.log('call me one time')
+	$(this).on("keydown", ((e) => {
+		if (e.keyCode == 37) {
+			$(target).prev().prev().click();
+			console.log($(target).prev().prev())
+		} else if (e.keyCode == 39) {
+			$(target).next().next().click();
+			console.log($(target).next())
+		}
+		target = $("input[name='tab-item']:checked");
+	}));
+
+}

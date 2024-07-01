@@ -25,6 +25,11 @@
     justify-content: space-between;
 }
 
+.login-nickname{
+	    max-width: 100px;
+    word-break: break-word;
+}
+
 /* 아카이브 버튼 부분 시작 */
 /*@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
 

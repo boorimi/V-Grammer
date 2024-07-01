@@ -206,6 +206,9 @@
 								<button type="button" id="s-insert-button">登録</button>
 							</div>
 						</div>
+						<div class="s-plus-button">
+							<button type="button" id="s-plus-button">+</button>
+						</div>
 					</form>
 				</div>
 			</div>
