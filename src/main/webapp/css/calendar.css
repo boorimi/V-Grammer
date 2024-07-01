@@ -82,5 +82,5 @@
 .popover-body img {
     width: 148px;
     height: 148px;
-    object-fit: cover; /* 이미지 비율 유지하며 크기에 맞춤 */
+    object-fit: cover;
 }

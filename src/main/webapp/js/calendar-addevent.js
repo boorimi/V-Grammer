@@ -147,7 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="arrow"></div>
                     <h3 class="popover-header">${event.title}</h3>
                     <div class="popover-body">
-                        <p>텍스트: ${event.extendedProps.title || '정보 없음'}</p>
                         ${event.extendedProps.imagePath ? `<img src="${event.extendedProps.imagePath}" alt="event image">` : ''}
                     </div>
                 `;
