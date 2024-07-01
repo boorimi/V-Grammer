@@ -96,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
             events.forEach(event => {
                 let newEvent = { ...event };
                 newEvent.start = incrementYear(event.start, year - new Date(event.start).getFullYear());
-                if (newEvent.title.includes('の誕生日')) {
-                    newEvent.color = 'red';
+                if (newEvent.title.includes('の誕生日') || newEvent.title.includes('Holiday')) { // 'Holiday' 키워드 추가
+                    newEvent.color = 'red'; // 공휴일 이벤트와 생일 이벤트는 빨간색으로 표시
                 }
                 console.log("새 이벤트 추가:", newEvent);
                 calendar.addEvent(newEvent);
@@ -129,8 +129,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     eventsToAdd.forEach(event => {
                         let newEvent = { ...event };
                         newEvent.start = incrementYear(event.start, year - new Date(event.start).getFullYear());
-                        if (newEvent.title.includes('の誕生日')) {
-                            newEvent.color = 'red';
+                        if (newEvent.title.includes('の誕生日') || newEvent.title.includes('Holiday')) { // 'Holiday' 키워드 추가
+                            newEvent.color = 'red'; // 공휴일 이벤트와 생일 이벤트는 빨간색으로 표시
                         }
                         console.log("새 이벤트 추가:", newEvent);
                         calendar.addEvent(newEvent);

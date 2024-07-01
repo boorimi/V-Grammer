@@ -29,23 +29,24 @@ public class CalendarDAO {
         ArrayList<CalendarInfoDTO> events = new ArrayList<CalendarInfoDTO>();
         try {
             conn = DBManager.connect();
-            String sql = "SELECT m.m_pk, m.m_name, m.m_debut, m.m_birth, m.m_mother_name, i.i_icon " +
+            
+            // 기존 쿼리: haco_member 테이블에서 이벤트 가져오기
+            String sql1 = "SELECT m.m_pk, m.m_name, m.m_debut, m.m_birth, m.m_mother_name, i.i_icon " +
                     "FROM haco_member m " +
                     "LEFT JOIN haco_image i ON m.m_pk = i.i_m_pk " +
                     "WHERE m.m_name IS NOT NULL AND (m.m_debut IS NOT NULL OR m.m_birth IS NOT NULL)";
-
-            pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql1);
             rs = pstmt.executeQuery();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             while (rs.next()) {
-                String iconPath = "haco_img/icon/" + rs.getString("i_icon"); // 이미지 경로 설정
+                String iconPath = "haco_img/icon/" + rs.getString("i_icon");
 
                 if (rs.getDate("m_debut") != null) {
                     CalendarInfoDTO event = new CalendarInfoDTO();
                     event.setM_pk(rs.getString("m_pk"));
                     event.setTitle(rs.getString("m_name"));
-                    event.setImagePath(iconPath); // 이미지 경로 설정
+                    event.setImagePath(iconPath);
                     String startDate = dateFormat.format(rs.getDate("m_debut"));
                     event.setStart(startDate);
                     events.add(event);
@@ -54,12 +55,30 @@ public class CalendarDAO {
                     CalendarInfoDTO birthEvent = new CalendarInfoDTO();
                     birthEvent.setM_pk(rs.getString("m_pk"));
                     birthEvent.setTitle(rs.getString("m_name") + "の誕生日");
-                    birthEvent.setImagePath(iconPath); // 이미지 경로 설정
+                    birthEvent.setImagePath(iconPath);
                     String birthDate = dateFormat.format(rs.getDate("m_birth"));
                     birthEvent.setStart(birthDate);
                     events.add(birthEvent);
                 }
             }
+            rs.close();
+            pstmt.close();
+
+            // 새로운 쿼리: jp_holidays 테이블에서 이벤트 가져오기
+            String sql2 = "SELECT id, title, date FROM jp_holidays";
+            pstmt = conn.prepareStatement(sql2);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                CalendarInfoDTO holidayEvent = new CalendarInfoDTO();
+                holidayEvent.setM_pk(rs.getString("id"));
+                holidayEvent.setTitle(rs.getString("title"));
+                holidayEvent.setImagePath(""); // 공휴일에는 이미지 경로가 없으므로 빈 문자열로 설정
+                String holidayDate = dateFormat.format(rs.getDate("date"));
+                holidayEvent.setStart(holidayDate);
+                events.add(holidayEvent);
+            }
+
             Gson gson = new Gson();
             String json = gson.toJson(events);
             response.getWriter().print(json);
@@ -69,7 +88,6 @@ public class CalendarDAO {
             e.printStackTrace();
             response.getWriter().print("[]"); // 에러 발생 시 빈 JSON 배열 응답
         } finally {
-            // DB 자원 닫기
             if (rs != null) {
                 try {
                     rs.close();
@@ -87,7 +105,7 @@ public class CalendarDAO {
             if (conn != null) {
                 try {
                     conn.close();
-                    System.out.println("데이터베이스 연결 닫힘 확인."); // 데이터베이스 연결 닫힘 확인용 출력
+                    System.out.println("데이터베이스 연결 닫힘 확인.");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
