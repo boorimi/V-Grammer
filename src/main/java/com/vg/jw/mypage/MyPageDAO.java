@@ -143,7 +143,7 @@ public class MyPageDAO {
 
 				if (pstmt.executeUpdate() == 1) {
 					System.out.println("굿즈데이터 추가 성공");
-					//ajax에서 alert를 띄우기 위한 숫자 반환
+					// ajax에서 alert를 띄우기 위한 숫자 반환
 					response.getWriter().write(String.valueOf(1));
 				}
 
@@ -199,23 +199,27 @@ public class MyPageDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		String sql = "SELECT ht.t_pk, ht.t_u_t_id, hs.u_screenname, hs.u_nickname, ht.t_text, ht.t_date, ht.t_category" 
-                + " FROM haco_tradegoods ht, haco_user hs "
-                + "WHERE ht.t_u_t_id = hs.u_twitter_id AND ht.t_u_t_id = ? "
-                + "ORDER BY ht.t_date DESC "
-                + "LIMIT 5 OFFSET ?";
+		String sql = "SELECT ht.t_pk, ht.t_u_t_id, hs.u_screenname, hs.u_nickname, ht.t_text, ht.t_date, ht.t_category"
+				+ " FROM haco_tradegoods ht, haco_user hs " + "WHERE ht.t_u_t_id = hs.u_twitter_id AND ht.t_u_t_id = ? "
+				+ "ORDER BY ht.t_date DESC " + "LIMIT 5 OFFSET ?";
 
 		String sql2 = "SELECT tc_pk, tc_m_t_id, hu1.u_nickname AS m_nickname, tc_s_t_id, hu2.u_nickname AS s_nickname, tc_text, tc_date, tc_t_pk "
-                + "FROM haco_tradegoods_comments "
-                + "JOIN haco_user hu1 ON tc_m_t_id = hu1.u_twitter_id "
-                + "LEFT JOIN haco_user hu2 ON tc_s_t_id = hu2.u_twitter_id "
-                + "WHERE tc_t_pk = ?";
+				+ "FROM haco_tradeg" + "oods_comments " + "JOIN haco_user hu1 ON tc_m_t_id = hu1.u_twitter_id "
+				+ "LEFT JOIN haco_user hu2 ON tc_s_t_id = hu2.u_twitter_id " + "WHERE tc_t_pk = ?";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, twitterId);
 			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				System.out.println("더이상 로드할 작성글이 없습니다");
+				response.getWriter().write("{\"message\": \"더이상 로드할 작성글이 없습니다\"}");
+				
+				return; // 더 이상 진행하지 않음
+			}
+	
+
 			ArrayList<TradeDTO> trades = new ArrayList<TradeDTO>();
 			ArrayList<TradeCommentsDTO> tradeComments = new ArrayList<TradeCommentsDTO>();
 			String[] category = null;
@@ -235,7 +239,7 @@ public class MyPageDAO {
 				System.out.println("카테고리?=================");
 				String[] categories = t.getCategory();
 				for (String cate : categories) {
-				    System.out.println(cate);
+					System.out.println(cate);
 				}
 				System.out.println("=================");
 
@@ -265,7 +269,7 @@ public class MyPageDAO {
 				trades.add(t);
 			}
 			Gson g = new Gson();
-			System.out.println(g.toJson(trades));
+			System.out.println("범인" + g.toJson(trades));
 			response.getWriter().print(g.toJson(trades));
 		} catch (Exception e) {
 			e.printStackTrace();

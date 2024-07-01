@@ -88,32 +88,39 @@ $(function() {
 	let limit = parseInt(moreBtn.val());
 	console.log(limit);
 	const tradeContent = $('.trade-conmain');
+	let articleCount = $('.trade-conmain').data('article-count');
+
+	console.log("아티클 카운트:" + articleCount);
 
 	moreBtn.on("click", function() {
-		alert('clicked!');
 		let url = "ArticleAPI?limit=" + limit;
-		$.ajax({
-			url: url,
-			method: 'GET',
-			dataType: 'json',
-			success: function(data) {
-				console.log(data); // 받은 데이터를 처리합니다.
-				limit += 5;
-				console.log('호출 후 limit' + limit);
+		if (articleCount > 5) {
+			$.ajax({
+				url: url,
+				method: 'GET',
+				dataType: 'json',
+				success: function(data) {
+					if (data.message === "더이상 로드할 작성글이 없습니다") {
+						alert("最後の記事です。");
+						return;
+					}
 
-				data.forEach(function(t) {
-					
+					console.log(data); // 받은 데이터를 처리합니다.
+					limit += 5;
+					console.log('호출 후 limit' + limit);
 
-					let categoriesHtml = '';
-					$.each(t.category, function(index, cate) {
-						categoriesHtml += `<div class="trade-goods-category">${cate}</div>`;
-					
-					console.log("카테고리?:"+categoriesHtml);
-					});
+					data.forEach(function(t) {
 
-					let commentHTML = "";
-					$.each(t.comments, (idx, cm) => {
-						commentHTML += `<div class="trade-comments comment-wrap" style="display: none">
+						let categoriesHtml = '';
+						$.each(t.category, function(index, cate) {
+							categoriesHtml += `<div class="trade-goods-category">${cate}</div>`;
+
+							console.log("카테고리?:" + categoriesHtml);
+						});
+
+						let commentHTML = "";
+						$.each(t.comments, (idx, cm) => {
+							commentHTML += `<div class="trade-comments comment-wrap" style="display: none">
 							<div>
 								<div>${cm.sNickname}</div>
 								<div>${cm.date}</div>
@@ -126,13 +133,13 @@ $(function() {
 										</a>
 									</div>
 						</div>`;
-					});
-					/*console.log(commentHTML);*/
+						});
+						/*console.log(commentHTML);*/
 
 
 
-					let content =
-						`<div class="trade-content">
+						let content =
+							`<div class="trade-content">
 				<div class="trade-content-title">
 					<div>${t.nickname}</div>
 					<div>
@@ -174,11 +181,15 @@ $(function() {
 					</form>
 				</div>
 			</div>`;
-					tradeContent.append(content);
-				});
-			}
-		});
+						tradeContent.append(content);
+					});
+				}
+			});
+		} else {
+			alert("最後だよ");
+		}
 	});
+
 });
 
 

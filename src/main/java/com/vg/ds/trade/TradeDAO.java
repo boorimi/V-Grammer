@@ -128,21 +128,39 @@ public class TradeDAO {
 		}
 
 	}
-	
-	//마이페이지에서 쓰는 작성글 가져오는 메서드
+
+	// 마이페이지에서 쓰는 작성글 가져오는 메서드
 	public void selectAllTrade2(HttpServletRequest request) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		try {
 
-		
+		try {
 			AccountDTO accountInfo = (AccountDTO) request.getSession().getAttribute("accountInfo");
 			long twitterId2 = accountInfo.getU_twitter_id();
+		
+			con = DBManager.connect();
+			int ok = 1;
+			int articleCount = 0;
+			String checksql = "select count(*) as count "
+		            + "from haco_tradegoods, haco_user "
+		            + "where u_twitter_id = t_u_t_id and u_twitter_id=? ";
+			
+			pstmt = con.prepareStatement(checksql);
+			pstmt.setLong(1, twitterId2);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (rs.getInt(1)==0) {
+					ok = 0;
+					request.setAttribute("checkArticleCount", false);
+					return;
+				}
+				articleCount = rs.getInt(1);
+				request.setAttribute("articleCount", articleCount);
+			}
+								
 			String sql = "select t_pk, u_twitter_id, u_screenname, u_nickname, t_text, t_date, t_category "
-			+ "from haco_tradegoods, haco_user "
-			+ "where u_twitter_id = t_u_t_id and u_twitter_id=? ";
+					+ "from haco_tradegoods, haco_user " + "where u_twitter_id = t_u_t_id and u_twitter_id=? ";
 			////// 검색 진행 시 sql문 추가하는 부분 시작 ////
 			if (request.getParameterValues("goodsCategory") != null) {
 				String[] category2 = request.getParameterValues("goodsCategory");
@@ -163,7 +181,7 @@ public class TradeDAO {
 				}
 				request.setAttribute("category3", category3);
 			}
-			
+
 			if (request.getParameterValues("name") != null) {
 				String name = request.getParameter("name");
 				sql += "and u_nickname like CONCAT('%','" + name + "','%')";
@@ -173,15 +191,15 @@ public class TradeDAO {
 			}
 			////// 검색 진행 시 sql문 추가하는 부분 끝 ////
 			sql += "order by t_date asc";
+
 			
-			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, twitterId2);
 			rs = pstmt.executeQuery();
-			
+
 			trades = new ArrayList<TradeDTO>();
 			String[] category = null;
-			
+
 			while (rs.next()) {
 				String pk = rs.getString(1);
 				String twitterId = rs.getString(2);
@@ -189,23 +207,23 @@ public class TradeDAO {
 				String nickname = rs.getString(4);
 				String text = rs.getString(5);
 				String date = rs.getString(6);
-				
+
 				// 배열로 전환
 				category = rs.getString(7).split("!");
 				TradeDTO t = new TradeDTO(pk, twitterId, screenName, nickname, text, date, category, tradeComments);
 				trades.add(t);
-				
-				
-				
+
+
 			}
-			
+
 			request.setAttribute("trades", trades);
+			request.setAttribute("checkArticleCount", true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-		
+
 	}
 
 	public void selectTrade(HttpServletRequest request) {
@@ -420,22 +438,22 @@ public class TradeDAO {
 	}
 
 	public void tradeCheckboxList(HttpServletRequest request) {
-        // HashMap 생성 및 데이터 추가
-        LinkedHashMap<String, String> checkboxItems = new LinkedHashMap<>();
-        checkboxItems.put("bromide", "白賞ブロマイド");
-        checkboxItems.put("57mmCanBadge", "57mm缶バッジ");
-        checkboxItems.put("76mmCanBadge", "76mm缶バッジ");
-        checkboxItems.put("akuki", "SD絵アクキー");
-        checkboxItems.put("coaster", "コスタ");
-        checkboxItems.put("omoideCyeki", "思い出チェキ風カード");
-        checkboxItems.put("dmmMiniShikishi", "DMM：色紙");
-        checkboxItems.put("dmm57CanBadge", "DMM：57mm缶バッジ");
-        checkboxItems.put("dmmMiniAkusuta", "DMM：ミニアクスタ");
-        checkboxItems.put("dmmCyeki", "DMM：チェキ");
+		// HashMap 생성 및 데이터 추가
+		LinkedHashMap<String, String> checkboxItems = new LinkedHashMap<>();
+		checkboxItems.put("bromide", "白賞ブロマイド");
+		checkboxItems.put("57mmCanBadge", "57mm缶バッジ");
+		checkboxItems.put("76mmCanBadge", "76mm缶バッジ");
+		checkboxItems.put("akuki", "SD絵アクキー");
+		checkboxItems.put("coaster", "コスタ");
+		checkboxItems.put("omoideCyeki", "思い出チェキ風カード");
+		checkboxItems.put("dmmMiniShikishi", "DMM：色紙");
+		checkboxItems.put("dmm57CanBadge", "DMM：57mm缶バッジ");
+		checkboxItems.put("dmmMiniAkusuta", "DMM：ミニアクスタ");
+		checkboxItems.put("dmmCyeki", "DMM：チェキ");
 
-        // 요청 객체에 데이터 설정
-        request.setAttribute("checkboxItems", checkboxItems);
-    }
+		// 요청 객체에 데이터 설정
+		request.setAttribute("checkboxItems", checkboxItems);
+	}
 
 	public void insertGoodsValue(HttpServletRequest request, HttpServletResponse response) {
 
