@@ -19,7 +19,7 @@ response.setContentType("text/html; charset=UTF-8");
 response.setCharacterEncoding("UTF-8");
 %>
 <body>
-	<div style="width: 80%">
+	<div style="width: 80%;position: relative;left: 10%;">
 	<div class="mypage-tab-title">
 		<div class="mypage-tab-icon-wrap">
 			<img class="mypage-tab-icon" alt=""

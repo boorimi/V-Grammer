@@ -50,8 +50,7 @@ for (String goodsCategory : category) {
 						<div class="goods-info-count">
 							<select class="goods-info-select" data-gmpk="${bromide.g_m_pk}"
 								data-userid="${bromide.u_twitter_id }"
-								data-category="${bromide.g_category}"
-								style="background-color: ${bromide.m_personalcolor}">
+								data-category="${bromide.g_category}">
 								<optgroup label="${bromide.g_count}ea"></optgroup>
 								<c:forEach begin="0" end="9" var="i">
 									<c:choose>
