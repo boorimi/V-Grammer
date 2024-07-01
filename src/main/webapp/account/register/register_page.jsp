@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="waku-wrap"
-		style="background-image: url('account/register/short-pink.png');">
+		style="background-image: url('account/register/register_img/short-pink.png');">
 		<form action="RegisterC" method="post" enctype="multipart/form-data"
 			id="register-form">
 			<div class="register-container">
@@ -37,7 +37,7 @@
 					<div id="check-result"></div>
 					<div class="x-id-wrap">
 						<p id="x-title">連動する「X」ID</p>
-						<div id="x-id"><img id="x-cursor" alt="" src="account/register/right-arrow.png"> @${sessionScope.twitterScreenName }</div>
+						<div id="x-id"><img id="x-cursor" alt="" src="account/register/register_img/right-arrow.png"> @${sessionScope.twitterScreenName }</div>
 					</div>
 					<div id="register-button-div">
 						<!-- <img id="button-arrow" alt="" src="account/register/downarrow.png"> -->

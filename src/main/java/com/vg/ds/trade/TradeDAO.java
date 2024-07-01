@@ -128,6 +128,85 @@ public class TradeDAO {
 		}
 
 	}
+	
+	//마이페이지에서 쓰는 작성글 가져오는 메서드
+	public void selectAllTrade2(HttpServletRequest request) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+
+		
+			AccountDTO accountInfo = (AccountDTO) request.getSession().getAttribute("accountInfo");
+			long twitterId2 = accountInfo.getU_twitter_id();
+			String sql = "select t_pk, u_twitter_id, u_screenname, u_nickname, t_text, t_date, t_category "
+			+ "from haco_tradegoods, haco_user "
+			+ "where u_twitter_id = t_u_t_id and u_twitter_id=? ";
+			////// 검색 진행 시 sql문 추가하는 부분 시작 ////
+			if (request.getParameterValues("goodsCategory") != null) {
+				String[] category2 = request.getParameterValues("goodsCategory");
+				for (int i = 0; i < category2.length; i++) {
+					if (i == 0) {
+						sql += "and (";
+					}
+					sql += "t_category like CONCAT('%','" + category2[i] + "','%')";
+					if (i == category2.length - 1) {
+						sql += ") ";
+					} else {
+						sql += " or ";
+					}
+				}
+				String category3 = "";
+				for (String c : category2) {
+					category3 += "&goodsCategory=" + c;
+				}
+				request.setAttribute("category3", category3);
+			}
+			
+			if (request.getParameterValues("name") != null) {
+				String name = request.getParameter("name");
+				sql += "and u_nickname like CONCAT('%','" + name + "','%')";
+				String name2 = "&name=" + name;
+				request.setAttribute("name", name);
+				request.setAttribute("name2", name2);
+			}
+			////// 검색 진행 시 sql문 추가하는 부분 끝 ////
+			sql += "order by t_date asc";
+			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, twitterId2);
+			rs = pstmt.executeQuery();
+			
+			trades = new ArrayList<TradeDTO>();
+			String[] category = null;
+			
+			while (rs.next()) {
+				String pk = rs.getString(1);
+				String twitterId = rs.getString(2);
+				String screenName = rs.getString(3);
+				String nickname = rs.getString(4);
+				String text = rs.getString(5);
+				String date = rs.getString(6);
+				
+				// 배열로 전환
+				category = rs.getString(7).split("!");
+				TradeDTO t = new TradeDTO(pk, twitterId, screenName, nickname, text, date, category, tradeComments);
+				trades.add(t);
+				
+				
+				
+			}
+			
+			request.setAttribute("trades", trades);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
 
 	public void selectTrade(HttpServletRequest request) {
 

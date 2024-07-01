@@ -44,8 +44,8 @@ response.setCharacterEncoding("UTF-8");
 					<div class="trade-content-category ">
 						<c:forEach var="c" items="${t.category }">
 							<c:forEach var="item" items="${checkboxItems}">
-								<c:if test="${item.value == c}">
-									<div class="trade-goods-category">${item.label}</div>
+								<c:if test="${item.key == c}">
+									<div class="trade-goods-category">${item.value}</div>
 								</c:if>
 							</c:forEach>
 						</c:forEach>
@@ -69,7 +69,7 @@ response.setCharacterEncoding("UTF-8");
 
 					<c:set var="cnt" value="0" />
 					<c:forEach var="c_cnt" items="${tradeComments }">
-					${c_cnt.t_pk}
+					<%-- ${c_cnt.t_pk} --%>
 						<c:if test="${c_cnt.t_pk == t.pk }">
 							<c:set var="cnt" value="${cnt + 1 }" />
 						</c:if>

@@ -17,7 +17,7 @@ public class ArticleC extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		System.out.println("ArticleC doGet 진입");
-		TradeDAO.TDAO.selectAllTrade(request);
+		TradeDAO.TDAO.selectAllTrade2(request);
 		TradeDAO.TDAO.selectTradeComments(request);
 		//int p = Integer.parseInt(request.getParameter("p"));
 		TradeDAO.TDAO.paging(1, request);

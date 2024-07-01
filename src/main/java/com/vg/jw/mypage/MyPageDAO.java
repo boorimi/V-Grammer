@@ -199,13 +199,17 @@ public class MyPageDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		String sql = "SELECT ht.t_pk, ht.t_u_t_id, hs.u_screenname, hs.u_nickname, ht.t_text, ht.t_date, ht.t_category FROM haco_tradegoods ht, haco_user hs "
-				+ "where ht.t_u_t_id = hs.u_twitter_id and ht.t_u_t_id = ? " + "ORDER BY ht.t_date DESC "
-				+ "LIMIT 5 OFFSET ?";
+		String sql = "SELECT ht.t_pk, ht.t_u_t_id, hs.u_screenname, hs.u_nickname, ht.t_text, ht.t_date, ht.t_category" 
+                + " FROM haco_tradegoods ht, haco_user hs "
+                + "WHERE ht.t_u_t_id = hs.u_twitter_id AND ht.t_u_t_id = ? "
+                + "ORDER BY ht.t_date DESC "
+                + "LIMIT 5 OFFSET ?";
 
-		String sql2 = "SELECT tc_pk, tc_m_t_id, hu1.u_nickname AS m_nickname, tc_s_t_id, hu2.u_nickname AS s_nickname, tc_text, tc_date, tc_t_pk\r\n"
-				+ "FROM haco_tradegoods_comments\r\n" + "JOIN haco_user hu1 ON tc_m_t_id = hu1.u_twitter_id\r\n"
-				+ "LEFT JOIN haco_user hu2 ON tc_s_t_id = hu2.u_twitter_id\r\n" + "where tc_t_pk = ?";
+		String sql2 = "SELECT tc_pk, tc_m_t_id, hu1.u_nickname AS m_nickname, tc_s_t_id, hu2.u_nickname AS s_nickname, tc_text, tc_date, tc_t_pk "
+                + "FROM haco_tradegoods_comments "
+                + "JOIN haco_user hu1 ON tc_m_t_id = hu1.u_twitter_id "
+                + "LEFT JOIN haco_user hu2 ON tc_s_t_id = hu2.u_twitter_id "
+                + "WHERE tc_t_pk = ?";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -226,10 +230,13 @@ public class MyPageDAO {
 				String t_date = rs.getString(6);
 
 				// 배열로 전환
-				category = rs.getString(6).split("!");
+				category = rs.getString(7).split("!");
 				TradeDTO t = new TradeDTO(t_pk, t_id, t_screeName, t_nickname, t_text, t_date, category, null);
-				System.out.println("=================");
-				System.out.println(t);
+				System.out.println("카테고리?=================");
+				String[] categories = t.getCategory();
+				for (String cate : categories) {
+				    System.out.println(cate);
+				}
 				System.out.println("=================");
 
 				pstmt = con.prepareStatement(sql2);
@@ -250,6 +257,7 @@ public class MyPageDAO {
 					tradeComments.add(tc);
 					System.out.println("~~~~~~~~~~~~~~~~~");
 					System.out.println(tc);
+					System.out.println();
 					System.out.println("~~~~~~~~~~~~~~~~~");
 				}
 				rs2.close();

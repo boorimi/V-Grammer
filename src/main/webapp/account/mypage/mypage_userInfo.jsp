@@ -21,7 +21,7 @@
 			</div>
 			<h2>会員情報</h2>
 			<button id="flip-button" class="upper-flip-button" onclick="flip()">
-				<img id="flip-button-icon" src="account/mypage/right-left-arrow.png">
+				<img id="flip-button-icon" src="account/mypage/mypage_userInfo_icon/right-left-arrow.png">
 				<span id="flip-button-text">BACK SIDE</span>
 			</button>
 		</div>

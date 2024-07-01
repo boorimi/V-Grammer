@@ -83,66 +83,6 @@ $(function() {
 	});
 
 
-	//  $(document).on('click', '.paging-link', function(event) {
-	//		var url = $(this).attr('href');
-	//
-	//		$.ajax({
-	//			url: url,
-	//			method: 'GET',
-	//			success: function(response) {
-	//				console.log("페이징 ajax호출 성공");
-	//				console.log(response);
-	//				$('.mypage-jsp-section').html(response);
-	//			},
-	//			error: function(xhr, status, error) {
-	//				console.error('AJAX 요청 실패:', status, error);
-	//			}
-	//		});
-	//	});
-
-
-	/*const moreBtn = document.querySelector("#more-btn");
-	console.log(moreBtn);
-	let limit = parseInt(moreBtn.value);
-	console.log(limit);
-	const tradeContent = document.querySelector('.trade-conmain');
-
-
-	moreBtn.addEventListener("click", () => {
-		alert('clicked!')
-		let url = "ArticleAPI?limit=" + limit;
-		fetch(url)
-			.then(response => response.json())
-			.then(data => {
-				console.log(data); // 받은 데이터를 처리합니다.
-				limit += 5;
-				console.log('호출 후 limit' + limit);
-
-				data.forEach((t) => {
-					console.log("t:" + t);
-					
-					 let categoriesHtml = '';
-							 (t.category).forEach((cate) => {
-						categoriesHtml += `<span style="margin-right: 5px;">${cate}</span>`;
-						 });
-					let content =
-						`<div class="trade-content">
-						<div>
-						<div>${t.nickname}</div>
-						<div>${t.twitterId}</div>
-						<div style="display: flex; flex-wrap: wrap;">
-								${categoriesHtml}
-						</div>
-						<div>${t.date}</div>
-						</div></div>`;
-					tradeContent.innerHTML += content;
-					console.log("카테고리스:"+categoriesHtml);
-				});
-
-			});
-	});*/
-
-
 	const moreBtn = $("#more-btn");
 	console.log(moreBtn);
 	let limit = parseInt(moreBtn.val());
@@ -162,11 +102,13 @@ $(function() {
 				console.log('호출 후 limit' + limit);
 
 				data.forEach(function(t) {
-					console.log(t);
+					
 
 					let categoriesHtml = '';
 					$.each(t.category, function(index, cate) {
 						categoriesHtml += `<div class="trade-goods-category">${cate}</div>`;
+					
+					console.log("카테고리?:"+categoriesHtml);
 					});
 
 					let commentHTML = "";
@@ -185,7 +127,7 @@ $(function() {
 									</div>
 						</div>`;
 					});
-					console.log(commentHTML);
+					/*console.log(commentHTML);*/
 
 
 
@@ -202,8 +144,8 @@ $(function() {
 				<!--  카테고리 for문 시작 -->
 				<div class="trade-content-category ">
 							${categoriesHtml}
-					<!-- 카테고리for문 끝 -->
 				</div>
+					<!-- 카테고리for문 끝 -->
 				<div class="trade-content-text">
 					<div class="trade-con-title">${t.text}</div>
 						<div>

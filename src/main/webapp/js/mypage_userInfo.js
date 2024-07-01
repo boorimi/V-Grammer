@@ -45,7 +45,7 @@ $(document).ready(function() {
 		const checkResult = $('#check-result');
 
 		// 닉네임 유효
-		if (inputNickName.length >= 2 && inputNickName.length <= 30) {
+		if (inputNickName.length >= 2 && inputNickName.length <= 30 && !/\s/.test(inputNickName)) {
 			nickNameLengthOK = true;
 		} else { // 닉네임 글자수에 문제 있을 때
 			nickNameLengthOK = false;
@@ -53,7 +53,7 @@ $(document).ready(function() {
 			if (inputNickName.length === 0) {
 				$('#check-result').text('ニックネームを入力して下さい');
 			} else {
-				$('#check-result').text('ニックネームは2~30文字でお願い!');
+				$('#check-result').text('ニックネームは2~30文字、空白なしでお願い!');
 			}
 		}
 		return nickNameLengthOK;
