@@ -1,64 +1,86 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
-    // 현재 날짜 정보를 가져옴
     var today = new Date();
     var year = today.getFullYear();
     var month = today.getMonth() + 1;
     var day = today.getDate();
-
-    // 현재 날짜를 YYYY-MM-DD 형식으로 변환
     var currentDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
     console.log("현재 날짜:", currentDate);
 
-    // FullCalendar 객체를 생성하고 초기화
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialDate: currentDate, // 캘린더 초기 날짜 설정
-        editable: false,          // 이벤트 편집 비활성화
-        selectable: false,        // 날짜 선택 비활성화
-        businessHours: true,      // 영업 시간 표시
-        dayMaxEvents: true,       // 하루에 표시할 최대 이벤트 수
-        events: [],               // 초기에는 빈 배열로 설정
+        initialDate: currentDate,
+        editable: false,
+        selectable: false,
+        businessHours: true,
+        dayMaxEvents: true,
+        events: [],
+        dayHeaderDidMount: function(info) {
+            var day = info.date.getDay();
+            if (day === 0) { // 일요일
+                info.el.classList.add('sunday-header');
+                var headerLink = info.el.querySelector('.fc-col-header-cell-cushion');
+                if (headerLink) {
+                    headerLink.style.color = 'red'; // 일요일 글자색 빨간색으로 변경
+                }
+            } else if (day >= 1 && day <= 5) { // 월요일부터 금요일
+                info.el.classList.add('weekday-header');
+                var headerLink = info.el.querySelector('.fc-col-header-cell-cushion');
+                if (headerLink) {
+                    headerLink.style.color = 'black'; // 평일 글자색 검정색으로 변경
+                }
+            }
+
+            // 날짜 숫자 색상 변경
+            var headerNumber = info.el.querySelector('.fc-daygrid-day-number');
+            if (headerNumber) {
+                if (day === 0) { // 일요일
+                    headerNumber.style.color = 'red'; // 일요일 날짜 숫자 빨간색으로 변경
+                } else { // 월요일부터 금요일
+                    headerNumber.style.color = 'black'; // 평일 날짜 숫자 검정색으로 변경
+                }
+            }
+        },
         eventDidMount: function(info) {
-            // 이벤트 바에 마우스 오버 시 popover 표시
             addPopoverToEvent(info.el, info.event);
+        },
+        eventMoreLinkDidMount: function(info) {
+            var popover = info.el.querySelector('.fc-popover');
+            if (popover) {
+                popover.style.left = 'unset';
+                popover.style.right = '0';
+            }
         }
     });
 
-    // 캘린더를 렌더링
     calendar.render();
     console.log("캘린더가 렌더링되었습니다.");
 
-    var loadedEvents = []; // 서버에서 로드한 이벤트를 저장할 배열
+    var loadedEvents = [];
 
-    // 최초 로드 시 현재 연도와 4년 후까지의 모든 이벤트를 로드
     loadEventsForYears(year, year + 4, calendar);
 
-    // FullCalendar의 버튼들에 클릭 이벤트를 추가
     const buttons = document.querySelectorAll('.fc-button');
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
             console.log("버튼이 클릭되었습니다.");
-            // 버튼 클릭 시 이벤트를 업데이트하는 함수 호출
             updateEvents(year, year + 4, calendar);
         });
     });
 
     function loadEventsForYears(startYear, endYear, calendar) {
         console.log(`이벤트 로드 시작: ${startYear}년부터 ${endYear}년까지`);
-        // 캘린더 로딩 메세지 표시
         alert("カレンダーを読み込み中です。 OKボタンを押したら 読み込めます。時間がかかる場合があります。");
         
         $.ajax({
-            url: 'CalendarEventC',  // 서버에서 이벤트 데이터를 가져올 URL
+            url: 'CalendarEventC',
             type: 'GET',
-            data: { year: startYear }, // 첫 요청은 현재 연도 기준
+            data: { year: startYear },
             dataType: 'json',
             success: function(res) {
                 console.log("AJAX 응답:", res);
-                loadedEvents = res; // 서버에서 로드한 이벤트 저장
+                loadedEvents = res;
                 addEventsForYears(res, startYear, endYear, calendar);
-                // 로딩 메시지 닫기
                 alert("読み込み完了！");
             },
             error: function(err) {
@@ -86,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateEvents(startYear, endYear, calendar) {
         console.log(`이벤트 업데이트 시작: ${startYear}년부터 ${endYear}년까지`);
         $.ajax({
-            url: 'CalendarEventC',  // 서버에서 이벤트 데이터를 가져올 URL
+            url: 'CalendarEventC',
             type: 'GET',
             data: { year: startYear },
             dataType: 'json',
@@ -135,8 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addPopoverToEvent(eventEl, event) {
-        let popover = null; // popover 요소를 저장할 변수
-        let popoverTimer = null; // popover 삭제를 위한 타이머 변수
+        let popover = null;
+        let popoverTimer = null;
 
         function createPopover() {
             if (!popover) {
@@ -144,10 +166,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 popover.className = 'popover fade bs-popover-top';
                 popover.role = 'tooltip';
                 popover.innerHTML = `
+                    <style>
+                        .popover {
+                            z-index: 9999;
+                        }
+                    </style>
                     <div class="arrow"></div>
                     <h3 class="popover-header">${event.title}</h3>
                     <div class="popover-body">
-                        <p>텍스트: ${event.extendedProps.title || '정보 없음'}</p>
                         ${event.extendedProps.imagePath ? `<img src="${event.extendedProps.imagePath}" alt="event image">` : ''}
                     </div>
                 `;
@@ -166,12 +192,10 @@ document.addEventListener('DOMContentLoaded', function() {
             createPopover();
             positionPopover(popover, eventEl);
             popover.classList.add('show');
-            // popover가 보이면 타이머 초기화
             clearTimeout(popoverTimer);
         }
 
         function hidePopover() {
-            // 0.4초 뒤에 popover 삭제하는 타이머 설정
             popoverTimer = setTimeout(function() {
                 destroyPopover();
             }, 400);
@@ -203,5 +227,4 @@ document.addEventListener('DOMContentLoaded', function() {
             popover.style.left = `${rect.left + rect.width / 2 - popover.offsetWidth / 2}px`;
         }
     }
-
 });
