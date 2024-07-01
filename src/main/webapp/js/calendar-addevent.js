@@ -22,6 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
         eventDidMount: function(info) {
             // 이벤트 바에 마우스 오버 시 popover 표시
             addPopoverToEvent(info.el, info.event);
+        },
+        eventMoreLinkDidMount: function(info) {
+            // 'more...' 링크의 popover 위치를 오른쪽으로 조정
+            var popover = info.el.querySelector('.fc-popover');
+            if (popover) {
+                popover.style.left = 'unset';
+                popover.style.right = '0';
+            }
         }
     });
 
@@ -144,6 +152,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 popover.className = 'popover fade bs-popover-top';
                 popover.role = 'tooltip';
                 popover.innerHTML = `
+                    <style>
+                        .popover {
+                            z-index: 9999; /* z-index를 높게 설정하여 최상단에 오도록 함 */
+                        }
+                    </style>
                     <div class="arrow"></div>
                     <h3 class="popover-header">${event.title}</h3>
                     <div class="popover-body">
