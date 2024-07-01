@@ -30,11 +30,11 @@ public class CalendarDAO {
         try {
             conn = DBManager.connect();
             
-            // 기존 쿼리: haco_member 테이블에서 이벤트 가져오기
+            // 멤버 이벤트 가져오기
             String sql1 = "SELECT m.m_pk, m.m_name, m.m_debut, m.m_birth, m.m_mother_name, i.i_icon " +
-                    "FROM haco_member m " +
-                    "LEFT JOIN haco_image i ON m.m_pk = i.i_m_pk " +
-                    "WHERE m.m_name IS NOT NULL AND (m.m_debut IS NOT NULL OR m.m_birth IS NOT NULL)";
+                          "FROM haco_member m " +
+                          "LEFT JOIN haco_image i ON m.m_pk = i.i_m_pk " +
+                          "WHERE m.m_name IS NOT NULL AND (m.m_debut IS NOT NULL OR m.m_birth IS NOT NULL)";
             pstmt = conn.prepareStatement(sql1);
             rs = pstmt.executeQuery();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,6 +45,7 @@ public class CalendarDAO {
                 if (rs.getDate("m_debut") != null) {
                     CalendarInfoDTO event = new CalendarInfoDTO();
                     event.setM_pk(rs.getString("m_pk"));
+                    event.setId(null); // 공휴일 id는 null
                     event.setTitle(rs.getString("m_name"));
                     event.setImagePath(iconPath);
                     String startDate = dateFormat.format(rs.getDate("m_debut"));
@@ -54,6 +55,7 @@ public class CalendarDAO {
                 if (rs.getDate("m_birth") != null) {
                     CalendarInfoDTO birthEvent = new CalendarInfoDTO();
                     birthEvent.setM_pk(rs.getString("m_pk"));
+                    birthEvent.setId(null); // 공휴일 id는 null
                     birthEvent.setTitle(rs.getString("m_name") + "の誕生日");
                     birthEvent.setImagePath(iconPath);
                     String birthDate = dateFormat.format(rs.getDate("m_birth"));
@@ -64,15 +66,16 @@ public class CalendarDAO {
             rs.close();
             pstmt.close();
 
-            // 새로운 쿼리: jp_holidays 테이블에서 이벤트 가져오기
+            // 공휴일 이벤트 가져오기
             String sql2 = "SELECT id, title, date FROM jp_holidays";
             pstmt = conn.prepareStatement(sql2);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 CalendarInfoDTO holidayEvent = new CalendarInfoDTO();
-                holidayEvent.setM_pk(rs.getString("id"));
-                holidayEvent.setTitle(rs.getString("title"));
+                holidayEvent.setM_pk(null); // 멤버 m_pk는 null
+                holidayEvent.setId(rs.getString("id"));
+                holidayEvent.setTitle(rs.getString("title") + " （祝日）");
                 holidayEvent.setImagePath(""); // 공휴일에는 이미지 경로가 없으므로 빈 문자열로 설정
                 String holidayDate = dateFormat.format(rs.getDate("date"));
                 holidayEvent.setStart(holidayDate);
