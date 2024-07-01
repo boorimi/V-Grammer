@@ -5,7 +5,8 @@ $(document).ready(function() {
 	const $close = $('.member-detail-close');
 	const $listContainer = $('.member-memberList-container');
 	const $detailbox = $('.member-detail');
-
+	const $memberDetail = $('.member-detail-container');
+	const $memberImg = $('.member-img-box');
 
 	$memberImgs.eq(0).addClass('show');
 	$memberList.eq(0).addClass('show');
@@ -44,15 +45,27 @@ $(document).ready(function() {
 	$listContainer.css('background', colors[1][0]);
 	$detailbox.css('background-color', colors[1][1]);
 
+	// 방향키 위,아래 다음 멤버 클릭시키기 by mz     38, 40       1, 25번 예외
+	$(".member-list-box").one("click", (e) => {
+		keyEvent();
+	});
+
+
+
 	// 멤버리스트 클릭 시 발생되는 이벤트 함수
 	$memberList.each(function() {
 		$(this).on('click', function() {
+
+
+
+
 			$memberImgs.removeClass('show');
 			$memberList.removeClass('show');
 			idx = $(this).attr('id');
 			//			console.log(idx);
 			$memberImgs.eq(idx - 1).addClass('show');
 			$memberList.eq(idx - 1).addClass('show');
+
 
 			// 22~25 배경이미지 컬러 그라데이션 넣어주기 위한 if문
 			if ($(this).attr('id') === '22') {
@@ -125,6 +138,20 @@ $(document).ready(function() {
 
 });
 
-
+function keyEvent(){
+	console.log('call me one time')
+	let showedMember = $(".member-memberList.show");
+		console.log(showedMember)
+		$(this).on("keydown", ((e) => {
+			console.log(e.keyCode)
+			showedMember = $(".member-memberList.show");
+			if (e.keyCode == 38) {
+				$(showedMember).prev().prev().click();
+			} else if (e.keyCode == 40) {
+				$(showedMember).next().next().click();
+			}
+		}));
+	
+}
 
 
