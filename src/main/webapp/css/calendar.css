@@ -79,29 +79,3 @@
     object-fit: cover;
 }
 
-/* 일요일을 빨간색으로 표시하는 스타일 */
-.fc-daygrid-day.fc-day-sun {
-    background-color: #ffe6e6;
-}
-
-.fc-day-sun .fc-daygrid-day-number {
-    color: red;
-}
-
-/* 월요일부터 금요일까지 날짜 숫자를 검은색으로 표시하는 스타일 */
-.fc-daygrid-day.fc-day-mon .fc-daygrid-day-number,
-.fc-daygrid-day.fc-day-tue .fc-daygrid-day-number,
-.fc-daygrid-day.fc-day-wed .fc-daygrid-day-number,
-.fc-daygrid-day.fc-day-thu .fc-daygrid-day-number,
-.fc-daygrid-day.fc-day-fri .fc-daygrid-day-number {
-    color: black;
-}
-
-/* 월요일부터 금요일까지 요일 헤더를 검은색으로 표시하는 스타일 */
-.fc-col-header-cell.fc-day-mon,
-.fc-col-header-cell.fc-day-tue,
-.fc-col-header-cell.fc-day-wed,
-.fc-col-header-cell.fc-day-thu,
-.fc-col-header-cell.fc-day-fri {
-    color: black;
-}

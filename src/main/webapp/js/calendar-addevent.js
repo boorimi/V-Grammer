@@ -17,16 +17,18 @@ document.addEventListener('DOMContentLoaded', function() {
         events: [],
         dayHeaderDidMount: function(info) {
             var day = info.date.getDay();
-            if (day >= 1 && day <= 5) { // 월요일부터 금요일
-                info.el.classList.add('weekday-header');
-            }
-        },
-        dayCellDidMount: function(info) {
-            var day = info.date.getDay();
             if (day === 0) { // 일요일
-                info.el.classList.add('sunday');
+                info.el.classList.add('sunday-header');
+                var headerLink = info.el.querySelector('.fc-col-header-cell-cushion');
+                if (headerLink) {
+                    headerLink.style.color = 'red'; // 일요일 글자색 빨간색으로 변경
+                }
             } else if (day >= 1 && day <= 5) { // 월요일부터 금요일
-                info.el.classList.add('weekday');
+                info.el.classList.add('weekday-header');
+                var headerLink = info.el.querySelector('.fc-col-header-cell-cushion');
+                if (headerLink) {
+                    headerLink.style.color = 'black'; // 평일 글자색 검정색으로 변경
+                }
             }
         },
         eventDidMount: function(info) {
