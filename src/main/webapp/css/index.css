@@ -30,7 +30,8 @@
 }
 
 .main-logo {
-  margin-left: 75px;
+  margin-left: 20px;
+  margin-right: 25px;
   width: 175px;
   display: flex;
   justify-content: center;
