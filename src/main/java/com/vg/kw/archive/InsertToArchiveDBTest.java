@@ -38,6 +38,9 @@ public class InsertToArchiveDBTest {
 		ResultSet rs = null;
 
 		try {
+			// 여기에 원하는 멤버pk입력
+			int memberPk = 25;
+			
 			// DB에서 각 멤버의 YchannelID, YuploadPLID 받아오기
 			String sql = "SELECT * FROM haco_address ";
 			sql += "where a_category in ('YchannelID','YuploadPLID') ";
@@ -45,7 +48,7 @@ public class InsertToArchiveDBTest {
 
 			connection = DBManager.connect();
 			statement = connection.prepareStatement(sql);
-			statement.setInt(1, 16);
+			statement.setInt(1, memberPk);
 			rs = statement.executeQuery();
 
 			ArrayList<YoutubeIDDTO> youtubeIds = new ArrayList<YoutubeIDDTO>();
