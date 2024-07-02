@@ -12,7 +12,7 @@
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 <script src="js/mypage_article.js" defer="defer"></script>
-<link rel="stylesheet" href="css/trade.css" />
+<link rel="stylesheet" href="css/mypage_article.css" />
 </head>
 <%
 response.setContentType("text/html; charset=UTF-8");
@@ -39,7 +39,7 @@ response.setCharacterEncoding("UTF-8");
 								<div>${t.nickname}</div>
 								<div>
 									<a target="_blnck" href="https://x.com/${t.screenName}"><img
-										src="haco_img/icon-twitter.png" /></a> ${t.pk}
+										src="haco_img/icon-twitter.png" /></a>
 								</div>
 								<div>${t.date}</div>
 							</div>
@@ -123,20 +123,29 @@ response.setCharacterEncoding("UTF-8");
 
 					<!-- 본문페이지 for문 끝 -->
 				</div>
-				<div>
-					<button id="more-btn" value="5">More</button>
+				<div style="text-align: center;">
+					<button id="more-btn" class="more-button-blue" value="5">More</button>
 				</div>
 			</div>
 		</c:when>
 		<c:otherwise>
-			<div style="width: 80%; position: relative; left: 10%;">
+			<div id="none-article-div">
 				<div class="mypage-tab-title">
 					<div class="mypage-tab-icon-wrap">
 						<img class="mypage-tab-icon" alt=""
 							src="account/mypage/mypage_index_icon/article.png">
 					</div>
 					<h2>MY記事一覧</h2>
-					<div>없다 이놈아</div>
+					<br>
+				</div>
+				<div id="no-article">
+					<div class="no-article-icon-wrap">
+						<img class="no-article-icon" alt="" src="account/mypage/mypage_article_icon/error-404.png">
+					</div>
+					<div class="no-article-text">作成した記事がありません~</div>
+					<div class="no-article-icon">
+						<img class="no-article-icon" alt="" src="account/mypage/mypage_article_icon/error-404.png">
+					</div>
 				</div>
 			</div>
 		</c:otherwise>
@@ -157,4 +166,5 @@ response.setCharacterEncoding("UTF-8");
       <span id="result"></span>
     </div> -->
 </body>
+
 </html>

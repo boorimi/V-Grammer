@@ -1,16 +1,18 @@
 package com.vg.sw.calendar;
 
 public class CalendarInfoDTO {
-    private String m_pk;
+    private String m_pk; // 멤버의 pk
+    private String id; // 공휴일의 id
     private String title;
     private String start;
-    private String end;    // end 필드 추가
+    private String end; // end 필드 추가
     private String imagePath; // imagePath 필드 추가
 
     public CalendarInfoDTO() {}
 
-    public CalendarInfoDTO(String m_pk, String title, String start, String end, String imagePath) {
+    public CalendarInfoDTO(String m_pk, String id, String title, String start, String end, String imagePath) {
         this.m_pk = m_pk;
+        this.id = id;
         this.title = title;
         this.start = start;
         this.end = end;
@@ -24,6 +26,14 @@ public class CalendarInfoDTO {
 
     public void setM_pk(String m_pk) {
         this.m_pk = m_pk;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -60,6 +70,6 @@ public class CalendarInfoDTO {
 
     @Override
     public String toString() {
-        return "CalendarInfoDTO [m_pk=" + m_pk + ", title=" + title + ", start=" + start + ", end=" + end + ", imagePath=" + imagePath + "]";
+        return "CalendarInfoDTO [m_pk=" + m_pk + ", id=" + id + ", title=" + title + ", start=" + start + ", end=" + end + ", imagePath=" + imagePath + "]";
     }
 }
