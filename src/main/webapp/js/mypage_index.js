@@ -96,7 +96,7 @@ $(document).ready(function() {
 			method: 'GET', // 또는 'POST'
 			success: function(response) {
 				if (!loginCheck) {
-					alert("로그인 세션이 만료되었습니다");
+					alert("ログインセッション満了");
 					window.location.href = "HC";
 					return;
 				}
