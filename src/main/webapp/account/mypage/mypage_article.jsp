@@ -39,7 +39,7 @@ response.setCharacterEncoding("UTF-8");
 								<div>${t.nickname}</div>
 								<div>
 									<a target="_blnck" href="https://x.com/${t.screenName}"><img
-										src="haco_img/icon-twitter.png" /></a> ${t.pk}
+										src="haco_img/icon-twitter.png" /></a>
 								</div>
 								<div>${t.date}</div>
 							</div>

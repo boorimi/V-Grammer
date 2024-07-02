@@ -500,12 +500,12 @@
 
 /* 버튼 CSS 끝 */
 
-/*작성글 없을때의 div*/
+/*작성글 없을때의 div 영역*/
 #none-article-div {
 	width: 80%;
 	position: relative;
 	left: 10%;
-	height: 440px;
+	height: 400px;
 	display: flex;
 	flex-direction: column;
 	gap: 100px;
