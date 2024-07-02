@@ -65,7 +65,8 @@
   justify-content: center;
   transition: all 0.3s ease-out;
 }
-.menu-lists-member:hover {
+.menu-lists-member:hover,
+.menu-lists-member.clicked {
   background-color: #b7f1ff;
 }
 .menu-lists-archive:hover {
