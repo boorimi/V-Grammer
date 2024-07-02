@@ -259,6 +259,7 @@ $(function () {
 
   // 업데이트 페이지로 비동기 처리
   $(document).on("click", ".archive-update-button-1", function () {
+	if (twitterId != "") {
 	if (!sessionStorage.getItem("hasPushedInitialState")) {
         sessionStack.push(initialPageState);
         console.log(sessionStack);
@@ -285,6 +286,10 @@ $(function () {
 
     // 현재 상태를 history에 추가
     loadUpdatePage(state);
+    } else {
+	alert("ログインが必要です。");
+}
+    
   });
 
   // 수정버튼 누르면 수정시키고 바로 전 페이지로 원복시키기
@@ -325,6 +330,9 @@ $(function () {
   // '미분류'라는 글자 빈칸으로 보여주기
   replaceNull();
 });
+
+
+
 
 function loadPageState(state) {
   let member = localStorage.getItem("member");

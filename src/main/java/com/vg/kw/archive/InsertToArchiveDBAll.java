@@ -31,7 +31,7 @@ import org.json.simple.parser.JSONParser;
 import com.vg.ignore.DBManager;
 import com.vg.kw.main.YoutubeIDDTO;
 
-public class InsertToArchiveDBTest {
+public class InsertToArchiveDBAll {
 	public static void main(String[] args) {
 		Connection connection = null;
 		PreparedStatement statement = null;
