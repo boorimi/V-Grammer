@@ -124,7 +124,7 @@ response.setCharacterEncoding("UTF-8");
 					<!-- 본문페이지 for문 끝 -->
 				</div>
 				<div>
-					<button id="more-btn" value="5">More</button>
+					<button id="more-btn" class="more-button-blue" value="5">More</button>
 				</div>
 			</div>
 		</c:when>
@@ -135,7 +135,7 @@ response.setCharacterEncoding("UTF-8");
 						<img class="mypage-tab-icon" alt=""
 							src="account/mypage/mypage_index_icon/article.png">
 					</div>
-					<h2>MY記事一覧</h2>
+					<h2>MY記事一覧</h2><br>
 					<div>없다 이놈아</div>
 				</div>
 			</div>
@@ -157,4 +157,48 @@ response.setCharacterEncoding("UTF-8");
       <span id="result"></span>
     </div> -->
 </body>
+<style>
+@import
+	url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap")
+	;
+
+.more-button-box {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.more-button-blue {
+	font-family: "Noto Sans JP", sans-serif; /* 일본어 텍스트에 어울리는 글꼴 사용 */
+	font-size: 1rem; /* 글자 크기 */
+	color: #fff; /* 텍스트 색상 */
+	background: linear-gradient(45deg, #6985ff, #69c3ff);
+	/* 버튼 배경색 그라데이션 */
+	border: none; /* 기본 테두리 제거 */
+	border-radius: 20px; /* 둥근 테두리 */
+	padding: 10px 20px; /* 내부 여백 */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
+	cursor: pointer; /* 커서 변경 */
+	transition: background 0.3s ease, transform 0.3s ease; /* 부드러운 전환 효과 */
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.more-button-blue:hover {
+	background: linear-gradient(45deg, #6985ff, #69c3ff);
+	/* 호버 시 배경색 그라데이션 변경 */
+	transform: translateY(-3px); /* 호버 시 살짝 위로 이동 */
+}
+
+.more-button-blue:active {
+	background: linear-gradient(45deg, #6985ff, #69c3ff); /* 클릭 시 배경색 유지 */
+	transform: translateY(0); /* 클릭 시 원래 위치로 돌아감 */
+}
+
+.more-button-blue:focus {
+	outline: none; /* 포커스 시 기본 아웃라인 제거 */
+	box-shadow: 0 0 0 3px rgba(105, 153, 255, 0.5); /* 포커스 시 그림자 효과 추가 */
+}
+</style>
 </html>
