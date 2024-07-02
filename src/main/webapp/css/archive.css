@@ -512,6 +512,7 @@ select[name="category"]:focus {
 
 .archive-paging-container > div {
   border-radius: 20px;
+  margin-left: 10px;
 }
 
 .archive-paging-container a {

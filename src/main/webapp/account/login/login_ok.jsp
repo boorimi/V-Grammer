@@ -14,7 +14,7 @@
 		<div class="login-profile-icon-box">
 			<img class="login-profile-icon" src="${accountInfo.u_profile_img }">
 		</div>
-		<div>ようこそ<br>${sessionScope.accountInfo.u_nickname}様</div>
+		<div>ようこそ<br><div class="login-nickname">${sessionScope.accountInfo.u_nickname}様</div></div>
 		<div class="login-ok-button-wrap">
 			<button class="login-cute-button" onclick="location.href='LogoutC'">LOGOUT</button>
 			<button class="login-cute-button" onclick="location.href='MyPageC'">MyPage</button>

@@ -169,6 +169,6 @@
 }
 
 .html-body, .html-body * {
-	overflow: auto;
+/*	overflow: auto;*/
 	font-family: 'CustomFont', Arial, sans-serif;
 }
