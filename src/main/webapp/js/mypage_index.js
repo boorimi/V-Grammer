@@ -1,8 +1,21 @@
 $(document).ready(function() {
+	//탭 선택 유지
+	$('.mypage-menu-items').on('click', function() {
+		// 모든 탭에서 active 클래스 제거
+		$('.mypage-menu-items').removeClass('active');
+
+		// 클릭된 탭에 active 클래스 추가
+		$(this).addClass('active');
+
+	});
+
+
+
+
 	let loginCheck = $('.mypage-container').data('loginsession');
 	// 공통 AJAX 요청 함수
 	function loadContent(url) {
-		console.log("로그인 세션값"+loginCheck);
+		console.log("로그인 세션값" + loginCheck);
 		$.ajax({
 			url: url,
 			type: "GET",
@@ -23,12 +36,14 @@ $(document).ready(function() {
 			}
 		});
 	}
-
+	
+	//페이지 진입 시 첫 화면으로 회원정보 페이지 로드
 	loadContent("account/mypage/mypage_userInfo.jsp");
-
+	$('#mypage-menu-userInfo').addClass('active');
+	
 	// AJAX 요청 함수 with blur effect
 	function loadContentWithBlur(url) {
-		console.log("로그인 세션값"+loginCheck);
+		console.log("로그인 세션값" + loginCheck);
 		$.ajax({
 			url: url,
 			type: "GET",
@@ -75,7 +90,7 @@ $(document).ready(function() {
 
 
 	$('#mypage-menu-article').click(function() {
-		console.log("로그인 세션값"+loginCheck);
+		console.log("로그인 세션값" + loginCheck);
 		$.ajax({
 			url: 'ArticleC', // 서블릿 URL
 			method: 'GET', // 또는 'POST'

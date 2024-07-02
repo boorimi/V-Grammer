@@ -194,10 +194,12 @@ public class ScheduleDAO {
 		}
 	}
 
-	public void deleteSchedule(HttpServletRequest request) {
+	public void deleteSchedule(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PreparedStatement pstmt = null;
 		String sql = "delete from haco_schedule where s_pk = ?";
 
+		response.setContentType("application/json; charset=utf-8");
+		
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -206,8 +208,7 @@ public class ScheduleDAO {
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("삭제 성공!");
-			}
-
+		    }
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -246,17 +247,10 @@ public class ScheduleDAO {
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("수정 성공!");
 		        jsonResponse.put("success", true);
-		        jsonResponse.put("message", "일정 업데이트 성공");
-		    } else {
-		        jsonResponse.put("success", false);
-		        jsonResponse.put("message", "일정 업데이트 실패");
 		    }
 			printJson.print(jsonResponse.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
-			jsonResponse.put("success", false);
-		    jsonResponse.put("message", "서버 오류: " + e.getMessage());
-		    printJson.print(jsonResponse.toString());
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}

@@ -15,7 +15,7 @@ public class DeleteScheduleC extends HttpServlet {
 			throws ServletException, IOException {
 
 		if (AccountDAO.loginCheck(request)) {
-			ScheduleDAO.SDAO.deleteSchedule(request);
+			ScheduleDAO.SDAO.deleteSchedule(request, response);
 			response.sendRedirect("ScheduleC");
 		} else {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
