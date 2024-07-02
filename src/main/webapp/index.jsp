@@ -156,22 +156,6 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </footer>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuItems = document.querySelectorAll(".menu-lists div");
-
-        menuItems.forEach((item) => {
-          item.addEventListener("click", function () {
-            // 모든 메뉴 아이템에서 clicked 클래스를 제거
-            menuItems.forEach((item) => {
-              item.classList.remove("clicked");
-            });
-
-            // 클릭한 메뉴 아이템에 clicked 클래스 추가
-            this.classList.add("clicked");
-          });
-        });
-      });
-    </script>
+    
   </body>
 </html>
