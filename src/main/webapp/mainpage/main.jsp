@@ -47,7 +47,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       <!-- 방송 배열 시작-->
       <div class="sliderandbutton">
         <div class="prev">
-          <button class="prev-button">&lt;</button>
+          <button class="prev-button"><img class="live-button-icon" style="width: 60px; height: 80px" src="mainpage/prev-arrow.png"></button>
         </div>
         <c:if test="${streamIds[0].address == null}">
           <div class="live-content-video-null">
@@ -74,7 +74,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
           </c:if>
         </div>
         <div class="next">
-          <button class="next-button"></button>
+          <button class="next-button"><img class="live-button-icon" style="width: 60px; height: 80px" src="mainpage/next-arrow.png"></button>
         </div>
       </div>
       <!--  방송 페이지 끝 -->
