@@ -223,11 +223,6 @@ $(document).ready(function() {
 			$('.modal-b-box').css('display', 'block');
 			console.log('타이틀 : ' + sTitle);
 			$('#s-update-title').val(sTitle);
-
-			$('#s-update-title').click(function() {
-				$('#s-update-title').val("");
-			});
-
 		} else {
 			alert("ログインが必要です！");
 		}
