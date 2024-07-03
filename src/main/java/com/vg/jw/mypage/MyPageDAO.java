@@ -212,11 +212,14 @@ public class MyPageDAO {
 			pstmt.setLong(1, twitterId);
 			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
-			if (!rs.next()) {
+			//불러올 작성글이 있는지 체크
+			if (!rs.first()) {
 				System.out.println("더이상 로드할 작성글이 없습니다");
 				response.getWriter().write("{\"message\": \"더이상 로드할 작성글이 없습니다\"}");
 				
 				return; // 더 이상 진행하지 않음
+			}else {
+				rs.previous(); //rs.first()로 한칸 내려간걸 다시 위로 되돌려줌
 			}
 	
 
@@ -226,6 +229,7 @@ public class MyPageDAO {
 			TradeCommentsDTO tc = null;
 			System.out.println("--- 여기 진입?");
 			while (rs.next()) {
+				System.out.println("~~~~~ 몇바퀴  ~~~~~~");
 				String t_pk = rs.getString(1);
 				String t_id = rs.getString(2);
 				String t_screeName = rs.getString(3);
