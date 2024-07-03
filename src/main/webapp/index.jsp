@@ -21,30 +21,45 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
       <div class="menu-lists">
-        <div onclick="location.href='MemberC'" class="menu-lists-member">
+        <div
+          onclick="location.href='MemberC'"
+          class="menu-lists-member"
+          data-menu="member"
+        >
           メンバー
         </div>
         <div
           onclick="location.href='ArchiveC?'"
           class="menu-lists-archive"
+          data-menu="archive"
         >
           アーカイブ
         </div>
-        <div onclick="location.href='CalendarC'" class="menu-lists-calendar">
+        <div
+          onclick="location.href='CalendarC'"
+          class="menu-lists-calendar"
+          data-menu="calendar"
+        >
           カレンダー
         </div>
-        <div onclick="location.href='ScheduleC'" class="menu-lists-schedule">
+        <div
+          onclick="location.href='ScheduleC'"
+          class="menu-lists-schedule"
+          data-menu="schedule"
+        >
           スケジュール
         </div>
         <div
           onclick="openTradePage(${sessionScope.twitterId})"
           class="menu-lists-trade"
+          data-menu="trade"
         >
           トレード
         </div>
         <div
           onclick="location.href='Announcement'"
           class="menu-lists-announcement"
+          data-menu="announcement"
         >
           お知らせ
         </div>
@@ -141,5 +156,6 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </footer>
+    
   </body>
 </html>

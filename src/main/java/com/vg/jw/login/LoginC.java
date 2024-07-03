@@ -15,9 +15,8 @@ public class LoginC extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("로그인 컨트롤러 get 진입");
 		AccountDAO.loginCheck(request);
-		// 등록됐는지 체크해서
 		
-		System.out.println("회원정보 등록됐나 확인 완료");
+		// 등록됐는지 체크해서		
 		if (AccountDAO.registerCheck(request)) {
 			System.out.println("LoginC에서 유저 등록 확인함");
 			response.sendRedirect("HC"); // true반환시 메인페이지로

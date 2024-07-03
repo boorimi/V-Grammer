@@ -6,9 +6,8 @@ function openTradePage(id) {
   }
 }
 
-$(function(){
-if(location.href == 'http://localhost/V-Grammer/RegisterC'){
-	console.log($('footer').css("margin-top", "0px"));
-}
-	
+$(function () {
+  if (location.href == "http://localhost/V-Grammer/RegisterC") {
+    console.log($("footer").css("margin-top", "0px"));
+  }
 });

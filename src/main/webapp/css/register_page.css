@@ -10,13 +10,27 @@
 	background-repeat: no-repeat;
 	align-items: center;
 }
-
+/*핸드폰 이미지 div*/
+.waku-wrap {
+	display: flex;
+	align-items: center;
+	background-image: url('account/register/shortsUI.png');
+	background-size: cover;
+	background-position: center;
+	border-radius: 30px;
+	width: 363px;
+	height: 748px;
+	position: absolute;
+	z-index: 3;
+	top: 150px;
+	right: 150px;
+}
 
 .register-container {
 	display: flex;
 	justify-content: center;
-	width: 400px;
-	height: 821px;
+	width: 363px;
+	height: 748px;
 	position: absolute;
 	top: 0;
 	z-index: 3;
@@ -76,13 +90,13 @@
 	display: flex;
 	flex-direction: column;
 	position: absolute;
-	bottom: 70px;
+	bottom: 65px;
 	left: 43%;
 }
 
 #register-submit-button {
 	font-family: 'CustomFont', sans-serif;
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	color: #fff;
 	background: linear-gradient(45deg, rgb(128, 0, 255), rgb(0, 255, 255));
 	border: none;
@@ -94,7 +108,7 @@
 	margin-right: 1%;
 	width: 100%;
 	font-weight: 900;
-	height: 50px;
+	height: 45px;
 }
 
 #register-submit-button:hover {
@@ -105,23 +119,6 @@
 	transform: scale(1.05);
 	/* 호버 시 살짝 위로 이동 */
 }
-
-
-.waku-wrap {
-	display: flex;
-	align-items: center;
-	background-image: url('account/register/shortsUI.png');
-	background-size: cover;
-	background-position: center;
-	border-radius: 30px;
-	width: 400px;
-	height: 821px;
-	position: absolute;
-	z-index: 3;
-	top: 150px;
-	right: 150px;
-}
-
 
 
 

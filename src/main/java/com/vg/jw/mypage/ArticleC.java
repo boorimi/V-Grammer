@@ -22,7 +22,7 @@ public class ArticleC extends HttpServlet {
 		
 		TradeDAO.TDAO.selectTradeComments(request);
 		//int p = Integer.parseInt(request.getParameter("p"));
-		TradeDAO.TDAO.paging(1, request);
+//		TradeDAO.TDAO.paging(1, request);  this.trade가 null이 나와버리는 오류 해결을 위해 지움
 		TradeDAO.TDAO.tradeCheckboxList(request);	
 		System.out.println("Article로직 처리 완료");
 		request.getRequestDispatcher("account/mypage/mypage_article.jsp").forward(request, response);

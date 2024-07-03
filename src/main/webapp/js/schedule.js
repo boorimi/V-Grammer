@@ -166,6 +166,7 @@ $(document).ready(function() {
 	});
 
 	let sPk = null;
+	let sTitle = null;
 	$('.s-data').click(function() {
 		$('.modal-a-box').css('display', 'block');
 		$('.modal-b-box').css('display', 'none');
@@ -174,6 +175,7 @@ $(document).ready(function() {
 		console.log(this.dataset);
 
 		sPk = this.dataset.sPk;
+		sTitle = this.dataset.sTitle;
 		console.log(sPk);
 
 		modal.querySelector("#time").innerText = this.dataset.sTime;
@@ -219,12 +221,15 @@ $(document).ready(function() {
 		if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
 			$('.modal-a-box').css('display', 'none');
 			$('.modal-b-box').css('display', 'block');
+			console.log('타이틀 : ' + sTitle);
+			$('#s-update-title').val(sTitle);
 		} else {
 			alert("ログインが必要です！");
 		}
 	});
 	$('#s-update-button').click(function() {
 		console.log('등록 버튼 클릭 콘솔 : ' + sPk);
+
 		let date = $('#s-update-date').val();
 		let time = $('#s-update-time').val();
 		let title = $('#s-update-title').val();
@@ -272,7 +277,7 @@ $(document).ready(function() {
 	for (let i = 0; i < 7; i++) {
 		$('.s-input-container').append(insertInputList);
 	}
-	
+
 	// 버튼 누르면 인서트 한줄 추가
 	$('#s-plus-button').click(function() {
 		$('.s-input-container').append(insertInputList);
@@ -329,9 +334,9 @@ $(document).ready(function() {
 			alert("メンバーをチェックください！");
 			return false;
 		}
-		if (!date1 && !time1 && !title1) {
-			$("#schedule-form").submit();
-		}
+//		if (!date1 && !time1 && !title1) {
+//			$("#schedule-form").submit();
+//		}
 		if (!date1) {
 			alert("日付をチェックください！");
 			return false;
