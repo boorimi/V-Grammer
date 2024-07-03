@@ -417,11 +417,11 @@ dialog::backdrop {
 		position: relative;
 	}
 	
-	.s-update-date{
+	#s-update-date{
 		width: 95%;
 	}
 
-	.s-update-time{
+	#s-update-time{
 		width: 95%;
 	}
 

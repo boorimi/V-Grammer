@@ -72,7 +72,7 @@
 							<input name="s_time" type="time" id="s-update-time" />
 						</div>
 						<div class="input-title">
-							<input name="s_title" id="s-update-title" placeholder="配信タイトル" />
+							<input name="s_title" id="s-update-title" />
 						</div>
 						<div class="input-update-button">
 							<button id="s-update-button">修正</button>
