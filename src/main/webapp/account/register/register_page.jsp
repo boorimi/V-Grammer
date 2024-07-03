@@ -28,7 +28,8 @@
 						<div class="form-input">
 							<input id="register-nickname-input"
 								name="register-nickname-input" class="form-element-input"
-								type="input" placeholder="2~30文字で入力して!!" required />
+								autocomplete="off" type="input" placeholder="2~30文字で入力して!!"
+								required />
 							<div class="form-element-bar"></div>
 							<label class="form-element-label" for="name">あなたのニックネームを教えて!</label>
 							<small class="form-element-hint" id="check-result">2~30文字でお願い!</small>
@@ -37,7 +38,11 @@
 					<div id="check-result"></div>
 					<div class="x-id-wrap">
 						<p id="x-title">連動する「X」ID</p>
-						<div id="x-id"><img id="x-cursor" alt="" src="account/register/register_img/right-arrow.png"> @${sessionScope.twitterScreenName }</div>
+						<div id="x-id">
+							<img id="x-cursor" alt=""
+								src="account/register/register_img/right-arrow.png">
+							@${sessionScope.twitterScreenName }
+						</div>
 					</div>
 					<div id="register-button-div">
 						<!-- <img id="button-arrow" alt="" src="account/register/downarrow.png"> -->

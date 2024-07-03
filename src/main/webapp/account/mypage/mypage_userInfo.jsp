@@ -59,6 +59,7 @@
 								<div class="form-input">
 									<input id="userInfo-nickname-input"
 										name="userInfo-nickname-input" class="form-element-input"
+										autocomplete="off"
 										type="input"
 										placeholder="${sessionScope.accountInfo.u_nickname }" required />
 									<div class="form-element-bar"></div>
