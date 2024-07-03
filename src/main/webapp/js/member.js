@@ -5,8 +5,6 @@ $(document).ready(function() {
 	const $close = $('.member-detail-close');
 	const $listContainer = $('.member-memberList-container');
 	const $detailbox = $('.member-detail');
-	const $memberDetail = $('.member-detail-container');
-	const $memberImg = $('.member-img-box');
 
 	$memberImgs.eq(0).addClass('show');
 	$memberList.eq(0).addClass('show');
@@ -50,14 +48,9 @@ $(document).ready(function() {
 		keyEvent();
 	});
 
-
-
 	// 멤버리스트 클릭 시 발생되는 이벤트 함수
 	$memberList.each(function() {
 		$(this).on('click', function() {
-
-
-
 
 			$memberImgs.removeClass('show');
 			$memberList.removeClass('show');
@@ -65,7 +58,6 @@ $(document).ready(function() {
 			//			console.log(idx);
 			$memberImgs.eq(idx - 1).addClass('show');
 			$memberList.eq(idx - 1).addClass('show');
-
 
 			// 22~25 배경이미지 컬러 그라데이션 넣어주기 위한 if문
 			if ($(this).attr('id') === '22') {

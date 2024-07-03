@@ -416,13 +416,15 @@ dialog::backdrop {
 		padding-top: 5px;
 		position: relative;
 	}
-	
+	.input-date{
+		padding-right: 5px;
+	}
 	#s-update-date{
-		width: 95%;
+		width: 100px;
 	}
 
 	#s-update-time{
-		width: 95%;
+		width: 100px;
 	}
 
 	#s-update-button {
