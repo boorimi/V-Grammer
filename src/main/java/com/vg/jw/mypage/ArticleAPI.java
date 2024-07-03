@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ArticleAPI extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	//more버튼을 눌러서 추가 작성글을 로드하는 컨트롤러 서블릿
 	System.out.println("called");
 	MyPageDAO.getMoreArticle(request, response);
 	

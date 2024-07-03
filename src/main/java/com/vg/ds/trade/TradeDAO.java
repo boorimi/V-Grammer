@@ -57,6 +57,9 @@ public class TradeDAO {
 		request.setAttribute("trades", items);
 	}
 
+	
+	
+	
 	public void selectAllTrade(HttpServletRequest request) {
 
 		PreparedStatement pstmt = null;
@@ -136,6 +139,7 @@ public class TradeDAO {
 		ResultSet rs = null;
 
 		try {
+			
 			AccountDTO accountInfo = (AccountDTO) request.getSession().getAttribute("accountInfo");
 			long twitterId2 = accountInfo.getU_twitter_id();
 		
@@ -190,7 +194,7 @@ public class TradeDAO {
 				request.setAttribute("name2", name2);
 			}
 			////// 검색 진행 시 sql문 추가하는 부분 끝 ////
-			sql += "order by t_date asc";
+			sql += "order by t_date desc LIMIT 5 OFFSET 0";
 
 			
 			pstmt = con.prepareStatement(sql);
