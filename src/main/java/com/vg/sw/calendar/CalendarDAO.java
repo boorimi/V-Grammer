@@ -68,47 +68,6 @@ public class CalendarDAO {
             rs.close();
             pstmt.close();
 
-            // 공휴일 이벤트 가져오기
-            String sql2 = "SELECT id, title, date FROM jp_holidays";
-            pstmt = conn.prepareStatement(sql2);
-            rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                CalendarInfoDTO holidayEvent = new CalendarInfoDTO();
-                holidayEvent.setM_pk(null); // 멤버 m_pk는 null
-                holidayEvent.setId(rs.getString("id"));
-                String holidayTitle = rs.getString("title");
-                holidayEvent.setTitle(holidayTitle + "（祝日）");
-                holidayEvent.setImagePath(""); // 공휴일에는 이미지 경로가 없으므로 빈 문자열로 설정
-
-                Date holidayDate = rs.getDate("date");
-                // 특정 공휴일의 날짜를 특정 월요일로 조정
-                if (holidayTitle.equals("成人の日")) {
-                    holidayDate = getSpecificMonday(startYear, Calendar.JANUARY, 2);
-                } else if (holidayTitle.equals("建国記念の日")) {
-                    holidayDate = getFixedDate(startYear, Calendar.FEBRUARY, 11);
-                } else if (holidayTitle.equals("みどりの日")) {
-                    holidayDate = getFixedDate(startYear, Calendar.MAY, 4);
-                } else if (holidayTitle.equals("こどもの日")) {
-                    holidayDate = getFixedDate(startYear, Calendar.MAY, 5);
-                } else if (holidayTitle.equals("海の日")) {
-                    holidayDate = getSpecificMonday(startYear, Calendar.JULY, 3);
-                } else if (holidayTitle.equals("山の日")) {
-                    holidayDate = getFixedDate(startYear, Calendar.AUGUST, 11);
-                } else if (holidayTitle.equals("敬老の日")) {
-                    holidayDate = getSpecificMonday(startYear, Calendar.SEPTEMBER, 3);
-                } else if (holidayTitle.equals("体育の日")) {
-                    holidayDate = getSpecificMonday(startYear, Calendar.OCTOBER, 3);
-                } else if (!holidayTitle.equals("憲法記念日")) { //憲法記念日 이외의 주말 공휴일 이동
-                    holidayDate = adjustWeekendToWeekday(holidayDate);
-                }
-
-                String adjustedDate = dateFormat.format(holidayDate);
-                holidayEvent.setStart(adjustedDate);
-                
-                events.add(holidayEvent);
-            }
-
             Gson gson = new Gson();
             String json = gson.toJson(events);
             response.getWriter().print(json);
@@ -141,39 +100,5 @@ public class CalendarDAO {
                 }
             }
         }
-    }
-
-    // 특정 월의 특정 번째 월요일을 구하는 메서드
-    private static Date getSpecificMonday(int year, int month, int nth) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, 1);
-
-        int count = 0;
-        while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY || ++count != nth) {
-            calendar.add(Calendar.DATE, 1);
-        }
-        return calendar.getTime();
-    }
-
-    // 특정 월의 특정 일을 구하는 메서드
-    private static Date getFixedDate(int year, int month, int day) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
-        return calendar.getTime();
-    }
-
-    // 주말을 평일로 조정하는 메서드
-    private static Date adjustWeekendToWeekday(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        
-        if (dayOfWeek == Calendar.SATURDAY) {
-            calendar.add(Calendar.DATE, 2); // 토요일인 경우 월요일로 이동
-        } else if (dayOfWeek == Calendar.SUNDAY) {
-            calendar.add(Calendar.DATE, 1); // 일요일인 경우 월요일로 이동
-        }
-        
-        return calendar.getTime();
     }
 }
