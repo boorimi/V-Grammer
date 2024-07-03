@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("기념일 날짜 파싱 실패:", dateText);
         }
 
-        // 디데이 값을 업데이트하고 음수값이 아닌 경우 앞에 "D-"를 붙임
+        // 디데이 값을 업데이트하고 반환받은 값 앞에 "D-"를 붙임
         if (ddayValue >= 0) {
             ddayCell.textContent = "D-" + ddayValue;
         } else {
@@ -105,15 +105,12 @@ document.addEventListener("DOMContentLoaded", function() {
         return null; // 매치 실패 시 null 반환
     }
 
-    // 양수로 조정된 디데이 값을 반환하는 함수
+    // 디데이 값을 반환하는 함수
     function calculatePositiveDday(ddayValue) {
         while (ddayValue > 365) { // 365보다 큰 경우 365로 나눠줌
             ddayValue -= 365;
         }
-        while (ddayValue < 0) { // 음수인 경우 365를 더해줌
-            ddayValue += 365;
-        }
-        return ddayValue; // 양수로 조정된 디데이 값 반환
+        return ddayValue; // 나머지 값이 남은 디데이 값이 되고 그 디데이 값을 반환
     }
 
     // "calendarButton" 버튼 엘리먼트 가져오기
