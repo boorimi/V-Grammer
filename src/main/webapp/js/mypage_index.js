@@ -109,6 +109,7 @@ $(document).ready(function() {
 		});
 	});
 
+	//로그인세션 만료시 홈으로 리다이렉트
 	$(document).on('click', '.paging-link', function(event) {
 		var url = $(this).attr('href');
 
