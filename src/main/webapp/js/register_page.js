@@ -2,6 +2,7 @@ $(document).ready(function() {
 
 	let registerOK = false;
 	let nickNameLengthOK = false;
+	const formInput = $('.form-input');
 
 	// 닉네임 입력 필드에서 포커스가 벗어날 때 유효성 검사 실행
 	$("#register-nickname-input").blur(function() {
@@ -23,6 +24,7 @@ $(document).ready(function() {
 		} else { // 닉네임 글자수에 문제 있을 때
 			nickNameLengthOK = false;
 			checkResult.css('color', 'red');
+			formInput.css('border', '3.5px solid red');
 			if (inputNickName.length === 0) {
 				$('#check-result').text('ニックネームを入力して下さい');
 			} else {
@@ -47,10 +49,12 @@ $(document).ready(function() {
 			if (res == 0) {
 				checkResult.text('このニックネームは使用可能です');
 				checkResult.css('color', 'blue');
+				formInput.css('border', '3.5px solid blue');
 				/*$("#register-nickname-input").css('border', '1px solid blue');*/
 				registerOK = true;
 			} else {
 				checkResult.text('このニックネームは使用中です');
+				formInput.css('border', '3.5px solid red');
 				checkResult.css('color', 'red');
 				/*$("#register-nickname-input").css('border', '1px solid red');*/
 				registerOK = false;

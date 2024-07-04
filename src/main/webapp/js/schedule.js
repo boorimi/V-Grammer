@@ -334,9 +334,9 @@ $(document).ready(function() {
 			alert("メンバーをチェックください！");
 			return false;
 		}
-		if (!date1 && !time1 && !title1) {
-			$("#schedule-form").submit();
-		}
+//		if (!date1 && !time1 && !title1) {
+//			$("#schedule-form").submit();
+//		}
 		if (!date1) {
 			alert("日付をチェックください！");
 			return false;
