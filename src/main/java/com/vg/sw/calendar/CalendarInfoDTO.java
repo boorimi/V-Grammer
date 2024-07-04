@@ -2,7 +2,7 @@ package com.vg.sw.calendar;
 
 public class CalendarInfoDTO {
     private String m_pk; // 멤버의 pk
-    private String id; // 공휴일의 id
+    private String id;
     private String title;
     private String start;
     private String end; // end 필드 추가
