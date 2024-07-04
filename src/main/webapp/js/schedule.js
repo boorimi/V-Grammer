@@ -188,7 +188,6 @@ $(document).ready(function() {
 		console.log('딜리트 클릭 콘솔 : ' + sPk);
 		if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
 			if (confirm('本当に削除しますか？')) {
-				//				location.href = "DeleteScheduleC?sPk=" + sPk;
 				$.ajax({
 					url: "DeleteScheduleC",
 					type: "GET",
