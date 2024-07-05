@@ -71,11 +71,11 @@ $(document).ready(function() {
 	}
 
 	// 각 메뉴 아이템에 대해 클릭 이벤트를 설정
-	$("#mypage-menu-userInfo").click(function() {
+	$("#full-wrap-info").click(function() {
 		loadContent("account/mypage/mypage_userInfo.jsp");
 	});
 
-	$("#mypage-menu-goods").click(function() {
+	$("#full-wrap-goods").click(function() {
 		loadContentWithBlur("account/mypage/mypage_goods.jsp");
 	});
 
@@ -84,12 +84,7 @@ $(document).ready(function() {
 		  console.log("article.jsp로드 성공");
 	  });*/
 
-	$("#mypage-menu-comment").click(function() {
-		loadContent("account/mypage/mypage-comment.jsp");
-	});
-
-
-	$('#mypage-menu-article').click(function() {
+	$('#full-wrap-article').click(function() {
 		console.log("로그인 세션값" + loginCheck);
 		$.ajax({
 			url: 'ArticleC', // 서블릿 URL
