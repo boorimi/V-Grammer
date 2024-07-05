@@ -254,7 +254,7 @@
 	font-family: "Bebas Neue", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	box-shadow: 5px 5px 20px gray;
+	box-shadow: 1px 1px 9px gray;
 	display: flex;
 	align-items: center;
 }

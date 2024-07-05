@@ -33,10 +33,10 @@ $(document).ready(function() {
 		19: ['linear-gradient(to right, #77788F, rgba(119, 120, 143, 0)', 'rgba(103, 105, 128, 0.2)'],
 		20: ['linear-gradient(to right, #B2E2F7, rgba(178, 226, 247, 0)', 'rgba(178, 226, 247, 0.2)'],
 		21: ['linear-gradient(to right, #BF8ADE, rgba(191, 138, 222, 0)', 'rgba(191, 138, 222, 0.2)'],
-		22: ['linear-gradient(to right, #CDEDFF, rgba(205, 237, 255, 0)', 'rgba(205, 237, 255, 0.2)'],
-		23: ['linear-gradient(to right, #C5C2C3, rgba(197, 194, 195, 0)', 'rgba(197, 194, 195, 0.2)'],
-		24: ['linear-gradient(to right, #FAC6D3, rgba(250, 198, 211, 0)', 'rgba(250, 198, 211, 0.2)'],
-		25: ['linear-gradient(to right, #BEC48B, rgba(190, 196, 139, 0)', 'rgba(190, 196, 139, 0.2)']
+		22: ['linear-gradient(to right, #CDEDFF, rgba(205, 237, 255, 0)', 'rgba(205, 237, 255, 0.3)'],
+		23: ['linear-gradient(to right, #C5C2C3, rgba(197, 194, 195, 0)', 'rgba(197, 194, 195, 0.3)'],
+		24: ['linear-gradient(to right, #FAC6D3, rgba(250, 198, 211, 0)', 'rgba(250, 198, 211, 0.3)'],
+		25: ['linear-gradient(to right, #BEC48B, rgba(190, 196, 139, 0)', 'rgba(190, 196, 139, 0.3)']
 	}
 
 	// 첫페이지 인덱스 pk값 1번 멤버 컬러로 노출되도록.
