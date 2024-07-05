@@ -586,6 +586,11 @@
   color: inherit;
 }
 
+.today-vtuber-address-box > div {
+	display: flex;
+	align-items: center;
+}
+
 #X {
   padding-left: 20px;
   padding-right: 20px;
@@ -621,7 +626,6 @@
 
 #showroom {
   background-color: white;
-  display: inline-block;
 }
 
 #showroom a {
