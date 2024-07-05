@@ -26,7 +26,7 @@
 			<div class="mypage-menu-title">
 				<h2>MY PAGE</h2>
 			</div>
-			<div class="menu-full-wrap">
+			<div class="menu-full-wrap" id="full-wrap-info">
 				<div class="mypage-menu-items" id="mypage-menu-userInfo">
 					<div class="mypage-menu-icon-wrap">
 						<img class="mypage-menu-icon" alt=""
@@ -37,7 +37,7 @@
 				<img class="menu-cursor" alt=""
 					src="account/mypage/mypage_index_icon/cursor.png">
 			</div>
-			<div class="menu-full-wrap">
+			<div class="menu-full-wrap" id="full-wrap-goods">
 				<div class="mypage-menu-items" id="mypage-menu-goods">
 					<div class="mypage-menu-icon-wrap">
 						<img class="mypage-menu-icon" alt=""
@@ -48,7 +48,7 @@
 				<img class="menu-cursor" alt=""
 					src="account/mypage/mypage_index_icon/cursor.png">
 			</div>
-			<div class="menu-full-wrap">
+			<div class="menu-full-wrap" id="full-wrap-article">
 				<div class="mypage-menu-items" id="mypage-menu-article">
 					<div class="mypage-menu-icon-wrap">
 						<img class="mypage-menu-icon" alt=""
