@@ -10,8 +10,6 @@ $(document).ready(function() {
 	});
 
 
-
-
 	let loginCheck = $('.mypage-container').data('loginsession');
 	// 공통 AJAX 요청 함수
 	function loadContent(url) {
@@ -71,20 +69,16 @@ $(document).ready(function() {
 	}
 
 	// 각 메뉴 아이템에 대해 클릭 이벤트를 설정
-	$("#full-wrap-info").click(function() {
+	$("#mypage-menu-userInfo").click(function() {
 		loadContent("account/mypage/mypage_userInfo.jsp");
 	});
 
-	$("#full-wrap-goods").click(function() {
+	$("#mypage-menu-goods").click(function() {
 		loadContentWithBlur("account/mypage/mypage_goods.jsp");
 	});
 
-	/*  $("#mypage-menu-article").click(function() {
-		  loadContent("account/mypage/mypage_article.jsp");
-		  console.log("article.jsp로드 성공");
-	  });*/
 
-	$('#full-wrap-article').click(function() {
+	$('#mypage-menu-article').click(function() {
 		console.log("로그인 세션값" + loginCheck);
 		$.ajax({
 			url: 'ArticleC', // 서블릿 URL
@@ -113,7 +107,7 @@ $(document).ready(function() {
 			method: 'GET',
 			success: function(response) {
 				if (!loginCheck) {
-					alert("로그인 세션이 만료되었습니다");
+					alert("ログインセッション満了\nホームに戻ります。");
 					window.location.href = "HC";
 					return;
 				}
