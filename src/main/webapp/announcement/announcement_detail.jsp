@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="announcement-con-txt">${announcements.text}</div>
       <div style="display: flex; justify-content: space-evenly; margin:30px 0px;">
-        <c:if test="${sessionScope.twitterId == 459978973 }">  
+        <!--<c:if test="${sessionScope.twitterId == 459978973 }">  
         <div>
           <button class="cute-button-blue"
             onclick="location.href='UpdateAnnouncement?no=${announcements.pk}'"
@@ -31,7 +31,19 @@ pageEncoding="UTF-8"%>
             삭제
           </button>
         </div>
-        </c:if>
+        </c:if>-->
+        <div>
+          <button class="cute-button-blue"
+            onclick="location.href='UpdateAnnouncement?no=${announcements.pk}'"
+          >
+            수정
+          </button>
+        </div>
+        <div>
+          <button  class="cute-button-blue" onclick="announcementDelete(${announcements.pk})">
+            삭제
+          </button>
+        </div>
       </div>
     </div>
   </body>

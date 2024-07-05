@@ -13,7 +13,8 @@ import com.vg.jw.AccountDAO;
 public class AnnouncementPageC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AnnouncementDAO.ADAO.selectAllAnnouncement(request);
+		String temp = "page";
+		AnnouncementDAO.ADAO.selectAllAnnouncement(request,temp);
 		int p = Integer.parseInt(request.getParameter("p"));
 		AnnouncementDAO.ADAO.paging(p, request);
 //		request.setAttribute("content", "jsp/review/review.jsp");

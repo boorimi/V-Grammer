@@ -500,6 +500,8 @@ async function searchPage(resData) {
             <option value="ASMR">ASMR</option>
             <option value="shorts">shorts</option>
             <option value="切り抜き">切り抜き</option>
+            <option value="動画">動画</option>
+            <option value="歌ってみた">歌ってみた</option>
             <option value="オリジナル曲">オリジナル曲</option>
             <option value="他">他</option>
           </select>
@@ -688,6 +690,7 @@ function test2(resData) {
               <option value="ASMR">ASMR</option>
               <option value="shorts">shorts</option>
               <option value="切り抜き">切り抜き</option>
+              <option value="動画">動画</option>
               <option value="歌ってみた">歌ってみた</option>
               <option value="オリジナル曲">オリジナル曲</option>
               <option value="他">他</option>

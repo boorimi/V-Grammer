@@ -30,12 +30,12 @@ public class HomeDAO {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 
 			String sql = "select c_m_pk, c_address, i_icon ";
-				   sql += "from haco_currentlivestream, haco_image ";
-				   sql += "where i_m_pk = c_m_pk";
+			sql += "from haco_currentlivestream, haco_image ";
+			sql += "where i_m_pk = c_m_pk";
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -59,14 +59,14 @@ public class HomeDAO {
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-		
+
 	}
 
 	public void getRecommendVtuber(HttpServletRequest request) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 
 //			String  sql = "SELECT ar.a_pk, ad.*, ar.a_title, ar.a_videoid, im.i_icon, m.m_name ";
@@ -78,7 +78,7 @@ public class HomeDAO {
 //					sql += "where not ad.a_category = 'YchannelID' and not ad.a_category = 'YuploadPLID'";
 
 			String sql = "select * from haco_recommendvtuber";
-			
+
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -96,8 +96,9 @@ public class HomeDAO {
 				String videoId = rs.getString(8);
 				String icon = rs.getString(9);
 				String name = rs.getString(10);
-				
-				GetRecommendVtuberDTO g = new GetRecommendVtuberDTO(pk, archive_pk, address_pk, m_pk, category, address, title, videoId, icon, name);
+
+				GetRecommendVtuberDTO g = new GetRecommendVtuberDTO(pk, archive_pk, address_pk, m_pk, category, address,
+						title, videoId, icon, name);
 				recommendVtuber.add(g);
 
 			}
@@ -108,7 +109,35 @@ public class HomeDAO {
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-		
+
+	}
+
+	public void getNewsImg(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = "select i_m_pk, i_img, i_background from haco_image order by rand() limit 1";
+
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+
+			String img = rs.getString(2);
+			String background = rs.getString(3);
+
+			request.setAttribute("img", img);
+			request.setAttribute("background", background);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+
 	}
 
 }

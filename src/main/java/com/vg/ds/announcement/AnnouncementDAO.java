@@ -47,14 +47,20 @@ public class AnnouncementDAO {
 		request.setAttribute("announcements", items);
 	}
 
-	public void selectAllAnnouncement(HttpServletRequest request) {
+	public void selectAllAnnouncement(HttpServletRequest request, String temp) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-
-			String sql = "select * from haco_announcement order by a_date asc";
+			String sql = "";
+			if (temp.equals("main")) {
+				// 메인용
+				sql = "select * from haco_announcement order by a_date desc";
+			} else {
+			// 페이지용
+			sql = "select * from haco_announcement order by a_date asc";
+			}
 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
