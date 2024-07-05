@@ -24,9 +24,9 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
         <!-- 본문페이지 for문 시작 -->
         <c:set var="totalItems" value="${fn:length(announcements)}" />
         <c:forEach var="a" items="${announcements }" varStatus="status">
-          <div class="announcement-content">
+          <div onclick="location.href='SelectAnnouncement?no=${a.pk}'" class="announcement-content">
             <div class="announcement-number">${totalItems - status.index}</div>
-            <div onclick="location.href='SelectAnnouncement?no=${a.pk}'" class="announcement-con-title">
+            <div class="announcement-con-title">
               ${a.title }
             </div>
             <div class="announcement-con-txt">${a.date }</div>
@@ -34,11 +34,14 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
         </c:forEach>
         <!-- 본문페이지 for문 끝 -->
       </div>
-      <c:if test="${sessionScope.twitterId == 459978973 }">
+      <!--<c:if test="${sessionScope.twitterId == 459978973 }">
       <div id="insert-button">
         <button class="cute-button-blue" onclick="location.href='InsertAnnouncement'">글쓰기</button>
       </div>
-      </c:if>
+      </c:if>-->
+      <div id="insert-button">
+        <button class="cute-button-blue" onclick="location.href='InsertAnnouncement'">글쓰기</button>
+      </div>
       <!-- 글쓰기 끝 -->
       <!-- 하단 페이징 시작 -->
       <div class="archive-paging-container">
@@ -53,7 +56,7 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
         <div class="archive-paging-unit-prev">
           <c:if test="${page != 0}">
             <a href="AnnouncementPage?p=${page - pageUnit + 1}"
-              >이전 ${pageUnit }페이지</a
+              >以前 ${pageUnit }ページに</a
             >
           </c:if>
         </div>
@@ -73,12 +76,12 @@ uri="http://java.sun.com/jsp/jstl/functions" %>
             test="${page + (curPageNo % pageUnit) < pageCount - (pageCount % pageUnit) && page + pageUnit != pageCount}"
           >
             <a href="AnnouncementPage?p=${page + pageUnit + 1 }"
-              >다음 ${pageUnit }페이지</a
+              >次 ${pageUnit }ページに</a
             >
           </c:if>
         </div>
         <div class="archive-paging-end">
-          <a href="AnnouncementPage?p=${pageCount}">끝</a>
+          <a href="AnnouncementPage?p=${pageCount}">最後に</a>
         </div>
       </div>
     </div>

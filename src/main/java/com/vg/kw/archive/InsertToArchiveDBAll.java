@@ -31,13 +31,16 @@ import org.json.simple.parser.JSONParser;
 import com.vg.ignore.DBManager;
 import com.vg.kw.main.YoutubeIDDTO;
 
-public class InsertToArchiveDBTest {
+public class InsertToArchiveDBAll {
 	public static void main(String[] args) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet rs = null;
 
 		try {
+			// 여기에 원하는 멤버pk입력
+			int memberPk = 25;
+			
 			// DB에서 각 멤버의 YchannelID, YuploadPLID 받아오기
 			String sql = "SELECT * FROM haco_address ";
 			sql += "where a_category in ('YchannelID','YuploadPLID') ";
@@ -45,7 +48,7 @@ public class InsertToArchiveDBTest {
 
 			connection = DBManager.connect();
 			statement = connection.prepareStatement(sql);
-			statement.setInt(1, 6);
+			statement.setInt(1, memberPk);
 			rs = statement.executeQuery();
 
 			ArrayList<YoutubeIDDTO> youtubeIds = new ArrayList<YoutubeIDDTO>();

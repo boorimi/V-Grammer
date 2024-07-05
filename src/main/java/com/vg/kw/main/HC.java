@@ -25,9 +25,11 @@ public class HC extends HttpServlet {
 		List<DdayDTO> ddayList = DdayDAO.selectAllDdays();
         request.setAttribute("ddayList", ddayList);
 //		GetAllStream.getAllLive();
-        AnnouncementDAO.ADAO.selectAllAnnouncement(request);
-        AccountDAO.loginCheck(request);
+        String temp = "main";
+        AnnouncementDAO.ADAO.selectAllAnnouncement(request,temp);
+        HomeDAO.HDAO.getNewsImg(request);
         
+        AccountDAO.loginCheck(request);
 		request.setAttribute("content", "mainpage/main.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
