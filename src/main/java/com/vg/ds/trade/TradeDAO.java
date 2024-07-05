@@ -491,23 +491,23 @@ public class TradeDAO {
 				good.setM_pk(rs.getString(3));
 				String valueToFind = rs.getString(4);
 				String label = null;
-				List<Map<String, String>> checkboxItems2 = new ArrayList<>();
-				checkboxItems2.add(Map.of("value", "bromide", "label", "白賞ブロマイド"));
-				checkboxItems2.add(Map.of("value", "57mmCanBadge", "label", "57mm缶バッジ"));
-				checkboxItems2.add(Map.of("value", "76mmCanBadge", "label", "76mm缶バッジ"));
-				checkboxItems2.add(Map.of("value", "akuki", "label", "SD絵アクキー"));
-				checkboxItems2.add(Map.of("value", "coaster", "label", "コスタ"));
-				checkboxItems2.add(Map.of("value", "omoideCyeki", "label", "思い出チェキ風カード"));
-				checkboxItems2.add(Map.of("value", "dmmMiniShikishi", "label", "DMM：色紙"));
-				checkboxItems2.add(Map.of("value", "dmm57CanBadge", "label", "DMM：57mm缶バッジ"));
-				checkboxItems2.add(Map.of("value", "dmmMiniAkusuta", "label", "DMM：ミニアクスタ"));
-				checkboxItems2.add(Map.of("value", "dmmCyeki", "label", "DMM：チェキ"));
-				for (Map<String, String> item : checkboxItems2) {
-					if (item.get("value").equals(valueToFind)) {
-						label = item.get("label");
-						break;
-					}
-				}
+				LinkedHashMap<String, String> checkboxItems2 = new LinkedHashMap<>();
+				checkboxItems2.put("bromide", "白賞ブロマイド");
+				checkboxItems2.put("57mmCanBadge", "57mm缶バッジ");
+				checkboxItems2.put("76mmCanBadge", "76mm缶バッジ");
+				checkboxItems2.put("akuki", "SD絵アクキー");
+				checkboxItems2.put("coaster", "コスタ");
+				checkboxItems2.put("omoideCyeki", "思い出チェキ風カード");
+				checkboxItems2.put("dmmMiniShikishi", "DMM：色紙");
+				checkboxItems2.put("dmm57CanBadge", "DMM：57mm缶バッジ");
+				checkboxItems2.put("dmmMiniAkusuta", "DMM：ミニアクスタ");
+				checkboxItems2.put("dmmCyeki", "DMM：チェキ");
+				 for (Map.Entry<String, String> item : checkboxItems2.entrySet()) {
+		                if (item.getKey().equals(valueToFind)) {
+		                    label = item.getValue();
+		                    break;
+		                }
+		            }
 				good.setCategory(label);
 				good.setCount(rs.getString(5));
 				good.setName(rs.getString(6));
