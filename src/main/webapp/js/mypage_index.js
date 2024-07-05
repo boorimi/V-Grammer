@@ -12,7 +12,7 @@ $(document).ready(function() {
 
 	let loginCheck = $('.mypage-container').data('loginsession');
 	// 공통 AJAX 요청 함수
-	function loadContent(url) {
+	function loadContentUserInfo(url) {
 		console.log("로그인 세션값" + loginCheck);
 		$.ajax({
 			url: url,
@@ -35,18 +35,21 @@ $(document).ready(function() {
 		});
 	}
 	
+	
 	//페이지 진입 시 첫 화면으로 회원정보 페이지 로드
-	loadContent("account/mypage/mypage_userInfo.jsp");
+	loadContentUserInfo("account/mypage/mypage_userInfo.jsp");
 	$('#mypage-menu-userInfo').addClass('active');
 	
 	// AJAX 요청 함수 with blur effect
-	function loadContentWithBlur(url) {
+	function loadContentGoods(url) {
 		console.log("로그인 세션값" + loginCheck);
 		$.ajax({
 			url: url,
 			type: "GET",
 			beforeSend: function() {
-				$('html').css('filter', 'blur(5px)');
+				$(".mypage-jsp-section").empty();
+				$('.mypage-jsp-section').append('<div id="loading-img-div"><img id="loading-img" src="account/mypage/mypage_index_icon/loading.gif" alt="Loading..." ></div>');
+				
 			},
 			success: function(data) {
 				if (!loginCheck) {
@@ -59,7 +62,7 @@ $(document).ready(function() {
 				$(".mypage-jsp-section").empty();
 				console.log("블러 지우는거 성공");
 				$(".mypage-jsp-section").append(data);
-				$('html').css('filter', 'none'); // 블러 효과 제거
+				
 			},
 			error: function() {
 				alert("Error loading page 로그인 세션이 만료되었습니다");
@@ -70,11 +73,11 @@ $(document).ready(function() {
 
 	// 각 메뉴 아이템에 대해 클릭 이벤트를 설정
 	$("#mypage-menu-userInfo").click(function() {
-		loadContent("account/mypage/mypage_userInfo.jsp");
+		loadContentUserInfo("account/mypage/mypage_userInfo.jsp");
 	});
 
 	$("#mypage-menu-goods").click(function() {
-		loadContentWithBlur("account/mypage/mypage_goods.jsp");
+		loadContentGoods("account/mypage/mypage_goods.jsp");
 	});
 
 
