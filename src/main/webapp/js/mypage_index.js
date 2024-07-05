@@ -10,8 +10,6 @@ $(document).ready(function() {
 	});
 
 
-
-
 	let loginCheck = $('.mypage-container').data('loginsession');
 	// 공통 AJAX 요청 함수
 	function loadContent(url) {
@@ -79,15 +77,6 @@ $(document).ready(function() {
 		loadContentWithBlur("account/mypage/mypage_goods.jsp");
 	});
 
-	/*  $("#mypage-menu-article").click(function() {
-		  loadContent("account/mypage/mypage_article.jsp");
-		  console.log("article.jsp로드 성공");
-	  });*/
-
-	$("#mypage-menu-comment").click(function() {
-		loadContent("account/mypage/mypage-comment.jsp");
-	});
-
 
 	$('#mypage-menu-article').click(function() {
 		console.log("로그인 세션값" + loginCheck);
@@ -118,7 +107,7 @@ $(document).ready(function() {
 			method: 'GET',
 			success: function(response) {
 				if (!loginCheck) {
-					alert("로그인 세션이 만료되었습니다");
+					alert("ログインセッション満了\nホームに戻ります。");
 					window.location.href = "HC";
 					return;
 				}
