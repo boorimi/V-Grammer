@@ -205,7 +205,8 @@
 .form-has-error .form-element-input.hasValue~.form-element-label,
 .form-has-error .form-element-input:focus~.form-element-label {
 	transform: translateY(-100%) translateY(-0.5em) translateY(-2px);
-	color: #d9534f cursor: pointer;
+	color: #d9534f;
+	cursor: pointer;
 	pointer-events: auto;
 }
 
