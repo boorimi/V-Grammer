@@ -2,7 +2,7 @@
 	font-family: 'CustomFont', sans-serif;
 	font-weight: 900;
 	position: relative;
-	height: 100vh;
+	height: 860px;
 	display: flex;
 	background-image: url('../haco_img/background/background_akai_akame.png');
 	background-size: cover;
@@ -10,6 +10,7 @@
 	background-repeat: no-repeat;
 	align-items: center;
 }
+
 /*핸드폰 이미지 div*/
 .waku-wrap {
 	display: flex;
@@ -41,7 +42,7 @@
 	flex-direction: column;
 	gap: 10px;
 	align-items: center;
-	justify-content: center;
+	padding-top: 140px;
 	width: 100%;
 }
 
@@ -67,18 +68,20 @@
 .x-id-wrap {
 	font-family: 'CustomFont', sans-serif;
 	font-weight: bold;
+
 }
 
 #x-title {
-	font-size: 2rem;
-	margin-top: -10px;
-	margin-bottom: 5px;
+	font-size: 1.3rem;
+	margin-top: 13px;
+
 }
 
 #x-id {
-	display: flex;
-	font-size: 1.5rem;
+
+	font-size: 1.2rem;
 	gap: 10px;
+	text-align: center;
 }
 
 #x-cursor {
@@ -86,23 +89,17 @@
 	height: 40px;
 }
 
-#register-button-div {
-	display: flex;
-	flex-direction: column;
-	position: absolute;
-	bottom: 65px;
-	left: 43%;
-}
+#register-button-div {}
 
 #register-submit-button {
 	font-family: 'CustomFont', sans-serif;
 	font-size: 1.1rem;
-	color: #fff;
-	background: linear-gradient(45deg, rgb(128, 0, 255), rgb(0, 255, 255));
+	color: black;
+	background: gainsboro;
 	border: none;
 	border-radius: 20px;
 	padding: 10px 20px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
 	cursor: pointer;
 	transition: background 0.3s ease, transform 0.3s ease;
 	margin-right: 1%;
@@ -112,10 +109,8 @@
 }
 
 #register-submit-button:hover {
-	background: linear-gradient(45deg,
-			rgb(0, 255, 255),
-			#ffb6c1);
-	/* 호버 시 배경색 그라데이션 변경 */
+	background: black;
+	color: white;
 	transform: scale(1.05);
 	/* 호버 시 살짝 위로 이동 */
 }
@@ -129,11 +124,10 @@
 	width: 250px;
 	height: auto;
 	background-color: white;
-	margin: auto;
 	position: relative;
-	margin-bottom: 30px;
+	margin-top: 17px;
 	border-radius: 7px;
-	border: 1.5px solid blue;
+	border: 2px solid black;
 }
 
 .form-element-input {
@@ -253,7 +247,7 @@
 .form-has-error .form-element-input.hasValue~.form-element-label,
 .form-has-error .form-element-input:focus~.form-element-label {
 	transform: translateY(-100%) translateY(-0.5em) translateY(-2px);
-	color: #d9534f ;
+	color: #d9534f;
 	cursor: pointer;
 	pointer-events: auto;
 }

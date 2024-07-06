@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="waku-wrap"
-		style="background-image: url('account/register/register_img/short-pink.png');">
+		style="background-image: url('account/register/register_img/waku.png');">
 		<form action="RegisterC" method="post" enctype="multipart/form-data"
 			id="register-form">
 			<div class="register-container">
@@ -23,7 +23,15 @@
 						<img class="register-profile" alt=""
 							src="${sessionScope.twitterProfileImgUrl }">
 					</div>
-					<br> <br>
+
+					<div class="x-id-wrap">
+						<div id="x-title">連動する「X」ID</div>
+						<div id="x-id">
+							<%-- 	<img id="x-cursor" alt=""
+								src="account/register/register_img/right-arrow.png">--%>
+							@${sessionScope.twitterScreenName }
+						</div>
+					</div>
 					<div class="register-nickname-wrap">
 						<div class="form-input">
 							<input id="register-nickname-input"
@@ -36,18 +44,11 @@
 						</div>
 					</div>
 					<div id="check-result"></div>
-					<div class="x-id-wrap">
-						<p id="x-title">連動する「X」ID</p>
-						<div id="x-id">
-							<img id="x-cursor" alt=""
-								src="account/register/register_img/right-arrow.png">
-							@${sessionScope.twitterScreenName }
-						</div>
-					</div>
 					<div id="register-button-div">
 						<!-- <img id="button-arrow" alt="" src="account/register/downarrow.png"> -->
 						<button id="register-submit-button" type="button">ハコナカ登録!</button>
 					</div>
+
 				</div>
 			</div>
 		</form>
