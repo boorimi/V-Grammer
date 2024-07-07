@@ -75,7 +75,7 @@ public class CalendarDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            response.getWriter().print("[]"); // 에러 발생 시 빈 JSON 배열 응답
+            response.getWriter().print("[]"); // 에러 발생 시 빈 JSON 배열 응답하기.
         } finally {
             if (rs != null) {
                 try {
