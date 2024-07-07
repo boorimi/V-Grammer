@@ -31,6 +31,12 @@
     word-break: break-word;
 }
 
+.login-cute-button{
+	background-color: black;
+	color: white;
+	margin: 3px 0px;
+}
+
 /* 아카이브 버튼 부분 시작 */
 /*@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
 

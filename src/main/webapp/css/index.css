@@ -359,12 +359,23 @@
   height: 350px;
   display: flex;
 }
-
 .news-photo {
+	display: flex;
+	position: relative;
+	overflow: hidden;
   margin-top: 15px;
   width: 400px;
   height: 350px;
-  /* background-color: #5351d9; */
+}
+.news-photo > img:nth-child(1) {
+  width: 540px;
+  height: 350px;
+}
+.news-photo > img:nth-child(2) {
+  width: 540px;
+  height: auto;
+  position: absolute;
+  left:-75px;
 }
 
 .news-board {
@@ -414,10 +425,6 @@
   background: rgba(255, 255, 255, 0.4); /* 호버 시 배경색 조금 더 밝게 */
 }
 
-.news-photo > img {
-  width: 540px;
-  height: 350px;
-}
 
 .today-vtuber-wrapper {
   display: flex;
@@ -532,9 +539,8 @@
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
-  /*   box-shadow: 5px 5px 20px gray; */
   border: none;
-  box-shadow: 5px 5px 20px gray;
+  box-shadow: 1px 3px 9px gray;
 }
 
 .today-vtuber-address-box > div:hover {
@@ -579,6 +585,11 @@
   color: inherit;
 }
 
+.today-vtuber-address-box > div {
+	display: flex;
+	align-items: center;
+}
+
 #X {
   padding-left: 20px;
   padding-right: 20px;
@@ -614,7 +625,6 @@
 
 #showroom {
   background-color: white;
-  display: inline-block;
 }
 
 #showroom a {

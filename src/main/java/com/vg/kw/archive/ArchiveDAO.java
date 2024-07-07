@@ -193,7 +193,7 @@ public class ArchiveDAO {
 				archives.add(archive.toJSON());
 
 			}
-			System.out.println("tostring" + archives);
+			//System.out.println("tostring" + archives);
 
 			response.setContentType("application/json; charset=utf-8");
 			response.getWriter().print(archives);

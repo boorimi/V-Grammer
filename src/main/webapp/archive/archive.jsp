@@ -2,6 +2,7 @@
 contentType="text/html;charset=UTF-8" language="java"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fn"
 uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <html>
   <head>
     <title>Archives</title>
@@ -11,6 +12,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="css/archive.css" />
+    <script type="text/javascript">
+    let twitterId = "${sessionScope.twitterId}";
+</script>
     <script src="js/archive.js" defer></script>
   </head>
 
@@ -59,6 +63,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             <option value="ASMR">ASMR</option>
             <option value="shorts">shorts</option>
             <option value="切り抜き">切り抜き</option>
+            <option value="動画">動画</option>
+            <option value="歌ってみた">歌ってみた</option>
             <option value="オリジナル曲">オリジナル曲</option>
             <option value="他">他</option>
           </select>

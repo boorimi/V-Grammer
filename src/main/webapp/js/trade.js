@@ -15,7 +15,7 @@ function tradeInsert() {
 function tradeCancleInsert() {
   let ok = confirm("作成をキャンセルしますか？");
   if (ok) {
-    location.href = "trade";
+    location.href = "Trade";
   }
 }
 function tradeUpdate() {

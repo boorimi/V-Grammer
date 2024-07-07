@@ -15,7 +15,8 @@ import com.vg.jw.AccountDAO;
 public class AnnouncementC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AnnouncementDAO.ADAO.selectAllAnnouncement(request);
+		String temp = "page";
+        AnnouncementDAO.ADAO.selectAllAnnouncement(request,temp);
         AnnouncementDAO.ADAO.paging(1, request);
 
         // 로그 출력

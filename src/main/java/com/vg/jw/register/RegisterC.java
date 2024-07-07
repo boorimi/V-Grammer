@@ -36,11 +36,12 @@ public class RegisterC extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		System.out.println("Register컨트롤러 post진입");
 		System.out.println("이거 전달됨? : "+request.getParameter("inputNickName"));
-		
-		AccountDAO.loginCheck(request);
 		AccountDAO.registerUser(request);
-		request.setAttribute("content", "mainpage/main.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
+//		AccountDAO.loginCheck(request);
+//		request.setAttribute("content", "mainpage/main.jsp");
+//		request.getRequestDispatcher("index.jsp").forward(request, response);
+		response.sendRedirect("HC");
 	}
 
 }

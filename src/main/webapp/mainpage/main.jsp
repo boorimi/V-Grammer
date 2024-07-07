@@ -99,10 +99,11 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
       <div class="main-news-container">
         <div class="main-news">
           <div class="news-photo">
-            <img src="haco_img/img/newimg2.png" alt="News Photo" />
+            <img src="haco_img/background/${background }" alt="News Photo" />
+            <img src="haco_img/img/${img }" alt="News Photo" />
           </div>
           <ul class="news-board">
-            <c:forEach begin="1" end="5" var="news" items="${announcements}">
+            <c:forEach begin="0" end="4" var="news" items="${announcements}">
               <span>
                 <li class="date-item">
                   <fmt:parseDate

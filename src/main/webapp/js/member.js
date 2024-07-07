@@ -33,10 +33,10 @@ $(document).ready(function() {
 		19: ['linear-gradient(to right, #77788F, rgba(119, 120, 143, 0)', 'rgba(103, 105, 128, 0.2)'],
 		20: ['linear-gradient(to right, #B2E2F7, rgba(178, 226, 247, 0)', 'rgba(178, 226, 247, 0.2)'],
 		21: ['linear-gradient(to right, #BF8ADE, rgba(191, 138, 222, 0)', 'rgba(191, 138, 222, 0.2)'],
-		22: ['linear-gradient(to right, #CDEDFF, rgba(205, 237, 255, 0)', 'rgba(205, 237, 255, 0.2)'],
-		23: ['linear-gradient(to right, #C5C2C3, rgba(197, 194, 195, 0)', 'rgba(197, 194, 195, 0.2)'],
-		24: ['linear-gradient(to right, #FAC6D3, rgba(250, 198, 211, 0)', 'rgba(250, 198, 211, 0.2)'],
-		25: ['linear-gradient(to right, #BEC48B, rgba(190, 196, 139, 0)', 'rgba(190, 196, 139, 0.2)']
+		22: ['linear-gradient(to right, #CDEDFF, rgba(205, 237, 255, 0)', 'rgba(205, 237, 255, 0.3)'],
+		23: ['linear-gradient(to right, #C5C2C3, rgba(197, 194, 195, 0)', 'rgba(197, 194, 195, 0.3)'],
+		24: ['linear-gradient(to right, #FAC6D3, rgba(250, 198, 211, 0)', 'rgba(250, 198, 211, 0.3)'],
+		25: ['linear-gradient(to right, #BEC48B, rgba(190, 196, 139, 0)', 'rgba(190, 196, 139, 0.3)']
 	}
 
 	// 첫페이지 인덱스 pk값 1번 멤버 컬러로 노출되도록.
@@ -61,17 +61,23 @@ $(document).ready(function() {
 
 			// 22~25 배경이미지 컬러 그라데이션 넣어주기 위한 if문
 			if ($(this).attr('id') === '22') {
-				$('.member-img-container').css('background-color', '#FCEDEF')
+				$('.member-img-container').css('background-color', '#FCEDEF');
+				$('.member-img > img').css('right','-15%');
 			} else if ($(this).attr('id') === '23') {
-				$('.member-img-container').css('background-color', '#C1C1C5')
+				$('.member-img-container').css('background-color', '#C1C1C5');
+				$('.member-img > img').css('right','-15%');
 			} else if ($(this).attr('id') === '24') {
-				$('.member-img-container').css('background-color', '#D4D0DF')
+				$('.member-img-container').css('background-color', '#D4D0DF');
+				$('.member-img > img').css('right','-15%');
 			} else if ($(this).attr('id') === '25') {
-				$('.member-img-container').css('background-color', '#F4F4E4')
+				$('.member-img-container').css('background-color', '#F4F4E4');
+				$('.member-img > img').css('right','-15%');
 			} else if ($(this).attr('id') === '17') {
-				$('.member-img-container').css('background-color', '#FDF9FA')
+				$('.member-img-container').css('background-color', '#FDF9FA');
+				$('.member-img > img').css('right','0');
 			} else {
-				$('.member-img-container').css('background-color', 'rgb(0,0,0,0)')
+				$('.member-img-container').css('background-color', 'rgb(0,0,0,0)');
+				$('.member-img > img').css('right','0');
 			}
 
 			// 클릭 시 마다 멤버 리스트와 디테일 박스 색상 변경

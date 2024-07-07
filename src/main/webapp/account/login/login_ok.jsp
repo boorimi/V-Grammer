@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/login_ok.css" />
-<link rel="stylesheet" href="css/archieve.css" />
+<link rel="stylesheet" href="css/archive.css" />
 </head>
 <body>
 	<div class="login-container">

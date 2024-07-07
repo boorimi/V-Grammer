@@ -188,7 +188,6 @@ $(document).ready(function() {
 		console.log('딜리트 클릭 콘솔 : ' + sPk);
 		if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
 			if (confirm('本当に削除しますか？')) {
-				//				location.href = "DeleteScheduleC?sPk=" + sPk;
 				$.ajax({
 					url: "DeleteScheduleC",
 					type: "GET",
@@ -354,18 +353,18 @@ $(document).ready(function() {
 });
 
 // 방향키 좌,우 다음 스케줄 클릭시키기 by mz     37, 39       
-function scheduleKeyEvent(target) {
-	console.log(target);
-	console.log('call me one time')
-	$(this).on("keydown", ((e) => {
-		if (e.keyCode == 37) {
-			$(target).prev().prev().click();
-			console.log($(target).prev().prev())
-		} else if (e.keyCode == 39) {
-			$(target).next().next().click();
-			console.log($(target).next())
-		}
-		target = $("input[name='tab-item']:checked");
-	}));
-
-}
+//function scheduleKeyEvent(target) {
+//	console.log(target);
+//	console.log('call me one time')
+//	$(this).on("keydown", ((e) => {
+//		if (e.keyCode == 37) {
+//			$(target).prev().prev().click();
+//			console.log($(target).prev().prev())
+//		} else if (e.keyCode == 39) {
+//			$(target).next().next().click();
+//			console.log($(target).next())
+//		}
+//		target = $("input[name='tab-item']:checked");
+//	}));
+//
+//}
