@@ -12,11 +12,11 @@ $(document).ready(function() {
 	});
 
 	deleteButton.addEventListener('click', () => {
-		console.log('deleteButton');
+//		console.log('deleteButton');
 	});
 
 	updateButton.addEventListener('click', () => {
-		console.log('updateButton');
+//		console.log('updateButton');
 	});
 
 	modal.addEventListener('click', (event) => {
@@ -78,7 +78,7 @@ $(document).ready(function() {
 	// 스케줄 맞는 시간대 박스에 집어넣는 코드
 	let data = $("#weekJSON").text();
 	data = JSON.parse(data);
-	console.log(data[0]);
+//	console.log(data[0]);
 
 	for (var i = 1; i < 8; i++) {
 		let sDataBox = $(".day" + i + "-content .s-data-box");
@@ -93,8 +93,8 @@ $(document).ready(function() {
 			$.each(data[i - 1], (j, obj) => {
 				if (start <= obj.intTime && obj.intTime < end) {
 					let sData = $("<div></div>").addClass("s-data").attr('data-m-pk', obj.s_m_pk)
-						.attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-m-name', obj.m_name)
-						.attr('data-s-title', obj.s_title).attr('data-i-icon', obj.i_icon);
+						.attr('data-s-pk', obj.s_pk).attr('data-s-time', obj.s_time).attr('data-s-date', obj.s_date)
+						.attr('data-m-name', obj.m_name).attr('data-s-title', obj.s_title).attr('data-i-icon', obj.i_icon);
 
 					let sTime = $("<div></div>").text(obj.s_time);
 					let mName = $("<div></div>").text(obj.m_name);
@@ -137,7 +137,7 @@ $(document).ready(function() {
 				$(this).css('left', '-10%');
 			} else if (width < 190 && width >= 150) {
 				$(this).css('left', '-15%');
-			}
+			} 
 		});
 	}
 	titlePosition();
@@ -167,16 +167,22 @@ $(document).ready(function() {
 
 	let sPk = null;
 	let sTitle = null;
+	let sDate = null;
+	let sTime = null;
+	
 	$('.s-data').click(function() {
 		$('.modal-a-box').css('display', 'block');
 		$('.modal-b-box').css('display', 'none');
 
 		modal.showModal();
-		console.log(this.dataset);
+//		console.log(this.dataset);
 
 		sPk = this.dataset.sPk;
 		sTitle = this.dataset.sTitle;
-		console.log(sPk);
+		sDate = this.dataset.sDate;
+		sTime = this.dataset.sTime;
+//		console.log("날짜"+sDate);
+//		console.log("시간"+sTime);
 
 		modal.querySelector("#time").innerText = this.dataset.sTime;
 		modal.querySelector("#name").innerText = this.dataset.mName;
@@ -185,7 +191,7 @@ $(document).ready(function() {
 
 	$('#deleteButton').click(function() {
 		// 스케줄의 pk
-		console.log('딜리트 클릭 콘솔 : ' + sPk);
+//		console.log('딜리트 클릭 콘솔 : ' + sPk);
 		if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
 			if (confirm('本当に削除しますか？')) {
 				$.ajax({
@@ -216,18 +222,20 @@ $(document).ready(function() {
 	});
 	// Modal Update Click
 	$('#updateButton').click(function() {
-		console.log('업데이트 클릭 콘솔 : ' + sPk);
+//		console.log('업데이트 클릭 콘솔 : ' + sPk);
 		if ($('#deleteButton').val() !== null && $('#deleteButton').val() !== "") {
 			$('.modal-a-box').css('display', 'none');
 			$('.modal-b-box').css('display', 'block');
-			console.log('타이틀 : ' + sTitle);
+//			console.log('타이틀 : ' + sTitle);
+			$('#s-update-date').val(sDate);
+			$('#s-update-time').val(sTime);
 			$('#s-update-title').val(sTitle);
 		} else {
 			alert("ログインが必要です！");
 		}
 	});
 	$('#s-update-button').click(function() {
-		console.log('등록 버튼 클릭 콘솔 : ' + sPk);
+//		console.log('등록 버튼 클릭 콘솔 : ' + sPk);
 
 		let date = $('#s-update-date').val();
 		let time = $('#s-update-time').val();
@@ -313,7 +321,7 @@ $(document).ready(function() {
 	// 입력 안하면 입력 알럿
 	let activerow;
 	$(".s-input-date1").focus(function() {
-		console.log($(this));
+//		console.log($(this));
 		activerow = $(this).closest('.s-input-box');
 	});
 
@@ -324,10 +332,10 @@ $(document).ready(function() {
 		const date1 = $(activerow).find($(".s-input-date1")).val();
 		const time1 = $(activerow).find($(".s-input-time1")).val();
 		const title1 = $(activerow).find($(".s-input-title1")).val();
-		console.log(list)
-		console.log(date1)
-		console.log(time1)
-		console.log(title1)
+//		console.log(list)
+//		console.log(date1)
+//		console.log(time1)
+//		console.log(title1)
 
 		if (!list) {
 			alert("メンバーをチェックください！");
