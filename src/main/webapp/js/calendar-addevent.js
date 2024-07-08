@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let loadedEvents = [];
 
-    loadEventsForYears(year, year + 4, calendar);
+    loadEventsForYears(year, year + 3, calendar);
 
     document.querySelectorAll('.fc-button').forEach(button => {
         button.addEventListener("click", () => {
             console.log("버튼이 클릭되었습니다.");
-            updateEvents(year, year + 4, calendar);
+            updateEvents(year, year + 3, calendar);
         });
     });
 
