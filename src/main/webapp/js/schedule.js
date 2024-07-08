@@ -137,18 +137,18 @@ $(document).ready(function() {
 				$(this).css('left', '-10%');
 			} else if (width < 190 && width >= 150) {
 				$(this).css('left', '-15%');
-			}
+			} 
 		});
 	}
-//	titlePosition();
-//	let flagKey = true;
-//	$('.tab-item').click(function(e) {
-//		setTimeout(titlePosition, 0);
-//		if (flagKey) {
-//			scheduleKeyEvent(e.target);
-//			flagKey = false;
-//		}
-//	})
+	titlePosition();
+	let flagKey = true;
+	$('.tab-item').click(function(e) {
+		setTimeout(titlePosition, 0);
+		if (flagKey) {
+			scheduleKeyEvent(e.target);
+			flagKey = false;
+		}
+	})
 
 	// 호버된 s-data div 이 외에 모든 s-data div에 opacity
 	$(".s-data").mouseover(function() {
